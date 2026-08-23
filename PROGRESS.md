@@ -15,12 +15,12 @@ This document tracks the implementation progress of the Nairat Food Services web
   - [x] Initialize Next.js project with TypeScript, Tailwind CSS, Lenis, and GSAP
   - [x] Configure Tailwind theme configuration with brand design tokens
   - [x] Configure global layouts, typography base, and navigation scaffolding
-- [ ] **Milestone 3: Core UI Development**
-  - [ ] Implement Navbar & Hero sections
-  - [ ] Implement Partner logos carousel
-  - [ ] Implement "Who We Are" overview + three vertical metric cards
-  - [ ] Implement "Our Strengths" 5-cell grid with image triggers
-  - [ ] Implement "What We Do" service cards
+- [x] **Milestone 3: Core UI Development**
+  - [x] Implement Navbar & Hero sections
+  - [x] Implement Partner logos carousel
+  - [x] Implement "Who We Are" overview + three vertical metric cards
+  - [x] Implement "Our Strengths" 5-cell grid with image triggers
+  - [x] Implement "What We Do" service cards
 - [ ] **Milestone 4: Advanced Interactive Features**
   - [ ] Implement "Our Products" carousel with category tabs filtering
   - [ ] Implement "Global Sourcing" Interactive SVG World Map
