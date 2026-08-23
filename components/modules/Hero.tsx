@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Leaf } from 'lucide-react';
 
 export function Hero() {
   return (
@@ -12,63 +11,66 @@ export function Hero() {
     >
       {/* Background Image Overlay */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity scale-105"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 scale-100"
         style={{ 
           backgroundImage: `url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1974')` 
         }}
         aria-hidden="true"
       />
       
-      {/* Radial Gradient overlay for premium depth */}
-      <div className="absolute inset-0 bg-gradient-to-t from-brand-forest via-brand-forest/70 to-transparent" />
-      <div className="absolute inset-0 bg-radial-at-c from-transparent via-brand-forest/40 to-brand-forest" />
+      {/* Radial and linear dark gradient overlays to ensure text readability */}
+      <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/90 via-brand-forest/40 to-brand-forest/60" />
+      <div className="absolute inset-0 bg-black/20" />
 
-      {/* Decorative Floating Element */}
-      <div className="absolute top-1/4 left-10 w-72 h-72 bg-brand-lime/10 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-brand-saffron/5 rounded-full blur-3xl animate-pulse delay-700" />
+      <div className="relative max-w-7xl mx-auto px-6 md:px-8 pt-36 pb-20 z-10 w-full">
+        {/* Asymmetrical Grid layout matching user's target mockup */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-end">
+          
+          {/* Left Column: Huge Title (lg:col-span-7) */}
+          <div className="lg:col-span-7 space-y-4">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="font-sans text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-[1.1] tracking-tight text-pretty"
+            >
+              Fresh from the Source. <br />
+              Delivered Across Qatar.
+            </motion.h1>
+          </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-8 py-20 text-center z-10 flex flex-col items-center">
-        {/* Headline */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="font-display text-4xl sm:text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-8"
-        >
-          Fresh from the Source. <br />
-          <span className="text-brand-lime">Delivered Across Qatar.</span>
-        </motion.h1>
+          {/* Right Column: Description & Action (lg:col-span-5) */}
+          <div className="lg:col-span-5 space-y-6 lg:ps-4">
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
+              className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-lg"
+            >
+              Nairat Food imports, distributes and delivers premium fresh fruit and vegetables to Qatar’s leading supermarkets, markets and homes - every day of the year
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <a
+                href="#products"
+                className="inline-flex bg-[#0F7944] hover:bg-[#0E6C3B] text-white font-sans text-sm font-bold px-6 py-3 rounded-full transition-all duration-200 shadow-lg items-center gap-3.5 group focus-visible:outline-2 focus-visible:outline-white"
+              >
+                <span>Explore Our Products</span>
+                <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center shrink-0 text-[#0F7944] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200">
+                  <svg className="w-3.5 h-3.5 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                    <polyline points="7 7 17 7 17 17"></polyline>
+                  </svg>
+                </div>
+              </a>
+            </motion.div>
+          </div>
 
-        {/* Subtitle */}
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-sans text-base sm:text-lg text-white/90 max-w-2xl leading-relaxed mb-10 text-pretty"
-        >
-          Nairat Food imports, distributes and delivers premium fresh fruits and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
-        </motion.p>
-
-        {/* CTA Button */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex justify-center items-center"
-        >
-          <a
-            href="#products"
-            className="bg-brand-lime hover:bg-brand-lime/90 text-white font-sans text-sm font-bold px-8 py-3.5 rounded-full transition-all duration-200 shadow-lg shadow-brand-lime/20 flex items-center gap-3 group focus-visible:outline-2 focus-visible:outline-brand-saffron focus-visible:outline-offset-2"
-          >
-            <span>Explore Our Products</span>
-            <span className="w-5 h-5 rounded-full border border-white flex items-center justify-center text-white shrink-0 group-hover:translate-x-0.5 transition-transform duration-200">
-              <svg className="w-2.5 h-2.5 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </span>
-          </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
