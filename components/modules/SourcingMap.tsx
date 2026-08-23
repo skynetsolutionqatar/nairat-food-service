@@ -265,10 +265,11 @@ export function SourcingMap() {
           {/* Column 3: Quality Certificate Cards (lg:col-span-3) */}
           <div className="lg:col-span-3 flex flex-col gap-6 justify-between">
             {certificates.map((cert) => (
-              <div
+              <button
+                type="button"
                 key={cert.id}
                 onClick={() => setActiveCertificate(cert)}
-                className="bg-white rounded-2xl p-6 border border-brand-forest/5 shadow-sm hover:border-brand-lime/30 transition-all duration-300 cursor-pointer flex flex-col justify-between flex-1 group"
+                className="bg-white rounded-2xl p-6 border border-brand-forest/5 shadow-sm hover:border-brand-lime/30 focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-2 transition-all duration-300 cursor-pointer flex flex-col justify-between flex-1 group text-left"
               >
                 <div className="space-y-4">
                   <div className="w-10 h-10 rounded-xl bg-brand-forest/5 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
@@ -283,7 +284,7 @@ export function SourcingMap() {
                     </span>
                   </div>
                   <p className="font-sans text-xs text-neutral-text-muted leading-relaxed">
-                    {cert.scope.substring(0, 100)}...
+                    {cert.scope.substring(0, 100)}…
                   </p>
                 </div>
 
@@ -291,7 +292,7 @@ export function SourcingMap() {
                   <FileText className="w-4 h-4" aria-hidden="true" />
                   <span>Inspect Certificate Document</span>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 

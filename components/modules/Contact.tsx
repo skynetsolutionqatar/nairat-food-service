@@ -146,7 +146,7 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       autoComplete="name"
-                      placeholder="e.g. Abdullah Al-Thani"
+                      placeholder="e.g. Abdullah Al-Thani…"
                       className="w-full font-sans text-sm bg-white border border-brand-forest/10 rounded-xl py-3.5 px-4 focus:outline-none focus:border-brand-lime text-neutral-text-dark"
                     />
                   </div>
@@ -164,7 +164,7 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       autoComplete="organization"
-                      placeholder="e.g. Qatar Retail Group"
+                      placeholder="e.g. Qatar Retail Group…"
                       className="w-full font-sans text-sm bg-white border border-brand-forest/10 rounded-xl py-3.5 px-4 focus:outline-none focus:border-brand-lime text-neutral-text-dark"
                     />
                   </div>
@@ -184,7 +184,8 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       autoComplete="email"
-                      placeholder="e.g. purchasing@qrg.qa"
+                      spellCheck={false}
+                      placeholder="e.g. purchasing@qrg.qa…"
                       className="w-full font-sans text-sm bg-white border border-brand-forest/10 rounded-xl py-3.5 px-4 focus:outline-none focus:border-brand-lime text-neutral-text-dark"
                     />
                   </div>
@@ -202,7 +203,7 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       autoComplete="tel"
-                      placeholder="e.g. +974 5555 1234"
+                      placeholder="e.g. +974 5555 1234…"
                       className="w-full font-sans text-sm bg-white border border-brand-forest/10 rounded-xl py-3.5 px-4 focus:outline-none focus:border-brand-lime text-neutral-text-dark"
                     />
                   </div>
@@ -220,7 +221,7 @@ export function Contact() {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    placeholder="Describe your volume requirements, delivery frequency, or certified produce inquiries..."
+                    placeholder="Describe your volume requirements, delivery frequency, or certified produce inquiries…"
                     className="w-full font-sans text-sm bg-white border border-brand-forest/10 rounded-xl py-3.5 px-4 focus:outline-none focus:border-brand-lime text-neutral-text-dark resize-none"
                   />
                 </div>
@@ -233,7 +234,7 @@ export function Contact() {
                     className="w-full bg-brand-forest hover:bg-brand-forest/90 text-white font-sans text-base font-bold py-4 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-brand-lime"
                   >
                     {isSubmitting ? (
-                      <span>Sending Request...</span>
+                      <span>Sending Request…</span>
                     ) : (
                       <>
                         <Send className="w-5 h-5" aria-hidden="true" />
