@@ -11,10 +11,10 @@ This document tracks the implementation progress of the Nairat Food Services web
   - [x] Create [specs/design.md](file:///home/sfwnmuhd/Desktop/nairat/specs/design.md) (Design Tokens, Wireframes, agent-browser testing plan)
   - [x] Create [specs/architecture.md](file:///home/sfwnmuhd/Desktop/nairat/specs/architecture.md) (Tech stack, bilingual & CMS architecture)
   - [x] Create [specs/phases.md](file:///home/sfwnmuhd/Desktop/nairat/specs/phases.md) (Detailed milestone phase plan)
-- [ ] **Milestone 2: Setup & Foundations**
-  - [ ] Initialize Next.js project with TypeScript, Tailwind CSS, Lenis, and GSAP
-  - [ ] Configure Tailwind theme configuration with brand design tokens
-  - [ ] Configure global layouts, typography base, and navigation scaffolding
+- [x] **Milestone 2: Setup & Foundations**
+  - [x] Initialize Next.js project with TypeScript, Tailwind CSS, Lenis, and GSAP
+  - [x] Configure Tailwind theme configuration with brand design tokens
+  - [x] Configure global layouts, typography base, and navigation scaffolding
 - [ ] **Milestone 3: Core UI Development**
   - [ ] Implement Navbar & Hero sections
   - [ ] Implement Partner logos carousel

@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-forest: #063B27;
+  --color-brand-lime: #4AA658;
+  --color-brand-saffron: #E2B93C;
+  --color-neutral-bg-base: #FFFFFF;
+  --color-neutral-bg-soft: #F4F6F5;
+  --color-neutral-text-dark: #1C2321;
+  --color-neutral-text-muted: #5C6662;
+
+  --font-sans: var(--font-body), sans-serif;
+  --font-display: var(--font-display), sans-serif;
+  --font-mono: var(--font-mono), monospace;
+}
+
+:root {
+  --background: #FFFFFF;
+  --foreground: #1C2321;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), sans-serif;
+}
+
+/* Lenis smooth scrolling base styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis-smooth [data-lenis-prevent] {
+  overflow: clip;
+}
+
+.lenis-target {
+  scroll-behavior: inherit !important;
+}
+
