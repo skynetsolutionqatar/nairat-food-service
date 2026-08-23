@@ -12,7 +12,38 @@ This document details the visual style, structural layout, interactive elements,
 
 ---
 
-## 2. Token System (Visual Brand Identity)
+## 2. Comparative Analysis (Existing Website vs. Proposed Redesign)
+
+An analysis of the existing live website ([nairatfoodservices.com](https://nairatfoodservices.com)) compared to the proposed mockup design (`nairat design.png`) reveals a significant evolution in brand positioning, visual language, and content structure:
+
+### A. Visual & Aesthetic Upgrades
+*   **Color Palette Transition**:
+    *   *Existing Site*: Uses a bright, flat green (`#0d8a43`) navbar and a high-contrast dark/black hero background. This feels dated and less aligned with high-end corporate B2B standards.
+    *   *Proposed Redesign*: Shifts to a sophisticated dark forest green (`#063B27`) with fresh lime/leaf green (`#4AA658`) and warm golden saffron (`#E2B93C`) highlights. The background uses a soft sand tint (`#F4F6F5`) instead of flat grays.
+*   **Typography Overhaul**:
+    *   *Existing Site*: Relies on traditional Serif fonts (reminiscent of Georgia or Times New Roman) for headings ("Eat Fresh. Stay Healthy.") and generic Sans-serif for body text.
+    *   *Proposed Redesign*: Introduces a geometric sans-serif (`Plus Jakarta Sans`) for display headers and a clean neutral sans-serif (`Inter`) for body copy, improving readability and modern appearance.
+*   **Logo Modernization**:
+    *   *Existing Site*: Uses a stacked bilingual green-block logo.
+    *   *Proposed Redesign*: Integrates a refined horizontal layout, emphasizing a modern brand signature.
+
+### B. Functional & Content Gaps Resolved
+*   **Value Proposition**:
+    *   *Existing Site*: Generic tagline ("Eat Fresh. Stay Healthy.") and retail-oriented copy.
+    *   *Proposed Redesign*: B2B-focused and localized messaging ("Fresh from the Source. Delivered Across Qatar.") detailing import, distribution, and scale.
+*   **Trust & Authority Signals (Completely New)**:
+    *   *Partners Carousel*: The redesign introduces a logo loop of major Qatari retail chains (Al Meera, LuLu, Carrefour, Safari, Grand Mall).
+    *   *Operational Metrics*: Adds a dedicated grid displaying concrete numbers (20 Chiller Rooms, 5000m² Cold-chain warehouse, 40 Refrigerated vehicles).
+*   **Interactive Capability**:
+    *   *Existing Site*: Static layout with basic links.
+    *   *Proposed Redesign*: Dynamic product filtering by category and country of origin, plus an interactive global sourcing map featuring regional tabs and certificates preview overlay.
+*   **Updated Contact details**:
+    *   *Existing Site*: Phone number `+974 3104 3814`.
+    *   *Proposed Redesign*: Direct corporate line `+974 4647 1511` and email `info@nairatfood.com` with WhatsApp-ready CTA.
+
+---
+
+## 3. Token System (Visual Brand Identity)
 
 ### Colors
 *   `--color-brand-forest-primary`: `#063B27` (Deep, commanding forest green. Represents freshness, sustainability, and trust)
@@ -30,7 +61,7 @@ This document details the visual style, structural layout, interactive elements,
 
 ---
 
-## 3. Structural Wireframes
+## 4. Structural Wireframes
 
 ### Page Flow Overview
 1.  **Navbar (Sticky)**: Nairat Logo | Links: Home, About Us, Products, Services, Sourcing, Quality, Contact | CTA: Contact Us (WhatsApp)
@@ -77,7 +108,7 @@ This document details the visual style, structural layout, interactive elements,
 
 ---
 
-## 4. Key Interactive Elements & "Signature"
+## 5. Key Interactive Elements & "Signature"
 
 ### 1. The Global Sourcing Interactive Map
 *   **Interaction**: Selecting a continent tab (e.g., Africa) highlights relevant countries on the SVG world map with a pulsing green dot and fills their borders with an emerald color.
@@ -90,7 +121,7 @@ This document details the visual style, structural layout, interactive elements,
 
 ---
 
-## 5. Web Interface Guidelines Compliance (Checklist)
+## 6. Web Interface Guidelines Compliance (Checklist)
 
 During implementation, we must enforce the following Vercel-derived rules:
 *   [ ] **Alt Text**: All images must have descriptive `alt` tags (e.g., `alt="Nairat refrigerated transport truck"`). Decorative icons must have `aria-hidden="true"`.
@@ -99,15 +130,15 @@ During implementation, we must enforce the following Vercel-derived rules:
 *   [ ] **Typography Rules**:
     *   Use curly quotes (`“` and `”`) instead of straight quotes (`"`).
     *   Use real ellipses (`…`) instead of three periods (`...`).
-    *   Apply `text-wrap: balance` on headings to avoid widow words.
+    *   Apply `text-wrap: balance` on headers to avoid widow words.
 *   [ ] **Form Safety**: The partnership form fields must include valid `autocomplete` properties and explicit label associations (`htmlFor`).
 *   [ ] **Reduced Motion**: All scrolling parallax, sliders, and map animations must respect `@media (prefers-reduced-motion: reduce)`.
 
 ---
 
-## 6. End-to-End (E2E) Testing Strategy with `agent-browser`
+## 7. End-to-End (E2E) Testing Strategy with `agent-browser`
 
- we will use `agent-browser` to systematically test the visual and interactive compliance of the website once implemented.
+We will use `agent-browser` to systematically test the visual and interactive compliance of the website once implemented.
 
 ### Setup Commands
 To verify the build is running locally:
