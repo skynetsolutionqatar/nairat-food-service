@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Tag } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface ProductItem {
   id: string;
@@ -10,41 +10,67 @@ interface ProductItem {
   category: 'fruits' | 'vegetables' | 'herbs' | 'specialty';
   origin: string;
   imageUrl: string;
-  isSeasonal?: boolean;
 }
 
 const categories = [
-  { id: 'all', label: 'All Produce' },
-  { id: 'fruits', label: 'Fresh Fruits' },
+  { id: 'all', label: 'All' },
+  { id: 'fruits', label: 'Fruits' },
   { id: 'vegetables', label: 'Vegetables' },
   { id: 'herbs', label: 'Leafy & Herbs' },
-  { id: 'specialty', label: 'Specialty Produce' },
+  { id: 'specialty', label: 'Specialty' },
 ];
 
 const products: ProductItem[] = [
-  // Fruits
   {
-    id: 'valencia-orange',
-    name: 'Valencia Oranges',
+    id: 'pears',
+    name: 'Pears',
     category: 'fruits',
     origin: 'South Africa',
-    imageUrl: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?q=80&w=400',
+    imageUrl: 'https://images.unsplash.com/photo-1514756331096-242fdeb70d4a?q=80&w=400',
   },
   {
-    id: 'cavendish-banana',
-    name: 'Cavendish Bananas',
-    category: 'fruits',
-    origin: 'Ecuador',
-    imageUrl: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?q=80&w=400',
+    id: 'rambutan',
+    name: 'Rambutan',
+    category: 'specialty',
+    origin: 'Thailand',
+    imageUrl: 'https://images.unsplash.com/photo-1562436260-8c9216eeb70a?q=80&w=400',
   },
   {
-    id: 'royal-gala-apple',
-    name: 'Royal Gala Apples',
+    id: 'cherries',
+    name: 'Cherries',
     category: 'fruits',
-    origin: 'Italy',
-    imageUrl: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?q=80&w=400',
+    origin: 'Chile',
+    imageUrl: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=400',
   },
-  // Vegetables
+  {
+    id: 'avocado-hass',
+    name: 'Avocado Hass',
+    category: 'specialty',
+    origin: 'Kenya',
+    imageUrl: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=400',
+  },
+  {
+    id: 'blueberries',
+    name: 'Blueberries',
+    category: 'fruits',
+    origin: 'Peru',
+    imageUrl: 'https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?q=80&w=400',
+  },
+  {
+    id: 'grapes-red',
+    name: 'Grapes (Red)',
+    category: 'fruits',
+    origin: 'India',
+    imageUrl: 'https://images.unsplash.com/photo-1537089944760-03a77870af67?q=80&w=400',
+  },
+  {
+    id: 'apricots',
+    name: 'Apricots',
+    category: 'fruits',
+    origin: 'Uzbekistan',
+    imageUrl: 'https://images.unsplash.com/photo-1501746877-14782df589a4?q=80&w=400',
+  },
+  // Adding vegetables and herbs to ensure those filter tabs function
   {
     id: 'roma-tomato',
     name: 'Roma Tomatoes',
@@ -60,20 +86,11 @@ const products: ProductItem[] = [
     imageUrl: 'https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?q=80&w=400',
   },
   {
-    id: 'red-onion',
-    name: 'Red Onions',
-    category: 'vegetables',
-    origin: 'India',
-    imageUrl: 'https://images.unsplash.com/photo-1618228473054-9a09c7a054db?q=80&w=400',
-  },
-  // Herbs
-  {
     id: 'coriander',
     name: 'Fresh Coriander',
     category: 'herbs',
     origin: 'Oman',
     imageUrl: 'https://images.unsplash.com/photo-1594489428504-5c0c480a15fa?q=80&w=400',
-    isSeasonal: true,
   },
   {
     id: 'basil',
@@ -81,29 +98,6 @@ const products: ProductItem[] = [
     category: 'herbs',
     origin: 'Italy',
     imageUrl: 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=400',
-  },
-  // Specialty
-  {
-    id: 'white-asparagus',
-    name: 'White Asparagus',
-    category: 'specialty',
-    origin: 'Peru',
-    imageUrl: 'https://images.unsplash.com/photo-1515471204580-f7cbb770309e?q=80&w=400',
-  },
-  {
-    id: 'hass-avocado',
-    name: 'Hass Avocados',
-    category: 'specialty',
-    origin: 'Mexico',
-    imageUrl: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=400',
-  },
-  {
-    id: 'rambutan',
-    name: 'Rambutan',
-    category: 'specialty',
-    origin: 'Thailand',
-    imageUrl: 'https://images.unsplash.com/photo-1562436260-8c9216eeb70a?q=80&w=400',
-    isSeasonal: true,
   },
 ];
 
@@ -115,33 +109,28 @@ export function Products() {
     : products.filter(p => p.category === activeCategory);
 
   return (
-    <section id="products" className="py-24 bg-white">
+    <section id="products" className="py-24 bg-brand-forest text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         
-        {/* Section Title and Category Filters */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
-          <div className="space-y-4">
-            <span className="font-mono text-xs uppercase tracking-widest text-brand-lime font-bold">
-              OUR PRODUCE
-            </span>
-            <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-brand-forest tracking-tight">
-              Premium Fresh Products
-            </h2>
-            <p className="font-sans text-neutral-text-muted text-base max-w-xl">
-              Imported daily from global regions and processed in clean chillers, our produce guarantees maximum shelf life and peak nutritional index.
-            </p>
-          </div>
+        {/* Section Header */}
+        <div className="max-w-3xl mx-auto text-center mb-12 space-y-6">
+          <span className="font-mono text-xs uppercase tracking-widest text-brand-lime font-bold">
+            OUR PRODUCTS
+          </span>
+          <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-white tracking-tight text-balance leading-tight">
+            Freshness, Sourced From Around the World.
+          </h2>
 
           {/* Filtering Tabs */}
-          <div className="flex flex-wrap gap-2.5 border-b border-brand-forest/5 pb-2 lg:pb-0 lg:border-none">
+          <div className="flex flex-wrap justify-center gap-3 pt-4">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`font-sans text-xs sm:text-sm font-semibold py-2.5 px-5 rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-2 ${
+                className={`font-sans text-xs sm:text-sm font-semibold py-2.5 px-6 rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-2 ${
                   activeCategory === cat.id
-                    ? 'bg-brand-forest text-white shadow-sm'
-                    : 'bg-neutral-bg-soft text-neutral-text-muted hover:bg-brand-forest/5'
+                    ? 'bg-brand-lime text-white shadow-sm'
+                    : 'bg-transparent text-white/70 border border-white/10 hover:border-white/40 hover:text-white'
                 }`}
               >
                 {cat.label}
@@ -150,70 +139,70 @@ export function Products() {
           </div>
         </div>
 
-        {/* Products Grid / Carousel Container */}
-        <div className="relative min-h-[400px]">
+        {/* Circular Products Grid */}
+        <div className="relative min-h-[300px] mb-12">
           <motion.div 
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center"
           >
             <AnimatePresence mode="popLayout">
               {filteredProducts.map((product) => (
                 <motion.div
                   layout
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4 }}
                   key={product.id}
-                  className="group bg-neutral-bg-soft rounded-3xl p-6 border border-brand-forest/5 hover:border-brand-lime/20 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300"
+                  className="flex flex-col items-center text-center group"
                 >
-                  <div className="space-y-4">
-                    {/* Circle Image Wrapper with Zoom */}
-                    <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-white border border-brand-forest/5 flex items-center justify-center">
-                      <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                        style={{ backgroundImage: `url('${product.imageUrl}')` }}
-                        aria-hidden="true"
-                      />
-                      
-                      {/* Seasonal Indicator */}
-                      {product.isSeasonal && (
-                        <div className="absolute top-3 left-3 bg-brand-saffron text-brand-forest font-mono text-[9px] font-bold uppercase tracking-wider py-1 px-2.5 rounded-full shadow-sm">
-                          Seasonal
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="space-y-1">
-                      <span className="font-mono text-[10px] text-neutral-text-muted uppercase tracking-wider font-semibold flex items-center gap-1.5">
-                        <Tag className="w-3 h-3 text-brand-lime" aria-hidden="true" />
-                        {product.category === 'herbs' ? 'Leafy & Herbs' : product.category}
-                      </span>
-                      <h3 className="font-display font-bold text-lg text-brand-forest leading-snug">
-                        {product.name}
-                      </h3>
-                    </div>
+                  {/* Round circle image with thin lime border */}
+                  <div className="relative w-28 h-28 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-brand-lime/20 group-hover:border-brand-lime/50 bg-neutral-bg-soft/10 transition-all duration-300">
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                      style={{ backgroundImage: `url('${product.imageUrl}')` }}
+                      aria-hidden="true"
+                    />
                   </div>
 
-                  {/* Origin Badge */}
-                  <div className="pt-4 border-t border-brand-forest/5 flex items-center justify-between">
-                    <span className="font-sans text-xs text-neutral-text-muted">Origin:</span>
-                    <span className="font-sans text-xs font-semibold text-brand-forest bg-white py-1 px-3 rounded-full border border-brand-forest/5">
+                  {/* Title and Origin */}
+                  <div className="mt-4 space-y-1">
+                    <h3 className="font-display font-bold text-sm sm:text-base text-white tracking-tight leading-snug">
+                      {product.name}
+                    </h3>
+                    <p className="font-sans text-xs text-brand-saffron font-medium">
                       {product.origin}
-                    </span>
+                    </p>
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
 
-          {/* Fallback Empty State */}
+          {/* Empty State */}
           {filteredProducts.length === 0 && (
             <div className="text-center py-20">
-              <p className="font-sans text-base text-neutral-text-muted">No produce available in this category.</p>
+              <p className="font-sans text-base text-white/60">No produce available in this category.</p>
             </div>
           )}
         </div>
+
+        {/* View More Button */}
+        <div className="flex justify-center pt-4">
+          <a
+            href="#contact"
+            className="border border-white/20 hover:border-white bg-white/5 hover:bg-white/10 text-white font-sans text-xs font-bold px-6 py-2.5 rounded-full transition-all duration-300 flex items-center gap-3 group focus-visible:outline-2 focus-visible:outline-brand-saffron focus-visible:outline-offset-2"
+          >
+            <span>View More Product Details</span>
+            <span className="w-5 h-5 rounded-full border border-white/25 flex items-center justify-center text-white shrink-0 group-hover:translate-x-0.5 transition-transform duration-200">
+              <svg className="w-2.5 h-2.5 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
+          </a>
+        </div>
+
       </div>
     </section>
   );

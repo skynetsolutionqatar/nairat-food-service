@@ -28,24 +28,11 @@ export function Hero() {
       <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-brand-saffron/5 rounded-full blur-3xl animate-pulse delay-700" />
 
       <div className="relative max-w-7xl mx-auto px-6 md:px-8 py-20 text-center z-10 flex flex-col items-center">
-        {/* Eyebrow badge */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8"
-        >
-          <Leaf className="w-4 h-4 text-brand-lime" aria-hidden="true" />
-          <span className="font-mono text-xs uppercase tracking-widest text-brand-saffron font-bold">
-            Qatar’s Premier Cold-Chain Partner
-          </span>
-        </motion.div>
-
         {/* Headline */}
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
+          transition={{ duration: 0.8 }}
           className="font-display text-4xl sm:text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-[1.1] max-w-4xl mb-8"
         >
           Fresh from the Source. <br />
@@ -56,31 +43,30 @@ export function Hero() {
         <motion.p 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-sans text-lg sm:text-xl text-white/80 max-w-2xl leading-relaxed mb-10"
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="font-sans text-base sm:text-lg text-white/90 max-w-2xl leading-relaxed mb-10 text-pretty"
         >
-          Connecting Qatar to certified growers worldwide. Preserving freshness and nutritional integrity with Qatari B2B cold-chain excellence.
+          Nairat Food imports, distributes and delivers premium fresh fruits and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA Button */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-md"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="flex justify-center items-center"
         >
           <a
             href="#products"
-            className="w-full sm:w-auto bg-brand-lime hover:bg-brand-lime/90 text-white font-sans text-base font-semibold px-8 py-4 rounded-full transition-all duration-200 shadow-lg shadow-brand-lime/25 flex items-center justify-center gap-2 group focus-visible:outline-2 focus-visible:outline-brand-saffron focus-visible:outline-offset-2"
+            className="bg-brand-lime hover:bg-brand-lime/90 text-white font-sans text-sm font-bold px-8 py-3.5 rounded-full transition-all duration-200 shadow-lg shadow-brand-lime/20 flex items-center gap-3 group focus-visible:outline-2 focus-visible:outline-brand-saffron focus-visible:outline-offset-2"
           >
             <span>Explore Our Products</span>
-            <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" />
-          </a>
-          <a
-            href="#contact"
-            className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 font-sans text-base font-semibold px-8 py-4 rounded-full transition-all duration-200 backdrop-blur-sm flex items-center justify-center focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
-          >
-            <span>Become a Partner</span>
+            <span className="w-5 h-5 rounded-full border border-white flex items-center justify-center text-white shrink-0 group-hover:translate-x-0.5 transition-transform duration-200">
+              <svg className="w-2.5 h-2.5 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
           </a>
         </motion.div>
       </div>
