@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <Providers>
           <Navbar />
-          <main className="flex-grow pt-[88px]">{children}</main>
+          <main className="flex-grow">{children}</main>
           <Footer />
         </Providers>
       </body>
