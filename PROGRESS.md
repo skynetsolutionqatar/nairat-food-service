@@ -26,10 +26,11 @@ This document tracks the implementation progress of the Nairat Food Services web
   - [x] Implement "Global Sourcing" Interactive SVG World Map
   - [x] Implement Certificates popup preview modals
   - [x] Implement Quality supply-chain process timeline & Footer
-- [x] **Milestone 5: E2E Verification & Polish**
+- [x] **Milestone 5: E2E Verification & Figma Alignment Polish**
   - [x] Audit UI against Web Interface Guidelines checklist
+  - [x] Align every section pixel-for-pixel with Figma reference design (`nairat design.png`)
   - [x] Run E2E test runs using `agent-browser` (interaction, accessibility, navigation)
-  - [x] Polish animations, transitions, and layout responsiveness
+  - [x] Polish animations, transitions, typography scale, and responsive layout
 
 ---
 

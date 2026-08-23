@@ -11,7 +11,7 @@ interface RegionData {
   produce: string[];
   transit: string;
   temp: string;
-  coordinates: { x: number; y: number }; // Coordinates on SVG map
+  coordinates: { x: number; y: number };
 }
 
 const regions: RegionData[] = [
@@ -78,6 +78,7 @@ interface Certificate {
   code: string;
   desc: string;
   scope: string;
+  badgeColor: string;
 }
 
 const certificates: Certificate[] = [
@@ -88,14 +89,16 @@ const certificates: Certificate[] = [
     code: 'HA-2026-9482',
     desc: 'Food Safety & Hazard Control',
     scope: 'Hazard analysis, temperature log consistency, and food safety risk mitigation protocols.',
+    badgeColor: '#ED1C24',
   },
   {
     id: 'iso22000',
-    name: 'ISO 22000 Certified',
+    name: 'ISO 22000:2018 Certified',
     issuer: 'Bureau Veritas Certification',
     code: 'ISO-22000-Q-938',
     desc: 'Food Safety Management System',
     scope: 'Global food safety management standards covering import, storage, and distribution operations.',
+    badgeColor: '#0054A6',
   },
 ];
 
@@ -106,70 +109,70 @@ export function SourcingMap() {
   const currentRegion = regions.find((r) => r.id === selectedRegion) || regions[0];
 
   return (
-    <section id="sourcing" className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
+    <section id="sourcing" className="py-20 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-10">
         
         {/* Main Grid Layout split into Left Info Column, Map, and Right Cert Column */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Column: Sourcing Details (lg:col-span-5) */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="space-y-4">
-              <span className="font-mono text-xs uppercase tracking-widest text-brand-lime font-bold">
+          <div className="lg:col-span-5 space-y-6 flex flex-col justify-between">
+            <div className="space-y-3">
+              <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#5C6662] block">
                 GLOBAL SOURCING
               </span>
-              <h2 className="font-display text-3xl sm:text-5xl font-extrabold text-brand-forest tracking-tight text-balance leading-tight">
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#063B27] tracking-tight leading-tight">
                 Sourced From <br />
                 Around the World.
               </h2>
-              <p className="font-sans text-neutral-text-muted text-sm sm:text-base leading-relaxed">
+              <p className="font-sans text-[#5C6662] text-xs sm:text-sm leading-relaxed">
                 We partner with trusted growers in major producing regions to deliver the best, all year round.
               </p>
             </div>
 
             {/* Metrics List */}
-            <div className="space-y-4 font-sans text-xs sm:text-sm text-neutral-text-dark">
-              <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-full border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0">
-                  <Shield className="w-5 h-5" aria-hidden="true" />
+            <div className="space-y-3 font-sans text-xs sm:text-sm text-[#1C2321]">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full border border-[#4AA658]/40 flex items-center justify-center text-[#4AA658] shrink-0">
+                  <Shield className="w-4 h-4" aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="font-display font-extrabold text-base text-brand-forest">15+</span>
-                  <span className="text-neutral-text-muted ml-1.5">Sourcing Countries</span>
+                  <span className="font-display font-extrabold text-sm text-[#063B27]">15+</span>
+                  <span className="text-[#5C6662] ml-1.5 text-xs">Sourcing Countries</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-full border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0">
-                  <Globe className="w-5 h-5" aria-hidden="true" />
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full border border-[#4AA658]/40 flex items-center justify-center text-[#4AA658] shrink-0">
+                  <Globe className="w-4 h-4" aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="font-display font-extrabold text-base text-brand-forest">5</span>
-                  <span className="text-neutral-text-muted ml-1.5">Continents Covered</span>
+                  <span className="font-display font-extrabold text-sm text-[#063B27]">5</span>
+                  <span className="text-[#5C6662] ml-1.5 text-xs">Continents Covered</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3.5">
-                <div className="w-10 h-10 rounded-full border border-brand-lime/30 flex items-center justify-center text-brand-lime shrink-0">
-                  <Calendar className="w-5 h-5" aria-hidden="true" />
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full border border-[#4AA658]/40 flex items-center justify-center text-[#4AA658] shrink-0">
+                  <Calendar className="w-4 h-4" aria-hidden="true" />
                 </div>
                 <div>
-                  <span className="font-display font-extrabold text-base text-brand-forest">Year-Round</span>
-                  <span className="text-neutral-text-muted ml-1.5">Sourcing Network</span>
+                  <span className="font-display font-extrabold text-sm text-[#063B27]">Year-Round</span>
+                  <span className="text-[#5C6662] ml-1.5 text-xs">Sourcing Network</span>
                 </div>
               </div>
             </div>
 
             {/* Region selectors */}
-            <div className="flex flex-wrap gap-2 pt-4">
+            <div className="flex flex-wrap gap-1.5 pt-2">
               {regions.map((region) => (
                 <button
                   key={region.id}
                   onClick={() => setSelectedRegion(region.id)}
-                  className={`font-sans text-xs font-bold py-2.5 px-4 rounded-full border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-brand-lime ${
+                  className={`font-sans text-xs font-semibold py-1.5 px-3.5 rounded-full border transition-all duration-200 focus-visible:outline-2 focus-visible:outline-brand-forest ${
                     selectedRegion === region.id
-                      ? 'bg-brand-forest text-white border-brand-forest shadow-sm'
-                      : 'bg-white text-neutral-text-muted border-brand-forest/10 hover:bg-neutral-bg-soft'
+                      ? 'bg-[#063B27] text-white border-[#063B27] shadow-sm'
+                      : 'bg-[#F4F6F5] text-[#5C6662] border-black/5 hover:bg-black/5'
                   }`}
                 >
                   {region.name}
@@ -178,18 +181,16 @@ export function SourcingMap() {
             </div>
           </div>
 
-          {/* Middle Column: Interactive SVG Map (lg:col-span-4) */}
-          <div className="lg:col-span-4 bg-[#F4F6F5] rounded-3xl p-6 border border-brand-forest/5 flex items-center justify-center relative min-h-[300px] overflow-hidden">
-            {/* Sourcing Connection Lines to Qatar */}
+          {/* Middle Column: Interactive Map (lg:col-span-4) */}
+          <div className="lg:col-span-4 bg-[#F4F6F5] rounded-2xl p-5 border border-black/5 flex items-center justify-center relative min-h-[280px] overflow-hidden">
             <svg viewBox="0 0 900 450" className="w-full h-auto relative z-10 select-none">
-              {/* Qatar Doha Base Node */}
+              {/* World map stylized land dots representation */}
               <circle cx="530" cy="200" r="7" fill="#E2B93C" className="animate-ping" />
               <circle cx="530" cy="200" r="4.5" fill="#E2B93C" />
-              <text x="530" y="218" textAnchor="middle" fill="#063B27" className="font-mono text-[9px] font-bold tracking-widest bg-white/70 px-1 rounded">
+              <text x="530" y="218" textAnchor="middle" fill="#063B27" className="font-mono text-[9px] font-bold tracking-widest bg-white/80 px-1 rounded">
                 DOHA
               </text>
 
-              {/* Sourcing connection lines */}
               {regions.map((region) => {
                 const isActive = selectedRegion === region.id;
                 return (
@@ -197,18 +198,17 @@ export function SourcingMap() {
                     key={`line-${region.id}`}
                     d={`M ${region.coordinates.x} ${region.coordinates.y} Q ${(region.coordinates.x + 530)/2} ${Math.min(region.coordinates.y, 200) - 25} 530 200`}
                     fill="none"
-                    stroke={isActive ? '#E2B93C' : '#063B27'}
+                    stroke={isActive ? '#4AA658' : '#063B27'}
                     strokeWidth={isActive ? '2' : '0.5'}
-                    strokeOpacity={isActive ? '0.8' : '0.15'}
+                    strokeOpacity={isActive ? '0.9' : '0.15'}
                     strokeDasharray={isActive ? '4 2' : 'none'}
                     initial={{ pathLength: 0 }}
                     animate={{ pathLength: 1 }}
-                    transition={{ duration: 1.2 }}
+                    transition={{ duration: 1 }}
                   />
                 );
               })}
 
-              {/* Sourcing nodes */}
               {regions.map((region) => {
                 const isActive = selectedRegion === region.id;
                 return (
@@ -238,65 +238,51 @@ export function SourcingMap() {
               })}
             </svg>
 
-            {/* Display selected region context stats floating inside map container */}
-            <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl p-3 border border-brand-forest/5 flex justify-between items-center z-20">
-              <div className="text-[10px] font-sans text-neutral-text-dark">
+            {/* Selected region context info badge */}
+            <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-sm rounded-xl p-2.5 border border-black/5 flex justify-between items-center z-20">
+              <div className="text-[10px] font-sans text-[#1C2321]">
                 <strong>{currentRegion.name}:</strong> {currentRegion.countries.join(', ')}
               </div>
-              <div className="text-[10px] font-sans text-brand-lime font-bold">
+              <div className="text-[10px] font-sans text-[#4AA658] font-bold">
                 Transit: {currentRegion.transit}
               </div>
             </div>
           </div>
 
-          {/* Right Column: Three Vertical Certificate Cards (lg:col-span-3) */}
-          <div className="lg:col-span-3 flex flex-col gap-5 justify-between">
+          {/* Right Column: 2 Certificate Cards (lg:col-span-3) */}
+          <div className="lg:col-span-3 flex flex-col gap-4 justify-between">
             {certificates.map((cert) => (
               <button
                 type="button"
                 key={cert.id}
                 onClick={() => setActiveCertificate(cert)}
-                className="bg-white rounded-2xl p-5 border border-brand-forest/5 shadow-sm hover:border-brand-lime/30 focus-visible:outline-2 focus-visible:outline-brand-lime focus-visible:outline-offset-2 transition-all duration-300 cursor-pointer flex flex-col justify-between flex-1 group text-left"
+                className="bg-white rounded-2xl p-5 border border-black/5 shadow-sm hover:border-[#4AA658]/40 focus-visible:outline-2 focus-visible:outline-brand-forest transition-all duration-300 cursor-pointer flex flex-col justify-between flex-1 group text-left relative overflow-hidden"
               >
-                <div className="space-y-3">
-                  <div className="w-9 h-9 rounded-xl bg-brand-forest/5 flex items-center justify-center">
-                    <Award className="w-5 h-5 text-brand-forest" aria-hidden="true" />
+                {/* Certificate document header preview */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#F4F6F5] border border-black/5 flex items-center justify-center">
+                    <Award className="w-4 h-4 text-[#063B27]" aria-hidden="true" />
                   </div>
-                  <div>
-                    <h4 className="font-display font-extrabold text-base text-brand-forest leading-snug">
-                      {cert.name}
-                    </h4>
-                    <span className="font-mono text-[9px] text-neutral-text-muted font-semibold mt-0.5 block">
-                      {cert.desc}
-                    </span>
-                  </div>
+                  <span className="font-mono text-[9px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded bg-[#F4F6F5] text-[#063B27]">
+                    QA PASS
+                  </span>
                 </div>
 
-                <div className="pt-3 mt-4 border-t border-brand-forest/5 flex items-center gap-1.5 text-brand-lime font-sans font-bold text-xs">
+                <div className="space-y-1">
+                  <h4 className="font-display font-extrabold text-sm text-[#063B27] leading-snug">
+                    {cert.name}
+                  </h4>
+                  <span className="font-sans text-[11px] text-[#5C6662] block">
+                    {cert.desc}
+                  </span>
+                </div>
+
+                <div className="pt-3 mt-3 border-t border-black/5 flex items-center gap-1 text-[#4AA658] font-sans font-bold text-xs">
                   <span>View Certificate</span>
                   <ExternalLink className="w-3 h-3" aria-hidden="true" />
                 </div>
               </button>
             ))}
-
-            {/* Document preview card */}
-            <div className="bg-white rounded-2xl p-4 border border-brand-forest/5 shadow-sm flex flex-row items-center gap-4 flex-1">
-              {/* Stylized Document Icon represent certificate */}
-              <div className="w-16 h-20 bg-neutral-bg-soft rounded-lg border border-brand-forest/10 p-2 flex flex-col justify-between relative overflow-hidden shrink-0">
-                <div className="w-full h-1 bg-brand-forest/30 rounded" />
-                <div className="w-4/5 h-1 bg-brand-forest/20 rounded" />
-                <div className="w-3/5 h-1 bg-brand-forest/20 rounded" />
-                <div className="flex justify-end">
-                  <div className="w-4 h-4 rounded-full bg-brand-saffron/20 border border-brand-saffron flex items-center justify-center">
-                    <div className="w-1.5 h-1.5 rounded-full bg-brand-saffron" />
-                  </div>
-                </div>
-              </div>
-              <div className="space-y-1 font-sans text-xs">
-                <strong className="block text-brand-forest font-bold">Standard QA Protocols</strong>
-                <p className="text-neutral-text-muted">Uncompromising inspection compliance from harvest to terminal.</p>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -316,8 +302,8 @@ export function SourcingMap() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-3xl max-w-lg w-full p-8 relative shadow-2xl border border-brand-forest/10 space-y-6"
+              transition={{ duration: 0.25 }}
+              className="bg-white rounded-3xl max-w-lg w-full p-8 relative shadow-2xl border border-black/10 space-y-6"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
@@ -330,40 +316,40 @@ export function SourcingMap() {
               </button>
 
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-xl bg-brand-forest/5 flex items-center justify-center">
-                  <Award className="w-6 h-6 text-brand-forest" aria-hidden="true" />
+                <div className="w-12 h-12 rounded-2xl bg-[#F4F6F5] flex items-center justify-center">
+                  <Award className="w-6 h-6 text-[#063B27]" aria-hidden="true" />
                 </div>
                 
                 <div className="space-y-1">
-                  <span className="font-mono text-xs text-brand-saffron font-bold uppercase tracking-widest">
-                    Official Verification Card
+                  <span className="font-mono text-xs text-[#4AA658] font-bold uppercase tracking-widest">
+                    Official Certification
                   </span>
-                  <h3 className="font-display font-extrabold text-2xl text-brand-forest leading-tight">
+                  <h3 className="font-display font-extrabold text-2xl text-[#063B27] leading-tight">
                     {activeCertificate.name}
                   </h3>
                 </div>
 
-                <div className="space-y-3 pt-4 border-t border-brand-forest/5 text-sm font-sans">
+                <div className="space-y-3 pt-4 border-t border-black/5 text-sm font-sans">
                   <div>
-                    <span className="text-neutral-text-muted text-xs block mb-0.5">Verification Issuer</span>
-                    <strong className="text-neutral-text-dark">{activeCertificate.issuer}</strong>
+                    <span className="text-[#5C6662] text-xs block mb-0.5">Issuing Authority</span>
+                    <strong className="text-[#1C2321]">{activeCertificate.issuer}</strong>
                   </div>
                   <div>
-                    <span className="text-neutral-text-muted text-xs block mb-0.5">Certificate ID Code</span>
-                    <code className="font-mono text-xs bg-neutral-bg-soft py-1 px-2.5 rounded border border-brand-forest/5 text-brand-forest font-semibold">
+                    <span className="text-[#5C6662] text-xs block mb-0.5">Certificate Reference Code</span>
+                    <code className="font-mono text-xs bg-[#F4F6F5] py-1 px-2.5 rounded border border-black/5 text-[#063B27] font-semibold">
                       {activeCertificate.code}
                     </code>
                   </div>
                   <div>
-                    <span className="text-neutral-text-muted text-xs block mb-0.5">Certified Operations Scope</span>
-                    <p className="text-neutral-text-muted leading-relaxed">{activeCertificate.scope}</p>
+                    <span className="text-[#5C6662] text-xs block mb-0.5">Certified Operations Scope</span>
+                    <p className="text-[#5C6662] leading-relaxed">{activeCertificate.scope}</p>
                   </div>
                 </div>
 
-                <div className="pt-6 flex justify-end">
+                <div className="pt-4 flex justify-end">
                   <button
                     onClick={() => setActiveCertificate(null)}
-                    className="bg-brand-forest hover:bg-brand-forest/90 text-white font-sans text-sm font-bold py-3 px-6 rounded-xl transition-all duration-200 focus-visible:outline-2 focus-visible:outline-brand-lime"
+                    className="bg-[#063B27] hover:bg-[#063B27]/90 text-white font-sans text-xs font-bold py-3 px-6 rounded-xl transition-all duration-200 focus-visible:outline-2 focus-visible:outline-brand-forest"
                   >
                     Close Document Review
                   </button>
@@ -377,3 +363,4 @@ export function SourcingMap() {
     </section>
   );
 }
+
