@@ -8,7 +8,7 @@ This document details the system architecture, directory structures, libraries, 
 
 | Technology / Library | Version (Target) | Purpose |
 | :--- | :--- | :--- |
-| **Next.js** | `^14.x` / `^15.x` | Framework (App Router) utilizing React Server Components (RSC) for fast loading. |
+| **Next.js** | `^15.x` (Latest) | Framework (App Router) utilizing React Server Components (RSC) for fast loading. |
 | **TypeScript** | `^5.x` | Strict type safety for components, API routes, and CMS data schemas. |
 | **Tailwind CSS** | `^3.x` / `^4.x` | Utility-first styling framework integrated with customized design tokens. |
 | **GSAP** | `^3.x` | High-performance timeline animations for key signature sections (e.g., interactive map, scroll timelines). |
