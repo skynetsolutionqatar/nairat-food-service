@@ -4,6 +4,10 @@ import { Partners } from '@/components/modules/Partners';
 import { WhoWeAre } from '@/components/modules/WhoWeAre';
 import { Strengths } from '@/components/modules/Strengths';
 import { Services } from '@/components/modules/Services';
+import { Products } from '@/components/modules/Products';
+import { SourcingMap } from '@/components/modules/SourcingMap';
+import { QualityTimeline } from '@/components/modules/QualityTimeline';
+import { Contact } from '@/components/modules/Contact';
 
 export default function Home() {
   return (
@@ -13,6 +17,10 @@ export default function Home() {
       <WhoWeAre />
       <Strengths />
       <Services />
+      <Products />
+      <SourcingMap />
+      <QualityTimeline />
+      <Contact />
     </div>
   );
 }

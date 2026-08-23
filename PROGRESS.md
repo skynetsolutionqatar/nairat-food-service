@@ -21,11 +21,11 @@ This document tracks the implementation progress of the Nairat Food Services web
   - [x] Implement "Who We Are" overview + three vertical metric cards
   - [x] Implement "Our Strengths" 5-cell grid with image triggers
   - [x] Implement "What We Do" service cards
-- [ ] **Milestone 4: Advanced Interactive Features**
-  - [ ] Implement "Our Products" carousel with category tabs filtering
-  - [ ] Implement "Global Sourcing" Interactive SVG World Map
-  - [ ] Implement Certificates popup preview modals
-  - [ ] Implement Quality supply-chain process timeline & Footer
+- [x] **Milestone 4: Advanced Interactive Features**
+  - [x] Implement "Our Products" carousel with category tabs filtering
+  - [x] Implement "Global Sourcing" Interactive SVG World Map
+  - [x] Implement Certificates popup preview modals
+  - [x] Implement Quality supply-chain process timeline & Footer
 - [ ] **Milestone 5: E2E Verification & Polish**
   - [ ] Audit UI against Web Interface Guidelines checklist
   - [ ] Run E2E test runs using `agent-browser` (interaction, accessibility, navigation)
