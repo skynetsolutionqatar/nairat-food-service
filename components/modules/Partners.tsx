@@ -57,7 +57,7 @@ export function GrandLogo() {
 }
 
 export function Partners() {
-  const [scrollIndex, setScrollIndex] = useState(0);
+  const [, setScrollIndex] = useState(0);
 
   const handlePrev = () => {
     setScrollIndex((prev) => (prev > 0 ? prev - 1 : 4));

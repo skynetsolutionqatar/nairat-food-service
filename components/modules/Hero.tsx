@@ -2,69 +2,72 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ArrowUpRight } from 'lucide-react';
 
 export function Hero() {
   return (
-    <section 
+    <section
       id="home"
-      className="relative min-h-[90vh] flex items-center bg-[#063B27] overflow-hidden"
+      className="relative min-h-[90vh] flex flex-col justify-end bg-[#052618] overflow-hidden px-4 sm:px-8"
     >
-      {/* Background Image Overlay */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 scale-100"
-        style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1974')` 
-        }}
-        aria-hidden="true"
-      />
-      
-      {/* Dark gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#063B27] via-[#063B27]/80 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#063B27] via-transparent to-[#063B27]/50" />
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.02]"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+        <source src="/hero-video.mp4" type="video/mp4" />
+        <source src="/hero-bg.mp4" type="video/mp4" />
+        <source src="/video.mp4" type="video/mp4" />
+      </video>
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-8 pt-40 pb-20 z-10 w-full">
-        <div className="max-w-2xl space-y-6">
-          
-          {/* Main Title with Green Second Line */}
-          <motion.h1 
+      {/* Dark overlay for optimal text contrast and warmth */}
+      <div className="absolute inset-0 bg-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/20" />
+
+      {/* Main Content Container - Matches Navbar Container (max-w-7xl mx-auto px-4 sm:px-6) */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-36 pb-16 lg:pb-20 z-10 w-full">
+        {/* Single flex container holding two divs */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-14 w-full">
+
+          {/* DIV 1: Heading */}
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]"
+            className="w-full lg:w-[62%] text-left"
           >
-            <span className="text-white block">Fresh from the Source.</span>
-            <span className="text-[#4AA658] block mt-1">Delivered Across Qatar.</span>
-          </motion.h1>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-[66px] font-bold tracking-tight text-white leading-[1.12] text-left">
+              <span className="block sm:whitespace-nowrap">Fresh from the Source.</span>
+              <span className="block sm:whitespace-nowrap mt-2 sm:mt-3">Delivered Across Qatar.</span>
+            </h1>
+          </motion.div>
 
-          {/* Description */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+          {/* DIV 2: Subheading & CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="font-sans text-sm sm:text-base text-white/85 leading-relaxed max-w-xl"
+            className="w-full lg:w-[38%] flex flex-col justify-end items-start gap-6 text-left"
           >
-            Nairat Food imports, distributes and delivers premium fresh fruits and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
-          </motion.p>
-          
-          {/* CTA Action */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="pt-2"
-          >
-            <a
-              href="#products"
-              className="inline-flex bg-[#4AA658] hover:bg-[#3d8b49] text-white font-sans text-xs sm:text-sm font-bold px-6 py-3 rounded-full transition-all duration-300 shadow-md items-center gap-3 group focus-visible:outline-2 focus-visible:outline-white"
-            >
-              <span>Explore Our Products</span>
-              <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 text-[#4AA658] group-hover:translate-x-0.5 transition-transform duration-200">
-                <svg className="w-3 h-3 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
-              </div>
-            </a>
+            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-md text-left">
+              Nairat Food imports, distributes and delivers premium fresh fruit and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
+            </p>
+
+            <div>
+              <a
+                href="#products"
+                className="bg-[#28844B] hover:bg-[#206e3e] text-white font-sans text-xs sm:text-sm font-semibold px-5 sm:px-6 py-3 sm:py-3.5 rounded-full transition-all duration-300 shadow-xl flex items-center gap-3 group focus-visible:outline-2 focus-visible:outline-white border border-white/10 hover:shadow-2xl"
+              >
+                <span>Explore Our Products</span>
+                <div className="w-6 h-6 rounded-full bg-white text-[#28844B] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200 shadow-inner">
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
+                </div>
+              </a>
+            </div>
           </motion.div>
 
         </div>
@@ -72,4 +75,7 @@ export function Hero() {
     </section>
   );
 }
+
+
+
 

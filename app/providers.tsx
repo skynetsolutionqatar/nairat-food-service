@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import Lenis from 'lenis';
 
 const LenisContext = createContext<Lenis | null>(null);
@@ -8,7 +8,7 @@ const LenisContext = createContext<Lenis | null>(null);
 export const useLenis = () => useContext(LenisContext);
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const lenisRef = useRef<Lenis | null>(null);
+  const [lenis, setLenis] = useState<Lenis | null>(null);
 
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -19,7 +19,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
     }
 
     // Instantiate Lenis smooth scrolling
-    const lenis = new Lenis({
+    const lenisInstance = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // standard easeOutExpo
       orientation: 'vertical',
@@ -27,12 +27,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
       smoothWheel: true,
     });
 
-    lenisRef.current = lenis;
+    queueMicrotask(() => {
+      setLenis(lenisInstance);
+    });
 
     // Connect to requestAnimationFrame
     let rafId: number;
     function raf(time: number) {
-      lenis.raf(time);
+      lenisInstance.raf(time);
       rafId = requestAnimationFrame(raf);
     }
     rafId = requestAnimationFrame(raf);
@@ -40,13 +42,13 @@ export function Providers({ children }: { children: React.ReactNode }) {
     // Cleanup on unmount
     return () => {
       cancelAnimationFrame(rafId);
-      lenis.destroy();
-      lenisRef.current = null;
+      lenisInstance.destroy();
+      setLenis(null);
     };
   }, []);
 
   return (
-    <LenisContext.Provider value={lenisRef.current}>
+    <LenisContext.Provider value={lenis}>
       {children}
     </LenisContext.Provider>
   );
