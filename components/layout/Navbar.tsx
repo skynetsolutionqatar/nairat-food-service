@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 interface NavigationLink {
   label: string;
@@ -51,7 +51,7 @@ export function Navbar() {
         {/* Brand Logo */}
         <Link
           href="#home"
-          className="flex items-center focus-visible:outline-2 focus-visible:outline-white rounded-full transition-transform hover:scale-[1.02]"
+          className="flex items-center "
           onClick={closeMobileMenu}
         >
           <Image
@@ -59,7 +59,7 @@ export function Navbar() {
             alt="Nairat Food Services"
             width={150}
             height={50}
-            className="h-8 sm:h-9 w-auto object-contain rounded-md shadow-sm"
+            className="h-8 sm:h-9 w-auto object-contain "
             priority
           />
         </Link>
@@ -84,11 +84,11 @@ export function Navbar() {
             href="https://wa.me/97431043814"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-white hover:bg-white/90 text-[#28844B] font-sans text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-2.5 group shadow-sm hover:shadow focus-visible:outline-2 focus-visible:outline-white"
+            className="bg-white hover:bg-[#168849] text-[#168849] hover:text-white font-sans text-xs sm:text-sm font-bold px-4 py-2 sm:px-5 sm:py-2.5 rounded-full transition-all duration-300 flex items-center gap-2.5 group shadow-sm hover:shadow-md focus-visible:outline-2 focus-visible:outline-white border border-transparent hover:border-white/30"
           >
             <span>Contact Us</span>
-            <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#28844B] text-white flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200 shadow-inner">
-              <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 stroke-[2.5]" aria-hidden="true" />
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#168647] text-white group-hover:bg-white group-hover:text-[#168849] flex items-center justify-center shrink-0 transition-all duration-300 shadow-inner">
+              <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
             </div>
           </a>
         </div>
@@ -130,11 +130,11 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMobileMenu}
-                className="bg-white text-[#28844B] text-center font-sans font-bold py-2.5 rounded-full flex items-center justify-center gap-2 shadow"
+                className="bg-white hover:bg-[#168849] text-[#168849] hover:text-white text-center font-sans font-bold py-2.5 px-5 rounded-full flex items-center justify-center gap-2.5 shadow transition-all duration-300 group"
               >
                 <span>Contact Us</span>
-                <div className="w-5 h-5 rounded-full bg-[#28844B] text-white flex items-center justify-center">
-                  <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
+                <div className="w-7 h-7 rounded-full bg-[#168849] text-white group-hover:bg-white group-hover:text-[#168849] flex items-center justify-center shrink-0 transition-all duration-300">
+                  <ArrowRight className="w-5 h-5 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-1" />
                 </div>
               </a>
             </div>
