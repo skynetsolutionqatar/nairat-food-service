@@ -2,38 +2,42 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Truck, Sprout, ShoppingBag } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 
-interface ServiceItem {
+interface ServiceCard {
   id: string;
-  icon: React.ReactNode;
   title: string;
   desc: string;
   imageUrl: string;
+  actionText: string;
+  actionHref: string;
 }
 
-const services: ServiceItem[] = [
+const serviceCards: ServiceCard[] = [
   {
     id: 'retail-wholesale',
-    icon: <Truck className="w-4 h-4 text-white" aria-hidden="true" />,
     title: 'Retail & Wholesale Distribution',
-    desc: 'Reliable supply and timely delivery to supermarkets, hypermarkets, grocers, restaurants and hotels across Qatar.',
-    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600',
+    desc: 'Daily fresh-produce supply to retailers, wholesalers, supermarkets and food-service businesses across Qatar.',
+    imageUrl: '/services/wholesale-distribution.avif',
+    actionText: 'Explore Distribution',
+    actionHref: '#contact',
   },
   {
     id: 'grower-partnerships',
-    icon: <Sprout className="w-4 h-4 text-white" aria-hidden="true" />,
     title: 'Grower & Exporter Partnerships',
-    desc: 'Strong partnerships with growers and exporters worldwide for consistent quality and long-term supply.',
-    imageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600',
+    desc: 'A reliable local partner for growers and exporters looking to bring fresh produce to the Qatar market.',
+    imageUrl: '/services/grower and exporter.avif',
+    actionText: 'Partner With Us',
+    actionHref: '#contact',
   },
   {
     id: 'nairat-shop',
-    icon: <ShoppingBag className="w-4 h-4 text-white" aria-hidden="true" />,
-    title: 'Nairat Shop',
-    desc: 'Your destination for hand-picked fresh fruits and vegetables with quality you can trust.',
-    imageUrl: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=600',
+    title: 'Nairat Retail Shop',
+    desc: 'Fresh fruits and vegetables available directly to consumers at our retail store.',
+    imageUrl: '/services/nairat shop.avif',
+    actionText: 'Visit Nairat Shop',
+    actionHref: '#contact',
   },
 ];
 
@@ -42,89 +46,79 @@ export function Services() {
     <section id="services" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-12">
         
-        {/* Section Headings with Carousel controls */}
-        <div className="flex items-end justify-between">
-          <div className="space-y-3">
-            <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#5C6662] block">
-              OUR SERVICES
+        {/* Header Grid: Left Headline vs Right Subtext & CTA */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          
+          {/* Left Headline */}
+          <div className="lg:col-span-7 space-y-4">
+            <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#000000] block">
+              WHAT WE DO
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#063B27] tracking-tight">
-              What We Do
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#000000] leading-[1.15] tracking-tight">
+              Fresh Produce Supply <br />
+              at Every Scale.
             </h2>
           </div>
-          
-          {/* Carousel Arrows */}
-          <div className="flex gap-2">
-            <button 
-              type="button" 
-              aria-label="Previous services"
-              className="w-8 h-8 rounded-full border border-black/10 flex items-center justify-center text-neutral-text-muted hover:bg-neutral-bg-soft hover:text-brand-forest transition-colors"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button>
-            <button 
-              type="button" 
-              aria-label="Next services"
-              className="w-8 h-8 rounded-full border border-black/10 flex items-center justify-center text-neutral-text-muted hover:bg-neutral-bg-soft hover:text-brand-forest transition-colors"
-            >
-              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button>
+
+          {/* Right Paragraph & CTA Button */}
+          <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
+            <p className="font-sans text-sm sm:text-base text-[#B9B9B9] leading-relaxed text-left">
+              From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.
+            </p>
+            <div className="self-start lg:self-end">
+              <CtaButton href="#contact">
+                Learn More
+              </CtaButton>
+            </div>
           </div>
+
         </div>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+        {/* 3 Services Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+          {serviceCards.map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.12 }}
-              className="bg-white rounded-2xl overflow-hidden border border-black/5 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300 group"
+              className="flex flex-col space-y-4 group"
             >
-              <div className="space-y-6">
-                {/* Image Header with Overlapping Icon Badge */}
-                <div className="relative h-52 w-full overflow-hidden bg-[#F4F6F5]">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                    style={{ backgroundImage: `url('${service.imageUrl}')` }}
-                    aria-hidden="true"
-                  />
-                  
-                  {/* Floating Circle Icon Badge */}
-                  <div className="absolute -bottom-4 left-6 w-9 h-9 rounded-full bg-[#4AA658] flex items-center justify-center shadow-md border-2 border-white">
-                    {service.icon}
-                  </div>
-                </div>
+              {/* Top Rounded Image */}
+              <div className="relative w-full h-56 sm:h-60 md:h-64 rounded-2xl overflow-hidden bg-neutral-100">
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ backgroundImage: `url('${service.imageUrl}')` }}
+                  aria-label={service.title}
+                />
+              </div>
 
-                {/* Text Content */}
-                <div className="px-6 pb-6 pt-1 space-y-2">
-                  <h3 className="font-display font-extrabold text-lg text-[#063B27] tracking-tight group-hover:text-[#4AA658] transition-colors duration-200">
-                    {service.title}
-                  </h3>
-                  <p className="font-sans text-xs sm:text-sm text-[#5C6662] leading-relaxed">
-                    {service.desc}
-                  </p>
+              {/* Card Text & Link below image */}
+              <div className="space-y-3 pt-1">
+                <h3 className="font-display font-extrabold text-xl sm:text-2xl text-[#000000] tracking-tight leading-snug group-hover:text-[#168849] transition-colors duration-200">
+                  {service.title}
+                </h3>
+                <p className="font-sans text-xs sm:text-sm text-[#B9B9B9] leading-relaxed">
+                  {service.desc}
+                </p>
+                <div className="pt-2">
+                  <a
+                    href={service.actionHref}
+                    className="inline-flex items-center gap-2 font-sans text-xs font-bold text-[#000000] hover:text-[#168849] transition-colors group/link cursor-pointer"
+                  >
+                    <span>{service.actionText}</span>
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />
+                  </a>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Centered Learn More Action Button */}
-        <div className="flex justify-center pt-2">
-          <CtaButton href="#contact">
-            Learn More About Our Services
-          </CtaButton>
-        </div>
-
       </div>
     </section>
   );
 }
+
 
