@@ -26,7 +26,7 @@ export function Hero() {
 
       {/* Dark overlay for optimal text contrast and warmth */}
       <div className="absolute inset-0 bg-black/25" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/20" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-black/10" />
 
       {/* Main Content Container - Matches Navbar Container (max-w-7xl mx-auto px-4 sm:px-6) */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-36 pb-16 lg:pb-20 z-10 w-full">
