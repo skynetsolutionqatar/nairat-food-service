@@ -8,6 +8,7 @@ interface StrengthCard {
   id: string;
   number?: string;
   title: string;
+  desc: string;
   imageUrl: string;
   alt: string;
 }
@@ -17,6 +18,7 @@ const strengthsList: StrengthCard[] = [
     id: 'chiller-rooms',
     number: '20',
     title: 'Dedicated Chiller Rooms',
+    desc: 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
     imageUrl: '/whychooseus/chiller warehouse.avif',
     alt: '20 Dedicated Chiller Rooms',
   },
@@ -24,12 +26,14 @@ const strengthsList: StrengthCard[] = [
     id: 'warehouse',
     number: '5,000 m2',
     title: 'Cold-Chain Warehouse',
+    desc: 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.',
     imageUrl: '/whychooseus/warehouse.avif',
     alt: '5,000 m2 Cold-Chain Warehouse',
   },
   {
     id: 'cold-chain',
     title: 'Cold Chain Unbroken',
+    desc: 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
     imageUrl: '/whychooseus/temperature conrolled.avif',
     alt: 'Cold Chain Unbroken',
   },
@@ -37,6 +41,7 @@ const strengthsList: StrengthCard[] = [
     id: 'fleet',
     number: '40',
     title: 'Refrigerated Vehicles',
+    desc: 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
     imageUrl: '/whychooseus/truck.avif',
     alt: '40 Refrigerated Vehicles',
   },
@@ -45,6 +50,7 @@ const strengthsList: StrengthCard[] = [
 const tallCard: StrengthCard = {
   id: 'sourced-origin',
   title: 'Sourced at Origin',
+  desc: 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
   imageUrl: '/whychooseus/sourced from origin.avif',
   alt: 'Sourced at Origin',
 };
@@ -94,7 +100,7 @@ export function Strengths() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl h-52 sm:h-56 md:h-60 shadow-sm flex flex-col justify-end p-6 bg-neutral-900"
+                className="group relative overflow-hidden rounded-2xl h-56 sm:h-60 md:h-64 shadow-sm flex flex-col justify-end p-6 bg-neutral-900 cursor-pointer"
               >
                 {/* Background Image with Hover Zoom */}
                 <div
@@ -104,18 +110,27 @@ export function Strengths() {
                 />
                 
                 {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:from-black/90 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-300" />
 
                 {/* Card Content Overlay */}
-                <div className="relative z-10 space-y-1 text-white">
+                <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
                   {card.number && (
-                    <span className="font-display font-extrabold text-4xl sm:text-5xl text-white leading-none block drop-shadow-md">
+                    <span className="font-display font-extrabold text-4xl sm:text-5xl text-white leading-none block drop-shadow-md mb-1 transition-transform duration-300 group-hover:-translate-y-0.5">
                       {card.number}
                     </span>
                   )}
                   <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white tracking-tight leading-snug drop-shadow-md">
                     {card.title}
                   </h3>
+
+                  {/* Hover Description Paragraph with CSS Grid expansion */}
+                  <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
+                    <div className="overflow-hidden">
+                      <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             ))}
@@ -127,7 +142,7 @@ export function Strengths() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[380px] sm:min-h-[440px] lg:min-h-full shadow-sm flex flex-col justify-end p-7 bg-neutral-900"
+            className="lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[380px] sm:min-h-[440px] lg:min-h-full shadow-sm flex flex-col justify-end p-7 bg-neutral-900 cursor-pointer"
           >
             {/* Background Image with Hover Zoom */}
             <div
@@ -137,13 +152,22 @@ export function Strengths() {
             />
 
             {/* Dark Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:from-black/90 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-300" />
 
             {/* Card Content Overlay */}
-            <div className="relative z-10 text-white">
+            <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
               <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-snug drop-shadow-md">
                 {tallCard.title}
               </h3>
+
+              {/* Hover Description Paragraph with CSS Grid expansion */}
+              <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
+                <div className="overflow-hidden">
+                  <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
+                    {tallCard.desc}
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -153,5 +177,6 @@ export function Strengths() {
     </section>
   );
 }
+
 
 
