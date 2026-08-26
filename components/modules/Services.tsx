@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Truck, Sprout, ShoppingBag } from 'lucide-react';
+import { CtaButton } from '@/components/ui/CtaButton';
 
 interface ServiceItem {
   id: string;
@@ -117,18 +118,9 @@ export function Services() {
 
         {/* Centered Learn More Action Button */}
         <div className="flex justify-center pt-2">
-          <a
-            href="#contact"
-            className="inline-flex bg-[#4AA658] hover:bg-[#3d8b49] text-white font-sans text-xs sm:text-sm font-bold px-6 py-3 rounded-full transition-all duration-300 shadow-md items-center gap-3 group focus-visible:outline-2 focus-visible:outline-brand-forest"
-          >
-            <span>Learn More About Our Services</span>
-            <div className="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0 text-[#4AA658] group-hover:translate-x-0.5 transition-transform duration-200">
-              <svg className="w-3 h-3 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
-            </div>
-          </a>
+          <CtaButton href="#contact">
+            Learn More About Our Services
+          </CtaButton>
         </div>
 
       </div>

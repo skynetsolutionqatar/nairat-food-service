@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { CtaButton } from '../ui/CtaButton';
 
 export function Hero() {
   return (
@@ -58,15 +59,10 @@ export function Hero() {
             </p>
 
             <div>
-              <a
-                href="#products"
-                className="bg-[#28844B] hover:bg-[#206e3e] text-white font-sans text-xs sm:text-sm font-semibold px-5 sm:px-6 py-3 sm:py-3.5 rounded-full transition-all duration-300 shadow-xl flex items-center gap-3 group focus-visible:outline-2 focus-visible:outline-white border border-white/10 hover:shadow-2xl"
-              >
-                <span>Explore Our Products</span>
-                <div className="w-6 h-6 rounded-full bg-white text-[#28844B] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200 shadow-inner">
-                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" aria-hidden="true" />
-                </div>
-              </a>
+
+              <CtaButton href="#products">
+                Explore Our Products
+              </CtaButton>
             </div>
           </motion.div>
 
