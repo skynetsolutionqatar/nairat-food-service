@@ -2,152 +2,156 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { CtaButton } from '@/components/ui/CtaButton';
 
-interface StrengthItem {
+interface StrengthCard {
   id: string;
   number?: string;
   title: string;
-  desc: string;
   imageUrl: string;
-  gridClass: string;
-  isFullBleed?: boolean;
+  alt: string;
 }
 
-const strengths: StrengthItem[] = [
+const strengthsList: StrengthCard[] = [
   {
     id: 'chiller-rooms',
     number: '20',
     title: 'Dedicated Chiller Rooms',
-    desc: 'Each room set to the right temperature for every type of produce.',
-    imageUrl: 'https://images.unsplash.com/photo-1583258292688-d0213df4a3a8?q=80&w=600',
-    gridClass: 'lg:col-span-1 lg:row-span-1',
-    isFullBleed: false,
+    imageUrl: '/whychooseus/chiller warehouse.avif',
+    alt: '20 Dedicated Chiller Rooms',
   },
   {
     id: 'warehouse',
-    number: '5,000 m²',
+    number: '5,000 m2',
     title: 'Cold-Chain Warehouse',
-    desc: 'State-of-the-art facility built to maintain freshness at every step.',
-    imageUrl: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600',
-    gridClass: 'lg:col-span-1 lg:row-span-1',
-    isFullBleed: false,
-  },
-  {
-    id: 'sourced-origin',
-    title: 'Sourced at Origin',
-    desc: 'Direct relationships with trusted growers worldwide ensure quality right from the source.',
-    imageUrl: 'https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=600',
-    gridClass: 'lg:col-span-1 lg:row-span-2 min-h-[380px] lg:min-h-full',
-    isFullBleed: true,
+    imageUrl: '/whychooseus/warehouse.avif',
+    alt: '5,000 m2 Cold-Chain Warehouse',
   },
   {
     id: 'cold-chain',
-    title: 'Cold Chain, Unbroken',
-    desc: 'Strict FIFO rotation and temperature-controlled storage to preserve freshness from arrival to delivery.',
-    imageUrl: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=600',
-    gridClass: 'lg:col-span-1 lg:row-span-1',
-    isFullBleed: false,
+    title: 'Cold Chain Unbroken',
+    imageUrl: '/whychooseus/temperature conrolled.avif',
+    alt: 'Cold Chain Unbroken',
   },
   {
     id: 'fleet',
     number: '40',
     title: 'Refrigerated Vehicles',
-    desc: 'Modern fleet ensuring safe and on-time deliveries across Qatar.',
-    imageUrl: 'https://images.unsplash.com/photo-1516576885230-101c031d0473?q=80&w=600',
-    gridClass: 'lg:col-span-1 lg:row-span-1',
-    isFullBleed: false,
+    imageUrl: '/whychooseus/truck.avif',
+    alt: '40 Refrigerated Vehicles',
   },
 ];
 
+const tallCard: StrengthCard = {
+  id: 'sourced-origin',
+  title: 'Sourced at Origin',
+  imageUrl: '/whychooseus/sourced from origin.avif',
+  alt: 'Sourced at Origin',
+};
+
 export function Strengths() {
   return (
-    <section id="strengths" className="py-20 bg-[#F4F6F5]">
+    <section id="strengths" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-12">
         
-        {/* Section Headings */}
-        <div className="max-w-2xl space-y-3">
-          <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#5C6662] block">
-            OUR STRENGTHS
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#063B27] tracking-tight">
-            Built for Freshness. Ready to Deliver.
-          </h2>
+        {/* Header Grid: Left Headline vs Right Subtext & CTA */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+          
+          {/* Left Headline */}
+          <div className="lg:col-span-7 space-y-4">
+            <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#000000] block">
+              WHY CHOOSE US
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#000000] leading-[1.15] tracking-tight">
+              Built for Freshness. <br />
+              Ready to Deliver.
+            </h2>
+          </div>
+
+          {/* Right Paragraph & CTA Button */}
+          <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
+            <p className="font-sans text-sm sm:text-base text-[#B9B9B9] leading-relaxed text-left">
+              From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.
+            </p>
+            <div className="self-start lg:self-end">
+              <CtaButton href="#contact">
+                Read More
+              </CtaButton>
+            </div>
+          </div>
+
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {strengths.map((item, index) => {
-            if (item.isFullBleed) {
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className={`group relative overflow-hidden rounded-2xl shadow-sm border border-black/5 flex flex-col justify-end p-8 ${item.gridClass}`}
-                >
-                  {/* Background Image with hover zoom */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    style={{ backgroundImage: `url('${item.imageUrl}')` }}
-                    aria-hidden="true"
-                  />
-                  
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#063B27] via-[#063B27]/60 to-transparent transition-opacity duration-300 group-hover:opacity-90" />
-
-                  {/* Content Panel */}
-                  <div className="relative space-y-3 z-10 text-white">
-                    <h3 className="font-display font-extrabold text-2xl tracking-tight leading-tight">
-                      {item.title}
-                    </h3>
-                    <p className="font-sans text-xs sm:text-sm text-white/85 leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            }
-
-            return (
+        {/* Bento Grid: 2x2 Left Cards + 1 Tall Right Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
+          
+          {/* Left 2x2 Grid */}
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {strengthsList.map((card, index) => (
               <motion.div
-                key={item.id}
+                key={card.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`bg-white rounded-2xl shadow-sm border border-black/5 flex flex-row overflow-hidden group min-h-[170px] ${item.gridClass}`}
+                className="group relative overflow-hidden rounded-2xl h-52 sm:h-56 md:h-60 shadow-sm flex flex-col justify-end p-6 bg-neutral-900"
               >
-                {/* Left side: Text Content */}
-                <div className="w-1/2 p-6 flex flex-col justify-center space-y-1.5 text-[#1C2321]">
-                  {item.number && (
-                    <span className="font-display font-extrabold text-3xl sm:text-4xl text-[#063B27] leading-none">
-                      {item.number}
+                {/* Background Image with Hover Zoom */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ backgroundImage: `url('${card.imageUrl}')` }}
+                  aria-label={card.alt}
+                />
+                
+                {/* Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:from-black/90 transition-opacity duration-300" />
+
+                {/* Card Content Overlay */}
+                <div className="relative z-10 space-y-1 text-white">
+                  {card.number && (
+                    <span className="font-display font-extrabold text-4xl sm:text-5xl text-white leading-none block drop-shadow-md">
+                      {card.number}
                     </span>
                   )}
-                  <h3 className="font-display font-extrabold text-base tracking-tight leading-snug text-[#063B27]">
-                    {item.title}
+                  <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white tracking-tight leading-snug drop-shadow-md">
+                    {card.title}
                   </h3>
-                  <p className="font-sans text-xs text-[#5C6662] leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-
-                {/* Right side: Image block */}
-                <div className="w-1/2 relative overflow-hidden">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                    style={{ backgroundImage: `url('${item.imageUrl}')` }}
-                    aria-hidden="true"
-                  />
                 </div>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
+
+          {/* Right Tall Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[380px] sm:min-h-[440px] lg:min-h-full shadow-sm flex flex-col justify-end p-7 bg-neutral-900"
+          >
+            {/* Background Image with Hover Zoom */}
+            <div
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+              style={{ backgroundImage: `url('${tallCard.imageUrl}')` }}
+              aria-label={tallCard.alt}
+            />
+
+            {/* Dark Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10 group-hover:from-black/90 transition-opacity duration-300" />
+
+            {/* Card Content Overlay */}
+            <div className="relative z-10 text-white">
+              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-snug drop-shadow-md">
+                {tallCard.title}
+              </h3>
+            </div>
+          </motion.div>
+
         </div>
+
       </div>
     </section>
   );
 }
+
 
