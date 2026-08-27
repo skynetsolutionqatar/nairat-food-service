@@ -93,7 +93,7 @@ export function Services() {
   );
 
   return (
-    <section id="services" ref={containerRef} className="py-20 bg-white">
+    <section id="services" ref={containerRef} className="py-10 sm:py-12 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-12">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">

@@ -43,7 +43,7 @@ export function Contact() {
     <section id="contact" className="relative">
       
       {/* Call-to-Action Banner matching Figma mockup */}
-      <div className="relative bg-[#063B27] text-white py-20 overflow-hidden border-b border-white/10">
+      <div className="relative bg-[#063B27] text-white py-10 sm:py-12 overflow-hidden border-b border-white/10">
         {/* Fresh produce background image overlay */}
         <div 
           className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-multiply"

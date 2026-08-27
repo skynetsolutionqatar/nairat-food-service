@@ -34,7 +34,7 @@ const timelineSteps: TimelineStep[] = [
 
 export function QualityTimeline() {
   return (
-    <section id="quality" className="py-20 bg-white overflow-hidden">
+    <section id="quality" className="py-10 sm:py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-10">
         
         {/* Split Layout: Left is Timeline, Right is Certificate Document Preview */}

@@ -343,9 +343,9 @@ export function Products() {
   );
 
   return (
-    <section id="products" ref={containerRef} className="py-20 bg-white text-neutral-900 overflow-hidden">
+    <section id="products" ref={containerRef} className="py-10 sm:py-12 bg-white text-neutral-900 overflow-hidden">
       <div className="w-full space-y-10 px-0">
-        
+
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3 px-4">
           <div className="product-header-item flex items-center justify-center gap-2">
@@ -360,7 +360,7 @@ export function Products() {
           </h2>
 
           {/* 4 Category Pill Tabs */}
-          <div className="product-header-item flex flex-wrap justify-center gap-2 sm:gap-3 pt-3">
+          {/* <div className="product-header-item flex flex-wrap justify-center gap-2 sm:gap-3 pt-3">
             {categoriesData.map((cat, idx) => (
               <button
                 key={cat.id}
@@ -374,7 +374,7 @@ export function Products() {
                 {`${idx + 1}. ${cat.label}`}
               </button>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* 100% Edge-to-Edge Full Width Product Showcase Gallery Container */}
@@ -402,12 +402,14 @@ export function Products() {
               {categoriesData.map((cat) => (
                 <div
                   key={`row1-${cat.id}`}
-                  className="grid grid-cols-4 min-w-full flex-shrink-0 gap-0 h-full"
+                  className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0 h-full"
                 >
-                  {cat.productsRow1.map((item) => (
+                  {cat.productsRow1.map((item, itemIndex) => (
                     <div
                       key={item.id}
-                      className="group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8"
+                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${
+                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                      }`}
                     >
                       {/* Full-bleed Product Image with GSAP Scroll Parallax */}
                       <div
@@ -447,12 +449,14 @@ export function Products() {
               {categoriesData.map((cat) => (
                 <div
                   key={`row2-${cat.id}`}
-                  className="grid grid-cols-4 min-w-full flex-shrink-0 gap-0 h-full"
+                  className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0 h-full"
                 >
-                  {cat.productsRow2.map((item) => (
+                  {cat.productsRow2.map((item, itemIndex) => (
                     <div
                       key={item.id}
-                      className="group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8"
+                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${
+                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                      }`}
                     >
                       {/* Full-bleed Product Image with GSAP Scroll Parallax */}
                       <div

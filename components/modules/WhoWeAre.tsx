@@ -69,7 +69,7 @@ export function WhoWeAre() {
   );
 
   return (
-    <section id="about" ref={containerRef} className="py-20 bg-white overflow-hidden">
+    <section id="about" ref={containerRef} className="py-10 sm:py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-12">
         {/* Left / Top Section Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
