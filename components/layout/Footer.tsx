@@ -40,7 +40,7 @@ export function Footer() {
 
   return (
     <footer className="bg-[#063B27] text-white pt-16 pb-8 border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-12">
+      <div className="max-w-[1440px] mx-auto px-6 md:px-8 space-y-12">
         
         {/* Main Footer Links Grid (6 Columns) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">

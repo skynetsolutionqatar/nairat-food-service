@@ -43,7 +43,7 @@ export function Navbar() {
   return (
     <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300">
       <div
-        className={`max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between  rounded-full transition-all duration-300 ${isScrolled
+        className={`max-w-[1440px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between  rounded-full transition-all duration-300 ${isScrolled
           ? 'bg-[#168849]/95 backdrop-blur-md '
           : 'bg-[#168849] '
           }`}

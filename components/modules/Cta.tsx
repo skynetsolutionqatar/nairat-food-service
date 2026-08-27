@@ -61,7 +61,7 @@ export function Cta(): React.ReactNode {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-7xl mx-auto w-full space-y-5 sm:space-y-6">
+        <div className="relative z-10 max-w-[1440px] mx-auto w-full space-y-5 sm:space-y-6">
 
           {/* Headline */}
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] max-w-4xl">

@@ -93,7 +93,7 @@ export function Hero() {
       {/* Main Content Container */}
       <div
         ref={contentRef}
-        className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-36 pb-16 lg:pb-20 z-10 w-full"
+        className="relative max-w-[1440px] mx-auto px-4 sm:px-6 pt-36 pb-16 lg:pb-20 z-10 w-full"
       >
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-14 w-full">
           {/* DIV 1: Heading */}

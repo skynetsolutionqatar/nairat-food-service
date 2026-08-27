@@ -37,7 +37,7 @@ const globeArcs: Arc[] = [
 export function SourcingMap(): React.ReactNode {
   return (
     <section id="quality" className="py-10 sm:py-12 bg-white text-neutral-900 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-12">
           {/* Left Column: Interactive 3D Cobe Globe (40% / 5 cols) */}
           <div className="lg:col-span-5 relative flex items-center justify-center w-full max-w-md mx-auto lg:max-w-none">
