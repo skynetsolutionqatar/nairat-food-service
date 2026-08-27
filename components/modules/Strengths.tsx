@@ -151,8 +151,8 @@ export function Strengths() {
                   aria-label={card.alt}
                 />
 
-                {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-300 pointer-events-none" />
+                {/* Dark Gradient Overlay - Lightened for brighter imagery */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent group-hover:from-black/75 group-hover:via-black/30 transition-all duration-300 pointer-events-none" />
 
                 {/* Card Content Overlay */}
                 <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
@@ -189,8 +189,8 @@ export function Strengths() {
               aria-label={tallCard.alt}
             />
 
-            {/* Dark Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-300 pointer-events-none" />
+            {/* Dark Gradient Overlay - Lightened for brighter imagery */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent group-hover:from-black/75 group-hover:via-black/30 transition-all duration-300 pointer-events-none" />
 
             {/* Card Content Overlay */}
             <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
