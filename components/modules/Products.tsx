@@ -1,208 +1,498 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useState, useRef, useEffect } from 'react';
+import { Leaf } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ProductItem {
   id: string;
   name: string;
-  category: 'fruits' | 'vegetables' | 'herbs' | 'specialty';
-  origin: string;
+  subName?: string;
   imageUrl: string;
 }
 
-const categories = [
-  { id: 'all', label: 'All' },
-  { id: 'fruits', label: 'Fruits' },
-  { id: 'vegetables', label: 'Vegetables' },
-  { id: 'herbs', label: 'Leafy & Herbs' },
-  { id: 'specialty', label: 'Specialty' },
-];
+interface CategoryData {
+  id: string;
+  label: string;
+  leftBarTitle: string;
+  leftBarColor: string;
+  rightBarTitle: string;
+  rightBarColor: string;
+  productsRow1: ProductItem[];
+  productsRow2: ProductItem[];
+}
 
-const products: ProductItem[] = [
+const categoriesData: CategoryData[] = [
   {
-    id: 'pears',
-    name: 'Pears',
-    category: 'fruits',
-    origin: 'South Africa',
-    imageUrl: 'https://images.unsplash.com/photo-1514756331096-242fdeb70d4a?q=80&w=400',
+    id: 'vegetables',
+    label: 'Vegetables',
+    leftBarTitle: 'LOCAL VARIETIES',
+    leftBarColor: 'bg-[#38A84E]',
+    rightBarTitle: 'IMPORTED VARIETIES',
+    rightBarColor: 'bg-[#F3C623]',
+    productsRow1: [
+      {
+        id: 'tomatoes',
+        name: 'Tomatoes',
+        subName: '(Fresh Harvest)',
+        imageUrl: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?q=80&w=800',
+      },
+      {
+        id: 'capsicum',
+        name: 'Capsicum',
+        subName: '(Green, Red & Yellow)',
+        imageUrl: 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?q=80&w=800',
+      },
+      {
+        id: 'cucumbers',
+        name: 'Cucumbers',
+        subName: '(Greenhouse Sourced)',
+        imageUrl: 'https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?q=80&w=800',
+      },
+      {
+        id: 'marrow-zucchini',
+        name: 'Eggplant & Zucchini',
+        subName: '(Marrow Selection)',
+        imageUrl: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=800',
+      },
+    ],
+    productsRow2: [
+      {
+        id: 'cauliflower-cabbage',
+        name: 'Cauliflower & Cabbage',
+        subName: '(Farm Select)',
+        imageUrl: 'https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?q=80&w=800',
+      },
+      {
+        id: 'potatoes-onions',
+        name: 'Potatoes & Onions',
+        subName: '(Crisp Quality)',
+        imageUrl: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=800',
+      },
+      {
+        id: 'chilli-okra',
+        name: 'Chilli & Okra',
+        subName: '(Fresh Spice & Pods)',
+        imageUrl: 'https://images.unsplash.com/photo-1588879460418-472064119d67?q=80&w=800',
+      },
+      {
+        id: 'beans',
+        name: 'Fresh Beans',
+        subName: '(Green Harvest)',
+        imageUrl: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?q=80&w=800',
+      },
+    ],
   },
   {
-    id: 'rambutan',
-    name: 'Rambutan',
-    category: 'specialty',
-    origin: 'Thailand',
-    imageUrl: 'https://images.unsplash.com/photo-1562436260-8c9216eeb70a?q=80&w=400',
+    id: 'fruits',
+    label: 'Fruits',
+    leftBarTitle: 'INDIAN VARIETIES',
+    leftBarColor: 'bg-[#38A84E]',
+    rightBarTitle: 'IMPORTED VARIETIES',
+    rightBarColor: 'bg-[#F3C623]',
+    productsRow1: [
+      {
+        id: 'melons',
+        name: 'Watermelon & Sweet Melon',
+        subName: '(Juicy Harvest)',
+        imageUrl: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=800',
+      },
+      {
+        id: 'citrus',
+        name: 'Citrus Selection',
+        subName: '(Orange, Lemon, Lime, Mandarin)',
+        imageUrl: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?q=80&w=800',
+      },
+      {
+        id: 'stone-fruit',
+        name: 'Stone Fruit',
+        subName: '(Peach, Nectarine, Plum, Cherry)',
+        imageUrl: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=800',
+      },
+      {
+        id: 'grapes',
+        name: 'Fresh Grapes',
+        subName: '(Red & Green Seedless)',
+        imageUrl: 'https://images.unsplash.com/photo-1596368708356-6e1e1025ee72?q=80&w=800',
+      },
+    ],
+    productsRow2: [
+      {
+        id: 'mango',
+        name: 'Fresh Mango',
+        subName: '(Alphonso & Premium)',
+        imageUrl: 'https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=800',
+      },
+      {
+        id: 'berries',
+        name: 'Strawberries & Berries',
+        subName: '(Fresh Blueberries & Strawberries)',
+        imageUrl: 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?q=80&w=800',
+      },
+      {
+        id: 'pomegranate',
+        name: 'Pomegranate',
+        subName: '(Ruby Red Seeds)',
+        imageUrl: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=800',
+      },
+      {
+        id: 'avocado',
+        name: 'Avocado',
+        subName: '(Hass Variety)',
+        imageUrl: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=800',
+      },
+    ],
   },
   {
-    id: 'cherries',
-    name: 'Cherries',
-    category: 'fruits',
-    origin: 'Chile',
-    imageUrl: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=400',
+    id: 'leafy-herbs',
+    label: 'Leafy & Herbs',
+    leftBarTitle: 'ORGANIC HERBS',
+    leftBarColor: 'bg-[#15803D]',
+    rightBarTitle: 'LEAFY SELECTION',
+    rightBarColor: 'bg-[#0D9488]',
+    productsRow1: [
+      {
+        id: 'lettuce-romaine-iceberg',
+        name: 'Lettuce Romaine & Iceberg',
+        subName: '(Crisp Leaf Selection)',
+        imageUrl: 'https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?q=80&w=800',
+      },
+      {
+        id: 'broccoli-fresh',
+        name: 'Broccoli',
+        subName: '(Farm Fresh Florets)',
+        imageUrl: 'https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?q=80&w=800',
+      },
+      {
+        id: 'radish-beetroot',
+        name: 'Radish & Beetroot',
+        subName: '(Fresh Root Harvest)',
+        imageUrl: 'https://images.unsplash.com/photo-1598170845058-128a2b163351?q=80&w=800',
+      },
+      {
+        id: 'fresh-coriander-mint',
+        name: 'Fresh Coriander & Mint',
+        subName: '(Aromatic Herbs)',
+        imageUrl: 'https://images.unsplash.com/photo-1594489428504-5c0c480a15fa?q=80&w=800',
+      },
+    ],
+    productsRow2: [
+      {
+        id: 'sweet-basil-leaf',
+        name: 'Sweet Basil',
+        subName: '(Italian Genovese)',
+        imageUrl: 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=800',
+      },
+      {
+        id: 'flat-parsley',
+        name: 'Flat Parsley',
+        subName: '(Mediterranean Bunch)',
+        imageUrl: 'https://images.unsplash.com/photo-1594489428504-5c0c480a15fa?q=80&w=800',
+      },
+      {
+        id: 'thyme-rosemary-pair',
+        name: 'Thyme & Rosemary',
+        subName: '(Culinary Pair)',
+        imageUrl: 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=800',
+      },
+      {
+        id: 'fresh-herbs-mix',
+        name: 'Fresh Herbs',
+        subName: '(Dill, Sage & Tarragon)',
+        imageUrl: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=800',
+      },
+    ],
   },
   {
-    id: 'avocado-hass',
-    name: 'Avocado Hass',
-    category: 'specialty',
-    origin: 'Kenya',
-    imageUrl: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=400',
-  },
-  {
-    id: 'blueberries',
-    name: 'Blueberries',
-    category: 'fruits',
-    origin: 'Peru',
-    imageUrl: 'https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?q=80&w=400',
-  },
-  {
-    id: 'grapes-red',
-    name: 'Grapes (Red)',
-    category: 'fruits',
-    origin: 'India',
-    imageUrl: 'https://images.unsplash.com/photo-1537089944760-03a77870af67?q=80&w=400',
-  },
-  {
-    id: 'apricots',
-    name: 'Apricots',
-    category: 'fruits',
-    origin: 'Uzbekistan',
-    imageUrl: 'https://images.unsplash.com/photo-1501746877-14782df589a4?q=80&w=400',
-  },
-  {
-    id: 'roma-tomato',
-    name: 'Roma Tomatoes',
-    category: 'vegetables',
-    origin: 'Netherlands',
-    imageUrl: 'https://images.unsplash.com/photo-1595855759920-86582396756a?q=80&w=400',
-  },
-  {
-    id: 'iceberg-lettuce',
-    name: 'Iceberg Lettuce',
-    category: 'vegetables',
-    origin: 'Spain',
-    imageUrl: 'https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?q=80&w=400',
-  },
-  {
-    id: 'coriander',
-    name: 'Fresh Coriander',
-    category: 'herbs',
-    origin: 'Oman',
-    imageUrl: 'https://images.unsplash.com/photo-1594489428504-5c0c480a15fa?q=80&w=400',
-  },
-  {
-    id: 'basil',
-    name: 'Sweet Basil',
-    category: 'herbs',
-    origin: 'Italy',
-    imageUrl: 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=400',
+    id: 'specialty-gourmet',
+    label: 'Specialty & Gourmet',
+    leftBarTitle: 'EXOTIC SELECTION',
+    leftBarColor: 'bg-[#C2410C]',
+    rightBarTitle: 'GOURMET SPECIALS',
+    rightBarColor: 'bg-[#D97706]',
+    productsRow1: [
+      {
+        id: 'baby-leaves',
+        name: 'Baby Leaves',
+        subName: '(Tender Gourmet Mix)',
+        imageUrl: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?q=80&w=800',
+      },
+      {
+        id: 'exotic-mushrooms',
+        name: 'Exotic Mushrooms',
+        subName: '(Shiitake, Oyster & Morels)',
+        imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800',
+      },
+      {
+        id: 'passion-fruit-gourmet',
+        name: 'Passion Fruit',
+        subName: '(Purple Selection)',
+        imageUrl: 'https://images.unsplash.com/photo-1589984662646-e7b2e4962f18?q=80&w=800',
+      },
+      {
+        id: 'lychee-rambutan',
+        name: 'Lychee & Rambutan',
+        subName: '(Air Freight Import)',
+        imageUrl: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=800',
+      },
+    ],
+    productsRow2: [
+      {
+        id: 'dragon-fruit-exotic',
+        name: 'Dragon Fruit',
+        subName: '(Red & White)',
+        imageUrl: 'https://images.unsplash.com/photo-1527325678964-54921646bc0d?q=80&w=800',
+      },
+      {
+        id: 'black-figs-gourmet',
+        name: 'Black Figs',
+        subName: '(Turkish Import)',
+        imageUrl: 'https://images.unsplash.com/photo-1601379327928-bedfac7da2d2?q=80&w=800',
+      },
+      {
+        id: 'golden-apricots-gourmet',
+        name: 'Golden Apricots',
+        subName: '(Uzbekistan)',
+        imageUrl: 'https://images.unsplash.com/photo-1501746877-14782df589a4?q=80&w=800',
+      },
+      {
+        id: 'seasonal-specialities',
+        name: 'Seasonal Specialties',
+        subName: '(Curated Exotics)',
+        imageUrl: 'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?q=80&w=800',
+      },
+    ],
   },
 ];
 
 export function Products() {
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [categoryIndex, setCategoryIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const row1Ref = useRef<HTMLDivElement>(null);
+  const row2Ref = useRef<HTMLDivElement>(null);
 
-  const filteredProducts = activeCategory === 'all'
-    ? products
-    : products.filter(p => p.category === activeCategory);
+  const activeCategory = categoriesData[categoryIndex];
+
+  // Auto scroll category selection smoothly
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setCategoryIndex((prev) => (prev + 1) % categoriesData.length);
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  // Smoothly scroll card track when categoryIndex changes
+  useEffect(() => {
+    if (row1Ref.current && row2Ref.current) {
+      const rowWidth = row1Ref.current.clientWidth;
+      row1Ref.current.scrollTo({ left: categoryIndex * rowWidth, behavior: 'smooth' });
+      row2Ref.current.scrollTo({ left: categoryIndex * rowWidth, behavior: 'smooth' });
+    }
+  }, [categoryIndex]);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          once: true,
+        },
+      });
+
+      tl.fromTo(
+        '.product-header-item',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' }
+      ).fromTo(
+        '.product-gallery-wrapper',
+        { opacity: 0, y: 35 },
+        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
+        '-=0.3'
+      );
+
+      // GSAP ScrollTrigger Parallax & Zoom on Product Cards on scroll down
+      const cardBgImages = gsap.utils.toArray<HTMLElement>('.product-card-bg');
+      cardBgImages.forEach((img) => {
+        gsap.fromTo(
+          img,
+          { scale: 1.18, yPercent: -5 },
+          {
+            scale: 1.02,
+            yPercent: 5,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            },
+          }
+        );
+      });
+    },
+    { scope: containerRef }
+  );
 
   return (
-    <section id="products" className="py-20 bg-[#063B27] text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-10">
+    <section id="products" ref={containerRef} className="py-20 bg-white text-neutral-900 overflow-hidden">
+      <div className="w-full space-y-10 px-0">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-4">
-          <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-white/80 block">
-            OUR PRODUCTS
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        <div className="max-w-3xl mx-auto text-center space-y-3 px-4">
+          <div className="product-header-item flex items-center justify-center gap-2">
+            <Leaf className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
+            <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-neutral-800">
+              OUR PRODUCTS
+            </span>
+          </div>
+
+          <h2 className="product-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-tight">
             Freshness, Sourced From Around the World.
           </h2>
 
-          {/* Filtering Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 pt-2">
-            {categories.map((cat) => (
+          {/* 4 Category Pill Tabs */}
+          <div className="product-header-item flex flex-wrap justify-center gap-2 sm:gap-3 pt-3">
+            {categoriesData.map((cat, idx) => (
               <button
                 key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`font-sans text-xs font-semibold py-2 px-5 rounded-full transition-all duration-200 focus-visible:outline-2 focus-visible:outline-white ${
-                  activeCategory === cat.id
-                    ? 'bg-[#4AA658] text-white shadow-sm'
-                    : 'bg-transparent text-white/70 border border-white/15 hover:border-white/40 hover:text-white'
+                onClick={() => setCategoryIndex(idx)}
+                className={`font-sans text-xs sm:text-sm font-extrabold py-2.5 px-5 sm:px-6 rounded-full transition-all duration-300 ${
+                  categoryIndex === idx
+                    ? 'bg-[#063B27] text-white shadow-md scale-105'
+                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900 border border-black/5'
                 }`}
               >
-                {cat.label}
+                {`${idx + 1}. ${cat.label}`}
               </button>
             ))}
           </div>
         </div>
 
-        {/* 7 Circular Products Row Grid */}
-        <div className="relative min-h-[220px]">
-          <motion.div 
-            layout
-            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-center items-start"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredProducts.map((product) => (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.35 }}
-                  key={product.id}
-                  className="flex flex-col items-center text-center group"
+        {/* 100% Edge-to-Edge Full Width Product Showcase Gallery Container */}
+        <div
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          className="product-gallery-wrapper relative w-full rounded-none overflow-hidden bg-neutral-950 flex flex-col gap-0"
+        >
+          {/* ROW 1: Left Vertical Bar + Horizontal Card Scroll Track */}
+          <div className="flex flex-row items-stretch h-48 xs:h-56 sm:h-72 md:h-96 lg:h-[480px] xl:h-[520px] w-full overflow-hidden">
+            {/* Left Colored Sidebar Bar */}
+            <div
+              className={`w-7 xs:w-9 sm:w-14 md:w-16 lg:w-20 ${activeCategory.leftBarColor} flex items-center justify-center shrink-0 select-none overflow-hidden transition-colors duration-500`}
+            >
+              <span className="[writing-mode:vertical-lr] rotate-180 font-sans text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base font-extrabold tracking-widest text-white uppercase whitespace-nowrap">
+                {activeCategory.leftBarTitle}
+              </span>
+            </div>
+
+            {/* Horizontal Scrolling Cards Track for Row 1 */}
+            <div
+              ref={row1Ref}
+              className="flex flex-row flex-grow overflow-x-hidden scroll-smooth w-full h-full"
+            >
+              {categoriesData.map((cat) => (
+                <div
+                  key={`row1-${cat.id}`}
+                  className="grid grid-cols-4 min-w-full flex-shrink-0 gap-0 h-full"
                 >
-                  {/* Circle image container */}
-                  <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-[#4AA658] bg-black/20 transition-all duration-300 shadow-md">
+                  {cat.productsRow1.map((item) => (
                     <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                      style={{ backgroundImage: `url('${product.imageUrl}')` }}
-                      aria-hidden="true"
-                    />
-                  </div>
+                      key={item.id}
+                      className="group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8"
+                    >
+                      {/* Full-bleed Product Image with GSAP Scroll Parallax */}
+                      <div
+                        className="product-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                        style={{ backgroundImage: `url('${item.imageUrl}')` }}
+                        aria-label={item.name}
+                      />
 
-                  {/* Title and Origin */}
-                  <div className="mt-3 space-y-0.5">
-                    <h3 className="font-display font-extrabold text-sm sm:text-base text-white tracking-tight leading-snug">
-                      {product.name}
-                    </h3>
-                    <p className="font-sans text-xs text-white/70 font-medium">
-                      {product.origin}
-                    </p>
-                  </div>
-                </motion.div>
+                      {/* Dark Gradient Bottom Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 pointer-events-none" />
+
+                      {/* Bottom Title Text Overlay */}
+                      <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
+                        <h3 className="font-display font-extrabold text-[11px] xs:text-xs sm:text-sm md:text-lg lg:text-xl text-white drop-shadow-md tracking-tight leading-tight">
+                          {item.name}
+                        </h3>
+                        {item.subName && (
+                          <p className="font-sans text-[8px] xs:text-[9px] sm:text-xs md:text-sm text-white/85 font-medium drop-shadow-sm leading-tight">
+                            {item.subName}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               ))}
-            </AnimatePresence>
-          </motion.div>
-
-          {/* Empty State */}
-          {filteredProducts.length === 0 && (
-            <div className="text-center py-16">
-              <p className="font-sans text-sm text-white/60">No produce available in this category.</p>
             </div>
-          )}
-        </div>
+          </div>
 
-        {/* View Details CTA Button */}
-        <div className="flex justify-center pt-2">
-          <a
-            href="#contact"
-            className="inline-flex border border-white/30 hover:border-white bg-white/5 hover:bg-white/10 text-white font-sans text-xs font-bold px-6 py-2.5 rounded-full transition-all duration-300 items-center gap-3 group focus-visible:outline-2 focus-visible:outline-white"
-          >
-            <span>View More Product Details</span>
-            <div className="w-5 h-5 rounded-full border border-white/30 flex items-center justify-center text-white shrink-0 group-hover:translate-x-0.5 transition-transform duration-200">
-              <svg className="w-3 h-3 stroke-current" viewBox="0 0 24 24" fill="none" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-              </svg>
+          {/* ROW 2: Horizontal Card Scroll Track + Right Vertical Bar */}
+          <div className="flex flex-row items-stretch h-48 xs:h-56 sm:h-72 md:h-96 lg:h-[480px] xl:h-[520px] w-full overflow-hidden">
+            {/* Horizontal Scrolling Cards Track for Row 2 */}
+            <div
+              ref={row2Ref}
+              className="flex flex-row flex-grow overflow-x-hidden scroll-smooth w-full h-full"
+            >
+              {categoriesData.map((cat) => (
+                <div
+                  key={`row2-${cat.id}`}
+                  className="grid grid-cols-4 min-w-full flex-shrink-0 gap-0 h-full"
+                >
+                  {cat.productsRow2.map((item) => (
+                    <div
+                      key={item.id}
+                      className="group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8"
+                    >
+                      {/* Full-bleed Product Image with GSAP Scroll Parallax */}
+                      <div
+                        className="product-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                        style={{ backgroundImage: `url('${item.imageUrl}')` }}
+                        aria-label={item.name}
+                      />
+
+                      {/* Dark Gradient Bottom Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 pointer-events-none" />
+
+                      {/* Bottom Title Text Overlay */}
+                      <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
+                        <h3 className="font-display font-extrabold text-[11px] xs:text-xs sm:text-sm md:text-lg lg:text-xl text-white drop-shadow-md tracking-tight leading-tight">
+                          {item.name}
+                        </h3>
+                        {item.subName && (
+                          <p className="font-sans text-[8px] xs:text-[9px] sm:text-xs md:text-sm text-white/85 font-medium drop-shadow-sm leading-tight">
+                            {item.subName}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
             </div>
-          </a>
+
+            {/* Right Colored Sidebar Bar */}
+            <div
+              className={`w-7 xs:w-9 sm:w-14 md:w-16 lg:w-20 ${activeCategory.rightBarColor} flex items-center justify-center shrink-0 select-none overflow-hidden transition-colors duration-500`}
+            >
+              <span className="[writing-mode:vertical-lr] font-sans text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base font-extrabold tracking-widest text-white uppercase whitespace-nowrap">
+                {activeCategory.rightBarTitle}
+              </span>
+            </div>
+          </div>
         </div>
 
       </div>
     </section>
   );
 }
-
