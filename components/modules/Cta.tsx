@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, X } from 'lucide-react';
+import { ArrowUpRight, Send, X } from 'lucide-react';
 
-export function Contact() {
+export function Cta(): React.ReactNode {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
@@ -40,58 +41,80 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative">
-      
-      {/* Call-to-Action Banner matching Figma mockup */}
-      <div className="relative bg-[#063B27] text-white py-10 sm:py-12 overflow-hidden border-b border-white/10">
-        {/* Fresh produce background image overlay */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-multiply"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1610832958506-ee56336191d1?q=80&w=1200')` }}
-          aria-hidden="true"
-        />
-        
-        <div className="absolute inset-0 bg-gradient-to-r from-[#063B27] via-[#063B27]/80 to-transparent" />
+    <section id="contact" className="relative w-full overflow-hidden bg-neutral-900">
 
-        <div className="relative max-w-7xl mx-auto px-6 md:px-8 flex flex-col md:flex-row items-center justify-between gap-8 z-10">
-          <div className="space-y-3 max-w-xl">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
-              <span>Sourced Around the World.</span> <br />
-              <span className="text-[#4AA658]">Delivered Across Qatar.</span>
-            </h2>
-            <p className="font-sans text-white/85 text-xs sm:text-sm leading-relaxed">
-              Partner with Nairat for reliable supply, premium quality and freshness you can trust – every day.
-            </p>
+      {/* Main Banner Container */}
+      <div className="relative w-full min-h-[260px] sm:min-h-[300px] lg:min-h-[340px] flex items-center py-10 sm:py-12 px-6 sm:px-12 lg:px-20">
+
+        {/* Background Image: ctaft-bac.webp */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/cta/ctaft-bac.webp"
+            alt="Fresh Fruits & Vegetables Background"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+          {/* Subtle Dark Vignette & Left Gradient Overlay for contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
+        </div>
+
+        {/* Content Container */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full space-y-5 sm:space-y-6">
+
+          {/* Headline */}
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] max-w-4xl">
+            Fresh Fruits &amp; Vegetables from <br />
+            Around the World
+          </h2>
+
+          {/* Flags + Subtext Row */}
+          <div className="flex items-center gap-4">
+            <div className="relative shrink-0">
+              <Image
+                src="/cta/ctacontry.webp"
+                alt="Sourced Around the World country flags"
+                width={140}
+                height={44}
+                className="h-9 sm:h-11 w-auto object-contain"
+              />
+            </div>
+            <div className="font-sans text-xs sm:text-sm text-white font-medium leading-snug">
+              <span className="block font-bold text-white">Sourced Around the World.</span>
+              <span className="block text-white/80">Delivered Across Qatar.</span>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-3.5 shrink-0 w-full md:w-auto">
-            {/* Toggle form button */}
+          {/* Action Buttons */}
+          <div className="pt-2 flex flex-wrap gap-4 items-center">
+            {/* Contact Us Green Pill Button */}
             <button
               onClick={() => setIsFormOpen((prev) => !prev)}
-              className="bg-[#4AA658] hover:bg-[#3d8b49] text-white font-sans text-xs sm:text-sm font-bold px-6 py-3 rounded-full transition-all duration-300 shadow-md flex items-center justify-center gap-2 focus-visible:outline-2 focus-visible:outline-white"
+              className="group inline-flex items-center gap-3 bg-[#008A45] hover:bg-[#00753a] text-white font-sans text-sm sm:text-base font-bold pl-6 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-emerald-900/40 cursor-pointer"
             >
-              <span>Partner With Us</span>
+              <span>Contact Us</span>
+              <div className="w-8 h-8 rounded-full bg-white text-[#008A45] flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
+                <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+              </div>
             </button>
 
-            {/* WhatsApp button */}
-            <a
+            {/* Direct WhatsApp Button */}
+            {/* <a
               href="https://wa.me/97431043814"
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-white/40 hover:border-white text-white font-sans text-xs sm:text-sm font-bold px-6 py-2.5 rounded-full transition-all duration-300 flex items-center justify-center gap-3 group focus-visible:outline-2 focus-visible:outline-white"
+              className="inline-flex items-center gap-2 font-sans text-xs sm:text-sm font-bold text-white/90 hover:text-white px-5 py-3 rounded-full border border-white/30 hover:border-white/70 backdrop-blur-xs transition-all duration-200"
             >
-              <span>Contact Nairat</span>
-              <div className="w-5 h-5 rounded-full bg-[#4AA658] flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform duration-200">
-                <svg className="w-3 h-3 text-white fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.739-1.453L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.488 1.977 14.03 1.053 11.4 1.053c-5.437 0-9.86 4.37-9.864 9.8.002 2.13.56 4.208 1.614 6.014l-.996 3.636 3.737-.972zm11.237-7.603c-.3-.15-1.772-.875-2.046-.975-.276-.1-.477-.15-.677.15-.2.3-.777.975-.951 1.174-.176.2-.351.224-.652.074-1.43-.715-2.458-1.321-3.444-3.007-.26-.445.26-.413.743-1.38.08-.163.04-.306-.02-.455-.06-.15-.477-1.15-.652-1.574-.171-.41-.345-.353-.477-.36l-.407-.007c-.14 0-.37.052-.564.26-.194.208-.742.728-.742 1.776 0 1.05.762 2.062.868 2.212.106.15 1.5 2.29 3.634 3.21.507.219.904.35 1.214.448.51.162.974.139 1.341.084.41-.061 1.772-.726 2.022-1.428.25-.702.25-1.303.176-1.428-.075-.125-.275-.201-.575-.351z" />
-                </svg>
-              </div>
-            </a>
+              <span>WhatsApp Direct</span>
+            </a> */}
           </div>
+
         </div>
+
       </div>
 
-      {/* Expandable Partnership Form Drawer Panel */}
+      {/* Expandable Corporate Partnership Form Modal / Drawer */}
       <AnimatePresence>
         {isFormOpen && (
           <motion.div
@@ -99,25 +122,25 @@ export function Contact() {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="overflow-hidden bg-[#F4F6F5]"
+            className="overflow-hidden bg-[#F4F6F5] border-t border-white/10"
           >
             <div className="max-w-4xl mx-auto px-6 py-12">
-              <div className="bg-white rounded-3xl p-8 border border-black/5 shadow-md relative">
-                
+              <div className="bg-white rounded-3xl p-8 border border-black/5 shadow-xl relative">
+
                 <button
                   onClick={() => setIsFormOpen(false)}
-                  className="absolute top-6 right-6 text-neutral-text-muted hover:text-brand-forest p-1.5 rounded-full hover:bg-neutral-bg-soft"
+                  className="absolute top-6 right-6 text-neutral-500 hover:text-black p-1.5 rounded-full hover:bg-neutral-100 transition-colors"
                   aria-label="Close partnership form"
                 >
                   <X className="w-5 h-5" aria-hidden="true" />
                 </button>
 
                 <div className="mb-6 space-y-1">
-                  <span className="font-sans text-[11px] uppercase tracking-widest text-[#4AA658] font-bold">
+                  <span className="font-sans text-[11px] uppercase tracking-widest text-[#008A45] font-extrabold">
                     PARTNERSHIP INQUIRY
                   </span>
                   <h3 className="font-display font-extrabold text-2xl text-[#063B27] tracking-tight">
-                    Submit Corporate RFP
+                    Submit Corporate Inquiry
                   </h3>
                 </div>
 
@@ -136,7 +159,7 @@ export function Contact() {
                         required
                         autoComplete="name"
                         placeholder="e.g. Abdullah Al-Thani…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#4AA658] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321]"
                       />
                     </div>
 
@@ -153,7 +176,7 @@ export function Contact() {
                         required
                         autoComplete="organization"
                         placeholder="e.g. Qatar Retail Group…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#4AA658] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321]"
                       />
                     </div>
                   </div>
@@ -173,7 +196,7 @@ export function Contact() {
                         autoComplete="email"
                         spellCheck={false}
                         placeholder="e.g. purchasing@qrg.qa…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#4AA658] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321]"
                       />
                     </div>
 
@@ -190,7 +213,7 @@ export function Contact() {
                         required
                         autoComplete="tel"
                         placeholder="e.g. +974 4647 1511…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#4AA658] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321]"
                       />
                     </div>
                   </div>
@@ -207,7 +230,7 @@ export function Contact() {
                       onChange={handleChange}
                       required
                       placeholder="Describe your volume requirements, delivery frequency, or produce inquiries…"
-                      className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#4AA658] text-[#1C2321] resize-none"
+                      className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321] resize-none"
                     />
                   </div>
 
@@ -229,7 +252,7 @@ export function Contact() {
                   </div>
 
                   {submitStatus === 'success' && (
-                    <div className="p-4 bg-[#4AA658]/10 border border-[#4AA658]/30 text-[#063B27] text-xs font-semibold rounded-xl text-center">
+                    <div className="p-4 bg-[#008A45]/10 border border-[#008A45]/30 text-[#063B27] text-xs font-semibold rounded-xl text-center">
                       Thank you! Your inquiry has been submitted. Our procurement team will contact you shortly.
                     </div>
                   )}
@@ -244,4 +267,3 @@ export function Contact() {
     </section>
   );
 }
-

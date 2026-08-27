@@ -1,14 +1,22 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ClipboardCheck, TestTube, Truck } from 'lucide-react';
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ClipboardCheck, TestTube, Truck, ZoomIn, X, Award } from 'lucide-react';
 
 interface TimelineStep {
   step: string;
   icon: React.ReactNode;
   title: string;
   desc: string;
+}
+
+interface Certificate {
+  id: string;
+  title: string;
+  subtitle: string;
+  imageSrc: string;
 }
 
 const timelineSteps: TimelineStep[] = [
@@ -32,22 +40,42 @@ const timelineSteps: TimelineStep[] = [
   },
 ];
 
+const certificates: Certificate[] = [
+  {
+    id: 'cert-1',
+    title: 'Food Safety Management',
+    subtitle: 'Quality Compliance Certificate',
+    imageSrc: '/certificates/c1-1 1.png',
+  },
+  {
+    id: 'cert-2',
+    title: 'ISO Accreditation',
+    subtitle: 'Official Supply Chain Accreditation',
+    imageSrc: '/certificates/c2-2 1.png',
+  },
+];
+
 export function QualityTimeline() {
+  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+
   return (
     <section id="quality" className="py-10 sm:py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-10">
         
-        {/* Split Layout: Left is Timeline, Right is Certificate Document Preview */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Split Layout: Left is Timeline, Right is Official Certificates Showcase */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Timeline details (lg:col-span-8) */}
-          <div className="lg:col-span-8 space-y-10">
+          {/* Left Column: Timeline details (lg:col-span-7) */}
+          <div className="lg:col-span-7 space-y-8">
             
             {/* Headings */}
             <div className="space-y-3">
-              <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#5C6662] block">
-                CERTIFICATIONS & QUALITY
-              </span>
+              <div className="flex items-center gap-2">
+                <Award className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
+                <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#38A84E] block">
+                  CERTIFICATIONS & QUALITY
+                </span>
+              </div>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#063B27] tracking-tight">
                 Quality You Can Trust.
               </h2>
@@ -97,54 +125,104 @@ export function QualityTimeline() {
 
           </div>
 
-          {/* Right Column: QA Certificate Document Preview (lg:col-span-4) */}
-          <div className="lg:col-span-4 flex justify-center lg:justify-end">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="bg-[#F4F6F5] rounded-2xl p-6 border border-black/5 shadow-sm max-w-[260px] w-full space-y-5 relative overflow-hidden"
-            >
-              {/* Document Header */}
-              <div className="border-b border-black/10 pb-3 text-center space-y-0.5">
-                <span className="font-display font-extrabold text-xs text-[#063B27] tracking-widest uppercase">
-                  Nairat Quality Report
-                </span>
-                <span className="font-mono text-[8px] text-[#5C6662] block">
-                  REF: QA-2026-9840
-                </span>
-              </div>
+          {/* Right Column: 2 Official Certificates Display (lg:col-span-5) */}
+          <div className="lg:col-span-5 flex flex-col sm:flex-row gap-4 items-center justify-center">
+            {certificates.map((cert, index) => (
+              <motion.div
+                key={cert.id}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                onClick={() => setSelectedCert(cert)}
+                className="group relative bg-[#F4F6F5] border border-black/10 rounded-2xl p-3 cursor-pointer overflow-hidden shadow-sm hover:shadow-xl hover:border-[#38A84E]/40 transition-all duration-300 w-full sm:w-1/2 max-w-[240px]"
+              >
+                {/* Certificate Preview Image */}
+                <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-white border border-black/5 flex items-center justify-center">
+                  <Image
+                    src={cert.imageSrc}
+                    alt={cert.title}
+                    fill
+                    className="object-contain p-1 group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 240px"
+                  />
+                  
+                  {/* Zoom Overlay Icon */}
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-white/90 text-[#063B27] flex items-center justify-center shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                      <ZoomIn className="w-5 h-5" />
+                    </div>
+                  </div>
+                </div>
 
-              {/* Document Body */}
-              <div className="space-y-2 font-sans text-[10px] text-[#1C2321]">
-                <div className="flex justify-between border-b border-black/5 pb-1">
-                  <span className="text-[#5C6662]">Temperature Log:</span>
-                  <span className="font-bold text-[#4AA658]">100% Passed</span>
+                {/* Certificate Title Badge */}
+                <div className="pt-3 pb-1 px-1 text-center">
+                  <h4 className="font-display font-extrabold text-xs text-[#063B27] truncate group-hover:text-[#38A84E] transition-colors">
+                    {cert.title}
+                  </h4>
+                  <p className="font-sans text-[10px] text-[#5C6662] truncate pt-0.5">
+                    {cert.subtitle}
+                  </p>
                 </div>
-                <div className="flex justify-between border-b border-black/5 pb-1">
-                  <span className="text-[#5C6662]">Origin Clearance:</span>
-                  <span className="font-bold">Verified</span>
-                </div>
-                <div className="flex justify-between border-b border-black/5 pb-1">
-                  <span className="text-[#5C6662]">Arrival Port:</span>
-                  <span className="font-bold">Doha, Qatar</span>
-                </div>
-              </div>
-
-              {/* Seal */}
-              <div className="flex justify-end pt-2">
-                <div className="w-10 h-10 rounded-full border-2 border-dashed border-[#E2B93C] flex items-center justify-center rotate-12">
-                  <span className="font-mono text-[7px] font-bold text-[#E2B93C] tracking-tight">PASSED</span>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
 
         </div>
 
       </div>
+
+      {/* Interactive Certificate Lightbox Modal */}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedCert(null)}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4 sm:p-8"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-3xl w-full bg-white rounded-3xl p-4 sm:p-6 overflow-hidden shadow-2xl space-y-4"
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between border-b border-neutral-200 pb-3 px-2">
+                <div>
+                  <h3 className="font-display font-extrabold text-lg sm:text-xl text-[#063B27]">
+                    {selectedCert.title}
+                  </h3>
+                  <p className="font-sans text-xs text-neutral-500">
+                    {selectedCert.subtitle}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setSelectedCert(null)}
+                  className="w-9 h-9 rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-black flex items-center justify-center transition-colors"
+                  aria-label="Close certificate modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Modal Image */}
+              <div className="relative w-full aspect-[4/3] max-h-[70vh] bg-neutral-50 rounded-2xl overflow-hidden flex items-center justify-center">
+                <Image
+                  src={selectedCert.imageSrc}
+                  alt={selectedCert.title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 1200px) 90vw, 800px"
+                  priority
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
-

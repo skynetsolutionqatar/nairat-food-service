@@ -46,10 +46,10 @@ export function Globe({
   arcColor = [0.22, 0.66, 0.31],
   glowColor = [0.94, 0.93, 0.91],
   dark = 0,
-  mapBrightness = 10,
-  markerSize = 0.025,
+  mapBrightness = 8,
+  markerSize = 0.03,
   markerElevation = 0.01,
-  arcWidth = 0.5,
+  arcWidth = 0.6,
   arcHeight = 0.25,
   speed = 0.003,
   theta = 0.2,
@@ -65,14 +65,69 @@ export function Globe({
   const thetaOffsetRef = useRef(0)
   const isPausedRef = useRef(false)
 
-  const handlePointerDown = useCallback(
-    (e: React.PointerEvent) => {
-      pointerInteracting.current = { x: e.clientX, y: e.clientY }
-      if (canvasRef.current) canvasRef.current.style.cursor = "grabbing"
-      isPausedRef.current = true
-    },
-    []
-  )
+  // Keep latest props in refs to avoid tearing down WebGL context on prop changes
+  const propsRef = useRef({
+    markers,
+    arcs,
+    markerColor,
+    baseColor,
+    arcColor,
+    glowColor,
+    dark,
+    mapBrightness,
+    markerSize,
+    markerElevation,
+    arcWidth,
+    arcHeight,
+    speed,
+    theta,
+    diffuse,
+    mapSamples,
+  })
+
+  useEffect(() => {
+    propsRef.current = {
+      markers,
+      arcs,
+      markerColor,
+      baseColor,
+      arcColor,
+      glowColor,
+      dark,
+      mapBrightness,
+      markerSize,
+      markerElevation,
+      arcWidth,
+      arcHeight,
+      speed,
+      theta,
+      diffuse,
+      mapSamples,
+    }
+  }, [
+    markers,
+    arcs,
+    markerColor,
+    baseColor,
+    arcColor,
+    glowColor,
+    dark,
+    mapBrightness,
+    markerSize,
+    markerElevation,
+    arcWidth,
+    arcHeight,
+    speed,
+    theta,
+    diffuse,
+    mapSamples,
+  ])
+
+  const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    pointerInteracting.current = { x: e.clientX, y: e.clientY }
+    if (canvasRef.current) canvasRef.current.style.cursor = "grabbing"
+    isPausedRef.current = true
+  }, [])
 
   const handlePointerMove = useCallback((e: PointerEvent) => {
     if (pointerInteracting.current !== null) {
@@ -123,47 +178,53 @@ export function Globe({
     if (!canvasRef.current) return
     const canvas = canvasRef.current
     let globe: ReturnType<typeof createGlobe> | null = null
-    let animationId: number
+    let animationId: number = 0
+    let isDestroyed = false
     let phi = 0
 
     function init() {
-      const width = canvas.offsetWidth
-      if (width === 0 || globe) return
+      if (isDestroyed || !canvas || canvas.offsetWidth === 0 || globe) return
 
+      const width = canvas.offsetWidth
       const dpr = Math.min(window.devicePixelRatio || 1, 2)
+      const currentProps = propsRef.current
+
       globe = createGlobe(canvas, {
         devicePixelRatio: dpr,
         width,
         height: width,
         phi: 0,
-        theta,
-        dark,
-        diffuse,
-        mapSamples,
-        mapBrightness,
-        baseColor,
-        markerColor,
-        glowColor,
-        markerElevation,
-        markers: markers.map((m) => ({
+        theta: currentProps.theta,
+        dark: currentProps.dark,
+        diffuse: currentProps.diffuse,
+        mapSamples: currentProps.mapSamples,
+        mapBrightness: currentProps.mapBrightness,
+        baseColor: currentProps.baseColor,
+        markerColor: currentProps.markerColor,
+        glowColor: currentProps.glowColor,
+        markerElevation: currentProps.markerElevation,
+        markers: currentProps.markers.map((m) => ({
           location: m.location,
-          size: markerSize,
+          size: currentProps.markerSize,
           id: m.id,
         })),
-        arcs: arcs.map((a) => ({
+        arcs: currentProps.arcs.map((a) => ({
           from: a.from,
           to: a.to,
           id: a.id,
         })),
-        arcColor,
-        arcWidth,
-        arcHeight,
+        arcColor: currentProps.arcColor,
+        arcWidth: currentProps.arcWidth,
+        arcHeight: currentProps.arcHeight,
         opacity: 0.7,
       })
 
       function animate() {
+        if (isDestroyed || !globe) return
+
+        const p = propsRef.current
         if (!isPausedRef.current) {
-          phi += speed
+          phi += p.speed
           if (
             Math.abs(velocity.current.phi) > 0.0001 ||
             Math.abs(velocity.current.theta) > 0.0001
@@ -181,49 +242,73 @@ export function Globe({
             thetaOffsetRef.current += (thetaMax - thetaOffsetRef.current) * 0.1
           }
         }
-        globe!.update({
+
+        if (isDestroyed || !globe) return
+
+        globe.update({
           phi: phi + phiOffsetRef.current + dragOffset.current.phi,
-          theta: theta + thetaOffsetRef.current + dragOffset.current.theta,
-          dark,
-          mapBrightness,
-          markerColor,
-          baseColor,
-          arcColor,
-          markerElevation,
-          markers: markers.map((m) => ({
+          theta: p.theta + thetaOffsetRef.current + dragOffset.current.theta,
+          dark: p.dark,
+          mapBrightness: p.mapBrightness,
+          markerColor: p.markerColor,
+          baseColor: p.baseColor,
+          arcColor: p.arcColor,
+          markerElevation: p.markerElevation,
+          markers: p.markers.map((m) => ({
             location: m.location,
-            size: markerSize,
+            size: p.markerSize,
             id: m.id,
           })),
-          arcs: arcs.map((a) => ({
+          arcs: p.arcs.map((a) => ({
             from: a.from,
             to: a.to,
             id: a.id,
           })),
         })
-        animationId = requestAnimationFrame(animate)
+
+        if (!isDestroyed) {
+          animationId = requestAnimationFrame(animate)
+        }
       }
+
       animate()
-      setTimeout(() => canvas && (canvas.style.opacity = "1"))
+      setTimeout(() => {
+        if (!isDestroyed && canvas) {
+          canvas.style.opacity = "1"
+        }
+      }, 100)
     }
 
+    let resizeObserver: ResizeObserver | null = null
     if (canvas.offsetWidth > 0) {
       init()
     } else {
-      const ro = new ResizeObserver((entries) => {
-        if (entries[0]?.contentRect.width > 0) {
-          ro.disconnect()
+      resizeObserver = new ResizeObserver((entries) => {
+        if (entries[0]?.contentRect.width > 0 && !isDestroyed) {
+          if (resizeObserver) {
+            resizeObserver.disconnect()
+            resizeObserver = null
+          }
           init()
         }
       })
-      ro.observe(canvas)
+      resizeObserver.observe(canvas)
     }
 
     return () => {
-      if (animationId) cancelAnimationFrame(animationId)
-      if (globe) globe.destroy()
+      isDestroyed = true
+      if (resizeObserver) {
+        resizeObserver.disconnect()
+      }
+      if (animationId) {
+        cancelAnimationFrame(animationId)
+      }
+      if (globe) {
+        globe.destroy()
+        globe = null
+      }
     }
-  }, [markers, arcs, markerColor, baseColor, arcColor, glowColor, dark, mapBrightness, markerSize, markerElevation, arcWidth, arcHeight, speed, theta, diffuse, mapSamples])
+  }, [])
 
   return (
     <div className={`relative aspect-square select-none ${className}`}>

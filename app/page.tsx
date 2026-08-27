@@ -7,7 +7,7 @@ import { Services } from '@/components/modules/Services';
 import { Products } from '@/components/modules/Products';
 import { SourcingMap } from '@/components/modules/SourcingMap';
 import { QualityTimeline } from '@/components/modules/QualityTimeline';
-import { Contact } from '@/components/modules/Contact';
+import { Cta } from '@/components/modules/Cta';
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
       <Products />
       <SourcingMap />
       <QualityTimeline />
-      <Contact />
+      <Cta />
     </div>
   );
 }
