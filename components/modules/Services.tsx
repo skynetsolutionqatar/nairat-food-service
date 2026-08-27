@@ -1,9 +1,13 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { ArrowRight } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ServiceCard {
   id: string;
@@ -42,19 +46,63 @@ const serviceCards: ServiceCard[] = [
 ];
 
 export function Services() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          once: true,
+        },
+      });
+
+      tl.fromTo(
+        '.service-header-item',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' }
+      ).fromTo(
+        '.service-card-item',
+        { opacity: 0, y: 35 },
+        { opacity: 1, y: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out' },
+        '-=0.3'
+      );
+
+      // Image scroll zoom/parallax on service cards
+      const serviceImages = gsap.utils.toArray<HTMLElement>('.service-card-bg');
+      serviceImages.forEach((img) => {
+        gsap.fromTo(
+          img,
+          { scale: 1.15, yPercent: -3 },
+          {
+            scale: 1.02,
+            yPercent: 3,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            },
+          }
+        );
+      });
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="services" ref={containerRef} className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-12">
-        
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-          
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-4">
-            <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#000000] block">
+            <span className="service-header-item font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#000000] block">
               WHAT WE DO
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#000000] leading-[1.15] tracking-tight">
+            <h2 className="service-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#000000] leading-[1.15] tracking-tight">
               Fresh Produce Supply <br />
               at Every Scale.
             </h2>
@@ -62,33 +110,28 @@ export function Services() {
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="font-sans text-sm sm:text-base text-[#B9B9B9] leading-relaxed text-left">
+            <p className="service-header-item font-sans text-sm sm:text-base text-[#B9B9B9] leading-relaxed text-left">
               From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.
             </p>
-            <div className="self-start lg:self-end">
+            <div className="service-header-item self-start lg:self-end">
               <CtaButton href="#contact">
                 Learn More
               </CtaButton>
             </div>
           </div>
-
         </div>
 
         {/* 3 Services Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
-          {serviceCards.map((service, index) => (
-            <motion.div
+        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+          {serviceCards.map((service) => (
+            <div
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.12 }}
-              className="flex flex-col space-y-4 group"
+              className="service-card-item flex flex-col space-y-4 group"
             >
               {/* Top Rounded Image */}
               <div className="relative w-full h-56 sm:h-60 md:h-64 rounded-2xl overflow-hidden bg-neutral-100">
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="service-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                   style={{ backgroundImage: `url('${service.imageUrl}')` }}
                   aria-label={service.title}
                 />
@@ -112,13 +155,13 @@ export function Services() {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-
       </div>
     </section>
   );
 }
+
 
 

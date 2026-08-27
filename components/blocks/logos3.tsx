@@ -67,7 +67,10 @@ const Logos3 = ({
   const duplicatedLogos = [...logos, ...logos, ...logos];
 
   return (
-    <section id="partners" className="py-10 bg-white border-b border-black/5 relative overflow-hidden">
+    <section
+      id="partners"
+      className="py-10 bg-white border-b border-black/5 relative overflow-hidden"
+    >
       <div className="container mx-auto flex flex-col items-center text-center px-4">
         <span className="font-sans text-[11px] text-[#5C6662] font-extrabold uppercase tracking-widest block">
           {heading}
@@ -113,4 +116,5 @@ const Logos3 = ({
 };
 
 export { Logos3 };
+
 

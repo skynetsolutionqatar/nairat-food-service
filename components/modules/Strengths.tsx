@@ -1,8 +1,12 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { CtaButton } from '@/components/ui/CtaButton';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface StrengthCard {
   id: string;
@@ -56,19 +60,63 @@ const tallCard: StrengthCard = {
 };
 
 export function Strengths() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          once: true,
+        },
+      });
+
+      tl.fromTo(
+        '.strength-header-item',
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' }
+      ).fromTo(
+        '.strength-card-item',
+        { opacity: 0, y: 35 },
+        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' },
+        '-=0.3'
+      );
+
+      // Image Parallax Scrub Effect for each card
+      const cardImages = gsap.utils.toArray<HTMLElement>('.strength-card-bg');
+      cardImages.forEach((img) => {
+        gsap.fromTo(
+          img,
+          { scale: 1.15, yPercent: -4 },
+          {
+            scale: 1.02,
+            yPercent: 4,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2,
+            },
+          }
+        );
+      });
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section id="strengths" className="py-20 bg-white">
+    <section id="strengths" ref={containerRef} className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-12">
-        
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-          
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-4">
-            <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#000000] block">
+            <span className="strength-header-item font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#000000] block">
               WHY CHOOSE US
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#000000] leading-[1.15] tracking-tight">
+            <h2 className="strength-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#000000] leading-[1.15] tracking-tight">
               Built for Freshness. <br />
               Ready to Deliver.
             </h2>
@@ -76,41 +124,35 @@ export function Strengths() {
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="font-sans text-sm sm:text-base text-[#B9B9B9] leading-relaxed text-left">
+            <p className="strength-header-item font-sans text-sm sm:text-base text-[#B9B9B9] leading-relaxed text-left">
               From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.
             </p>
-            <div className="self-start lg:self-end">
+            <div className="strength-header-item self-start lg:self-end">
               <CtaButton href="#contact">
                 Read More
               </CtaButton>
             </div>
           </div>
-
         </div>
 
         {/* Bento Grid: 2x2 Left Cards + 1 Tall Right Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
-          
+        <div className="strengths-bento-grid grid grid-cols-1 lg:grid-cols-3 gap-5 items-stretch">
           {/* Left 2x2 Grid */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            {strengthsList.map((card, index) => (
-              <motion.div
+            {strengthsList.map((card) => (
+              <div
                 key={card.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl h-56 sm:h-60 md:h-64 shadow-sm flex flex-col justify-end p-6 bg-neutral-900 cursor-pointer"
+                className="strength-card-item group relative overflow-hidden rounded-2xl h-56 sm:h-60 md:h-64 shadow-sm flex flex-col justify-end p-6 bg-neutral-900 cursor-pointer"
               >
-                {/* Background Image with Hover Zoom */}
+                {/* Background Image with Hover Zoom & Scroll Parallax */}
                 <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="strength-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                   style={{ backgroundImage: `url('${card.imageUrl}')` }}
                   aria-label={card.alt}
                 />
-                
+
                 {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-300 pointer-events-none" />
 
                 {/* Card Content Overlay */}
                 <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
@@ -123,7 +165,7 @@ export function Strengths() {
                     {card.title}
                   </h3>
 
-                  {/* Hover Description Paragraph with CSS Grid expansion */}
+                  {/* Hover Description Paragraph */}
                   <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
                     <div className="overflow-hidden">
                       <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
@@ -132,27 +174,23 @@ export function Strengths() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Right Tall Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[380px] sm:min-h-[440px] lg:min-h-full shadow-sm flex flex-col justify-end p-7 bg-neutral-900 cursor-pointer"
+          <div
+            className="strength-card-item lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[380px] sm:min-h-[440px] lg:min-h-full shadow-sm flex flex-col justify-end p-7 bg-neutral-900 cursor-pointer"
           >
-            {/* Background Image with Hover Zoom */}
+            {/* Background Image with Hover Zoom & Scroll Parallax */}
             <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+              className="strength-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
               style={{ backgroundImage: `url('${tallCard.imageUrl}')` }}
               aria-label={tallCard.alt}
             />
 
             {/* Dark Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10 group-hover:from-black/95 group-hover:via-black/60 transition-all duration-300 pointer-events-none" />
 
             {/* Card Content Overlay */}
             <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
@@ -160,7 +198,7 @@ export function Strengths() {
                 {tallCard.title}
               </h3>
 
-              {/* Hover Description Paragraph with CSS Grid expansion */}
+              {/* Hover Description Paragraph */}
               <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
                 <div className="overflow-hidden">
                   <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
@@ -169,14 +207,13 @@ export function Strengths() {
                 </div>
               </div>
             </div>
-          </motion.div>
-
+          </div>
         </div>
-
       </div>
     </section>
   );
 }
+
 
 
 
