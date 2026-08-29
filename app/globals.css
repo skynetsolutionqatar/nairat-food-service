@@ -7,8 +7,8 @@
   --color-neutral-bg-base: #FFFFFF;
   --color-neutral-bg-soft: #F4F6F5;
   --color-neutral-text-dark: #111814;
-  --color-neutral-text-secondary: #47554E;
-  --color-neutral-text-muted: #72807A;
+  --color-neutral-text-secondary: #6B7280;
+  --color-neutral-text-muted: #9CA3AF;
 
   --font-sans: var(--font-manrope), "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: var(--font-manrope), "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -19,8 +19,8 @@
   --background: #FFFFFF;
   --foreground: #111814;
   --text-primary: #111814;
-  --text-secondary: #47554E;
-  --text-muted: #72807A;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
 }
 
 body {

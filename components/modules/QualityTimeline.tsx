@@ -79,7 +79,7 @@ export function QualityTimeline() {
               <h2 className="font-display type-h2 font-medium text-[#111814]">
                 Quality You Can Trust.
               </h2>
-              <p className="font-sans text-base sm:text-[17px] text-[#47554E] leading-[1.6] max-w-[55ch]">
+              <p className="font-sans text-base sm:text-[17px] text-[#6B7280] leading-[1.6] max-w-[55ch]">
                 Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.
               </p>
             </div>
@@ -107,14 +107,14 @@ export function QualityTimeline() {
                     {/* Step label + title */}
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 justify-center md:justify-start">
-                        <span className="w-4 h-4 rounded-full border border-black/20 flex items-center justify-center font-mono text-[9px] font-bold text-[#47554E]">
+                        <span className="w-4 h-4 rounded-full border border-black/20 flex items-center justify-center font-mono text-[9px] font-bold text-[#6B7280]">
                           {item.step}
                         </span>
                         <h3 className="font-display font-semibold text-sm sm:text-base text-[#111814] tracking-[-0.01em]">
                           {item.title}
                         </h3>
                       </div>
-                      <p className="font-sans text-xs sm:text-sm text-[#47554E] leading-[1.6]">
+                      <p className="font-sans text-xs sm:text-sm text-[#6B7280] leading-[1.6]">
                         {item.desc}
                       </p>
                     </div>

@@ -100,7 +100,7 @@ export function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                className="font-sans text-sm font-medium text-[#47554E] hover:text-[#168849] transition-colors tracking-[-0.01em]"
+                className="font-sans text-sm font-medium text-[#6B7280] hover:text-[#168849] transition-colors tracking-[-0.01em]"
               >
                 {link.label}
               </a>
@@ -113,10 +113,10 @@ export function Footer() {
         <div className="w-full border-t border-neutral-200" />
 
         {/* Bottom Section: Copyright (Left) | Terms & Privacy (Center) | Designed by (Right) */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#72807A] font-normal">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9CA3AF] font-normal">
           <p>Copyright &copy; {new Date().getFullYear()} Nairat Food Services. All rights reserved.</p>
           
-          <div className="flex items-center gap-5 text-[#47554E]">
+          <div className="flex items-center gap-5 text-[#6B7280]">
             <Link href="#privacy" className="hover:text-[#168849] transition-colors">
               Privacy Policy
             </Link>

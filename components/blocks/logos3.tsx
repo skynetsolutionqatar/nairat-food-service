@@ -72,7 +72,7 @@ const Logos3 = ({
       className="py-10 bg-white border-b border-black/5 relative overflow-hidden"
     >
       <div className="container mx-auto flex flex-col items-center text-center px-4">
-        <span className="font-sans type-eyebrow text-[#47554E] block">
+        <span className="font-sans type-eyebrow text-[#6B7280] block">
           {heading}
         </span>
       </div>

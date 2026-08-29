@@ -79,7 +79,7 @@ export function SourcingMap(): React.ReactNode {
               {sourcingCountries.map((countryName) => (
                 <span
                   key={countryName}
-                  className="font-sans text-xs sm:text-[13px] font-semibold uppercase tracking-[0.06em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-neutral-200 bg-neutral-50 text-[#47554E] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] transition-all duration-200 cursor-default"
+                  className="font-sans text-xs sm:text-[13px] font-semibold uppercase tracking-[0.06em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-neutral-200 bg-neutral-50 text-[#6B7280] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] transition-all duration-200 cursor-default"
                 >
                   {countryName}
                 </span>

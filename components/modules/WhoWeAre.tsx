@@ -86,7 +86,7 @@ export function WhoWeAre() {
           </div>
 
           <div className="lg:col-span-5 space-y-5 flex flex-col items-start lg:items-end">
-            <p className="who-header-item font-sans text-base sm:text-[17px] text-[#47554E] leading-[1.6] text-left max-w-[55ch]">
+            <p className="who-header-item font-sans text-base sm:text-[17px] text-[#6B7280] leading-[1.6] text-left max-w-[55ch]">
               Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.
             </p>
 
@@ -139,7 +139,7 @@ export function WhoWeAre() {
                 </h3>
                 <p
                   className={`font-sans text-sm leading-[1.6] ${
-                    card.isDark ? 'text-white/80' : 'text-[#47554E]'
+                    card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
                   }`}
                 >
                   {card.description}
