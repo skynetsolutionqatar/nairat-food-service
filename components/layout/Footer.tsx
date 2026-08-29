@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowUpRight } from 'lucide-react';
+import { CtaButton } from '@/components/ui/CtaButton';
 
 interface FooterNavLink {
   label: string;
@@ -21,9 +21,9 @@ const footerNavLinks: FooterNavLink[] = [
 export function Footer() {
   return (
     <footer className="bg-white text-[#111814] pt-14 pb-8 border-t border-neutral-200 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 space-y-8 sm:space-y-10">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         
-        {/* Top Section: Logo (Left) | "Go Fresh for Future" (Center) | "Learn More" Button (Right) */}
+        {/* Top Section: Logo (Left) | "Go Fresh for Future" (Center) | CtaButton (Right) */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
           
           {/* Left: Brand Logo */}
@@ -47,17 +47,9 @@ export function Footer() {
             </h2>
           </div>
 
-          {/* Right: Learn More Pill CTA */}
+          {/* Right: Reusable CtaButton */}
           <div className="shrink-0">
-            <a
-              href="#about"
-              className="bg-[#168849] hover:bg-[#12753e] text-white font-sans text-xs sm:text-sm font-bold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-3 group shadow-md shadow-[#168849]/15 active:scale-95 cursor-pointer"
-            >
-              <span>Learn More</span>
-              <div className="w-6 h-6 rounded-full bg-white text-[#168849] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-              </div>
-            </a>
+            <CtaButton href="#about" text="Learn More" />
           </div>
 
         </div>

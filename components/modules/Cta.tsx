@@ -42,29 +42,28 @@ export function Cta(): React.ReactNode {
 
   return (
     <section id="contact" className="relative w-full overflow-hidden bg-neutral-900">
+      
+      {/* Full-Bleed Background Image */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none">
+        <Image
+          src="/cta/ctaft-bac.webp"
+          alt="Fresh Fruits & Vegetables Background"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        {/* Subtle Dark Vignette & Left Gradient Overlay for contrast */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/25" />
+      </div>
 
-      {/* Main Banner Container */}
-      <div className="relative w-full min-h-[260px] sm:min-h-[300px] lg:min-h-[340px] flex items-center py-10 sm:py-12 px-6 sm:px-12 lg:px-20">
-
-        {/* Background Image: ctaft-bac.webp */}
-        <div className="absolute inset-0 w-full h-full">
-          <Image
-            src="/cta/ctaft-bac.webp"
-            alt="Fresh Fruits & Vegetables Background"
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-          />
-          {/* Subtle Dark Vignette & Left Gradient Overlay for contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
-        </div>
-
-        {/* Content Container */}
-        <div className="relative z-10 max-w-[1440px] mx-auto w-full space-y-5 sm:space-y-6">
+      {/* Content Container Aligned Exactly with Other Sections */}
+      <div className="relative z-10 max-w-[1440px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        
+        <div className="max-w-3xl space-y-5 sm:space-y-6">
 
           {/* Headline */}
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15] max-w-4xl">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
             Fresh Fruits &amp; Vegetables from <br />
             Around the World
           </h2>
@@ -86,28 +85,17 @@ export function Cta(): React.ReactNode {
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Action Button */}
           <div className="pt-2 flex flex-wrap gap-4 items-center">
-            {/* Contact Us Green Pill Button */}
             <button
               onClick={() => setIsFormOpen((prev) => !prev)}
-              className="group inline-flex items-center gap-3 bg-[#008A45] hover:bg-[#00753a] text-white font-sans text-sm sm:text-base font-bold pl-6 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg hover:shadow-emerald-900/40 cursor-pointer"
+              className="group inline-flex items-center gap-3 bg-[#168849] hover:bg-[#12753e] text-white font-sans text-sm sm:text-base font-bold pl-6 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-[#168849]/25 cursor-pointer active:scale-95"
             >
               <span>Contact Us</span>
-              <div className="w-8 h-8 rounded-full bg-white text-[#008A45] flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
+              <div className="w-8 h-8 rounded-full bg-white text-[#168849] flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
                 <ArrowUpRight className="w-4 h-4 stroke-[3]" />
               </div>
             </button>
-
-            {/* Direct WhatsApp Button */}
-            {/* <a
-              href="https://wa.me/97431043814"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 font-sans text-xs sm:text-sm font-bold text-white/90 hover:text-white px-5 py-3 rounded-full border border-white/30 hover:border-white/70 backdrop-blur-xs transition-all duration-200"
-            >
-              <span>WhatsApp Direct</span>
-            </a> */}
           </div>
 
         </div>
@@ -122,10 +110,10 @@ export function Cta(): React.ReactNode {
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="overflow-hidden bg-[#F4F6F5] border-t border-white/10"
+            className="overflow-hidden bg-[#F4F6F5] border-t border-white/10 relative z-20"
           >
-            <div className="max-w-4xl mx-auto px-6 py-12">
-              <div className="bg-white rounded-3xl p-8 border border-black/5 shadow-xl relative">
+            <div className="max-w-4xl mx-auto px-6 py-10 sm:py-12">
+              <div className="bg-white rounded-3xl p-8 sm:p-10 border border-black/5 shadow-xl relative">
 
                 <button
                   onClick={() => setIsFormOpen(false)}
@@ -136,7 +124,7 @@ export function Cta(): React.ReactNode {
                 </button>
 
                 <div className="mb-6 space-y-1">
-                  <span className="font-sans text-[11px] uppercase tracking-widest text-[#008A45] font-extrabold">
+                  <span className="font-sans text-[11px] uppercase tracking-widest text-[#168849] font-extrabold">
                     PARTNERSHIP INQUIRY
                   </span>
                   <h3 className="font-display font-extrabold text-2xl text-[#063B27] tracking-tight">
@@ -159,7 +147,7 @@ export function Cta(): React.ReactNode {
                         required
                         autoComplete="name"
                         placeholder="e.g. Abdullah Al-Thani…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321]"
                       />
                     </div>
 
@@ -176,7 +164,7 @@ export function Cta(): React.ReactNode {
                         required
                         autoComplete="organization"
                         placeholder="e.g. Qatar Retail Group…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321]"
                       />
                     </div>
                   </div>
@@ -196,7 +184,7 @@ export function Cta(): React.ReactNode {
                         autoComplete="email"
                         spellCheck={false}
                         placeholder="e.g. purchasing@qrg.qa…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321]"
                       />
                     </div>
 
@@ -213,7 +201,7 @@ export function Cta(): React.ReactNode {
                         required
                         autoComplete="tel"
                         placeholder="e.g. +974 4647 1511…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321]"
                       />
                     </div>
                   </div>
@@ -230,7 +218,7 @@ export function Cta(): React.ReactNode {
                       onChange={handleChange}
                       required
                       placeholder="Describe your volume requirements, delivery frequency, or produce inquiries…"
-                      className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#008A45] text-[#1C2321] resize-none"
+                      className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321] resize-none"
                     />
                   </div>
 
@@ -238,7 +226,7 @@ export function Cta(): React.ReactNode {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#063B27] hover:bg-[#063B27]/90 text-white font-sans text-sm font-bold py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-brand-forest"
+                      className="w-full bg-[#168849] hover:bg-[#12753e] text-white font-sans text-sm font-bold py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-brand-forest shadow-md"
                     >
                       {isSubmitting ? (
                         <span>Sending Request…</span>
@@ -252,7 +240,7 @@ export function Cta(): React.ReactNode {
                   </div>
 
                   {submitStatus === 'success' && (
-                    <div className="p-4 bg-[#008A45]/10 border border-[#008A45]/30 text-[#063B27] text-xs font-semibold rounded-xl text-center">
+                    <div className="p-4 bg-[#168849]/10 border border-[#168849]/30 text-[#063B27] text-xs font-semibold rounded-xl text-center">
                       Thank you! Your inquiry has been submitted. Our procurement team will contact you shortly.
                     </div>
                   )}
