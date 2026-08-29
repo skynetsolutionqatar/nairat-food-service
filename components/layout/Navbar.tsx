@@ -23,6 +23,7 @@ const navigationLinks: NavigationLink[] = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [locale, setLocale] = useState<'en' | 'ar'>('en');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,6 +40,13 @@ export function Navbar() {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleLanguage = () => {
+    const nextLocale = locale === 'en' ? 'ar' : 'en';
+    setLocale(nextLocale);
+    document.documentElement.lang = nextLocale;
+    document.documentElement.dir = nextLocale === 'ar' ? 'rtl' : 'ltr';
   };
 
   return (
@@ -66,7 +74,7 @@ export function Navbar() {
           />
         </Link>
 
-        {/* Desktop Navigation Links with Increased Font Size */}
+        {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navigationLinks.map((link) => (
             <a
@@ -80,8 +88,18 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Action CTA Button using CtaButton */}
-        <div className="hidden sm:flex items-center">
+        {/* Right Actions: Language Toggle + CTA Button */}
+        <div className="hidden sm:flex items-center gap-3">
+          {/* Language Toggle Button */}
+          <button
+            onClick={toggleLanguage}
+            className="inline-flex items-center justify-center min-w-[42px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-bold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
+            aria-label="Toggle language"
+          >
+            <span>{locale === 'en' ? 'AR' : 'EN'}</span>
+          </button>
+
+          {/* Action CTA Button using CtaButton */}
           <CtaButton
             variant="white"
             href="https://wa.me/97431043814"
@@ -91,8 +109,16 @@ export function Navbar() {
           />
         </div>
 
-        {/* Mobile Menu Toggler */}
-        <div className="lg:hidden flex items-center">
+        {/* Mobile Actions: Language Toggle + Menu Button */}
+        <div className="sm:hidden flex items-center gap-2">
+          <button
+            onClick={toggleLanguage}
+            className="inline-flex items-center justify-center min-w-[38px] px-3 py-1.5 rounded-full border border-white/30 bg-white/10 text-white font-sans text-xs font-bold"
+            aria-label="Toggle language"
+          >
+            <span>{locale === 'en' ? 'AR' : 'EN'}</span>
+          </button>
+
           <button
             onClick={toggleMobileMenu}
             className="text-white hover:text-white/80 p-2 focus-visible:outline-2 focus-visible:outline-white rounded-md"
@@ -122,7 +148,18 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="pt-3">
+            
+            <div className="pt-3 flex flex-col gap-2.5">
+              <button
+                onClick={() => {
+                  toggleLanguage();
+                  closeMobileMenu();
+                }}
+                className="w-full inline-flex items-center justify-center py-2.5 px-4 rounded-full border border-white/30 bg-white/10 text-white font-sans text-sm font-bold"
+              >
+                <span>Switch to {locale === 'en' ? 'AR' : 'EN'}</span>
+              </button>
+
               <CtaButton
                 variant="white"
                 href="https://wa.me/97431043814"
