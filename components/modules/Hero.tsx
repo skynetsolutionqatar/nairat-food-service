@@ -97,16 +97,16 @@ export function Hero() {
       >
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-14 w-full">
           {/* DIV 1: Heading */}
-          <div className="w-full lg:w-[62%] text-left">
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-[66px] font-bold tracking-tight text-white leading-[1.12] text-left">
+          <div className="w-full lg:w-[64%] text-left">
+            <h1 className="font-display type-display font-medium text-white text-left">
               <span className="hero-title-line block sm:whitespace-nowrap">Fresh from the Source.</span>
-              <span className="hero-title-line block sm:whitespace-nowrap mt-2 sm:mt-3">Delivered Across Qatar.</span>
+              <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2">Delivered Across Qatar.</span>
             </h1>
           </div>
 
           {/* DIV 2: Subheading & CTA Button */}
-          <div className="hero-sub-text w-full lg:w-[38%] flex flex-col justify-end items-start gap-6 text-left">
-            <p className="font-sans text-sm sm:text-base text-white/90 leading-relaxed max-w-md text-left">
+          <div className="hero-sub-text w-full lg:w-[36%] flex flex-col justify-end items-start gap-6 text-left">
+            <p className="font-sans text-sm sm:text-base text-white/85 leading-relaxed max-w-[48ch] text-left">
               Nairat Food imports, distributes and delivers premium fresh fruit and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
             </p>
 

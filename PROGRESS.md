@@ -31,6 +31,7 @@ This document tracks the implementation progress of the Nairat Food Services web
   - [x] Align every section pixel-for-pixel with Figma reference design (`nairat design.png`)
   - [x] Run E2E test runs using `agent-browser` (interaction, accessibility, navigation)
   - [x] Polish animations, transitions, typography scale, and responsive layout
+  - [x] Redesign complete typography system to Manrope with financial-institution editorial hierarchy (`specs/typography-redesign.md`)
 
 ---
 

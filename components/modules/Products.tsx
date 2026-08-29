@@ -350,12 +350,12 @@ export function Products() {
         <div className="max-w-3xl mx-auto text-center space-y-3 px-4">
           <div className="product-header-item flex items-center justify-center gap-2">
             <Leaf className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
-            <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-neutral-800">
+            <span className="font-sans type-eyebrow text-[#111814]">
               OUR PRODUCTS
             </span>
           </div>
 
-          <h2 className="product-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111827] tracking-tight leading-tight">
+          <h2 className="product-header-item font-display type-h2 font-medium text-[#111814]">
             Freshness, Sourced From Around the World.
           </h2>
 
@@ -423,11 +423,11 @@ export function Products() {
 
                       {/* Bottom Title Text Overlay */}
                       <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
-                        <h3 className="font-display font-extrabold text-[11px] xs:text-xs sm:text-sm md:text-lg lg:text-xl text-white drop-shadow-md tracking-tight leading-tight">
+                        <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
                           {item.name}
                         </h3>
                         {item.subName && (
-                          <p className="font-sans text-[8px] xs:text-[9px] sm:text-xs md:text-sm text-white/85 font-medium drop-shadow-sm leading-tight">
+                          <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
                             {item.subName}
                           </p>
                         )}
@@ -470,11 +470,11 @@ export function Products() {
 
                       {/* Bottom Title Text Overlay */}
                       <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
-                        <h3 className="font-display font-extrabold text-[11px] xs:text-xs sm:text-sm md:text-lg lg:text-xl text-white drop-shadow-md tracking-tight leading-tight">
+                        <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
                           {item.name}
                         </h3>
                         {item.subName && (
-                          <p className="font-sans text-[8px] xs:text-[9px] sm:text-xs md:text-sm text-white/85 font-medium drop-shadow-sm leading-tight">
+                          <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
                             {item.subName}
                           </p>
                         )}

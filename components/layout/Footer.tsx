@@ -42,7 +42,7 @@ export function Footer() {
 
           {/* Center: Bold Headline */}
           <div className="text-center">
-            <h2 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-[#111814] tracking-tight">
+            <h2 className="font-display font-medium text-2xl sm:text-3xl lg:text-4xl text-[#111814] tracking-[-0.03em]">
               Go Fresh for Future
             </h2>
           </div>
@@ -100,7 +100,7 @@ export function Footer() {
               <a
                 key={link.label}
                 href={link.href}
-                className="font-sans text-xs sm:text-sm font-semibold text-neutral-700 hover:text-[#168849] transition-colors"
+                className="font-sans text-sm font-medium text-[#47554E] hover:text-[#168849] transition-colors tracking-[-0.01em]"
               >
                 {link.label}
               </a>
@@ -113,10 +113,10 @@ export function Footer() {
         <div className="w-full border-t border-neutral-200" />
 
         {/* Bottom Section: Copyright (Left) | Terms & Privacy (Center) | Designed by (Right) */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-medium">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#72807A] font-normal">
           <p>Copyright &copy; {new Date().getFullYear()} Nairat Food Services. All rights reserved.</p>
           
-          <div className="flex items-center gap-5 text-neutral-600">
+          <div className="flex items-center gap-5 text-[#47554E]">
             <Link href="#privacy" className="hover:text-[#168849] transition-colors">
               Privacy Policy
             </Link>

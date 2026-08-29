@@ -24,7 +24,7 @@ export function CtaButton({
     <a
       href={href}
       className={cn(
-        'group inline-flex items-center gap-3 font-sans text-xs sm:text-sm font-bold pl-5 pr-2 py-1.5 sm:py-2 rounded-full transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 active:scale-95 cursor-pointer',
+        'group inline-flex items-center gap-3 font-sans text-sm font-semibold tracking-[-0.01em] pl-5 pr-2 py-2 rounded-full transition-all duration-300 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 active:scale-95 cursor-pointer',
         isWhite
           ? 'bg-white hover:bg-neutral-100 text-[#168849] focus:ring-white/50'
           : 'bg-[#168849] hover:bg-[#063B27] text-white focus:ring-[#168849]/30',

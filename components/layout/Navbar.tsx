@@ -79,10 +79,10 @@ export function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className="font-sans text-sm xl:text-[16px] font-bold text-white/95 hover:text-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 relative group tracking-normal"
+              className="font-sans text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-3 py-1 relative group tracking-[-0.01em]"
             >
               {link.label}
-              <span className="absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
+              <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
             </a>
           ))}
         </nav>
@@ -92,7 +92,7 @@ export function Navbar() {
           {/* Language Toggle Button: Shows AR when in English, EN when in Arabic */}
           <button
             onClick={toggleLanguage}
-            className="inline-flex items-center justify-center min-w-[42px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-bold transition-all duration-200 cursor-pointer shadow-xs active:scale-95"
+            className="inline-flex items-center justify-center min-w-[42px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
             aria-label="Toggle language"
           >
             <span>{locale === 'en' ? 'AR' : 'EN'}</span>
@@ -142,7 +142,7 @@ export function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={closeMobileMenu}
-                className="font-sans text-base font-semibold text-white hover:text-white/80 py-2 border-b border-white/10 focus-visible:outline-2 focus-visible:outline-white rounded"
+                className="font-sans text-base font-medium text-white hover:text-white/80 py-2.5 border-b border-white/10 focus-visible:outline-2 focus-visible:outline-white rounded tracking-[-0.01em]"
               >
                 {link.label}
               </a>
@@ -154,7 +154,7 @@ export function Navbar() {
                   toggleLanguage();
                   closeMobileMenu();
                 }}
-                className="w-full inline-flex items-center justify-center py-2.5 px-4 rounded-full border border-white/30 bg-white/10 text-white font-sans text-sm font-bold"
+                className="w-full inline-flex items-center justify-center py-2.5 px-4 rounded-full border border-white/30 bg-white/10 text-white font-sans text-sm font-semibold tracking-[-0.01em]"
               >
                 <span>Switch to {locale === 'en' ? 'AR' : 'EN'}</span>
               </button>

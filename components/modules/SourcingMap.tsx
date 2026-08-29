@@ -64,12 +64,12 @@ export function SourcingMap(): React.ReactNode {
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-2">
               <Leaf className="w-4 h-4 text-[#168849]" aria-hidden="true" />
-              <span className="font-sans text-xs font-extrabold uppercase tracking-widest text-[#168849]">
+              <span className="font-sans type-eyebrow text-[#168849]">
                 SOURCING COUNTRIES
               </span>
             </div>
 
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111827] tracking-tight leading-[1.15]">
+            <h2 className="font-display type-h2 font-medium text-[#111814] text-left">
               Sourced From Around <br />
               <span className="text-[#168849]">the World.</span>
             </h2>
@@ -79,13 +79,13 @@ export function SourcingMap(): React.ReactNode {
               {sourcingCountries.map((countryName) => (
                 <span
                   key={countryName}
-                  className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-neutral-200 bg-neutral-50/80 text-neutral-700 shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] transition-all duration-200 cursor-default"
+                  className="font-sans text-xs sm:text-[13px] font-semibold uppercase tracking-[0.06em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-neutral-200 bg-neutral-50 text-[#47554E] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] transition-all duration-200 cursor-default"
                 >
                   {countryName}
                 </span>
               ))}
 
-              <span className="font-sans text-xs sm:text-sm font-extrabold uppercase tracking-wider px-6 py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20">
+              <span className="font-sans text-xs sm:text-[13px] font-semibold uppercase tracking-[0.06em] px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20">
                 AND BEYOND
               </span>
             </div>

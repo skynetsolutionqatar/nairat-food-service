@@ -72,14 +72,14 @@ export function QualityTimeline() {
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-[#168849]" aria-hidden="true" />
-                <span className="font-sans text-xs font-bold uppercase tracking-widest text-[#168849] block">
+                <span className="font-sans type-eyebrow text-[#168849] block">
                   CERTIFICATIONS &amp; QUALITY
                 </span>
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111814] tracking-tight">
+              <h2 className="font-display type-h2 font-medium text-[#111814]">
                 Quality You Can Trust.
               </h2>
-              <p className="font-sans text-[#5C6662] text-xs sm:text-sm leading-relaxed max-w-2xl">
+              <p className="font-sans text-base sm:text-[17px] text-[#47554E] leading-[1.6] max-w-[55ch]">
                 Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.
               </p>
             </div>
@@ -107,14 +107,14 @@ export function QualityTimeline() {
                     {/* Step label + title */}
                     <div className="space-y-1">
                       <div className="flex items-center gap-2 justify-center md:justify-start">
-                        <span className="w-4 h-4 rounded-full border border-black/20 flex items-center justify-center font-mono text-[9px] font-bold text-[#5C6662]">
+                        <span className="w-4 h-4 rounded-full border border-black/20 flex items-center justify-center font-mono text-[9px] font-bold text-[#47554E]">
                           {item.step}
                         </span>
-                        <h3 className="font-display font-bold text-sm text-[#111814]">
+                        <h3 className="font-display font-semibold text-sm sm:text-base text-[#111814] tracking-[-0.01em]">
                           {item.title}
                         </h3>
                       </div>
-                      <p className="font-sans text-xs text-[#5C6662] leading-relaxed">
+                      <p className="font-sans text-xs sm:text-sm text-[#47554E] leading-[1.6]">
                         {item.desc}
                       </p>
                     </div>
@@ -157,10 +157,10 @@ export function QualityTimeline() {
 
                 {/* Certificate Title Badge */}
                 <div className="pt-3 pb-1 px-1 text-center">
-                  <h4 className="font-display font-bold text-xs text-[#111814] truncate group-hover:text-[#168849] transition-colors">
+                  <h4 className="font-display font-semibold text-xs sm:text-sm text-[#111814] truncate group-hover:text-[#168849] transition-colors">
                     {cert.title}
                   </h4>
-                  <p className="font-sans text-[10px] text-[#5C6662] truncate pt-0.5">
+                  <p className="font-sans text-[11px] text-[#72807A] truncate pt-0.5">
                     {cert.subtitle}
                   </p>
                 </div>
@@ -192,10 +192,10 @@ export function QualityTimeline() {
               {/* Modal Header */}
               <div className="flex items-center justify-between border-b border-neutral-200 pb-3 px-2">
                 <div>
-                  <h3 className="font-display font-bold text-lg sm:text-xl text-[#111814]">
+                  <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] tracking-[-0.015em]">
                     {selectedCert.title}
                   </h3>
-                  <p className="font-sans text-xs text-neutral-500">
+                  <p className="font-sans text-xs text-[#72807A]">
                     {selectedCert.subtitle}
                   </p>
                 </div>

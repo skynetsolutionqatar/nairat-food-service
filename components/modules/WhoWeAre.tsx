@@ -75,10 +75,10 @@ export function WhoWeAre() {
         {/* Left / Top Section Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b border-neutral-200/90 pb-8 sm:pb-10">
           <div className="lg:col-span-7 space-y-3">
-            <span className="who-header-item font-sans text-xs font-bold uppercase tracking-widest text-[#168849] block">
+            <span className="who-header-item font-sans type-eyebrow text-[#168849] block">
               WHO WE ARE
             </span>
-            <h2 className="who-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111814] leading-[1.15] tracking-tight">
+            <h2 className="who-header-item font-display type-h2 font-medium text-[#111814] text-left">
               Fresh Produce. <br />
               Strong Supply. <br />
               <span className="text-[#168849]">Trusted Across Qatar.</span>
@@ -86,7 +86,7 @@ export function WhoWeAre() {
           </div>
 
           <div className="lg:col-span-5 space-y-5 flex flex-col items-start lg:items-end">
-            <p className="who-header-item font-sans text-sm sm:text-base text-neutral-600 leading-relaxed text-left max-w-xl">
+            <p className="who-header-item font-sans text-base sm:text-[17px] text-[#47554E] leading-[1.6] text-left max-w-[55ch]">
               Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.
             </p>
 
@@ -110,7 +110,7 @@ export function WhoWeAre() {
               {/* Number Header */}
               <div className="flex items-center justify-between">
                 <span
-                  className={`font-display font-extrabold text-4xl lg:text-5xl leading-none ${
+                  className={`font-display font-semibold text-4xl lg:text-5xl leading-none tracking-[-0.03em] ${
                     card.isDark ? 'text-white' : 'text-[#111814]'
                   }`}
                 >
@@ -131,15 +131,15 @@ export function WhoWeAre() {
               {/* Title & Description */}
               <div className="space-y-2">
                 <h3
-                  className={`font-display font-bold text-lg tracking-tight ${
+                  className={`font-display font-semibold text-xl tracking-[-0.015em] leading-snug ${
                     card.isDark ? 'text-white' : 'text-[#111814]'
                   }`}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className={`font-sans text-xs sm:text-sm leading-relaxed ${
-                    card.isDark ? 'text-white/80' : 'text-neutral-600'
+                  className={`font-sans text-sm leading-[1.6] ${
+                    card.isDark ? 'text-white/80' : 'text-[#47554E]'
                   }`}
                 >
                   {card.description}

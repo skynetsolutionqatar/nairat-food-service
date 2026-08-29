@@ -99,10 +99,10 @@ export function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-4">
-            <span className="service-header-item font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#000000] block">
+            <span className="service-header-item font-sans type-eyebrow text-[#111814] block">
               WHAT WE DO
             </span>
-            <h2 className="service-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#000000] leading-[1.15] tracking-tight">
+            <h2 className="service-header-item font-display type-h2 font-medium text-[#111814] text-left">
               Fresh Produce Supply <br />
               at Every Scale.
             </h2>
@@ -110,7 +110,7 @@ export function Services() {
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="service-header-item font-sans text-sm sm:text-base text-[#B9B9B9] leading-relaxed text-left">
+            <p className="service-header-item font-sans text-base sm:text-[17px] text-[#47554E] leading-[1.6] text-left max-w-[55ch]">
               From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.
             </p>
             <div className="service-header-item self-start lg:self-end">
@@ -139,16 +139,16 @@ export function Services() {
 
               {/* Card Text & Link below image */}
               <div className="space-y-3 pt-1">
-                <h3 className="font-display font-extrabold text-xl sm:text-2xl text-[#000000] tracking-tight leading-snug group-hover:text-[#168849] transition-colors duration-200">
+                <h3 className="font-display font-semibold text-xl sm:text-2xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200">
                   {service.title}
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-[#B9B9B9] leading-relaxed">
+                <p className="font-sans text-sm text-[#47554E] leading-[1.6]">
                   {service.desc}
                 </p>
                 <div className="pt-2">
                   <a
                     href={service.actionHref}
-                    className="inline-flex items-center gap-2 font-sans text-xs font-bold text-[#000000] hover:text-[#168849] transition-colors group/link cursor-pointer"
+                    className="inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-[-0.01em] text-[#111814] hover:text-[#168849] transition-colors group/link cursor-pointer"
                   >
                     <span>{service.actionText}</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />

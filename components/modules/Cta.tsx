@@ -63,7 +63,7 @@ export function Cta(): React.ReactNode {
         <div className="max-w-3xl space-y-5 sm:space-y-6">
 
           {/* Headline */}
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-[1.15]">
+          <h2 className="font-display type-h2 font-medium text-white text-left">
             Fresh Fruits &amp; Vegetables from <br />
             Around the World
           </h2>
@@ -79,8 +79,8 @@ export function Cta(): React.ReactNode {
                 className="h-9 sm:h-11 w-auto object-contain"
               />
             </div>
-            <div className="font-sans text-xs sm:text-sm text-white font-medium leading-snug">
-              <span className="block font-bold text-white">Sourced Around the World.</span>
+            <div className="font-sans text-xs sm:text-sm text-white leading-snug">
+              <span className="block font-semibold text-white">Sourced Around the World.</span>
               <span className="block text-white/80">Delivered Across Qatar.</span>
             </div>
           </div>
@@ -89,11 +89,11 @@ export function Cta(): React.ReactNode {
           <div className="pt-2 flex flex-wrap gap-4 items-center">
             <button
               onClick={() => setIsFormOpen((prev) => !prev)}
-              className="group inline-flex items-center gap-3 bg-[#168849] hover:bg-[#12753e] text-white font-sans text-sm sm:text-base font-bold pl-6 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-[#168849]/25 cursor-pointer active:scale-95"
+              className="group inline-flex items-center gap-3 bg-[#168849] hover:bg-[#12753e] text-white font-sans text-sm font-semibold tracking-[-0.01em] pl-6 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-[#168849]/25 cursor-pointer active:scale-95"
             >
               <span>Contact Us</span>
               <div className="w-8 h-8 rounded-full bg-white text-[#168849] flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
-                <ArrowUpRight className="w-4 h-4 stroke-[3]" />
+                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </div>
             </button>
           </div>
@@ -124,10 +124,10 @@ export function Cta(): React.ReactNode {
                 </button>
 
                 <div className="mb-6 space-y-1">
-                  <span className="font-sans text-[11px] uppercase tracking-widest text-[#168849] font-extrabold">
+                  <span className="font-sans type-eyebrow text-[#168849] block">
                     PARTNERSHIP INQUIRY
                   </span>
-                  <h3 className="font-display font-extrabold text-2xl text-[#063B27] tracking-tight">
+                  <h3 className="font-display font-semibold text-2xl text-[#111814] tracking-[-0.015em]">
                     Submit Corporate Inquiry
                   </h3>
                 </div>
@@ -135,7 +135,7 @@ export function Cta(): React.ReactNode {
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="space-y-1.5">
-                      <label htmlFor="fullName" className="font-sans text-xs font-bold text-[#1C2321] uppercase tracking-wider">
+                      <label htmlFor="fullName" className="font-sans text-xs font-semibold text-[#111814] uppercase tracking-[0.08em]">
                         Contact Name
                       </label>
                       <input
@@ -147,12 +147,12 @@ export function Cta(): React.ReactNode {
                         required
                         autoComplete="name"
                         placeholder="e.g. Abdullah Al-Thani…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#111814]"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="companyName" className="font-sans text-xs font-bold text-[#1C2321] uppercase tracking-wider">
+                      <label htmlFor="companyName" className="font-sans text-xs font-semibold text-[#111814] uppercase tracking-[0.08em]">
                         Company Name
                       </label>
                       <input
@@ -164,14 +164,14 @@ export function Cta(): React.ReactNode {
                         required
                         autoComplete="organization"
                         placeholder="e.g. Qatar Retail Group…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#111814]"
                       />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div className="space-y-1.5">
-                      <label htmlFor="email" className="font-sans text-xs font-bold text-[#1C2321] uppercase tracking-wider">
+                      <label htmlFor="email" className="font-sans text-xs font-semibold text-[#111814] uppercase tracking-[0.08em]">
                         Business Email
                       </label>
                       <input
@@ -184,12 +184,12 @@ export function Cta(): React.ReactNode {
                         autoComplete="email"
                         spellCheck={false}
                         placeholder="e.g. purchasing@qrg.qa…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#111814]"
                       />
                     </div>
 
                     <div className="space-y-1.5">
-                      <label htmlFor="phone" className="font-sans text-xs font-bold text-[#1C2321] uppercase tracking-wider">
+                      <label htmlFor="phone" className="font-sans text-xs font-semibold text-[#111814] uppercase tracking-[0.08em]">
                         Contact Phone
                       </label>
                       <input
@@ -201,13 +201,13 @@ export function Cta(): React.ReactNode {
                         required
                         autoComplete="tel"
                         placeholder="e.g. +974 4647 1511…"
-                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321]"
+                        className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#111814]"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="message" className="font-sans text-xs font-bold text-[#1C2321] uppercase tracking-wider">
+                    <label htmlFor="message" className="font-sans text-xs font-semibold text-[#111814] uppercase tracking-[0.08em]">
                       Partnership Request Details
                     </label>
                     <textarea
@@ -218,7 +218,7 @@ export function Cta(): React.ReactNode {
                       onChange={handleChange}
                       required
                       placeholder="Describe your volume requirements, delivery frequency, or produce inquiries…"
-                      className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#1C2321] resize-none"
+                      className="w-full font-sans text-sm bg-[#F4F6F5] border border-black/10 rounded-xl py-3 px-4 focus:outline-none focus:border-[#168849] text-[#111814] resize-none"
                     />
                   </div>
 
@@ -226,7 +226,7 @@ export function Cta(): React.ReactNode {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#168849] hover:bg-[#12753e] text-white font-sans text-sm font-bold py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-brand-forest shadow-md"
+                      className="w-full bg-[#168849] hover:bg-[#12753e] text-white font-sans text-sm font-semibold tracking-[-0.01em] py-3.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-2 focus-visible:outline-brand-forest shadow-md"
                     >
                       {isSubmitting ? (
                         <span>Sending Request…</span>

@@ -69,23 +69,23 @@
 ## 3. Implementation Plan by Component
 
 - [x] **Audit:** Inspect all files for current typography patterns.
-- [ ] **Phase A: System Foundation**
-  - Update `app/layout.tsx` to load `Manrope` from `next/font/google`.
-  - Update `app/globals.css` with `@theme` variables, utility classes, and remove redundant Google Fonts CDN import.
-- [ ] **Phase B: Component Migration**
-  - `components/layout/Navbar.tsx`: Refine nav item font size, weight, and tracking.
-  - `components/ui/CtaButton.tsx` & `components/ui/button.tsx`: Refine CTA typography.
-  - `components/modules/Hero.tsx`: Implement Display typography, editorial line-height, and refined lead copy.
-  - `components/blocks/logos3.tsx` & `components/modules/Partners.tsx`: Standardize eyebrow token.
-  - `components/modules/WhoWeAre.tsx`: Apply H2, eyebrow, lead copy, metric numerals (font-medium 600) and card text.
-  - `components/modules/Strengths.tsx`: Apply H2, replace low-contrast `#B9B9B9` with `--text-secondary`, format card titles & descriptions.
-  - `components/modules/Services.tsx`: Apply H2, eyebrow, card title/description scale, action link typography.
-  - `components/modules/Products.tsx`: Apply H2, eyebrow, card typography, and category tabs.
-  - `components/modules/SourcingMap.tsx`: Apply H2, eyebrow, country badge typography.
-  - `components/modules/QualityTimeline.tsx`: Apply H2, eyebrow, timeline step typography, certificate card text.
-  - `components/modules/Cta.tsx`: Apply H2, subtext, form labels, inputs, and submit button typography.
-  - `components/layout/Footer.tsx`: Apply H2, footer nav links, copyright text hierarchy.
-- [ ] **Phase C: Verification & Visual QA**
-  - TypeScript build check (`npx tsc --noEmit`).
-  - Agent-browser testing at 1440px, 1024px, 768px, 390px.
-  - Reconcile spec and update `PROGRESS.md`.
+- [x] **Phase A: System Foundation**
+  - [x] Update `app/layout.tsx` to load `Manrope` from `next/font/google`.
+  - [x] Update `app/globals.css` with `@theme` variables, utility classes, and remove redundant Google Fonts CDN import.
+- [x] **Phase B: Component Migration**
+  - [x] `components/layout/Navbar.tsx`: Refine nav item font size, weight, and tracking.
+  - [x] `components/ui/CtaButton.tsx` & `components/ui/button.tsx`: Refine CTA typography.
+  - [x] `components/modules/Hero.tsx`: Implement Display typography, editorial line-height, and refined lead copy.
+  - [x] `components/blocks/logos3.tsx` & `components/modules/Partners.tsx`: Standardize eyebrow token.
+  - [x] `components/modules/WhoWeAre.tsx`: Apply H2, eyebrow, lead copy, metric numerals (font-medium 600) and card text.
+  - [x] `components/modules/Strengths.tsx`: Apply H2, replace low-contrast `#B9B9B9` with `--text-secondary`, format card titles & descriptions.
+  - [x] `components/modules/Services.tsx`: Apply H2, eyebrow, card title/description scale, action link typography.
+  - [x] `components/modules/Products.tsx`: Apply H2, eyebrow, card typography, and category tabs.
+  - [x] `components/modules/SourcingMap.tsx`: Apply H2, eyebrow, country badge typography.
+  - [x] `components/modules/QualityTimeline.tsx`: Apply H2, eyebrow, timeline step typography, certificate card text.
+  - [x] `components/modules/Cta.tsx`: Apply H2, subtext, form labels, inputs, and submit button typography.
+  - [x] `components/layout/Footer.tsx`: Apply H2, footer nav links, copyright text hierarchy.
+- [x] **Phase C: Verification & Visual QA**
+  - [x] TypeScript build check (`npx tsc --noEmit` - passed with 0 errors).
+  - [x] Agent-browser visual testing across 1440px desktop and 390px mobile viewports.
+  - [x] Reconcile spec and update `PROGRESS.md`.

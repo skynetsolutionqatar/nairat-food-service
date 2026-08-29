@@ -113,10 +113,10 @@ export function Strengths() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-4">
-            <span className="strength-header-item font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#000000] block">
+            <span className="strength-header-item font-sans type-eyebrow text-[#111814] block">
               WHY CHOOSE US
             </span>
-            <h2 className="strength-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#000000] leading-[1.15] tracking-tight">
+            <h2 className="strength-header-item font-display type-h2 font-medium text-[#111814] text-left">
               Built for Freshness. <br />
               Ready to Deliver.
             </h2>
@@ -124,7 +124,7 @@ export function Strengths() {
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="strength-header-item font-sans text-sm sm:text-base text-[#B9B9B9] leading-relaxed text-left">
+            <p className="strength-header-item font-sans text-base sm:text-[17px] text-[#47554E] leading-[1.6] text-left max-w-[55ch]">
               From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.
             </p>
             <div className="strength-header-item self-start lg:self-end">
@@ -157,18 +157,18 @@ export function Strengths() {
                 {/* Card Content Overlay */}
                 <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
                   {card.number && (
-                    <span className="font-display font-extrabold text-4xl sm:text-5xl text-white leading-none block drop-shadow-md mb-1 transition-transform duration-300 group-hover:-translate-y-0.5">
+                    <span className="font-display font-semibold text-3xl sm:text-4xl text-white leading-none block drop-shadow-md mb-1 tracking-[-0.03em] transition-transform duration-300 group-hover:-translate-y-0.5">
                       {card.number}
                     </span>
                   )}
-                  <h3 className="font-display font-extrabold text-xl sm:text-2xl text-white tracking-tight leading-snug drop-shadow-md">
+                  <h3 className="font-display font-semibold text-lg sm:text-xl text-white tracking-[-0.015em] leading-snug drop-shadow-md">
                     {card.title}
                   </h3>
 
                   {/* Hover Description Paragraph */}
                   <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
                     <div className="overflow-hidden">
-                      <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
+                      <p className="font-sans text-xs sm:text-sm text-white/90 leading-[1.6] pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
                         {card.desc}
                       </p>
                     </div>
@@ -194,14 +194,14 @@ export function Strengths() {
 
             {/* Card Content Overlay */}
             <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
-              <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white tracking-tight leading-snug drop-shadow-md">
+              <h3 className="font-display font-semibold text-2xl sm:text-3xl text-white tracking-[-0.02em] leading-snug drop-shadow-md">
                 {tallCard.title}
               </h3>
 
               {/* Hover Description Paragraph */}
               <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
                 <div className="overflow-hidden">
-                  <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
+                  <p className="font-sans text-xs sm:text-sm text-white/90 leading-[1.6] pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
                     {tallCard.desc}
                   </p>
                 </div>
