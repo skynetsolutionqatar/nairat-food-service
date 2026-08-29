@@ -69,7 +69,7 @@ export function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-[90vh] flex flex-col justify-end bg-[#052618] overflow-hidden px-4 sm:px-8"
+      className="relative min-h-[88vh] flex flex-col justify-end bg-[#052618] overflow-hidden px-4 sm:px-8"
     >
       {/* Background Video */}
       <video
