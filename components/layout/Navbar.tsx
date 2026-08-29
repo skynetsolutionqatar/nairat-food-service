@@ -52,11 +52,10 @@ export function Navbar() {
   return (
     <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300">
       <div
-        className={`max-w-[1440px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between rounded-full transition-all duration-300 ${
-          isScrolled
-            ? 'bg-[#168849]/95 backdrop-blur-md shadow-xl'
-            : 'bg-[#168849] shadow-lg'
-        }`}
+        className={`max-w-[1440px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between rounded-full transition-all duration-300 ${isScrolled
+          ? 'bg-[#168849]/95 backdrop-blur-md shadow-xl'
+          : 'bg-[#168849] shadow-lg'
+          }`}
       >
         {/* Brand Logo */}
         <Link
@@ -90,10 +89,10 @@ export function Navbar() {
 
         {/* Right Actions: Language Toggle + CTA Button */}
         <div className="hidden sm:flex items-center gap-3">
-          {/* Language Toggle Button */}
+          {/* Language Toggle Button: Shows AR when in English, EN when in Arabic */}
           <button
             onClick={toggleLanguage}
-            className="inline-flex items-center justify-center min-w-[42px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-bold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
+            className="inline-flex items-center justify-center min-w-[42px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-bold transition-all duration-200 cursor-pointer shadow-xs active:scale-95"
             aria-label="Toggle language"
           >
             <span>{locale === 'en' ? 'AR' : 'EN'}</span>
@@ -148,7 +147,7 @@ export function Navbar() {
                 {link.label}
               </a>
             ))}
-            
+
             <div className="pt-3 flex flex-col gap-2.5">
               <button
                 onClick={() => {
