@@ -55,13 +55,13 @@ export function CommercialPrograms() {
     <section
       id="programs"
       ref={containerRef}
-      className="py-16 sm:py-24 bg-white text-[#111814] overflow-hidden"
+      className="py-16 sm:py-24 bg-white text-[#111814] px-4 sm:px-8 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-12 sm:space-y-16">
+      <div className="max-w-[1440px] mx-auto space-y-12 sm:space-y-16">
         
         {/* Header: Centered */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <span className="pricing-header-item text-[11px] font-bold uppercase tracking-widest text-neutral-500 block">
+          <span className="pricing-header-item text-[11px] font-bold uppercase tracking-widest text-[#168849] block">
             PRICING &amp; PROGRAMS
           </span>
           <h2 className="pricing-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#111814] leading-[1.2]">
@@ -76,7 +76,7 @@ export function CommercialPrograms() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
           
           {/* Card 1: Retail Plan (Clean White Card) */}
-          <div className="pricing-plan-card bg-[#F6F8F5] border border-neutral-200 rounded-3xl p-8 sm:p-10 flex flex-col justify-between space-y-8 shadow-sm">
+          <div className="pricing-plan-card bg-[#F6F8F5] border border-neutral-200 rounded-3xl p-8 sm:p-12 flex flex-col justify-between space-y-8 shadow-sm">
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b border-neutral-200 pb-5">
                 <div>
@@ -96,7 +96,7 @@ export function CommercialPrograms() {
               </div>
 
               {/* Checklist */}
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 {retailFeatures.map((feat, idx) => (
                   <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-neutral-700 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-[#168849] shrink-0" />
@@ -109,7 +109,7 @@ export function CommercialPrograms() {
             <div>
               <a
                 href="#contact"
-                className="w-full bg-[#D4F056] hover:bg-[#c4e046] text-[#0A2618] font-sans text-xs sm:text-sm font-bold py-3.5 rounded-full transition-all duration-300 shadow-sm text-center block"
+                className="w-full bg-[#168849] hover:bg-[#12753e] text-white font-sans text-xs sm:text-sm font-bold py-3.5 rounded-full transition-all duration-300 shadow-md text-center block"
               >
                 Get Started
               </a>
@@ -117,7 +117,7 @@ export function CommercialPrograms() {
           </div>
 
           {/* Card 2: Wholesale & Hospitality Contract (Deep Dark Forest Green Card) */}
-          <div className="pricing-plan-card bg-[#0A2618] border border-white/10 rounded-3xl p-8 sm:p-10 text-white flex flex-col justify-between space-y-8 shadow-xl">
+          <div className="pricing-plan-card bg-[#0A2618] border border-white/10 rounded-3xl p-8 sm:p-12 text-white flex flex-col justify-between space-y-8 shadow-xl">
             <div className="space-y-6">
               <div className="flex items-center justify-between border-b border-white/15 pb-5">
                 <div>
@@ -137,7 +137,7 @@ export function CommercialPrograms() {
               </div>
 
               {/* Checklist */}
-              <div className="space-y-3">
+              <div className="space-y-3.5">
                 {wholesaleFeatures.map((feat, idx) => (
                   <div key={idx} className="flex items-center gap-2.5 text-xs sm:text-sm text-white/90 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-[#D4F056] shrink-0" />

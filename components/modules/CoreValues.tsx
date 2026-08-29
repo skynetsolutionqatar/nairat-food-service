@@ -48,20 +48,20 @@ export function CoreValues() {
       ref={containerRef}
       className="py-12 sm:py-20 bg-white text-[#111814] px-4 sm:px-8 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* Left Dark Card: Core Values Content */}
-          <div className="values-card-left lg:col-span-6 rounded-3xl sm:rounded-[2.5rem] bg-[#0A2618] text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between space-y-8 shadow-xl border border-white/10">
+          <div className="values-card-left lg:col-span-6 rounded-3xl sm:rounded-[2.5rem] bg-[#0A2618] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between space-y-8 shadow-xl border border-white/10">
             <div className="space-y-4">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#D4F056]">
+              <span className="text-[11px] font-extrabold uppercase tracking-widest text-[#D4F056]">
                 CORE VALUES
               </span>
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15]">
                 It&apos;s not just <br />
                 produce supply
               </h2>
-              <p className="text-xs sm:text-sm text-white/75 leading-relaxed max-w-lg font-normal">
+              <p className="text-xs sm:text-sm text-white/80 leading-relaxed max-w-lg font-normal">
                 We&apos;ve been connecting global orchards into thriving fresh produce aisles across Qatar since 2015. Whether it&apos;s scheduled morning deliveries or high-volume wholesale contracts — we&apos;re here to help you grow.
               </p>
             </div>

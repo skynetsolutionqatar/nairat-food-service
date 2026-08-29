@@ -7,8 +7,8 @@ import { ArrowRight, MapPin, Phone } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-[#0A2618] text-white pt-16 sm:pt-20 pb-10 border-t border-white/10 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-12">
+    <footer className="bg-[#0A2618] text-white pt-16 sm:pt-20 pb-10 border-t border-white/10 overflow-hidden px-4 sm:px-8">
+      <div className="max-w-[1440px] mx-auto space-y-12">
         
         {/* Top Grid: Brand + Navigation Columns + Newsletter */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">

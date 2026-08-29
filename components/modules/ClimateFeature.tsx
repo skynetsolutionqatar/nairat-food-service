@@ -5,7 +5,6 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,11 +41,11 @@ export function ClimateFeature() {
       ref={containerRef}
       className="py-12 sm:py-16 bg-white text-[#111814] px-4 sm:px-8 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
           
           {/* Left Dark Forest Feature Card */}
-          <div className="feature-split-left lg:col-span-6 rounded-3xl sm:rounded-[2.5rem] bg-[#0A2618] text-white p-8 sm:p-12 lg:p-14 flex flex-col justify-between space-y-8 shadow-xl border border-white/10">
+          <div className="feature-split-left lg:col-span-6 rounded-3xl sm:rounded-[2.5rem] bg-[#0A2618] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between space-y-8 shadow-xl border border-white/10">
             <div className="space-y-4">
               <span className="font-mono text-xs font-bold uppercase tracking-wider text-white/50 block">
                 02 / 04
@@ -54,7 +53,7 @@ export function ClimateFeature() {
               <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15]">
                 Multi-Zone Climate Storage &amp; Fresh Nutrition
               </h2>
-              <p className="text-xs sm:text-sm text-white/75 leading-relaxed max-w-lg font-normal">
+              <p className="text-xs sm:text-sm text-white/80 leading-relaxed max-w-lg font-normal">
                 Keep your produce fresh, green, and thriving with professional cooling, humidity calibration, and continuous telematics monitoring tailored to your space.
               </p>
               <div className="pt-2">

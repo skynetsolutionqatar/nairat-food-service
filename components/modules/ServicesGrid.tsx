@@ -66,13 +66,13 @@ export function ServicesGrid() {
     <section
       id="services"
       ref={containerRef}
-      className="py-16 sm:py-24 bg-white text-[#111814] overflow-hidden"
+      className="py-16 sm:py-24 bg-white text-[#111814] px-4 sm:px-8 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-12 sm:space-y-16">
+      <div className="max-w-[1440px] mx-auto space-y-12 sm:space-y-16">
         
         {/* Section Header: Centered */}
         <div className="text-center space-y-3 max-w-2xl mx-auto">
-          <span className="services-header-item text-[11px] font-bold uppercase tracking-widest text-neutral-500 block">
+          <span className="services-header-item text-[11px] font-bold uppercase tracking-widest text-[#168849] block">
             OUR SERVICES
           </span>
           <h2 className="services-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#111814] leading-[1.2]">
@@ -111,7 +111,7 @@ export function ServicesGrid() {
                 <h3 className="font-display font-bold text-lg sm:text-xl text-white tracking-tight leading-snug">
                   {item.title}
                 </h3>
-                <p className="text-xs text-white/75 leading-relaxed font-normal line-clamp-3">
+                <p className="text-xs text-white/80 leading-relaxed font-normal line-clamp-3">
                   {item.desc}
                 </p>
               </div>

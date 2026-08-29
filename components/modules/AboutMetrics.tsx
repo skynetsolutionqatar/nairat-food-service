@@ -61,20 +61,20 @@ export function AboutMetrics() {
     <section
       id="about"
       ref={containerRef}
-      className="py-16 sm:py-24 bg-white text-[#111814] overflow-hidden"
+      className="py-16 sm:py-24 bg-white text-[#111814] px-4 sm:px-8 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-12 sm:space-y-16">
+      <div className="max-w-[1440px] mx-auto space-y-12 sm:space-y-16">
         
         {/* Top Header: Left Tag vs Right Big Statement */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-3">
-            <span className="about-header-item text-[11px] font-bold uppercase tracking-widest text-neutral-500 block">
+            <span className="about-header-item text-[11px] font-bold uppercase tracking-widest text-[#168849] block">
               ABOUT US
             </span>
           </div>
 
           <div className="lg:col-span-9 space-y-4">
-            <h2 className="about-header-item font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#111814] leading-[1.3] max-w-3xl">
+            <h2 className="about-header-item font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#111814] leading-[1.3] max-w-4xl">
               Delivering farm-fresh produce across Qatar since 2015, with 160K+ completed deliveries. We take pride in delivering tailored solutions that match your space, style, and schedule.
             </h2>
             <p className="about-header-item text-xs sm:text-sm text-neutral-500 leading-relaxed max-w-2xl font-normal">
@@ -84,13 +84,13 @@ export function AboutMetrics() {
         </div>
 
         {/* 4 Clean White Metric Cards in a Row matching Screenshot */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {metricCards.map((card, idx) => (
             <div
               key={idx}
-              className="about-stat-card bg-[#F6F8F5] border border-neutral-200/90 rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-4 hover:shadow-md hover:border-neutral-300 transition-all duration-300"
+              className="about-stat-card bg-[#F6F8F5] border border-neutral-200/90 rounded-3xl p-7 flex flex-col justify-between space-y-4 hover:shadow-md hover:border-neutral-300 transition-all duration-300"
             >
-              <span className="font-display font-bold text-3xl sm:text-4xl text-[#D4F056] bg-[#0A2618] w-fit px-3 py-1 rounded-xl tracking-tight">
+              <span className="font-display font-bold text-3xl sm:text-4xl text-[#168849] bg-white border border-neutral-200 w-fit px-3.5 py-1 rounded-2xl tracking-tight shadow-2xs">
                 {card.value}
               </span>
               <div className="space-y-1">

@@ -53,20 +53,20 @@ export function StoriesTestimonials() {
     <section
       id="reviews"
       ref={containerRef}
-      className="py-16 sm:py-24 bg-[#0A2618] text-white overflow-hidden"
+      className="py-16 sm:py-24 bg-[#0A2618] text-white px-4 sm:px-8 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 space-y-12">
+      <div className="max-w-[1440px] mx-auto space-y-12">
         
         {/* Section Header */}
         <div className="space-y-3 max-w-2xl">
-          <span className="stories-header-item text-[11px] font-bold uppercase tracking-widest text-[#D4F056] block">
+          <span className="stories-header-item text-[11px] font-extrabold uppercase tracking-widest text-[#D4F056] block">
             TESTIMONIAL
           </span>
           <h2 className="stories-header-item font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-[1.15]">
             Stories That Prove Why Our <br />
             Work Matters
           </h2>
-          <p className="stories-header-item text-xs sm:text-sm text-white/70 leading-relaxed font-normal">
+          <p className="stories-header-item text-xs sm:text-sm text-white/75 leading-relaxed font-normal">
             We&apos;re a trusted partner of Qatar&apos;s leading grocers and hospitality groups. Their stories reflect our commitment to total quality and reliable supply.
           </p>
         </div>
