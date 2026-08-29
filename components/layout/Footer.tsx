@@ -2,207 +2,131 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Mail, MapPin, Phone, Compass } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowUpRight } from 'lucide-react';
 
-interface FooterLink {
+interface FooterNavLink {
   label: string;
   href: string;
 }
 
-const companyLinks: FooterLink[] = [
-  { label: 'About Us', href: '#about' },
-  { label: 'Our Strengths', href: '#strengths' },
-  { label: 'Careers', href: '#careers' },
-  { label: 'News & Updates', href: '#news' },
-];
-
-const productLinks: FooterLink[] = [
-  { label: 'Fruits', href: '#products' },
-  { label: 'Vegetables', href: '#products' },
-  { label: 'Leafy & Herbs', href: '#products' },
-  { label: 'Specialty', href: '#products' },
-];
-
-const serviceLinks: FooterLink[] = [
-  { label: 'Retail & Wholesale', href: '#services' },
-  { label: 'Grower Partnerships', href: '#services' },
-  { label: 'Nairat Shop', href: '#services' },
-];
-
-const sourcingLinks: FooterLink[] = [
-  { label: 'Global Sourcing', href: '#sourcing' },
-  { label: 'Our Partners', href: '#partners' },
-  { label: 'Quality & Certifications', href: '#quality' },
+const footerNavLinks: FooterNavLink[] = [
+  { label: 'Home', href: '#home' },
+  { label: 'Company', href: '#about' },
+  { label: 'Our Ventures', href: '#services' },
+  { label: 'Careers', href: '#contact' },
+  { label: 'Contact Us', href: '#contact' },
 ];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-[#063B27] text-white pt-16 pb-8 border-t border-white/10">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-8 space-y-12">
+    <footer className="bg-white text-[#111814] pt-14 pb-8 border-t border-neutral-200 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 lg:px-12 space-y-8 sm:space-y-10">
         
-        {/* Main Footer Links Grid (6 Columns) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8">
+        {/* Top Section: Logo (Left) | "Go Fresh for Future" (Center) | "Learn More" Button (Right) */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
           
-          {/* Column 1: Brand Info (lg:col-span-2) */}
-          <div className="lg:col-span-2 space-y-4">
-            <Link href="#home" className="flex items-center gap-2">
-              <div className="flex flex-col text-left">
-                <span className="font-display font-extrabold text-2xl tracking-tight text-white leading-none">
-                  na<span className="relative inline-block">ı<span className="absolute -top-1.5 left-px w-2 h-3.5 bg-[#4AA658] rounded-full rounded-tr-none rotate-12" /></span>rat
-                </span>
-                <span className="font-sans text-[7px] text-white/80 tracking-[0.3em] font-extrabold uppercase mt-1 leading-none">
-                  Food Services
-                </span>
-              </div>
+          {/* Left: Brand Logo */}
+          <div className="shrink-0 flex items-center">
+            <Link href="#home" className="inline-block">
+              <Image
+                src="/en.jpg"
+                alt="Nairat Food Services"
+                width={120}
+                height={80}
+                className="h-16 sm:h-20 w-auto object-contain rounded-md"
+                priority
+              />
             </Link>
-            
-            <p className="font-sans text-white/70 text-xs leading-relaxed max-w-sm">
-              Connecting Qatar with the world’s best fresh produce through quality, reliability and care.
-            </p>
-            
-            {/* Social Icons row */}
-            <div className="flex items-center gap-2.5 pt-1">
-              <a href="#" className="w-7 h-7 rounded-full border border-white/15 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-colors" aria-label="Facebook">
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M9 8H7v3h2v9h3v-9h3.6L16 8h-3V6.3C13 5.4 13.5 5 14.5 5H16V2h-2.5C10.5 2 9 3.5 9 6.3V8z" />
-                </svg>
-              </a>
-              <a href="#" className="w-7 h-7 rounded-full border border-white/15 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-colors" aria-label="Instagram">
-                <svg className="w-3.5 h-3.5 stroke-current fill-none" viewBox="0 0 24 24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                </svg>
-              </a>
-              <a href="#" className="w-7 h-7 rounded-full border border-white/15 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-colors" aria-label="LinkedIn">
-                <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-              </a>
-              <a href="https://wa.me/97431043814" target="_blank" rel="noopener noreferrer" className="w-7 h-7 rounded-full border border-white/15 flex items-center justify-center text-white/70 hover:text-white hover:border-white transition-colors" aria-label="WhatsApp">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.262 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.739-1.453L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.965C16.488 1.977 14.03 1.053 11.4 1.053c-5.437 0-9.86 4.37-9.864 9.8.002 2.13.56 4.208 1.614 6.014l-.996 3.636 3.737-.972zm11.237-7.603c-.3-.15-1.772-.875-2.046-.975-.276-.1-.477-.15-.677.15-.2.3-.777.975-.951 1.174-.176.2-.351.224-.652.074-1.43-.715-2.458-1.321-3.444-3.007-.26-.445.26-.413.743-1.38.08-.163.04-.306-.02-.455-.06-.15-.477-1.15-.652-1.574-.171-.41-.345-.353-.477-.36l-.407-.007c-.14 0-.37.052-.564.26-.194.208-.742.728-.742 1.776 0 1.05.762 2.062.868 2.212.106.15 1.5 2.29 3.634 3.21.507.219.904.35 1.214.448.51.162.974.139 1.341.084.41-.061 1.772-.726 2.022-1.428.25-.702.25-1.303.176-1.428-.075-.125-.275-.201-.575-.351z" />
-                </svg>
-              </a>
-            </div>
           </div>
 
-          {/* Column 2: Company */}
-          <div className="space-y-3">
-            <h3 className="font-sans font-bold text-xs uppercase tracking-widest text-[#4AA658]">
-              Company
-            </h3>
-            <ul className="space-y-2 font-sans text-xs text-white/70">
-              {companyLinks.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="hover:text-white transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          {/* Center: Bold Headline */}
+          <div className="text-center">
+            <h2 className="font-display font-black text-2xl sm:text-4xl lg:text-5xl text-[#111814] tracking-tight">
+              Go Fresh for Future
+            </h2>
           </div>
 
-          {/* Column 3: Products */}
-          <div className="space-y-3">
-            <h3 className="font-sans font-bold text-xs uppercase tracking-widest text-[#4AA658]">
-              Products
-            </h3>
-            <ul className="space-y-2 font-sans text-xs text-white/70">
-              {productLinks.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="hover:text-white transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Services */}
-          <div className="space-y-3">
-            <h3 className="font-sans font-bold text-xs uppercase tracking-widest text-[#4AA658]">
-              Services
-            </h3>
-            <ul className="space-y-2 font-sans text-xs text-white/70">
-              {serviceLinks.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="hover:text-white transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 5: Sourcing */}
-          <div className="space-y-3">
-            <h3 className="font-sans font-bold text-xs uppercase tracking-widest text-[#4AA658]">
-              Sourcing
-            </h3>
-            <ul className="space-y-2 font-sans text-xs text-white/70">
-              {sourcingLinks.map((link) => (
-                <li key={link.label}>
-                  <a href={link.href} className="hover:text-white transition-colors">
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 6: Contact Us */}
-          <div className="space-y-3">
-            <h3 className="font-sans font-bold text-xs uppercase tracking-widest text-[#4AA658]">
-              Contact Us
-            </h3>
-            <div className="space-y-2 font-sans text-xs text-white/70">
-              <div className="flex items-center gap-2">
-                <Phone className="w-3.5 h-3.5 text-[#4AA658] shrink-0" />
-                <a href="tel:+97446471511" className="hover:text-white transition-colors">
-                  +974 4647 1511
-                </a>
+          {/* Right: Learn More Pill CTA */}
+          <div className="shrink-0">
+            <a
+              href="#about"
+              className="bg-[#168849] hover:bg-[#12753e] text-white font-sans text-xs sm:text-sm font-bold px-6 py-3 rounded-full transition-all duration-300 flex items-center gap-3 group shadow-md shadow-[#168849]/15 active:scale-95 cursor-pointer"
+            >
+              <span>Learn More</span>
+              <div className="w-6 h-6 rounded-full bg-white text-[#168849] flex items-center justify-center shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
               </div>
-              <div className="flex items-center gap-2">
-                <Mail className="w-3.5 h-3.5 text-[#4AA658] shrink-0" />
-                <a href="mailto:info@nairatfood.com" className="hover:text-white transition-colors">
-                  info@nairatfood.com
-                </a>
-              </div>
-              <div className="flex items-start gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#4AA658] shrink-0 mt-0.5" />
-                <span>P.O. Box 30858, Doha, Qatar</span>
-              </div>
-              <div className="flex items-center gap-2 pt-1">
-                <Compass className="w-3.5 h-3.5 text-[#4AA658] shrink-0" />
-                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors font-bold">
-                  Open on Google Maps
-                </a>
-              </div>
-            </div>
+            </a>
           </div>
 
         </div>
 
-        {/* Footer Bottom Bar */}
-        <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="font-sans text-xs text-white/50 text-center md:text-left">
-            &copy; {currentYear} Nairat Food Services. All rights reserved.
-          </p>
-          <div className="flex gap-6 font-sans text-xs text-white/50">
-            <Link href="#privacy" className="hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="#terms" className="hover:text-white transition-colors">
-              Terms & Conditions
-            </Link>
+        {/* Divider 1 */}
+        <div className="w-full border-t border-neutral-200" />
+
+        {/* Middle Section: Social Icons (Left) | Horizontal Navigation (Right) */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          
+          {/* Social Icons (Facebook & Instagram) */}
+          <div className="flex items-center gap-4">
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-800 hover:text-[#168849] hover:border-[#168849] transition-colors"
+              aria-label="Facebook"
+            >
+              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M9 8H7v3h2v9h3v-9h3.6L16 8h-3V6.3C13 5.4 13.5 5 14.5 5H16V2h-2.5C10.5 2 9 3.5 9 6.3V8z" />
+              </svg>
+            </a>
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-800 hover:text-[#168849] hover:border-[#168849] transition-colors"
+              aria-label="Instagram"
+            >
+              <svg
+                className="w-4 h-4 stroke-current fill-none"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
           </div>
+
+          {/* Horizontal Navigation Links */}
+          <nav className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+            {footerNavLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="font-sans text-xs sm:text-sm font-semibold text-neutral-700 hover:text-[#168849] transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+        </div>
+
+        {/* Divider 2 */}
+        <div className="w-full border-t border-neutral-200" />
+
+        {/* Bottom Section: Copyright (Left) | Designed by (Right) */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-medium">
+          <p>Copyright &copy; {new Date().getFullYear()} Nairat Food Services</p>
+          <p>Designed by Skynet Solutions WLL</p>
         </div>
 
       </div>
     </footer>
   );
 }
-
