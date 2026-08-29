@@ -343,8 +343,8 @@ export function Products() {
   );
 
   return (
-    <section id="products" ref={containerRef} className="py-16 sm:py-20 2xl:py-28 bg-white text-neutral-900 overflow-hidden">
-      <div className="w-full space-y-10 2xl:space-y-14 px-0">
+    <section id="products" ref={containerRef} className="pt-12 sm:pt-16 2xl:pt-20 pb-4 sm:pb-6 2xl:pb-8 bg-white text-neutral-900 overflow-hidden">
+      <div className="w-full space-y-8 sm:space-y-10 2xl:space-y-12 px-0">
 
         {/* Section Header */}
         <div className="max-w-3xl 2xl:max-w-4xl mx-auto text-center space-y-3 px-4">

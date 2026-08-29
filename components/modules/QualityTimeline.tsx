@@ -59,7 +59,7 @@ export function QualityTimeline() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
   return (
-    <section id="quality" className="py-16 sm:py-20 2xl:py-28 bg-white overflow-hidden">
+    <section id="quality" className="pt-8 sm:pt-10 2xl:pt-14 pb-14 sm:pb-18 2xl:pb-24 bg-white overflow-hidden">
       <div className="max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-14">
         
         {/* Split Layout: Left is Timeline, Right is Official Certificates Showcase */}
