@@ -87,8 +87,8 @@ export function Hero() {
       </video>
 
       {/* Dark overlay for optimal text contrast and warmth */}
-      <div className="absolute inset-0 bg-black/25 pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-black/10 pointer-events-none" />
+      <div className="absolute inset-0 bg-black/15 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-black/10 pointer-events-none" />
 
       {/* Main Content Container */}
       <div
