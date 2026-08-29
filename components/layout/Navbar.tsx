@@ -66,16 +66,16 @@ export function Navbar() {
           />
         </Link>
 
-        {/* Desktop Navigation Links */}
+        {/* Desktop Navigation Links with Increased Font Size */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navigationLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="font-sans text-xs xl:text-sm font-semibold text-white/95 hover:text-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2 py-1 relative group"
+              className="font-sans text-sm xl:text-[16px] font-bold text-white/95 hover:text-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 relative group tracking-normal"
             >
               {link.label}
-              <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
+              <span className="absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
             </a>
           ))}
         </nav>
@@ -117,7 +117,7 @@ export function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={closeMobileMenu}
-                className="font-sans text-sm font-semibold text-white hover:text-white/80 py-2 border-b border-white/10 focus-visible:outline-2 focus-visible:outline-white rounded"
+                className="font-sans text-base font-semibold text-white hover:text-white/80 py-2 border-b border-white/10 focus-visible:outline-2 focus-visible:outline-white rounded"
               >
                 {link.label}
               </a>
