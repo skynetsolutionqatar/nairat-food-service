@@ -63,8 +63,8 @@ export function SourcingMap(): React.ReactNode {
           {/* Right Column: Sourcing Text & Country Pills (60% / 7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-2">
-              <Leaf className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
-              <span className="font-sans text-xs font-extrabold uppercase tracking-widest text-[#38A84E]">
+              <Leaf className="w-4 h-4 text-[#168849]" aria-hidden="true" />
+              <span className="font-sans text-xs font-extrabold uppercase tracking-widest text-[#168849]">
                 SOURCING COUNTRIES
               </span>
             </div>
@@ -79,13 +79,13 @@ export function SourcingMap(): React.ReactNode {
               {sourcingCountries.map((countryName) => (
                 <span
                   key={countryName}
-                  className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-neutral-200 bg-neutral-50/80 text-neutral-600 shadow-2xs hover:bg-neutral-100 transition-colors duration-200"
+                  className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-neutral-200 bg-neutral-50/80 text-neutral-600 shadow-2xs  transition-colors duration-200 hover:bg-[#168849] hover:text-white cursor-pointer"
                 >
                   {countryName}
                 </span>
               ))}
 
-              <span className="font-sans text-xs sm:text-sm font-extrabold uppercase tracking-wider px-6 py-2.5 rounded-full bg-[#38A84E] text-white shadow-md shadow-[#38A84E]/20">
+              <span className="font-sans text-xs sm:text-sm font-extrabold uppercase tracking-wider px-6 py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#38A84E]/20">
                 AND BEYOND
               </span>
             </div>
