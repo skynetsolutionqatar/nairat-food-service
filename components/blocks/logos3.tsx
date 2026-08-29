@@ -69,14 +69,14 @@ const Logos3 = ({
   return (
     <section
       id="partners"
-      className="py-10 bg-white border-b border-black/5 relative overflow-hidden"
+      className="py-5 sm:py-6 bg-white border-b border-black/5 relative overflow-hidden"
     >
       <div className="container mx-auto flex flex-col items-center text-center px-4">
         <span className="font-sans type-eyebrow text-[#6B7280] block">
           {heading}
         </span>
       </div>
-      <div className="pt-6 md:pt-8">
+      <div className="pt-3 sm:pt-4">
         <div className="relative mx-auto flex items-center justify-center max-w-[1440px] px-6">
           <Carousel
             opts={{ loop: true, align: "start" }}
@@ -90,17 +90,17 @@ const Logos3 = ({
             ]}
             className="w-full"
           >
-            <CarouselContent className="ml-0">
+            <CarouselContent className="ml-0 items-center">
               {duplicatedLogos.map((logo, index) => (
                 <CarouselItem
                   key={`${logo.id}-${index}`}
-                  className="flex basis-1/2 justify-center pl-0 sm:basis-1/3 md:basis-1/4 lg:basis-1/5"
+                  className="flex basis-1/3 justify-center pl-0 sm:basis-1/4 md:basis-1/5 lg:basis-1/6"
                 >
-                  <div className="mx-3 flex shrink-0 items-center justify-center p-3 h-16 w-36 md:w-44 rounded-xl bg-gray-50/60 border border-gray-100 hover:border-emerald-200 hover:bg-white hover:shadow-md transition-all duration-300 group">
+                  <div className="mx-4 sm:mx-6 flex shrink-0 items-center justify-center h-10 sm:h-12 cursor-pointer transition-transform duration-300 hover:scale-105 select-none">
                     <img
                       src={logo.image}
                       alt={logo.description}
-                      className={logo.className || "h-10 w-auto object-contain"}
+                      className={logo.className || "h-8 sm:h-10 w-auto object-contain cursor-pointer"}
                     />
                   </div>
                 </CarouselItem>
