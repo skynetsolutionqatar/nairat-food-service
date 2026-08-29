@@ -112,9 +112,20 @@ export function Footer() {
         {/* Divider 2 */}
         <div className="w-full border-t border-neutral-200" />
 
-        {/* Bottom Section: Copyright (Left) | Designed by (Right) */}
+        {/* Bottom Section: Copyright (Left) | Terms & Privacy (Center) | Designed by (Right) */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500 font-medium">
-          <p>Copyright &copy; {new Date().getFullYear()} Nairat Food Services</p>
+          <p>Copyright &copy; {new Date().getFullYear()} Nairat Food Services. All rights reserved.</p>
+          
+          <div className="flex items-center gap-5 text-neutral-600">
+            <Link href="#privacy" className="hover:text-[#168849] transition-colors">
+              Privacy Policy
+            </Link>
+            <span className="text-neutral-300">•</span>
+            <Link href="#terms" className="hover:text-[#168849] transition-colors">
+              Terms &amp; Conditions
+            </Link>
+          </div>
+
           <p>Designed by Skynet Solutions WLL</p>
         </div>
 
