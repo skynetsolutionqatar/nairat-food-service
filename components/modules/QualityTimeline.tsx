@@ -22,19 +22,19 @@ interface Certificate {
 const timelineSteps: TimelineStep[] = [
   {
     step: '1',
-    icon: <ClipboardCheck className="w-5 h-5 text-[#063B27]" aria-hidden="true" />,
+    icon: <ClipboardCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     title: 'Inspected at Origin',
     desc: 'Carefully selected and inspected at source to ensure the best quality.',
   },
   {
     step: '2',
-    icon: <TestTube className="w-5 h-5 text-[#063B27]" aria-hidden="true" />,
+    icon: <TestTube className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     title: 'Tested on Arrival',
     desc: 'Laboratory testing in line with Qatar food-safety requirements.',
   },
   {
     step: '3',
-    icon: <Truck className="w-5 h-5 text-[#063B27]" aria-hidden="true" />,
+    icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     title: 'Protected Through Cold Chain',
     desc: 'Temperature-controlled storage and transport preserve freshness.',
   },
@@ -59,8 +59,8 @@ export function QualityTimeline() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
   return (
-    <section id="quality" className="py-10 sm:py-12 bg-white overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-8 space-y-10">
+    <section id="quality" className="py-16 sm:py-20 bg-white overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
         {/* Split Layout: Left is Timeline, Right is Official Certificates Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -71,12 +71,12 @@ export function QualityTimeline() {
             {/* Headings */}
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
-                <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#38A84E] block">
-                  CERTIFICATIONS & QUALITY
+                <Award className="w-4 h-4 text-[#168849]" aria-hidden="true" />
+                <span className="font-sans text-xs font-bold uppercase tracking-widest text-[#168849] block">
+                  CERTIFICATIONS &amp; QUALITY
                 </span>
               </div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#063B27] tracking-tight">
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#111814] tracking-tight">
                 Quality You Can Trust.
               </h2>
               <p className="font-sans text-[#5C6662] text-xs sm:text-sm leading-relaxed max-w-2xl">
@@ -87,7 +87,7 @@ export function QualityTimeline() {
             {/* Horizontal Timeline */}
             <div className="relative pt-4 pb-2">
               {/* Connector line */}
-              <div className="hidden md:block absolute top-10 left-[8%] right-[8%] h-0.5 bg-[#4AA658]/30 z-0" />
+              <div className="hidden md:block absolute top-10 left-[8%] right-[8%] h-0.5 bg-[#168849]/20 z-0" />
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
                 {timelineSteps.map((item, index) => (
@@ -100,7 +100,7 @@ export function QualityTimeline() {
                     className="flex flex-col items-center md:items-start text-center md:text-left space-y-3 group"
                   >
                     {/* Circle Icon Badge */}
-                    <div className="w-12 h-12 rounded-full bg-[#F4F6F5] border border-black/5 flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-200">
+                    <div className="w-12 h-12 rounded-full bg-[#F4F6F5] border border-black/5 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-200">
                       {item.icon}
                     </div>
 
@@ -110,7 +110,7 @@ export function QualityTimeline() {
                         <span className="w-4 h-4 rounded-full border border-black/20 flex items-center justify-center font-mono text-[9px] font-bold text-[#5C6662]">
                           {item.step}
                         </span>
-                        <h3 className="font-display font-extrabold text-sm text-[#063B27]">
+                        <h3 className="font-display font-bold text-sm text-[#111814]">
                           {item.title}
                         </h3>
                       </div>
@@ -135,7 +135,7 @@ export function QualityTimeline() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 onClick={() => setSelectedCert(cert)}
-                className="group relative bg-[#F4F6F5] border border-black/10 rounded-2xl p-3 cursor-pointer overflow-hidden shadow-sm hover:shadow-xl hover:border-[#38A84E]/40 transition-all duration-300 w-full sm:w-1/2 max-w-[240px]"
+                className="group relative bg-[#F4F6F5] border border-black/10 rounded-2xl p-3 cursor-pointer overflow-hidden shadow-xs hover:shadow-xl hover:border-[#168849]/40 transition-all duration-300 w-full sm:w-1/2 max-w-[240px]"
               >
                 {/* Certificate Preview Image */}
                 <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-white border border-black/5 flex items-center justify-center">
@@ -149,7 +149,7 @@ export function QualityTimeline() {
                   
                   {/* Zoom Overlay Icon */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-white/90 text-[#063B27] flex items-center justify-center shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                    <div className="w-10 h-10 rounded-full bg-white/90 text-[#168849] flex items-center justify-center shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300">
                       <ZoomIn className="w-5 h-5" />
                     </div>
                   </div>
@@ -157,7 +157,7 @@ export function QualityTimeline() {
 
                 {/* Certificate Title Badge */}
                 <div className="pt-3 pb-1 px-1 text-center">
-                  <h4 className="font-display font-extrabold text-xs text-[#063B27] truncate group-hover:text-[#38A84E] transition-colors">
+                  <h4 className="font-display font-bold text-xs text-[#111814] truncate group-hover:text-[#168849] transition-colors">
                     {cert.title}
                   </h4>
                   <p className="font-sans text-[10px] text-[#5C6662] truncate pt-0.5">
@@ -192,7 +192,7 @@ export function QualityTimeline() {
               {/* Modal Header */}
               <div className="flex items-center justify-between border-b border-neutral-200 pb-3 px-2">
                 <div>
-                  <h3 className="font-display font-extrabold text-lg sm:text-xl text-[#063B27]">
+                  <h3 className="font-display font-bold text-lg sm:text-xl text-[#111814]">
                     {selectedCert.title}
                   </h3>
                   <p className="font-sans text-xs text-neutral-500">
@@ -201,7 +201,7 @@ export function QualityTimeline() {
                 </div>
                 <button
                   onClick={() => setSelectedCert(null)}
-                  className="w-9 h-9 rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-black flex items-center justify-center transition-colors"
+                  className="w-9 h-9 rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-black flex items-center justify-center transition-colors cursor-pointer"
                   aria-label="Close certificate modal"
                 >
                   <X className="w-5 h-5" />
