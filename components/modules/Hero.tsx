@@ -106,7 +106,7 @@ export function Hero() {
 
           {/* DIV 2: Subheading & CTA Button */}
           <div className="hero-sub-text w-full lg:w-[36%] flex flex-col justify-end items-start gap-6 text-left">
-            <p className="font-sans text-sm sm:text-base text-gray-300 leading-relaxed max-w-[48ch] text-left">
+            <p className="font-sans text-xs sm:text-[14px] text-gray-300 leading-relaxed max-w-[46ch] text-justify">
               Nairat Food imports, distributes and delivers premium fresh fruit and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
             </p>
 

@@ -79,7 +79,7 @@ export function QualityTimeline() {
               <h2 className="font-display type-h2 font-medium text-[#111814]">
                 Quality You Can Trust.
               </h2>
-              <p className="font-sans text-base sm:text-[17px] text-[#6B7280] leading-[1.6] max-w-[55ch]">
+              <p className="font-sans text-sm sm:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch]">
                 Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.
               </p>
             </div>

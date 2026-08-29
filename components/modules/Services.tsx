@@ -110,7 +110,7 @@ export function Services() {
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="service-header-item font-sans text-base sm:text-[17px] text-[#6B7280] leading-[1.6] text-left max-w-[55ch]">
+            <p className="service-header-item font-sans text-sm sm:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch]">
               From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.
             </p>
             <div className="service-header-item self-start lg:self-end">

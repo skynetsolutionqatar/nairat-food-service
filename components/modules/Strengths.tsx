@@ -124,7 +124,7 @@ export function Strengths() {
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="strength-header-item font-sans text-base sm:text-[17px] text-[#6B7280] leading-[1.6] text-left max-w-[55ch]">
+            <p className="strength-header-item font-sans text-sm sm:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch]">
               From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.
             </p>
             <div className="strength-header-item self-start lg:self-end">
