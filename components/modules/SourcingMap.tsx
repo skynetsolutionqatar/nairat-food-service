@@ -17,7 +17,7 @@ const sourcingCountries: string[] = [
 ];
 
 const globeMarkers: Marker[] = [
-  { id: 'uae', location: [25.2048, 55.2708], label: 'UAE Hub' },
+  { id: 'uae', location: [25.2048, 55.2708], label: 'Qatar & Gulf Hub' },
   { id: 'saudi', location: [24.7136, 46.6753], label: 'Saudi Arabia' },
   { id: 'jordan', location: [31.9539, 35.9106], label: 'Jordan' },
   { id: 'egypt', location: [30.0444, 31.2357], label: 'Egypt' },
@@ -28,16 +28,16 @@ const globeMarkers: Marker[] = [
 ];
 
 const globeArcs: Arc[] = [
-  { id: 'india-uae', from: [20.5937, 78.9629], to: [25.2048, 55.2708], label: 'India → Gulf' },
-  { id: 'egypt-uae', from: [30.0444, 31.2357], to: [25.2048, 55.2708], label: 'Egypt → Gulf' },
-  { id: 'turkey-uae', from: [39.9334, 32.8597], to: [25.2048, 55.2708], label: 'Turkey → Gulf' },
-  { id: 'jordan-uae', from: [31.9539, 35.9106], to: [25.2048, 55.2708], label: 'Jordan → Gulf' },
+  { id: 'india-uae', from: [20.5937, 78.9629], to: [25.2048, 55.2708], label: 'India → Qatar' },
+  { id: 'egypt-uae', from: [30.0444, 31.2357], to: [25.2048, 55.2708], label: 'Egypt → Qatar' },
+  { id: 'turkey-uae', from: [39.9334, 32.8597], to: [25.2048, 55.2708], label: 'Turkey → Qatar' },
+  { id: 'jordan-uae', from: [31.9539, 35.9106], to: [25.2048, 55.2708], label: 'Jordan → Qatar' },
 ];
 
 export function SourcingMap(): React.ReactNode {
   return (
-    <section id="quality" className="py-10 sm:py-12 bg-white text-neutral-900 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8">
+    <section id="sourcing" className="py-16 sm:py-20 bg-white text-neutral-900 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-12">
           {/* Left Column: Interactive 3D Cobe Globe (40% / 5 cols) */}
           <div className="lg:col-span-5 relative flex items-center justify-center w-full max-w-md mx-auto lg:max-w-none">
@@ -45,9 +45,9 @@ export function SourcingMap(): React.ReactNode {
               <Globe
                 markers={globeMarkers}
                 arcs={globeArcs}
-                markerColor={[0.22, 0.66, 0.31]}
+                markerColor={[0.086, 0.533, 0.286]}
                 baseColor={[0.95, 0.96, 0.95]}
-                arcColor={[0.22, 0.66, 0.31]}
+                arcColor={[0.086, 0.533, 0.286]}
                 glowColor={[0.92, 0.95, 0.93]}
                 dark={0}
                 mapBrightness={8}
@@ -63,15 +63,15 @@ export function SourcingMap(): React.ReactNode {
           {/* Right Column: Sourcing Text & Country Pills (60% / 7 cols) */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-2">
-              <Leaf className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
-              <span className="font-sans text-xs font-extrabold uppercase tracking-widest text-[#38A84E]">
+              <Leaf className="w-4 h-4 text-[#168849]" aria-hidden="true" />
+              <span className="font-sans text-xs font-extrabold uppercase tracking-widest text-[#168849]">
                 SOURCING COUNTRIES
               </span>
             </div>
 
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#111827] tracking-tight leading-[1.15]">
               Sourced From Around <br />
-              the World.
+              <span className="text-[#168849]">the World.</span>
             </h2>
 
             {/* Country Pill Badges Grid */}
@@ -79,13 +79,13 @@ export function SourcingMap(): React.ReactNode {
               {sourcingCountries.map((countryName) => (
                 <span
                   key={countryName}
-                  className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-neutral-200 bg-neutral-50/80 text-neutral-600 shadow-2xs hover:bg-neutral-100 transition-colors duration-200"
+                  className="font-sans text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-neutral-200 bg-neutral-50/80 text-neutral-700 shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] transition-all duration-200 cursor-default"
                 >
                   {countryName}
                 </span>
               ))}
 
-              <span className="font-sans text-xs sm:text-sm font-extrabold uppercase tracking-wider px-6 py-2.5 rounded-full bg-[#38A84E] text-white shadow-md shadow-[#38A84E]/20">
+              <span className="font-sans text-xs sm:text-sm font-extrabold uppercase tracking-wider px-6 py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20">
                 AND BEYOND
               </span>
             </div>
