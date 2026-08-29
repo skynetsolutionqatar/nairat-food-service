@@ -1,25 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Urbanist:ital,wght@0,300..900;1,300..900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-brand-forest: #063B27;
-  --color-brand-forest-card: #143823;
-  --color-brand-forest-light: #1E4F32;
-  --color-brand-lime: #4AA658;
-  --color-brand-saffron: #E2B93C;
-  --color-neutral-bg-base: #FFFFFF;
-  --color-neutral-bg-soft: #F4F6F5;
-  --color-neutral-text-dark: #1C2321;
-  --color-neutral-text-muted: #5C6662;
+  --color-brand-forest: #0A2618;
+  --color-brand-forest-dark: #061A10;
+  --color-brand-forest-card: #0F3321;
+  --color-brand-green: #168849;
+  --color-brand-lime: #D4F056;
+  --color-brand-lime-hover: #C5E030;
+  --color-neutral-bg-soft: #F6F8F5;
+  --color-neutral-dark: #111814;
+  --color-neutral-muted: #5C6662;
 
-  --font-sans: var(--font-urbanist), "Urbanist", sans-serif;
+  --font-sans: var(--font-urbanist), "Urbanist", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: var(--font-urbanist), "Urbanist", sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
   --font-mono: var(--font-mono), monospace;
 }
 
 :root {
   --background: #FFFFFF;
-  --foreground: #1C2321;
+  --foreground: #111814;
 }
 
 body {

@@ -407,9 +407,8 @@ export function Products() {
                   {cat.productsRow1.map((item, itemIndex) => (
                     <div
                       key={item.id}
-                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${
-                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                      }`}
+                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                        }`}
                     >
                       {/* Full-bleed Product Image with GSAP Scroll Parallax */}
                       <div
@@ -454,9 +453,8 @@ export function Products() {
                   {cat.productsRow2.map((item, itemIndex) => (
                     <div
                       key={item.id}
-                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${
-                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                      }`}
+                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                        }`}
                     >
                       {/* Full-bleed Product Image with GSAP Scroll Parallax */}
                       <div

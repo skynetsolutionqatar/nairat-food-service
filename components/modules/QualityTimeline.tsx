@@ -61,18 +61,18 @@ export function QualityTimeline() {
   return (
     <section id="quality" className="py-10 sm:py-12 bg-white overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 md:px-8 space-y-10">
-        
+
         {/* Split Layout: Left is Timeline, Right is Official Certificates Showcase */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* Left Column: Timeline details (lg:col-span-7) */}
           <div className="lg:col-span-7 space-y-8">
-            
+
             {/* Headings */}
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <Award className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
-                <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#38A84E] block">
+                <Award className="w-4 h-4 text-[#168849]" aria-hidden="true" />
+                <span className="font-sans text-[11px] font-extrabold uppercase tracking-widest text-[#168849] block">
                   CERTIFICATIONS & QUALITY
                 </span>
               </div>
@@ -146,7 +146,7 @@ export function QualityTimeline() {
                     className="object-contain p-1 group-hover:scale-105 transition-transform duration-500"
                     sizes="(max-width: 768px) 100vw, 240px"
                   />
-                  
+
                   {/* Zoom Overlay Icon */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="w-10 h-10 rounded-full bg-white/90 text-[#063B27] flex items-center justify-center shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300">

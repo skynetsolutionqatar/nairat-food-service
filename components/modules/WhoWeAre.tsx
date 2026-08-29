@@ -102,28 +102,25 @@ export function WhoWeAre() {
           {metricCards.map((card) => (
             <div
               key={card.number}
-              className={`metric-card rounded-2xl p-7 flex flex-col justify-between space-y-6 transition-all duration-300 ${
-                card.isDark
+              className={`metric-card rounded-2xl p-7 flex flex-col justify-between space-y-6 transition-all duration-300 ${card.isDark
                   ? 'bg-[#063B27] text-white shadow-md'
                   : 'bg-[#F4F6F5] text-[#1C2321] border border-black/5 hover:border-black/10'
-              }`}
+                }`}
             >
               {/* Number Header */}
               <div className="flex items-center justify-between">
                 <span
-                  className={`font-display font-extrabold text-4xl lg:text-5xl leading-none ${
-                    card.isDark ? 'text-white' : 'text-[#1C2321]'
-                  }`}
+                  className={`font-display font-extrabold text-4xl lg:text-5xl leading-none ${card.isDark ? 'text-white' : 'text-[#1C2321]'
+                    }`}
                 >
                   {card.number}
                 </span>
 
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center border ${
-                    card.isDark
+                  className={`w-10 h-10 rounded-full flex items-center justify-center border ${card.isDark
                       ? 'bg-white/10 border-white/10'
                       : 'bg-white border-black/5'
-                  }`}
+                    }`}
                 >
                   {card.icon}
                 </div>
@@ -132,16 +129,14 @@ export function WhoWeAre() {
               {/* Title & Description */}
               <div className="space-y-2">
                 <h3
-                  className={`font-display font-extrabold text-lg tracking-tight ${
-                    card.isDark ? 'text-white' : 'text-[#063B27]'
-                  }`}
+                  className={`font-display font-extrabold text-lg tracking-tight ${card.isDark ? 'text-white' : 'text-[#063B27]'
+                    }`}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className={`font-sans text-xs sm:text-sm leading-relaxed ${
-                    card.isDark ? 'text-white/80' : 'text-[#5C6662]'
-                  }`}
+                  className={`font-sans text-xs sm:text-sm leading-relaxed ${card.isDark ? 'text-white/80' : 'text-[#5C6662]'
+                    }`}
                 >
                   {card.description}
                 </p>
