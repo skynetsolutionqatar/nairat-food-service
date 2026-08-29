@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Figtree, JetBrains_Mono } from "next/font/google";
+import { Urbanist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const figtree = Figtree({
-  variable: "--font-figtree",
+const urbanist = Urbanist({
+  variable: "--font-urbanist",
   subsets: ["latin"],
   display: "swap",
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -24,13 +24,17 @@ export const metadata: Metadata = {
   description: "Premium fresh produce importer, wholesaler, and cold-chain distributor in Qatar.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
-      className={`${figtree.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${urbanist.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col font-sans bg-white text-[#1C2321]">
         <Providers>
           <Navbar />
           <main className="flex-grow">{children}</main>
