@@ -58,9 +58,9 @@ export function Cta(): React.ReactNode {
       </div>
 
       {/* Content Container Aligned Exactly with Other Sections */}
-      <div className="relative z-10 max-w-[1440px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+      <div className="relative z-10 max-w-[1440px] 2xl:max-w-[1620px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 2xl:py-32">
         
-        <div className="max-w-3xl space-y-5 sm:space-y-6">
+        <div className="max-w-3xl 2xl:max-w-4xl space-y-5 sm:space-y-6 2xl:space-y-8">
 
           {/* Headline */}
           <h2 className="font-display type-h2 font-medium text-white text-left">

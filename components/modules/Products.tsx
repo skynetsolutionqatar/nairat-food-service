@@ -343,11 +343,11 @@ export function Products() {
   );
 
   return (
-    <section id="products" ref={containerRef} className="py-10 sm:py-12 bg-white text-neutral-900 overflow-hidden">
-      <div className="w-full space-y-10 px-0">
+    <section id="products" ref={containerRef} className="py-16 sm:py-20 2xl:py-28 bg-white text-neutral-900 overflow-hidden">
+      <div className="w-full space-y-10 2xl:space-y-14 px-0">
 
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 px-4">
+        <div className="max-w-3xl 2xl:max-w-4xl mx-auto text-center space-y-3 px-4">
           <div className="product-header-item flex items-center justify-center gap-2">
             <Leaf className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
             <span className="font-sans type-eyebrow text-[#111814]">
@@ -358,23 +358,6 @@ export function Products() {
           <h2 className="product-header-item font-display type-h2 font-medium text-[#111814]">
             Freshness, Sourced From Around the World.
           </h2>
-
-          {/* 4 Category Pill Tabs */}
-          {/* <div className="product-header-item flex flex-wrap justify-center gap-2 sm:gap-3 pt-3">
-            {categoriesData.map((cat, idx) => (
-              <button
-                key={cat.id}
-                onClick={() => setCategoryIndex(idx)}
-                className={`font-sans text-xs sm:text-sm font-extrabold py-2.5 px-5 sm:px-6 rounded-full transition-all duration-300 ${
-                  categoryIndex === idx
-                    ? 'bg-[#063B27] text-white shadow-md scale-105'
-                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900 border border-black/5'
-                }`}
-              >
-                {`${idx + 1}. ${cat.label}`}
-              </button>
-            ))}
-          </div> */}
         </div>
 
         {/* 100% Edge-to-Edge Full Width Product Showcase Gallery Container */}
@@ -384,7 +367,7 @@ export function Products() {
           className="product-gallery-wrapper relative w-full rounded-none overflow-hidden bg-neutral-950 flex flex-col gap-0"
         >
           {/* ROW 1: Left Vertical Bar + Horizontal Card Scroll Track */}
-          <div className="flex flex-row items-stretch h-48 xs:h-56 sm:h-72 md:h-96 lg:h-[480px] xl:h-[520px] w-full overflow-hidden">
+          <div className="flex flex-row items-stretch h-48 xs:h-56 sm:h-72 md:h-96 lg:h-[480px] xl:h-[520px] 2xl:h-[580px] w-full overflow-hidden">
             {/* Left Colored Sidebar Bar */}
             <div
               className={`w-7 xs:w-9 sm:w-14 md:w-16 lg:w-20 ${activeCategory.leftBarColor} flex items-center justify-center shrink-0 select-none overflow-hidden transition-colors duration-500`}

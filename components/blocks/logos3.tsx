@@ -77,7 +77,7 @@ const Logos3 = ({
         </span>
       </div>
       <div className="pt-3 sm:pt-4">
-        <div className="relative mx-auto flex items-center justify-center max-w-[1440px] px-6">
+        <div className="relative mx-auto flex items-center justify-center max-w-[1440px] 2xl:max-w-[1620px] px-6 2xl:px-8">
           <Carousel
             opts={{ loop: true, align: "start" }}
             plugins={[

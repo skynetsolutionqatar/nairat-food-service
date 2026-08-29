@@ -36,12 +36,12 @@ const globeArcs: Arc[] = [
 
 export function SourcingMap(): React.ReactNode {
   return (
-    <section id="sourcing" className="py-16 sm:py-20 bg-white text-neutral-900 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-12">
+    <section id="sourcing" className="py-16 sm:py-20 2xl:py-28 bg-white text-neutral-900 overflow-hidden">
+      <div className="max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-10 lg:gap-12 2xl:gap-16">
           {/* Left Column: Interactive 3D Cobe Globe (40% / 5 cols) */}
           <div className="lg:col-span-5 relative flex items-center justify-center w-full max-w-md mx-auto lg:max-w-none">
-            <div className="w-full aspect-square max-w-[420px]">
+            <div className="w-full aspect-square max-w-[420px] 2xl:max-w-[480px]">
               <Globe
                 markers={globeMarkers}
                 arcs={globeArcs}
@@ -61,7 +61,7 @@ export function SourcingMap(): React.ReactNode {
           </div>
 
           {/* Right Column: Sourcing Text & Country Pills (60% / 7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-6 2xl:space-y-8">
             <div className="flex items-center gap-2">
               <Leaf className="w-4 h-4 text-[#168849]" aria-hidden="true" />
               <span className="font-sans type-eyebrow text-[#168849]">
@@ -75,17 +75,17 @@ export function SourcingMap(): React.ReactNode {
             </h2>
 
             {/* Country Pill Badges Grid */}
-            <div className="flex flex-wrap gap-2.5 pt-2 max-w-2xl">
+            <div className="flex flex-wrap gap-2.5 2xl:gap-3.5 pt-2 max-w-2xl 2xl:max-w-3xl">
               {sourcingCountries.map((countryName) => (
                 <span
                   key={countryName}
-                  className="font-sans text-xs sm:text-[13px] font-semibold uppercase tracking-[0.06em] px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-neutral-200 bg-neutral-50 text-[#6B7280] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] transition-all duration-200 cursor-default"
+                  className="font-sans text-xs sm:text-[13px] 2xl:text-sm font-semibold uppercase tracking-[0.06em] px-4 sm:px-5 2xl:px-6 py-2 sm:py-2.5 2xl:py-3 rounded-full border border-neutral-200 bg-neutral-50 text-[#6B7280] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] transition-all duration-200 cursor-default"
                 >
                   {countryName}
                 </span>
               ))}
 
-              <span className="font-sans text-xs sm:text-[13px] font-semibold uppercase tracking-[0.06em] px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20">
+              <span className="font-sans text-xs sm:text-[13px] 2xl:text-sm font-semibold uppercase tracking-[0.06em] px-5 sm:px-6 2xl:px-7 py-2 sm:py-2.5 2xl:py-3 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20">
                 AND BEYOND
               </span>
             </div>

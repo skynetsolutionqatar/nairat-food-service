@@ -93,10 +93,10 @@ export function Services() {
   );
 
   return (
-    <section id="services" ref={containerRef} className="py-10 sm:py-12 bg-white">
-      <div className="max-w-[1440px] mx-auto px-6 md:px-8 space-y-12">
+    <section id="services" ref={containerRef} className="py-16 sm:py-20 2xl:py-28 bg-white">
+      <div className="max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-6 md:px-8 space-y-12 2xl:space-y-16">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 2xl:gap-12 items-end">
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-4">
             <span className="service-header-item font-sans type-eyebrow text-[#111814] block">
@@ -110,7 +110,7 @@ export function Services() {
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="service-header-item font-sans text-sm sm:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch]">
+            <p className="service-header-item font-sans text-sm sm:text-[15px] 2xl:text-[16px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch] 2xl:max-w-[56ch]">
               From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.
             </p>
             <div className="service-header-item self-start lg:self-end">
@@ -122,14 +122,14 @@ export function Services() {
         </div>
 
         {/* 3 Services Cards Grid */}
-        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10">
+        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 2xl:gap-12">
           {serviceCards.map((service) => (
             <div
               key={service.id}
               className="service-card-item flex flex-col space-y-4 group"
             >
               {/* Top Rounded Image */}
-              <div className="relative w-full h-56 sm:h-60 md:h-64 rounded-2xl overflow-hidden bg-neutral-100">
+              <div className="relative w-full h-56 sm:h-60 md:h-64 2xl:h-76 rounded-2xl overflow-hidden bg-neutral-100">
                 <div
                   className="service-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                   style={{ backgroundImage: `url('${service.imageUrl}')` }}
@@ -139,10 +139,10 @@ export function Services() {
 
               {/* Card Text & Link below image */}
               <div className="space-y-3 pt-1">
-                <h3 className="font-display font-semibold text-xl sm:text-2xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200">
+                <h3 className="font-display font-semibold text-xl sm:text-2xl 2xl:text-3xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200">
                   {service.title}
                 </h3>
-                <p className="font-sans text-sm text-[#6B7280] leading-[1.6]">
+                <p className="font-sans text-sm 2xl:text-base text-[#6B7280] leading-[1.6]">
                   {service.desc}
                 </p>
                 <div className="pt-2">
