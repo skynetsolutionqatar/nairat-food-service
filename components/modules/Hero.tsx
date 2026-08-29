@@ -98,7 +98,7 @@ export function Hero() {
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-14 w-full">
           {/* DIV 1: Heading */}
           <div className="w-full lg:w-[64%] text-left">
-            <h1 className="font-display type-display font-medium text-white text-left">
+            <h1 className="font-display type-display font-semibold text-white text-left tracking-[-0.04em] drop-shadow-[0_2px_10px_rgba(0,0,0,0.3)]">
               <span className="hero-title-line block sm:whitespace-nowrap">Fresh from the Source.</span>
               <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2">Delivered Across Qatar.</span>
             </h1>
