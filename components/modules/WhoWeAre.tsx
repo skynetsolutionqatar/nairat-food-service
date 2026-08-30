@@ -70,10 +70,10 @@ export function WhoWeAre() {
   );
 
   return (
-    <section id="about" ref={containerRef} className="py-16 sm:py-20 2xl:py-28 bg-white overflow-hidden">
-      <div className="max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12 2xl:space-y-16">
+    <section id="about" ref={containerRef} className="py-14 sm:py-16 2xl:py-22 bg-white overflow-hidden">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
         {/* Left / Top Section Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 2xl:gap-12 items-end border-b border-neutral-200/90 pb-8 sm:pb-10 2xl:pb-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end border-b border-neutral-200/90 pb-8 sm:pb-9 2xl:pb-10">
           <div className="lg:col-span-7 space-y-3">
             <span className="who-header-item font-sans type-eyebrow text-[#168849] block">
               WHO WE ARE
@@ -85,8 +85,8 @@ export function WhoWeAre() {
             </h2>
           </div>
 
-          <div className="lg:col-span-5 space-y-5 2xl:space-y-6 flex flex-col items-start lg:items-end">
-            <p className="who-header-item font-sans text-sm sm:text-[15px] 2xl:text-[16px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch] 2xl:max-w-[56ch]">
+          <div className="lg:col-span-5 space-y-4 2xl:space-y-5 flex flex-col items-start lg:items-end">
+            <p className="who-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
               Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.
             </p>
 
@@ -97,11 +97,11 @@ export function WhoWeAre() {
         </div>
 
         {/* 3 Metric Cards Horizontal Grid */}
-        <div className="metric-cards-grid grid grid-cols-1 md:grid-cols-3 gap-6 2xl:gap-8 pt-2">
+        <div className="metric-cards-grid grid grid-cols-1 md:grid-cols-3 gap-5 2xl:gap-6 pt-1">
           {metricCards.map((card) => (
             <div
               key={card.number}
-              className={`metric-card rounded-3xl p-8 2xl:p-10 min-h-[220px] 2xl:min-h-[260px] flex flex-col justify-between space-y-6 transition-all duration-300 ${
+              className={`metric-card rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-all duration-300 ${
                 card.isDark
                   ? 'bg-[#0A2618] text-white shadow-md'
                   : 'bg-[#F6F8F5] text-[#111814] border border-neutral-200/80 hover:border-neutral-300'
@@ -110,7 +110,7 @@ export function WhoWeAre() {
               {/* Number Header */}
               <div className="flex items-center justify-between">
                 <span
-                  className={`font-display font-semibold text-4xl lg:text-5xl 2xl:text-6xl leading-none tracking-[-0.03em] ${
+                  className={`font-display font-semibold text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em] ${
                     card.isDark ? 'text-white' : 'text-[#111814]'
                   }`}
                 >
@@ -118,7 +118,7 @@ export function WhoWeAre() {
                 </span>
 
                 <div
-                  className={`w-11 h-11 2xl:w-13 2xl:h-13 rounded-2xl flex items-center justify-center border ${
+                  className={`w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center border ${
                     card.isDark
                       ? 'bg-white/10 border-white/15'
                       : 'bg-white border-neutral-200 shadow-2xs'
@@ -129,16 +129,16 @@ export function WhoWeAre() {
               </div>
 
               {/* Title & Description */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <h3
-                  className={`font-display font-semibold text-xl 2xl:text-2xl tracking-[-0.015em] leading-snug ${
+                  className={`font-display font-semibold text-lg 2xl:text-xl tracking-[-0.015em] leading-snug ${
                     card.isDark ? 'text-white' : 'text-[#111814]'
                   }`}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className={`font-sans text-sm 2xl:text-base leading-[1.6] ${
+                  className={`font-sans text-xs sm:text-[13px] 2xl:text-sm leading-[1.55] ${
                     card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
                   }`}
                 >

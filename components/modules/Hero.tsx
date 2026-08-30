@@ -93,20 +93,20 @@ export function Hero() {
       {/* Main Content Container */}
       <div
         ref={contentRef}
-        className="relative max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-4 sm:px-6 2xl:px-8 pt-36 pb-16 lg:pb-20 2xl:pb-24 z-10 w-full"
+        className="relative max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 pb-14 lg:pb-16 2xl:pb-20 z-10 w-full"
       >
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-14 2xl:gap-20 w-full">
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-10 2xl:gap-14 w-full">
           {/* DIV 1: Heading */}
-          <div className="w-full lg:w-[65%] text-left">
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-[78px] xl:text-[86px] 2xl:text-[96px] font-bold text-white text-left tracking-[-0.045em] leading-[0.98] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
+          <div className="w-full lg:w-[62%] text-left">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[62px] xl:text-[70px] 2xl:text-[76px] font-bold text-white text-left tracking-[-0.04em] leading-[1.01] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
               <span className="hero-title-line block sm:whitespace-nowrap">Fresh from the Source.</span>
-              <span className="hero-title-line block sm:whitespace-nowrap mt-1 sm:mt-2">Delivered Across Qatar.</span>
+              <span className="hero-title-line block sm:whitespace-nowrap mt-1 sm:mt-1.5">Delivered Across Qatar.</span>
             </h1>
           </div>
 
           {/* DIV 2: Subheading & CTA Button */}
-          <div className="hero-sub-text w-full lg:w-[35%] flex flex-col justify-end items-start gap-6 2xl:gap-8 text-left">
-            <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-gray-300 leading-relaxed max-w-[46ch] 2xl:max-w-[50ch] text-justify">
+          <div className="hero-sub-text w-full lg:w-[38%] flex flex-col justify-end items-start gap-5 2xl:gap-6 text-left">
+            <p className="font-sans text-xs sm:text-[13px] 2xl:text-[14px] text-gray-300 leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-justify">
               Nairat Food imports, distributes and delivers premium fresh fruit and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
             </p>
 

@@ -59,17 +59,17 @@ export function QualityTimeline() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
   return (
-    <section id="quality" className="pt-8 sm:pt-10 2xl:pt-14 pb-14 sm:pb-18 2xl:pb-24 bg-white overflow-hidden">
-      <div className="max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-14">
+    <section id="quality" className="pt-8 sm:pt-10 2xl:pt-12 pb-14 sm:pb-16 2xl:pb-20 bg-white overflow-hidden">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 2xl:space-y-10">
         
         {/* Split Layout: Left is Timeline, Right is Official Certificates Showcase */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 2xl:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 2xl:gap-14 items-center">
           
           {/* Left Column: Timeline details (lg:col-span-7) */}
-          <div className="lg:col-span-7 space-y-8 2xl:space-y-10">
+          <div className="lg:col-span-7 space-y-6 2xl:space-y-8">
             
             {/* Headings */}
-            <div className="space-y-3 2xl:space-y-4">
+            <div className="space-y-2.5 2xl:space-y-3">
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-[#168849]" aria-hidden="true" />
                 <span className="font-sans type-eyebrow text-[#168849] block">
@@ -79,17 +79,17 @@ export function QualityTimeline() {
               <h2 className="font-display type-h2 font-medium text-[#111814]">
                 Quality You Can Trust.
               </h2>
-              <p className="font-sans text-sm sm:text-[15px] 2xl:text-[16px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch] 2xl:max-w-[56ch]">
+              <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
                 Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.
               </p>
             </div>
 
             {/* Horizontal Timeline */}
-            <div className="relative pt-4 pb-2">
+            <div className="relative pt-3 pb-1">
               {/* Connector line */}
-              <div className="hidden md:block absolute top-10 left-[8%] right-[8%] h-0.5 bg-[#168849]/20 z-0" />
+              <div className="hidden md:block absolute top-9 left-[8%] right-[8%] h-0.5 bg-[#168849]/20 z-0" />
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 2xl:gap-8 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 2xl:gap-6 relative z-10">
                 {timelineSteps.map((item, index) => (
                   <motion.div
                     key={item.step}
@@ -97,24 +97,24 @@ export function QualityTimeline() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.12 }}
-                    className="flex flex-col items-center md:items-start text-center md:text-left space-y-3 group"
+                    className="flex flex-col items-center md:items-start text-center md:text-left space-y-2.5 group"
                   >
                     {/* Circle Icon Badge */}
-                    <div className="w-12 h-12 2xl:w-14 2xl:h-14 rounded-full bg-[#F4F6F5] border border-black/5 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-200">
+                    <div className="w-11 h-11 2xl:w-13 2xl:h-13 rounded-full bg-[#F4F6F5] border border-black/5 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-200">
                       {item.icon}
                     </div>
 
                     {/* Step label + title */}
                     <div className="space-y-1">
-                      <div className="flex items-center gap-2 justify-center md:justify-start">
+                      <div className="flex items-center gap-1.5 justify-center md:justify-start">
                         <span className="w-4 h-4 rounded-full border border-black/20 flex items-center justify-center font-mono text-[9px] font-bold text-[#6B7280]">
                           {item.step}
                         </span>
-                        <h3 className="font-display font-semibold text-sm sm:text-base 2xl:text-lg text-[#111814] tracking-[-0.01em]">
+                        <h3 className="font-display font-semibold text-xs sm:text-sm 2xl:text-base text-[#111814] tracking-[-0.01em]">
                           {item.title}
                         </h3>
                       </div>
-                      <p className="font-sans text-xs sm:text-sm 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
+                      <p className="font-sans text-[11px] sm:text-xs 2xl:text-[13px] text-[#6B7280] leading-[1.55]">
                         {item.desc}
                       </p>
                     </div>
@@ -126,7 +126,7 @@ export function QualityTimeline() {
           </div>
 
           {/* Right Column: Official Certificates Preview (lg:col-span-5) */}
-          <div className="lg:col-span-5 flex flex-col sm:flex-row gap-5 2xl:gap-6 justify-center items-center lg:justify-end">
+          <div className="lg:col-span-5 flex flex-col sm:flex-row gap-4 2xl:gap-5 justify-center items-center lg:justify-end">
             {certificates.map((cert, index) => (
               <motion.div
                 key={cert.id}
@@ -135,7 +135,7 @@ export function QualityTimeline() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
                 onClick={() => setSelectedCert(cert)}
-                className="group relative bg-[#F4F6F5] border border-black/10 rounded-2xl p-3 2xl:p-4 cursor-pointer overflow-hidden shadow-xs hover:shadow-xl hover:border-[#168849]/40 transition-all duration-300 w-full sm:w-1/2 max-w-[240px] 2xl:max-w-[290px]"
+                className="group relative bg-[#F4F6F5] border border-black/10 rounded-2xl p-3 2xl:p-3.5 cursor-pointer overflow-hidden shadow-xs hover:shadow-xl hover:border-[#168849]/40 transition-all duration-300 w-full sm:w-1/2 max-w-[210px] 2xl:max-w-[250px]"
               >
                 {/* Certificate Preview Image */}
                 <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-white border border-black/5 flex items-center justify-center">
@@ -144,23 +144,23 @@ export function QualityTimeline() {
                     alt={cert.title}
                     fill
                     className="object-contain p-1 group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 290px"
+                    sizes="(max-width: 768px) 100vw, 250px"
                   />
                   
                   {/* Zoom Overlay Icon */}
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="w-10 h-10 rounded-full bg-white/90 text-[#168849] flex items-center justify-center shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                      <ZoomIn className="w-5 h-5" />
+                    <div className="w-9 h-9 rounded-full bg-white/90 text-[#168849] flex items-center justify-center shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                      <ZoomIn className="w-4 h-4" />
                     </div>
                   </div>
                 </div>
 
                 {/* Certificate Title Badge */}
-                <div className="pt-3 pb-1 px-1 text-center">
-                  <h4 className="font-display font-semibold text-xs sm:text-sm 2xl:text-base text-[#111814] truncate group-hover:text-[#168849] transition-colors">
+                <div className="pt-2.5 pb-0.5 px-1 text-center">
+                  <h4 className="font-display font-semibold text-xs sm:text-sm text-[#111814] truncate group-hover:text-[#168849] transition-colors">
                     {cert.title}
                   </h4>
-                  <p className="font-sans text-[11px] 2xl:text-xs text-[#72807A] truncate pt-0.5">
+                  <p className="font-sans text-[10px] sm:text-[11px] text-[#72807A] truncate pt-0.5">
                     {cert.subtitle}
                   </p>
                 </div>

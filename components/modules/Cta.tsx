@@ -58,9 +58,9 @@ export function Cta(): React.ReactNode {
       </div>
 
       {/* Content Container Aligned Exactly with Other Sections */}
-      <div className="relative z-10 max-w-[1440px] 2xl:max-w-[1620px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 2xl:py-32">
+      <div className="relative z-10 max-w-[1140px] 2xl:max-w-[1240px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20 2xl:py-26">
         
-        <div className="max-w-3xl 2xl:max-w-4xl space-y-5 sm:space-y-6 2xl:space-y-8">
+        <div className="max-w-2xl 2xl:max-w-3xl space-y-4 sm:space-y-5 2xl:space-y-6">
 
           {/* Headline */}
           <h2 className="font-display type-h2 font-medium text-white text-left">
@@ -69,17 +69,17 @@ export function Cta(): React.ReactNode {
           </h2>
 
           {/* Flags + Subtext Row */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3.5">
             <div className="relative shrink-0">
               <Image
                 src="/cta/ctacontry.webp"
                 alt="Sourced Around the World country flags"
-                width={140}
-                height={44}
-                className="h-9 sm:h-11 w-auto object-contain"
+                width={130}
+                height={40}
+                className="h-8 sm:h-10 w-auto object-contain"
               />
             </div>
-            <div className="font-sans text-xs sm:text-sm text-white leading-snug">
+            <div className="font-sans text-xs sm:text-[13px] text-white leading-snug">
               <span className="block font-semibold text-white">Sourced Around the World.</span>
               <span className="block text-white/80">Delivered Across Qatar.</span>
             </div>
@@ -89,11 +89,11 @@ export function Cta(): React.ReactNode {
           <div className="pt-2 flex flex-wrap gap-4 items-center">
             <button
               onClick={() => setIsFormOpen((prev) => !prev)}
-              className="group inline-flex items-center gap-3 bg-[#168849] hover:bg-[#12753e] text-white font-sans text-sm font-semibold tracking-[-0.01em] pl-6 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-[#168849]/25 cursor-pointer active:scale-95"
+              className="group inline-flex items-center gap-3 bg-[#168849] hover:bg-[#12753e] text-white font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] pl-5 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-[#168849]/25 cursor-pointer active:scale-95"
             >
               <span>Contact Us</span>
-              <div className="w-8 h-8 rounded-full bg-white text-[#168849] flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
-                <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white text-[#168849] flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
+                <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
               </div>
             </button>
           </div>

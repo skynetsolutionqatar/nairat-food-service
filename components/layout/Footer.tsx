@@ -20,8 +20,8 @@ const footerNavLinks: FooterNavLink[] = [
 
 export function Footer() {
   return (
-    <footer className="bg-white text-[#111814] pt-14 2xl:pt-20 pb-8 2xl:pb-12 border-t border-neutral-200 overflow-hidden">
-      <div className="max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 2xl:space-y-14">
+    <footer className="bg-white text-[#111814] pt-12 2xl:pt-16 pb-8 2xl:pb-10 border-t border-neutral-200 overflow-hidden">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-8 2xl:space-y-10">
         
         {/* Top Section: Logo (Left) | "Go Fresh for Future" (Center) | CtaButton (Right) */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">

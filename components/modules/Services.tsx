@@ -93,12 +93,12 @@ export function Services() {
   );
 
   return (
-    <section id="services" ref={containerRef} className="py-16 sm:py-20 2xl:py-28 bg-white">
-      <div className="max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-6 md:px-8 space-y-12 2xl:space-y-16">
+    <section id="services" ref={containerRef} className="py-14 sm:py-16 2xl:py-22 bg-white">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 2xl:gap-12 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">
           {/* Left Headline */}
-          <div className="lg:col-span-7 space-y-4">
+          <div className="lg:col-span-7 space-y-3">
             <span className="service-header-item font-sans type-eyebrow text-[#111814] block">
               WHAT WE DO
             </span>
@@ -109,8 +109,8 @@ export function Services() {
           </div>
 
           {/* Right Paragraph & CTA Button */}
-          <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="service-header-item font-sans text-sm sm:text-[15px] 2xl:text-[16px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch] 2xl:max-w-[56ch]">
+          <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
+            <p className="service-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
               From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.
             </p>
             <div className="service-header-item self-start lg:self-end">
@@ -122,14 +122,14 @@ export function Services() {
         </div>
 
         {/* 3 Services Cards Grid */}
-        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 2xl:gap-12">
+        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 2xl:gap-8">
           {serviceCards.map((service) => (
             <div
               key={service.id}
-              className="service-card-item flex flex-col space-y-4 group"
+              className="service-card-item flex flex-col space-y-3.5 group"
             >
               {/* Top Rounded Image */}
-              <div className="relative w-full h-56 sm:h-60 md:h-64 2xl:h-76 rounded-2xl overflow-hidden bg-neutral-100">
+              <div className="relative w-full h-48 sm:h-52 md:h-56 2xl:h-64 rounded-2xl overflow-hidden bg-neutral-100">
                 <div
                   className="service-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
                   style={{ backgroundImage: `url('${service.imageUrl}')` }}
@@ -138,17 +138,17 @@ export function Services() {
               </div>
 
               {/* Card Text & Link below image */}
-              <div className="space-y-3 pt-1">
-                <h3 className="font-display font-semibold text-xl sm:text-2xl 2xl:text-3xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200">
+              <div className="space-y-2 pt-0.5">
+                <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200">
                   {service.title}
                 </h3>
-                <p className="font-sans text-sm 2xl:text-base text-[#6B7280] leading-[1.6]">
+                <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
                   {service.desc}
                 </p>
-                <div className="pt-2">
+                <div className="pt-1.5">
                   <a
                     href={service.actionHref}
-                    className="inline-flex items-center gap-2 font-sans text-sm font-semibold tracking-[-0.01em] text-[#111814] hover:text-[#168849] transition-colors group/link cursor-pointer"
+                    className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] text-[#111814] hover:text-[#168849] transition-colors group/link cursor-pointer"
                   >
                     <span>{service.actionText}</span>
                     <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />

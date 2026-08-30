@@ -107,12 +107,12 @@ export function Strengths() {
   );
 
   return (
-    <section id="strengths" ref={containerRef} className="py-16 sm:py-20 2xl:py-28 bg-white">
-      <div className="max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-6 md:px-8 space-y-12 2xl:space-y-16">
+    <section id="strengths" ref={containerRef} className="py-14 sm:py-16 2xl:py-22 bg-white">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 2xl:gap-12 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">
           {/* Left Headline */}
-          <div className="lg:col-span-7 space-y-4">
+          <div className="lg:col-span-7 space-y-3">
             <span className="strength-header-item font-sans type-eyebrow text-[#111814] block">
               WHY CHOOSE US
             </span>
@@ -123,8 +123,8 @@ export function Strengths() {
           </div>
 
           {/* Right Paragraph & CTA Button */}
-          <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-6">
-            <p className="strength-header-item font-sans text-sm sm:text-[15px] 2xl:text-[16px] text-[#6B7280] leading-[1.6] text-justify max-w-[52ch] 2xl:max-w-[56ch]">
+          <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
+            <p className="strength-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
               From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.
             </p>
             <div className="strength-header-item self-start lg:self-end">
@@ -136,13 +136,13 @@ export function Strengths() {
         </div>
 
         {/* Bento Grid: 2x2 Left Cards + 1 Tall Right Card */}
-        <div className="strengths-bento-grid grid grid-cols-1 lg:grid-cols-3 gap-5 2xl:gap-7 items-stretch">
+        <div className="strengths-bento-grid grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 2xl:gap-6 items-stretch">
           {/* Left 2x2 Grid */}
-          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5 2xl:gap-7">
+          <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 2xl:gap-6">
             {strengthsList.map((card) => (
               <div
                 key={card.id}
-                className="strength-card-item group relative overflow-hidden rounded-2xl h-56 sm:h-60 md:h-64 2xl:h-76 shadow-sm flex flex-col justify-end p-6 2xl:p-8 bg-neutral-900 cursor-pointer"
+                className="strength-card-item group relative overflow-hidden rounded-2xl h-48 sm:h-52 md:h-56 2xl:h-64 shadow-sm flex flex-col justify-end p-5 2xl:p-6 bg-neutral-900 cursor-pointer"
               >
                 {/* Background Image with Hover Zoom & Scroll Parallax */}
                 <div
@@ -151,24 +151,24 @@ export function Strengths() {
                   aria-label={card.alt}
                 />
 
-                {/* Dark Gradient Overlay - Lightened for brighter imagery */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent group-hover:from-black/75 group-hover:via-black/30 transition-all duration-300 pointer-events-none" />
+                {/* Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent group-hover:from-black/80 group-hover:via-black/35 transition-all duration-300 pointer-events-none" />
 
                 {/* Card Content Overlay */}
                 <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
                   {card.number && (
-                    <span className="font-display font-semibold text-3xl sm:text-4xl 2xl:text-5xl text-white leading-none block drop-shadow-md mb-1 tracking-[-0.03em] transition-transform duration-300 group-hover:-translate-y-0.5">
+                    <span className="font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-white leading-none block drop-shadow-md mb-1 tracking-[-0.03em] transition-transform duration-300 group-hover:-translate-y-0.5">
                       {card.number}
                     </span>
                   )}
-                  <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-white tracking-[-0.015em] leading-snug drop-shadow-md">
+                  <h3 className="font-display font-semibold text-base sm:text-lg 2xl:text-xl text-white tracking-[-0.015em] leading-snug drop-shadow-md">
                     {card.title}
                   </h3>
 
                   {/* Hover Description Paragraph */}
                   <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
                     <div className="overflow-hidden">
-                      <p className="font-sans text-xs sm:text-sm text-white/90 leading-[1.6] pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
+                      <p className="font-sans text-[11px] sm:text-xs text-white/90 leading-[1.55] pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
                         {card.desc}
                       </p>
                     </div>
@@ -180,7 +180,7 @@ export function Strengths() {
 
           {/* Right Tall Card */}
           <div
-            className="strength-card-item lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[380px] sm:min-h-[440px] 2xl:min-h-[520px] lg:min-h-full shadow-sm flex flex-col justify-end p-7 2xl:p-9 bg-neutral-900 cursor-pointer"
+            className="strength-card-item lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[320px] sm:min-h-[380px] 2xl:min-h-[440px] lg:min-h-full shadow-sm flex flex-col justify-end p-6 2xl:p-7 bg-neutral-900 cursor-pointer"
           >
             {/* Background Image with Hover Zoom & Scroll Parallax */}
             <div
@@ -189,19 +189,19 @@ export function Strengths() {
               aria-label={tallCard.alt}
             />
 
-            {/* Dark Gradient Overlay - Lightened for brighter imagery */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent group-hover:from-black/75 group-hover:via-black/30 transition-all duration-300 pointer-events-none" />
+            {/* Dark Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent group-hover:from-black/80 group-hover:via-black/35 transition-all duration-300 pointer-events-none" />
 
             {/* Card Content Overlay */}
             <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
-              <h3 className="font-display font-semibold text-2xl sm:text-3xl text-white tracking-[-0.02em] leading-snug drop-shadow-md">
+              <h3 className="font-display font-semibold text-xl sm:text-2xl text-white tracking-[-0.02em] leading-snug drop-shadow-md">
                 {tallCard.title}
               </h3>
 
               {/* Hover Description Paragraph */}
               <div className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
                 <div className="overflow-hidden">
-                  <p className="font-sans text-xs sm:text-sm text-white/90 leading-[1.6] pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
+                  <p className="font-sans text-[11px] sm:text-xs text-white/90 leading-[1.55] pt-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75">
                     {tallCard.desc}
                   </p>
                 </div>
