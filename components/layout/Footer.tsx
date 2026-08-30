@@ -13,7 +13,7 @@ interface FooterNavLink {
 const footerNavLinks: FooterNavLink[] = [
   { label: 'Home', href: '#home' },
   { label: 'Company', href: '#about' },
-  { label: 'Our Ventures', href: '#services' },
+  { label: 'Our Products', href: '#products' },
   { label: 'Careers', href: '#contact' },
   { label: 'Contact Us', href: '#contact' },
 ];
@@ -22,10 +22,10 @@ export function Footer() {
   return (
     <footer className="bg-white text-[#111814] pt-12 2xl:pt-16 pb-8 2xl:pb-10 border-t border-neutral-200 overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-8 2xl:space-y-10">
-        
+
         {/* Top Section: Logo (Left) | "Go Fresh for Future" (Center) | CtaButton (Right) */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
-          
+
           {/* Left: Brand Logo */}
           <div className="shrink-0 flex items-center">
             <Link href="#home" className="inline-block">
@@ -59,7 +59,7 @@ export function Footer() {
 
         {/* Middle Section: Social Icons (Left) | Horizontal Navigation (Right) */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
-          
+
           {/* Social Icons (Facebook & Instagram) */}
           <div className="flex items-center gap-4">
             <a
@@ -115,7 +115,7 @@ export function Footer() {
         {/* Bottom Section: Copyright (Left) | Terms & Privacy (Center) | Designed by (Right) */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9CA3AF] font-normal">
           <p>Copyright &copy; {new Date().getFullYear()} Nairat Food Services. All rights reserved.</p>
-          
+
           <div className="flex items-center gap-5 text-[#6B7280]">
             <Link href="#privacy" className="hover:text-[#168849] transition-colors">
               Privacy Policy
