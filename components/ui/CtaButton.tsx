@@ -23,7 +23,7 @@ export function CtaButton({
   const getStyles = () => {
     switch (variant) {
       case 'white':
-        return 'bg-white hover:bg-neutral-100 text-[#111814] focus-visible:ring-white/50 shadow-sm';
+        return 'bg-white hover:bg-neutral-100 text-[#168849] focus-visible:ring-white/50 shadow-sm';
       case 'slate':
         return 'bg-[#8CA8B8]/85 hover:bg-[#8CA8B8] text-[#0A2618] border border-white/30 backdrop-blur-sm shadow-md';
       case 'forest':
