@@ -50,9 +50,9 @@ export function Navbar() {
   };
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300">
+    <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300 pointer-events-none">
       <div
-        className={`max-w-[1440px] 2xl:max-w-[1620px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between rounded-full transition-all duration-300 ${isScrolled
+        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between rounded-full transition-all duration-300 pointer-events-auto ${isScrolled
           ? 'bg-[#168849]/95 backdrop-blur-md shadow-xl'
           : 'bg-[#168849] shadow-lg'
           }`}
@@ -74,15 +74,15 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
           {navigationLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="font-sans text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-3 py-1 relative group tracking-[-0.01em]"
+              className="font-sans text-xs xl:text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 relative group tracking-[-0.01em]"
             >
               {link.label}
-              <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
+              <span className="absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
             </a>
           ))}
         </nav>
