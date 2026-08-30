@@ -185,7 +185,7 @@ const categoriesData: CategoryData[] = [
         id: 'sweet-basil-leaf',
         name: 'Sweet Basil',
         subName: '(Italian Genovese)',
-        imageUrl: 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=800',
+        imageUrl: 'https://images.unsplash.com/photo-1749655248287-d1e0acb5f8d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c3dlZXQtYmFzaWwtbGVhZnxlbnwwfHwwfHx8MA%3D%3D',
       },
       {
         id: 'flat-parsley',
@@ -197,13 +197,13 @@ const categoriesData: CategoryData[] = [
         id: 'thyme-rosemary-pair',
         name: 'Thyme & Rosemary',
         subName: '(Culinary Pair)',
-        imageUrl: 'https://images.unsplash.com/photo-1618220179428-22790b461013?q=80&w=800',
+        imageUrl: 'https://plus.unsplash.com/premium_photo-1763665457124-91652cbebf44?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGh5bWUtcm9zZW1hcnktcGFpcnxlbnwwfHwwfHx8MA%3D%3D',
       },
       {
         id: 'fresh-herbs-mix',
         name: 'Fresh Herbs',
         subName: '(Dill, Sage & Tarragon)',
-        imageUrl: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=800',
+        imageUrl: 'https://plus.unsplash.com/premium_photo-1675237625952-c2e254de1d13?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlc2gtaGVyYnMtbWl4fGVufDB8fDB8fHww',
       },
     ],
   },
@@ -390,9 +390,8 @@ export function Products() {
                   {cat.productsRow1.map((item, itemIndex) => (
                     <div
                       key={item.id}
-                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${
-                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                      }`}
+                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                        }`}
                     >
                       {/* Full-bleed Product Image with GSAP Scroll Parallax */}
                       <div
@@ -437,9 +436,8 @@ export function Products() {
                   {cat.productsRow2.map((item, itemIndex) => (
                     <div
                       key={item.id}
-                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${
-                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                      }`}
+                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                        }`}
                     >
                       {/* Full-bleed Product Image with GSAP Scroll Parallax */}
                       <div
