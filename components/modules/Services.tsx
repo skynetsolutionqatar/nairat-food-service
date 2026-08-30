@@ -93,16 +93,16 @@ export function Services() {
   );
 
   return (
-    <section id="services" ref={containerRef} className="py-14 sm:py-16 2xl:py-22 bg-white">
+    <section id="services" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-white">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
-            <span className="service-header-item font-sans type-eyebrow text-[#111814] block">
+            <span className="service-header-item font-display type-eyebrow text-[#168849] block">
               WHAT WE DO
             </span>
-            <h2 className="service-header-item font-display type-h2 font-medium text-[#111814] text-left">
+            <h2 className="service-header-item font-display type-h2 font-semibold text-[#111814] text-left">
               Fresh Produce Supply <br />
               at Every Scale.
             </h2>
@@ -122,11 +122,11 @@ export function Services() {
         </div>
 
         {/* 3 Services Cards Grid */}
-        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 2xl:gap-8">
+        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 2xl:gap-8">
           {serviceCards.map((service) => (
             <div
               key={service.id}
-              className="service-card-item flex flex-col space-y-3.5 group"
+              className="service-card-item flex flex-col space-y-3.5 group hover:-translate-y-1 transition-transform duration-300"
             >
               {/* Top Rounded Image */}
               <div className="relative w-full h-48 sm:h-52 md:h-56 2xl:h-64 rounded-2xl overflow-hidden bg-neutral-100">

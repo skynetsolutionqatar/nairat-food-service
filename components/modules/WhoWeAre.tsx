@@ -70,15 +70,15 @@ export function WhoWeAre() {
   );
 
   return (
-    <section id="about" ref={containerRef} className="py-14 sm:py-16 2xl:py-22 bg-white overflow-hidden">
+    <section id="about" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-white overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
         {/* Left / Top Section Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end border-b border-neutral-200/90 pb-8 sm:pb-9 2xl:pb-10">
           <div className="lg:col-span-7 space-y-3">
-            <span className="who-header-item font-sans type-eyebrow text-[#168849] block">
+            <span className="who-header-item font-display type-eyebrow text-[#168849] block">
               WHO WE ARE
             </span>
-            <h2 className="who-header-item font-display type-h2 font-medium text-[#111814] text-left">
+            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-left">
               Fresh Produce. <br />
               Strong Supply. <br />
               <span className="text-[#168849]">Trusted Across Qatar.</span>

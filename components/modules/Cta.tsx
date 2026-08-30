@@ -41,7 +41,7 @@ export function Cta(): React.ReactNode {
   };
 
   return (
-    <section id="contact" className="relative w-full overflow-hidden bg-neutral-900">
+    <section id="contact" className="scroll-mt-24 sm:scroll-mt-28 relative w-full overflow-hidden bg-neutral-900">
       
       {/* Full-Bleed Background Image */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
@@ -63,7 +63,7 @@ export function Cta(): React.ReactNode {
         <div className="max-w-2xl 2xl:max-w-3xl space-y-3 sm:space-y-4">
 
           {/* Headline */}
-          <h2 className="font-display type-h2 font-medium text-white text-left">
+          <h2 className="font-display type-h2 font-semibold text-white text-left">
             Fresh Fruits &amp; Vegetables from <br />
             Around the World
           </h2>
@@ -124,7 +124,7 @@ export function Cta(): React.ReactNode {
                 </button>
 
                 <div className="mb-6 space-y-1">
-                  <span className="font-sans type-eyebrow text-[#168849] block">
+                  <span className="font-display type-eyebrow text-[#168849] block">
                     PARTNERSHIP INQUIRY
                   </span>
                   <h3 className="font-display font-semibold text-2xl text-[#111814] tracking-[-0.015em]">
@@ -240,7 +240,11 @@ export function Cta(): React.ReactNode {
                   </div>
 
                   {submitStatus === 'success' && (
-                    <div className="p-4 bg-[#168849]/10 border border-[#168849]/30 text-[#063B27] text-xs font-semibold rounded-xl text-center">
+                    <div
+                      role="status"
+                      aria-live="polite"
+                      className="p-4 bg-[#168849]/10 border border-[#168849]/30 text-[#063B27] text-xs font-semibold rounded-xl text-center"
+                    >
                       Thank you! Your inquiry has been submitted. Our procurement team will contact you shortly.
                     </div>
                   )}

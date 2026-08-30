@@ -69,10 +69,10 @@ const Logos3 = ({
   return (
     <section
       id="partners"
-      className="py-5 sm:py-6 bg-white border-b border-black/5 relative overflow-hidden"
+      className="scroll-mt-24 sm:scroll-mt-28 py-5 sm:py-6 bg-white border-b border-black/5 relative overflow-hidden"
     >
       <div className="container mx-auto flex flex-col items-center text-center px-4">
-        <span className="font-sans type-eyebrow text-[#6B7280] block">
+        <span className="font-display type-eyebrow text-[#6B7280] block">
           {heading}
         </span>
       </div>

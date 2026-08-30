@@ -107,16 +107,16 @@ export function Strengths() {
   );
 
   return (
-    <section id="strengths" ref={containerRef} className="py-14 sm:py-16 2xl:py-22 bg-white">
+    <section id="strengths" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-white">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
-            <span className="strength-header-item font-sans type-eyebrow text-[#111814] block">
+            <span className="strength-header-item font-display type-eyebrow text-[#168849] block">
               WHY CHOOSE US
             </span>
-            <h2 className="strength-header-item font-display type-h2 font-medium text-[#111814] text-left">
+            <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-left">
               Built for Freshness. <br />
               Ready to Deliver.
             </h2>

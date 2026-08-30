@@ -36,10 +36,11 @@ const globeArcs: Arc[] = [
 
 export function SourcingMap(): React.ReactNode {
   return (
-    <section id="sourcing" className="py-8 sm:py-10 2xl:py-12 bg-white text-neutral-900 overflow-hidden">
+    <section id="sourcing" className="scroll-mt-24 sm:scroll-mt-28 py-8 sm:py-10 lg:py-14 2xl:py-16 bg-white overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-10 2xl:gap-14">
-          {/* Left Column: Interactive 3D Cobe Globe (40% / 5 cols) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 2xl:gap-12 items-center">
+          
+          {/* Left Column: Interactive 3D World Globe (40% / 5 cols) */}
           <div className="lg:col-span-5 relative flex items-center justify-center w-full max-w-sm mx-auto lg:max-w-none">
             <div className="w-full aspect-square max-w-[360px] 2xl:max-w-[420px]">
               <Globe
@@ -47,15 +48,10 @@ export function SourcingMap(): React.ReactNode {
                 arcs={globeArcs}
                 markerColor={[0.086, 0.533, 0.286]}
                 baseColor={[0.95, 0.96, 0.95]}
-                arcColor={[0.086, 0.533, 0.286]}
                 glowColor={[0.92, 0.95, 0.93]}
                 dark={0}
                 mapBrightness={8}
-                markerSize={0.03}
-                markerElevation={0.01}
-                arcWidth={0.6}
-                arcHeight={0.25}
-                speed={0.008}
+                diffuse={1.2}
               />
             </div>
           </div>
@@ -64,12 +60,12 @@ export function SourcingMap(): React.ReactNode {
           <div className="lg:col-span-7 space-y-5 2xl:space-y-6">
             <div className="flex items-center gap-2">
               <Leaf className="w-4 h-4 text-[#168849]" aria-hidden="true" />
-              <span className="font-sans type-eyebrow text-[#168849]">
+              <span className="font-display type-eyebrow text-[#168849]">
                 SOURCING COUNTRIES
               </span>
             </div>
 
-            <h2 className="font-display type-h2 font-medium text-[#111814] text-left">
+            <h2 className="font-display type-h2 font-semibold text-[#111814] text-left">
               Sourced From Around <br />
               <span className="text-[#168849]">the World.</span>
             </h2>

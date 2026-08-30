@@ -59,7 +59,7 @@ export function QualityTimeline() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
 
   return (
-    <section id="quality" className="pt-8 sm:pt-10 2xl:pt-12 pb-14 sm:pb-16 2xl:pb-20 bg-white overflow-hidden">
+    <section id="quality" className="scroll-mt-24 sm:scroll-mt-28 pt-8 sm:pt-10 2xl:pt-12 pb-14 sm:pb-16 2xl:pb-20 bg-white overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 2xl:space-y-10">
         
         {/* Split Layout: Left is Timeline, Right is Official Certificates Showcase */}
@@ -72,11 +72,11 @@ export function QualityTimeline() {
             <div className="space-y-2.5 2xl:space-y-3">
               <div className="flex items-center gap-2">
                 <Award className="w-4 h-4 text-[#168849]" aria-hidden="true" />
-                <span className="font-sans type-eyebrow text-[#168849] block">
+                <span className="font-display type-eyebrow text-[#168849] block">
                   CERTIFICATIONS &amp; QUALITY
                 </span>
               </div>
-              <h2 className="font-display type-h2 font-medium text-[#111814]">
+              <h2 className="font-display type-h2 font-semibold text-[#111814]">
                 Quality You Can Trust.
               </h2>
               <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">

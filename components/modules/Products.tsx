@@ -343,19 +343,19 @@ export function Products() {
   );
 
   return (
-    <section id="products" ref={containerRef} className="pt-12 sm:pt-16 2xl:pt-20 pb-4 sm:pb-6 2xl:pb-8 bg-white text-neutral-900 overflow-hidden">
+    <section id="products" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 pt-12 sm:pt-16 2xl:pt-20 pb-4 sm:pb-6 2xl:pb-8 bg-white text-neutral-900 overflow-hidden">
       <div className="w-full space-y-8 sm:space-y-10 2xl:space-y-12 px-0">
 
         {/* Section Header */}
         <div className="max-w-3xl 2xl:max-w-4xl mx-auto text-center space-y-3 px-4">
           <div className="product-header-item flex items-center justify-center gap-2">
-            <Leaf className="w-4 h-4 text-[#38A84E]" aria-hidden="true" />
-            <span className="font-sans type-eyebrow text-[#111814]">
+            <Leaf className="w-4 h-4 text-[#168849]" aria-hidden="true" />
+            <span className="font-display type-eyebrow text-[#168849]">
               OUR PRODUCTS
             </span>
           </div>
 
-          <h2 className="product-header-item font-display type-h2 font-medium text-[#111814]">
+          <h2 className="product-header-item font-display type-h2 font-semibold text-[#111814]">
             Freshness, Sourced From Around the World.
           </h2>
         </div>
