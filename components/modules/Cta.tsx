@@ -58,9 +58,9 @@ export function Cta(): React.ReactNode {
       </div>
 
       {/* Content Container Aligned Exactly with Other Sections */}
-      <div className="relative z-10 max-w-[1140px] 2xl:max-w-[1240px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-14 sm:py-16 lg:py-20 2xl:py-26">
+      <div className="relative z-10 max-w-[1140px] 2xl:max-w-[1240px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 2xl:py-14">
         
-        <div className="max-w-2xl 2xl:max-w-3xl space-y-4 sm:space-y-5 2xl:space-y-6">
+        <div className="max-w-2xl 2xl:max-w-3xl space-y-3 sm:space-y-4">
 
           {/* Headline */}
           <h2 className="font-display type-h2 font-medium text-white text-left">
@@ -69,14 +69,14 @@ export function Cta(): React.ReactNode {
           </h2>
 
           {/* Flags + Subtext Row */}
-          <div className="flex items-center gap-3.5">
+          <div className="flex items-center gap-3">
             <div className="relative shrink-0">
               <Image
                 src="/cta/ctacontry.webp"
                 alt="Sourced Around the World country flags"
-                width={130}
-                height={40}
-                className="h-8 sm:h-10 w-auto object-contain"
+                width={120}
+                height={36}
+                className="h-7 sm:h-9 w-auto object-contain"
               />
             </div>
             <div className="font-sans text-xs sm:text-[13px] text-white leading-snug">
@@ -86,10 +86,10 @@ export function Cta(): React.ReactNode {
           </div>
 
           {/* Action Button */}
-          <div className="pt-2 flex flex-wrap gap-4 items-center">
+          <div className="pt-1 flex flex-wrap gap-4 items-center">
             <button
               onClick={() => setIsFormOpen((prev) => !prev)}
-              className="group inline-flex items-center gap-3 bg-[#168849] hover:bg-[#12753e] text-white font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] pl-5 pr-2 py-2 rounded-full transition-all duration-300 shadow-lg shadow-[#168849]/25 cursor-pointer active:scale-95"
+              className="group inline-flex items-center gap-3 bg-[#168849] hover:bg-[#12753e] text-white font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] pl-5 pr-2 py-1.5 sm:py-2 rounded-full transition-all duration-300 shadow-lg shadow-[#168849]/25 cursor-pointer active:scale-95"
             >
               <span>Contact Us</span>
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white text-[#168849] flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
