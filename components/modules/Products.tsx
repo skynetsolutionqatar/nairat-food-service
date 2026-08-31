@@ -303,19 +303,19 @@ export function Products() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 80%',
+          start: 'top 82%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.product-header-item',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' }
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
       ).fromTo(
         '.product-gallery-wrapper',
-        { opacity: 0, y: 35 },
-        { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' },
+        { opacity: 0, y: 30, scale: 0.99 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out' },
         '-=0.3'
       );
 
@@ -324,16 +324,16 @@ export function Products() {
       cardBgImages.forEach((img) => {
         gsap.fromTo(
           img,
-          { scale: 1.18, yPercent: -5 },
+          { scale: 1.12, yPercent: -4 },
           {
             scale: 1.02,
-            yPercent: 5,
+            yPercent: 4,
             ease: 'none',
             scrollTrigger: {
               trigger: img.parentElement,
               start: 'top bottom',
               end: 'bottom top',
-              scrub: 1.2,
+              scrub: 1,
             },
           }
         );
@@ -395,7 +395,7 @@ export function Products() {
                     >
                       {/* Full-bleed Product Image with GSAP Scroll Parallax */}
                       <div
-                        className="product-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                        className="product-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
                         style={{ backgroundImage: `url('${item.imageUrl}')` }}
                         aria-label={item.name}
                       />
@@ -441,7 +441,7 @@ export function Products() {
                     >
                       {/* Full-bleed Product Image with GSAP Scroll Parallax */}
                       <div
-                        className="product-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                        className="product-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
                         style={{ backgroundImage: `url('${item.imageUrl}')` }}
                         aria-label={item.name}
                       />

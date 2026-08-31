@@ -49,21 +49,21 @@ export function WhoWeAre() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 92%',
+          start: 'top 85%',
           once: true,
         },
       });
 
-      // Snappy parallel reveal with zero lag
+      // Smooth coordinated reveal
       tl.fromTo(
         '.who-header-item',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out' }
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
       ).fromTo(
         '.metric-card',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out' },
-        '<0.05'
+        { opacity: 0, y: 30, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.1, ease: 'power3.out' },
+        '-=0.35'
       );
     },
     { scope: containerRef }
@@ -101,16 +101,16 @@ export function WhoWeAre() {
           {metricCards.map((card) => (
             <div
               key={card.number}
-              className={`metric-card rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-all duration-300 ${
+              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-all duration-300 will-change-transform hover:-translate-y-1 ${
                 card.isDark
-                  ? 'bg-[#0A2618] text-white shadow-md'
-                  : 'bg-[#F6F8F5] text-[#111814] border border-neutral-200/80 hover:border-neutral-300'
+                  ? 'bg-[#0A2618] text-white shadow-md hover:shadow-xl'
+                  : 'bg-[#F6F8F5] text-[#111814] border border-neutral-200/80 hover:border-neutral-300 hover:shadow-md'
               }`}
             >
               {/* Number Header */}
               <div className="flex items-center justify-between">
                 <span
-                  className={`font-display font-semibold text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em] ${
+                  className={`font-display font-semibold text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:scale-105 ${
                     card.isDark ? 'text-white' : 'text-[#111814]'
                   }`}
                 >
@@ -118,7 +118,7 @@ export function WhoWeAre() {
                 </span>
 
                 <div
-                  className={`w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center border ${
+                  className={`w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 ${
                     card.isDark
                       ? 'bg-white/10 border-white/15'
                       : 'bg-white border-neutral-200 shadow-2xs'

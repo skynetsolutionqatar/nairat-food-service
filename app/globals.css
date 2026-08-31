@@ -129,3 +129,19 @@ html.lenis body {
   scroll-behavior: inherit !important;
 }
 
+/* GSAP Performance & Compositor Layer Promotion */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-transform-opacity {
+  will-change: transform, opacity;
+}
+
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+

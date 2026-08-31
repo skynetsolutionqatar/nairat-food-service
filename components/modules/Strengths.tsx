@@ -67,19 +67,19 @@ export function Strengths() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 80%',
+          start: 'top 82%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.strength-header-item',
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' }
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
       ).fromTo(
         '.strength-card-item',
-        { opacity: 0, y: 35 },
-        { opacity: 1, y: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' },
+        { opacity: 0, y: 30, scale: 0.98 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.08, ease: 'power3.out' },
         '-=0.3'
       );
 
@@ -88,7 +88,7 @@ export function Strengths() {
       cardImages.forEach((img) => {
         gsap.fromTo(
           img,
-          { scale: 1.15, yPercent: -4 },
+          { scale: 1.12, yPercent: -4 },
           {
             scale: 1.02,
             yPercent: 4,
@@ -97,7 +97,7 @@ export function Strengths() {
               trigger: img.parentElement,
               start: 'top bottom',
               end: 'bottom top',
-              scrub: 1.2,
+              scrub: 1,
             },
           }
         );
@@ -146,7 +146,7 @@ export function Strengths() {
               >
                 {/* Background Image with Hover Zoom & Scroll Parallax */}
                 <div
-                  className="strength-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="strength-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                   style={{ backgroundImage: `url('${card.imageUrl}')` }}
                   aria-label={card.alt}
                 />
@@ -184,7 +184,7 @@ export function Strengths() {
           >
             {/* Background Image with Hover Zoom & Scroll Parallax */}
             <div
-              className="strength-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+              className="strength-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
               style={{ backgroundImage: `url('${tallCard.imageUrl}')` }}
               aria-label={tallCard.alt}
             />

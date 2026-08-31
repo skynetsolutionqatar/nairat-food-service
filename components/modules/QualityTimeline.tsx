@@ -1,9 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ClipboardCheck, TestTube, Truck, ZoomIn, X, Award } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface TimelineStep {
   step: string;
@@ -57,9 +62,47 @@ const certificates: Certificate[] = [
 
 export function QualityTimeline() {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 82%',
+          once: true,
+        },
+      });
+
+      tl.fromTo(
+        '.quality-header-item',
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+      )
+        .fromTo(
+          '.quality-connector-line',
+          { scaleX: 0, transformOrigin: 'left center' },
+          { scaleX: 1, duration: 0.7, ease: 'power2.inOut' },
+          '-=0.3'
+        )
+        .fromTo(
+          '.timeline-step-item',
+          { opacity: 0, y: 25, scale: 0.96 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.1, ease: 'power3.out' },
+          '-=0.4'
+        )
+        .fromTo(
+          '.certificate-card-item',
+          { opacity: 0, y: 30, scale: 0.96 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.12, ease: 'power3.out' },
+          '-=0.35'
+        );
+    },
+    { scope: containerRef }
+  );
 
   return (
-    <section id="quality" className="scroll-mt-24 sm:scroll-mt-28 pt-8 sm:pt-10 2xl:pt-12 pb-14 sm:pb-16 2xl:pb-20 bg-white overflow-hidden">
+    <section id="quality" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 pt-8 sm:pt-10 2xl:pt-12 pb-14 sm:pb-16 2xl:pb-20 bg-white overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 2xl:space-y-10">
         
         {/* Split Layout: Left is Timeline, Right is Official Certificates Showcase */}
@@ -70,47 +113,43 @@ export function QualityTimeline() {
             
             {/* Headings */}
             <div className="space-y-2.5 2xl:space-y-3">
-              <div className="flex items-center gap-2">
+              <div className="quality-header-item flex items-center gap-2">
                 <Award className="w-4 h-4 text-[#168849]" aria-hidden="true" />
                 <span className="font-display type-eyebrow text-[#168849] block">
                   CERTIFICATIONS &amp; QUALITY
                 </span>
               </div>
-              <h2 className="font-display type-h2 font-semibold text-[#111814]">
+              <h2 className="quality-header-item font-display type-h2 font-semibold text-[#111814]">
                 Quality You Can Trust.
               </h2>
-              <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
+              <p className="quality-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
                 Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.
               </p>
             </div>
 
             {/* Horizontal Timeline */}
             <div className="relative pt-3 pb-1">
-              {/* Connector line */}
-              <div className="hidden md:block absolute top-9 left-[8%] right-[8%] h-0.5 bg-[#168849]/20 z-0" />
+              {/* Connector line with GSAP scale animation */}
+              <div className="quality-connector-line hidden md:block absolute top-9 left-[8%] right-[8%] h-0.5 bg-[#168849]/20 z-0 will-change-transform" />
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 2xl:gap-6 relative z-10">
-                {timelineSteps.map((item, index) => (
-                  <motion.div
+                {timelineSteps.map((item) => (
+                  <div
                     key={item.step}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: index * 0.12 }}
-                    className="flex flex-col items-center md:items-start text-center md:text-left space-y-2.5 group"
+                    className="timeline-step-item flex flex-col items-center md:items-start text-center md:text-left space-y-2.5 group will-change-transform"
                   >
                     {/* Circle Icon Badge */}
-                    <div className="w-11 h-11 2xl:w-13 2xl:h-13 rounded-full bg-[#F4F6F5] border border-black/5 flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform duration-200">
+                    <div className="w-11 h-11 2xl:w-13 2xl:h-13 rounded-full bg-[#F4F6F5] border border-black/5 flex items-center justify-center shadow-xs group-hover:scale-110 group-hover:border-[#168849]/30 transition-all duration-300">
                       {item.icon}
                     </div>
 
                     {/* Step label + title */}
                     <div className="space-y-1">
                       <div className="flex items-center gap-1.5 justify-center md:justify-start">
-                        <span className="w-4 h-4 rounded-full border border-black/20 flex items-center justify-center font-mono text-[9px] font-bold text-[#6B7280]">
+                        <span className="w-4 h-4 rounded-full border border-black/20 flex items-center justify-center font-mono text-[9px] font-bold text-[#6B7280] group-hover:border-[#168849] group-hover:text-[#168849] transition-colors">
                           {item.step}
                         </span>
-                        <h3 className="font-display font-semibold text-xs sm:text-sm 2xl:text-base text-[#111814] tracking-[-0.01em]">
+                        <h3 className="font-display font-semibold text-xs sm:text-sm 2xl:text-base text-[#111814] tracking-[-0.01em] group-hover:text-[#168849] transition-colors">
                           {item.title}
                         </h3>
                       </div>
@@ -118,7 +157,7 @@ export function QualityTimeline() {
                         {item.desc}
                       </p>
                     </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -127,15 +166,11 @@ export function QualityTimeline() {
 
           {/* Right Column: Official Certificates Preview (lg:col-span-5) */}
           <div className="lg:col-span-5 flex flex-col sm:flex-row gap-4 2xl:gap-5 justify-center items-center lg:justify-end">
-            {certificates.map((cert, index) => (
-              <motion.div
+            {certificates.map((cert) => (
+              <div
                 key={cert.id}
-                initial={{ opacity: 0, y: 25 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
                 onClick={() => setSelectedCert(cert)}
-                className="group relative bg-[#F4F6F5] border border-black/10 rounded-2xl p-3 2xl:p-3.5 cursor-pointer overflow-hidden shadow-xs hover:shadow-xl hover:border-[#168849]/40 transition-all duration-300 w-full sm:w-1/2 max-w-[210px] 2xl:max-w-[250px]"
+                className="certificate-card-item group relative bg-[#F4F6F5] border border-black/10 rounded-2xl p-3 2xl:p-3.5 cursor-pointer overflow-hidden shadow-xs hover:shadow-xl hover:border-[#168849]/40 hover:-translate-y-1 transition-all duration-300 w-full sm:w-1/2 max-w-[210px] 2xl:max-w-[250px] will-change-transform"
               >
                 {/* Certificate Preview Image */}
                 <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-white border border-black/5 flex items-center justify-center">
@@ -164,7 +199,7 @@ export function QualityTimeline() {
                     {cert.subtitle}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 

@@ -1,12 +1,19 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowUpRight, Send, X } from 'lucide-react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function Cta(): React.ReactNode {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const bgImageRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
     fullName: '',
     companyName: '',
@@ -17,6 +24,45 @@ export function Cta(): React.ReactNode {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  useGSAP(
+    () => {
+      // Parallax scrub on background image
+      if (bgImageRef.current) {
+        gsap.fromTo(
+          bgImageRef.current,
+          { scale: 1.1, yPercent: -4 },
+          {
+            scale: 1.02,
+            yPercent: 4,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1,
+            },
+          }
+        );
+      }
+
+      // Content reveal timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          once: true,
+        },
+      });
+
+      tl.fromTo(
+        '.cta-header-item',
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' }
+      );
+    },
+    { scope: containerRef }
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -41,10 +87,10 @@ export function Cta(): React.ReactNode {
   };
 
   return (
-    <section id="contact" className="scroll-mt-24 sm:scroll-mt-28 relative w-full overflow-hidden bg-neutral-900">
+    <section id="contact" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 relative w-full overflow-hidden bg-neutral-900">
       
-      {/* Full-Bleed Background Image */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none">
+      {/* Full-Bleed Background Image with GSAP Parallax */}
+      <div ref={bgImageRef} className="absolute inset-0 w-full h-full pointer-events-none will-change-transform transform-gpu">
         <Image
           src="/cta/ctaft-bac.webp"
           alt="Fresh Fruits & Vegetables Background"
@@ -63,13 +109,13 @@ export function Cta(): React.ReactNode {
         <div className="max-w-2xl 2xl:max-w-3xl space-y-3 sm:space-y-4">
 
           {/* Headline */}
-          <h2 className="font-display type-h2 font-semibold text-white text-left">
+          <h2 className="cta-header-item font-display type-h2 font-semibold text-white text-left">
             Fresh Fruits &amp; Vegetables from <br />
             Around the World
           </h2>
 
           {/* Flags + Subtext Row */}
-          <div className="flex items-center gap-3">
+          <div className="cta-header-item flex items-center gap-3">
             <div className="relative shrink-0">
               <Image
                 src="/cta/ctacontry.webp"
@@ -86,7 +132,7 @@ export function Cta(): React.ReactNode {
           </div>
 
           {/* Action Button */}
-          <div className="pt-1 flex flex-wrap gap-4 items-center">
+          <div className="cta-header-item pt-1 flex flex-wrap gap-4 items-center">
             <button
               onClick={() => setIsFormOpen((prev) => !prev)}
               className="group inline-flex items-center gap-3 bg-[#168849] hover:bg-[#12753e] text-white font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] pl-5 pr-2 py-1.5 sm:py-2 rounded-full transition-all duration-300 shadow-lg shadow-[#168849]/25 cursor-pointer active:scale-95"

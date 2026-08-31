@@ -1,13 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import AutoScroll from "embla-carousel-auto-scroll";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Logo {
   id: string;
@@ -63,13 +68,34 @@ const Logos3 = ({
     },
   ],
 }: Logos3Props) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   // Duplicate logos to allow Embla infinite loop to function smoothly
   const duplicatedLogos = [...logos, ...logos, ...logos];
+
+  useGSAP(
+    () => {
+      // Reveal on page load with a subtle delay so it is immediately visible in the hero viewport
+      gsap.fromTo(
+        containerRef.current,
+        { opacity: 0, y: 15 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          delay: 0.3,
+          ease: "power3.out",
+        }
+      );
+    },
+    { scope: containerRef }
+  );
 
   return (
     <section
       id="partners"
-      className="scroll-mt-24 sm:scroll-mt-28 py-5 sm:py-6 bg-white border-b border-black/5 relative overflow-hidden"
+      ref={containerRef}
+      className="scroll-mt-24 sm:scroll-mt-28 py-5 sm:py-6 bg-white border-b border-black/5 relative overflow-hidden will-change-transform"
     >
       <div className="container mx-auto flex flex-col items-center text-center px-4">
         <span className="font-display type-eyebrow text-[#6B7280] block">

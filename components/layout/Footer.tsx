@@ -1,9 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
 import { CtaButton } from '@/components/ui/CtaButton';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface FooterNavLink {
   label: string;
@@ -19,12 +24,36 @@ const footerNavLinks: FooterNavLink[] = [
 ];
 
 export function Footer() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      gsap.fromTo(
+        '.footer-content-item',
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.08,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 92%',
+            once: true,
+          },
+        }
+      );
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <footer className="bg-white text-[#111814] pt-12 2xl:pt-16 pb-8 2xl:pb-10 border-t border-neutral-200 overflow-hidden">
+    <footer ref={containerRef} className="bg-white text-[#111814] pt-12 2xl:pt-16 pb-8 2xl:pb-10 border-t border-neutral-200 overflow-hidden will-change-transform">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-8 2xl:space-y-10">
 
         {/* Top Section: Logo (Left) | "Go Fresh for Future" (Center) | CtaButton (Right) */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+        <div className="footer-content-item flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
 
           {/* Left: Brand Logo */}
           <div className="shrink-0 flex items-center">
@@ -58,7 +87,7 @@ export function Footer() {
         <div className="w-full border-t border-neutral-200" />
 
         {/* Middle Section: Social Icons (Left) | Horizontal Navigation (Right) */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="footer-content-item flex flex-col sm:flex-row items-center justify-between gap-6">
 
           {/* Social Icons (Facebook & Instagram) */}
           <div className="flex items-center gap-4">
@@ -113,7 +142,7 @@ export function Footer() {
         <div className="w-full border-t border-neutral-200" />
 
         {/* Bottom Section: Copyright (Left) | Terms & Privacy (Center) | Designed by (Right) */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9CA3AF] font-normal">
+        <div className="footer-content-item flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9CA3AF] font-normal">
           <p>Copyright &copy; {new Date().getFullYear()} Nairat Food Services. All rights reserved.</p>
 
           <div className="flex items-center gap-5 text-[#6B7280]">

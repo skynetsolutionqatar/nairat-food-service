@@ -15,51 +15,59 @@ export function Hero() {
 
   useGSAP(
     () => {
-      // Parallax effect on background video when scrolling down
+      // Parallax effect on background video when scrolling down (compositor optimized)
       if (videoRef.current) {
         gsap.to(videoRef.current, {
-          yPercent: 18,
-          scale: 1.12,
+          yPercent: 15,
+          scale: 1.08,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
             start: 'top top',
             end: 'bottom top',
-            scrub: 1.2,
+            scrub: 1,
           },
         });
       }
 
-      // Fade & move content down on scroll
+      // Smooth fade & move content down on scroll
       if (contentRef.current) {
         gsap.to(contentRef.current, {
-          y: 50,
-          opacity: 0.25,
+          y: 40,
+          opacity: 0.3,
           ease: 'none',
           scrollTrigger: {
             trigger: containerRef.current,
             start: 'center center',
             end: 'bottom top',
-            scrub: 1.2,
+            scrub: 1,
           },
         });
       }
 
-      // Initial page-load text reveal sequence
+      // Initial page-load text reveal sequence with rich timing
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       tl.from('.hero-title-line', {
-        y: 40,
+        y: 35,
         opacity: 0,
-        duration: 1,
-        stagger: 0.15,
+        duration: 0.9,
+        stagger: 0.12,
       }).from(
         '.hero-sub-text',
         {
-          y: 25,
+          y: 20,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.7,
         },
-        '-=0.6'
+        '-=0.5'
+      ).from(
+        '.hero-cta-btn',
+        {
+          y: 15,
+          opacity: 0,
+          duration: 0.6,
+        },
+        '-=0.4'
       );
     },
     { scope: containerRef }
@@ -78,7 +86,7 @@ export function Hero() {
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.02] origin-center"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none scale-[1.02] origin-center will-change-transform transform-gpu"
       >
         <source src="/hero.mp4" type="video/mp4" />
         <source src="/hero-video.mp4" type="video/mp4" />
@@ -93,7 +101,7 @@ export function Hero() {
       {/* Main Content Container */}
       <div
         ref={contentRef}
-        className="relative max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 pb-14 lg:pb-16 2xl:pb-20 z-10 w-full"
+        className="relative max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 pb-14 lg:pb-16 2xl:pb-20 z-10 w-full will-change-transform"
       >
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-10 2xl:gap-14 w-full">
           {/* DIV 1: Heading */}
@@ -105,12 +113,12 @@ export function Hero() {
           </div>
 
           {/* DIV 2: Subheading & CTA Button */}
-          <div className="hero-sub-text w-full lg:w-[38%] flex flex-col justify-end items-start gap-5 2xl:gap-6 text-left">
-            <p className="font-sans text-xs sm:text-[13px] 2xl:text-[14px] text-gray-300 leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-justify">
+          <div className="w-full lg:w-[38%] flex flex-col justify-end items-start gap-5 2xl:gap-6 text-left">
+            <p className="hero-sub-text font-sans text-xs sm:text-[13px] 2xl:text-[14px] text-gray-300 leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-justify">
               Nairat Food imports, distributes and delivers premium fresh fruit and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
             </p>
 
-            <div>
+            <div className="hero-cta-btn">
               <CtaButton href="#products">
                 Explore Our Products
               </CtaButton>
