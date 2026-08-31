@@ -106,12 +106,12 @@ export function Cta(): React.ReactNode {
       {/* Content Container Aligned Exactly with Other Sections */}
       <div className="relative z-10 max-w-[1140px] 2xl:max-w-[1240px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 2xl:py-14">
         
-        <div className="max-w-2xl 2xl:max-w-3xl space-y-3 sm:space-y-4">
+        <div className="max-w-3xl 2xl:max-w-4xl space-y-3 sm:space-y-4">
 
           {/* Headline */}
           <h2 className="cta-header-item font-display type-h2 font-semibold text-white text-left">
-            Fresh Fruits &amp; Vegetables from <br />
-            Around the World
+            <span className="block sm:whitespace-nowrap">Fresh Fruits &amp; Vegetables from</span>
+            <span className="block sm:whitespace-nowrap mt-0.5 sm:mt-1">Around the World</span>
           </h2>
 
           {/* Flags + Subtext Row */}

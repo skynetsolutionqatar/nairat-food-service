@@ -107,7 +107,7 @@ export function Strengths() {
   );
 
   return (
-    <section id="strengths" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-white">
+    <section id="strengths" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-[#F4F6F5] border-y border-neutral-200/70">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">

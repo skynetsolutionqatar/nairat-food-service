@@ -4,7 +4,7 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { Globe2, Calendar, Truck } from 'lucide-react';
+import { Globe2, Calendar, Truck, Leaf } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -75,6 +75,7 @@ export function WhoWeAre() {
         {/* Left / Top Section Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end border-b border-neutral-200/90 pb-8 sm:pb-9 2xl:pb-10">
           <div className="lg:col-span-7 space-y-3">
+
             <span className="who-header-item font-display type-eyebrow text-[#168849] block">
               WHO WE ARE
             </span>
@@ -101,28 +102,25 @@ export function WhoWeAre() {
           {metricCards.map((card) => (
             <div
               key={card.number}
-              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-all duration-300 will-change-transform hover:-translate-y-1 ${
-                card.isDark
-                  ? 'bg-[#0A2618] text-white shadow-md hover:shadow-xl'
-                  : 'bg-[#F6F8F5] text-[#111814] border border-neutral-200/80 hover:border-neutral-300 hover:shadow-md'
-              }`}
+              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-all duration-300 will-change-transform hover:-translate-y-1 ${card.isDark
+                ? 'bg-[#0A2618] text-white shadow-md hover:shadow-xl'
+                : 'bg-[#F6F8F5] text-[#111814] border border-neutral-200/80 hover:border-neutral-300 hover:shadow-md'
+                }`}
             >
               {/* Number Header */}
               <div className="flex items-center justify-between">
                 <span
-                  className={`font-display font-semibold text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:scale-105 ${
-                    card.isDark ? 'text-white' : 'text-[#111814]'
-                  }`}
+                  className={`font-display font-semibold text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:scale-105 ${card.isDark ? 'text-white' : 'text-[#111814]'
+                    }`}
                 >
                   {card.number}
                 </span>
 
                 <div
-                  className={`w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 ${
-                    card.isDark
-                      ? 'bg-white/10 border-white/15'
-                      : 'bg-white border-neutral-200 shadow-2xs'
-                  }`}
+                  className={`w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 ${card.isDark
+                    ? 'bg-white/10 border-white/15'
+                    : 'bg-white border-neutral-200 shadow-2xs'
+                    }`}
                 >
                   {card.icon}
                 </div>
@@ -131,16 +129,14 @@ export function WhoWeAre() {
               {/* Title & Description */}
               <div className="space-y-1.5">
                 <h3
-                  className={`font-display font-semibold text-lg 2xl:text-xl tracking-[-0.015em] leading-snug ${
-                    card.isDark ? 'text-white' : 'text-[#111814]'
-                  }`}
+                  className={`font-display font-semibold text-lg 2xl:text-xl tracking-[-0.015em] leading-snug ${card.isDark ? 'text-white' : 'text-[#111814]'
+                    }`}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className={`font-sans text-xs sm:text-[13px] 2xl:text-sm leading-[1.55] ${
-                    card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
-                  }`}
+                  className={`font-sans text-xs sm:text-[13px] 2xl:text-sm leading-[1.55] ${card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
+                    }`}
                 >
                   {card.description}
                 </p>

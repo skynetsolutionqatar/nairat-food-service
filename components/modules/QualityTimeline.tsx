@@ -102,7 +102,7 @@ export function QualityTimeline() {
   );
 
   return (
-    <section id="quality" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 pt-8 sm:pt-10 2xl:pt-12 pb-14 sm:pb-16 2xl:pb-20 bg-white overflow-hidden">
+    <section id="quality" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 pt-8 sm:pt-10 2xl:pt-12 pb-14 sm:pb-16 2xl:pb-20 bg-[#F4F6F5] border-y border-neutral-200/70 overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 2xl:space-y-10">
         
         {/* Split Layout: Left is Timeline, Right is Official Certificates Showcase */}
@@ -139,7 +139,7 @@ export function QualityTimeline() {
                     className="timeline-step-item flex flex-col items-center md:items-start text-center md:text-left space-y-2.5 group will-change-transform"
                   >
                     {/* Circle Icon Badge */}
-                    <div className="w-11 h-11 2xl:w-13 2xl:h-13 rounded-full bg-[#F4F6F5] border border-black/5 flex items-center justify-center shadow-xs group-hover:scale-110 group-hover:border-[#168849]/30 transition-all duration-300">
+                    <div className="w-11 h-11 2xl:w-13 2xl:h-13 rounded-full bg-white border border-neutral-200/90 flex items-center justify-center shadow-xs group-hover:scale-110 group-hover:border-[#168849]/50 transition-all duration-300">
                       {item.icon}
                     </div>
 
@@ -170,7 +170,7 @@ export function QualityTimeline() {
               <div
                 key={cert.id}
                 onClick={() => setSelectedCert(cert)}
-                className="certificate-card-item group relative bg-[#F4F6F5] border border-black/10 rounded-2xl p-3 2xl:p-3.5 cursor-pointer overflow-hidden shadow-xs hover:shadow-xl hover:border-[#168849]/40 hover:-translate-y-1 transition-all duration-300 w-full sm:w-1/2 max-w-[210px] 2xl:max-w-[250px] will-change-transform"
+                className="certificate-card-item group relative bg-white border border-neutral-200/90 rounded-2xl p-3 2xl:p-3.5 cursor-pointer overflow-hidden shadow-xs hover:shadow-xl hover:border-[#168849]/50 hover:-translate-y-1 transition-all duration-300 w-full sm:w-1/2 max-w-[210px] 2xl:max-w-[250px] will-change-transform"
               >
                 {/* Certificate Preview Image */}
                 <div className="relative aspect-[3/4] w-full rounded-xl overflow-hidden bg-white border border-black/5 flex items-center justify-center">
