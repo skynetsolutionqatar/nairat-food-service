@@ -272,31 +272,111 @@ const categoriesData: CategoryData[] = [
 export function Products() {
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
 
+  const isDownRef = useRef(false);
+  const startXRef = useRef(0);
+  const scrollLeftRef = useRef(0);
+
   const activeCategory = categoriesData[categoryIndex];
 
-  // Auto scroll category selection smoothly
+  // Auto scroll category selection smoothly when not dragging/hovering
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || isDragging) return;
 
     const interval = setInterval(() => {
       setCategoryIndex((prev) => (prev + 1) % categoriesData.length);
     }, 4500);
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, isDragging]);
 
-  // Smoothly scroll card track when categoryIndex changes
+  // Smoothly scroll card track when categoryIndex changes (when not actively dragging)
   useEffect(() => {
-    if (row1Ref.current && row2Ref.current) {
+    if (!isDownRef.current && row1Ref.current && row2Ref.current) {
       const rowWidth = row1Ref.current.clientWidth;
       row1Ref.current.scrollTo({ left: categoryIndex * rowWidth, behavior: 'smooth' });
       row2Ref.current.scrollTo({ left: categoryIndex * rowWidth, behavior: 'smooth' });
     }
   }, [categoryIndex]);
+
+  // Mouse Drag Handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDownRef.current = true;
+    setIsDragging(true);
+    setIsPaused(true);
+    startXRef.current = e.pageX;
+    if (row1Ref.current) {
+      scrollLeftRef.current = row1Ref.current.scrollLeft;
+    }
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDownRef.current || !row1Ref.current || !row2Ref.current) return;
+    e.preventDefault();
+    const x = e.pageX;
+    const walk = (x - startXRef.current) * 1.3;
+    row1Ref.current.scrollLeft = scrollLeftRef.current - walk;
+    row2Ref.current.scrollLeft = scrollLeftRef.current - walk;
+
+    const rowWidth = row1Ref.current.clientWidth;
+    const nearestIndex = Math.min(
+      Math.max(0, Math.round(row1Ref.current.scrollLeft / rowWidth)),
+      categoriesData.length - 1
+    );
+    if (nearestIndex !== categoryIndex) {
+      setCategoryIndex(nearestIndex);
+    }
+  };
+
+  const handleMouseUpOrLeave = () => {
+    if (!isDownRef.current) return;
+    isDownRef.current = false;
+    setIsDragging(false);
+
+    if (row1Ref.current && row2Ref.current) {
+      const rowWidth = row1Ref.current.clientWidth;
+      const finalIndex = Math.min(
+        Math.max(0, Math.round(row1Ref.current.scrollLeft / rowWidth)),
+        categoriesData.length - 1
+      );
+      setCategoryIndex(finalIndex);
+      row1Ref.current.scrollTo({ left: finalIndex * rowWidth, behavior: 'smooth' });
+      row2Ref.current.scrollTo({ left: finalIndex * rowWidth, behavior: 'smooth' });
+    }
+  };
+
+  // Touch Handlers for Mobile / Trackpad
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDownRef.current = true;
+    setIsDragging(true);
+    setIsPaused(true);
+    startXRef.current = e.touches[0].pageX;
+    if (row1Ref.current) {
+      scrollLeftRef.current = row1Ref.current.scrollLeft;
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDownRef.current || !row1Ref.current || !row2Ref.current) return;
+    const x = e.touches[0].pageX;
+    const walk = (x - startXRef.current) * 1.3;
+    row1Ref.current.scrollLeft = scrollLeftRef.current - walk;
+    row2Ref.current.scrollLeft = scrollLeftRef.current - walk;
+
+    const rowWidth = row1Ref.current.clientWidth;
+    const nearestIndex = Math.min(
+      Math.max(0, Math.round(row1Ref.current.scrollLeft / rowWidth)),
+      categoriesData.length - 1
+    );
+    if (nearestIndex !== categoryIndex) {
+      setCategoryIndex(nearestIndex);
+    }
+  };
 
   useGSAP(
     () => {
@@ -344,7 +424,7 @@ export function Products() {
 
   return (
     <section id="products" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 pt-12 sm:pt-16 2xl:pt-20 pb-4 sm:pb-6 2xl:pb-8 bg-white text-neutral-900 overflow-hidden">
-      <div className="w-full space-y-8 sm:space-y-10 2xl:space-y-12 px-0">
+      <div className="w-full space-y-6 sm:space-y-8 2xl:space-y-10 px-0">
 
         {/* Section Header */}
         <div className="max-w-3xl 2xl:max-w-4xl mx-auto text-center space-y-3 px-4">
@@ -358,13 +438,41 @@ export function Products() {
           <h2 className="product-header-item font-display type-h2 font-semibold text-[#111814]">
             Freshness, Sourced From Around the World.
           </h2>
+
+          {/* Interactive Category Selector Pills */}
+          <div className="product-header-item flex flex-wrap items-center justify-center gap-2 pt-2">
+            {categoriesData.map((cat, idx) => (
+              <button
+                key={cat.id}
+                onClick={() => setCategoryIndex(idx)}
+                className={`font-sans text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
+                  categoryIndex === idx
+                    ? 'bg-[#168849] text-white shadow-md shadow-[#168849]/25 scale-105'
+                    : 'bg-[#F4F6F5] text-[#6B7280] hover:text-[#111814] hover:bg-[#eaecea]'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* 100% Edge-to-Edge Full Width Product Showcase Gallery Container */}
+        {/* 100% Edge-to-Edge Full Width Product Showcase Gallery Container with Drag to Scroll */}
         <div
           onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          className="product-gallery-wrapper relative w-full rounded-none overflow-hidden bg-neutral-950 flex flex-col gap-0"
+          onMouseLeave={() => {
+            setIsPaused(false);
+            handleMouseUpOrLeave();
+          }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleMouseUpOrLeave}
+          className={`product-gallery-wrapper relative w-full rounded-none overflow-hidden bg-neutral-950 flex flex-col gap-0 select-none ${
+            isDragging ? 'cursor-grabbing' : 'cursor-grab'
+          }`}
         >
           {/* ROW 1: Left Vertical Bar + Horizontal Card Scroll Track */}
           <div className="flex flex-row items-stretch h-48 xs:h-56 sm:h-72 md:h-96 lg:h-[480px] xl:h-[520px] 2xl:h-[580px] w-full overflow-hidden">
