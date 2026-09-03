@@ -12,7 +12,7 @@ Guidelines for writing good code for developer:
 8. Reuse. Write as little code as possible.
 9. Use frontend-design, web-design-guidelines for uI
 10. Always write tests, and make sure they work.
-11. Tech Stack: Next.js (App Router), Tailwind CSS, TypeScript, GSAP, Lenis, Framer Motion, Lucide React, and Sanity CMS (Phase 2).
+11. Tech Stack: Next.js (App Router), Tailwind CSS, TypeScript, GSAP, Lenis, Framer Motion, Lucide React, and Sanity CMS (Phase 3).
 
 ## Skills
 
@@ -27,9 +27,17 @@ For creating specs use tracer bullet approach.
 create specs in `/specs/`. maintain a `PROGRESS.md` file to track progress of implementation phases.
 
 Phased Execution Rules:
-- Phase 1: Build the complete interactive frontend website (in English).
-- Phase 2: Implement bilingual support (Arabic/RTL) and integrate Sanity CMS.
-- Phase 1 must be fully completed and verified before starting Phase 2.
+- Phase 1: Landing Page (in English) [Completed].
+- Phase 2: Page Creation Phase (in English) — build separate pages one by one in sequential order:
+  1. Company
+  2. Our Products
+  3. Services
+  4. Sourcing & Quality
+  5. Partners
+  6. Contact Us
+  (Each page planned with content and specs, then developed and verified individually before moving to the next).
+- Phase 3: RTL and Sanity Phase — implement bilingual support (Arabic/RTL) and integrate Sanity CMS across all pages.
+- Each phase must be fully completed and verified before starting the next phase.
 
 ## Commit / PR
 
