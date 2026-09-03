@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 
+import { useLocale } from '@/context/LocaleContext';
+
 interface NavigationLink {
   label: string;
   href: string;
@@ -23,7 +25,7 @@ const navigationLinks: NavigationLink[] = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [locale, setLocale] = useState<'en' | 'ar'>('en');
+  const { locale, toggleLanguage } = useLocale();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,19 +44,12 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   };
 
-  const toggleLanguage = () => {
-    const nextLocale = locale === 'en' ? 'ar' : 'en';
-    setLocale(nextLocale);
-    document.documentElement.lang = nextLocale;
-    document.documentElement.dir = nextLocale === 'ar' ? 'rtl' : 'ltr';
-  };
-
   return (
     <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300 pointer-events-none">
       <div
         className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between rounded-full transition-all duration-300 pointer-events-auto ${isScrolled
-          ? 'bg-[#168849]/95 backdrop-blur-md shadow-xl'
-          : 'bg-[#168849] shadow-lg'
+          ? 'bg-[#158647] backdrop-blur-md shadow-xl'
+          : 'bg-[#158647] shadow-lg'
           }`}
       >
         {/* Brand Logo */}
@@ -64,12 +59,13 @@ export function Navbar() {
           onClick={closeMobileMenu}
         >
           <Image
-            src="/en.jpg"
+            src={locale === 'ar' ? '/LogoAR.png' : '/LogoEN.png'}
             alt="Nairat Food Services"
-            width={150}
-            height={50}
+            width={180}
+            height={75}
             className="h-8 sm:h-9 w-auto object-contain rounded-md"
             priority
+            unoptimized
           />
         </Link>
 
@@ -135,7 +131,7 @@ export function Navbar() {
 
       {/* Mobile Menu Panel */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-[#28844B] border border-white/20 px-6 py-5 absolute top-full left-4 right-4 rounded-3xl mt-3 shadow-2xl backdrop-blur-lg">
+        <div className="lg:hidden bg-[#168749] border border-white/20 px-6 py-5 absolute top-full left-4 right-4 rounded-3xl mt-3 shadow-2xl backdrop-blur-lg">
           <nav className="flex flex-col gap-3">
             {navigationLinks.map((link) => (
               <a

@@ -86,12 +86,14 @@ export function Hero() {
         loop
         muted
         playsInline
+        preload="auto"
+        poster="/hero-poster.webp"
+        disablePictureInPicture
+        disableRemotePlayback
         className="absolute inset-0 w-full h-full object-cover pointer-events-none origin-center will-change-transform transform-gpu brightness-[1.03] contrast-[1.05] saturate-[1.08]"
       >
+        <source src="/hero.webm" type="video/webm" />
         <source src="/hero.mp4" type="video/mp4" />
-        <source src="/hero-video.mp4" type="video/mp4" />
-        <source src="/hero-bg.mp4" type="video/mp4" />
-        <source src="/video.mp4" type="video/mp4" />
       </video>
 
       {/* Minimal subtle gradient overlay only at the bottom for crisp text readability */}

@@ -7,6 +7,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
+import { LocaleProvider } from '@/context/LocaleContext';
+
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const LenisContext = createContext<Lenis | null>(null);
@@ -72,8 +74,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <LenisContext.Provider value={lenis}>
-      {children}
-    </LenisContext.Provider>
+    <LocaleProvider>
+      <LenisContext.Provider value={lenis}>
+        {children}
+      </LenisContext.Provider>
+    </LocaleProvider>
   );
 }

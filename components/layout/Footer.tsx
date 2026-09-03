@@ -7,6 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { CtaButton } from '@/components/ui/CtaButton';
+import { useLocale } from '@/context/LocaleContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -25,6 +26,7 @@ const footerNavLinks: FooterNavLink[] = [
 
 export function Footer() {
   const containerRef = useRef<HTMLElement>(null);
+  const { locale } = useLocale();
 
   useGSAP(
     () => {
@@ -59,12 +61,13 @@ export function Footer() {
           <div className="shrink-0 flex items-center">
             <Link href="#home" className="inline-block">
               <Image
-                src="/en.jpg"
+                src={locale === 'ar' ? '/LogoAR.png' : '/LogoEN.png'}
                 alt="Nairat Food Services"
-                width={120}
-                height={80}
+                width={240}
+                height={100}
                 className="h-16 sm:h-20 w-auto object-contain rounded-md"
                 priority
+                unoptimized
               />
             </Link>
           </div>
