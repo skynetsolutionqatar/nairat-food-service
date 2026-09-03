@@ -65,6 +65,7 @@ export function Footer() {
                 alt="Nairat Food Services"
                 width={240}
                 height={100}
+                style={{ width: 'auto' }}
                 className="h-16 sm:h-20 w-auto object-contain rounded-md"
                 priority
                 unoptimized

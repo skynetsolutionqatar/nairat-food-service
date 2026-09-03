@@ -63,6 +63,7 @@ export function Navbar() {
             alt="Nairat Food Services"
             width={180}
             height={75}
+            style={{ width: 'auto' }}
             className="h-8 sm:h-9 w-auto object-contain rounded-md"
             priority
             unoptimized

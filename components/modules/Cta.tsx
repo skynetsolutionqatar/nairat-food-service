@@ -122,6 +122,7 @@ export function Cta(): React.ReactNode {
                 alt="Sourced Around the World country flags"
                 width={120}
                 height={36}
+                style={{ width: 'auto' }}
                 className="h-7 sm:h-9 w-auto object-contain"
               />
             </div>
