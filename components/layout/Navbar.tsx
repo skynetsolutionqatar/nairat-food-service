@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 
+import { usePathname } from 'next/navigation';
 import { useLocale } from '@/context/LocaleContext';
 
 interface NavigationLink {
@@ -13,19 +14,22 @@ interface NavigationLink {
   href: string;
 }
 
-const navigationLinks: NavigationLink[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'Company', href: '#about' },
-  { label: 'Our Products', href: '#products' },
-  { label: 'Services', href: '#services' },
-  { label: 'Sourcing & Quality', href: '#quality' },
-  { label: 'Partners', href: '#partners' },
-];
-
 export function Navbar() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale, toggleLanguage } = useLocale();
+
+  const isCompanyPage = pathname === '/company';
+
+  const navigationLinks: NavigationLink[] = [
+    { label: 'Home', href: '/' },
+    { label: 'Company', href: '/company' },
+    { label: 'Our Products', href: isCompanyPage ? '/#products' : '#products' },
+    { label: 'Services', href: isCompanyPage ? '/#services' : '#services' },
+    { label: 'Sourcing & Quality', href: isCompanyPage ? '/#quality' : '#quality' },
+    { label: 'Partners', href: isCompanyPage ? '/#partners' : '#partners' },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +58,7 @@ export function Navbar() {
       >
         {/* Brand Logo */}
         <Link
-          href="#home"
+          href="/"
           className="flex items-center"
           onClick={closeMobileMenu}
         >
@@ -72,16 +76,25 @@ export function Navbar() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
-          {navigationLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="font-sans text-xs xl:text-sm font-medium text-white/90 hover:text-white transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 relative group tracking-[-0.01em]"
-            >
-              {link.label}
-              <span className="absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
-            </a>
-          ))}
+          {navigationLinks.map((link) => {
+            const isActive = link.href === '/company' ? isCompanyPage : (link.href === '/' && pathname === '/');
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 relative group tracking-[-0.01em] ${
+                  isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
+                }`}
+              >
+                {link.label}
+                <span
+                  className={`absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-white transition-transform duration-200 rounded-full ${
+                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`}
+                />
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Right Actions: Language Toggle + CTA Button */}
@@ -135,14 +148,14 @@ export function Navbar() {
         <div className="lg:hidden bg-[#168749] border border-white/20 px-6 py-5 absolute top-full left-4 right-4 rounded-3xl mt-3 shadow-2xl backdrop-blur-lg">
           <nav className="flex flex-col gap-3">
             {navigationLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={closeMobileMenu}
                 className="font-sans text-base font-medium text-white hover:text-white/80 py-2.5 border-b border-white/10 focus-visible:outline-2 focus-visible:outline-white rounded tracking-[-0.01em]"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
 
             <div className="pt-3 flex flex-col gap-2.5">

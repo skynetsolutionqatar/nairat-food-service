@@ -41,11 +41,10 @@
 
 ## 3. Section-by-Section Content & Layout Architecture
 
-### 1. Hero Section
-- **Badge:** `ABOUT NAIRAT FOOD SERVICES`
-- **Title:** `Delivering Freshness Across Qatar`
-- **Lead Text:** `From global sourcing to local distribution, Nairat Food connects the world's finest fresh produce with customers across Qatar.`
-- **Design Treatment:** Refined dark-to-light gradient backdrop, clean ambient glow, anchor navigation pills to jump smoothly to sections (`Overview`, `Infrastructure`, `Sourcing`, `Quality`).
+### 1. Page Header Banner (Compact Subpage Header)
+- **Title:** `Company`
+- **Breadcrumbs:** `Home / Company`
+- **Design Treatment:** Compact branded emerald strip (`#158647`) with organic watermark graphic on the right, providing clean visual separation under the floating navbar.
 
 ### 2. Delivering Freshness
 - **Eyebrow:** `DELIVERING FRESHNESS`
@@ -108,7 +107,13 @@
   - "By sourcing from multiple regions, we can maintain greater consistency in product quality and availability throughout the year."
 - **Visual Element:** Geographic sourcing matrix / region highlight cards (The Levant, The Gulf, Africa, Asia & Worldwide) with Abu Samra border clearance callout.
 
-### 8. Our Supply Chain (From Source to Shelf)
+### 8. Our Team (The People Driving Our Growth)
+- **Eyebrow:** `OUR TEAM`
+- **H2:** `The People Driving Our Growth`
+- **Narrative:** "At Nairat Food, we understand the goals and aspirations of each team member, as well as the needs of our business. Whether you're new to our team or have been with us for a while, we are dedicated to helping you reach your full potential. Currently, we have 150 employees, but we are experiencing rapid growth and will soon have 200 employees to support our expansion plans. Our team is one of our most valuable assets, and we prioritize their well-being to ensure the smooth operation of our company."
+- **Visual Asset:** `/team/team.jpg` with full team showcase banner and metadata badges (*150+ Employees Today · Expanding to 200+*).
+
+### 9. Our Supply Chain (From Source to Shelf)
 - **Eyebrow:** `OUR SUPPLY CHAIN`
 - **H2:** `From source to shelf.`
 - **Sequential 4-Step Process:**
@@ -134,12 +139,13 @@
   - "Our focus remains on building stronger partnerships, expanding access to quality produce and delivering a dependable fresh-produce supply throughout the year."
 - **Core Ambition Highlight:** "Our ambition is to become the trusted fresh-produce partner for businesses and consumers across Qatar."
 
-### 11. Final CTA Section
+### 11. Final CTA Section (Reusing Home Page `<Cta />` Module)
+- **Shared Module:** `@/components/modules/Cta` with full-bleed parallax background (`/cta/ctaft-bac.webp`), vignette gradient, and expandable corporate partnership form.
 - **Heading:** `Freshness starts at the source.`
 - **Subtitle:** `From farms around the world to customers across Qatar, Nairat Food is built to deliver fresh.`
 - **Actions:**
-  - `Partner With Us →` (Emerald Primary Button)
-  - `Contact Nairat →` (Slate/White Secondary Button)
+  - `Partner With Us →` (Primary Emerald Action Button)
+  - `Contact Nairat →` (Secondary Outlined Action Button)
 
 ---
 
@@ -156,12 +162,13 @@ components/
     CompanyCommitment.tsx      # Freshness at every stage + 3 pillars
     CompanyVisionMission.tsx   # Side-by-side Vision and Mission cards
     CompanyGrowth.tsx          # 6-metric operational bento with mono numbers
-    CompanyInfrastructure.tsx   # 4 cold-chain facilities with asset images
+    CompanyInfrastructure.tsx  # 4 cold-chain facilities with asset images
     CompanySourcing.tsx        # Global sourcing network & Abu Samra callout
     CompanySupplyChain.tsx     # 01-04 Source to shelf process timeline
     CompanyQuality.tsx         # Food safety testing + HACCP/ISO 22000
     CompanyLookingAhead.tsx    # Forward outlook & strategic partnerships
-    CompanyCta.tsx             # Dual B2B action banner
+  modules/
+    Cta.tsx                    # Shared full-bleed CTA module matching home page design
 ```
 
 ### Navigation Updates

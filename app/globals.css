@@ -145,3 +145,35 @@ html.lenis body {
 }
 
 
+.commitment-icon-ring {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 1px solid rgb(220, 220, 220);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.commitment-icon-ring::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 50%;
+  padding: 2px;
+  background: conic-gradient(#168849 0deg, #168849 0deg, rgba(220, 220, 220, 0) 0deg, rgba(220, 220, 220, 0) 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  transition: 0.8s ease;
+  pointer-events: none;
+}
+
+.group:hover .commitment-icon-ring::before,
+.commitment-icon-ring:hover::before {
+  background: conic-gradient(#168849 0deg, #168849 120deg, rgba(220, 220, 220, 0) 120deg, rgba(220, 220, 220, 0) 360deg);
+  transform: rotate(360deg);
+}

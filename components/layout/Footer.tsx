@@ -17,11 +17,11 @@ interface FooterNavLink {
 }
 
 const footerNavLinks: FooterNavLink[] = [
-  { label: 'Home', href: '#home' },
-  { label: 'Company', href: '#about' },
-  { label: 'Our Products', href: '#products' },
-  { label: 'Careers', href: '#contact' },
-  { label: 'Contact Us', href: '#contact' },
+  { label: 'Home', href: '/' },
+  { label: 'Company', href: '/company' },
+  { label: 'Our Products', href: '/#products' },
+  { label: 'Careers', href: '/#contact' },
+  { label: 'Contact Us', href: '/#contact' },
 ];
 
 export function Footer() {
@@ -59,7 +59,7 @@ export function Footer() {
 
           {/* Left: Brand Logo */}
           <div className="shrink-0 flex items-center">
-            <Link href="#home" className="inline-block">
+            <Link href="/" className="inline-block">
               <Image
                 src={locale === 'ar' ? '/LogoAR.png' : '/LogoEN.png'}
                 alt="Nairat Food Services"

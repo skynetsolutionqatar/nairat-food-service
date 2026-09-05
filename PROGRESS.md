@@ -43,12 +43,12 @@ This document tracks the implementation progress of the Nairat Food Services web
 
 Each page will be planned and built **one by one in strict sequential order**. Content and specifications will be finalized with user approval before development begins for each page.
 
-- [ ] **Milestone 1: Page 1 — Company (`/company`)**
-  - [ ] Content planning: corporate history, executive leadership, mission/vision, infrastructure
-  - [ ] Create `specs/page-company.md`
-  - [ ] Implement `/company` route and sub-components
-  - [ ] Integrate navigation links and verify responsive layout
-  - [ ] Run E2E testing with `agent-browser`
+- [x] **Milestone 1: Page 1 — Company (`/company`)** [Completed]
+  - [x] Content planning: corporate history, commitment, mission/vision, infrastructure, sourcing, quality
+  - [x] Create [specs/page-company.md](file:///home/sfwnmuhd/Desktop/nairat/specs/page-company.md)
+  - [x] Implement `/company` route and modular sub-components in `components/company/`
+  - [x] Integrate navigation links in Navbar & Footer with active state detection
+  - [x] Run E2E testing with `agent-browser` (desktop, mobile 375px, modal previews, navigation)
 
 - [ ] **Milestone 2: Page 2 — Our Products (`/products`)**
   - [ ] Content planning: complete produce catalog, origin matrix, seasonal availability calendar

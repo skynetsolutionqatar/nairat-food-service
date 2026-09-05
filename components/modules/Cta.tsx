@@ -27,24 +27,25 @@ export function Cta(): React.ReactNode {
 
   useGSAP(
     () => {
+      if (!containerRef.current || !bgImageRef.current) return;
+
       // Parallax scrub on background image
-      if (bgImageRef.current) {
-        gsap.fromTo(
-          bgImageRef.current,
-          { scale: 1.1, yPercent: -4 },
-          {
-            scale: 1.02,
-            yPercent: 4,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: containerRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1,
-            },
-          }
-        );
-      }
+      gsap.fromTo(
+        bgImageRef.current,
+        { scale: 1.1, yPercent: -4 },
+        {
+          scale: 1.02,
+          yPercent: 4,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
 
       // Content reveal timeline
       const tl = gsap.timeline({
@@ -88,7 +89,7 @@ export function Cta(): React.ReactNode {
 
   return (
     <section id="contact" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 relative w-full overflow-hidden bg-neutral-900">
-      
+
       {/* Full-Bleed Background Image with GSAP Parallax */}
       <div ref={bgImageRef} className="absolute inset-0 w-full h-full pointer-events-none will-change-transform transform-gpu">
         <Image
@@ -105,7 +106,7 @@ export function Cta(): React.ReactNode {
 
       {/* Content Container Aligned Exactly with Other Sections */}
       <div className="relative z-10 max-w-[1140px] 2xl:max-w-[1240px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-12 2xl:py-14">
-        
+
         <div className="max-w-3xl 2xl:max-w-4xl space-y-3 sm:space-y-4">
 
           {/* Headline */}
@@ -122,7 +123,7 @@ export function Cta(): React.ReactNode {
                 alt="Sourced Around the World country flags"
                 width={120}
                 height={36}
-                style={{ width: 'auto' }}
+                style={{ width: 'auto', height: 'auto' }}
                 className="h-7 sm:h-9 w-auto object-contain"
               />
             </div>

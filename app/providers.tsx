@@ -21,7 +21,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     // Check if user prefers reduced motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
+
     if (prefersReducedMotion) {
       return;
     }
