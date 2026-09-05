@@ -50,12 +50,15 @@ Each page will be planned and built **one by one in strict sequential order**. C
   - [x] Integrate navigation links in Navbar & Footer with active state detection
   - [x] Run E2E testing with `agent-browser` (desktop, mobile 375px, modal previews, navigation)
 
-- [ ] **Milestone 2: Page 2 — Our Products (`/products`)**
-  - [ ] Content planning: complete produce catalog, origin matrix, seasonal availability calendar
-  - [ ] Create `specs/page-products.md`
-  - [ ] Implement `/products` route, category filtering, search, and specs sheets
-  - [ ] Connect inquiry actions to corporate contact drawer/modal
-  - [ ] Run E2E testing with `agent-browser`
+- [x] **Milestone 2: Page 2 — Dedicated Product Pages** [Completed]
+  - [x] Content planning & specs for the 4 individual product category pages:
+    - Vegetables (`/products/vegetables`)
+    - Fruits (`/products/fruits`)
+    - Leafy & Herbs (`/products/leafy-herbs`)
+    - Specialty & Gourmet (`/products/specialty-gourmet`)
+  - [x] Create `specs/page-products.md`
+  - [x] Implement individual product pages with produce catalog, origin matrix, seasonal availability, and inquiry actions
+  - [x] Run E2E testing with `agent-browser` (desktop 4-column grid, mobile view, category tab switching, /products redirect)
 
 - [ ] **Milestone 3: Page 3 — Services (`/services`)**
   - [ ] Content planning: wholesale distribution, HORECA supply, temperature-controlled logistics, custom repacking

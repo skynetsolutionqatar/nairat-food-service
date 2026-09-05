@@ -120,8 +120,8 @@ export function Hero() {
             </p>
 
             <div className="hero-cta-btn">
-              <CtaButton href="#products">
-                Explore Our Products
+              <CtaButton href="#contact">
+                Partner With Us
               </CtaButton>
             </div>
           </div>
