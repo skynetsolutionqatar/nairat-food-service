@@ -22,7 +22,7 @@ export function Navbar() {
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const { locale, toggleLanguage } = useLocale();
 
-  const isCompanyPage = pathname === '/company';
+  const isSubpage = pathname !== '/';
 
   const productCategories = [
     { label: 'Vegetables', href: '/products/vegetables' },
@@ -35,9 +35,9 @@ export function Navbar() {
     { label: 'Home', href: '/' },
     { label: 'Company', href: '/company' },
     { label: 'Our Products', href: '#' },
-    { label: 'Services', href: isCompanyPage ? '/#services' : '#services' },
-    { label: 'Sourcing & Quality', href: isCompanyPage ? '/#quality' : '#quality' },
-    { label: 'Partners', href: isCompanyPage ? '/#partners' : '#partners' },
+    { label: 'Services', href: '/services' },
+    { label: 'Sourcing & Quality', href: isSubpage ? '/#quality' : '#quality' },
+    { label: 'Partners', href: isSubpage ? '/#partners' : '#partners' },
   ];
 
   useEffect(() => {
@@ -89,7 +89,9 @@ export function Navbar() {
             const isProducts = link.label === 'Our Products';
             const isActive =
               link.href === '/company'
-                ? isCompanyPage
+                ? pathname === '/company'
+                : link.href === '/services'
+                ? pathname === '/services'
                 : isProducts
                 ? pathname.startsWith('/products')
                 : link.href === '/' && pathname === '/';

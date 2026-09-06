@@ -60,11 +60,11 @@ Each page will be planned and built **one by one in strict sequential order**. C
   - [x] Implement individual product pages with produce catalog, origin matrix, seasonal availability, and inquiry actions
   - [x] Run E2E testing with `agent-browser` (desktop 4-column grid, mobile view, category tab switching, /products redirect)
 
-- [ ] **Milestone 3: Page 3 — Services (`/services`)**
-  - [ ] Content planning: wholesale distribution, HORECA supply, temperature-controlled logistics, custom repacking
-  - [ ] Create `specs/page-services.md`
-  - [ ] Implement `/services` route, cold-chain SLA diagrams, and sector breakdowns
-  - [ ] Run E2E testing with `agent-browser`
+- [x] **Milestone 3: Page 3 — Services (`/services`)**
+  - [x] Content planning: Retail & Wholesale Distribution, For Growers & Exporters, Nairat Shop
+  - [x] Create `specs/page-services.md`
+  - [x] Implement `/services` route, PageBanner, and 3 row-wise service cards with left image and right content
+  - [x] Run E2E testing with `agent-browser`
 
 - [ ] **Milestone 4: Page 4 — Sourcing & Quality (`/quality`)**
   - [ ] Content planning: farm auditing protocols, food-safety certifications, laboratory testing workflows, cold chain integrity

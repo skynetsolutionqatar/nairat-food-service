@@ -20,6 +20,7 @@ const footerNavLinks: FooterNavLink[] = [
   { label: 'Home', href: '/' },
   { label: 'Company', href: '/company' },
   { label: 'Our Products', href: '/#products' },
+  { label: 'Services', href: '/services' },
   { label: 'Careers', href: '/#contact' },
   { label: 'Contact Us', href: '/#contact' },
 ];
