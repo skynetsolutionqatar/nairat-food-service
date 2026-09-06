@@ -7,6 +7,8 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 
+import { usePathname } from 'next/navigation';
+
 import { LocaleProvider } from '@/context/LocaleContext';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
@@ -72,6 +74,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
       setLenis(null);
     };
   }, []);
+
+  const pathname = usePathname();
+
+  // Recalculate GSAP ScrollTrigger positions whenever route changes (e.g. going between short and long pages)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 120);
+
+    return () => clearTimeout(timer);
+  }, [pathname]);
 
   return (
     <LocaleProvider>

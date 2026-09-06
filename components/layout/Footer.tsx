@@ -1,15 +1,10 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { useLocale } from '@/context/LocaleContext';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface FooterNavLink {
   label: string;
@@ -28,33 +23,10 @@ const footerNavLinks: FooterNavLink[] = [
 ];
 
 export function Footer() {
-  const containerRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
 
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        '.footer-content-item',
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.65,
-          stagger: 0.08,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 92%',
-            once: true,
-          },
-        }
-      );
-    },
-    { scope: containerRef }
-  );
-
   return (
-    <footer ref={containerRef} className="bg-white text-[#111814] pt-12 2xl:pt-16 pb-8 2xl:pb-10 border-t border-neutral-200 overflow-hidden will-change-transform">
+    <footer className="bg-white text-[#111814] pt-12 2xl:pt-16 pb-8 2xl:pb-10 border-t border-neutral-200">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-8 2xl:space-y-10">
 
         {/* Top Section: Logo (Left) | "Go Fresh for Future" (Center) | CtaButton (Right) */}
