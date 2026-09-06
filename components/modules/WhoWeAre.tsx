@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -76,9 +77,19 @@ export function WhoWeAre() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end border-b border-neutral-200/90 pb-8 sm:pb-9 2xl:pb-10">
           <div className="lg:col-span-7 space-y-3">
 
-            <span className="who-header-item font-display type-eyebrow text-[#168849] block">
-              WHO WE ARE
-            </span>
+            <div className="who-header-item flex items-center gap-2">
+              <Image
+                src="/icon/icon.png"
+                alt=""
+                width={32}
+                height={16}
+                className="h-4 w-auto object-contain"
+                aria-hidden="true"
+              />
+              <span className="font-display type-eyebrow text-[#168849] block">
+                WHO WE ARE
+              </span>
+            </div>
             <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-left">
               Fresh Produce. <br />
               Strong Supply. <br />

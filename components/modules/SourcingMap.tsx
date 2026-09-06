@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { Leaf } from 'lucide-react';
+import Image from 'next/image';
 import { Globe, Marker, Arc } from '@/components/ui/cobe-globe';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -97,7 +97,14 @@ export function SourcingMap(): React.ReactNode {
           {/* Right Column: Sourcing Text & Country Pills (60% / 7 cols) */}
           <div className="lg:col-span-7 space-y-5 2xl:space-y-6">
             <div className="sourcing-header-item flex items-center gap-2">
-              <Leaf className="w-4 h-4 text-[#168849]" aria-hidden="true" />
+              <Image
+                src="/icon/icon.png"
+                alt=""
+                width={32}
+                height={16}
+                className="h-4 w-auto object-contain"
+                aria-hidden="true"
+              />
               <span className="font-display type-eyebrow text-[#168849]">
                 SOURCING COUNTRIES
               </span>

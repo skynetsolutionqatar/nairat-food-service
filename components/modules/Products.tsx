@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 import { Leaf } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -429,7 +430,14 @@ export function Products() {
         {/* Section Header */}
         <div className="max-w-3xl 2xl:max-w-4xl mx-auto text-center space-y-3 px-4">
           <div className="product-header-item flex items-center justify-center gap-2">
-            <Leaf className="w-4 h-4 text-[#168849]" aria-hidden="true" />
+            <Image
+              src="/icon/icon.png"
+              alt=""
+              width={32}
+              height={16}
+              className="h-4 w-auto object-contain"
+              aria-hidden="true"
+            />
             <span className="font-display type-eyebrow text-[#168849]">
               OUR PRODUCTS
             </span>

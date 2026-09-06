@@ -114,7 +114,14 @@ export function QualityTimeline() {
             {/* Headings */}
             <div className="space-y-2.5 2xl:space-y-3">
               <div className="quality-header-item flex items-center gap-2">
-                <Award className="w-4 h-4 text-[#168849]" aria-hidden="true" />
+                <Image
+                  src="/icon/icon.png"
+                  alt=""
+                  width={32}
+                  height={16}
+                  className="h-4 w-auto object-contain"
+                  aria-hidden="true"
+                />
                 <span className="font-display type-eyebrow text-[#168849] block">
                   CERTIFICATIONS &amp; QUALITY
                 </span>
