@@ -7,6 +7,7 @@ import { Globe, ShieldCheck, Sprout, ArrowRight, Calendar } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { CtaButton } from '../ui/CtaButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -132,13 +133,19 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                     We source fresh produce from leading growing regions across the Levant, Gulf, Africa, Asia and beyond, ensuring consistent supply and year-round availability.
                   </p>
                   <div className="pt-1">
-                    <Link
+                    {/* <Link
                       href="#supply-chain"
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#168849] hover:bg-[#063B27] text-white text-xs font-semibold shadow-xs hover:shadow-md transition-all group cursor-pointer"
                     >
                       <span>Our Sourcing Regions</span>
                       <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
+                    </Link> */}
+                    <CtaButton
+                      href="/company"
+                      text="Our Sourcing Regions"
+                      variant="primary"
+
+                    />
                   </div>
                 </div>
               </div>
@@ -165,7 +172,7 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                   </div>
                   <div>
                     <span className="font-display font-bold text-base sm:text-lg text-[#111814] block leading-none">
-                      400+
+                      00+
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
                       Product Lines

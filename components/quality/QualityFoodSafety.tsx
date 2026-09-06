@@ -8,6 +8,7 @@ import { ArrowRight, ArrowUpRight, X } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import { CtaButton } from '../ui/CtaButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,13 +101,18 @@ export function QualityFoodSafety(): React.ReactNode {
             </p>
 
             <div className="pt-2">
-              <Link
+              {/* <Link
                 href="#supply-chain"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#168849] hover:bg-[#063B27] text-white text-xs font-semibold shadow-xs hover:shadow-md transition-all group cursor-pointer"
               >
                 <span>Our Quality Process</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-              </Link>
+              </Link> */}
+              <CtaButton
+                href="/company"
+                text="Our Quality Process"
+                variant="primary"
+              />
             </div>
           </div>
 
