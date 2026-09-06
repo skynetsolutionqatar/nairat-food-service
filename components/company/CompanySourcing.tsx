@@ -46,13 +46,13 @@ export function CompanySourcing(): React.ReactNode {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column: Title & Narrative (6 cols) */}
           <div className="lg:col-span-6 space-y-5">
-            <h2 className="sourcing-header-item font-display text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-0.035em] leading-[1.15] text-[#111814]">
+            <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
               Strategic Sourcing: <br />
               <span className="text-[#168849]">From Global Orchards</span> <br />
               to Qatar.
             </h2>
 
-            <div className="sourcing-header-item space-y-3.5 text-base text-[#47554E] leading-relaxed">
+            <div className="sourcing-header-item space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
               <p>
                 Fresh produce is seasonal. Our supply needs to be dependable. Nairat works directly with growers and suppliers across major producing regions around the world.
               </p>
@@ -74,10 +74,10 @@ export function CompanySourcing(): React.ReactNode {
                   Diversified Sourcing
                 </span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-[#111814]">
+              <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug">
                 The Levant, Gulf, Africa &amp; Asia
               </h3>
-              <p className="font-sans text-sm text-[#47554E] leading-relaxed">
+              <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
                 Direct relationships with verified growers across Jordan, Lebanon, Syria, Saudi Arabia, Egypt, South Africa, Turkey, and India ensure uninterrupted arrivals of citrus, stone fruits, leafy greens, root vegetables, and exotic culinary lines.
               </p>
             </div>
@@ -89,10 +89,10 @@ export function CompanySourcing(): React.ReactNode {
                   Abu Samra Border &amp; QA
                 </span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-[#111814]">
+              <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug">
                 Border Quarantine &amp; Origin Inspection
               </h3>
-              <p className="font-sans text-sm text-[#47554E] leading-relaxed">
+              <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
                 Our procurement teams inspect consignments at origin and maintain active quality verification at key entry points, including overland QA inspection at the Abu Samra land border, before cargo enters our temperature-controlled warehouse in Doha.
               </p>
             </div>

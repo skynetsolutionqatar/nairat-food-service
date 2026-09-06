@@ -27,9 +27,14 @@ The page details how Nairat guarantees uncompromising freshness and safety:
 ### 1. Header Banner (`PageBanner`)
 - **Title:** `Sourcing & Quality`
 - **Breadcrumbs:** `Home / Sourcing & Quality`
-- **Description:** `Freshness is logistics. Rigorous origin-to-arrival inspection, temperature-controlled cold chains, and certified food-safety excellence across Qatar.`
+- Clean, focused header banner with organic brand watermark.
 
-### 2. Quality Philosophy & Inspection (`QualityHeroFeature`)
+### 2. Full-Width 12-Column Header Grid Standard (Matching `design.md`)
+Across all content sections on `/quality`, section headers span the full width of the container (`max-w-[1140px] 2xl:max-w-[1240px]`) using an asymmetric 12-column grid:
+- **Left Column (`lg:col-span-7`):** Eyebrow badge (`type-eyebrow`) and primary display heading (`type-h2`).
+- **Right Column (`lg:col-span-5`):** Explanatory lead paragraph (`type-lead`).
+
+### 3. Quality Philosophy & Inspection (`QualityHeroFeature`)
 - **Eyebrow:** `OUR QUALITY PHILOSOPHY`
 - **Main Heading:** `Freshness is Logistics: Inspected at Origin. Verified in Qatar.`
 - **Narrative:**

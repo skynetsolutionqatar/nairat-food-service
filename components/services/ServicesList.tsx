@@ -147,18 +147,18 @@ export function ServicesList(): React.ReactNode {
                     <div className="w-8 h-8 rounded-full bg-[#168849]/10 flex items-center justify-center">
                       {service.icon}
                     </div>
-                    <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-[#168849]">
+                    <span className="font-display type-eyebrow text-[#168849] block">
                       {service.category}
                     </span>
                   </div>
 
                   {/* Card Title */}
-                  <h2 className="service-card-item font-display text-2xl sm:text-3xl font-semibold tracking-[-0.025em] text-[#111814] leading-[1.2]">
+                  <h2 className="service-card-item font-display font-semibold text-2xl sm:text-3xl tracking-[-0.025em] text-[#111814] leading-[1.2]">
                     {service.title}
                   </h2>
 
                   {/* Main Paragraph */}
-                  <p className="service-card-item font-sans text-sm sm:text-base text-[#47554E] leading-relaxed">
+                  <p className="service-card-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
                     {service.description}
                   </p>
 
@@ -167,7 +167,7 @@ export function ServicesList(): React.ReactNode {
                     {service.features.map((feature) => (
                       <li
                         key={feature}
-                        className="flex items-start gap-2.5 text-xs sm:text-sm text-[#47554E]"
+                        className="flex items-start gap-2.5 text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]"
                       >
                         <CheckCircle2
                           className="w-4 h-4 text-[#168849] shrink-0 mt-0.5"

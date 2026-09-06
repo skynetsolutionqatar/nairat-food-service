@@ -66,17 +66,25 @@ export function CompanyQuality(): React.ReactNode {
 
             {/* Right: Narrative & Cert Badges (7 cols) */}
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-block">
-                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
+              <div className="flex items-center gap-2">
+                <Image
+                  src="/icon/icon.png"
+                  alt=""
+                  width={32}
+                  height={16}
+                  className="h-4 w-auto object-contain"
+                  aria-hidden="true"
+                />
+                <span className="font-display type-eyebrow text-[#168849] block">
                   Quality &amp; Food Safety
                 </span>
               </div>
 
-              <h3 className="font-display text-2xl sm:text-3xl font-semibold text-[#111814] tracking-tight">
+              <h3 className="font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-[#111814] tracking-tight leading-[1.18]">
                 Quality You Can Trust: Rigorous Protocols from Source to Arrival
               </h3>
 
-              <div className="space-y-3 text-sm sm:text-base text-[#47554E] leading-relaxed">
+              <div className="space-y-3 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
                 <p>
                   At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.
                 </p>

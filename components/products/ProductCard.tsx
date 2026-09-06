@@ -26,7 +26,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Name in the Image */}
       <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
-        <h3 className="font-sans text-base sm:text-lg font-bold text-white tracking-tight drop-shadow-xs">
+        <h3 className="font-display text-base sm:text-lg font-semibold text-white tracking-tight drop-shadow-xs">
           {product.name}
         </h3>
       </div>

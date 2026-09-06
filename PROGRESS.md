@@ -66,11 +66,11 @@ Each page will be planned and built **one by one in strict sequential order**. C
   - [x] Implement `/services` route, PageBanner, and 3 row-wise service cards with left image and right content
   - [x] Run E2E testing with `agent-browser`
 
-- [ ] **Milestone 4: Page 4 — Sourcing & Quality (`/quality`)**
-  - [ ] Content planning: farm auditing protocols, food-safety certifications, laboratory testing workflows, cold chain integrity
-  - [ ] Create `specs/page-quality.md`
-  - [ ] Implement `/quality` route, interactive standards timeline, certificate preview/downloads
-  - [ ] Run E2E testing with `agent-browser`
+- [x] **Milestone 4: Page 4 — Sourcing & Quality (`/quality`)** [Completed]
+  - [x] Content planning: farm auditing protocols, food-safety certifications, laboratory testing workflows, cold chain integrity
+  - [x] Create `specs/page-quality.md`
+  - [x] Implement `/quality` route, interactive standards timeline, certificate preview/downloads
+  - [x] Run E2E testing with `agent-browser`
 
 - [ ] **Milestone 5: Page 5 — Partners (`/partners`)**
   - [ ] Content planning: institutional client portfolio, hospitality case studies, supplier onboarding guidelines

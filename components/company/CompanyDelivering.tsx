@@ -84,17 +84,17 @@ export function CompanyDelivering(): React.ReactNode {
                 className="h-4 w-auto object-contain"
                 aria-hidden="true"
               />
-              <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-[#168849]">
+              <span className="font-display type-eyebrow text-[#168849] block">
                 Delivering Freshness
               </span>
             </div>
 
-            <h2 className="delivering-text-item font-display text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-0.035em] leading-[1.15] text-[#111814]">
+            <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
               A comprehensive fresh-produce <br className="hidden sm:inline" />
               <span className="text-[#168849]">partner for Qatar.</span>
             </h2>
 
-            <div className="space-y-3.5 text-base text-[#47554E] leading-relaxed">
+            <div className="space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
               <p className="delivering-text-item">
                 Nairat Food is one of Qatar&apos;s leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.
               </p>
@@ -115,10 +115,10 @@ export function CompanyDelivering(): React.ReactNode {
                 />
               </div>
               <div className="space-y-1.5 flex-1">
-                <h3 className="font-display text-base sm:text-lg font-semibold text-[#111814]">
+                <h3 className="font-display font-semibold text-base sm:text-lg text-[#111814]">
                   Our Core Commitment
                 </h3>
-                <p className="font-sans text-xs sm:text-sm text-[#47554E] leading-relaxed">
+                <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
                   To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.
                 </p>
               </div>

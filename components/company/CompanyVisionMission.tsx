@@ -47,13 +47,13 @@ export function CompanyVisionMission(): React.ReactNode {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column: Heading & Narrative (6 cols) */}
           <div className="lg:col-span-6 space-y-5">
-            <h2 className="vision-mission-text-item font-display text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-0.035em] leading-[1.15] text-[#111814]">
+            <h2 className="vision-mission-text-item font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
               Our Journey: <br />
               <span className="text-[#168849]">Growing a Fresher Future</span> <br />
               for Qatar.
             </h2>
 
-            <div className="vision-mission-text-item space-y-3.5 text-base text-[#47554E] leading-relaxed">
+            <div className="vision-mission-text-item space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
               <p>
                 Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar.
               </p>
@@ -72,10 +72,10 @@ export function CompanyVisionMission(): React.ReactNode {
                   Our Vision
                 </span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-[#111814]">
+              <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug">
                 Growing a fresher future for Qatar.
               </h3>
-              <p className="font-sans text-sm text-[#47554E] leading-relaxed">
+              <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
                 To be Qatar&apos;s premier provider of fresh fruits and vegetables, offering exceptional quality, dependable service and year-round availability while creating lasting value for our customers, suppliers and communities.
               </p>
             </div>
@@ -87,10 +87,10 @@ export function CompanyVisionMission(): React.ReactNode {
                   Our Mission
                 </span>
               </div>
-              <h3 className="font-display text-xl font-semibold text-[#111814]">
+              <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug">
                 Quality, Safety &amp; Stakeholder Value
               </h3>
-              <p className="font-sans text-sm text-[#47554E] leading-relaxed">
+              <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
                 We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every aspect of our operations. We continuously invest in our people, processes and infrastructure to build long-term relationships.
               </p>
             </div>

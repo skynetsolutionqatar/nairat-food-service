@@ -92,14 +92,14 @@ export function CompanyInfrastructure(): React.ReactNode {
         {/* Top Header: Left Title | Right Narrative */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end border-b border-white/20 pb-8 sm:pb-10">
           <div className="lg:col-span-7">
-            <h2 className="infra-green-header font-display text-3xl sm:text-4xl lg:text-[42px] font-semibold tracking-[-0.035em] leading-[1.15] text-white">
+            <h2 className="infra-green-header font-display type-h2 font-semibold text-white text-left leading-[1.12]">
               Built Around Freshness: <br />
               <span className="text-[#D4F056]">Infrastructure Designed for Scale</span>
             </h2>
           </div>
 
-          <div className="lg:col-span-5">
-            <p className="infra-green-header font-sans text-sm sm:text-base text-white/90 leading-relaxed">
+          <div className="lg:col-span-5 flex flex-col items-start lg:items-end">
+            <p className="infra-green-header font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-white/90 leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
               Our purpose-built cold-chain facility in Doha&apos;s Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.
             </p>
           </div>

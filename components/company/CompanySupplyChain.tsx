@@ -87,16 +87,16 @@ export function CompanySupplyChain(): React.ReactNode {
         <div className="max-w-3xl space-y-4 text-left">
           <div className="supply-header-item flex items-center gap-2">
             <Route className="w-4 h-4 text-[#168849]" aria-hidden="true" />
-            <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-[#168849]">
+            <span className="font-display type-eyebrow text-[#168849] block">
               Our Supply Chain
             </span>
           </div>
 
-          <h2 className="supply-header-item font-display text-3xl sm:text-4xl lg:text-[42px] font-semibold tracking-[-0.035em] leading-[1.15] text-[#111814]">
+          <h2 className="supply-header-item font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
             From source to shelf.
           </h2>
 
-          <p className="supply-header-item font-sans text-base sm:text-lg text-[#47554E] leading-relaxed">
+          <p className="supply-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
             Every shipment follows an unbroken, auditable protocol ensuring that freshness, nutrition, and appearance are preserved from the moment of harvest until final delivery.
           </p>
         </div>
@@ -127,7 +127,7 @@ export function CompanySupplyChain(): React.ReactNode {
                   </h3>
                 </div>
 
-                <p className="font-sans text-xs sm:text-sm text-[#47554E] leading-relaxed">
+                <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
                   {stepItem.description}
                 </p>
               </div>

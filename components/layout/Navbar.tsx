@@ -36,7 +36,7 @@ export function Navbar() {
     { label: 'Company', href: '/company' },
     { label: 'Our Products', href: '#' },
     { label: 'Services', href: '/services' },
-    { label: 'Sourcing & Quality', href: isSubpage ? '/#quality' : '#quality' },
+    { label: 'Sourcing & Quality', href: '/quality' },
     { label: 'Partners', href: isSubpage ? '/#partners' : '#partners' },
   ];
 
@@ -58,24 +58,21 @@ export function Navbar() {
   };
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8 transition-all duration-300 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 transition-all duration-300">
       <div
-        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-5 py-2 sm:py-2.5 flex items-center justify-between rounded-full transition-all duration-300 pointer-events-auto ${isScrolled
-          ? 'bg-[#158647] backdrop-blur-md shadow-xl'
-          : 'bg-[#158647] shadow-lg'
-          }`}
+        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-full transition-all duration-300 px-5 sm:px-6 py-2.5 flex items-center justify-between border ${
+          isScrolled
+            ? 'bg-[#158647]/95 backdrop-blur-md shadow-lg border-white/20'
+            : 'bg-[#158647]/80 backdrop-blur-sm shadow-md border-white/10'
+        }`}
       >
-        {/* Brand Logo */}
-        <Link
-          href="/"
-          className="flex items-center"
-          onClick={closeMobileMenu}
-        >
+        {/* Left: Brand Logo */}
+        <Link href="/" className="inline-block focus-visible:outline-2 focus-visible:outline-white rounded" onClick={closeMobileMenu}>
           <Image
             src={locale === 'ar' ? '/LogoAR.png' : '/LogoEN.png'}
             alt="Nairat Food Services"
-            width={180}
-            height={75}
+            width={120}
+            height={36}
             style={{ width: 'auto' }}
             className="h-8 sm:h-9 w-auto object-contain rounded-md"
             priority
@@ -92,6 +89,8 @@ export function Navbar() {
                 ? pathname === '/company'
                 : link.href === '/services'
                 ? pathname === '/services'
+                : link.href === '/quality'
+                ? pathname === '/quality'
                 : isProducts
                 ? pathname.startsWith('/products')
                 : link.href === '/' && pathname === '/';

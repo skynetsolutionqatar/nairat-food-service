@@ -49,16 +49,16 @@ export function CompanyTeam(): React.ReactNode {
         <div className="w-full space-y-4 text-left">
           <div className="team-header-item flex items-center gap-2">
             <Users className="w-4 h-4 text-[#168849]" aria-hidden="true" />
-            <span className="font-display text-xs font-bold uppercase tracking-[0.1em] text-[#168849]">
+            <span className="font-display type-eyebrow text-[#168849] block">
               Our Team
             </span>
           </div>
 
-          <h2 className="team-header-item font-display text-3xl sm:text-4xl lg:text-[40px] font-semibold tracking-[-0.035em] leading-[1.15] text-[#111814]">
+          <h2 className="team-header-item font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
             The People Driving Our Growth
           </h2>
 
-          <p className="team-header-item font-sans text-base text-[#47554E] leading-relaxed w-full text-justify">
+          <p className="team-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] w-full text-justify">
             At Nairat Food, we understand the goals and aspirations of each team member, as well as the needs of our growing business. With 200 employees, we are committed to helping our team reach their full potential. Our people are one of our most valuable assets, and we prioritize their well-being, development and a safe working environment to ensure the continued success of our company.
           </p>
         </div>
