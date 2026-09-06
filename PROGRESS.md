@@ -81,11 +81,18 @@ Each page will be planned and built **one by one in strict sequential order**. C
     - [x] Updated `design.md` with complete typography benchmark specifications
   - [x] Run comprehensive E2E testing with `agent-browser` (verified desktop, mobile, certificate modal interaction, 0 console errors)
 
-- [ ] **Milestone 5: Page 5 — Partners (`/partners`)**
-  - [ ] Content planning: institutional client portfolio, hospitality case studies, supplier onboarding guidelines
-  - [ ] Create `specs/page-partners.md`
-  - [ ] Implement `/partners` route, partner grid, and B2B vendor application form
-  - [ ] Run comprehensive multi-page E2E testing with `agent-browser`
+- [x] **Milestone 5: Page 5 — Partners (`/partners`)** [Completed]
+  - [x] Content planning & specs in `specs/page-partners.md` incorporating client content
+  - [x] Implement `/partners` route and modular components:
+    - [x] Header Banner (`PageBanner`) with organic watermark and breadcrumbs
+    - [x] Retail & Online Grocery Groups (`PartnerRetail.tsx`): Al Meera, LuLu, Carrefour, Safari, Grand Mall, Rawabi, Saudia, ABC Fresh + Talabat Mart feature card + 3 delivery commitments
+    - [x] Strategic Local Agriculture (`PartnerLocalAgriculture.tsx`): Mahaseel partnership card, Qatari farm produce highlights, and same-day harvest distribution
+    - [x] Global Sourcing Alliances (`PartnerGlobalGrowers.tsx`): Regional hubs (Jordan, Saudi Arabia, Lebanon, Egypt, South Africa, Iran, Syria, Global Origins) + commercial confidentiality note
+    - [x] Become a Partner Onboarding Pathways (`PartnerOnboarding.tsx`): 3 tracks (Growers/Exporters, Supermarkets, Local Farmers) with `CtaButton`
+  - [x] Navigation Integration:
+    - [x] Updated `Navbar.tsx` with `/partners` link and active state indicator
+    - [x] Updated `Footer.tsx` with `/partners` link
+  - [x] Run E2E testing with `agent-browser` (verified desktop, mobile, 0 console errors)
 
 - [ ] **Milestone 6: Page 6 — Contact Us (`/contact`)**
   - [ ] Content planning: department directory, location map integration, business hours, direct communication channels

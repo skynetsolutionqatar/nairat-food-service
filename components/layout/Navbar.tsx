@@ -37,7 +37,7 @@ export function Navbar() {
     { label: 'Our Products', href: '#' },
     { label: 'Services', href: '/services' },
     { label: 'Sourcing & Quality', href: '/quality' },
-    { label: 'Partners', href: isSubpage ? '/#partners' : '#partners' },
+    { label: 'Partners', href: '/partners' },
   ];
 
   useEffect(() => {
@@ -90,9 +90,11 @@ export function Navbar() {
                   ? pathname === '/services'
                   : link.href === '/quality'
                     ? pathname === '/quality'
-                    : isProducts
-                      ? pathname.startsWith('/products')
-                      : link.href === '/' && pathname === '/';
+                    : link.href === '/partners'
+                      ? pathname === '/partners'
+                      : isProducts
+                        ? pathname.startsWith('/products')
+                        : link.href === '/' && pathname === '/';
 
             if (isProducts) {
               return (

@@ -22,6 +22,7 @@ const footerNavLinks: FooterNavLink[] = [
   { label: 'Our Products', href: '/#products' },
   { label: 'Services', href: '/services' },
   { label: 'Sourcing & Quality', href: '/quality' },
+  { label: 'Partners', href: '/partners' },
   { label: 'Careers', href: '/#contact' },
   { label: 'Contact Us', href: '/#contact' },
 ];
