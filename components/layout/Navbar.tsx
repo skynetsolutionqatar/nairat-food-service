@@ -61,8 +61,8 @@ export function Navbar() {
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 transition-all duration-300">
       <div
         className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-full transition-all duration-300 px-5 sm:px-6 py-2.5 flex items-center justify-between border ${isScrolled
-            ? 'bg-[#158647] backdrop-blur-md shadow-lg border-white/20'
-            : 'bg-[#158647] backdrop-blur-sm shadow-md border-white/10'
+          ? 'bg-[#158647] backdrop-blur-md shadow-lg border-white/20'
+          : 'bg-[#158647] backdrop-blur-sm shadow-md border-white/10'
           }`}
       >
         {/* Left: Brand Logo */}
@@ -130,8 +130,8 @@ export function Navbar() {
                   {/* Dropdown Menu matching JKH Fruits Reference */}
                   <div
                     className={`absolute top-full left-0 pt-2 min-w-[210px] transition-all duration-200 ease-out z-50 ${isProductsDropdownOpen
-                        ? 'opacity-100 translate-y-0 pointer-events-auto visible'
-                        : 'opacity-0 translate-y-1.5 pointer-events-none invisible'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto visible'
+                      : 'opacity-0 translate-y-1.5 pointer-events-none invisible'
                       }`}
                   >
                     <div className="bg-[#158647] border border-white/20 rounded-2xl p-2 shadow-2xl backdrop-blur-lg flex flex-col gap-0.5">
@@ -182,9 +182,7 @@ export function Navbar() {
           {/* Action CTA Button using CtaButton */}
           <CtaButton
             variant="white"
-            href="https://wa.me/97431043814"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/contact"
             text="Contact Us"
           />
         </div>
@@ -279,7 +277,7 @@ export function Navbar() {
 
               <CtaButton
                 variant="white"
-                href="https://wa.me/97431043814"
+                href="/contact"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMobileMenu}

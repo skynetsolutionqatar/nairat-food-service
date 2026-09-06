@@ -94,11 +94,11 @@ Each page will be planned and built **one by one in strict sequential order**. C
     - [x] Updated `Footer.tsx` with `/partners` link
   - [x] Run E2E testing with `agent-browser` (verified desktop, mobile, 0 console errors)
 
-- [ ] **Milestone 6: Page 6 — Contact Us (`/contact`)**
-  - [ ] Content planning: department directory, location map integration, business hours, direct communication channels
-  - [ ] Create `specs/page-contact.md`
-  - [ ] Implement `/contact` route, interactive inquiry form with validation, office cards
-  - [ ] Run E2E testing with `agent-browser`
+- [x] **Milestone 6: Page 6 — Contact Us (`/contact`)**
+  - [x] Content planning: department directory, location map integration, business hours, direct communication channels
+  - [x] Create `specs/page-contact.md`
+  - [x] Implement `/contact` route, interactive inquiry form matching user mockup, institutional cards, location map
+  - [x] Run E2E testing with browser (verified desktop, mobile, form submission, 0 console errors)
 
 ---
 
