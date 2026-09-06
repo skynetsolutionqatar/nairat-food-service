@@ -60,11 +60,10 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 transition-all duration-300">
       <div
-        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-full transition-all duration-300 px-5 sm:px-6 py-2.5 flex items-center justify-between border ${
-          isScrolled
-            ? 'bg-[#158647]/95 backdrop-blur-md shadow-lg border-white/20'
-            : 'bg-[#158647]/80 backdrop-blur-sm shadow-md border-white/10'
-        }`}
+        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-full transition-all duration-300 px-5 sm:px-6 py-2.5 flex items-center justify-between border ${isScrolled
+            ? 'bg-[#158647] backdrop-blur-md shadow-lg border-white/20'
+            : 'bg-[#158647] backdrop-blur-sm shadow-md border-white/10'
+          }`}
       >
         {/* Left: Brand Logo */}
         <Link href="/" className="inline-block focus-visible:outline-2 focus-visible:outline-white rounded" onClick={closeMobileMenu}>
@@ -88,12 +87,12 @@ export function Navbar() {
               link.href === '/company'
                 ? pathname === '/company'
                 : link.href === '/services'
-                ? pathname === '/services'
-                : link.href === '/quality'
-                ? pathname === '/quality'
-                : isProducts
-                ? pathname.startsWith('/products')
-                : link.href === '/' && pathname === '/';
+                  ? pathname === '/services'
+                  : link.href === '/quality'
+                    ? pathname === '/quality'
+                    : isProducts
+                      ? pathname.startsWith('/products')
+                      : link.href === '/' && pathname === '/';
 
             if (isProducts) {
               return (
@@ -109,33 +108,29 @@ export function Navbar() {
                       e.preventDefault();
                       setIsProductsDropdownOpen((prev) => !prev);
                     }}
-                    className={`inline-flex items-center gap-1.5 font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 tracking-[-0.01em] cursor-pointer ${
-                      isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
-                    }`}
+                    className={`inline-flex items-center gap-1.5 font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 tracking-[-0.01em] cursor-pointer ${isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
+                      }`}
                     aria-haspopup="true"
                     aria-expanded={isProductsDropdownOpen}
                   >
                     <span>{link.label}</span>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-250 ${
-                        isProductsDropdownOpen ? 'rotate-180 text-white' : 'text-white/80'
-                      }`}
+                      className={`w-3.5 h-3.5 transition-transform duration-250 ${isProductsDropdownOpen ? 'rotate-180 text-white' : 'text-white/80'
+                        }`}
                       aria-hidden="true"
                     />
                     <span
-                      className={`absolute bottom-1 left-2.5 right-7 h-0.5 bg-white transition-transform duration-200 rounded-full ${
-                        isActive || isProductsDropdownOpen ? 'scale-x-100' : 'scale-x-0'
-                      }`}
+                      className={`absolute bottom-1 left-2.5 right-7 h-0.5 bg-white transition-transform duration-200 rounded-full ${isActive || isProductsDropdownOpen ? 'scale-x-100' : 'scale-x-0'
+                        }`}
                     />
                   </button>
 
                   {/* Dropdown Menu matching JKH Fruits Reference */}
                   <div
-                    className={`absolute top-full left-0 pt-2 min-w-[210px] transition-all duration-200 ease-out z-50 ${
-                      isProductsDropdownOpen
+                    className={`absolute top-full left-0 pt-2 min-w-[210px] transition-all duration-200 ease-out z-50 ${isProductsDropdownOpen
                         ? 'opacity-100 translate-y-0 pointer-events-auto visible'
                         : 'opacity-0 translate-y-1.5 pointer-events-none invisible'
-                    }`}
+                      }`}
                   >
                     <div className="bg-[#158647] border border-white/20 rounded-2xl p-2 shadow-2xl backdrop-blur-lg flex flex-col gap-0.5">
                       {productCategories.map((cat) => (
@@ -158,15 +153,13 @@ export function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className={`font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 relative group tracking-[-0.01em] ${
-                  isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
-                }`}
+                className={`font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 relative group tracking-[-0.01em] ${isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
+                  }`}
               >
                 {link.label}
                 <span
-                  className={`absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-white transition-transform duration-200 rounded-full ${
-                    isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`}
+                  className={`absolute bottom-0 left-2.5 right-2.5 h-0.5 bg-white transition-transform duration-200 rounded-full ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}
                 />
               </Link>
             );
@@ -236,9 +229,8 @@ export function Navbar() {
                     >
                       <span>{link.label}</span>
                       <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${
-                          isMobileProductsOpen ? 'rotate-180' : ''
-                        }`}
+                        className={`w-4 h-4 transition-transform duration-200 ${isMobileProductsOpen ? 'rotate-180' : ''
+                          }`}
                       />
                     </button>
 

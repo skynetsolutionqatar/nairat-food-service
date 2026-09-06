@@ -67,10 +67,19 @@ Each page will be planned and built **one by one in strict sequential order**. C
   - [x] Run E2E testing with `agent-browser`
 
 - [x] **Milestone 4: Page 4 — Sourcing & Quality (`/quality`)** [Completed]
-  - [x] Content planning: farm auditing protocols, food-safety certifications, laboratory testing workflows, cold chain integrity
-  - [x] Create `specs/page-quality.md`
-  - [x] Implement `/quality` route, interactive standards timeline, certificate preview/downloads
-  - [x] Run E2E testing with `agent-browser`
+  - [x] Content planning & specs in `specs/page-quality.md` aligned with the official design mockup
+  - [x] Implement `/quality` route and modular components:
+    - [x] Header Banner (`PageBanner`) with organic watermark and breadcrumbs
+    - [x] Our Sourcing Philosophy (`QualitySourcingPhilosophy.tsx`): 3 value pillars (Global Network, Quality First, Sustainable Sourcing) + cargo ship feature card with `30+ Countries`, `400+ Product Lines`, `Year-Round Availability` metrics
+    - [x] Quality & Food Safety (`QualityFoodSafety.tsx`): Rigorous checks narrative + side-by-side HACCP & ISO 22000:2018 accreditation cards with official certificate thumbnails and interactive full-screen preview modal
+    - [x] Our Supply Chain (`QualitySupplyChain.tsx`): 4-step linear stepper (`01 Source` → `02 Inspect` → `03 Cold Chain` → `04 Deliver`) with directional arrows
+    - [x] Additional modular components created: Infrastructure (`QualityInfrastructure.tsx`) and People (`QualityPeople.tsx`)
+    - [x] Integrated `CtaButton` for uniform hover states and navigation
+  - [x] Cross-page typography & design token harmonization:
+    - [x] Replaced legacy `#47554E` with `#6B7280` across `/company`, `/products`, `/services`, and `/quality`
+    - [x] Standardized eyebrows (`type-eyebrow`), headlines (`type-h2`), lead narratives, and card headings (`type-h3`)
+    - [x] Updated `design.md` with complete typography benchmark specifications
+  - [x] Run comprehensive E2E testing with `agent-browser` (verified desktop, mobile, certificate modal interaction, 0 console errors)
 
 - [ ] **Milestone 5: Page 5 — Partners (`/partners`)**
   - [ ] Content planning: institutional client portfolio, hospitality case studies, supplier onboarding guidelines

@@ -4,8 +4,6 @@ import { PageBanner } from '@/components/ui/PageBanner';
 import { QualitySourcingPhilosophy } from '@/components/quality/QualitySourcingPhilosophy';
 import { QualityFoodSafety } from '@/components/quality/QualityFoodSafety';
 import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
-import { QualityInfrastructure } from '@/components/quality/QualityInfrastructure';
-import { QualityPeople } from '@/components/quality/QualityPeople';
 import { Cta } from '@/components/modules/Cta';
 
 export const metadata: Metadata = {
