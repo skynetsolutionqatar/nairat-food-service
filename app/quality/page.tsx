@@ -1,10 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
-import { QualityHeroFeature } from '@/components/quality/QualityHeroFeature';
-import { QualityColdChain } from '@/components/quality/QualityColdChain';
-import { QualityCertifications } from '@/components/quality/QualityCertifications';
-import { QualitySeasonalSourcing } from '@/components/quality/QualitySeasonalSourcing';
+import { QualitySourcingPhilosophy } from '@/components/quality/QualitySourcingPhilosophy';
+import { QualityFoodSafety } from '@/components/quality/QualityFoodSafety';
+import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
+import { QualityInfrastructure } from '@/components/quality/QualityInfrastructure';
+import { QualityPeople } from '@/components/quality/QualityPeople';
 import { Cta } from '@/components/modules/Cta';
 
 export const metadata: Metadata = {
@@ -32,22 +33,20 @@ export default function QualityPage(): React.ReactNode {
           { label: 'Home', href: '/' },
           { label: 'Sourcing & Quality' },
         ]}
-
       />
 
-      {/* 2. Quality Philosophy & Dual Inspection (Origin + Qatar Lab Testing) */}
-      <QualityHeroFeature />
+      {/* 2. Our Sourcing Philosophy (Fresh Produce, Sourced Responsibly & 3 Pillars) */}
+      <QualitySourcingPhilosophy />
 
-      {/* 3. Unbroken Cold-Chain Logistics (6 Docks, 5000m², 20 Chillers, FIFO, 40 Reefer Trucks) */}
-      <QualityColdChain />
+      {/* 3. Quality & Food Safety (Rigorous Checks & HACCP / ISO Certificates) */}
+      <QualityFoodSafety />
 
-      {/* 4. Accredited Food Safety & Certification Modal (HACCP & ISO 22000:2018) */}
-      <QualityCertifications />
+      {/* 4. Our Supply Chain (From Farm to You: 01 Source -> 02 Inspect -> 03 Cold Chain -> 04 Deliver) */}
+      <QualitySupplyChain />
 
-      {/* 5. 12-Month Seasonal Global Sourcing Strategy (365 Days of Freshness) */}
-      <QualitySeasonalSourcing />
 
-      {/* 6. Global Contact & Inquiry Module */}
+
+      {/* 7. Global Contact & Inquiry Module */}
       <Cta />
     </div>
   );

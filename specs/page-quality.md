@@ -22,42 +22,65 @@ The page details how Nairat guarantees uncompromising freshness and safety:
 
 ---
 
-## 3. Page Architecture & Content Structure
+## 3. Page Architecture & Content Structure (Matching Design Mockup)
+
+The page layout consists of 5 modular sections plus the PageBanner and CTA module:
 
 ### 1. Header Banner (`PageBanner`)
 - **Title:** `Sourcing & Quality`
 - **Breadcrumbs:** `Home / Sourcing & Quality`
-- Clean, focused header banner with organic brand watermark.
 
-### 2. Full-Width 12-Column Header Grid Standard (Matching `design.md`)
-Across all content sections on `/quality`, section headers span the full width of the container (`max-w-[1140px] 2xl:max-w-[1240px]`) using an asymmetric 12-column grid:
-- **Left Column (`lg:col-span-7`):** Eyebrow badge (`type-eyebrow`) and primary display heading (`type-h2`).
-- **Right Column (`lg:col-span-5`):** Explanatory lead paragraph (`type-lead`).
+### 2. Section 1: Our Sourcing Philosophy (`QualitySourcingPhilosophy.tsx`)
+- **Eyebrow:** `OUR SOURCING PHILOSOPHY`
+- **Heading:** `Fresh Produce, Sourced Responsibly.`
+- **Narrative:** Strategic grower partnerships and local expertise bringing the best fresh produce to Qatar.
+- **3 Value Pillars:**
+  1. `Global Network`: Trusted partners across 30+ countries
+  2. `Quality First`: Strict inspection at every stage
+  3. `Sustainable Sourcing`: Supporting responsible farming practices
+- **Feature Card (Right):**
+  - Container cargo ship imagery at international port
+  - Title: `Sourcing from Around the World`
+  - Body: Consistent supply and year-round availability
+  - CTA Button: `Our Sourcing Regions ->`
+  - 3 Highlight Metrics: `30+ Countries`, `400+ Product Lines`, `Year-Round Availability`
 
-### 3. Quality Philosophy & Inspection (`QualityHeroFeature`)
-- **Eyebrow:** `OUR QUALITY PHILOSOPHY`
-- **Main Heading:** `Freshness is Logistics: Inspected at Origin. Verified in Qatar.`
-- **Narrative:**
-  - Produce is inspected at the grower/packhouse origin before loading, and re-inspected upon arrival in Doha.
-  - Mandatory laboratory testing is conducted on incoming consignments in strict accordance with Qatar food safety regulations (MOPH).
-- **Core Verification Badges:**
-  - Origin Pre-Shipment Inspection
-  - Qatar Arrival Testing (MOPH Standards)
-  - Full Cold-Chain Temperature Logging
+### 3. Section 2: Quality & Food Safety (`QualityFoodSafety.tsx`)
+- **Eyebrow:** `QUALITY & FOOD SAFETY`
+- **Heading:** `Rigorous Checks. Superior Quality.`
+- **Narrative:** Strict quality control measures from origin to delivery.
+- **CTA Button:** `Our Quality Process ->`
+- **Two Certificate Feature Cards:**
+  1. `HACCP`: Food Safety Management System with official certificate thumbnail & modal view.
+  2. `ISO 22000:2018`: Food Safety Management System with official certificate thumbnail & modal view.
+- Interactive modal with high-resolution certificate preview, backdrop dismiss, and ESC key support.
 
-### 3. Cold-Chain Infrastructure (`QualityColdChain`)
-The physical backbone maintaining the unbroken cold chain:
-1. **6 Enclosed Loading-Dock Truck Doors:** Rapid pneumatic sealed bays preventing ambient heat exposure during container unloading.
-2. **5,000 m² Cold-Chain Warehouse:** Purpose-built logistics center in Doha’s Industrial Area engineered for high-throughput fresh handling.
-3. **20 Dedicated Multi-Zone Chiller Rooms:** Independently controlled temperature and humidity zones customized for specific produce varieties (leafy greens, stone fruits, citrus, root vegetables).
-4. **Strict FIFO Inventory Rotation:** Barcode tracking and strict First-In, First-Out inventory flow ensuring optimal turnover and zero product stagnation.
-5. **40 Refrigerated Fleet Vehicles:** Active temperature-controlled delivery fleet supplying supermarkets, hypermarkets, and institutional clients daily across Qatar.
+### 4. Section 3: Our Supply Chain (`QualitySupplyChain.tsx`)
+- **Eyebrow:** `OUR SUPPLY CHAIN`
+- **Heading:** `From Farm to You`
+- **Narrative:** Transparency, control, and reliability ensuring fresh produce reaches customers in perfect condition.
+- **4-Step Linear Flow with Connecting Arrows:**
+  - `01 Source`: We partner with trusted growers and suppliers worldwide.
+  - `02 Inspect`: Every consignment is inspected and tested for quality and safety.
+  - `03 Cold Chain`: Temperature-controlled storage and transport maintain freshness.
+  - `04 Deliver`: Fresh produce reaches our customers across Qatar.
 
-### 4. Food Safety & Accreditations (`QualityCertifications`)
-- **Certifications:**
-  - **HACCP Certified:** Hazard Analysis Critical Control Point food-safety system.
-  - **ISO 22000:2018 Certified:** Food Safety Management System accreditation.
-- **Interactive Certificate Modal:**
+### 5. Section 4: Our Infrastructure (`QualityInfrastructure.tsx`)
+- **Left Column:** Warehouse photo with 3 floating stats: `5,000 m² Cold-Chain`, `20 Chiller Rooms`, `40 Fleet Trucks`.
+- **Middle Column:** Eyebrow `OUR INFRASTRUCTURE`, heading `Built for Freshness and Efficiency`, description, and `Our Facilities ->` CTA.
+- **Right Column:** 2x2 grid of rounded white stat cards:
+  - `5,000 m²` Warehouse Space
+  - `20` Chiller Rooms
+  - `6` Loading Dock Doors
+  - `40` Refrigerated Vehicles
+
+### 6. Section 5: Our People (`QualityPeople.tsx`)
+- **Left Column:** Eyebrow `OUR PEOPLE`, heading `The People Behind Our Freshness`, description, and `Join Our Team ->` CTA.
+- **Middle Column:** Quality assurance team sorting and inspecting produce at packing tables.
+- **Right Column:** Soft mint card with `200+ Team Members`, description, and organic leaf watermark.
+
+### 7. Global Sourcing & Partner CTA (`Cta`)
+- Global parallax CTA banner with drawer contact modal.
   - High-resolution preview of `/certificates/c1-1 1.png` and `/certificates/c2-2 1.png`.
   - Zoom and download capabilities.
   - Key audit criteria: biological, chemical, and physical risk management, annual independent auditing, and Qatar regulatory compliance.
