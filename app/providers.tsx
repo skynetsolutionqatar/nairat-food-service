@@ -77,14 +77,33 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   const pathname = usePathname();
 
-  // Recalculate GSAP ScrollTrigger positions whenever route changes (e.g. going between short and long pages)
+  // Scroll to top and recalculate GSAP ScrollTrigger positions whenever route changes
   useEffect(() => {
+    // If navigating to an anchor hash (e.g., #products or #contact), preserve anchor positioning
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        if (lenis) {
+          lenis.scrollTo(target as HTMLElement, { immediate: true });
+        } else {
+          target.scrollIntoView();
+        }
+        return;
+      }
+    }
+
+    // Immediately reset scroll to top on route change
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo(0, 0);
+
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 120);
 
     return () => clearTimeout(timer);
-  }, [pathname]);
+  }, [pathname, lenis]);
 
   return (
     <LocaleProvider>

@@ -67,7 +67,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
         origin: 'Jordan, Lebanon, Spain',
         temp: '+7°C to +10°C',
         description: 'Young, tender summer squashes selected for uniform cylinder shape and delicate texture.',
-        imageUrl: 'https://images.unsplash.com/photo-1522748906645-95d8adfd52c7?q=80&w=800',
+        imageUrl: 'https://images.unsplash.com/photo-1615485499978-1279c3d6302f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       },
       {
         id: 'cauliflower',
@@ -121,7 +121,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
         origin: 'Jordan, Egypt, India',
         temp: '+8°C to +10°C',
         description: 'Hand-picked small and medium young green pods free of tough structural fiber.',
-        imageUrl: 'https://images.unsplash.com/photo-1511516412963-801b050c92aa?q=80&w=800',
+        imageUrl: 'https://images.unsplash.com/photo-1558408525-1092038389ae?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       },
       {
         id: 'beans',
@@ -157,7 +157,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
         origin: 'Jordan, Spain, Egypt',
         temp: '+7°C to +10°C',
         description: 'Heavily netted, aromatic sweet melons with tender pastel green and orange flesh.',
-        imageUrl: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?q=80&w=800',
+        imageUrl: 'https://images.unsplash.com/photo-1596273312428-43e582609a2a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       },
       {
         id: 'citrus',
@@ -328,7 +328,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
         origin: 'Vietnam, Thailand, Ecuador',
         temp: '+7°C to +10°C',
         description: 'Stunning scale-like magenta skin with mild, refreshingly speckled antioxidant fruit.',
-        imageUrl: 'https://images.unsplash.com/photo-1527324688151-0e627063f2b1?q=80&w=800',
+        imageUrl: 'https://images.unsplash.com/photo-1698546690393-45482eb06942?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
       },
       {
         id: 'seasonal-specialties',
