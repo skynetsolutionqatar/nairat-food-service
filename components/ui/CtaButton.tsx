@@ -67,8 +67,8 @@ export function CtaButton({
   };
 
   const sharedClasses = cn(
-    'group inline-flex items-center gap-3 font-sans text-sm font-semibold tracking-[-0.01em] rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#168849] focus-visible:ring-offset-2 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:pointer-events-none',
-    showIcon ? 'pl-5 pr-2 py-2' : 'px-6 py-2.5',
+    'group inline-flex items-center gap-2.5 sm:gap-3 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#168849] focus-visible:ring-offset-2 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:pointer-events-none',
+    showIcon ? 'pl-4 sm:pl-5 pr-1.5 sm:pr-2 py-1.5 sm:py-2' : 'px-5 sm:px-6 py-2 sm:py-2.5',
     getStyles(),
     className
   );
