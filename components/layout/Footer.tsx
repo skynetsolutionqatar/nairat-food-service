@@ -12,13 +12,12 @@ interface FooterNavLink {
 }
 
 const footerNavLinks: FooterNavLink[] = [
-  { label: 'Home', href: '/' },
+
   { label: 'Company', href: '/company' },
-  { label: 'Our Products', href: '/#products' },
   { label: 'Services', href: '/services' },
   { label: 'Sourcing & Quality', href: '/quality' },
   { label: 'Partners', href: '/partners' },
-  { label: 'Careers', href: '/#contact' },
+  { label: 'Careers', href: '/career' },
   { label: 'Contact Us', href: '/contact' },
 ];
 
