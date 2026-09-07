@@ -26,11 +26,11 @@ export function Footer() {
   const { locale } = useLocale();
 
   return (
-    <footer className="bg-white text-[#111814] pt-12 2xl:pt-16 pb-8 2xl:pb-10 border-t border-neutral-200">
-      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-7 sm:space-y-8 2xl:space-y-10">
+    <footer className="bg-white text-[#111814] pt-10 sm:pt-12 2xl:pt-16 pb-8 2xl:pb-10 border-t border-neutral-200">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8 2xl:space-y-10">
 
         {/* Top Section: Logo (Left) | "Go Fresh for Future" (Center) | CtaButton (Right) */}
-        <div className="footer-content-item flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8">
+        <div className="footer-content-item flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6 md:gap-8">
 
           {/* Left: Brand Logo */}
           <div className="shrink-0 flex items-center">
@@ -41,7 +41,7 @@ export function Footer() {
                 width={240}
                 height={100}
                 style={{ width: 'auto' }}
-                className="h-16 sm:h-20 w-auto object-contain rounded-md"
+                className="h-12 min-[380px]:h-14 sm:h-16 md:h-20 w-auto object-contain rounded-md"
                 priority
                 unoptimized
               />
@@ -49,14 +49,14 @@ export function Footer() {
           </div>
 
           {/* Center: Bold Headline */}
-          <div className="text-center">
-            <h2 className="font-display font-medium text-2xl sm:text-3xl lg:text-4xl text-[#111814] tracking-[-0.03em]">
+          <div className="text-left md:text-center">
+            <h2 className="font-display font-medium text-[20px] min-[380px]:text-[22px] min-[480px]:text-2xl sm:text-3xl lg:text-4xl text-[#111814] tracking-[-0.03em] leading-tight">
               Go Fresh for Future
             </h2>
           </div>
 
           {/* Right: Reusable CtaButton */}
-          <div className="shrink-0">
+          <div className="shrink-0 self-start md:self-auto">
             <CtaButton href="#about" text="Learn More" />
           </div>
 
@@ -66,10 +66,10 @@ export function Footer() {
         <div className="w-full border-t border-neutral-200" />
 
         {/* Middle Section: Social Icons (Left) | Horizontal Navigation (Right) */}
-        <div className="footer-content-item flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="footer-content-item flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
 
           {/* Social Icons (Facebook & Instagram) */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3.5 sm:gap-4 shrink-0">
             <a
               href="https://facebook.com"
               target="_blank"
@@ -103,12 +103,12 @@ export function Footer() {
           </div>
 
           {/* Horizontal Navigation Links */}
-          <nav className="flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+          <nav className="flex flex-wrap items-center justify-start md:justify-end gap-x-4 min-[380px]:gap-x-5 sm:gap-x-7 gap-y-2 sm:gap-y-2.5">
             {footerNavLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="font-sans text-sm font-medium text-[#6B7280] hover:text-[#168849] transition-colors tracking-[-0.01em]"
+                className="font-sans text-xs min-[380px]:text-[13px] sm:text-sm font-medium text-[#6B7280] hover:text-[#168849] transition-colors tracking-[-0.01em]"
               >
                 {link.label}
               </a>
@@ -121,10 +121,10 @@ export function Footer() {
         <div className="w-full border-t border-neutral-200" />
 
         {/* Bottom Section: Copyright (Left) | Terms & Privacy (Center) | Designed by (Right) */}
-        <div className="footer-content-item flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#9CA3AF] font-normal">
-          <p>Copyright &copy; {new Date().getFullYear()} Nairat Food Services. All rights reserved.</p>
+        <div className="footer-content-item flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4 text-[11px] min-[380px]:text-xs text-[#9CA3AF] font-normal text-left">
+          <p className="text-left">Copyright &copy; {new Date().getFullYear()} Nairat Food Services. All rights reserved.</p>
 
-          <div className="flex items-center gap-5 text-[#6B7280]">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-5 text-[#6B7280] text-left">
             <Link href="#privacy" className="hover:text-[#168849] transition-colors">
               Privacy Policy
             </Link>
@@ -134,7 +134,7 @@ export function Footer() {
             </Link>
           </div>
 
-          <p>Designed by Skynet Solutions WLL</p>
+          <p className="text-left">Designed by Skynet Solutions WLL</p>
         </div>
 
       </div>
