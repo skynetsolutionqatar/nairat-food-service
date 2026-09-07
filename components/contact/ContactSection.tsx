@@ -2,7 +2,8 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import { MapPin, Mail, PhoneCall, ArrowUpRight, CheckCircle2, AlertCircle } from 'lucide-react';
+import { MapPin, Mail, PhoneCall, CheckCircle2, AlertCircle } from 'lucide-react';
+import { CtaButton } from '@/components/ui/CtaButton';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
@@ -268,16 +269,13 @@ export function ContactSection(): React.ReactNode {
 
                 {/* Submit Button */}
                 <div className="pt-2">
-                  <button
+                  <CtaButton
+                    as="button"
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-[#F2BD1D] hover:bg-[#e2ad14] text-[#111814] font-display font-bold text-sm sm:text-base shadow-md transition-all duration-200 cursor-pointer active:scale-95 group disabled:opacity-75 disabled:cursor-not-allowed"
-                  >
-                    <span>{isSubmitting ? 'Sending...' : 'Submit'}</span>
-                    <span className="w-7 h-7 rounded-full bg-white text-[#111814] flex items-center justify-center transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shadow-xs">
-                      <ArrowUpRight className="w-4 h-4" />
-                    </span>
-                  </button>
+                    text={isSubmitting ? 'Sending...' : 'Submit'}
+                    variant="white"
+                  />
                 </div>
               </form>
             </div>

@@ -2,26 +2,38 @@ import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-export interface CtaButtonProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+type CommonProps = {
   text?: string;
   href?: string;
   className?: string;
   children?: React.ReactNode;
-  variant?: 'primary' | 'white' | 'slate' | 'forest' | 'outline';
+  variant?: 'primary' | 'white' | 'slate' | 'forest' | 'outline' | 'amber';
   showIcon?: boolean;
-}
+  as?: 'a' | 'button';
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+};
+
+export type CtaButtonProps = CommonProps & Omit<React.AllHTMLAttributes<HTMLElement>, keyof CommonProps>;
 
 export function CtaButton({
   text = 'Read More',
-  href = '#',
+  href,
   className,
   children,
   variant = 'primary',
   showIcon = true,
+  as,
+  type,
+  disabled,
   ...props
 }: CtaButtonProps) {
+  const isButton = as === 'button' || (!href && (type !== undefined || as !== 'a')) || type === 'submit';
+
   const getStyles = () => {
     switch (variant) {
+      case 'amber':
+        return 'bg-[#F2BD1D] hover:bg-[#e2ad14] text-[#111814] focus-visible:ring-[#F2BD1D]/50 shadow-md';
       case 'white':
         return 'bg-white hover:bg-neutral-100 text-[#168849] focus-visible:ring-white/50 shadow-sm';
       case 'slate':
@@ -38,6 +50,8 @@ export function CtaButton({
 
   const getBadgeStyles = () => {
     switch (variant) {
+      case 'amber':
+        return 'bg-white text-[#111814] group-hover:scale-105';
       case 'white':
         return 'bg-[#168849] text-white group-hover:scale-105';
       case 'slate':
@@ -52,17 +66,15 @@ export function CtaButton({
     }
   };
 
-  return (
-    <a
-      href={href}
-      className={cn(
-        'group inline-flex items-center gap-3 font-sans text-sm font-semibold tracking-[-0.01em] rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#168849] focus-visible:ring-offset-2 active:scale-95 cursor-pointer',
-        showIcon ? 'pl-5 pr-2 py-2' : 'px-6 py-2.5',
-        getStyles(),
-        className
-      )}
-      {...props}
-    >
+  const sharedClasses = cn(
+    'group inline-flex items-center gap-3 font-sans text-sm font-semibold tracking-[-0.01em] rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#168849] focus-visible:ring-offset-2 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:pointer-events-none',
+    showIcon ? 'pl-5 pr-2 py-2' : 'px-6 py-2.5',
+    getStyles(),
+    className
+  );
+
+  const content = (
+    <>
       <span className="transition-colors duration-300">{children || text}</span>
       {showIcon && (
         <div
@@ -74,6 +86,29 @@ export function CtaButton({
           <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5] transition-transform duration-300 group-hover:rotate-45 group-hover:translate-x-0.5" />
         </div>
       )}
+    </>
+  );
+
+  if (isButton) {
+    return (
+      <button
+        type={type || 'button'}
+        disabled={disabled}
+        className={sharedClasses}
+        {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+      >
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <a
+      href={href || '#'}
+      className={sharedClasses}
+      {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
+    >
+      {content}
     </a>
   );
 }
