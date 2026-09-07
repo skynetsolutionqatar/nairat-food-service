@@ -74,18 +74,7 @@ export function CompanyTeam(): React.ReactNode {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />
 
-          {/* Bottom Floating Stats Badges */}
-          <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-white text-xs sm:text-sm font-semibold">
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md border border-white/20">
-              <Users className="w-4 h-4 text-[#D4F056]" aria-hidden="true" />
-              <span>150+ Employees Today</span>
-            </div>
 
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#168849]/90 backdrop-blur-md border border-white/20">
-              <TrendingUp className="w-4 h-4 text-white" aria-hidden="true" />
-              <span>Expanding to 200+ to Support Strategic Growth</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>
