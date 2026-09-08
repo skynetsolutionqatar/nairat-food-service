@@ -75,20 +75,60 @@ export function Providers({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
+  // Auto-recover from production ChunkLoadError or stale deployment asset mismatches
+  useEffect(() => {
+    const handleChunkError = (event: ErrorEvent | PromiseRejectionEvent) => {
+      const error = 'error' in event ? event.error : event.reason;
+      const message = error?.message || (typeof error === 'string' ? error : '');
+      const isChunkError =
+        error?.name === 'ChunkLoadError' ||
+        /Loading chunk [\w-]+ failed/i.test(message) ||
+        /Failed to fetch dynamically imported module/i.test(message) ||
+        /Failed to load resource: net::ERR_FILE_NOT_FOUND/i.test(message);
+
+      if (isChunkError) {
+        const lastReload = sessionStorage.getItem('last_chunk_reload');
+        const now = Date.now();
+
+        // Prevent infinite reload loops by allowing only 1 auto-reload every 15 seconds
+        if (!lastReload || now - parseInt(lastReload, 10) > 15000) {
+          sessionStorage.setItem('last_chunk_reload', now.toString());
+          window.location.reload();
+        }
+      }
+    };
+
+    window.addEventListener('error', handleChunkError);
+    window.addEventListener('unhandledrejection', handleChunkError);
+
+    return () => {
+      window.removeEventListener('error', handleChunkError);
+      window.removeEventListener('unhandledrejection', handleChunkError);
+    };
+  }, []);
+
   const pathname = usePathname();
 
   // Scroll to top and recalculate GSAP ScrollTrigger positions whenever route changes
   useEffect(() => {
-    // If navigating to an anchor hash (e.g., #products or #contact), preserve anchor positioning
-    if (window.location.hash) {
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-        if (lenis) {
-          lenis.scrollTo(target as HTMLElement, { immediate: true });
-        } else {
-          target.scrollIntoView();
+    // If navigating to an anchor hash (e.g., #delivering or #contact), safely preserve anchor positioning
+    const hash = window.location.hash;
+    if (hash && hash.length > 1 && hash !== '#') {
+      try {
+        const target = document.querySelector(hash);
+        if (target) {
+          if (lenis) {
+            lenis.scrollTo(target as HTMLElement, { immediate: true });
+          } else {
+            target.scrollIntoView();
+          }
+          const timer = setTimeout(() => {
+            ScrollTrigger.refresh();
+          }, 120);
+          return () => clearTimeout(timer);
         }
-        return;
+      } catch {
+        // Invalid selector hash, fall through to scroll top
       }
     }
 

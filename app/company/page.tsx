@@ -1,12 +1,11 @@
 import React from 'react';
 import type { Metadata } from 'next';
-import { CompanyHero } from '@/components/company/CompanyHero';
+import { PageBanner } from '@/components/ui/PageBanner';
 import { CompanyDelivering } from '@/components/company/CompanyDelivering';
 import { CompanyVisionMission } from '@/components/company/CompanyVisionMission';
 import { CompanyInfrastructure } from '@/components/company/CompanyInfrastructure';
 import { CompanySourcing } from '@/components/company/CompanySourcing';
 import { CompanyTeam } from '@/components/company/CompanyTeam';
-import { CompanySupplyChain } from '@/components/company/CompanySupplyChain';
 import { CompanyQuality } from '@/components/company/CompanyQuality';
 import { CompanyLookingAhead } from '@/components/company/CompanyLookingAhead';
 import { Cta } from '@/components/modules/Cta';
@@ -29,8 +28,14 @@ export const metadata: Metadata = {
 export default function CompanyPage(): React.ReactNode {
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* 1. Header Banner (Compact Subpage Header) */}
-      <CompanyHero />
+      {/* 1. Header Banner */}
+      <PageBanner
+        title="Company"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Company' },
+        ]}
+      />
 
       {/* 2. Delivering Freshness (Image on Left, Narrative + Commitment Box on Right) */}
       <CompanyDelivering />

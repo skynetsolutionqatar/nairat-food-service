@@ -56,7 +56,7 @@ export function Footer() {
 
           {/* Right: Reusable CtaButton */}
           <div className="shrink-0 self-start md:self-auto">
-            <CtaButton href="#about" text="Learn More" />
+            <CtaButton href="/#about" text="Learn More" />
           </div>
 
         </div>

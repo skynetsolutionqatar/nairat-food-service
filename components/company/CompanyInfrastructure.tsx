@@ -41,7 +41,7 @@ const scaleItems: ScaleItem[] = [
     description: 'High-throughput receiving and dispatch bays minimizing produce exposure to ambient heat.',
   },
   {
-    value: '400+',
+    value: '1500+',
     label: 'Product Lines',
     description: 'Diverse catalog spanning premium fresh fruits, vegetables, and specialty lines.',
   },
@@ -118,7 +118,7 @@ export function CompanyInfrastructure(): React.ReactNode {
                 sizes="(max-width: 1024px) 100vw, 500px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-              
+
               <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/50 backdrop-blur-md text-white text-xs space-y-1">
                 <span className="font-semibold text-[#D4F056] block uppercase tracking-wider">
                   Industrial Area Hub · Doha
