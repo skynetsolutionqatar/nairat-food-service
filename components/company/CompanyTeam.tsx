@@ -2,14 +2,10 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import { Users, TrendingUp, HeartHandshake } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { Users } from 'lucide-react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function CompanyTeam(): React.ReactNode {
+export function CompanyTeam() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -69,7 +65,7 @@ export function CompanyTeam(): React.ReactNode {
             src="/team/team.jpg"
             alt="Nairat Food Services Dedicated Team Members"
             fill
-            className="object-cover object-center transition-transform duration-700 hover:scale-102"
+            className="object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
             sizes="(max-width: 1280px) 100vw, 1240px"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent pointer-events-none" />

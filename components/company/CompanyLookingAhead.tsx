@@ -2,13 +2,9 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function CompanyLookingAhead(): React.ReactNode {
+export function CompanyLookingAhead() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(

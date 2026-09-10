@@ -3,13 +3,9 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Calendar, ShieldCheck, MapPin } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function CompanyDelivering(): React.ReactNode {
+export function CompanyDelivering() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -53,7 +49,6 @@ export function CompanyDelivering(): React.ReactNode {
                 src="/whychooseus/warehouse.avif"
                 alt="Nairat Food Cold-Chain Distribution Facility in Doha"
                 fill
-                priority
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 480px"
               />

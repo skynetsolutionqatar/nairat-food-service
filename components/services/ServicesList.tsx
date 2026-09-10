@@ -3,12 +3,8 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { CheckCircle2, Store, Truck, Handshake } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface ServiceItem {
   id: string;
@@ -49,7 +45,7 @@ const servicesData: ServiceItem[] = [
     title: 'For Growers & Exporters',
     description:
       'Consignment and direct-trading partnerships: Nairat receives, clears, stores, markets and distributes your produce in Qatar with transparent settlement.',
-    imageUrl: '/services/grower and exporter.avif',
+    imageUrl: '/services/grower-and-exporter.avif',
     features: [
       'Port clearance, customs handling, and local regulatory documentation',
       '5,000 m² cold storage with 20 independent chiller chambers',
@@ -66,7 +62,7 @@ const servicesData: ServiceItem[] = [
     title: 'Nairat Shop',
     description:
       'Our own fresh-produce retail store, open to the public, with the full range at market-fresh prices.',
-    imageUrl: '/services/nairat shop.avif',
+    imageUrl: '/services/nairat-shop.avif',
     features: [
       'Open to the general public with walk-in access',
       'Comprehensive selection of premium fruits, vegetables, and specialty herbs',

@@ -3,51 +3,52 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { CtaButton } from '@/components/ui/CtaButton';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function Cta(): React.ReactNode {
+export function Cta() {
   const containerRef = useRef<HTMLDivElement>(null);
   const bgImageRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
-      if (!containerRef.current || !bgImageRef.current) return;
+      const container = containerRef.current;
+      const bgImage = bgImageRef.current;
+
+      if (!container || !bgImage) return;
 
       // Parallax scrub on background image
       gsap.fromTo(
-        bgImageRef.current,
-        { scale: 1.1, yPercent: -4 },
+        bgImage,
+        { scale: 1.08, yPercent: -3 },
         {
           scale: 1.02,
-          yPercent: 4,
+          yPercent: 3,
           ease: 'none',
           scrollTrigger: {
-            trigger: containerRef.current,
+            trigger: container,
             start: 'top bottom',
             end: 'bottom top',
             scrub: 1,
-            invalidateOnRefresh: true,
           },
         }
       );
 
-      // Content reveal timeline
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 80%',
-          once: true,
-        },
-      });
-
-      tl.fromTo(
+      // Content reveal
+      gsap.fromTo(
         '.cta-header-item',
         { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' }
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 80%',
+            once: true,
+          },
+        }
       );
     },
     { scope: containerRef }
@@ -68,7 +69,6 @@ export function Cta(): React.ReactNode {
           src="/cta/ctaft-bac.webp"
           alt="Fresh Fruits & Vegetables Background"
           fill
-          priority
           className="object-cover object-center"
           sizes="100vw"
         />

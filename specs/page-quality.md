@@ -81,7 +81,7 @@ The page layout consists of 5 modular sections plus the PageBanner and CTA modul
 
 ### 7. Global Sourcing & Partner CTA (`Cta`)
 - Global parallax CTA banner with drawer contact modal.
-  - High-resolution preview of `/certificates/c1-1 1.png` and `/certificates/c2-2 1.png`.
+  - High-resolution preview of `/certificates/c1-1-1.png` and `/certificates/c2-2-1.png`.
   - Zoom and download capabilities.
   - Key audit criteria: biological, chemical, and physical risk management, annual independent auditing, and Qatar regulatory compliance.
 

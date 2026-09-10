@@ -3,11 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Lock } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, useGSAP } from '@/lib/gsap';
 
 interface CountryPartner {
   name: string;

@@ -59,7 +59,7 @@ Each card is an enclosed card container with `lg:grid lg:grid-cols-12`, featurin
 - **Action Link:** `Inquire About Distribution` -> `#contact`
 
 #### Card 2: For Growers & Exporters
-- **Image:** `/services/grower and exporter.avif`
+- **Image:** `/services/grower-and-exporter.avif`
 - **Eyebrow:** `02 · GLOBAL SUPPLY PARTNERSHIP`
 - **Title:** `For Growers & Exporters`
 - **Content:** Consignment and direct-trading partnerships: Nairat receives, clears, stores, markets and distributes your produce in Qatar with transparent settlement.
@@ -70,7 +70,7 @@ Each card is an enclosed card container with `lg:grid lg:grid-cols-12`, featurin
 - **Action Link:** `Partner With Us` -> `#contact`
 
 #### Card 3: Nairat Shop
-- **Image:** `/services/nairat shop.avif`
+- **Image:** `/services/nairat-shop.avif`
 - **Eyebrow:** `03 · DIRECT CONSUMER RETAIL`
 - **Title:** `Nairat Shop`
 - **Content:** Our own fresh-produce retail store, open to the public, with the full range at market-fresh prices.

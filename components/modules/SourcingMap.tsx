@@ -3,11 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Globe, Marker, Arc } from '@/components/ui/cobe-globe';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, useGSAP } from '@/lib/gsap';
 
 const sourcingCountries: string[] = [
   'JORDAN',

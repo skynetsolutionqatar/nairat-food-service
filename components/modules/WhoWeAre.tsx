@@ -2,13 +2,9 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 import { Globe2, Calendar, Truck, Leaf } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface MetricCard {
   number: string;

@@ -3,15 +3,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import Lenis from 'lenis';
 
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, ScrollTrigger } from '@/lib/gsap';
 
 import { usePathname } from 'next/navigation';
 
 import { LocaleProvider } from '@/context/LocaleContext';
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const LenisContext = createContext<Lenis | null>(null);
 

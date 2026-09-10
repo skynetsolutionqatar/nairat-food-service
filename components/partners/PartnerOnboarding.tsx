@@ -3,12 +3,8 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Ship, ShoppingBag, Sprout, ArrowRight } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const tracks = [
   {

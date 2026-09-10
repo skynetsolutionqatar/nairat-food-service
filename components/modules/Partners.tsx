@@ -25,7 +25,7 @@ const partnerLogos = [
   {
     id: 'safari',
     description: 'Safari Hypermarket',
-    image: '/partners/Safari Hyper Market Logo.png',
+    image: '/partners/safari-hypermarket-logo.png',
     className: 'h-7 sm:h-9 md:h-10 w-auto object-contain cursor-pointer',
   },
   {

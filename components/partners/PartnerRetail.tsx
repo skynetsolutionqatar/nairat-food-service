@@ -2,11 +2,7 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, useGSAP } from '@/lib/gsap';
 
 interface RetailPartner {
   id: string;
@@ -33,7 +29,7 @@ const retailPartners: RetailPartner[] = [
   {
     id: 'safari',
     name: 'Safari Hypermarket',
-    image: '/partners/Safari Hyper Market Logo.png',
+    image: '/partners/safari-hypermarket-logo.png',
   },
   {
     id: 'grand',

@@ -2,13 +2,9 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 import { ArrowRight } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface ServiceCard {
   id: string;
@@ -32,7 +28,7 @@ const serviceCards: ServiceCard[] = [
     id: 'grower-partnerships',
     title: 'Grower & Exporter Partnerships',
     desc: 'A reliable local partner for growers and exporters looking to bring fresh produce to the Qatar market.',
-    imageUrl: '/services/grower and exporter.avif',
+    imageUrl: '/services/grower-and-exporter.avif',
     actionText: 'Partner With Us',
     actionHref: '#contact',
   },
@@ -40,7 +36,7 @@ const serviceCards: ServiceCard[] = [
     id: 'nairat-shop',
     title: 'Nairat Retail Shop',
     desc: 'Fresh fruits and vegetables available directly to consumers at our retail store.',
-    imageUrl: '/services/nairat shop.avif',
+    imageUrl: '/services/nairat-shop.avif',
     actionText: 'Visit Nairat Shop',
     actionHref: '#contact',
   },

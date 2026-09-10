@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function CompanyPage(): React.ReactNode {
+export default function CompanyPage() {
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}

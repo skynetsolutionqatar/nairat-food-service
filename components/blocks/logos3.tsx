@@ -2,17 +2,13 @@
 
 import React, { useRef } from "react";
 import AutoScroll from "embla-carousel-auto-scroll";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { gsap, useGSAP } from "@/lib/gsap";
 
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface Logo {
   id: string;
@@ -51,7 +47,7 @@ const Logos3 = ({
     {
       id: "safari",
       description: "Safari Hypermarket",
-      image: "/partners/Safari Hyper Market Logo.png",
+      image: "/partners/safari-hypermarket-logo.png",
       className: "h-10 w-auto object-contain",
     },
     {

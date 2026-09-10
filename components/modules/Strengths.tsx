@@ -2,12 +2,8 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface StrengthCard {
   id: string;
@@ -24,7 +20,7 @@ const strengthsList: StrengthCard[] = [
     number: '20',
     title: 'Dedicated Chiller Rooms',
     desc: 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
-    imageUrl: '/whychooseus/chiller warehouse.avif',
+    imageUrl: '/whychooseus/chiller-warehouse.avif',
     alt: '20 Dedicated Chiller Rooms',
   },
   {
@@ -39,7 +35,7 @@ const strengthsList: StrengthCard[] = [
     id: 'cold-chain',
     title: 'Cold Chain Unbroken',
     desc: 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
-    imageUrl: '/whychooseus/temperature conrolled.avif',
+    imageUrl: '/whychooseus/temperature-controlled.avif',
     alt: 'Cold Chain Unbroken',
   },
   {
@@ -56,7 +52,7 @@ const tallCard: StrengthCard = {
   id: 'sourced-origin',
   title: 'Sourced at Origin',
   desc: 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
-  imageUrl: '/whychooseus/sourced from origin.avif',
+  imageUrl: '/whychooseus/sourced-from-origin.avif',
   alt: 'Sourced at Origin',
 };
 

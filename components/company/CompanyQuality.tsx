@@ -4,13 +4,9 @@ import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, Award, ZoomIn, X, CheckCircle2 } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function CompanyQuality(): React.ReactNode {
+export function CompanyQuality() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeCert, setActiveCert] = useState<string | null>(null);
 
@@ -46,7 +42,7 @@ export function CompanyQuality(): React.ReactNode {
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-neutral-100 border border-neutral-200/80">
                 <Image
-                  src="/whychooseus/temperature conrolled.avif"
+                  src="/whychooseus/temperature-controlled.avif"
                   alt="Nairat Food QA Laboratory Inspection & Temperature Control"
                   fill
                   className="object-cover"
@@ -97,7 +93,7 @@ export function CompanyQuality(): React.ReactNode {
               <div className="pt-2 flex flex-wrap gap-3 items-center">
                 <button
                   type="button"
-                  onClick={() => setActiveCert('/certificates/c1-1 1.png')}
+                  onClick={() => setActiveCert('/certificates/c1-1-1.png')}
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold hover:bg-[#168849] hover:text-white transition-all cursor-pointer"
                 >
                   <Award className="w-3.5 h-3.5" />
@@ -107,7 +103,7 @@ export function CompanyQuality(): React.ReactNode {
 
                 <button
                   type="button"
-                  onClick={() => setActiveCert('/certificates/c2-2 1.png')}
+                  onClick={() => setActiveCert('/certificates/c2-2-1.png')}
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold hover:bg-[#168849] hover:text-white transition-all cursor-pointer"
                 >
                   <ShieldCheck className="w-3.5 h-3.5" />

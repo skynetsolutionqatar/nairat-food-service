@@ -5,12 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, ArrowUpRight, X } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '../ui/CtaButton';
-
-gsap.registerPlugin(ScrollTrigger);
 
 interface CertCardItem {
   id: string;
@@ -27,7 +23,7 @@ const certificates: CertCardItem[] = [
     subtitle: 'Food Safety Management System',
     description:
       'Certified in accordance with HACCP standards to ensure food safety at every stage of our operations.',
-    imageSrc: '/certificates/c1-1 1.png',
+    imageSrc: '/certificates/c1-1-1.png',
   },
   {
     id: 'iso22000',
@@ -35,7 +31,7 @@ const certificates: CertCardItem[] = [
     subtitle: 'Food Safety Management System',
     description:
       'Certified to ISO 22000:2018 standards for a consistent and reliable food safety management system.',
-    imageSrc: '/certificates/c2-2 1.png',
+    imageSrc: '/certificates/c2-2-1.png',
   },
 ];
 

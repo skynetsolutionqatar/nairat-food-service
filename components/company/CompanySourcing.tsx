@@ -1,13 +1,9 @@
 'use client';
 
 import React, { useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function CompanySourcing(): React.ReactNode {
+export function CompanySourcing() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(

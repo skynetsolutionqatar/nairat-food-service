@@ -2,11 +2,7 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, useGSAP } from '@/lib/gsap';
 
 interface ScaleItem {
   value: string;
@@ -47,7 +43,7 @@ const scaleItems: ScaleItem[] = [
   },
 ];
 
-export function CompanyInfrastructure(): React.ReactNode {
+export function CompanyInfrastructure() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -111,7 +107,7 @@ export function CompanyInfrastructure(): React.ReactNode {
           <div className="infra-green-card lg:col-span-5 relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/5]">
               <Image
-                src="/whychooseus/chiller warehouse.avif"
+                src="/whychooseus/chiller-warehouse.avif"
                 alt="Nairat Food Cold Storage Chiller Warehouse Facility"
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"

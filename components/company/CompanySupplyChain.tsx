@@ -2,11 +2,7 @@
 
 import React, { useRef } from 'react';
 import { Route, Sprout, SearchCheck, Snowflake, Truck, ArrowRight } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, useGSAP } from '@/lib/gsap';
 
 interface SupplyStep {
   step: string;

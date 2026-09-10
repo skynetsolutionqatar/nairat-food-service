@@ -1,14 +1,9 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { Target, Compass } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function CompanyVisionMission(): React.ReactNode {
+export function CompanyVisionMission() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(

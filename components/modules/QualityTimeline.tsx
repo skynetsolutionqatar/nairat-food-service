@@ -4,11 +4,7 @@ import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ClipboardCheck, TestTube, Truck, ZoomIn, X, Award } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, useGSAP } from '@/lib/gsap';
 
 interface TimelineStep {
   step: string;
@@ -50,13 +46,13 @@ const certificates: Certificate[] = [
     id: 'cert-1',
     title: 'Food Safety Management',
     subtitle: 'Quality Compliance Certificate',
-    imageSrc: '/certificates/c1-1 1.png',
+    imageSrc: '/certificates/c1-1-1.png',
   },
   {
     id: 'cert-2',
     title: 'ISO Accreditation',
     subtitle: 'Official Supply Chain Accreditation',
-    imageSrc: '/certificates/c2-2 1.png',
+    imageSrc: '/certificates/c2-2-1.png',
   },
 ];
 

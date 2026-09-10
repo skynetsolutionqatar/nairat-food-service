@@ -93,8 +93,8 @@
 - **Lead Text:** "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery."
 - **4 Dedicated Infrastructure Modules (with photo cards):**
   1. *Cold-Chain Warehouse* (`warehouse.avif`): 5,000 m² of purpose-built space designed for fresh-produce handling and storage.
-  2. *Dedicated Chiller Rooms* (`chiller warehouse.avif`): 20 temperature-controlled rooms, allowing produce to be stored according to its specific requirements.
-  3. *Loading Infrastructure* (`temperature conrolled.avif`): 6 loading-dock truck doors supporting efficient receiving and dispatch operations.
+  2. *Dedicated Chiller Rooms* (`chiller-warehouse.avif`): 20 temperature-controlled rooms, allowing produce to be stored according to its specific requirements.
+  3. *Loading Infrastructure* (`temperature-controlled.avif`): 6 loading-dock truck doors supporting efficient receiving and dispatch operations.
   4. *Refrigerated Fleet* (`truck.avif`): 40 refrigerated vehicles supporting temperature-controlled deliveries across Qatar.
 
 ### 7. From Global Sources to Qatar (Global Sourcing)
@@ -129,7 +129,7 @@
 - **Certified Badges & Standards:**
   - `HACCP`: Hazard Analysis and Critical Control Points
   - `ISO 22000:2018`: Food Safety Management System
-- **Interactive:** Certificate previews (`/certificates/c1-1 1.png` & `/certificates/c2-2 1.png`).
+- **Interactive:** Certificate previews (`/certificates/c1-1-1.png` & `/certificates/c2-2-1.png`).
 
 ### 10. Looking Ahead
 - **Eyebrow:** `LOOKING AHEAD`

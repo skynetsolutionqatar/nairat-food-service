@@ -3,13 +3,9 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { CheckCircle2 } from 'lucide-react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
-gsap.registerPlugin(ScrollTrigger);
-
-export function PartnerLocalGrid(): React.ReactNode {
+export function PartnerLocalGrid() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useGSAP(

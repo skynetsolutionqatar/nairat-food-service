@@ -205,8 +205,8 @@ The homepage (`app/page.tsx`) consists of 9 strategically sequenced sections sup
     2.  *Tested on Arrival*: Qatar Ministry of Public Health (MOPH) laboratory clearance.
     3.  *Protected Through Cold Chain*: Continuous digital temperature logger monitoring.
 *   **Accreditation Modals**: Dedicated interactive viewers for:
-    *   **HACCP** (`/certificates/c1-1 1.png`)
-    *   **ISO 22000:2018** (`/certificates/c2-2 1.png`)
+    *   **HACCP** (`/certificates/c1-1-1.png`)
+    *   **ISO 22000:2018** (`/certificates/c2-2-1.png`)
 
 ### 10. Call-to-Action & Contact Drawer (`components/modules/Cta.tsx`)
 *   **Design**: Rich fruit photography background with deep green overlay and GSAP parallax scrub.
