@@ -105,23 +105,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   const pathname = usePathname();
 
-  // Clean up stale triggers, reset scroll to top, and recalculate GSAP positions on route change
+  // Reset scroll to top and recalculate GSAP positions on route change
   useEffect(() => {
-    // 1. Immediately kill all stale ScrollTrigger instances from previous route
-    try {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-      ScrollTrigger.clearMatchMedia();
-    } catch {
-      // Ignore cleanup error if GSAP was uninitialized
-    }
-
-    // 2. Immediately reset scroll to top
+    // 1. Reset scroll to top
     if (lenis) {
       lenis.scrollTo(0, { immediate: true });
     }
     window.scrollTo(0, 0);
 
-    // 3. If navigating to an anchor hash (e.g., #delivering or #contact), safely preserve anchor positioning
+    // 2. If navigating to an anchor hash (e.g., #delivering or #contact), safely preserve anchor positioning
     const hash = window.location.hash;
     if (hash && hash.length > 1 && hash !== '#') {
       try {
@@ -138,16 +130,20 @@ export function Providers({ children }: { children: React.ReactNode }) {
       }
     }
 
-    // 4. Safely refresh ScrollTrigger after new route components have mounted and painted
+    // 3. Clean up only orphaned triggers whose DOM nodes are no longer in the document, then refresh
     const timer = setTimeout(() => {
       try {
-        if (ScrollTrigger.getAll().length > 0) {
-          ScrollTrigger.refresh();
-        }
+        ScrollTrigger.getAll().forEach((trigger) => {
+          const el = trigger.trigger;
+          if (el && typeof el === 'object' && 'nodeType' in el && !document.body.contains(el as Node)) {
+            trigger.kill();
+          }
+        });
+        ScrollTrigger.refresh();
       } catch (err) {
         console.warn('ScrollTrigger refresh skipped on route change:', err);
       }
-    }, 150);
+    }, 120);
 
     return () => clearTimeout(timer);
   }, [pathname, lenis]);
