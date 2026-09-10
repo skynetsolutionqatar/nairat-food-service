@@ -181,7 +181,7 @@ export function ContactSection(): React.ReactNode {
           {/* Right Column: Green Enquiry Form */}
           <div className="contact-form-card lg:col-span-6">
             <div className="rounded-3xl bg-[#3FAE56] p-6 sm:p-8 lg:p-9 shadow-lg text-white space-y-5">
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-4" name='contact' netlify>
                 {/* Field 1: Name */}
                 <div className="space-y-1.5">
                   <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-white">
