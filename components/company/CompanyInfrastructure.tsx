@@ -46,40 +46,48 @@ const scaleItems: ScaleItem[] = [
 export function CompanyInfrastructure() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const section = sectionRef.current;
-      if (!section) return;
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          once: true,
-        },
-      });
+    const headers = section.querySelectorAll('.infra-green-header');
+    const cards = section.querySelectorAll('.infra-green-card');
+    const items = section.querySelectorAll('.infra-green-item');
+    if (headers.length === 0) return;
 
-      timeline
-        .fromTo(
-          '.infra-green-header',
-          { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' }
-        )
-        .fromTo(
-          '.infra-green-card',
-          { opacity: 0, scale: 0.96 },
-          { opacity: 1, scale: 1, duration: 0.7, ease: 'power2.out' },
-          '-=0.3'
-        )
-        .fromTo(
-          '.infra-green-item',
-          { opacity: 0, x: 20 },
-          { opacity: 1, x: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out' },
-          '-=0.4'
-        );
-    },
-    { scope: sectionRef }
-  );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    timeline
+      .fromTo(
+        headers,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' }
+      );
+
+    if (cards.length > 0) {
+      timeline.fromTo(
+        cards,
+        { opacity: 0, scale: 0.96 },
+        { opacity: 1, scale: 1, duration: 0.7, ease: 'power2.out' },
+        '-=0.3'
+      );
+    }
+
+    if (items.length > 0) {
+      timeline.fromTo(
+        items,
+        { opacity: 0, x: 20 },
+        { opacity: 1, x: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out' },
+        '-=0.4'
+      );
+    }
+  });
 
   return (
     <section

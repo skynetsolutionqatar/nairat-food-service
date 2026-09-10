@@ -8,34 +8,35 @@ import { gsap, useGSAP } from '@/lib/gsap';
 export function CompanyDelivering() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const section = sectionRef.current;
-      if (!section) return;
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          once: true,
-        },
-      });
+    const imageCard = section.querySelector('.delivering-image-card');
+    const textItems = section.querySelectorAll('.delivering-text-item');
+    if (!imageCard || textItems.length === 0) return;
 
-      timeline
-        .fromTo(
-          '.delivering-image-card',
-          { opacity: 0, scale: 0.96 },
-          { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.out' }
-        )
-        .fromTo(
-          '.delivering-text-item',
-          { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' },
-          '-=0.4'
-        );
-    },
-    { scope: sectionRef }
-  );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    timeline
+      .fromTo(
+        imageCard,
+        { opacity: 0, scale: 0.96 },
+        { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.out' }
+      )
+      .fromTo(
+        textItems,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' },
+        '-=0.4'
+      );
+  });
 
   return (
     <section

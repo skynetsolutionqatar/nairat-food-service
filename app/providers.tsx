@@ -52,11 +52,19 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
     // Refresh ScrollTrigger once Lenis and layout are initialized
     const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
+      try {
+        ScrollTrigger.refresh();
+      } catch {
+        // Ignore initial refresh if elements are settling
+      }
     }, 100);
 
     const handleLoad = () => {
-      ScrollTrigger.refresh();
+      try {
+        ScrollTrigger.refresh();
+      } catch {
+        // Ignore load refresh
+      }
     };
 
     window.addEventListener('load', handleLoad);

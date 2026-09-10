@@ -8,31 +8,27 @@ import { gsap, useGSAP } from '@/lib/gsap';
 export function Cta() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const container = containerRef.current;
-      if (!container) return;
+  useGSAP(() => {
+    const container = containerRef.current;
+    if (!container) return;
 
-      // Content reveal on scroll
-      gsap.fromTo(
-        '.cta-header-item',
-        { opacity: 0, y: 25 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.65,
-          stagger: 0.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top 85%',
-            once: true,
-          },
-        }
-      );
-    },
-    { scope: containerRef }
-  );
+    const items = container.querySelectorAll('.cta-header-item');
+    if (!items || items.length === 0) return;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 85%',
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      items,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' }
+    );
+  });
 
   return (
     <section

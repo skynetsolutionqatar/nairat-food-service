@@ -6,34 +6,35 @@ import { gsap, useGSAP } from '@/lib/gsap';
 export function CompanyVisionMission() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const section = sectionRef.current;
-      if (!section) return;
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          once: true,
-        },
-      });
+    const textItems = section.querySelectorAll('.vision-mission-text-item');
+    const cards = section.querySelectorAll('.vision-mission-card');
+    if (textItems.length === 0 || cards.length === 0) return;
 
-      timeline
-        .fromTo(
-          '.vision-mission-text-item',
-          { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
-        )
-        .fromTo(
-          '.vision-mission-card',
-          { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
-          '-=0.3'
-        );
-    },
-    { scope: sectionRef }
-  );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    timeline
+      .fromTo(
+        textItems,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+      )
+      .fromTo(
+        cards,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
+        '-=0.3'
+      );
+  });
 
   return (
     <section

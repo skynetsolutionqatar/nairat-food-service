@@ -7,27 +7,27 @@ import { gsap, useGSAP } from '@/lib/gsap';
 export function CompanyLookingAhead() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const section = sectionRef.current;
-      if (!section) return;
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          once: true,
-        },
-      });
+    const card = section.querySelector('.ahead-feature-card');
+    if (!card) return;
 
-      timeline.fromTo(
-        '.ahead-feature-card',
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }
-      );
-    },
-    { scope: sectionRef }
-  );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    timeline.fromTo(
+      card,
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }
+    );
+  });
 
   return (
     <section

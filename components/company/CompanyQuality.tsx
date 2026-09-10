@@ -10,27 +10,27 @@ export function CompanyQuality() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeCert, setActiveCert] = useState<string | null>(null);
 
-  useGSAP(
-    () => {
-      const section = sectionRef.current;
-      if (!section) return;
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          once: true,
-        },
-      });
+    const card = section.querySelector('.quality-feature-card');
+    if (!card) return;
 
-      timeline.fromTo(
-        '.quality-feature-card',
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }
-      );
-    },
-    { scope: sectionRef }
-  );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    timeline.fromTo(
+      card,
+      { opacity: 0, y: 24 },
+      { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }
+    );
+  });
 
   return (
     <section

@@ -8,34 +8,35 @@ import { gsap, useGSAP } from '@/lib/gsap';
 export function CompanyTeam() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const section = sectionRef.current;
-      if (!section) return;
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          once: true,
-        },
-      });
+    const headers = section.querySelectorAll('.team-header-item');
+    const imageContainer = section.querySelector('.team-image-container');
+    if (headers.length === 0 || !imageContainer) return;
 
-      timeline
-        .fromTo(
-          '.team-header-item',
-          { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
-        )
-        .fromTo(
-          '.team-image-container',
-          { opacity: 0, scale: 0.96 },
-          { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.out' },
-          '-=0.3'
-        );
-    },
-    { scope: sectionRef }
-  );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    timeline
+      .fromTo(
+        headers,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+      )
+      .fromTo(
+        imageContainer,
+        { opacity: 0, scale: 0.96 },
+        { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.out' },
+        '-=0.3'
+      );
+  });
 
   return (
     <section

@@ -46,34 +46,35 @@ const steps: SupplyStep[] = [
 export function CompanySupplyChain(): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const section = sectionRef.current;
-      if (!section) return;
+  useGSAP(() => {
+    const section = sectionRef.current;
+    if (!section) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: section,
-          start: 'top 80%',
-          once: true,
-        },
-      });
+    const headers = section.querySelectorAll('.supply-header-item');
+    const cards = section.querySelectorAll('.supply-step-card');
+    if (headers.length === 0 || cards.length === 0) return;
 
-      timeline
-        .fromTo(
-          '.supply-header-item',
-          { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
-        )
-        .fromTo(
-          '.supply-step-card',
-          { opacity: 0, y: 28 },
-          { opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power2.out' },
-          '-=0.3'
-        );
-    },
-    { scope: sectionRef }
-  );
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        once: true,
+      },
+    });
+
+    timeline
+      .fromTo(
+        headers,
+        { opacity: 0, y: 24 },
+        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+      )
+      .fromTo(
+        cards,
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.55, stagger: 0.1, ease: 'power2.out' },
+        '-=0.3'
+      );
+  });
 
   return (
     <section
