@@ -9,9 +9,12 @@ export function CompanyLookingAhead() {
 
   useGSAP(
     () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
       const timeline = gsap.timeline({
         scrollTrigger: {
-          trigger: sectionRef.current,
+          trigger: section,
           start: 'top 80%',
           once: true,
         },

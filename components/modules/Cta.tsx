@@ -7,33 +7,13 @@ import { gsap, useGSAP } from '@/lib/gsap';
 
 export function Cta() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const bgImageRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       const container = containerRef.current;
-      const bgImage = bgImageRef.current;
+      if (!container) return;
 
-      if (!container || !bgImage) return;
-
-      // Parallax scrub on background image
-      gsap.fromTo(
-        bgImage,
-        { scale: 1.08, yPercent: -3 },
-        {
-          scale: 1.02,
-          yPercent: 3,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: container,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        }
-      );
-
-      // Content reveal
+      // Content reveal on scroll
       gsap.fromTo(
         '.cta-header-item',
         { opacity: 0, y: 25 },
@@ -45,7 +25,7 @@ export function Cta() {
           ease: 'power3.out',
           scrollTrigger: {
             trigger: container,
-            start: 'top 80%',
+            start: 'top 85%',
             once: true,
           },
         }
@@ -60,11 +40,8 @@ export function Cta() {
       ref={containerRef}
       className="scroll-mt-24 sm:scroll-mt-28 relative w-full overflow-hidden bg-neutral-900"
     >
-      {/* Full-Bleed Background Image with GSAP Parallax */}
-      <div
-        ref={bgImageRef}
-        className="absolute inset-0 w-full h-full pointer-events-none will-change-transform transform-gpu"
-      >
+      {/* Full-Bleed Background Image */}
+      <div className="absolute inset-0 w-full h-full pointer-events-none">
         <Image
           src="/cta/ctaft-bac.webp"
           alt="Fresh Fruits & Vegetables Background"
