@@ -36,6 +36,8 @@ export function PageBanner({
 
   useGSAP(
     () => {
+      if (!bannerRef.current) return;
+
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       tl.fromTo(
         '.banner-anim-title',

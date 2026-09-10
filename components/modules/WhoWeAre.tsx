@@ -43,9 +43,12 @@ export function WhoWeAre() {
 
   useGSAP(
     () => {
+      const container = containerRef.current;
+      if (!container) return;
+
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: container,
           start: 'top 85%',
           once: true,
         },

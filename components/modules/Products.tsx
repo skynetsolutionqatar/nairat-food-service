@@ -377,9 +377,12 @@ export function Products() {
 
   useGSAP(
     () => {
+      const container = containerRef.current;
+      if (!container) return;
+
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: container,
           start: 'top 82%',
           once: true,
         },
@@ -395,26 +398,6 @@ export function Products() {
         { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out' },
         '-=0.3'
       );
-
-      // GSAP ScrollTrigger Parallax & Zoom on Product Cards on scroll down
-      const cardBgImages = gsap.utils.toArray<HTMLElement>('.product-card-bg');
-      cardBgImages.forEach((img) => {
-        gsap.fromTo(
-          img,
-          { scale: 1.12, yPercent: -4 },
-          {
-            scale: 1.02,
-            yPercent: 4,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: img.parentElement,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1,
-            },
-          }
-        );
-      });
     },
     { scope: containerRef }
   );

@@ -47,9 +47,12 @@ export function Services() {
 
   useGSAP(
     () => {
+      const container = containerRef.current;
+      if (!container) return;
+
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: container,
           start: 'top 82%',
           once: true,
         },
@@ -65,26 +68,6 @@ export function Services() {
         { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.1, ease: 'power3.out' },
         '-=0.3'
       );
-
-      // Image scroll zoom/parallax on service cards
-      const serviceImages = gsap.utils.toArray<HTMLElement>('.service-card-bg');
-      serviceImages.forEach((img) => {
-        gsap.fromTo(
-          img,
-          { scale: 1.12, yPercent: -3 },
-          {
-            scale: 1.02,
-            yPercent: 3,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: img.parentElement,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1,
-            },
-          }
-        );
-      });
     },
     { scope: containerRef }
   );

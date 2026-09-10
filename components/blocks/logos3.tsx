@@ -71,9 +71,12 @@ const Logos3 = ({
 
   useGSAP(
     () => {
+      const container = containerRef.current;
+      if (!container) return;
+
       // Reveal on page load with a subtle delay so it is immediately visible in the hero viewport
       gsap.fromTo(
-        containerRef.current,
+        container,
         { opacity: 0, y: 15 },
         {
           opacity: 1,

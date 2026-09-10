@@ -61,9 +61,12 @@ export function Strengths() {
 
   useGSAP(
     () => {
+      const container = containerRef.current;
+      if (!container) return;
+
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: container,
           start: 'top 82%',
           once: true,
         },
@@ -79,26 +82,6 @@ export function Strengths() {
         { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.08, ease: 'power3.out' },
         '-=0.3'
       );
-
-      // Image Parallax Scrub Effect for each card
-      const cardImages = gsap.utils.toArray<HTMLElement>('.strength-card-bg');
-      cardImages.forEach((img) => {
-        gsap.fromTo(
-          img,
-          { scale: 1.12, yPercent: -4 },
-          {
-            scale: 1.02,
-            yPercent: 4,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: img.parentElement,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1,
-            },
-          }
-        );
-      });
     },
     { scope: containerRef }
   );

@@ -4,8 +4,7 @@ import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import { MapPin, Mail, PhoneCall, CheckCircle2, AlertCircle } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import { gsap, useGSAP } from '@/lib/gsap';
 
 export function ContactSection(): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
@@ -20,6 +19,9 @@ export function ContactSection(): React.ReactNode {
 
   useGSAP(
     () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
       const tl = gsap.timeline({
         defaults: { ease: 'power2.out' },
         delay: 0.1,

@@ -80,9 +80,13 @@ export function ServicesList(): React.ReactNode {
 
   useGSAP(
     () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
       const cards = gsap.utils.toArray<HTMLElement>('.service-row-card');
 
       cards.forEach((card) => {
+        if (!card) return;
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: card,

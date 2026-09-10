@@ -63,6 +63,9 @@ export function PartnerRetail(): React.ReactNode {
 
   useGSAP(
     () => {
+      const section = sectionRef.current;
+      if (!section) return;
+
       const tl = gsap.timeline({
         defaults: { ease: 'power2.out' },
         delay: 0.1,

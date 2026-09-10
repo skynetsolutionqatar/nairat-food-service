@@ -11,35 +11,8 @@ export function Hero() {
 
   useGSAP(
     () => {
-      // Parallax effect on background video when scrolling down (compositor optimized)
-      if (videoRef.current) {
-        gsap.to(videoRef.current, {
-          yPercent: 15,
-          scale: 1.08,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        });
-      }
-
-      // Smooth fade & move content down on scroll
-      if (contentRef.current) {
-        gsap.to(contentRef.current, {
-          y: 40,
-          opacity: 0.3,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'center center',
-            end: 'bottom top',
-            scrub: 1,
-          },
-        });
-      }
+      const container = containerRef.current;
+      if (!container) return;
 
       // Initial page-load text reveal sequence with rich timing
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });

@@ -62,9 +62,12 @@ export function QualityTimeline() {
 
   useGSAP(
     () => {
+      const container = containerRef.current;
+      if (!container) return;
+
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: containerRef.current,
+          trigger: container,
           start: 'top 82%',
           once: true,
         },

@@ -105,9 +105,23 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
   const pathname = usePathname();
 
-  // Scroll to top and recalculate GSAP ScrollTrigger positions whenever route changes
+  // Clean up stale triggers, reset scroll to top, and recalculate GSAP positions on route change
   useEffect(() => {
-    // If navigating to an anchor hash (e.g., #delivering or #contact), safely preserve anchor positioning
+    // 1. Immediately kill all stale ScrollTrigger instances from previous route
+    try {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.clearMatchMedia();
+    } catch {
+      // Ignore cleanup error if GSAP was uninitialized
+    }
+
+    // 2. Immediately reset scroll to top
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    }
+    window.scrollTo(0, 0);
+
+    // 3. If navigating to an anchor hash (e.g., #delivering or #contact), safely preserve anchor positioning
     const hash = window.location.hash;
     if (hash && hash.length > 1 && hash !== '#') {
       try {
@@ -118,25 +132,22 @@ export function Providers({ children }: { children: React.ReactNode }) {
           } else {
             target.scrollIntoView();
           }
-          const timer = setTimeout(() => {
-            ScrollTrigger.refresh();
-          }, 120);
-          return () => clearTimeout(timer);
         }
       } catch {
-        // Invalid selector hash, fall through to scroll top
+        // Invalid selector hash, fall through
       }
     }
 
-    // Immediately reset scroll to top on route change
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    }
-    window.scrollTo(0, 0);
-
+    // 4. Safely refresh ScrollTrigger after new route components have mounted and painted
     const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 120);
+      try {
+        if (ScrollTrigger.getAll().length > 0) {
+          ScrollTrigger.refresh();
+        }
+      } catch (err) {
+        console.warn('ScrollTrigger refresh skipped on route change:', err);
+      }
+    }, 150);
 
     return () => clearTimeout(timer);
   }, [pathname, lenis]);
