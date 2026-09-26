@@ -89,7 +89,7 @@ export function Hero() {
             </p>
 
             <div className="hero-cta-btn">
-              <CtaButton href="#contact">
+              <CtaButton href="/contact">
                 Partner With Us
               </CtaButton>
             </div>

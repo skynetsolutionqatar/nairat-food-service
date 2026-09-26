@@ -13,6 +13,7 @@ interface ServiceCard {
   imageUrl: string;
   actionText: string;
   actionHref: string;
+  isExternal?: boolean;
 }
 
 const serviceCards: ServiceCard[] = [
@@ -22,7 +23,7 @@ const serviceCards: ServiceCard[] = [
     desc: 'Daily fresh-produce supply to retailers, wholesalers, supermarkets and food-service businesses across Qatar.',
     imageUrl: '/services/wholesale-distribution.avif',
     actionText: 'Explore Distribution',
-    actionHref: '#contact',
+    actionHref: '/quality',
   },
   {
     id: 'grower-partnerships',
@@ -30,7 +31,7 @@ const serviceCards: ServiceCard[] = [
     desc: 'A reliable local partner for growers and exporters looking to bring fresh produce to the Qatar market.',
     imageUrl: '/services/grower-and-exporter.avif',
     actionText: 'Partner With Us',
-    actionHref: '#contact',
+    actionHref: '/contact',
   },
   {
     id: 'nairat-shop',
@@ -38,7 +39,8 @@ const serviceCards: ServiceCard[] = [
     desc: 'Fresh fruits and vegetables available directly to consumers at our retail store.',
     imageUrl: '/services/nairat-shop.avif',
     actionText: 'Visit Nairat Shop',
-    actionHref: '#contact',
+    actionHref: 'https://maps.app.goo.gl/FGEeJiMmQ172UCx3A',
+    isExternal: true,
   },
 ];
 
@@ -104,7 +106,7 @@ export function Services() {
               From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.
             </p>
             <div className="service-header-item self-start lg:self-end">
-              <CtaButton href="#contact">
+              <CtaButton href="/services">
                 Learn More
               </CtaButton>
             </div>
@@ -138,6 +140,8 @@ export function Services() {
                 <div className="pt-1.5">
                   <a
                     href={service.actionHref}
+                    target={service.isExternal ? '_blank' : undefined}
+                    rel={service.isExternal ? 'noopener noreferrer' : undefined}
                     className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] text-[#111814] hover:text-[#168849] transition-colors group/link cursor-pointer"
                   >
                     <span>{service.actionText}</span>

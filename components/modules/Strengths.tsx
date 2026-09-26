@@ -118,7 +118,7 @@ export function Strengths() {
               From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.
             </p>
             <div className="strength-header-item self-start lg:self-end">
-              <CtaButton href="#contact">
+              <CtaButton href="/quality">
                 Read More
               </CtaButton>
             </div>

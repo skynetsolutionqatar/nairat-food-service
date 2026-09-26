@@ -102,7 +102,7 @@ export function WhoWeAre() {
             </p>
 
             <div className="who-header-item self-start lg:self-end">
-              <CtaButton href="#services" text="Discover Our Story" />
+              <CtaButton href="/company" text="Discover Our Story" />
             </div>
           </div>
         </div>
