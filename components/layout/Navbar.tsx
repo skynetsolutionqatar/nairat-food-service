@@ -60,22 +60,25 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 transition-all duration-300">
       <div
-        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-full transition-all duration-300 px-5 sm:px-6 py-2.5 flex items-center justify-between border ${isScrolled
+        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-full transition-all duration-300 px-5 sm:px-6 py-2.5 flex items-center justify-between border transform-gpu will-change-transform ${isScrolled
           ? 'bg-[#158647] backdrop-blur-md shadow-lg border-white/20'
           : 'bg-[#158647] backdrop-blur-sm shadow-md border-white/10'
           }`}
       >
         {/* Left: Brand Logo */}
-        <Link href="/" className="inline-block focus-visible:outline-2 focus-visible:outline-white rounded" onClick={closeMobileMenu}>
+        <Link
+          href="/"
+          className="flex items-center shrink-0 min-w-[76px] sm:min-w-[86px] h-8 sm:h-9 focus-visible:outline-2 focus-visible:outline-white rounded"
+          onClick={closeMobileMenu}
+        >
           <Image
             src={locale === 'ar' ? '/LogoAR.png' : '/LogoEN.png'}
             alt="Nairat Food Services"
-            width={120}
+            width={86}
             height={36}
-            style={{ width: 'auto' }}
-            className="h-8 sm:h-9 w-auto object-contain rounded-md"
+            style={{ width: 'auto', height: '100%' }}
+            className="h-8 sm:h-9 w-auto aspect-[2.4/1] object-contain rounded-md shrink-0 block"
             priority
-            unoptimized
           />
         </Link>
 

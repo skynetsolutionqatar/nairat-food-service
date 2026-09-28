@@ -64,23 +64,66 @@ export function Strengths() {
       const container = containerRef.current;
       if (!container) return;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 82%',
-          once: true,
-        },
-      });
+      const headerItems = container.querySelectorAll('.strength-header-item');
+      const cards = container.querySelectorAll('.strength-card-item');
+      if (headerItems.length === 0 || cards.length === 0) return;
 
-      tl.fromTo(
-        '.strength-header-item',
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
-      ).fromTo(
-        '.strength-card-item',
-        { opacity: 0, y: 30, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.08, ease: 'power3.out' },
-        '-=0.3'
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isMobile: '(max-width: 768px), (hover: none) and (pointer: coarse)',
+          isDesktop: '(min-width: 769px) and (pointer: fine)',
+          reduceMotion: '(prefers-reduced-motion: reduce)',
+        },
+        (context) => {
+          const { isMobile, reduceMotion } = context.conditions as {
+            isMobile: boolean;
+            isDesktop: boolean;
+            reduceMotion: boolean;
+          };
+
+          if (reduceMotion) {
+            gsap.set([headerItems, cards], { opacity: 1, y: 0, scale: 1 });
+            return;
+          }
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: container,
+              start: isMobile ? 'top 95%' : 'top 82%',
+              once: true,
+              fastScrollEnd: true,
+            },
+          });
+
+          tl.fromTo(
+            headerItems,
+            { opacity: 0, y: isMobile ? 18 : 25 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: isMobile ? 0.5 : 0.65,
+              stagger: isMobile ? 0.05 : 0.08,
+              ease: 'power3.out',
+              clearProps: 'opacity,transform',
+            }
+          ).fromTo(
+            cards,
+            { opacity: 0, y: isMobile ? 20 : 30, scale: 0.98 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: isMobile ? 0.5 : 0.65,
+              stagger: isMobile ? 0.05 : 0.08,
+              ease: 'power3.out',
+              clearProps: 'opacity,transform',
+            },
+            '-=0.3'
+          );
+        },
+        containerRef
       );
     },
     { scope: containerRef }

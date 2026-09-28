@@ -46,24 +46,67 @@ export function WhoWeAre() {
       const container = containerRef.current;
       if (!container) return;
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 85%',
-          once: true,
-        },
-      });
+      const headerItems = container.querySelectorAll('.who-header-item');
+      const cards = container.querySelectorAll('.metric-card');
+      if (headerItems.length === 0 || cards.length === 0) return;
 
-      // Smooth coordinated reveal
-      tl.fromTo(
-        '.who-header-item',
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
-      ).fromTo(
-        '.metric-card',
-        { opacity: 0, y: 30, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.1, ease: 'power3.out' },
-        '-=0.35'
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isMobile: '(max-width: 768px), (hover: none) and (pointer: coarse)',
+          isDesktop: '(min-width: 769px) and (pointer: fine)',
+          reduceMotion: '(prefers-reduced-motion: reduce)',
+        },
+        (context) => {
+          const { isMobile, reduceMotion } = context.conditions as {
+            isMobile: boolean;
+            isDesktop: boolean;
+            reduceMotion: boolean;
+          };
+
+          if (reduceMotion) {
+            gsap.set([headerItems, cards], { opacity: 1, y: 0, scale: 1 });
+            return;
+          }
+
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: container,
+              start: isMobile ? 'top 95%' : 'top 85%',
+              once: true,
+              fastScrollEnd: true,
+            },
+          });
+
+          // Smooth coordinated reveal
+          tl.fromTo(
+            headerItems,
+            { opacity: 0, y: isMobile ? 18 : 25 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: isMobile ? 0.5 : 0.65,
+              stagger: isMobile ? 0.05 : 0.08,
+              ease: 'power3.out',
+              clearProps: 'opacity,transform',
+            }
+          ).fromTo(
+            cards,
+            { opacity: 0, y: isMobile ? 20 : 30, scale: 0.98 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: isMobile ? 0.5 : 0.65,
+              stagger: isMobile ? 0.06 : 0.1,
+              ease: 'power3.out',
+              clearProps: 'opacity,transform',
+            },
+            '-=0.3'
+          );
+        },
+        containerRef
       );
     },
     { scope: containerRef }
@@ -112,7 +155,7 @@ export function WhoWeAre() {
           {metricCards.map((card) => (
             <div
               key={card.number}
-              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-all duration-300 will-change-transform hover:-translate-y-1 ${card.isDark
+              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-[background-color,border-color,box-shadow,transform] duration-300 will-change-transform hover:-translate-y-1 ${card.isDark
                 ? 'bg-[#0A2618] text-white shadow-md hover:shadow-xl'
                 : 'bg-[#F6F8F5] text-[#111814] border border-neutral-200/80 hover:border-neutral-300 hover:shadow-md'
                 }`}

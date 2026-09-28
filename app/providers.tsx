@@ -24,57 +24,68 @@ export function Providers({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Instantiate Lenis smooth scrolling with premium momentum
-    const lenisInstance = new Lenis({
-      duration: 1.4,
-      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.6,
-      lerp: 0.08,
-    });
+    // Gate Lenis smooth scrolling to devices with fine pointers (desktop mouse)
+    // On touch devices (phones/tablets), native 120Hz momentum scrolling is preserved
+    // and eliminates touch-scroll animation blocking with GSAP ScrollTrigger
+    const isPointerFine = window.matchMedia('(pointer: fine)').matches;
 
-    queueMicrotask(() => {
-      setLenis(lenisInstance);
-    });
+    let lenisInstance: Lenis | null = null;
+    let tickerCb: ((time: number) => void) | null = null;
 
-    // Synchronize Lenis scrolling with GSAP ScrollTrigger
-    lenisInstance.on('scroll', ScrollTrigger.update);
+    if (isPointerFine) {
+      lenisInstance = new Lenis({
+        duration: 1.4,
+        easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.0,
+        lerp: 0.08,
+      });
 
-    const tickerCb = (time: number) => {
-      lenisInstance.raf(time * 1000);
-    };
+      queueMicrotask(() => {
+        setLenis(lenisInstance);
+      });
 
-    gsap.ticker.add(tickerCb);
-    gsap.ticker.lagSmoothing(0);
+      // Synchronize Lenis scrolling with GSAP ScrollTrigger
+      lenisInstance.on('scroll', ScrollTrigger.update);
 
-    // Refresh ScrollTrigger once Lenis and layout are initialized
-    const timer = setTimeout(() => {
+      tickerCb = (time: number) => {
+        lenisInstance?.raf(time * 1000);
+      };
+
+      gsap.ticker.add(tickerCb);
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    const refreshScrollTriggers = () => {
       try {
         ScrollTrigger.refresh();
       } catch {
-        // Ignore initial refresh if elements are settling
-      }
-    }, 100);
-
-    const handleLoad = () => {
-      try {
-        ScrollTrigger.refresh();
-      } catch {
-        // Ignore load refresh
+        // Ignore refresh errors while layout settles
       }
     };
 
-    window.addEventListener('load', handleLoad);
+    if (typeof document !== 'undefined' && document.fonts?.ready) {
+      document.fonts.ready.then(refreshScrollTriggers);
+    }
+
+    const timer1 = setTimeout(refreshScrollTriggers, 150);
+    const timer2 = setTimeout(refreshScrollTriggers, 600);
+    window.addEventListener('load', refreshScrollTriggers);
 
     // Cleanup on unmount
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener('load', handleLoad);
-      gsap.ticker.remove(tickerCb);
-      lenisInstance.destroy();
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      window.removeEventListener('load', refreshScrollTriggers);
+      if (tickerCb) {
+        gsap.ticker.remove(tickerCb);
+      }
+      if (lenisInstance) {
+        lenisInstance.destroy();
+      }
       setLenis(null);
     };
   }, []);
