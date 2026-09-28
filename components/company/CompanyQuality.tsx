@@ -2,13 +2,14 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldCheck, Award, ZoomIn, X, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Award, ZoomIn, CheckCircle2 } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { CertificateModal, type CertificateModalData } from '@/components/ui/CertificateModal';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 export function CompanyQuality() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeCert, setActiveCert] = useState<string | null>(null);
+  const [activeCert, setActiveCert] = useState<CertificateModalData | null>(null);
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -65,19 +66,7 @@ export function CompanyQuality() {
 
             {/* Right: Narrative & Cert Badges (7 cols) */}
             <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center gap-2">
-                <Image
-                  src="/icon/icon.png"
-                  alt=""
-                  width={32}
-                  height={16}
-                  className="h-4 w-auto object-contain"
-                  aria-hidden="true"
-                />
-                <span className="font-display type-eyebrow text-[#168849] block">
-                  Quality &amp; Food Safety
-                </span>
-              </div>
+              <SectionEyebrow title="Quality & Food Safety" />
 
               <h3 className="font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-[#111814] tracking-tight leading-[1.18]">
                 Quality You Can Trust: Rigorous Protocols from Source to Arrival
@@ -96,7 +85,13 @@ export function CompanyQuality() {
               <div className="pt-2 flex flex-wrap gap-3 items-center">
                 <button
                   type="button"
-                  onClick={() => setActiveCert('/certificates/c1-1-1.png')}
+                  onClick={() =>
+                    setActiveCert({
+                      title: 'HACCP Certified',
+                      subtitle: 'Food Safety Management System',
+                      imageSrc: '/certificates/c1-1-1.png',
+                    })
+                  }
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold hover:bg-[#168849] hover:text-white transition-all cursor-pointer"
                 >
                   <Award className="w-3.5 h-3.5" />
@@ -106,7 +101,13 @@ export function CompanyQuality() {
 
                 <button
                   type="button"
-                  onClick={() => setActiveCert('/certificates/c2-2-1.png')}
+                  onClick={() =>
+                    setActiveCert({
+                      title: 'ISO 22000:2018',
+                      subtitle: 'Food Safety Management System',
+                      imageSrc: '/certificates/c2-2-1.png',
+                    })
+                  }
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold hover:bg-[#168849] hover:text-white transition-all cursor-pointer"
                 >
                   <ShieldCheck className="w-3.5 h-3.5" />
@@ -120,46 +121,11 @@ export function CompanyQuality() {
       </div>
 
       {/* Modal Preview */}
-      <AnimatePresence>
-        {activeCert && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-            onClick={() => setActiveCert(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
-              className="relative max-w-xl w-full bg-white rounded-3xl p-6 shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
-                <h4 className="font-display text-lg font-bold text-[#111814]">
-                  Official Certification Document
-                </h4>
-                <button
-                  type="button"
-                  onClick={() => setActiveCert(null)}
-                  className="p-1.5 rounded-full hover:bg-neutral-100"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="relative aspect-[3/4] max-h-[65vh] w-full my-3 rounded-xl overflow-hidden bg-neutral-100">
-                <Image
-                  src={activeCert}
-                  alt="Certificate document"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <CertificateModal
+        isOpen={Boolean(activeCert)}
+        onClose={() => setActiveCert(null)}
+        certificate={activeCert}
+      />
     </section>
   );
 }

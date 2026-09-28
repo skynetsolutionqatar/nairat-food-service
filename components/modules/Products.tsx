@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { Leaf } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 interface ProductItem {
   id: string;
@@ -408,18 +409,8 @@ export function Products() {
 
         {/* Section Header */}
         <div className="max-w-3xl 2xl:max-w-4xl mx-auto text-center space-y-3 px-4">
-          <div className="product-header-item flex items-center justify-center gap-2">
-            <Image
-              src="/icon/icon.png"
-              alt=""
-              width={32}
-              height={16}
-              className="h-4 w-auto object-contain"
-              aria-hidden="true"
-            />
-            <span className="font-display type-eyebrow text-[#168849]">
-              OUR PRODUCTS
-            </span>
+          <div className="product-header-item flex justify-center">
+            <SectionEyebrow title="OUR PRODUCTS" />
           </div>
 
           <h2 className="product-header-item font-display type-h2 font-semibold text-[#111814]">
@@ -488,11 +479,14 @@ export function Products() {
                       className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
                         }`}
                     >
-                      {/* Full-bleed Product Image with GSAP Scroll Parallax */}
-                      <div
-                        className="product-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
-                        style={{ backgroundImage: `url('${item.imageUrl}')` }}
-                        aria-label={item.name}
+                      {/* Full-bleed Product Image */}
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.name}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
+                        loading="lazy"
                       />
 
                       {/* Dark Gradient Bottom Overlay */}
@@ -534,11 +528,14 @@ export function Products() {
                       className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
                         }`}
                     >
-                      {/* Full-bleed Product Image with GSAP Scroll Parallax */}
-                      <div
-                        className="product-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
-                        style={{ backgroundImage: `url('${item.imageUrl}')` }}
-                        aria-label={item.name}
+                      {/* Full-bleed Product Image */}
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.name}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
+                        loading="lazy"
                       />
 
                       {/* Dark Gradient Bottom Overlay */}

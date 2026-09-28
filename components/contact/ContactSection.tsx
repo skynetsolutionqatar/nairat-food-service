@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { MapPin, Mail, PhoneCall, CheckCircle2, AlertCircle } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 export function ContactSection(): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
@@ -23,8 +24,12 @@ export function ContactSection(): React.ReactNode {
       if (!section) return;
 
       const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          once: true,
+        },
         defaults: { ease: 'power2.out' },
-        delay: 0.1,
       });
 
       tl.fromTo(
@@ -75,19 +80,7 @@ export function ContactSection(): React.ReactNode {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
         <div className="contact-anim-header space-y-3">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/icon/icon.png"
-              alt=""
-              width={32}
-              height={16}
-              className="h-4 w-auto object-contain"
-              aria-hidden="true"
-            />
-            <span className="font-display type-eyebrow text-[#168849] block">
-              CONTACT US
-            </span>
-          </div>
+          <SectionEyebrow title="CONTACT US" />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
             Get in Touch with Us

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Globe, ShieldCheck, Sprout, ArrowRight, Calendar } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '../ui/CtaButton';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 const pillars = [
   {
@@ -65,19 +66,7 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Heading, Narrative & 3 Value Pillars (5 cols) */}
           <div className="philosophy-anim-left lg:col-span-5 space-y-6">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/icon/icon.png"
-                alt=""
-                width={32}
-                height={16}
-                className="h-4 w-auto object-contain"
-                aria-hidden="true"
-              />
-              <span className="font-display type-eyebrow text-[#168849] block">
-                OUR SOURCING PHILOSOPHY
-              </span>
-            </div>
+            <SectionEyebrow title="OUR SOURCING PHILOSOPHY" />
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.14] tracking-tight">
               Fresh Produce, <br className="hidden sm:inline" />
@@ -171,7 +160,7 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                   </div>
                   <div>
                     <span className="font-display font-bold text-base sm:text-lg text-[#111814] block leading-none">
-                      00+
+                      1500+
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
                       Product Lines

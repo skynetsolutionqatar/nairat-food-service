@@ -100,6 +100,17 @@ Each page will be planned and built **one by one in strict sequential order**. C
   - [x] Implement `/contact` route, interactive inquiry form matching user mockup, institutional cards, location map
   - [x] Run E2E testing with browser (verified desktop, mobile, form submission, 0 console errors)
 
+- [x] **Milestone 7: Codebase Deduplication & Performance Optimization** [Completed]
+  - [x] Full codebase audit for redundant JS libraries, unoptimized image pipelines, and duplicate DOM structures
+  - [x] Eliminated redundant animation library (`framer-motion`), standardizing on GSAP + native CSS keyframe transitions (-121 KB client bundle chunk)
+  - [x] Built reusable, accessible modal system (`CertificateModal.tsx`) with ESC dismissal and backdrop blur
+  - [x] Converted unoptimized CSS `background-image` inline styles to Next.js `<Image fill loading="lazy" sizes="..." />` in `Products.tsx`, `Strengths.tsx`, and `Services.tsx`
+  - [x] Dynamic code-split WebGL 3D globe (`cobe`) in `SourcingMap.tsx` with skeleton loading fallback
+  - [x] Unified 16+ repetitive section headers into shared `SectionEyebrow.tsx` component
+  - [x] Purged 8 orphaned duplicate component files and 2.5 MB of dead image assets
+  - [x] Optimized hero video bandwidth consumption with `preload="metadata"`
+  - [x] Re-tested touch and scroll performance across all pages using `agent-browser`
+
 ---
 
 ## Phase 3: RTL and Sanity Phase

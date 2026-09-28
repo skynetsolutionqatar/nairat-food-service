@@ -1,9 +1,22 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
-import { Globe, Marker, Arc } from '@/components/ui/cobe-globe';
+import dynamic from 'next/dynamic';
+import type { Marker, Arc } from '@/components/ui/cobe-globe';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+
+const Globe = dynamic(
+  () => import('@/components/ui/cobe-globe').then((mod) => mod.Globe),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full aspect-square max-w-[360px] 2xl:max-w-[420px] rounded-full bg-neutral-100/60 animate-pulse flex items-center justify-center">
+        <div className="w-24 h-24 rounded-full border border-[#168849]/20" />
+      </div>
+    ),
+  }
+);
 
 const sourcingCountries: string[] = [
   'JORDAN',
@@ -95,18 +108,8 @@ export function SourcingMap(): React.ReactNode {
 
           {/* Right Column: Sourcing Text & Country Pills (60% / 7 cols) */}
           <div className="lg:col-span-7 space-y-5 2xl:space-y-6">
-            <div className="sourcing-header-item flex items-center gap-2">
-              <Image
-                src="/icon/icon.png"
-                alt=""
-                width={32}
-                height={16}
-                className="h-4 w-auto object-contain"
-                aria-hidden="true"
-              />
-              <span className="font-display type-eyebrow text-[#168849]">
-                SOURCING COUNTRIES
-              </span>
+            <div className="sourcing-header-item">
+              <SectionEyebrow title="SOURCING COUNTRIES" />
             </div>
 
             <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-left">

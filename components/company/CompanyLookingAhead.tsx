@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 export function CompanyLookingAhead() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -40,19 +41,7 @@ export function CompanyLookingAhead() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
             {/* Left: Narrative & Ambition (7 cols) */}
             <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center gap-2">
-                <Image
-                  src="/icon/icon.png"
-                  alt=""
-                  width={32}
-                  height={16}
-                  className="h-4 w-auto object-contain"
-                  aria-hidden="true"
-                />
-                <span className="font-display type-eyebrow text-[#168849] block">
-                  Looking Ahead
-                </span>
-              </div>
+              <SectionEyebrow title="Looking Ahead" />
 
               <h3 className="font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-[#111814] tracking-tight leading-[1.18]">
                 Building the Future of Fresh-Produce Supply

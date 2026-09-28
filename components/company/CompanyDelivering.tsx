@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Calendar, ShieldCheck, MapPin } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 export function CompanyDelivering() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -74,18 +75,8 @@ export function CompanyDelivering() {
 
           {/* Right Column: Narrative Copy + Commitment Box (7 cols) */}
           <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
-            <div className="delivering-text-item flex items-center gap-2">
-              <Image
-                src="/icon/icon.png"
-                alt=""
-                width={32}
-                height={16}
-                className="h-4 w-auto object-contain"
-                aria-hidden="true"
-              />
-              <span className="font-display type-eyebrow text-[#168849] block">
-                Delivering Freshness
-              </span>
+            <div className="delivering-text-item">
+              <SectionEyebrow title="Delivering Freshness" />
             </div>
 
             <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">

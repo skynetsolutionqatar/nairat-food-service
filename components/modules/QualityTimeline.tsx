@@ -2,9 +2,10 @@
 
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ClipboardCheck, TestTube, Truck, ZoomIn, X, Award } from 'lucide-react';
+import { ClipboardCheck, TestTube, Truck, ZoomIn, Award } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { CertificateModal } from '@/components/ui/CertificateModal';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 interface TimelineStep {
   step: string;
@@ -112,18 +113,8 @@ export function QualityTimeline() {
             
             {/* Headings */}
             <div className="space-y-2.5 2xl:space-y-3">
-              <div className="quality-header-item flex items-center gap-2">
-                <Image
-                  src="/icon/icon.png"
-                  alt=""
-                  width={32}
-                  height={16}
-                  className="h-4 w-auto object-contain"
-                  aria-hidden="true"
-                />
-                <span className="font-display type-eyebrow text-[#168849] block">
-                  CERTIFICATIONS &amp; QUALITY
-                </span>
+              <div className="quality-header-item">
+                <SectionEyebrow title="CERTIFICATIONS & QUALITY" />
               </div>
               <h2 className="quality-header-item font-display type-h2 font-semibold text-[#111814]">
                 Quality You Can Trust.
@@ -214,56 +205,11 @@ export function QualityTimeline() {
       </div>
 
       {/* Interactive Certificate Lightbox Modal */}
-      <AnimatePresence>
-        {selectedCert && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedCert(null)}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4 sm:p-8"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-w-3xl w-full bg-white rounded-3xl p-4 sm:p-6 overflow-hidden shadow-2xl space-y-4"
-            >
-              {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-neutral-200 pb-3 px-2">
-                <div>
-                  <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] tracking-[-0.015em]">
-                    {selectedCert.title}
-                  </h3>
-                  <p className="font-sans text-xs text-[#72807A]">
-                    {selectedCert.subtitle}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setSelectedCert(null)}
-                  className="w-9 h-9 rounded-full bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-black flex items-center justify-center transition-colors cursor-pointer"
-                  aria-label="Close certificate modal"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Modal Image */}
-              <div className="relative w-full aspect-[4/3] max-h-[70vh] bg-neutral-50 rounded-2xl overflow-hidden flex items-center justify-center">
-                <Image
-                  src={selectedCert.imageSrc}
-                  alt={selectedCert.title}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 1200px) 90vw, 800px"
-                  priority
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <CertificateModal
+        isOpen={Boolean(selectedCert)}
+        onClose={() => setSelectedCert(null)}
+        certificate={selectedCert}
+      />
     </section>
   );
 }

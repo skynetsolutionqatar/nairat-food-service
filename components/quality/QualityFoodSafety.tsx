@@ -3,9 +3,10 @@
 import React, { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, X } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { CertificateModal } from '@/components/ui/CertificateModal';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { CtaButton } from '../ui/CtaButton';
 
 interface CertCardItem {
@@ -76,19 +77,7 @@ export function QualityFoodSafety(): React.ReactNode {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Eyebrow, Heading, Narrative & CTA (4.5 cols) */}
           <div className="safety-anim-left lg:col-span-5 space-y-5">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/icon/icon.png"
-                alt=""
-                width={32}
-                height={16}
-                className="h-4 w-auto object-contain"
-                aria-hidden="true"
-              />
-              <span className="font-display type-eyebrow text-[#168849] block">
-                QUALITY &amp; FOOD SAFETY
-              </span>
-            </div>
+            <SectionEyebrow title="QUALITY & FOOD SAFETY" />
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-bold text-[#111814] leading-[1.15] tracking-tight">
               Rigorous Checks. <br className="hidden sm:inline" />
@@ -178,66 +167,11 @@ export function QualityFoodSafety(): React.ReactNode {
       </div>
 
       {/* Certificate Modal Viewer */}
-      <AnimatePresence>
-        {selectedCert && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-sm"
-            onClick={() => setSelectedCert(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.94, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.94, opacity: 0 }}
-              className="relative max-w-xl w-full bg-white rounded-3xl p-6 sm:p-7 shadow-2xl border border-neutral-200"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between pb-4 border-b border-neutral-100">
-                <div>
-                  <h4 className="font-display text-lg sm:text-xl font-bold text-[#111814]">
-                    {selectedCert.title} Certificate
-                  </h4>
-                  <p className="text-xs text-[#6B7280]">
-                    {selectedCert.subtitle}
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setSelectedCert(null)}
-                  className="p-2 rounded-full hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-500 hover:text-neutral-800"
-                  aria-label="Close certificate preview"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              <div className="relative aspect-[3/4] max-h-[68vh] w-full my-4 rounded-xl overflow-hidden bg-neutral-100 border border-neutral-200">
-                <Image
-                  src={selectedCert.imageSrc}
-                  alt={`${selectedCert.title} Official Certificate Document`}
-                  fill
-                  className="object-contain"
-                  sizes="(max-width: 768px) 100vw, 600px"
-                  priority
-                />
-              </div>
-
-              <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-[#6B7280]">
-                <span>Official verification for Nairat Food Services Qatar</span>
-                <button
-                  type="button"
-                  onClick={() => setSelectedCert(null)}
-                  className="px-4 py-2 rounded-full bg-neutral-100 hover:bg-neutral-200 text-[#111814] font-semibold transition-colors cursor-pointer"
-                >
-                  Close Preview
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <CertificateModal
+        isOpen={Boolean(selectedCert)}
+        onClose={() => setSelectedCert(null)}
+        certificate={selectedCert}
+      />
     </section>
   );
 }

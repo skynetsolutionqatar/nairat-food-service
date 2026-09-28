@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Sprout, Search, Snowflake, Truck, ArrowRight } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 interface StepItem {
   number: string;
@@ -79,19 +80,7 @@ export function QualitySupplyChain(): React.ReactNode {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Heading & Narrative (4 cols) */}
           <div className="chain-anim-left lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-2">
-              <Image
-                src="/icon/icon.png"
-                alt=""
-                width={32}
-                height={16}
-                className="h-4 w-auto object-contain"
-                aria-hidden="true"
-              />
-              <span className="font-display type-eyebrow text-[#168849] block">
-                OUR SUPPLY CHAIN
-              </span>
-            </div>
+            <SectionEyebrow title="OUR SUPPLY CHAIN" />
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.15] tracking-tight">
               From Farm to You

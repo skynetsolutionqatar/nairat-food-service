@@ -34,16 +34,16 @@ export function Footer() {
           {/* Left: Brand Logo */}
           <div className="shrink-0 flex items-center">
             <Link href="/" className="inline-block">
-              <Image
-                src={locale === 'ar' ? '/LogoAR.png' : '/LogoEN.png'}
-                alt="Nairat Food Services"
-                width={240}
-                height={100}
-                style={{ width: 'auto' }}
-                className="h-12 min-[380px]:h-14 sm:h-16 md:h-20 w-auto object-contain rounded-md"
-                priority
-                unoptimized
-              />
+              <div className="relative h-12 min-[380px]:h-14 sm:h-16 md:h-20 aspect-[2.4/1]">
+                <Image
+                  src={locale === 'ar' ? '/LogoAR.png' : '/LogoEN.png'}
+                  alt="Nairat Food Services"
+                  fill
+                  sizes="(max-width: 640px) 140px, 192px"
+                  className="object-contain rounded-md"
+                  loading="lazy"
+                />
+              </div>
             </Link>
           </div>
 

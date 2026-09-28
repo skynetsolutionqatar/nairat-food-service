@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { CheckCircle2 } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 export function PartnerLocalGrid() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -57,19 +58,7 @@ export function PartnerLocalGrid() {
 
             {/* Right Column: Heading & Content (8 cols) */}
             <div className="lg:col-span-8 space-y-4">
-              <div className="flex items-center gap-2">
-                <Image
-                  src="/icon/icon.png"
-                  alt=""
-                  width={32}
-                  height={16}
-                  className="h-4 w-auto object-contain"
-                  aria-hidden="true"
-                />
-                <span className="font-display type-eyebrow text-[#168849] block">
-                  LOCAL AGRICULTURAL ALLIANCE
-                </span>
-              </div>
+              <SectionEyebrow title="LOCAL AGRICULTURAL ALLIANCE" />
 
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#111814] tracking-tight">
                 Connecting Qatari Farms to the Market

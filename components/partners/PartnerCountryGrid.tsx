@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { Lock } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 interface CountryPartner {
   name: string;
@@ -93,19 +94,7 @@ export function PartnerCountryGrid(): React.ReactNode {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
         <div className="country-header-item space-y-3">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/icon/icon.png"
-              alt=""
-              width={32}
-              height={16}
-              className="h-4 w-auto object-contain"
-              aria-hidden="true"
-            />
-            <span className="font-display type-eyebrow text-[#168849] block">
-              GLOBAL SOURCING PARTNERSHIPS
-            </span>
-          </div>
+          <SectionEyebrow title="GLOBAL SOURCING PARTNERSHIPS" />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
             Long-Standing Partnerships with <br />

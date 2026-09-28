@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { ArrowRight } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 interface ServiceCard {
   id: string;
@@ -81,18 +82,8 @@ export function Services() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
-            <div className="service-header-item flex items-center gap-2">
-              <Image
-                src="/icon/icon.png"
-                alt=""
-                width={32}
-                height={16}
-                className="h-4 w-auto object-contain"
-                aria-hidden="true"
-              />
-              <span className="font-display type-eyebrow text-[#168849] block">
-                WHAT WE DO
-              </span>
+            <div className="service-header-item">
+              <SectionEyebrow title="WHAT WE DO" />
             </div>
             <h2 className="service-header-item font-display type-h2 font-semibold text-[#111814] text-left">
               Fresh Produce Supply <br />
@@ -122,10 +113,13 @@ export function Services() {
             >
               {/* Top Rounded Image */}
               <div className="relative w-full h-48 sm:h-52 md:h-56 2xl:h-64 rounded-2xl overflow-hidden bg-neutral-100">
-                <div
-                  className="service-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
-                  style={{ backgroundImage: `url('${service.imageUrl}')` }}
-                  aria-label={service.title}
+                <Image
+                  src={service.imageUrl}
+                  alt={service.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
+                  loading="lazy"
                 />
               </div>
 

@@ -3,6 +3,7 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 interface RetailPartner {
   id: string;
@@ -67,8 +68,12 @@ export function PartnerRetail(): React.ReactNode {
       if (!section) return;
 
       const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          once: true,
+        },
         defaults: { ease: 'power2.out' },
-        delay: 0.1,
       });
 
       tl.fromTo(
@@ -94,19 +99,7 @@ export function PartnerRetail(): React.ReactNode {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
         <div className="retail-header-item space-y-3">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/icon/icon.png"
-              alt=""
-              width={32}
-              height={16}
-              className="h-4 w-auto object-contain"
-              aria-hidden="true"
-            />
-            <span className="font-display type-eyebrow text-[#168849] block">
-              OUR RETAIL PARTNERS
-            </span>
-          </div>
+          <SectionEyebrow title="OUR RETAIL PARTNERS" />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
             Trusted Daily Supplier to <br />

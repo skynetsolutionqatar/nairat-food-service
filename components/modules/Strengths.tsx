@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 interface StrengthCard {
   id: string;
@@ -136,18 +137,8 @@ export function Strengths() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
-            <div className="strength-header-item flex items-center gap-2">
-              <Image
-                src="/icon/icon.png"
-                alt=""
-                width={32}
-                height={16}
-                className="h-4 w-auto object-contain"
-                aria-hidden="true"
-              />
-              <span className="font-display type-eyebrow text-[#168849] block">
-                WHY CHOOSE US
-              </span>
+            <div className="strength-header-item">
+              <SectionEyebrow title="WHY CHOOSE US" />
             </div>
             <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-left">
               Built for Freshness. <br />
@@ -177,11 +168,14 @@ export function Strengths() {
                 key={card.id}
                 className="strength-card-item group relative overflow-hidden rounded-2xl h-48 sm:h-52 md:h-56 2xl:h-64 shadow-sm flex flex-col justify-end p-5 2xl:p-6 bg-neutral-900 cursor-pointer"
               >
-                {/* Background Image with Hover Zoom & Scroll Parallax */}
-                <div
-                  className="strength-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
-                  style={{ backgroundImage: `url('${card.imageUrl}')` }}
-                  aria-label={card.alt}
+                {/* Background Image with Hover Zoom */}
+                <Image
+                  src={card.imageUrl}
+                  alt={card.alt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
+                  loading="lazy"
                 />
 
                 {/* Dark Gradient Overlay */}
@@ -215,11 +209,14 @@ export function Strengths() {
           <div
             className="strength-card-item lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[320px] sm:min-h-[380px] 2xl:min-h-[440px] lg:min-h-full shadow-sm flex flex-col justify-end p-6 2xl:p-7 bg-neutral-900 cursor-pointer"
           >
-            {/* Background Image with Hover Zoom & Scroll Parallax */}
-            <div
-              className="strength-card-bg absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
-              style={{ backgroundImage: `url('${tallCard.imageUrl}')` }}
-              aria-label={tallCard.alt}
+            {/* Background Image with Hover Zoom */}
+            <Image
+              src={tallCard.imageUrl}
+              alt={tallCard.alt}
+              fill
+              sizes="(max-width: 1024px) 100vw, 380px"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
+              loading="lazy"
             />
 
             {/* Dark Gradient Overlay */}
