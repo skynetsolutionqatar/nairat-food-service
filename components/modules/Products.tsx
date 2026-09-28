@@ -217,7 +217,7 @@ const categoriesData: CategoryData[] = [
         id: 'baby-leaves',
         name: 'Baby Leaves',
         subName: '(Tender Gourmet Mix)',
-        imageUrl: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?q=80&w=800',
+        imageUrl: '/products/specialty & gourmet/baby_leaves.jpg',
       },
       {
         id: 'exotic-mushrooms',

@@ -292,7 +292,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
         origin: 'Netherlands, France, Local',
         temp: '+2°C to +4°C',
         description: 'Delicate young salad greens and vibrant micro herbs harvested at their nutrient peak.',
-        imageUrl: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800',
+        imageUrl: '/products/specialty & gourmet/baby_leaves.jpg',
       },
       {
         id: 'exotic-mushrooms',
