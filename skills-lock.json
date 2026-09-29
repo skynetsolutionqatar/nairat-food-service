@@ -67,6 +67,12 @@
       "skillPath": "skills/gsap-utils/SKILL.md",
       "computedHash": "1ab2387f6e694718a4f1b5acf2a4ab16e1b884c3428adf5f6b26d830f00826cf"
     },
+    "sanity-best-practices": {
+      "source": "sanity-io/agent-toolkit",
+      "sourceType": "github",
+      "skillPath": "skills/sanity-best-practices/SKILL.md",
+      "computedHash": "c2d7c02f61cf060ac77a8eb4d99154d560dff3dec14a1d8da6d5a1f699fbd9c7"
+    },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
