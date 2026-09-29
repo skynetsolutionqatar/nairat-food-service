@@ -21,6 +21,7 @@ export function Navbar() {
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
   const { locale, toggleLanguage } = useLocale();
+  const isLanguageToggleEnabled = process.env.NEXT_PUBLIC_ENABLE_LANGUAGE_TOGGLE === 'true';
 
   const isSubpage = pathname !== '/';
 
@@ -68,16 +69,15 @@ export function Navbar() {
         {/* Left: Brand Logo */}
         <Link
           href="/"
-          className="flex items-center shrink-0 min-w-[76px] sm:min-w-[86px] h-8 sm:h-9 focus-visible:outline-2 focus-visible:outline-white rounded"
+          className="relative flex items-center shrink-0 w-[86px] h-8 sm:h-9 focus-visible:outline-2 focus-visible:outline-white rounded"
           onClick={closeMobileMenu}
         >
           <Image
             src={locale === 'ar' ? '/LogoAR.png' : '/LogoEN.png'}
             alt="Nairat Food Services"
-            width={86}
-            height={36}
-            style={{ width: 'auto', height: '100%' }}
-            className="h-8 sm:h-9 w-auto aspect-[2.4/1] object-contain rounded-md shrink-0 block"
+            fill
+            sizes="86px"
+            className="object-contain rounded-md"
             priority
           />
         </Link>
@@ -174,13 +174,15 @@ export function Navbar() {
         {/* Right Actions: Language Toggle + CTA Button */}
         <div className="hidden sm:flex items-center gap-3">
           {/* Language Toggle Button: Shows AR when in English, EN when in Arabic */}
-          <button
-            onClick={toggleLanguage}
-            className="inline-flex items-center justify-center min-w-[42px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
-            aria-label="Toggle language"
-          >
-            <span>{locale === 'en' ? 'AR' : 'EN'}</span>
-          </button>
+          {isLanguageToggleEnabled && (
+            <button
+              onClick={toggleLanguage}
+              className="inline-flex items-center justify-center min-w-[42px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
+              aria-label="Toggle language"
+            >
+              <span>{locale === 'en' ? 'AR' : 'EN'}</span>
+            </button>
+          )}
 
           {/* Action CTA Button using CtaButton */}
           <CtaButton
@@ -192,13 +194,15 @@ export function Navbar() {
 
         {/* Mobile Actions: Language Toggle + Menu Button */}
         <div className="sm:hidden flex items-center gap-2">
-          <button
-            onClick={toggleLanguage}
-            className="inline-flex items-center justify-center min-w-[38px] px-3 py-1.5 rounded-full border border-white/30 bg-white/10 text-white font-sans text-xs font-bold"
-            aria-label="Toggle language"
-          >
-            <span>{locale === 'en' ? 'AR' : 'EN'}</span>
-          </button>
+          {isLanguageToggleEnabled && (
+            <button
+              onClick={toggleLanguage}
+              className="inline-flex items-center justify-center min-w-[38px] px-3 py-1.5 rounded-full border border-white/30 bg-white/10 text-white font-sans text-xs font-bold"
+              aria-label="Toggle language"
+            >
+              <span>{locale === 'en' ? 'AR' : 'EN'}</span>
+            </button>
+          )}
 
           <button
             onClick={toggleMobileMenu}
@@ -268,15 +272,17 @@ export function Navbar() {
             })}
 
             <div className="pt-3 flex flex-col gap-2.5">
-              <button
-                onClick={() => {
-                  toggleLanguage();
-                  closeMobileMenu();
-                }}
-                className="w-full inline-flex items-center justify-center py-2.5 px-4 rounded-full border border-white/30 bg-white/10 text-white font-sans text-sm font-semibold tracking-[-0.01em]"
-              >
-                <span>Switch to {locale === 'en' ? 'AR' : 'EN'}</span>
-              </button>
+              {isLanguageToggleEnabled && (
+                <button
+                  onClick={() => {
+                    toggleLanguage();
+                    closeMobileMenu();
+                  }}
+                  className="w-full inline-flex items-center justify-center py-2.5 px-4 rounded-full border border-white/30 bg-white/10 text-white font-sans text-sm font-semibold tracking-[-0.01em]"
+                >
+                  <span>Switch to {locale === 'en' ? 'AR' : 'EN'}</span>
+                </button>
+              )}
 
               <CtaButton
                 variant="white"

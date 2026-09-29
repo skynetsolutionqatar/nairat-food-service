@@ -66,7 +66,7 @@ export function WhoWeAre() {
             reduceMotion: boolean;
           };
 
-          if (reduceMotion) {
+          if (reduceMotion || isMobile) {
             gsap.set([headerItems, cards], { opacity: 1, y: 0, scale: 1 });
             return;
           }

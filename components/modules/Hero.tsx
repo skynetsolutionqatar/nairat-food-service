@@ -61,8 +61,8 @@ export function Hero() {
         disableRemotePlayback
         className="absolute inset-0 w-full h-full object-cover pointer-events-none origin-center will-change-transform transform-gpu brightness-[1.03] contrast-[1.05] saturate-[1.08]"
       >
-        <source src="/hero.webm" type="video/webm" />
         <source src="/hero.mp4" type="video/mp4" />
+        <source src="/hero.webm" type="video/webm" />
       </video>
 
       {/* Minimal subtle gradient overlay only at the bottom for crisp text readability */}
@@ -77,8 +77,8 @@ export function Hero() {
           {/* DIV 1: Heading */}
           <div className="w-full lg:w-[62%] text-left">
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[48px] xl:text-[54px] 2xl:text-[60px] font-bold text-white text-left tracking-[-0.035em] leading-[1.16] sm:leading-[1.18] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
-              <span className="hero-title-line block sm:whitespace-nowrap">Fresh from the Source.</span>
-              <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2.5">Delivered Across Qatar.</span>
+              <span className="hero-title-line block sm:whitespace-nowrap"><bdi dir="ltr">Fresh from the Source.</bdi></span>
+              <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2.5"><bdi dir="ltr">Delivered Across Qatar.</bdi></span>
             </h1>
           </div>
 
