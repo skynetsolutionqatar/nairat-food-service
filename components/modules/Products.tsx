@@ -474,7 +474,7 @@ export function Products() {
           }`}
         >
           {/* ROW 1: Left Vertical Bar + Horizontal Card Scroll Track */}
-          <div className="flex flex-row items-stretch h-48 xs:h-56 sm:h-72 md:h-96 lg:h-[480px] xl:h-[520px] 2xl:h-[580px] w-full overflow-hidden">
+          <div className="flex flex-row items-stretch w-full overflow-hidden">
             {/* Left Colored Sidebar Bar */}
             <div
               className={`w-7 xs:w-9 sm:w-14 md:w-16 lg:w-20 ${activeCategory.leftBarColor} flex items-center justify-center shrink-0 select-none overflow-hidden transition-colors duration-500`}
@@ -487,18 +487,19 @@ export function Products() {
             {/* Horizontal Scrolling Cards Track for Row 1 */}
             <div
               ref={row1Ref}
-              className="flex flex-row flex-grow overflow-x-hidden scroll-smooth w-full h-full"
+              className="flex flex-row flex-grow overflow-x-hidden scroll-smooth w-full"
             >
               {categoriesData.map((cat) => (
                 <div
                   key={`row1-${cat.id}`}
-                  className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0 h-full"
+                  className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
                 >
                   {cat.productsRow1.map((item, itemIndex) => (
                     <div
                       key={item.id}
-                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                        }`}
+                      className={`group relative aspect-square w-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
+                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                      }`}
                     >
                       {/* Full-bleed Product Image */}
                       <Image
@@ -532,22 +533,23 @@ export function Products() {
           </div>
 
           {/* ROW 2: Horizontal Card Scroll Track + Right Vertical Bar */}
-          <div className="flex flex-row items-stretch h-48 xs:h-56 sm:h-72 md:h-96 lg:h-[480px] xl:h-[520px] w-full overflow-hidden">
+          <div className="flex flex-row items-stretch w-full overflow-hidden">
             {/* Horizontal Scrolling Cards Track for Row 2 */}
             <div
               ref={row2Ref}
-              className="flex flex-row flex-grow overflow-x-hidden scroll-smooth w-full h-full"
+              className="flex flex-row flex-grow overflow-x-hidden scroll-smooth w-full"
             >
               {categoriesData.map((cat) => (
                 <div
                   key={`row2-${cat.id}`}
-                  className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0 h-full"
+                  className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
                 >
                   {cat.productsRow2.map((item, itemIndex) => (
                     <div
                       key={item.id}
-                      className={`group relative h-full overflow-hidden bg-neutral-900 cursor-pointer flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-7 lg:p-8 ${itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                        }`}
+                      className={`group relative aspect-square w-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
+                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                      }`}
                     >
                       {/* Full-bleed Product Image */}
                       <Image
