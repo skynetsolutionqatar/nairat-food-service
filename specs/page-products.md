@@ -49,10 +49,10 @@ Each category page follows this clean, minimal architecture:
 3. **Citrus Selection** — Navel & Valencia oranges, Eureka lemons, Persian limes, Mandarins, and Ruby Red grapefruits
 4. **Stone Fruit** — Peaches, Nectarines, Black & Amber plums, Golden apricots, Sweet dark cherries
 5. **Table Grapes** — Seedless white (Thompson/Sugraone), Red Globe, Crimson, and Autumn Royal
-6. **Mangoes** — Premium seasonal Alfonso, Sindhri, Tommy Atkins, and Kent cultivars
+6. **Mangoes** — Premium seasonal cultivars (Sindhri, Tommy Atkins, and Kent)
 7. **Strawberries & Berries** — Sweet Camarosa strawberries, Blueberries, Raspberries, Blackberries
 8. **Pomegranate** — Ruby red arils, sweet Wonderful & Hicaz varieties
-9. **Hass Avocado** — Pre-ripened & firm green-skin / dark pebbled Hass avocados
+9. **Avocado** — Pre-ripened & firm green-skin / creamy table cultivars
 
 ### Category 3: Leafy & Herbs (`/products/leafy-herbs`)
 1. **Lettuce (Romaine & Iceberg)** — Crisp iceberg heads & crisp-hearted green Romaine

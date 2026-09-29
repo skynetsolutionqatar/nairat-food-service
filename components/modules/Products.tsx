@@ -37,25 +37,25 @@ const categoriesData: CategoryData[] = [
         id: 'tomatoes',
         name: 'Tomatoes',
         subName: '(Fresh Harvest)',
-        imageUrl: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?q=80&w=800',
+        imageUrl: '/products/vegetables/tomatoes.jpg',
       },
       {
         id: 'capsicum',
         name: 'Capsicum',
         subName: '(Green, Red & Yellow)',
-        imageUrl: 'https://images.unsplash.com/photo-1563565375-f3fdfdbefa83?q=80&w=800',
+        imageUrl: '/products/vegetables/capsicum.jpg',
       },
       {
         id: 'cucumbers',
         name: 'Cucumbers',
         subName: '(Greenhouse Sourced)',
-        imageUrl: 'https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?q=80&w=800',
+        imageUrl: '/products/vegetables/cucumbers.jpg',
       },
       {
         id: 'marrow-zucchini',
         name: 'Eggplant & Zucchini',
         subName: '(Marrow Selection)',
-        imageUrl: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=800',
+        imageUrl: '/products/vegetables/marrow-zucchini.jpg',
       },
     ],
     productsRow2: [
@@ -63,25 +63,25 @@ const categoriesData: CategoryData[] = [
         id: 'cauliflower-cabbage',
         name: 'Cauliflower & Cabbage',
         subName: '(Farm Select)',
-        imageUrl: 'https://images.unsplash.com/photo-1568584711075-3d021a7c3ca3?q=80&w=800',
+        imageUrl: '/products/vegetables/cauliflower.jpg',
       },
       {
         id: 'potatoes-onions',
         name: 'Potatoes & Onions',
         subName: '(Crisp Quality)',
-        imageUrl: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?q=80&w=800',
+        imageUrl: '/products/vegetables/potatoes.jpg',
       },
       {
         id: 'chilli-okra',
         name: 'Chilli & Okra',
         subName: '(Fresh Spice & Pods)',
-        imageUrl: 'https://images.unsplash.com/photo-1588879460418-472064119d67?q=80&w=800',
+        imageUrl: '/products/vegetables/chilli.jpg',
       },
       {
         id: 'beans',
         name: 'Fresh Beans',
         subName: '(Green Harvest)',
-        imageUrl: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?q=80&w=800',
+        imageUrl: '/products/vegetables/beans.jpg',
       },
     ],
   },
@@ -97,58 +97,58 @@ const categoriesData: CategoryData[] = [
         id: 'melons',
         name: 'Watermelon & Sweet Melon',
         subName: '(Juicy Harvest)',
-        imageUrl: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?q=80&w=800',
+        imageUrl: '/products/fruits/watermelon.jpg',
       },
       {
         id: 'citrus',
         name: 'Citrus Selection',
         subName: '(Orange, Lemon, Lime, Mandarin)',
-        imageUrl: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?q=80&w=800',
+        imageUrl: '/products/fruits/citrus.jpg',
       },
       {
         id: 'stone-fruit',
         name: 'Stone Fruit',
         subName: '(Peach, Nectarine, Plum, Cherry)',
-        imageUrl: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=800',
+        imageUrl: '/products/fruits/stone-fruit.jpg',
       },
       {
         id: 'grapes',
         name: 'Fresh Grapes',
         subName: '(Red & Green Seedless)',
-        imageUrl: 'https://images.unsplash.com/photo-1596368708356-6e1e1025ee72?q=80&w=800',
+        imageUrl: '/products/fruits/table-grapes.jpg',
       },
     ],
     productsRow2: [
       {
         id: 'mango',
         name: 'Fresh Mango',
-        subName: '(Alphonso & Premium)',
-        imageUrl: 'https://images.unsplash.com/photo-1553279768-865429fa0078?q=80&w=800',
+        subName: '(Seasonal Selection)',
+        imageUrl: '/products/fruits/mango.jpg',
       },
       {
         id: 'berries',
         name: 'Strawberries & Berries',
         subName: '(Fresh Blueberries & Strawberries)',
-        imageUrl: 'https://images.unsplash.com/photo-1498557850523-fd3d118b962e?q=80&w=800',
+        imageUrl: '/products/fruits/berries.jpg',
       },
       {
         id: 'pomegranate',
         name: 'Pomegranate',
         subName: '(Ruby Red Seeds)',
-        imageUrl: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=800',
+        imageUrl: '/products/fruits/ruby-pomegranate.jpg',
       },
       {
         id: 'avocado',
         name: 'Avocado',
-        subName: '(Hass Variety)',
-        imageUrl: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=800',
+        subName: '(Fresh Selection)',
+        imageUrl: '/products/fruits/avocado.jpg',
       },
     ],
   },
   {
     id: 'leafy-herbs',
     label: 'Leafy & Herbs',
-    leftBarTitle: 'ORGANIC HERBS',
+    leftBarTitle: 'CULINARY HERBS',
     leftBarColor: 'bg-[#15803D]',
     rightBarTitle: 'LEAFY SELECTION',
     rightBarColor: 'bg-[#0D9488]',
@@ -157,25 +157,25 @@ const categoriesData: CategoryData[] = [
         id: 'lettuce-romaine-iceberg',
         name: 'Lettuce Romaine & Iceberg',
         subName: '(Crisp Leaf Selection)',
-        imageUrl: 'https://images.unsplash.com/photo-1622206151226-18ca2c9ab4a1?q=80&w=800',
+        imageUrl: '/products/leafy-herbs/lettuce.jpg',
       },
       {
         id: 'broccoli-fresh',
         name: 'Broccoli',
         subName: '(Farm Fresh Florets)',
-        imageUrl: 'https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?q=80&w=800',
+        imageUrl: '/products/leafy-herbs/broccoli.jpg',
       },
       {
         id: 'radish-beetroot',
         name: 'Radish & Beetroot',
         subName: '(Fresh Root Harvest)',
-        imageUrl: 'https://images.unsplash.com/photo-1598170845058-128a2b163351?q=80&w=800',
+        imageUrl: '/products/leafy-herbs/radish.jpg',
       },
       {
         id: 'fresh-coriander-mint',
         name: 'Fresh Coriander & Mint',
         subName: '(Aromatic Herbs)',
-        imageUrl: 'https://images.unsplash.com/photo-1594489428504-5c0c480a15fa?q=80&w=800',
+        imageUrl: '/products/leafy-herbs/coriander-mint.jpg',
       },
     ],
     productsRow2: [
@@ -183,25 +183,25 @@ const categoriesData: CategoryData[] = [
         id: 'sweet-basil-leaf',
         name: 'Sweet Basil',
         subName: '(Italian Genovese)',
-        imageUrl: 'https://images.unsplash.com/photo-1749655248287-d1e0acb5f8d1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c3dlZXQtYmFzaWwtbGVhZnxlbnwwfHwwfHx8MA%3D%3D',
+        imageUrl: '/products/leafy-herbs/basil.jpg',
       },
       {
         id: 'flat-parsley',
         name: 'Flat Parsley',
         subName: '(Mediterranean Bunch)',
-        imageUrl: 'https://images.unsplash.com/photo-1594489428504-5c0c480a15fa?q=80&w=800',
+        imageUrl: '/products/leafy-herbs/parsley.jpg',
       },
       {
         id: 'thyme-rosemary-pair',
         name: 'Thyme & Rosemary',
         subName: '(Culinary Pair)',
-        imageUrl: 'https://plus.unsplash.com/premium_photo-1763665457124-91652cbebf44?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGh5bWUtcm9zZW1hcnktcGFpcnxlbnwwfHwwfHx8MA%3D%3D',
+        imageUrl: '/products/leafy-herbs/thyme-rosemary.jpg',
       },
       {
         id: 'fresh-herbs-mix',
         name: 'Fresh Herbs',
         subName: '(Dill, Sage & Tarragon)',
-        imageUrl: 'https://plus.unsplash.com/premium_photo-1675237625952-c2e254de1d13?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZnJlc2gtaGVyYnMtbWl4fGVufDB8fDB8fHww',
+        imageUrl: '/products/leafy-herbs/fresh-herbs.jpg',
       },
     ],
   },
@@ -217,25 +217,25 @@ const categoriesData: CategoryData[] = [
         id: 'baby-leaves',
         name: 'Baby Leaves',
         subName: '(Tender Gourmet Mix)',
-        imageUrl: '/products/specialty & gourmet/baby_leaves.jpg',
+        imageUrl: '/products/specialty-gourmet/baby-leaves.jpg',
       },
       {
         id: 'exotic-mushrooms',
         name: 'Exotic Mushrooms',
         subName: '(Shiitake, Oyster & Morels)',
-        imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=800',
+        imageUrl: '/products/specialty-gourmet/fresh-mushrooms.jpg',
       },
       {
         id: 'passion-fruit-gourmet',
         name: 'Passion Fruit',
         subName: '(Purple Selection)',
-        imageUrl: 'https://images.unsplash.com/photo-1589984662646-e7b2e4962f18?q=80&w=800',
+        imageUrl: '/products/specialty-gourmet/purple-passion-fruit.jpg',
       },
       {
         id: 'lychee-rambutan',
         name: 'Lychee & Rambutan',
         subName: '(Air Freight Import)',
-        imageUrl: 'https://images.unsplash.com/photo-1615485290382-441e4d049cb5?q=80&w=800',
+        imageUrl: '/products/specialty-gourmet/fresh-lychee.jpg',
       },
     ],
     productsRow2: [
@@ -243,25 +243,25 @@ const categoriesData: CategoryData[] = [
         id: 'dragon-fruit-exotic',
         name: 'Dragon Fruit',
         subName: '(Red & White)',
-        imageUrl: 'https://images.unsplash.com/photo-1527325678964-54921646bc0d?q=80&w=800',
+        imageUrl: '/products/specialty-gourmet/dragon-fruit.jpg',
       },
       {
         id: 'black-figs-gourmet',
         name: 'Black Figs',
         subName: '(Turkish Import)',
-        imageUrl: 'https://images.unsplash.com/photo-1601379327928-bedfac7da2d2?q=80&w=800',
+        imageUrl: '/products/specialty-gourmet/black-figs.jpg',
       },
       {
         id: 'golden-apricots-gourmet',
         name: 'Golden Apricots',
         subName: '(Uzbekistan)',
-        imageUrl: 'https://images.unsplash.com/photo-1501746877-14782df589a4?q=80&w=800',
+        imageUrl: '/products/specialty-gourmet/golden-apricots.jpg',
       },
       {
         id: 'seasonal-specialities',
         name: 'Seasonal Specialties',
         subName: '(Curated Exotics)',
-        imageUrl: 'https://images.unsplash.com/photo-1550258987-190a2d41a8ba?q=80&w=800',
+        imageUrl: '/products/specialty-gourmet/seasonal-specialties.jpg',
       },
     ],
   },
@@ -275,12 +275,33 @@ export function Products() {
   const containerRef = useRef<HTMLDivElement>(null);
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
+  const userPauseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const isDownRef = useRef(false);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
 
   const activeCategory = categoriesData[categoryIndex];
+
+  const handleCategorySelect = (index: number) => {
+    setCategoryIndex(index);
+    setIsPaused(true);
+    if (userPauseTimerRef.current) {
+      clearTimeout(userPauseTimerRef.current);
+    }
+    // Pause auto-rotation for 12 seconds when user manually selects a tab
+    userPauseTimerRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 12000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (userPauseTimerRef.current) {
+        clearTimeout(userPauseTimerRef.current);
+      }
+    };
+  }, []);
 
   // Auto scroll category selection smoothly when not dragging/hovering
   useEffect(() => {
@@ -422,7 +443,7 @@ export function Products() {
             {categoriesData.map((cat, idx) => (
               <button
                 key={cat.id}
-                onClick={() => setCategoryIndex(idx)}
+                onClick={() => handleCategorySelect(idx)}
                 className={`font-sans text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                   categoryIndex === idx
                     ? 'bg-[#168849] text-white shadow-md shadow-[#168849]/25 scale-105'
