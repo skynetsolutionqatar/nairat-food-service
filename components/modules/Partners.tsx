@@ -18,7 +18,7 @@ const partnerLogos = [
   },
   {
     id: 'carrefour',
-    description: 'Carrefour',
+    description: 'Carrefour Qatar',
     image: '/partners/careefour.svg',
     className: 'h-7 sm:h-9 md:h-10 w-auto object-contain cursor-pointer',
   },
@@ -30,9 +30,33 @@ const partnerLogos = [
   },
   {
     id: 'grand',
-    description: 'Grand Hypermarket',
+    description: 'Grand Mall',
     image: '/partners/grand-logo.webp',
     className: 'h-7 sm:h-9 md:h-10 w-auto object-contain cursor-pointer',
+  },
+  {
+    id: 'rawabi',
+    description: 'Rawabi Hypermarket',
+    image: '/partners/rawabi-hypermarket.svg',
+    className: 'h-7 sm:h-9 md:h-10 w-auto object-contain cursor-pointer',
+  },
+  {
+    id: 'saudia',
+    description: 'Saudia Hypermarket',
+    image: '/partners/saudia.png',
+    className: 'h-7 sm:h-9 md:h-10 w-auto object-contain cursor-pointer',
+  },
+  {
+    id: 'abcfresh',
+    description: 'ABC Fresh',
+    image: '/partners/abc.webp',
+    className: 'h-7 sm:h-9 md:h-10 w-auto object-contain cursor-pointer',
+  },
+  {
+    id: 'talabat',
+    description: 'Talabat Mart',
+    image: '/partners/talabat-mart.svg',
+    className: 'h-6 sm:h-8 md:h-9 w-auto object-contain cursor-pointer',
   },
   {
     id: 'mahaseel',

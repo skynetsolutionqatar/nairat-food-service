@@ -40,7 +40,7 @@ const Logos3 = ({
     },
     {
       id: "carrefour",
-      description: "Carrefour",
+      description: "Carrefour Qatar",
       image: "/partners/careefour.svg",
       className: "h-10 w-auto object-contain",
     },
@@ -52,9 +52,33 @@ const Logos3 = ({
     },
     {
       id: "grand",
-      description: "Grand Hypermarket",
+      description: "Grand Mall",
       image: "/partners/grand-logo.webp",
       className: "h-10 w-auto object-contain",
+    },
+    {
+      id: "rawabi",
+      description: "Rawabi Hypermarket",
+      image: "/partners/rawabi-hypermarket.svg",
+      className: "h-10 w-auto object-contain",
+    },
+    {
+      id: "saudia",
+      description: "Saudia Hypermarket",
+      image: "/partners/saudia.png",
+      className: "h-10 w-auto object-contain",
+    },
+    {
+      id: "abcfresh",
+      description: "ABC Fresh",
+      image: "/partners/abc.webp",
+      className: "h-10 w-auto object-contain",
+    },
+    {
+      id: "talabat",
+      description: "Talabat Mart",
+      image: "/partners/talabat-mart.svg",
+      className: "h-9 w-auto object-contain",
     },
     {
       id: "mahaseel",
