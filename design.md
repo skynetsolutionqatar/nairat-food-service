@@ -1,6 +1,6 @@
 # Nairat Food Services — Homepage Design Specification & Design System
 
-This document provides the definitive design specification, visual tokens, structural architecture, interactive component behaviors, and motion guidelines for the **Nairat Food Services** homepage ([nairatfood.com](https://nairatfood.com)), as implemented in the production Next.js application.
+This document provides the definitive design specification, visual tokens, structural architecture, interactive component behaviors, and motion guidelines for the **Nairat Food Services** homepage ([https://nairatfoodservices.com/](https://nairatfoodservices.com/)), as implemented in the production Next.js application.
 
 ---
 

@@ -12,12 +12,11 @@ interface FooterNavLink {
 }
 
 const footerNavLinks: FooterNavLink[] = [
-
   { label: 'Company', href: '/company' },
   { label: 'Services', href: '/services' },
   { label: 'Sourcing & Quality', href: '/quality' },
   { label: 'Partners', href: '/partners' },
-  { label: 'Careers', href: '/career' },
+  { label: 'Careers', href: '/contact?subject=careers' },
   { label: 'Contact Us', href: '/contact' },
 ];
 
@@ -56,7 +55,7 @@ export function Footer() {
 
           {/* Right: Reusable CtaButton */}
           <div className="shrink-0 self-start md:self-auto">
-            <CtaButton href="/#about" text="Learn More" />
+            <CtaButton href="/company" text="Learn More" />
           </div>
 
         </div>
@@ -67,19 +66,8 @@ export function Footer() {
         {/* Middle Section: Social Icons (Left) | Horizontal Navigation (Right) */}
         <div className="footer-content-item flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
 
-          {/* Social Icons (Facebook & Instagram) */}
+          {/* Social Icons (Instagram) */}
           <div className="flex items-center gap-3.5 sm:gap-4 shrink-0">
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-800 hover:text-[#168849] hover:border-[#168849] transition-colors"
-              aria-label="Facebook"
-            >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M9 8H7v3h2v9h3v-9h3.6L16 8h-3V6.3C13 5.4 13.5 5 14.5 5H16V2h-2.5C10.5 2 9 3.5 9 6.3V8z" />
-              </svg>
-            </a>
             <a
               href="https://www.instagram.com/nairatshop"
               target="_blank"

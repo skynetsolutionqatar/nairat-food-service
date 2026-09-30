@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { MapPin, Mail, PhoneCall, CheckCircle2, AlertCircle } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
@@ -17,6 +17,19 @@ export function ContactSection(): React.ReactNode {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const subject = params.get('subject');
+      if (subject?.toLowerCase() === 'careers') {
+        setFormData((prev) => ({
+          ...prev,
+          message: prev.message || 'I am interested in career opportunities at Nairat Food Services.',
+        }));
+      }
+    }
+  }, []);
 
   useGSAP(
     () => {
