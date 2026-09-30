@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: `${data.title} — Nairat Food Services Qatar`,
       description: data.description,
-      url: `https://nairatfood.com/products/${data.slug}`,
+      url: `https://nairatfoodservices.com/products/${data.slug}`,
       siteName: 'Nairat Food Services',
       locale: 'en_US',
       type: 'website',
