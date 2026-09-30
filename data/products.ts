@@ -121,7 +121,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
         origin: 'Jordan, Egypt, India',
         temp: '+8°C to +10°C',
         description: 'Hand-picked small and medium young green pods free of tough structural fiber.',
-        imageUrl: '/products/vegetables/okra.jpg',
+        imageUrl: '/products/vegetables/okra.jpeg',
       },
       {
         id: 'beans',

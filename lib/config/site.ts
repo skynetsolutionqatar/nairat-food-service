@@ -8,7 +8,6 @@ export const siteConfig = {
   contact: {
     address: 'Industrial Area, Street 37, Doha, Qatar',
     email: 'info@nairat.net',
-    emailAlt: 'info@nairatfoodservices.com',
     tel: '+974 4429 0400',
     telSecondary: '+974 4429 0300',
     mobile: '+974 3104 3814',
