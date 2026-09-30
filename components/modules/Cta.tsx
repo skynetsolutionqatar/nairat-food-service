@@ -64,10 +64,10 @@ export function Cta() {
               <Image
                 src="/cta/ctacontry.webp"
                 alt="Sourced Around the World country flags"
-                width={120}
-                height={36}
-                style={{ width: 'auto', height: 'auto' }}
+                width={155}
+                height={44}
                 className="h-6 min-[380px]:h-7 sm:h-8 md:h-9 w-auto object-contain"
+                style={{ width: 'auto' }}
               />
             </div>
             <div className="font-sans text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-sm text-white leading-tight sm:leading-snug">
