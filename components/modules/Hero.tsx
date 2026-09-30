@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '../ui/CtaButton';
 
@@ -8,6 +8,51 @@ export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  // Auto-recovery & resilient playback handling
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Explicitly set muted property on the DOM element for strict Safari/iOS policy
+    video.muted = true;
+    video.defaultMuted = true;
+
+    const playVideo = () => {
+      const promise = video.play();
+      if (promise !== undefined) {
+        promise.catch(() => {
+          // Autoplay prevented by browser power-saving mode
+        });
+      }
+    };
+
+    playVideo();
+
+    // Auto-resume if tab becomes active after being in background or minimized
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && video.paused) {
+        playVideo();
+      }
+    };
+
+    // Auto-resume if stream temporarily stalled or was waiting for buffer
+    const handleStall = () => {
+      if (video.paused) {
+        playVideo();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibility);
+    video.addEventListener('waiting', handleStall);
+    video.addEventListener('stalled', handleStall);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibility);
+      video.removeEventListener('waiting', handleStall);
+      video.removeEventListener('stalled', handleStall);
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -48,25 +93,25 @@ export function Hero() {
       ref={containerRef}
       className="relative min-h-[88vh] flex flex-col justify-end bg-[#052618] overflow-hidden px-4 sm:px-8"
     >
-      {/* Background Video with enhanced sharpness & vibrancy */}
+      {/* Background Video with preload="auto" and lightweight GPU rendering */}
       <video
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         poster="/hero-poster.webp"
         disablePictureInPicture
         disableRemotePlayback
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none origin-center will-change-transform transform-gpu brightness-[1.03] contrast-[1.05] saturate-[1.08]"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none origin-center will-change-transform transform-gpu"
       >
         <source src="/hero.mp4" type="video/mp4" />
         <source src="/hero.webm" type="video/webm" />
       </video>
 
       {/* Minimal subtle gradient overlay only at the bottom for crisp text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent pointer-events-none" />
 
       {/* Main Content Container */}
       <div
