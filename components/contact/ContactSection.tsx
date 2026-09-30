@@ -15,8 +15,10 @@ export function ContactSection(): React.ReactNode {
     phone: '',
     message: '',
   });
+  const [honeypot, setHoneypot] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [feedbackMessage, setFeedbackMessage] = useState('');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -66,22 +68,50 @@ export function ContactSection(): React.ReactNode {
     { scope: sectionRef }
   );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) {
+    if (!formData.name || !formData.email || !formData.message) {
       setSubmitStatus('error');
+      setFeedbackMessage('Please complete all required fields.');
       return;
     }
 
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setFeedbackMessage('');
 
-    // Simulate reliable form submission
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone ? `+974 ${formData.phone}` : '',
+          message: formData.message,
+          botcheck: honeypot,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setSubmitStatus('success');
+        setFeedbackMessage(
+          result.message || 'Thank you! Your inquiry has been received. Our team will contact you promptly.'
+        );
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+        setFeedbackMessage(result.message || 'Unable to send inquiry. Please try again.');
+      }
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      setSubmitStatus('error');
+      setFeedbackMessage('A network error occurred. Please try again or reach out on WhatsApp.');
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', phone: '', message: '' });
-    }, 800);
+    }
   };
 
   return (
@@ -187,7 +217,21 @@ export function ContactSection(): React.ReactNode {
           {/* Right Column: Green Enquiry Form */}
           <div className="contact-form-card lg:col-span-6">
             <div className="rounded-3xl bg-[#3FAE56] p-6 sm:p-8 lg:p-9 shadow-lg text-white space-y-5">
-              <form onSubmit={handleSubmit} className="space-y-4" >
+              <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot Spam Protection (Hidden from humans, catches automated bots) */}
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="website_url">Leave this field empty</label>
+                  <input
+                    id="website_url"
+                    type="text"
+                    name="website_url"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
+
                 {/* Field 1: Name */}
                 <div className="space-y-1.5">
                   <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-white">
@@ -253,6 +297,7 @@ export function ContactSection(): React.ReactNode {
                     id="message"
                     name="message"
                     rows={4}
+                    required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Enter Your Message"
@@ -264,14 +309,14 @@ export function ContactSection(): React.ReactNode {
                 {submitStatus === 'success' && (
                   <div className="p-3.5 rounded-xl bg-white/20 border border-white/40 flex items-center gap-2.5 text-xs text-white">
                     <CheckCircle2 className="w-4 h-4 shrink-0 text-[#F2BD1D]" />
-                    <span>Thank you! Your inquiry has been received. Our team will contact you promptly.</span>
+                    <span>{feedbackMessage}</span>
                   </div>
                 )}
 
                 {submitStatus === 'error' && (
                   <div className="p-3.5 rounded-xl bg-red-500/30 border border-red-200/50 flex items-center gap-2.5 text-xs text-white">
                     <AlertCircle className="w-4 h-4 shrink-0" />
-                    <span>Please complete the required fields before submitting.</span>
+                    <span>{feedbackMessage}</span>
                   </div>
                 )}
 
