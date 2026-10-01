@@ -18,7 +18,7 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
     {
       icon: <Globe className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
       title: isAr ? 'شبكة توريد عالمية' : 'Global Network',
-      description: isAr ? 'شركاء موثوقون في أكثر من 30 دولة' : 'Trusted partners across 30+ countries',
+      description: isAr ? 'شركاء موثوقون في 60 دولة حول العالم' : 'Trusted partners across 60 countries',
     },
     {
       icon: <ShieldCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
@@ -163,10 +163,10 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                   </div>
                   <div>
                     <span className="font-display font-bold text-base sm:text-lg text-[#111814] block leading-none">
-                      +30
+                      15+
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
-                      {isAr ? 'دولة موردة' : 'Countries'}
+                      {isAr ? 'منشأ أساسي' : 'Core Origins'}
                     </span>
                   </div>
                 </div>
@@ -177,10 +177,10 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                   </div>
                   <div>
                     <span className="font-display font-bold text-base sm:text-lg text-[#111814] block leading-none">
-                      +1500
+                      1,200+
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
-                      {isAr ? 'صنف زراعي' : 'Product Lines'}
+                      {isAr ? 'صنف نشط' : 'Active Lines'}
                     </span>
                   </div>
                 </div>

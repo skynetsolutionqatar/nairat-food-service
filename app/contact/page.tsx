@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: 'Contact Us — Nairat Food Services Qatar',
     description:
       'Connect with our fresh produce distribution network in Qatar. Facility located at Street 37, Industrial Area, Doha.',
-    url: 'https://nairatfood.com/contact',
+    url: 'https://nairatfoodservices.com/contact',
     siteName: 'Nairat Food Services',
     locale: 'en_US',
     type: 'website',

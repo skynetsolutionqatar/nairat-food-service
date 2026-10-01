@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Leaf } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
@@ -213,9 +214,9 @@ const categoriesData: CategoryData[] = [
       {
         id: 'sweet-basil-leaf',
         name: 'Sweet Basil',
-        nameAr: 'ريحان إيطالي',
-        subName: '(Italian Genovese)',
-        subNameAr: '(جينوفيز أصلي)',
+        nameAr: 'ريحان طازج',
+        subName: '(Fragrant Kitchen Herb)',
+        subNameAr: '(أعشاب طهي عطرة)',
         imageUrl: '/products/leafy-herbs/basil.jpg',
       },
       {
@@ -322,21 +323,27 @@ const categoriesData: CategoryData[] = [
 export function Products() {
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+  const prefix = locale === 'ar' ? '/ar' : '';
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
+  const [fadeState, setFadeState] = useState<'visible' | 'fading'>('visible');
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
   const userPauseTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const isDownRef = useRef(false);
-  const startXRef = useRef(0);
-  const scrollLeftRef = useRef(0);
+  const touchStartXRef = useRef(0);
+  const touchStartYRef = useRef(0);
+
+  const activeCategory = categoriesData[categoryIndex];
 
   const handleCategorySelect = (index: number) => {
-    setCategoryIndex(index);
+    if (index === categoryIndex) return;
+    setFadeState('fading');
+    setTimeout(() => {
+      setCategoryIndex(index);
+      setFadeState('visible');
+    }, 150);
+
     setIsPaused(true);
     if (userPauseTimerRef.current) {
       clearTimeout(userPauseTimerRef.current);
@@ -355,97 +362,46 @@ export function Products() {
     };
   }, []);
 
-  // Auto scroll category selection smoothly when not dragging/hovering
+  // Auto rotate categories smoothly when not hovered or interacting
   useEffect(() => {
-    if (isPaused || isDragging) return;
+    if (isPaused) return;
 
     const interval = setInterval(() => {
-      setCategoryIndex((prev) => (prev + 1) % categoriesData.length);
-    }, 4500);
+      setFadeState('fading');
+      setTimeout(() => {
+        setCategoryIndex((prev) => (prev + 1) % categoriesData.length);
+        setFadeState('visible');
+      }, 150);
+    }, 5500);
 
     return () => clearInterval(interval);
-  }, [isPaused, isDragging]);
+  }, [isPaused]);
 
-  // Smoothly scroll card track when categoryIndex changes (when not actively dragging)
-  useEffect(() => {
-    if (!isDownRef.current && row1Ref.current && row2Ref.current) {
-      const rowWidth = row1Ref.current.clientWidth;
-      row1Ref.current.scrollTo({ left: categoryIndex * rowWidth, behavior: 'smooth' });
-      row2Ref.current.scrollTo({ left: categoryIndex * rowWidth, behavior: 'smooth' });
-    }
-  }, [categoryIndex]);
-
-  // Mouse Drag Handlers
-  const handleMouseDown = (e: React.MouseEvent) => {
-    isDownRef.current = true;
-    setIsDragging(true);
-    setIsPaused(true);
-    startXRef.current = e.pageX;
-    if (row1Ref.current) {
-      scrollLeftRef.current = row1Ref.current.scrollLeft;
-    }
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDownRef.current || !row1Ref.current || !row2Ref.current) return;
-    e.preventDefault();
-    const x = e.pageX;
-    const walk = (x - startXRef.current) * 1.3;
-    row1Ref.current.scrollLeft = scrollLeftRef.current - walk;
-    row2Ref.current.scrollLeft = scrollLeftRef.current - walk;
-
-    const rowWidth = row1Ref.current.clientWidth;
-    const nearestIndex = Math.min(
-      Math.max(0, Math.round(row1Ref.current.scrollLeft / rowWidth)),
-      categoriesData.length - 1
-    );
-    if (nearestIndex !== categoryIndex) {
-      setCategoryIndex(nearestIndex);
-    }
-  };
-
-  const handleMouseUpOrLeave = () => {
-    if (!isDownRef.current) return;
-    isDownRef.current = false;
-    setIsDragging(false);
-
-    if (row1Ref.current && row2Ref.current) {
-      const rowWidth = row1Ref.current.clientWidth;
-      const finalIndex = Math.min(
-        Math.max(0, Math.round(row1Ref.current.scrollLeft / rowWidth)),
-        categoriesData.length - 1
-      );
-      setCategoryIndex(finalIndex);
-      row1Ref.current.scrollTo({ left: finalIndex * rowWidth, behavior: 'smooth' });
-      row2Ref.current.scrollTo({ left: finalIndex * rowWidth, behavior: 'smooth' });
-    }
-  };
-
-  // Touch Handlers for Mobile / Trackpad
+  // Touch Swipe Handlers for Mobile
   const handleTouchStart = (e: React.TouchEvent) => {
-    isDownRef.current = true;
-    setIsDragging(true);
-    setIsPaused(true);
-    startXRef.current = e.touches[0].pageX;
-    if (row1Ref.current) {
-      scrollLeftRef.current = row1Ref.current.scrollLeft;
-    }
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDownRef.current || !row1Ref.current || !row2Ref.current) return;
-    const x = e.touches[0].pageX;
-    const walk = (x - startXRef.current) * 1.3;
-    row1Ref.current.scrollLeft = scrollLeftRef.current - walk;
-    row2Ref.current.scrollLeft = scrollLeftRef.current - walk;
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const deltaX = e.changedTouches[0].clientX - touchStartXRef.current;
+    const deltaY = e.changedTouches[0].clientY - touchStartYRef.current;
 
-    const rowWidth = row1Ref.current.clientWidth;
-    const nearestIndex = Math.min(
-      Math.max(0, Math.round(row1Ref.current.scrollLeft / rowWidth)),
-      categoriesData.length - 1
-    );
-    if (nearestIndex !== categoryIndex) {
-      setCategoryIndex(nearestIndex);
+    // Horizontal swipe gesture check
+    if (Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX < 0) {
+        // Swipe Left -> Next Category (or prev if RTL)
+        const nextIdx = isAr
+          ? (categoryIndex - 1 + categoriesData.length) % categoriesData.length
+          : (categoryIndex + 1) % categoriesData.length;
+        handleCategorySelect(nextIdx);
+      } else {
+        // Swipe Right -> Prev Category (or next if RTL)
+        const prevIdx = isAr
+          ? (categoryIndex + 1) % categoriesData.length
+          : (categoryIndex - 1 + categoriesData.length) % categoriesData.length;
+        handleCategorySelect(prevIdx);
+      }
     }
   };
 
@@ -457,7 +413,7 @@ export function Products() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
-          start: 'top 82%',
+          start: 'top 85%',
           once: true,
         },
       });
@@ -490,11 +446,12 @@ export function Products() {
             {isAr ? 'طزاجة فائقة، مستوردة من أنحاء العالم.' : 'Freshness, Sourced From Around the World.'}
           </h2>
 
-          {/* Interactive Category Selector Pills */}
+          {/* Interactive Category Selector Pills with True Filtering */}
           <div className="product-header-item flex flex-wrap items-center justify-center gap-2 pt-2">
             {categoriesData.map((cat, idx) => (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => handleCategorySelect(idx)}
                 className={`font-sans text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
                   categoryIndex === idx
@@ -508,132 +465,107 @@ export function Products() {
           </div>
         </div>
 
-        {/* 100% Edge-to-Edge Full Width Product Showcase Gallery Container with Drag to Scroll */}
+        {/* 100% Edge-to-Edge Full Width Product Showcase Gallery Container with True Filtering */}
         <div
           dir="ltr"
           onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => {
-            setIsPaused(false);
-            handleMouseUpOrLeave();
-          }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={() => setIsPaused(false)}
           onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleMouseUpOrLeave}
-          className={`product-gallery-wrapper relative w-full rounded-none overflow-hidden bg-white flex flex-col gap-0 select-none ${
-            isDragging ? 'cursor-grabbing' : 'cursor-grab'
+          onTouchEnd={handleTouchEnd}
+          className={`product-gallery-wrapper relative w-full rounded-none overflow-hidden bg-white flex flex-col gap-0 select-none transition-all duration-200 ${
+            fadeState === 'visible' ? 'opacity-100 scale-100' : 'opacity-0 scale-[0.995]'
           }`}
         >
-          {/* ROW 1: Horizontal Card Scroll Track */}
-          <div
-            ref={row1Ref}
-            className="flex flex-row overflow-x-hidden scroll-smooth w-full"
-          >
-            {categoriesData.map((cat) => (
-              <div
-                key={`row1-${cat.id}`}
-                className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
-              >
-                {cat.productsRow1.map((item, itemIndex) => {
-                  const itemName = isAr && item.nameAr ? item.nameAr : item.name;
-                  const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
+          {/* ROW 1: Active Category Products */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 w-full gap-0 bg-white">
+            {activeCategory.productsRow1.map((item, itemIndex) => {
+              const itemName = isAr && item.nameAr ? item.nameAr : item.name;
+              const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
 
-                  return (
-                    <div
-                      key={item.id}
-                      className={`group relative aspect-square w-full overflow-hidden bg-white cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
-                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                      }`}
-                    >
-                      {/* Full-bleed Product Image */}
-                      <Image
-                        src={item.imageUrl}
-                        alt={itemName}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
-                        className="object-cover scale-[1.01] transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
-                        loading="lazy"
-                      />
+              return (
+                <Link
+                  key={item.id}
+                  href={`${prefix}/products/${activeCategory.id}`}
+                  className={`group relative aspect-square w-full overflow-hidden bg-white cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
+                    itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                  }`}
+                >
+                  {/* Full-bleed Product Image */}
+                  <Image
+                    src={item.imageUrl}
+                    alt={itemName}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                    className="object-cover scale-[1.01] transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
+                    loading="lazy"
+                  />
 
-                      {/* Dark Gradient Bottom Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 pointer-events-none" />
+                  {/* Dark Gradient Bottom Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 pointer-events-none" />
 
-                      {/* Bottom Title Text Overlay */}
-                      <div
-                        className="relative z-10 text-center space-y-0.5 sm:space-y-1"
-                        dir={isAr ? 'rtl' : 'ltr'}
-                      >
-                        <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
-                          {itemName}
-                        </h3>
-                        {itemSubName && (
-                          <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
-                            {itemSubName}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+                  {/* Bottom Title Text Overlay */}
+                  <div
+                    className="relative z-10 text-center space-y-0.5 sm:space-y-1"
+                    dir={isAr ? 'rtl' : 'ltr'}
+                  >
+                    <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
+                      {itemName}
+                    </h3>
+                    {itemSubName && (
+                      <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
+                        {itemSubName}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
 
-          {/* ROW 2: Horizontal Card Scroll Track */}
-          <div
-            ref={row2Ref}
-            className="flex flex-row overflow-x-hidden scroll-smooth w-full"
-          >
-            {categoriesData.map((cat) => (
-              <div
-                key={`row2-${cat.id}`}
-                className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
-              >
-                {cat.productsRow2.map((item, itemIndex) => {
-                  const itemName = isAr && item.nameAr ? item.nameAr : item.name;
-                  const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
+          {/* ROW 2: Active Category Products */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 w-full gap-0 bg-white">
+            {activeCategory.productsRow2.map((item, itemIndex) => {
+              const itemName = isAr && item.nameAr ? item.nameAr : item.name;
+              const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
 
-                  return (
-                    <div
-                      key={item.id}
-                      className={`group relative aspect-square w-full overflow-hidden bg-white cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
-                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                      }`}
-                    >
-                      {/* Full-bleed Product Image */}
-                      <Image
-                        src={item.imageUrl}
-                        alt={itemName}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
-                        className="object-cover scale-[1.01] transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
-                        loading="lazy"
-                      />
+              return (
+                <Link
+                  key={item.id}
+                  href={`${prefix}/products/${activeCategory.id}`}
+                  className={`group relative aspect-square w-full overflow-hidden bg-white cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
+                    itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                  }`}
+                >
+                  {/* Full-bleed Product Image */}
+                  <Image
+                    src={item.imageUrl}
+                    alt={itemName}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                    className="object-cover scale-[1.01] transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
+                    loading="lazy"
+                  />
 
-                      {/* Dark Gradient Bottom Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 pointer-events-none" />
+                  {/* Dark Gradient Bottom Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 pointer-events-none" />
 
-                      {/* Bottom Title Text Overlay */}
-                      <div
-                        className="relative z-10 text-center space-y-0.5 sm:space-y-1"
-                        dir={isAr ? 'rtl' : 'ltr'}
-                      >
-                        <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
-                          {itemName}
-                        </h3>
-                        {itemSubName && (
-                          <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
-                            {itemSubName}
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            ))}
+                  {/* Bottom Title Text Overlay */}
+                  <div
+                    className="relative z-10 text-center space-y-0.5 sm:space-y-1"
+                    dir={isAr ? 'rtl' : 'ltr'}
+                  >
+                    <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
+                      {itemName}
+                    </h3>
+                    {itemSubName && (
+                      <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
+                        {itemSubName}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
 

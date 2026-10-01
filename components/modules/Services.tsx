@@ -32,8 +32,8 @@ const serviceCards: ServiceCard[] = [
     imageUrl: '/services/wholesale-distribution.avif',
     actionText: 'Explore Distribution',
     actionTextAr: 'استكشف التوزيع',
-    actionHref: '/quality',
-    actionHrefAr: '/ar/quality',
+    actionHref: '/services',
+    actionHrefAr: '/ar/services',
   },
   {
     id: 'grower-partnerships',
@@ -44,8 +44,8 @@ const serviceCards: ServiceCard[] = [
     imageUrl: '/services/grower-and-exporter.avif',
     actionText: 'Partner With Us',
     actionTextAr: 'شاركنا النجاح',
-    actionHref: '/contact',
-    actionHrefAr: '/ar/contact',
+    actionHref: '/contact?subject=grower',
+    actionHrefAr: '/ar/contact?subject=grower',
   },
   {
     id: 'nairat-shop',

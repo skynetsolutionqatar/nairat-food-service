@@ -142,3 +142,23 @@ Each page will be planned and built **one by one in strict sequential order**. C
 - [ ] **Milestone 3: Full-Site Verification**
   - [ ] Validate RTL responsiveness and navigation across all routes with `agent-browser`
   - [ ] Verify instant data revalidation triggers upon publishing changes in CMS
+
+---
+
+## Client Feedback Implementation & Domain Migration (Completed)
+
+Implementation of verified 2026 client feedback (Items A1 – A13) and production cutover preparation for `nairatfoodservices.com`:
+
+- [x] **A1: Arabic Typography & RTL Punctuation**: Fixed trailing period bidirectional flip on hero headlines and standardized Arabic typography.
+- [x] **A2: Mobile Rendering & Visibility**: Repaired "Who We Are" GSAP mobile media queries and fixed initial Navbar logo rendering on mobile.
+- [x] **A3: Hero Video Integration**: Retained high-performance WebM/MP4 hero background with responsive poster fallback.
+- [x] **A4: Interactive Strengths Grid**: Enabled mobile touch screen visibility for strengths card descriptions while preserving desktop hover interactions.
+- [x] **A5: Product Carousel Active Filtering**: Added true active category filtering with crossfade transitions and direct catalog links.
+- [x] **A6: Catalog Accuracy**: Verified 34 produce lines, cleaned out unsupported claims, and added full bilingual metadata.
+- [x] **A7: Sourcing Matrix**: Created `data/sourcing.ts` covering 6 global regions and 60 verified origin countries.
+- [x] **A8: Navigation & Legal Pages**: Created `/privacy`, `/terms`, `/ar/privacy`, `/ar/terms` and linked all footer/nav anchors.
+- [x] **A9 & A13: Centralized Facts & Metrics**: Built `lib/config/company.ts` with official 2026 stats (1,200+ lines, ~100 t/day, 5,000 m², 20 chillers, 40 vehicles, CR 144352, P.O. Box 64040).
+- [x] **A10: Unified Partners**: Built `data/partners.ts` with 10 verified retail and wholesale partners.
+- [x] **A11: Contact Form Delivery**: Configured multi-provider SMTP with proper error handling and contact channel fallbacks.
+- [x] **A12: Domain & SEO Cutover**: Set `metadataBase` to `https://nairatfoodservices.com`, created dynamic `sitemap.ts` (32 routes) and `robots.ts`, and configured 301 legacy redirects in `next.config.ts`.
+

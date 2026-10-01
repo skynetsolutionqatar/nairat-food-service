@@ -6,59 +6,9 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 
-interface RetailPartner {
-  id: string;
-  name: string;
-  image: string;
-}
+import { partnerLogos } from '@/data/partners';
 
-const retailPartners: RetailPartner[] = [
-  {
-    id: 'almeera',
-    name: 'Al Meera',
-    image: '/partners/almeera-logo-b.svg',
-  },
-  {
-    id: 'lulu',
-    name: 'LuLu Hypermarket',
-    image: '/partners/lulu-logo.png',
-  },
-  {
-    id: 'carrefour',
-    name: 'Carrefour Qatar',
-    image: '/partners/careefour.svg',
-  },
-  {
-    id: 'safari',
-    name: 'Safari Hypermarket',
-    image: '/partners/safari-hypermarket-logo.png',
-  },
-  {
-    id: 'grand',
-    name: 'Grand Mall',
-    image: '/partners/grand-logo.webp',
-  },
-  {
-    id: 'rawabi',
-    name: 'Rawabi Hypermarket',
-    image: '/partners/rawabi-hypermarket.svg',
-  },
-  {
-    id: 'saudia',
-    name: 'Saudia Hypermarket',
-    image: '/partners/saudia.png',
-  },
-  {
-    id: 'abcfresh',
-    name: 'ABC Fresh',
-    image: '/partners/abc.webp',
-  },
-  {
-    id: 'talabat',
-    name: 'Talabat Mart',
-    image: '/partners/talabat-mart.svg',
-  },
-];
+const retailPartners = partnerLogos.filter((partner) => partner.id !== 'mahaseel');
 
 export function PartnerRetail(): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);

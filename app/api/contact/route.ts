@@ -43,12 +43,29 @@ export async function POST(req: Request) {
     const cleanPhone = (phone || '').trim();
     const cleanMessage = message.trim();
 
-    const emailUser = process.env.EMAIL_USER || 'info@nairat.net';
-    const emailPass = process.env.EMAIL_PASS || process.env.EMAIL_PASSWORD;
+    const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
+    const smtpPort = Number(process.env.SMTP_PORT || 465);
+    const smtpSecure = smtpPort === 465;
+    const emailUser = process.env.SMTP_USER || process.env.EMAIL_USER || 'info@nairat.net';
+    const emailPass = process.env.SMTP_PASS || process.env.EMAIL_PASS || process.env.EMAIL_PASSWORD;
     const recipientEmail = process.env.CONTACT_RECIPIENT_EMAIL || 'info@nairat.net';
 
-    // 3. Dev Mode fallback if App Password is not yet set in environment
+    // 3. Dev Mode vs Production fallback
     if (!emailPass || emailPass.trim() === '') {
+      console.warn('⚠️ [SMTP] No EMAIL_PASS / SMTP_PASS found in environment variables.');
+      
+      if (process.env.NODE_ENV === 'production') {
+        return NextResponse.json(
+          {
+            success: false,
+            code: 'SMTP_UNCONFIGURED',
+            message:
+              'Email dispatch service is currently unavailable. Please reach us directly at info@nairat.net or call +974 4429 0400.',
+          },
+          { status: 503 }
+        );
+      }
+
       console.log('════════════════════════════════════════════════════════════');
       console.log('📬 [DEV MODE] Contact Form Enquiry Received:');
       console.log(`• Name:      ${cleanName}`);
@@ -56,24 +73,24 @@ export async function POST(req: Request) {
       console.log(`• Phone:     ${cleanPhone || 'Not provided'}`);
       console.log(`• Message:   ${cleanMessage}`);
       console.log(`• Target:    ${recipientEmail}`);
-      console.log('ℹ️  Add EMAIL_PASS in .env.local to activate live Google SMTP.');
+      console.log('ℹ️  Add EMAIL_PASS in .env.local to activate live SMTP dispatch.');
       console.log('════════════════════════════════════════════════════════════');
 
       return NextResponse.json(
         {
           success: true,
-          message: 'Thank you! Your message has been received.',
+          message: 'Thank you! Your message has been received (Development Mode).',
           devMode: true,
         },
         { status: 200 }
       );
     }
 
-    // 4. Live Google Workspace SMTP Dispatch
+    // 4. Live SMTP Dispatch
     const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpSecure,
       auth: {
         user: emailUser,
         pass: emailPass,

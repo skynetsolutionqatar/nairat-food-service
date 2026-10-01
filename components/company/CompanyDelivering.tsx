@@ -72,7 +72,7 @@ export function CompanyDelivering() {
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md">
                   <MapPin className="w-3.5 h-3.5 text-[#D4F056]" aria-hidden="true" />
-                  <span>{isAr ? 'المنطقة الصناعية، الدوحة' : 'Doha Industrial Area'}</span>
+                  <span>{isAr ? 'شارع 37، المنطقة الصناعية' : 'Street 37, Industrial Area'}</span>
                 </div>
               </div>
             </div>

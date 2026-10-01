@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: 'Partners — Nairat Food Services Qatar',
     description:
       'Connecting global orchards and local Qatari farms to premier hypermarkets and digital grocery platforms with dependable cold-chain distribution.',
-    url: 'https://nairatfood.com/partners',
+    url: 'https://nairatfoodservices.com/partners',
     siteName: 'Nairat Food Services',
     locale: 'en_US',
     type: 'website',

@@ -58,8 +58,8 @@ export function WhoWeAre() {
 
       mm.add(
         {
-          isMobile: '(max-width: 768px), (hover: none) and (pointer: coarse)',
-          isDesktop: '(min-width: 769px) and (pointer: fine)',
+          isMobile: '(max-width: 768px)',
+          isDesktop: '(min-width: 769px)',
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         (context) => {
@@ -70,40 +70,39 @@ export function WhoWeAre() {
           };
 
           if (reduceMotion || isMobile) {
-            gsap.set([headerItems, cards], { opacity: 1, y: 0, scale: 1 });
+            gsap.set([headerItems, cards], { opacity: 1, y: 0, scale: 1, clearProps: 'all' });
             return;
           }
 
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: container,
-              start: isMobile ? 'top 95%' : 'top 85%',
+              start: 'top 85%',
               once: true,
-              fastScrollEnd: true,
             },
           });
 
-          // Smooth coordinated reveal
+          // Smooth coordinated reveal on desktop
           tl.fromTo(
             headerItems,
-            { opacity: 0, y: isMobile ? 18 : 25 },
+            { opacity: 0, y: 25 },
             {
               opacity: 1,
               y: 0,
-              duration: isMobile ? 0.5 : 0.65,
-              stagger: isMobile ? 0.05 : 0.08,
+              duration: 0.65,
+              stagger: 0.08,
               ease: 'power3.out',
               clearProps: 'opacity,transform',
             }
           ).fromTo(
             cards,
-            { opacity: 0, y: isMobile ? 20 : 30, scale: 0.98 },
+            { opacity: 0, y: 30, scale: 0.98 },
             {
               opacity: 1,
               y: 0,
               scale: 1,
-              duration: isMobile ? 0.5 : 0.65,
-              stagger: isMobile ? 0.06 : 0.1,
+              duration: 0.65,
+              stagger: 0.1,
               ease: 'power3.out',
               clearProps: 'opacity,transform',
             },

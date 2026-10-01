@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title: 'Sourcing & Quality — Nairat Food Services Qatar',
     description:
       'Freshness is logistics. Dual-tier origin and Qatar arrival laboratory testing, multi-zone cold chain, HACCP & ISO 22000:2018 certifications, and year-round seasonal produce supply.',
-    url: 'https://nairatfood.com/quality',
+    url: 'https://nairatfoodservices.com/quality',
     siteName: 'Nairat Food Services',
     locale: 'en_US',
     type: 'website',

@@ -66,13 +66,13 @@ export function Footer() {
         {/* Middle Section: Social Icons | Horizontal Navigation */}
         <div className="footer-content-item flex flex-col md:flex-row items-start md:items-center justify-between gap-5 sm:gap-6">
 
-          {/* Social Icons (Instagram) */}
-          <div className="flex items-center gap-3.5 sm:gap-4 shrink-0">
+          {/* Social Icons & Corporate Contact Info */}
+          <div className="flex flex-wrap items-center gap-3.5 sm:gap-5">
             <a
               href="https://www.instagram.com/nairatshop"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-800 hover:text-[#168849] hover:border-[#168849] transition-colors"
+              className="w-8 h-8 rounded-full border border-neutral-300 flex items-center justify-center text-neutral-800 hover:text-[#168849] hover:border-[#168849] transition-colors shrink-0"
               aria-label="Instagram"
             >
               <svg
@@ -87,10 +87,25 @@ export function Footer() {
                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
               </svg>
             </a>
+
+            <div className="font-sans text-xs text-[#6B7280] space-y-0.5 text-start">
+              <p>
+                {locale === 'ar'
+                  ? 'شارع 37، المنطقة الصناعية، الدوحة · ص.ب 64040'
+                  : 'Street 37, Industrial Area, Doha · P.O. Box 64040'}
+              </p>
+              <p className="flex items-center gap-2">
+                <span>+974 4429 0400</span>
+                <span>•</span>
+                <a href="mailto:info@nairat.net" className="hover:text-[#168849] transition-colors">
+                  info@nairat.net
+                </a>
+              </p>
+            </div>
           </div>
 
           {/* Horizontal Navigation Links */}
-          <nav className="flex flex-wrap items-center justify-start md:justify-end gap-x-4 min-[380px]:gap-x-5 sm:gap-x-7 gap-y-2 sm:gap-y-2.5">
+          <nav className="flex flex-wrap items-center justify-start lg:justify-end gap-x-4 min-[380px]:gap-x-5 sm:gap-x-7 gap-y-2 sm:gap-y-2.5">
             {footerNavLinks.map((link) => (
               <Link
                 key={link.label}
@@ -116,11 +131,11 @@ export function Footer() {
           </p>
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-5 text-[#6B7280] text-start">
-            <Link href="#privacy" className="hover:text-[#168849] transition-colors">
+            <Link href={`${prefix}/privacy`} className="hover:text-[#168849] transition-colors">
               {dict.footer.privacyPolicy}
             </Link>
             <span className="text-neutral-300">•</span>
-            <Link href="#terms" className="hover:text-[#168849] transition-colors">
+            <Link href={`${prefix}/terms`} className="hover:text-[#168849] transition-colors">
               {dict.footer.termsOfService}
             </Link>
           </div>

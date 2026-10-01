@@ -51,11 +51,11 @@ const scaleItems: ScaleItem[] = [
     descriptionAr: 'أرصفة استلام وتفريغ سريعة تمنع تعرض المحاصيل للحرارة وتحفظ سلسلة التبريد.',
   },
   {
-    value: '1500+',
-    label: 'Product Lines',
-    labelAr: 'صنف زراعي وغذائي',
-    description: 'Diverse catalog spanning premium fresh fruits, vegetables, and specialty lines.',
-    descriptionAr: 'كتالوج شامل يغطي أجود أنواع الخضار والفواكه والمنتجات النادرة والفاخرة.',
+    value: '1,200+',
+    label: 'Active Produce Lines',
+    labelAr: 'صنف زراعي نشط',
+    description: 'Diverse catalog spanning fresh fruits, vegetables, and specialty gourmet lines across Qatar.',
+    descriptionAr: 'كتالوج شامل يغطي أجود أنواع الخضار والفواكه والمنتجات الطازجة لكافة القطاعات.',
   },
 ];
 
