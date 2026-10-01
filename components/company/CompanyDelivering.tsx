@@ -58,6 +58,7 @@ export function CompanyDelivering() {
                 src="/whychooseus/warehouse.avif"
                 alt={isAr ? "مرافق التوزيع وسلاسل التبريد لشركة نيرات بالدوحة" : "Nairat Food Cold-Chain Distribution Facility in Doha"}
                 fill
+                priority
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 480px"
               />

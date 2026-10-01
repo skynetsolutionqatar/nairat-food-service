@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { MapPin, Navigation, Clock, Warehouse, ShieldCheck } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { useLocale } from '@/context/LocaleContext';
@@ -47,19 +47,7 @@ export function ContactMap() {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Section Header */}
         <div className="map-anim-header space-y-3">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/icon/icon.png"
-              alt=""
-              width={32}
-              height={16}
-              className="h-4 w-auto object-contain"
-              aria-hidden="true"
-            />
-            <span className="font-display type-eyebrow text-[#168849] block">
-              {isAr ? 'موقع المرافق المركزية' : 'FACILITY LOCATION'}
-            </span>
-          </div>
+          <SectionEyebrow title={isAr ? 'موقع المرافق المركزية' : 'FACILITY LOCATION'} />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
             {isAr
