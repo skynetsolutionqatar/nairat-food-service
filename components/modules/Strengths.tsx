@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 interface StrengthCard {
   id: string;
@@ -15,50 +16,52 @@ interface StrengthCard {
   alt: string;
 }
 
-const strengthsList: StrengthCard[] = [
-  {
-    id: 'chiller-rooms',
-    number: '20',
-    title: 'Dedicated Chiller Rooms',
-    desc: 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
-    imageUrl: '/whychooseus/chiller-warehouse.avif',
-    alt: '20 Dedicated Chiller Rooms',
-  },
-  {
-    id: 'warehouse',
-    number: '5,000 m2',
-    title: 'Cold-Chain Warehouse',
-    desc: 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.',
-    imageUrl: '/whychooseus/warehouse.avif',
-    alt: '5,000 m2 Cold-Chain Warehouse',
-  },
-  {
-    id: 'cold-chain',
-    title: 'Cold Chain Unbroken',
-    desc: 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
-    imageUrl: '/whychooseus/temperature-controlled.avif',
-    alt: 'Cold Chain Unbroken',
-  },
-  {
-    id: 'fleet',
-    number: '40',
-    title: 'Refrigerated Vehicles',
-    desc: 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
-    imageUrl: '/whychooseus/truck.avif',
-    alt: '40 Refrigerated Vehicles',
-  },
-];
-
-const tallCard: StrengthCard = {
-  id: 'sourced-origin',
-  title: 'Sourced at Origin',
-  desc: 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
-  imageUrl: '/whychooseus/sourced-from-origin.avif',
-  alt: 'Sourced at Origin',
-};
-
 export function Strengths() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { locale, dict } = useLocale();
+  const prefix = locale === 'ar' ? '/ar' : '';
+
+  const strengthsList: StrengthCard[] = [
+    {
+      id: 'chiller-rooms',
+      number: locale === 'ar' ? '20' : '20',
+      title: locale === 'ar' ? 'غرف تبريد متخصصة' : 'Dedicated Chiller Rooms',
+      desc: locale === 'ar' ? 'نطاقات حرارية مخصصة لضبط درجات الحرارة بدقة لكل صنف من الفواكه والخضروات.' : 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
+      imageUrl: '/whychooseus/chiller-warehouse.avif',
+      alt: '20 Dedicated Chiller Rooms',
+    },
+    {
+      id: 'warehouse',
+      number: locale === 'ar' ? '5,000 م²' : '5,000 m2',
+      title: locale === 'ar' ? 'مستودع مبرد متطور' : 'Cold-Chain Warehouse',
+      desc: locale === 'ar' ? 'مرفق تخزين مبرد حديث يضمن استمرارية التحكم الصارم في معايير الجودة وسلامة الغذاء.' : 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.',
+      imageUrl: '/whychooseus/warehouse.avif',
+      alt: '5,000 m2 Cold-Chain Warehouse',
+    },
+    {
+      id: 'cold-chain',
+      title: locale === 'ar' ? 'سلسلة تبريد غير منقطعة' : 'Cold Chain Unbroken',
+      desc: locale === 'ar' ? 'تطبيق دقيق لنظام الوارد أولاً يصرف أولاً (FIFO) مع مراقبة حرارية مستمرة على مدار الساعة.' : 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
+      imageUrl: '/whychooseus/temperature-controlled.avif',
+      alt: 'Cold Chain Unbroken',
+    },
+    {
+      id: 'fleet',
+      number: locale === 'ar' ? '40' : '40',
+      title: locale === 'ar' ? 'مركبة نقل مبردة' : 'Refrigerated Vehicles',
+      desc: locale === 'ar' ? 'أسطول توزيع مبرد حديث ينقل المحاصيل الطازجة لمختلف مناطق قطر بانتظام تام.' : 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
+      imageUrl: '/whychooseus/truck.avif',
+      alt: '40 Refrigerated Vehicles',
+    },
+  ];
+
+  const tallCard: StrengthCard = {
+    id: 'sourced-origin',
+    title: locale === 'ar' ? 'استيراد مباشر من المصدر' : 'Sourced at Origin',
+    desc: locale === 'ar' ? 'شراكات وثيقة مع مزارع عالمية معتمدة تضمن وصول المحاصيل الطازجة مباشرة إلى دولة قطر.' : 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
+    imageUrl: '/whychooseus/sourced-from-origin.avif',
+    alt: 'Sourced at Origin',
+  };
 
   useGSAP(
     () => {
@@ -138,22 +141,33 @@ export function Strengths() {
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
             <div className="strength-header-item">
-              <SectionEyebrow title="WHY CHOOSE US" />
+              <SectionEyebrow title={locale === 'ar' ? 'لماذا تختار نيرات' : 'WHY CHOOSE US'} />
             </div>
-            <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-left">
-              Built for Freshness. <br />
-              Ready to Deliver.
+            <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+              {locale === 'ar' ? (
+                <>
+                  صُممت للحفاظ على النضارة. <br />
+                  جاهزون للتسليم الفوري.
+                </>
+              ) : (
+                <>
+                  Built for Freshness. <br />
+                  Ready to Deliver.
+                </>
+              )}
             </h2>
           </div>
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
-            <p className="strength-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
-              From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.
+            <p className="strength-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
+              {locale === 'ar'
+                ? 'من التوريد العالمي وحتى التسليم النهائي، صُممت سلسلة التبريد المتكاملة لدينا لحماية الجودة وضمان ثبات المعايير وتوفير المنتجات الطازجة لجميع مناطق قطر.'
+                : 'From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.'}
             </p>
             <div className="strength-header-item self-start lg:self-end">
-              <CtaButton href="/quality">
-                Read More
+              <CtaButton href={`${prefix}/quality`}>
+                {dict.common.learnMore}
               </CtaButton>
             </div>
           </div>

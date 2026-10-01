@@ -6,10 +6,13 @@ import { ShieldCheck, Award, ZoomIn, CheckCircle2 } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CertificateModal, type CertificateModalData } from '@/components/ui/CertificateModal';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 export function CompanyQuality() {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeCert, setActiveCert] = useState<CertificateModalData | null>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -47,37 +50,43 @@ export function CompanyQuality() {
               <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-neutral-100 border border-neutral-200/80">
                 <Image
                   src="/whychooseus/temperature-controlled.avif"
-                  alt="Nairat Food QA Laboratory Inspection & Temperature Control"
+                  alt={isAr ? "فحص الجودة والتحكم بدرجات الحرارة لشركة نيرات" : "Nairat Food QA Laboratory Inspection & Temperature Control"}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 450px"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
-                <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs font-semibold px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md">
+                <div className="absolute bottom-3 start-3 end-3 flex items-center justify-between text-white text-xs font-semibold px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md">
                   <div className="flex items-center gap-1.5">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#D4F056]" />
-                    <span>HACCP &amp; ISO Certified</span>
+                    <span>{isAr ? 'معتمد بالهاسب والآيزو' : 'HACCP & ISO Certified'}</span>
                   </div>
-                  <span className="text-[#D4F056]">Qatar Verified</span>
+                  <span className="text-[#D4F056]">{isAr ? 'معتمد في قطر' : 'Qatar Verified'}</span>
                 </div>
               </div>
             </div>
 
             {/* Right: Narrative & Cert Badges (7 cols) */}
-            <div className="lg:col-span-7 space-y-4">
-              <SectionEyebrow title="Quality & Food Safety" />
+            <div className="lg:col-span-7 space-y-4 text-start">
+              <SectionEyebrow title={isAr ? 'الجودة وسلامة الغذاء' : 'Quality & Food Safety'} />
 
-              <h3 className="font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-[#111814] tracking-tight leading-[1.18]">
-                Quality You Can Trust: Rigorous Protocols from Source to Arrival
+              <h3 className="font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-[#111814] tracking-tight leading-[1.18] text-start">
+                {isAr
+                  ? 'جودة يمكنك الاعتماد عليها: بروتوكولات صارمة من المصدر حتى الوصول'
+                  : 'Quality You Can Trust: Rigorous Protocols from Source to Arrival'}
               </h3>
 
-              <div className="space-y-3 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
+              <div className="space-y-3 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
                 <p>
-                  At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.
+                  {isAr
+                    ? 'في نيرات، تعتبر سلامة الغذاء والجودة جزءاً لا يتجزأ من عملياتنا اليومية. تخضع كافة الشحنات الواردة لفحص دقيق وتحاليل مخبرية مطابقة تماماً للاشتراطات القياسية لسلامة الغذاء بدولة قطر.'
+                    : 'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.'}
                 </p>
                 <p>
-                  Our produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.
+                  {isAr
+                    ? 'ومن ثم يتم تداول المحاصيل عبر سلاسل تبريد محكمة لحفظ الطزاجة والقيمة الغذائية حتى التسليم النهائي لعملائنا.'
+                    : 'Our produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.'}
                 </p>
               </div>
 
@@ -87,15 +96,15 @@ export function CompanyQuality() {
                   type="button"
                   onClick={() =>
                     setActiveCert({
-                      title: 'HACCP Certified',
-                      subtitle: 'Food Safety Management System',
+                      title: isAr ? 'شهادة الهاسب (HACCP)' : 'HACCP Certified',
+                      subtitle: isAr ? 'نظام إدارة سلامة الغذاء المعتمد' : 'Food Safety Management System',
                       imageSrc: '/certificates/c1-1-1.png',
                     })
                   }
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold hover:bg-[#168849] hover:text-white transition-all cursor-pointer"
                 >
                   <Award className="w-3.5 h-3.5" />
-                  <span>HACCP Certified</span>
+                  <span>{isAr ? 'شهادة الهاسب (HACCP)' : 'HACCP Certified'}</span>
                   <ZoomIn className="w-3 h-3 opacity-70" />
                 </button>
 
@@ -103,15 +112,15 @@ export function CompanyQuality() {
                   type="button"
                   onClick={() =>
                     setActiveCert({
-                      title: 'ISO 22000:2018',
-                      subtitle: 'Food Safety Management System',
+                      title: isAr ? 'شهادة الآيزو ISO 22000:2018' : 'ISO 22000:2018',
+                      subtitle: isAr ? 'نظام إدارة سلامة الغذاء لسلاسل الإمداد' : 'Food Safety Management System',
                       imageSrc: '/certificates/c2-2-1.png',
                     })
                   }
                   className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold hover:bg-[#168849] hover:text-white transition-all cursor-pointer"
                 >
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>ISO 22000:2018</span>
+                  <span>{isAr ? 'آيزو 22000:2018' : 'ISO 22000:2018'}</span>
                   <ZoomIn className="w-3 h-3 opacity-70" />
                 </button>
               </div>

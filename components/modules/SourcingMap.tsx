@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import type { Marker, Arc } from '@/components/ui/cobe-globe';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 const Globe = dynamic(
   () => import('@/components/ui/cobe-globe').then((mod) => mod.Globe),
@@ -18,16 +19,16 @@ const Globe = dynamic(
   }
 );
 
-const sourcingCountries: string[] = [
-  'JORDAN',
-  'SAUDI ARABIA',
-  'SYRIA',
-  'IRAN',
-  'LEBANON',
-  'EGYPT',
-  'SOUTH AFRICA',
-  'TURKEY',
-  'INDIA',
+const sourcingCountriesData: { en: string; ar: string }[] = [
+  { en: 'JORDAN', ar: 'الأردن' },
+  { en: 'SAUDI ARABIA', ar: 'المملكة العربية السعودية' },
+  { en: 'SYRIA', ar: 'سوريا' },
+  { en: 'IRAN', ar: 'إيران' },
+  { en: 'LEBANON', ar: 'لبنان' },
+  { en: 'EGYPT', ar: 'مصر' },
+  { en: 'SOUTH AFRICA', ar: 'جنوب إفريقيا' },
+  { en: 'TURKEY', ar: 'تركيا' },
+  { en: 'INDIA', ar: 'الهند' },
 ];
 
 const globeMarkers: Marker[] = [
@@ -50,6 +51,8 @@ const globeArcs: Arc[] = [
 
 export function SourcingMap(): React.ReactNode {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(
     () => {
@@ -109,27 +112,36 @@ export function SourcingMap(): React.ReactNode {
           {/* Right Column: Sourcing Text & Country Pills (60% / 7 cols) */}
           <div className="lg:col-span-7 space-y-5 2xl:space-y-6">
             <div className="sourcing-header-item">
-              <SectionEyebrow title="SOURCING COUNTRIES" />
+              <SectionEyebrow title={isAr ? 'بلدان الاستيراد والتوريد' : 'SOURCING COUNTRIES'} />
             </div>
 
-            <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-left">
-              Sourced From Around <br />
-              <span className="text-[#168849]">the World.</span>
+            <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+              {isAr ? (
+                <>
+                  نستورد محاصيلنا من أجود <br />
+                  <span className="text-[#168849]">مزارع العالم.</span>
+                </>
+              ) : (
+                <>
+                  Sourced From Around <br />
+                  <span className="text-[#168849]">the World.</span>
+                </>
+              )}
             </h2>
 
             {/* Country Pill Badges Grid */}
             <div className="flex flex-wrap gap-2 2xl:gap-3 pt-1 max-w-2xl 2xl:max-w-3xl">
-              {sourcingCountries.map((countryName) => (
+              {sourcingCountriesData.map((item) => (
                 <span
-                  key={countryName}
+                  key={item.en}
                   className="sourcing-country-pill font-sans text-xs sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.05em] px-3.5 sm:px-4 2xl:px-5 py-1.5 sm:py-2 2xl:py-2.5 rounded-full border border-neutral-200 bg-neutral-50 text-[#6B7280] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] hover:scale-105 transition-all duration-200 cursor-default will-change-transform"
                 >
-                  {countryName}
+                  {isAr ? item.ar : item.en}
                 </span>
               ))}
 
               <span className="sourcing-country-pill font-sans text-xs sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.05em] px-4 sm:px-5 2xl:px-6 py-1.5 sm:py-2 2xl:py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20 hover:scale-105 transition-transform duration-200 will-change-transform">
-                AND BEYOND
+                {isAr ? 'والمزيد من الدول' : 'AND BEYOND'}
               </span>
             </div>
           </div>

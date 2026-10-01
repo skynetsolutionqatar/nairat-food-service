@@ -1,6 +1,7 @@
 export interface ProductItem {
   id: string;
   name: string;
+  nameAr?: string;
   variety: string;
   origin: string;
   temp: string;
@@ -27,6 +28,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'tomatoes',
         name: 'Tomatoes',
+        nameAr: 'طماطم طازجة',
         variety: 'Round, Plum & Beefsteak',
         origin: 'Jordan, Turkey, Netherlands',
         temp: '+10°C to +12°C',
@@ -36,6 +38,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'cucumbers',
         name: 'Cucumbers',
+        nameAr: 'خيار بيوت محمية',
         variety: 'Greenhouse English & Persian',
         origin: 'Jordan, Lebanon, Local',
         temp: '+10°C to +12°C',
@@ -45,6 +48,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'capsicum',
         name: 'Capsicum',
+        nameAr: 'فلفل رومي ألوان',
         variety: 'Green, Red & Yellow Bell',
         origin: 'Spain, Jordan, Netherlands',
         temp: '+7°C to +10°C',
@@ -54,6 +58,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'eggplant',
         name: 'Eggplant',
+        nameAr: 'باذنجان أسود',
         variety: 'Classic Black Beauty & Long',
         origin: 'Jordan, Lebanon, Egypt',
         temp: '+10°C to +12°C',
@@ -63,6 +68,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'marrow-zucchini',
         name: 'Marrow & Zucchini',
+        nameAr: 'كوسا وقرع أخضر',
         variety: 'Light Green Marrow & Green Zucchini',
         origin: 'Jordan, Lebanon, Spain',
         temp: '+7°C to +10°C',
@@ -72,6 +78,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'cauliflower',
         name: 'Cauliflower',
+        nameAr: 'زهرة (قرنبيط)',
         variety: 'Snowball White Crowns',
         origin: 'Spain, France, Jordan',
         temp: '+0°C to +2°C',
@@ -81,6 +88,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'cabbage',
         name: 'Cabbage',
+        nameAr: 'ملفوف أبيض وأحمر',
         variety: 'Green, White & Red Drumhead',
         origin: 'Turkey, Jordan, Egypt',
         temp: '+0°C to +2°C',
@@ -90,6 +98,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'potatoes',
         name: 'Potatoes',
+        nameAr: 'بطاطس مائدة',
         variety: 'Spunta, Mondial & Baby Yellow',
         origin: 'Egypt, Lebanon, Cyprus',
         temp: '+8°C to +10°C',
@@ -99,6 +108,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'onions',
         name: 'Onions',
+        nameAr: 'بصل جاف',
         variety: 'Red, Golden & Sweet White',
         origin: 'India, Egypt, Spain',
         temp: '+0°C to +4°C',
@@ -108,6 +118,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'chilli',
         name: 'Chilli',
+        nameAr: 'فلفل حار',
         variety: 'Hot Finger Chilli & Birdseye',
         origin: 'India, Jordan, Kenya',
         temp: '+7°C to +10°C',
@@ -117,6 +128,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'okra',
         name: 'Okra',
+        nameAr: 'بامية خضراء',
         variety: 'Young Tender Green Pods',
         origin: 'Jordan, Egypt, India',
         temp: '+8°C to +10°C',
@@ -126,6 +138,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'beans',
         name: 'Beans',
+        nameAr: 'فاصوليا خضراء',
         variety: 'French Green & String Beans',
         origin: 'Jordan, Egypt, Kenya',
         temp: '+5°C to +7°C',
@@ -144,6 +157,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'watermelon',
         name: 'Watermelon',
+        nameAr: 'بطيخ أحمر',
         variety: 'Crimson Sweet & Seedless',
         origin: 'Jordan, Iran, Egypt',
         temp: '+10°C to +12°C',
@@ -153,6 +167,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'sweet-melon',
         name: 'Sweet Melon',
+        nameAr: 'شمام حلو',
         variety: 'Galia, Cantaloupe & Honeydew',
         origin: 'Jordan, Spain, Egypt',
         temp: '+7°C to +10°C',
@@ -162,6 +177,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'citrus',
         name: 'Citrus Selection',
+        nameAr: 'حمضيات مختارة',
         variety: 'Orange, Lemon, Lime, Mandarin & Grapefruit',
         origin: 'South Africa, Spain, Egypt',
         temp: '+4°C to +7°C',
@@ -171,6 +187,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'stone-fruit',
         name: 'Stone Fruit',
+        nameAr: 'فواكه ذات نواة',
         variety: 'Peach, Nectarine, Plum, Apricot & Cherry',
         origin: 'Lebanon, Jordan, Spain',
         temp: '+0°C to +2°C',
@@ -180,6 +197,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'grapes',
         name: 'Table Grapes',
+        nameAr: 'عنب مائدة',
         variety: 'Red Globe, Thompson Seedless & Crimson',
         origin: 'South Africa, Egypt, India',
         temp: '-0.5°C to +1°C',
@@ -189,6 +207,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'mango',
         name: 'Mangoes',
+        nameAr: 'مانجو استوائي',
         variety: 'Farm Fresh Seasonal Cultivars',
         origin: 'India, Pakistan, Yemen',
         temp: '+12°C to +14°C',
@@ -198,6 +217,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'strawberries-berries',
         name: 'Strawberries & Berries',
+        nameAr: 'فراولة وتوتيات',
         variety: 'Fresh Strawberries, Blueberries, Raspberries',
         origin: 'USA, Spain, Egypt',
         temp: '+0°C to +2°C',
@@ -207,6 +227,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'pomegranate',
         name: 'Pomegranate',
+        nameAr: 'رمان ياقوتي',
         variety: 'Ruby Red Arils Selection',
         origin: 'Turkey, Egypt, India',
         temp: '+5°C to +7°C',
@@ -216,6 +237,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'avocado',
         name: 'Avocado',
+        nameAr: 'أفوكادو طازج',
         variety: 'Fresh Creamy Cultivars',
         origin: 'Kenya, Mexico, South Africa',
         temp: '+5°C to +7°C',
@@ -234,6 +256,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'lettuce',
         name: 'Romaine & Iceberg Lettuce',
+        nameAr: 'خس روماني وآيسبيرغ',
         variety: 'Crisphead Iceberg & Green Romaine',
         origin: 'Jordan, Spain, Local',
         temp: '+0°C to +2°C',
@@ -243,6 +266,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'broccoli',
         name: 'Broccoli',
+        nameAr: 'بروكلي أخضر',
         variety: 'Calabrese Tight Green Crowns',
         origin: 'Spain, France, Jordan',
         temp: '+0°C to +1°C',
@@ -252,6 +276,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'radish',
         name: 'Radish',
+        nameAr: 'فجل أحمر وأبيض',
         variety: 'Red Globe & White Daikon',
         origin: 'Jordan, Netherlands, Local',
         temp: '+0°C to +2°C',
@@ -261,6 +286,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'beetroot',
         name: 'Beetroot',
+        nameAr: 'شمندر أحمر',
         variety: 'Crimson Table Globe Beets',
         origin: 'Lebanon, Egypt, France',
         temp: '+0°C to +2°C',
@@ -270,6 +296,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'fresh-herbs',
         name: 'Fresh Culinary Herbs',
+        nameAr: 'أعشاب طهي طازجة',
         variety: 'Mint, Coriander, Parsley & Basil',
         origin: 'Jordan, Lebanon, Local',
         temp: '+2°C to +5°C',
@@ -288,6 +315,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'baby-leaves',
         name: 'Baby Leaves & Microgreens',
+        nameAr: 'أوراق صغيرة وميكروجرين',
         variety: 'Wild Arugula, Baby Spinach & Mizuna',
         origin: 'Netherlands, France, Local',
         temp: '+2°C to +4°C',
@@ -297,6 +325,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'exotic-mushrooms',
         name: 'Exotic Mushrooms',
+        nameAr: 'فطر فاخر (مشروم)',
         variety: 'King Oyster, Shiitake, Shimeji & Portobello',
         origin: 'Netherlands, South Korea',
         temp: '+1°C to +3°C',
@@ -306,6 +335,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'passion-fruit',
         name: 'Passion Fruit',
+        nameAr: 'باشن فروت',
         variety: 'Purple & Golden Passiflora',
         origin: 'Kenya, Colombia, Vietnam',
         temp: '+8°C to +10°C',
@@ -315,6 +345,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'lychee',
         name: 'Fresh Lychee',
+        nameAr: 'ليتشي طازج',
         variety: 'Mauritius & Sweet Burlat',
         origin: 'Madagascar, South Africa, Thailand',
         temp: '+2°C to +5°C',
@@ -324,6 +355,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'dragon-fruit',
         name: 'Dragon Fruit (Pitaya)',
+        nameAr: 'دراجون فروت (بيتايا)',
         variety: 'Magenta Red & White Fleshed',
         origin: 'Vietnam, Thailand, Ecuador',
         temp: '+7°C to +10°C',
@@ -333,6 +365,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'black-figs',
         name: 'Black Mission Figs',
+        nameAr: 'تين أسود فاخر',
         variety: 'Bursa Black & Mission Figs',
         origin: 'Turkey, Spain, Local',
         temp: '+0°C to +2°C',
@@ -342,6 +375,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'golden-apricots',
         name: 'Golden Apricots',
+        nameAr: 'مشمش ذهبي',
         variety: 'Subkhona & Royal Mediterranean',
         origin: 'Uzbekistan, Turkey, France',
         temp: '+0°C to +1°C',
@@ -351,6 +385,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
       {
         id: 'seasonal-specialties',
         name: 'Seasonal Specialties',
+        nameAr: 'أصناف موسمية خاصة',
         variety: 'Kumquats, Physalis & Edible Flowers',
         origin: 'Colombia, France, Netherlands',
         temp: '+4°C to +6°C',

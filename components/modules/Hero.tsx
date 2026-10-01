@@ -3,11 +3,14 @@
 import React, { useRef, useEffect } from 'react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '../ui/CtaButton';
+import { useLocale } from '@/context/LocaleContext';
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const { locale, dict } = useLocale();
+  const prefix = locale === 'ar' ? '/ar' : '';
 
   // Auto-recovery & resilient playback handling
   useEffect(() => {
@@ -120,22 +123,22 @@ export function Hero() {
       >
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-10 2xl:gap-14 w-full">
           {/* DIV 1: Heading */}
-          <div className="w-full lg:w-[62%] text-left">
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[48px] xl:text-[54px] 2xl:text-[60px] font-bold text-white text-left tracking-[-0.035em] leading-[1.16] sm:leading-[1.18] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
-              <span className="hero-title-line block sm:whitespace-nowrap"><bdi dir="ltr">Fresh from the Source.</bdi></span>
-              <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2.5"><bdi dir="ltr">Delivered Across Qatar.</bdi></span>
+          <div className="w-full lg:w-[62%] text-start">
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[48px] xl:text-[54px] 2xl:text-[60px] font-bold text-white text-start tracking-[-0.035em] leading-[1.16] sm:leading-[1.18] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
+              <span className="hero-title-line block sm:whitespace-nowrap">{dict.hero.titleLine1}</span>
+              <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2.5">{dict.hero.titleLine2}</span>
             </h1>
           </div>
 
           {/* DIV 2: Subheading & CTA Button */}
-          <div className="w-full lg:w-[38%] flex flex-col justify-end items-start gap-5 2xl:gap-6 text-left">
-            <p className="hero-sub-text font-sans text-xs sm:text-[13px] 2xl:text-[14px] text-gray-300 leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-justify">
-              Nairat Food imports, distributes and delivers premium fresh fruit and vegetables to Qatar’s leading supermarkets, markets and homes – every day of the year.
+          <div className="w-full lg:w-[38%] flex flex-col justify-end items-start gap-5 2xl:gap-6 text-start">
+            <p className="hero-sub-text font-sans text-xs sm:text-[13px] 2xl:text-[14px] text-gray-300 leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-start">
+              {dict.hero.subtitle}
             </p>
 
             <div className="hero-cta-btn">
-              <CtaButton href="/contact">
-                Partner With Us
+              <CtaButton href={`${prefix}/contact`}>
+                {dict.hero.ctaPrimary}
               </CtaButton>
             </div>
           </div>

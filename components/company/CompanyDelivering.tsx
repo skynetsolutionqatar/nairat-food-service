@@ -6,8 +6,12 @@ import { Calendar, ShieldCheck, MapPin } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
+import { useLocale } from '@/context/LocaleContext';
+
 export function CompanyDelivering() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -52,7 +56,7 @@ export function CompanyDelivering() {
             <div className="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200/80 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/4.5]">
               <Image
                 src="/whychooseus/warehouse.avif"
-                alt="Nairat Food Cold-Chain Distribution Facility in Doha"
+                alt={isAr ? "مرافق التوزيع وسلاسل التبريد لشركة نيرات بالدوحة" : "Nairat Food Cold-Chain Distribution Facility in Doha"}
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 480px"
@@ -60,14 +64,14 @@ export function CompanyDelivering() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent pointer-events-none" />
 
               {/* Floating Meta Badges */}
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3 text-white text-xs font-semibold">
+              <div className="absolute bottom-4 start-4 end-4 flex items-center justify-between gap-3 text-white text-xs font-semibold">
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#168849]/95 backdrop-blur-md shadow-sm">
                   <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>Est. 2020</span>
+                  <span>{isAr ? 'تأسست 2020' : 'Est. 2020'}</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md">
                   <MapPin className="w-3.5 h-3.5 text-[#D4F056]" aria-hidden="true" />
-                  <span>Doha Industrial Area</span>
+                  <span>{isAr ? 'المنطقة الصناعية، الدوحة' : 'Doha Industrial Area'}</span>
                 </div>
               </div>
             </div>
@@ -76,23 +80,38 @@ export function CompanyDelivering() {
           {/* Right Column: Narrative Copy + Commitment Box (7 cols) */}
           <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
             <div className="delivering-text-item">
-              <SectionEyebrow title="Delivering Freshness" />
+              <SectionEyebrow title={isAr ? 'نقدم الطزاجة والجودة' : 'Delivering Freshness'} />
             </div>
 
-            <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
-              A comprehensive fresh-produce <br className="hidden sm:inline" />
-              <span className="text-[#168849]">partner for Qatar.</span>
+            <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+              {isAr ? (
+                <>
+                  شريك متكامل لتوريد المحاصيل <br className="hidden sm:inline" />
+                  <span className="text-[#168849]">الطازجة في دولة قطر.</span>
+                </>
+              ) : (
+                <>
+                  A comprehensive fresh-produce <br className="hidden sm:inline" />
+                  <span className="text-[#168849]">partner for Qatar.</span>
+                </>
+              )}
             </h2>
 
-            <div className="space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
+            <div className="space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
               <p className="delivering-text-item">
-                Nairat Food is one of Qatar&apos;s leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.
+                {isAr
+                  ? 'تعد شركة نيرات للخدمات الغذائية إحدى كبرى الشركات الرائدة في استيراد وتوزيع وتوريد الخضروات والفواكه الطازجة في دولة قطر.'
+                  : "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables."}
               </p>
               <p className="delivering-text-item">
-                Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.
+                {isAr
+                  ? 'تأسست نيرات عام 2020 وشهدت نمواً متسارعاً عبر الدمج بين التوريد العالمي المباشر، والمعرفة العميقة بالسوق المحلي، والخدمات اللوجستية الموثوقة. واليوم نخدم كبرى سلاسل الهايبرماركت، والسوبرماركت، وأسواق الجملة، وقطاع الضيافة في قطر.'
+                  : 'Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.'}
               </p>
               <p className="delivering-text-item">
-                From farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.
+                {isAr
+                  ? 'من مزارع بلاد الشام والخليج وإفريقيا وآسيا وحول العالم، تصل محاصيلنا عبر سلسلة إمداد وتبريد متكاملة مصممة لحفظ الطزاجة من المصدر وحتى العميل.'
+                  : 'From farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.'}
               </p>
             </div>
 
@@ -104,12 +123,14 @@ export function CompanyDelivering() {
                   aria-hidden="true"
                 />
               </div>
-              <div className="space-y-1.5 flex-1">
+              <div className="space-y-1.5 flex-1 text-start">
                 <h3 className="font-display font-semibold text-base sm:text-lg text-[#111814]">
-                  Our Core Commitment
+                  {isAr ? 'التزامنا الجوهري' : 'Our Core Commitment'}
                 </h3>
                 <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
-                  To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.
+                  {isAr
+                    ? 'توريد محاصيل طازجة فائقة الجودة بأعلى معايير السلامة والكفاءة والاستمرارية. تُنتقى بعناية، وتُعامل بدقة، وتُسلّم بكل ثقة.'
+                    : 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.'}
                 </p>
               </div>
             </div>

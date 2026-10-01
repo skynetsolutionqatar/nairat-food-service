@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 interface RetailPartner {
   id: string;
@@ -61,6 +62,8 @@ const retailPartners: RetailPartner[] = [
 
 export function PartnerRetail(): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(
     () => {
@@ -98,12 +101,21 @@ export function PartnerRetail(): React.ReactNode {
     >
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
-        <div className="retail-header-item space-y-3">
-          <SectionEyebrow title="OUR RETAIL PARTNERS" />
+        <div className="retail-header-item space-y-3 text-start">
+          <SectionEyebrow title={isAr ? 'شركاء قطاع التجزئة' : 'OUR RETAIL PARTNERS'} />
 
-          <h2 className="font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
-            Trusted Daily Supplier to <br />
-            <span className="text-[#168849]">Qatar&apos;s Leading Retail Groups</span>
+          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+            {isAr ? (
+              <>
+                المورد اليومي الموثوق <br />
+                <span className="text-[#168849]">لكبرى مجموعات التجزئة في دولة قطر</span>
+              </>
+            ) : (
+              <>
+                Trusted Daily Supplier to <br />
+                <span className="text-[#168849]">Qatar&apos;s Leading Retail Groups</span>
+              </>
+            )}
           </h2>
         </div>
 

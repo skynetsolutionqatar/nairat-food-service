@@ -6,6 +6,7 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { Globe2, Calendar, Truck, Leaf } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 interface MetricCard {
   number: string;
@@ -15,32 +16,34 @@ interface MetricCard {
   isDark: boolean;
 }
 
-const metricCards: MetricCard[] = [
-  {
-    number: '01',
-    icon: <Globe2 className="w-5 h-5 text-[#D4F056]" aria-hidden="true" />,
-    title: 'Global Sourcing',
-    description: 'Reliable sourcing from multiple growing regions across the world.',
-    isDark: true,
-  },
-  {
-    number: '02',
-    icon: <Calendar className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-    title: 'Year-Round Supply',
-    description: 'Seasonal sourcing helps maintain consistent availability throughout the year.',
-    isDark: false,
-  },
-  {
-    number: '03',
-    icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-    title: 'Built for Qatar',
-    description: 'Trusted distribution, cold-chain logistics and daily delivery across Qatar.',
-    isDark: false,
-  },
-];
-
 export function WhoWeAre() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { locale, dict } = useLocale();
+  const prefix = locale === 'ar' ? '/ar' : '';
+
+  const metricCards: MetricCard[] = [
+    {
+      number: '01',
+      icon: <Globe2 className="w-5 h-5 text-[#D4F056]" aria-hidden="true" />,
+      title: locale === 'ar' ? 'التوريد العالمي المباشر' : 'Global Sourcing',
+      description: locale === 'ar' ? 'علاقات موثوقة مع كبرى المزارع والتعاونيات الزراعية حول العالم.' : 'Reliable sourcing from multiple growing regions across the world.',
+      isDark: true,
+    },
+    {
+      number: '02',
+      icon: <Calendar className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      title: locale === 'ar' ? 'إمداد مستمر طوال العام' : 'Year-Round Supply',
+      description: locale === 'ar' ? 'تنوع مصادر الإنتاج الموسمي يضمن تدفق المنتجات دون أي انقطاع.' : 'Seasonal sourcing helps maintain consistent availability throughout the year.',
+      isDark: false,
+    },
+    {
+      number: '03',
+      icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      title: locale === 'ar' ? 'منظومة صُممت لقطر' : 'Built for Qatar',
+      description: locale === 'ar' ? 'شبكة توزيع مبردة متطورة ومرافق تخزين وتوصيل يومي لكافة الأسواق.' : 'Trusted distribution, cold-chain logistics and daily delivery across Qatar.',
+      isDark: false,
+    },
+  ];
 
   useGSAP(
     () => {
@@ -121,22 +124,37 @@ export function WhoWeAre() {
           <div className="lg:col-span-7 space-y-3">
 
             <div className="who-header-item">
-              <SectionEyebrow title="WHO WE ARE" />
+              <SectionEyebrow title={locale === 'ar' ? 'من نحن' : 'WHO WE ARE'} />
             </div>
-            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-left">
-              Fresh Produce. <br />
-              Strong Supply. <br />
-              <span className="text-[#168849]">Trusted Across Qatar.</span>
+            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+              {locale === 'ar' ? (
+                <>
+                  محاصيل طازجة. <br />
+                  توريد مستدام. <br />
+                  <span className="text-[#168849]">موثوق في كافة أنحاء قطر.</span>
+                </>
+              ) : (
+                <>
+                  Fresh Produce. <br />
+                  Strong Supply. <br />
+                  <span className="text-[#168849]">Trusted Across Qatar.</span>
+                </>
+              )}
             </h2>
           </div>
 
           <div className="lg:col-span-5 space-y-4 2xl:space-y-5 flex flex-col items-start lg:items-end">
-            <p className="who-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
-              Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.
+            <p className="who-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
+              {locale === 'ar'
+                ? 'تعد شركة نيرات للخدمات الغذائية إحدى الشركات الرائدة في توريد المنتجات الزراعية الطازجة في دولة قطر، حيث نستورد أجود الفواكه والخضروات من كبرى المزارع العالمية لتوزيعها على قطاعات التجزئة والجملة والضيافة.'
+                : 'Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.'}
             </p>
 
             <div className="who-header-item self-start lg:self-end">
-              <CtaButton href="/company" text="Discover Our Story" />
+              <CtaButton
+                href={`${prefix}/company`}
+                text={locale === 'ar' ? 'اكتشف قصة نيرات' : 'Discover Our Story'}
+              />
             </div>
           </div>
         </div>

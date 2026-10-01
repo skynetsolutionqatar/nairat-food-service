@@ -6,14 +6,19 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { ArrowRight } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 interface ServiceCard {
   id: string;
   title: string;
+  titleAr: string;
   desc: string;
+  descAr: string;
   imageUrl: string;
   actionText: string;
+  actionTextAr: string;
   actionHref: string;
+  actionHrefAr: string;
   isExternal?: boolean;
 }
 
@@ -21,32 +26,46 @@ const serviceCards: ServiceCard[] = [
   {
     id: 'retail-wholesale',
     title: 'Retail & Wholesale Distribution',
+    titleAr: 'توزيع التجزئة والجملة',
     desc: 'Daily fresh-produce supply to retailers, wholesalers, supermarkets and food-service businesses across Qatar.',
+    descAr: 'توريد يومي للمحاصيل الطازجة لمتاجر التجزئة ومحلات السوبرماركت ومؤسسات الضيافة في قطر.',
     imageUrl: '/services/wholesale-distribution.avif',
     actionText: 'Explore Distribution',
+    actionTextAr: 'استكشف التوزيع',
     actionHref: '/quality',
+    actionHrefAr: '/ar/quality',
   },
   {
     id: 'grower-partnerships',
     title: 'Grower & Exporter Partnerships',
+    titleAr: 'شراكات المزارعين والمصدرين',
     desc: 'A reliable local partner for growers and exporters looking to bring fresh produce to the Qatar market.',
+    descAr: 'شريك محلي موثوق للمزارعين والمصدرين الراغبين في توريد محاصيلهم إلى السوق القطري.',
     imageUrl: '/services/grower-and-exporter.avif',
     actionText: 'Partner With Us',
+    actionTextAr: 'شاركنا النجاح',
     actionHref: '/contact',
+    actionHrefAr: '/ar/contact',
   },
   {
     id: 'nairat-shop',
     title: 'Nairat Retail Shop',
+    titleAr: 'متجر نيرات للتجزئة',
     desc: 'Fresh fruits and vegetables available directly to consumers at our retail store.',
+    descAr: 'فواكه وخضروات طازجة متاحة مباشرة للمستهلكين في متجرنا الخاص بالدوحة.',
     imageUrl: '/services/nairat-shop.avif',
     actionText: 'Visit Nairat Shop',
+    actionTextAr: 'زيارة متجر نيرات',
     actionHref: 'https://maps.app.goo.gl/FGEeJiMmQ172UCx3A',
+    actionHrefAr: 'https://maps.app.goo.gl/FGEeJiMmQ172UCx3A',
     isExternal: true,
   },
 ];
 
 export function Services() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(
     () => {
@@ -83,22 +102,33 @@ export function Services() {
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
             <div className="service-header-item">
-              <SectionEyebrow title="WHAT WE DO" />
+              <SectionEyebrow title={isAr ? 'خدماتنا' : 'WHAT WE DO'} />
             </div>
-            <h2 className="service-header-item font-display type-h2 font-semibold text-[#111814] text-left">
-              Fresh Produce Supply <br />
-              at Every Scale.
+            <h2 className="service-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+              {isAr ? (
+                <>
+                  توريد المحاصيل الطازجة <br />
+                  لكافة القطاعات.
+                </>
+              ) : (
+                <>
+                  Fresh Produce Supply <br />
+                  at Every Scale.
+                </>
+              )}
             </h2>
           </div>
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
             <p className="service-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
-              From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.
+              {isAr
+                ? 'من التوريد وسلاسل التبريد إلى التوزيع والتجزئة، نربط أجود المحاصيل الطازجة بالشركات والمستهلكين في كافة أنحاء دولة قطر.'
+                : 'From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.'}
             </p>
             <div className="service-header-item self-start lg:self-end">
-              <CtaButton href="/services">
-                Learn More
+              <CtaButton href={isAr ? '/ar/services' : '/services'}>
+                {isAr ? 'استكشف خدماتنا' : 'Learn More'}
               </CtaButton>
             </div>
           </div>
@@ -106,50 +136,54 @@ export function Services() {
 
         {/* 3 Services Cards Grid */}
         <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 2xl:gap-8">
-          {serviceCards.map((service) => (
-            <div
-              key={service.id}
-              className="service-card-item flex flex-col space-y-3.5 group hover:-translate-y-1 transition-transform duration-300"
-            >
-              {/* Top Rounded Image */}
-              <div className="relative w-full h-48 sm:h-52 md:h-56 2xl:h-64 rounded-2xl overflow-hidden bg-neutral-100">
-                <Image
-                  src={service.imageUrl}
-                  alt={service.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
-                  loading="lazy"
-                />
-              </div>
+          {serviceCards.map((service) => {
+            const title = isAr ? service.titleAr : service.title;
+            const desc = isAr ? service.descAr : service.desc;
+            const actionText = isAr ? service.actionTextAr : service.actionText;
+            const actionHref = isAr ? service.actionHrefAr : service.actionHref;
 
-              {/* Card Text & Link below image */}
-              <div className="space-y-2 pt-0.5">
-                <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200">
-                  {service.title}
-                </h3>
-                <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
-                  {service.desc}
-                </p>
-                <div className="pt-1.5">
-                  <a
-                    href={service.actionHref}
-                    target={service.isExternal ? '_blank' : undefined}
-                    rel={service.isExternal ? 'noopener noreferrer' : undefined}
-                    className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] text-[#111814] hover:text-[#168849] transition-colors group/link cursor-pointer"
-                  >
-                    <span>{service.actionText}</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1" />
-                  </a>
+            return (
+              <div
+                key={service.id}
+                className="service-card-item flex flex-col space-y-3.5 group hover:-translate-y-1 transition-transform duration-300"
+              >
+                {/* Top Rounded Image */}
+                <div className="relative w-full h-48 sm:h-52 md:h-56 2xl:h-64 rounded-2xl overflow-hidden bg-neutral-100">
+                  <Image
+                    src={service.imageUrl}
+                    alt={title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Card Text & Link below image */}
+                <div className="space-y-2 pt-0.5">
+                  <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200 text-start">
+                    {title}
+                  </h3>
+                  <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55] text-start">
+                    {desc}
+                  </p>
+                  <div className="pt-1.5">
+                    <a
+                      href={actionHref}
+                      target={service.isExternal ? '_blank' : undefined}
+                      rel={service.isExternal ? 'noopener noreferrer' : undefined}
+                      className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] text-[#111814] hover:text-[#168849] transition-colors group/link cursor-pointer"
+                    >
+                      <span>{actionText}</span>
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1 rtl:rotate-180 rtl:group-hover/link:-translate-x-1" />
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
   );
 }
-
-
-

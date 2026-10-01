@@ -5,20 +5,26 @@ import Image from 'next/image';
 import { Leaf } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 interface ProductItem {
   id: string;
   name: string;
+  nameAr?: string;
   subName?: string;
+  subNameAr?: string;
   imageUrl: string;
 }
 
 interface CategoryData {
   id: string;
   label: string;
+  labelAr: string;
   leftBarTitle: string;
+  leftBarTitleAr: string;
   leftBarColor: string;
   rightBarTitle: string;
+  rightBarTitleAr: string;
   rightBarColor: string;
   productsRow1: ProductItem[];
   productsRow2: ProductItem[];
@@ -28,33 +34,44 @@ const categoriesData: CategoryData[] = [
   {
     id: 'vegetables',
     label: 'Vegetables',
+    labelAr: 'خضروات',
     leftBarTitle: 'LOCAL VARIETIES',
+    leftBarTitleAr: 'أصناف محلية',
     leftBarColor: 'bg-[#38A84E]',
     rightBarTitle: 'IMPORTED VARIETIES',
+    rightBarTitleAr: 'أصناف مستوردة',
     rightBarColor: 'bg-[#F3C623]',
     productsRow1: [
       {
         id: 'tomatoes',
         name: 'Tomatoes',
+        nameAr: 'طماطم طازجة',
         subName: '(Fresh Harvest)',
+        subNameAr: '(حصاد يومي)',
         imageUrl: '/products/vegetables/tomatoes.jpg',
       },
       {
         id: 'capsicum',
         name: 'Capsicum',
+        nameAr: 'فلفل ألوان',
         subName: '(Green, Red & Yellow)',
+        subNameAr: '(أخضر، أحمر، أصفر)',
         imageUrl: '/products/vegetables/capsicum.jpg',
       },
       {
         id: 'cucumbers',
         name: 'Cucumbers',
+        nameAr: 'خيار بيوت محمية',
         subName: '(Greenhouse Sourced)',
+        subNameAr: '(إنتاج محمي)',
         imageUrl: '/products/vegetables/cucumbers.jpg',
       },
       {
         id: 'marrow-zucchini',
         name: 'Eggplant & Zucchini',
+        nameAr: 'باذنجان وكوسا',
         subName: '(Marrow Selection)',
+        subNameAr: '(تشكيلة ممتازة)',
         imageUrl: '/products/vegetables/marrow-zucchini.jpg',
       },
     ],
@@ -62,25 +79,33 @@ const categoriesData: CategoryData[] = [
       {
         id: 'cauliflower-cabbage',
         name: 'Cauliflower & Cabbage',
+        nameAr: 'زهرة وملفوف',
         subName: '(Farm Select)',
+        subNameAr: '(مزارع معتمدة)',
         imageUrl: '/products/vegetables/cauliflower.jpg',
       },
       {
         id: 'potatoes-onions',
         name: 'Potatoes & Onions',
+        nameAr: 'بطاطس وبصل',
         subName: '(Crisp Quality)',
+        subNameAr: '(جودة مائدة)',
         imageUrl: '/products/vegetables/potatoes.jpg',
       },
       {
         id: 'chilli-okra',
         name: 'Chilli & Okra',
+        nameAr: 'فلفل وبامية',
         subName: '(Fresh Spice & Pods)',
+        subNameAr: '(طازج ومختار)',
         imageUrl: '/products/vegetables/chilli.jpg',
       },
       {
         id: 'beans',
         name: 'Fresh Beans',
+        nameAr: 'فاصوليا خضراء',
         subName: '(Green Harvest)',
+        subNameAr: '(حصاد طازج)',
         imageUrl: '/products/vegetables/beans.jpg',
       },
     ],
@@ -88,33 +113,44 @@ const categoriesData: CategoryData[] = [
   {
     id: 'fruits',
     label: 'Fruits',
+    labelAr: 'فواكه',
     leftBarTitle: 'INDIAN VARIETIES',
+    leftBarTitleAr: 'أصناف استوائية',
     leftBarColor: 'bg-[#38A84E]',
     rightBarTitle: 'IMPORTED VARIETIES',
+    rightBarTitleAr: 'فواكه مستوردة',
     rightBarColor: 'bg-[#F3C623]',
     productsRow1: [
       {
         id: 'melons',
         name: 'Watermelon & Sweet Melon',
+        nameAr: 'بطيخ وشمام',
         subName: '(Juicy Harvest)',
+        subNameAr: '(حلاوة طبيعية)',
         imageUrl: '/products/fruits/watermelon.jpg',
       },
       {
         id: 'citrus',
         name: 'Citrus Selection',
+        nameAr: 'حمضيات مختارة',
         subName: '(Orange, Lemon, Lime, Mandarin)',
+        subNameAr: '(برتقال، ليمون، يوسفي)',
         imageUrl: '/products/fruits/citrus.jpg',
       },
       {
         id: 'stone-fruit',
         name: 'Stone Fruit',
+        nameAr: 'فواكه صيفية',
         subName: '(Peach, Nectarine, Plum, Cherry)',
+        subNameAr: '(خوخ، دراق، كرز)',
         imageUrl: '/products/fruits/stone-fruit.jpg',
       },
       {
         id: 'grapes',
         name: 'Fresh Grapes',
+        nameAr: 'عنب طازج',
         subName: '(Red & Green Seedless)',
+        subNameAr: '(أحمر وأخضر بدون بذور)',
         imageUrl: '/products/fruits/table-grapes.jpg',
       },
     ],
@@ -122,25 +158,33 @@ const categoriesData: CategoryData[] = [
       {
         id: 'mango',
         name: 'Fresh Mango',
+        nameAr: 'مانجو فاخر',
         subName: '(Seasonal Selection)',
+        subNameAr: '(موسمي ممتاز)',
         imageUrl: '/products/fruits/mango.jpg',
       },
       {
         id: 'berries',
         name: 'Strawberries & Berries',
+        nameAr: 'فراولة وتوتيات',
         subName: '(Fresh Blueberries & Strawberries)',
+        subNameAr: '(توت وفراولة طازجة)',
         imageUrl: '/products/fruits/berries.jpg',
       },
       {
         id: 'pomegranate',
         name: 'Pomegranate',
+        nameAr: 'رمان ياقوتي',
         subName: '(Ruby Red Seeds)',
+        subNameAr: '(حبوب ياقوتية)',
         imageUrl: '/products/fruits/ruby-pomegranate.jpg',
       },
       {
         id: 'avocado',
         name: 'Avocado',
+        nameAr: 'أفوكادو طازج',
         subName: '(Fresh Selection)',
+        subNameAr: '(جودة كريمية)',
         imageUrl: '/products/fruits/avocado.jpg',
       },
     ],
@@ -148,33 +192,44 @@ const categoriesData: CategoryData[] = [
   {
     id: 'leafy-herbs',
     label: 'Leafy & Herbs',
+    labelAr: 'ورقيات وأعشاب',
     leftBarTitle: 'CULINARY HERBS',
+    leftBarTitleAr: 'أعشاب طهي',
     leftBarColor: 'bg-[#15803D]',
     rightBarTitle: 'LEAFY SELECTION',
+    rightBarTitleAr: 'تشكيلة ورقيات',
     rightBarColor: 'bg-[#0D9488]',
     productsRow1: [
       {
         id: 'lettuce-romaine-iceberg',
         name: 'Lettuce Romaine & Iceberg',
+        nameAr: 'خس روماني وآيسبيرغ',
         subName: '(Crisp Leaf Selection)',
+        subNameAr: '(أوراق مقرمشة)',
         imageUrl: '/products/leafy-herbs/lettuce.jpg',
       },
       {
         id: 'broccoli-fresh',
         name: 'Broccoli',
+        nameAr: 'بروكلي أخضر',
         subName: '(Farm Fresh Florets)',
+        subNameAr: '(طازج من المزرعة)',
         imageUrl: '/products/leafy-herbs/broccoli.jpg',
       },
       {
         id: 'radish-beetroot',
         name: 'Radish & Beetroot',
+        nameAr: 'فجل وشمندر',
         subName: '(Fresh Root Harvest)',
+        subNameAr: '(محاصيل جذرية طازجة)',
         imageUrl: '/products/leafy-herbs/radish.jpg',
       },
       {
         id: 'fresh-coriander-mint',
         name: 'Fresh Coriander & Mint',
+        nameAr: 'كزبرة ونعناع طازج',
         subName: '(Aromatic Herbs)',
+        subNameAr: '(أعشاب عطرية)',
         imageUrl: '/products/leafy-herbs/coriander-mint.jpg',
       },
     ],
@@ -182,25 +237,33 @@ const categoriesData: CategoryData[] = [
       {
         id: 'sweet-basil-leaf',
         name: 'Sweet Basil',
+        nameAr: 'ريحان إيطالي',
         subName: '(Italian Genovese)',
+        subNameAr: '(جينوفيز أصلي)',
         imageUrl: '/products/leafy-herbs/basil.jpg',
       },
       {
         id: 'flat-parsley',
         name: 'Flat Parsley',
+        nameAr: 'بقدونس بلدي',
         subName: '(Mediterranean Bunch)',
+        subNameAr: '(باقات طازجة)',
         imageUrl: '/products/leafy-herbs/parsley.jpg',
       },
       {
         id: 'thyme-rosemary-pair',
         name: 'Thyme & Rosemary',
+        nameAr: 'زعتر وإكليل الجبل',
         subName: '(Culinary Pair)',
+        subNameAr: '(أعشاب فاخرة)',
         imageUrl: '/products/leafy-herbs/thyme-rosemary.jpg',
       },
       {
         id: 'fresh-herbs-mix',
         name: 'Fresh Herbs',
+        nameAr: 'أعشاب منوعة',
         subName: '(Dill, Sage & Tarragon)',
+        subNameAr: '(شبت، ميرمية، طرخون)',
         imageUrl: '/products/leafy-herbs/fresh-herbs.jpg',
       },
     ],
@@ -208,33 +271,44 @@ const categoriesData: CategoryData[] = [
   {
     id: 'specialty-gourmet',
     label: 'Specialty & Gourmet',
+    labelAr: 'أصناف خاصة وفاخرة',
     leftBarTitle: 'EXOTIC SELECTION',
+    leftBarTitleAr: 'أصناف نادرة',
     leftBarColor: 'bg-[#C2410C]',
     rightBarTitle: 'GOURMET SPECIALS',
+    rightBarTitleAr: 'أصناف الشيف',
     rightBarColor: 'bg-[#D97706]',
     productsRow1: [
       {
         id: 'baby-leaves',
         name: 'Baby Leaves',
+        nameAr: 'ميكروجرين وأوراق صغيرة',
         subName: '(Tender Gourmet Mix)',
+        subNameAr: '(تشكيلة راقية)',
         imageUrl: '/products/specialty-gourmet/baby-leaves.jpg',
       },
       {
         id: 'exotic-mushrooms',
         name: 'Exotic Mushrooms',
+        nameAr: 'فطر فاخر (مشروم)',
         subName: '(Shiitake, Oyster & Morels)',
+        subNameAr: '(شيتاكي، محار، بورتوبيلو)',
         imageUrl: '/products/specialty-gourmet/fresh-mushrooms.jpg',
       },
       {
         id: 'passion-fruit-gourmet',
         name: 'Passion Fruit',
+        nameAr: 'باشن فروت',
         subName: '(Purple Selection)',
+        subNameAr: '(مستورد جواً)',
         imageUrl: '/products/specialty-gourmet/purple-passion-fruit.jpg',
       },
       {
         id: 'lychee-rambutan',
         name: 'Lychee & Rambutan',
+        nameAr: 'ليتشي ورامبوتان',
         subName: '(Air Freight Import)',
+        subNameAr: '(طازج ومبرد)',
         imageUrl: '/products/specialty-gourmet/fresh-lychee.jpg',
       },
     ],
@@ -242,25 +316,33 @@ const categoriesData: CategoryData[] = [
       {
         id: 'dragon-fruit-exotic',
         name: 'Dragon Fruit',
+        nameAr: 'دراجون فروت (بيتايا)',
         subName: '(Red & White)',
+        subNameAr: '(أحمر وأبيض)',
         imageUrl: '/products/specialty-gourmet/dragon-fruit.jpg',
       },
       {
         id: 'black-figs-gourmet',
         name: 'Black Figs',
+        nameAr: 'تين أسود فاخر',
         subName: '(Turkish Import)',
+        subNameAr: '(مستورد من تركيا)',
         imageUrl: '/products/specialty-gourmet/black-figs.jpg',
       },
       {
         id: 'golden-apricots-gourmet',
         name: 'Golden Apricots',
+        nameAr: 'مشمش ذهبي',
         subName: '(Uzbekistan)',
+        subNameAr: '(أوزبكستان)',
         imageUrl: '/products/specialty-gourmet/golden-apricots.jpg',
       },
       {
         id: 'seasonal-specialities',
         name: 'Seasonal Specialties',
+        nameAr: 'أصناف موسمية نادرة',
         subName: '(Curated Exotics)',
+        subNameAr: '(مختارة للمطاعم الراقية)',
         imageUrl: '/products/specialty-gourmet/seasonal-specialties.jpg',
       },
     ],
@@ -268,6 +350,8 @@ const categoriesData: CategoryData[] = [
 ];
 
 export function Products() {
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -431,11 +515,11 @@ export function Products() {
         {/* Section Header */}
         <div className="max-w-3xl 2xl:max-w-4xl mx-auto text-center space-y-3 px-4">
           <div className="product-header-item flex justify-center">
-            <SectionEyebrow title="OUR PRODUCTS" />
+            <SectionEyebrow title={isAr ? 'منتجاتنا' : 'OUR PRODUCTS'} />
           </div>
 
           <h2 className="product-header-item font-display type-h2 font-semibold text-[#111814]">
-            Freshness, Sourced From Around the World.
+            {isAr ? 'طزاجة فائقة، مستوردة من أنحاء العالم.' : 'Freshness, Sourced From Around the World.'}
           </h2>
 
           {/* Interactive Category Selector Pills */}
@@ -450,7 +534,7 @@ export function Products() {
                     : 'bg-[#F4F6F5] text-[#6B7280] hover:text-[#111814] hover:bg-[#eaecea]'
                 }`}
               >
-                {cat.label}
+                {isAr ? cat.labelAr : cat.label}
               </button>
             ))}
           </div>
@@ -480,7 +564,7 @@ export function Products() {
               className={`w-7 xs:w-9 sm:w-14 md:w-16 lg:w-20 ${activeCategory.leftBarColor} flex items-center justify-center shrink-0 select-none overflow-hidden transition-colors duration-500`}
             >
               <span className="[writing-mode:vertical-lr] rotate-180 font-sans text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base font-extrabold tracking-widest text-white uppercase whitespace-nowrap">
-                {activeCategory.leftBarTitle}
+                {isAr ? activeCategory.leftBarTitleAr : activeCategory.leftBarTitle}
               </span>
             </div>
 
@@ -494,39 +578,44 @@ export function Products() {
                   key={`row1-${cat.id}`}
                   className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
                 >
-                  {cat.productsRow1.map((item, itemIndex) => (
-                    <div
-                      key={item.id}
-                      className={`group relative aspect-square w-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
-                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                      }`}
-                    >
-                      {/* Full-bleed Product Image */}
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.name}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
-                        loading="lazy"
-                      />
+                  {cat.productsRow1.map((item, itemIndex) => {
+                    const itemName = isAr && item.nameAr ? item.nameAr : item.name;
+                    const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
 
-                      {/* Dark Gradient Bottom Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 pointer-events-none" />
+                    return (
+                      <div
+                        key={item.id}
+                        className={`group relative aspect-square w-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
+                          itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                        }`}
+                      >
+                        {/* Full-bleed Product Image */}
+                        <Image
+                          src={item.imageUrl}
+                          alt={itemName}
+                          fill
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
+                          loading="lazy"
+                        />
 
-                      {/* Bottom Title Text Overlay */}
-                      <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
-                        <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
-                          {item.name}
-                        </h3>
-                        {item.subName && (
-                          <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
-                            {item.subName}
-                          </p>
-                        )}
+                        {/* Dark Gradient Bottom Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 pointer-events-none" />
+
+                        {/* Bottom Title Text Overlay */}
+                        <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
+                          <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
+                            {itemName}
+                          </h3>
+                          {itemSubName && (
+                            <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
+                              {itemSubName}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               ))}
             </div>
@@ -544,39 +633,44 @@ export function Products() {
                   key={`row2-${cat.id}`}
                   className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
                 >
-                  {cat.productsRow2.map((item, itemIndex) => (
-                    <div
-                      key={item.id}
-                      className={`group relative aspect-square w-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
-                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                      }`}
-                    >
-                      {/* Full-bleed Product Image */}
-                      <Image
-                        src={item.imageUrl}
-                        alt={item.name}
-                        fill
-                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
-                        loading="lazy"
-                      />
+                  {cat.productsRow2.map((item, itemIndex) => {
+                    const itemName = isAr && item.nameAr ? item.nameAr : item.name;
+                    const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
 
-                      {/* Dark Gradient Bottom Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 pointer-events-none" />
+                    return (
+                      <div
+                        key={item.id}
+                        className={`group relative aspect-square w-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
+                          itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                        }`}
+                      >
+                        {/* Full-bleed Product Image */}
+                        <Image
+                          src={item.imageUrl}
+                          alt={itemName}
+                          fill
+                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
+                          loading="lazy"
+                        />
 
-                      {/* Bottom Title Text Overlay */}
-                      <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
-                        <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
-                          {item.name}
-                        </h3>
-                        {item.subName && (
-                          <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
-                            {item.subName}
-                          </p>
-                        )}
+                        {/* Dark Gradient Bottom Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 pointer-events-none" />
+
+                        {/* Bottom Title Text Overlay */}
+                        <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
+                          <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
+                            {itemName}
+                          </h3>
+                          {itemSubName && (
+                            <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
+                              {itemSubName}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               ))}
             </div>
@@ -586,7 +680,7 @@ export function Products() {
               className={`w-7 xs:w-9 sm:w-14 md:w-16 lg:w-20 ${activeCategory.rightBarColor} flex items-center justify-center shrink-0 select-none overflow-hidden transition-colors duration-500`}
             >
               <span className="[writing-mode:vertical-lr] font-sans text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base font-extrabold tracking-widest text-white uppercase whitespace-nowrap">
-                {activeCategory.rightBarTitle}
+                {isAr ? activeCategory.rightBarTitleAr : activeCategory.rightBarTitle}
               </span>
             </div>
           </div>

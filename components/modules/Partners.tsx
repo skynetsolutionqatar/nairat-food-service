@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Logos3 } from '@/components/blocks/logos3';
+import { useLocale } from '@/context/LocaleContext';
 
 const partnerLogos = [
   {
@@ -67,9 +68,12 @@ const partnerLogos = [
 ];
 
 export function Partners() {
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
+
   return (
     <Logos3
-      heading="TRUSTED BY QATAR’S LEADING PARTNERS"
+      heading={isAr ? 'شريك موثوق لكبرى المتاجر والشركات في قطر' : 'TRUSTED BY QATAR’S LEADING PARTNERS'}
       logos={partnerLogos}
     />
   );

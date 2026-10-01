@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree, Montserrat, JetBrains_Mono } from "next/font/google";
+import { Figtree, Montserrat, JetBrains_Mono, Cairo } from "next/font/google";
 import "./globals.css";
 
 const figtree = Figtree({
@@ -22,6 +22,13 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const cairo = Cairo({
+  variable: "--font-cairo",
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+});
+
 import { Providers } from "./providers";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -35,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${figtree.variable} ${montserrat.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${figtree.variable} ${montserrat.variable} ${jetbrainsMono.variable} ${cairo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <Providers>

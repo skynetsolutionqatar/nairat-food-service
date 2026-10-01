@@ -4,7 +4,7 @@ This document tracks the implementation progress of the Nairat Food Services web
 
 - **Phase 1: Landing Page** [Completed]
 - **Phase 2: Page Creation Phase** [In Progress / Next]
-- **Phase 3: RTL and Sanity Phase** [Pending]
+- **Phase 3: RTL and Sanity Phase** [In Progress]
 
 ---
 
@@ -115,15 +115,30 @@ Each page will be planned and built **one by one in strict sequential order**. C
 
 ## Phase 3: RTL and Sanity Phase
 
-- [ ] **Milestone 1: RTL & Bilingual Implementation**
-  - [ ] Set up bilingual subpath localization routing (English / Arabic)
-  - [ ] Adapt layout templates with dynamic HTML direction (`dir="rtl"`)
-  - [ ] Refactor CSS rules to use logical properties for seamless LTR/RTL layout mirroring across all 7 pages (home + 6 dedicated)
-  - [ ] Add Arabic translations and apply custom Arabic typography (Cairo)
+- [x] **Milestone 1: RTL & Bilingual Implementation** [Completed]
+  - [x] Set up bilingual subpath localization routing: English at `/` (root) and Arabic at `/ar/`
+  - [x] Integrate Google Font `Cairo` for authentic Qatar B2B Arabic typography and configured dynamic `dir="rtl"` cascading in `LocaleContext`
+  - [x] Refactor CSS rules and Tailwind layouts to use logical properties (`text-start`, `start-4`, `rtl:rotate-180`, `border-s-4`, `ps-*`, `pe-*`) for seamless LTR/RTL layout mirroring
+  - [x] Create comprehensive i18n dictionaries (`lib/i18n/dictionaries/en.ts`, `lib/i18n/dictionaries/ar.ts`) with executive-level Arabic translations
+  - [x] Localize all core global components: Navbar (links, category dropdown, Arabic logo `/LogoAR.webp`, desktop/mobile language switcher), Footer, Hero, WhoWeAre, Strengths, Cta, ServicesList, ContactSection, and ContactMap
+  - [x] Localize all dedicated page components across the site:
+    - [x] Company (`CompanyDelivering`, `CompanyVisionMission`, `CompanyInfrastructure`, `CompanySourcing`, `CompanyTeam`, `CompanyQuality`, `CompanyLookingAhead`)
+    - [x] Quality & Sourcing (`QualitySourcingPhilosophy`, `QualityFoodSafety`, `QualitySupplyChain`, `CertificateModal`)
+    - [x] Partners (`PartnerRetail`, `PartnerLocalGrid`, `PartnerCountryGrid`)
+    - [x] Services (`ServicesList` with store and consignment features)
+    - [x] Contact (`ContactSection` form validation & status states, `ContactMap` facility specs)
+    - [x] Products (`ProductCard`, `ProductGrid`, and category catalog pages)
+  - [x] Create dedicated Arabic routes: `/ar`, `/ar/company`, `/ar/products`, `/ar/products/[category]` (all 4 categories), `/ar/services`, `/ar/quality`, `/ar/partners`, `/ar/contact`
+  - [x] Add Arabic names (`nameAr`) to all produce catalog items in `data/products.ts`
+  - [x] Implement directional CTA button arrow micro-interactions (`CtaButton.tsx` and `globals.css`): `ArrowUpRight` (`↗` → `➔`) in English, `ArrowUpLeft` (`↖` → `⬅`) in Arabic
+  - [x] Verified full static production build (26/26 routes generated) and visual E2E verification via `agent-browser` (captured screenshots of `/ar`, `/ar/company`, `/ar/quality`, `/ar/partners`, `/ar/services`, `/ar/contact`, `/ar/products/vegetables`)
 - [ ] **Milestone 2: Sanity Headless CMS Integration**
-  - [ ] Configure Sanity Studio project and local schema models (Company, Products, Services, Quality, Partners, Inquiries)
-  - [ ] Replace hardcoded mock content arrays with dynamic GROQ query integrations
-  - [ ] Set up webhook-based Incremental Static Regeneration (ISR)
+  - [ ] Install and configure Sanity Studio dependencies (`next-sanity`, `@sanity/client`, `@sanity/image-url`, `sanity`)
+  - [ ] Set up Sanity Studio embedded route (`app/studio/[[...tool]]/page.tsx`) and configuration (`sanity.config.ts`)
+  - [ ] Define content schemas: `product`, `category`, `service`, `company`, `partner`, `quality`
+  - [ ] Implement robust 4-tier caching client with Next.js Data Cache tags (`tags: ['products']`, etc.) and static fail-safe fallback
+  - [ ] Create on-demand webhook revalidation route (`app/api/revalidate/route.ts`)
+  - [ ] Connect frontend data fetchers to Sanity queries with fallback to static datasets
 - [ ] **Milestone 3: Full-Site Verification**
   - [ ] Validate RTL responsiveness and navigation across all routes with `agent-browser`
   - [ ] Verify instant data revalidation triggers upon publishing changes in CMS

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { CheckCircle2, Store, Truck, Handshake } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
+import { useLocale } from '@/context/LocaleContext';
 
 interface ServiceItem {
   id: string;
@@ -20,63 +21,93 @@ interface ServiceItem {
   icon: React.ReactNode;
 }
 
-const servicesData: ServiceItem[] = [
-  {
-    id: 'retail-wholesale',
-    number: '01',
-    category: 'Commercial Supply',
-    title: 'Retail & Wholesale Distribution',
-    description:
-      'Daily programme supply to hypermarkets, supermarkets and online grocery platforms (Talabat Mart) across Qatar with store-level delivery, plus wholesale market trading.',
-    imageUrl: '/services/wholesale-distribution.avif',
-    features: [
-      'Daily scheduled store-level delivery',
-      'Hypermarkets, supermarkets & online platforms (Talabat Mart)',
-      'Wholesale market trading & high-volume bulk supply',
-    ],
-    actionText: 'Inquire About Distribution',
-    actionHref: '#contact',
-    icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-  },
-  {
-    id: 'growers-exporters',
-    number: '02',
-    category: 'Trade Partnerships',
-    title: 'For Growers & Exporters',
-    description:
-      'Consignment and direct-trading partnerships: Nairat receives, clears, stores, markets and distributes your produce in Qatar with transparent settlement.',
-    imageUrl: '/services/grower-and-exporter.avif',
-    features: [
-      'Port clearance, customs handling, and local regulatory documentation',
-      '5,000 m² cold storage with 20 independent chiller chambers',
-      'Transparent market reporting, prompt audit trails, and fair settlement',
-    ],
-    actionText: 'Partner With Us',
-    actionHref: '#contact',
-    icon: <Handshake className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-  },
-  {
-    id: 'nairat-shop',
-    number: '03',
-    category: 'Direct Retail',
-    title: 'Nairat Shop',
-    description:
-      'Our own fresh-produce retail store, open to the public, with the full range at market-fresh prices.',
-    imageUrl: '/services/nairat-shop.avif',
-    features: [
-      'Open to the general public with walk-in access',
-      'Comprehensive selection of premium fruits, vegetables, and specialty herbs',
-      'Unbeatable farm-direct freshness at market-competitive pricing',
-    ],
-    actionText: 'Visit Nairat Shop',
-    actionHref: 'https://www.google.com/maps/place/Nairat+Food+Service/@25.1879132,51.451866,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45d1d6fa5f0107:0x208dd617d12cb28c!8m2!3d25.1879084!4d51.4544409!16s%2Fg%2F11q3d_k5z2?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D',
-    isExternal: true,
-    icon: <Store className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-  },
-];
-
 export function ServicesList(): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
+  const { locale, dict } = useLocale();
+  const prefix = locale === 'ar' ? '/ar' : '';
+
+  const servicesData: ServiceItem[] = [
+    {
+      id: 'retail-wholesale',
+      number: '01',
+      category: locale === 'ar' ? 'التوريد التجاري' : 'Commercial Supply',
+      title: locale === 'ar' ? 'توزيع التجزئة والجملة' : 'Retail & Wholesale Distribution',
+      description:
+        locale === 'ar'
+          ? 'برامج توريد يومية لسلاسل الهايبرماركت، السوبرماركت، ومنصات البقالة الإلكترونية (طلبات مارت) مع توصيل مباشر للمتاجر وتجارة الجملة.'
+          : 'Daily programme supply to hypermarkets, supermarkets and online grocery platforms (Talabat Mart) across Qatar with store-level delivery, plus wholesale market trading.',
+      imageUrl: '/services/wholesale-distribution.avif',
+      features:
+        locale === 'ar'
+          ? [
+              'توصيل يومي مجدول على مستوى المتاجر والفروع',
+              'تغطية كبرى الهايبرماركت والسوبرماركت وتطبيقات التوصيل السريع',
+              'توريد كميات تجارية ضخمة وتداول بأسواق الجملة المركزية',
+            ]
+          : [
+              'Daily scheduled store-level delivery',
+              'Hypermarkets, supermarkets & online platforms (Talabat Mart)',
+              'Wholesale market trading & high-volume bulk supply',
+            ],
+      actionText: locale === 'ar' ? 'استفسر عن خدمات التوزيع' : 'Inquire About Distribution',
+      actionHref: `${prefix}/contact`,
+      icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    },
+    {
+      id: 'growers-exporters',
+      number: '02',
+      category: locale === 'ar' ? 'الشراكات التجارية' : 'Trade Partnerships',
+      title: locale === 'ar' ? 'للمزارعين والمصدرين' : 'For Growers & Exporters',
+      description:
+        locale === 'ar'
+          ? 'شراكات أمانة واستيراد مباشر: تستقبل نيرات شحناتكم، وتتولى التخليص والتخزين والتسويق والتوزيع في قطر مع تسويات مالية شفافة.'
+          : 'Consignment and direct-trading partnerships: Nairat receives, clears, stores, markets and distributes your produce in Qatar with transparent settlement.',
+      imageUrl: '/services/grower-and-exporter.avif',
+      features:
+        locale === 'ar'
+          ? [
+              'تخليص جمركي ومينائي ومعاملات الرقابة الصحية المعتمدة',
+              'مستودعات مبردة بمساحة 5,000 م² تضم 20 غرفة تبريد مستقلة',
+              'تقارير سوقية شفافة، وسجلات تدقيق فورية، وتسويات عادلة',
+            ]
+          : [
+              'Port clearance, customs handling, and local regulatory documentation',
+              '5,000 m² cold storage with 20 independent chiller chambers',
+              'Transparent market reporting, prompt audit trails, and fair settlement',
+            ],
+      actionText: locale === 'ar' ? 'شاركنا النجاح' : 'Partner With Us',
+      actionHref: `${prefix}/contact`,
+      icon: <Handshake className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    },
+    {
+      id: 'nairat-shop',
+      number: '03',
+      category: locale === 'ar' ? 'منافذ البيع المباشر' : 'Direct Retail',
+      title: locale === 'ar' ? 'متجر نيرات للتجزئة' : 'Nairat Shop',
+      description:
+        locale === 'ar'
+          ? 'متجر مخصص للمستهلكين في موقع مستودعنا بالمنطقة الصناعية (شارع 37)، يعرض تشكيلة كاملة من الخضروات والفواكه الطازجة بأسعار تنافسية.'
+          : 'Our own fresh-produce retail store, open to the public, with the full range at market-fresh prices.',
+      imageUrl: '/services/nairat-shop.avif',
+      features:
+        locale === 'ar'
+          ? [
+              'متاح للجمهور والزوار يومياً بأسعار الجملة المباشرة',
+              'تشكيلة متكاملة من أرقى الفواكه والخضروات والورقيات الطازجة',
+              'نضارة فائقة مباشرة من المزارع دون وسطاء بأسعار تنافسية',
+            ]
+          : [
+              'Open to the general public with walk-in access',
+              'Comprehensive selection of premium fruits, vegetables, and specialty herbs',
+              'Unbeatable farm-direct freshness at market-competitive pricing',
+            ],
+      actionText: locale === 'ar' ? 'زيارة متجر نيرات' : 'Visit Nairat Shop',
+      actionHref:
+        'https://www.google.com/maps/place/Nairat+Food+Service/@25.1879132,51.451866,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45d1d6fa5f0107:0x208dd617d12cb28c!8m2!3d25.1879084!4d51.4544409!16s%2Fg%2F11q3d_k5z2?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D',
+      isExternal: true,
+      icon: <Store className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    },
+  ];
 
   useGSAP(
     () => {
@@ -133,14 +164,14 @@ export function ServicesList(): React.ReactNode {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
                 {/* Floating Service Number Badge */}
-                <div className="absolute top-4 left-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-semibold">
+                <div className="absolute top-4 start-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-semibold">
                   <span className="font-mono text-[#D4F056] font-bold">{service.number}</span>
                   <span className="text-white/80">/ 03</span>
                 </div>
               </div>
 
               {/* Right Column: Heading & Content (7 cols) */}
-              <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6">
+              <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between space-y-6 text-start">
                 <div className="space-y-4">
                   {/* Category Pill + Icon */}
                   <div className="service-card-item flex items-center gap-2.5">

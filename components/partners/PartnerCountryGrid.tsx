@@ -5,9 +5,11 @@ import Image from 'next/image';
 import { Lock } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 interface CountryPartner {
   name: string;
+  nameAr: string;
   flag: string;
   crops?: string;
 }
@@ -15,41 +17,49 @@ interface CountryPartner {
 const countryPartners: CountryPartner[] = [
   {
     name: 'Jordan',
+    nameAr: 'الأردن',
     flag: '/flags/jordan.svg',
     crops: 'Tomatoes, cucumbers, bell peppers, stone fruits',
   },
   {
     name: 'Saudi Arabia',
+    nameAr: 'المملكة العربية السعودية',
     flag: '/flags/saudi-arabia.svg',
     crops: 'Premium dates, seasonal open-field crops, hydroponics',
   },
   {
     name: 'Lebanon',
+    nameAr: 'لبنان',
     flag: '/flags/lebanon.svg',
     crops: 'Mountain apples, cherries, peaches, fresh herbs',
   },
   {
     name: 'Egypt',
+    nameAr: 'مصر',
     flag: '/flags/egypt.svg',
     crops: 'Valencia citrus, yellow onions, potatoes, garlic',
   },
   {
     name: 'South Africa',
+    nameAr: 'جنوب إفريقيا',
     flag: '/flags/south-africa.svg',
     crops: 'Table grapes, navel citrus, lemons, stone fruits, pears',
   },
   {
     name: 'Iran',
+    nameAr: 'إيران',
     flag: '/flags/iran.svg',
     crops: 'Sweet watermelons, pomegranates, melons, pistachios',
   },
   {
     name: 'Syria',
+    nameAr: 'سوريا',
     flag: '/flags/syria.svg',
     crops: 'Citrus, stone fruits, pomegranates, seasonal root crops',
   },
   {
     name: 'Global Origins',
+    nameAr: 'مناشئ عالمية أخرى',
     flag: '/cta/ctacontry.webp',
     crops: 'Specialty culinary lines from India, Turkey, and Europe',
   },
@@ -57,6 +67,8 @@ const countryPartners: CountryPartner[] = [
 
 export function PartnerCountryGrid(): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(
     () => {
@@ -74,11 +86,11 @@ export function PartnerCountryGrid(): React.ReactNode {
       tl.fromTo(
         '.country-header-item',
         { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' }
+        { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }
       ).fromTo(
         '.country-grid-container',
         { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.55, ease: 'power2.out' },
+        { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' },
         '-=0.35'
       );
     },
@@ -93,12 +105,21 @@ export function PartnerCountryGrid(): React.ReactNode {
     >
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
-        <div className="country-header-item space-y-3">
-          <SectionEyebrow title="GLOBAL SOURCING PARTNERSHIPS" />
+        <div className="country-header-item space-y-3 text-start">
+          <SectionEyebrow title={isAr ? 'شراكات التوريد الزراعي العالمية' : 'GLOBAL SOURCING PARTNERSHIPS'} />
 
-          <h2 className="font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
-            Long-Standing Partnerships with <br />
-            <span className="text-[#168849]">Growers &amp; Export Houses</span>
+          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+            {isAr ? (
+              <>
+                شراكات استراتيجية طويلة الأمد مع <br />
+                <span className="text-[#168849]">كبرى المزارع وبيوت التصدير العالمية</span>
+              </>
+            ) : (
+              <>
+                Long-Standing Partnerships with <br />
+                <span className="text-[#168849]">Growers &amp; Export Houses</span>
+              </>
+            )}
           </h2>
         </div>
 
@@ -122,7 +143,7 @@ export function PartnerCountryGrid(): React.ReactNode {
                 >
                   <Image
                     src={country.flag}
-                    alt={`${country.name} country flag logo`}
+                    alt={isAr ? `علم ${country.nameAr}` : `${country.name} country flag logo`}
                     fill
                     sizes={isGlobalOrigins ? '160px' : '80px'}
                     className={isGlobalOrigins ? 'object-contain' : 'object-cover'}
@@ -130,14 +151,12 @@ export function PartnerCountryGrid(): React.ReactNode {
                 </div>
 
                 <h3 className="font-display font-bold text-sm sm:text-base text-[#111814] group-hover:text-[#168849] transition-colors">
-                  {country.name}
+                  {isAr ? country.nameAr : country.name}
                 </h3>
               </div>
             );
           })}
         </div>
-
-
       </div>
     </section>
   );
