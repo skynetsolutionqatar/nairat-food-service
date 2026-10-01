@@ -103,14 +103,14 @@ export function ContactSection(): React.ReactNode {
         setSubmitStatus('success');
         setFeedbackMessage(
           locale === 'ar'
-            ? 'شكراً لتواصلكم! تم استلام طلبكم بنجاح وسيتواصل معكم فريقنا التجاري بأقرب وقت.'
+            ? 'شكراً لك! تم استلام استفسارك. سيتصل بك فريقنا قريباً.'
             : (result.message || 'Thank you! Your inquiry has been received. Our team will contact you promptly.')
         );
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
         setSubmitStatus('error');
         setFeedbackMessage(
-          locale === 'ar' ? 'تعذر إرسال الطلب، يرجى المحاولة مرة أخرى.' : (result.message || 'Unable to send inquiry. Please try again.')
+          locale === 'ar' ? 'تعذر إرسال الاستفسار. يرجى المحاولة مرة أخرى.' : (result.message || 'Unable to send inquiry. Please try again.')
         );
       }
     } catch (err) {
@@ -118,7 +118,7 @@ export function ContactSection(): React.ReactNode {
       setSubmitStatus('error');
       setFeedbackMessage(
         locale === 'ar'
-          ? 'حدث خطأ في الاتصال بالشبكة. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.'
+          ? 'حدث خطأ في الشبكة. يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.'
           : 'A network error occurred. Please try again or reach out on WhatsApp.'
       );
     } finally {
@@ -138,7 +138,7 @@ export function ContactSection(): React.ReactNode {
           <SectionEyebrow title={locale === 'ar' ? 'تواصل معنا' : 'CONTACT US'} />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
-            {locale === 'ar' ? 'تواصل مع فريقنا التجاري' : 'Get in Touch with Us'}
+            {locale === 'ar' ? 'تواصل معنا' : 'Get in Touch with Us'}
           </h2>
         </div>
 
@@ -153,13 +153,13 @@ export function ContactSection(): React.ReactNode {
               </div>
               <div className="space-y-1 text-start">
                 <h3 className="font-display font-bold text-base sm:text-lg text-[#111814]">
-                  {locale === 'ar' ? 'العنوان والمقر:' : 'Address:'}
+                  {locale === 'ar' ? 'العنوان:' : 'Address:'}
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-[#6B7280] leading-relaxed">
-                  {locale === 'ar' ? 'المنطقة الصناعية، شارع 37، الدوحة، دولة قطر.' : 'Industrial Area, Street 37, Doha, Qatar.'}
+                  {locale === 'ar' ? 'المنطقة الصناعية، شارع 37، الدوحة، قطر.' : 'Industrial Area, Street 37, Doha, Qatar.'}
                 </p>
                 <span className="font-mono text-xs text-[#168849] font-medium block pt-0.5">
-                  {locale === 'ar' ? 'سجل تجاري رقم 144352' : 'CR No. 144352'}
+                  {locale === 'ar' ? 'السجل التجاري رقم 144352' : 'CR No. 144352'}
                 </span>
               </div>
             </div>
@@ -191,11 +191,11 @@ export function ContactSection(): React.ReactNode {
               </div>
               <div className="space-y-1.5 text-start">
                 <h3 className="font-display font-bold text-base sm:text-lg text-[#111814]">
-                  {locale === 'ar' ? 'الاتصال المباشر وواتساب:' : 'Call:'}
+                  {locale === 'ar' ? 'اتصل:' : 'Call:'}
                 </h3>
                 <div className="font-sans text-xs sm:text-sm text-[#6B7280] space-y-1">
                   <div>
-                    <span className="text-neutral-400 text-xs ms-1.5">{locale === 'ar' ? 'هاتف:' : 'Tel:'}</span>
+                    <span className="text-neutral-400 text-xs ms-1.5">{locale === 'ar' ? 'الهاتف:' : 'Tel:'}</span>
                     <a href="tel:+97444290400" className="font-mono hover:text-[#168849] transition-colors">
                       +974 4429 0400
                     </a>
@@ -205,7 +205,7 @@ export function ContactSection(): React.ReactNode {
                     </a>
                   </div>
                   <div>
-                    <span className="text-neutral-400 text-xs ms-1.5">{locale === 'ar' ? 'جوال:' : 'Mobile:'}</span>
+                    <span className="text-neutral-400 text-xs ms-1.5">{locale === 'ar' ? 'الجوال:' : 'Mobile:'}</span>
                     <a href="tel:+97431043814" className="font-mono hover:text-[#168849] transition-colors">
                       +974 3104 3814
                     </a>
@@ -247,7 +247,7 @@ export function ContactSection(): React.ReactNode {
                 {/* Field 1: Name */}
                 <div className="space-y-1.5 text-start">
                   <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-white">
-                    {locale === 'ar' ? 'الاسم الكامل' : 'Name'}
+                    {locale === 'ar' ? 'الاسم' : 'Name'}
                   </label>
                   <input
                     id="name"
@@ -256,7 +256,7 @@ export function ContactSection(): React.ReactNode {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder={locale === 'ar' ? 'أدخل اسمك الكريم' : 'Enter Your Name'}
+                    placeholder={locale === 'ar' ? 'أدخل اسمك' : 'Enter Your Name'}
                     className="w-full px-4 py-3 rounded-xl bg-white text-[#111814] placeholder-neutral-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#F2BD1D] shadow-2xs"
                   />
                 </div>
@@ -264,7 +264,7 @@ export function ContactSection(): React.ReactNode {
                 {/* Field 2: Email */}
                 <div className="space-y-1.5 text-start">
                   <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-white">
-                    {locale === 'ar' ? 'البريد الإلكتروني للعمل' : 'Email'}
+                    {locale === 'ar' ? 'البريد الإلكتروني' : 'Email'}
                   </label>
                   <input
                     id="email"
@@ -273,7 +273,7 @@ export function ContactSection(): React.ReactNode {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder={locale === 'ar' ? 'أدخل البريد الإلكتروني' : 'Enter Your Email'}
+                    placeholder={locale === 'ar' ? 'أدخل بريدك الإلكتروني' : 'Enter Your Email'}
                     className="w-full px-4 py-3 rounded-xl bg-white text-[#111814] placeholder-neutral-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#F2BD1D] shadow-2xs"
                   />
                 </div>
@@ -281,7 +281,7 @@ export function ContactSection(): React.ReactNode {
                 {/* Field 3: Contact Number */}
                 <div className="space-y-1.5 text-start">
                   <label htmlFor="phone" className="block text-xs sm:text-sm font-medium text-white">
-                    {locale === 'ar' ? 'رقم الهاتف' : 'Contact Number'}
+                    {locale === 'ar' ? 'رقم الاتصال' : 'Contact Number'}
                   </label>
                   <div className="relative flex items-center bg-white rounded-xl overflow-hidden shadow-2xs focus-within:ring-2 focus-within:ring-[#F2BD1D]">
                     <div className="flex items-center gap-1.5 px-3 py-3 border-e border-neutral-200 text-neutral-600 text-xs font-medium bg-neutral-50 shrink-0 select-none">
@@ -294,7 +294,7 @@ export function ContactSection(): React.ReactNode {
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder={locale === 'ar' ? 'أدخل رقم الهاتف' : 'Enter Your Contact Number'}
+                      placeholder={locale === 'ar' ? 'أدخل رقم الاتصال الخاص بك' : 'Enter Your Contact Number'}
                       className="w-full px-3.5 py-3 bg-transparent text-[#111814] placeholder-neutral-400 text-xs sm:text-sm focus:outline-none"
                     />
                   </div>
@@ -303,7 +303,7 @@ export function ContactSection(): React.ReactNode {
                 {/* Field 4: Message */}
                 <div className="space-y-1.5 text-start">
                   <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-white">
-                    {locale === 'ar' ? 'الرسالة وتفاصيل الطلب' : 'Message'}
+                    {locale === 'ar' ? 'الرسالة' : 'Message'}
                   </label>
                   <textarea
                     id="message"
@@ -312,7 +312,7 @@ export function ContactSection(): React.ReactNode {
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder={locale === 'ar' ? 'يرجى كتابة تفاصيل استفساركم أو أصناف المحاصيل المطلوبة...' : 'Enter Your Message'}
+                    placeholder={locale === 'ar' ? 'أدخل رسالتك' : 'Enter Your Message'}
                     className="w-full px-4 py-3 rounded-xl bg-white text-[#111814] placeholder-neutral-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#F2BD1D] resize-none shadow-2xs"
                   />
                 </div>
@@ -340,8 +340,8 @@ export function ContactSection(): React.ReactNode {
                     disabled={isSubmitting}
                     text={
                       isSubmitting
-                        ? (locale === 'ar' ? 'جاري الإرسال...' : 'Sending...')
-                        : (locale === 'ar' ? 'إرسال طلب التوريد' : 'Submit')
+                        ? (locale === 'ar' ? 'جارٍ الإرسال...' : 'Sending...')
+                        : (locale === 'ar' ? 'إرسال' : 'Submit')
                     }
                     variant="white"
                   />

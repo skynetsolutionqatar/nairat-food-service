@@ -102,7 +102,7 @@ export function CertificateModal({
         {/* Modal Footer */}
         <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-[#6B7280]">
           <span className="font-mono text-[11px] text-[#168849] font-medium">
-            {isAr ? 'اعتماد رسمي موثق · دولة قطر' : 'Official Verification · Qatar'}
+            {isAr ? 'تحقق رسمي · قطر' : 'Official Verification · Qatar'}
           </span>
           <button
             type="button"

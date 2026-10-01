@@ -17,18 +17,18 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
   const pillars = [
     {
       icon: <Globe className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: isAr ? 'شبكة توريد عالمية' : 'Global Network',
-      description: isAr ? 'شركاء موثوقون في 60 دولة حول العالم' : 'Trusted partners across 60 countries',
+      title: isAr ? 'شبكة عالمية' : 'Global Network',
+      description: isAr ? 'شركاء موثوقون عبر 60 دولة' : 'Trusted partners across 60 countries',
     },
     {
       icon: <ShieldCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
       title: isAr ? 'الجودة أولاً' : 'Quality First',
-      description: isAr ? 'فحص ومعاينة صارمة في كل مرحلة' : 'Strict inspection at every stage',
+      description: isAr ? 'فحص صارم في كل مرحلة' : 'Strict inspection at every stage',
     },
     {
       icon: <Sprout className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: isAr ? 'توريد زراعي مستدام' : 'Sustainable Sourcing',
-      description: isAr ? 'دعم الممارسات الزراعية المسؤولة' : 'Supporting responsible farming practices',
+      title: isAr ? 'توريد مستدام' : 'Sustainable Sourcing',
+      description: isAr ? 'دعم ممارسات الزراعة المسؤولة' : 'Supporting responsible farming practices',
     },
   ];
 
@@ -74,8 +74,8 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.14] tracking-tight">
               {isAr ? (
                 <>
-                  محاصيل طازجة، <br className="hidden sm:inline" />
-                  بتوريد مسؤول ومستدام.
+                  منتجات طازجة، <br className="hidden sm:inline" />
+                  تم توريدها بمسؤولية.
                 </>
               ) : (
                 <>
@@ -87,7 +87,7 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
 
             <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
               {isAr
-                ? 'نعمل مع نخبة من المزارعين والموردين الموثوقين حول العالم، جامعِين بين الشراكات العالمية المتينة والخبرة العميقة بالسوق المحلي لتقديم أجود المنتجات الزراعية الطازجة في دولة قطر.'
+                ? 'نحن نعمل مع مزارعين وموردين موثوقين في جميع أنحاء العالم، ونجمع بين الشراكات العالمية القوية والخبرة المحلية لجلب أفضل المنتجات الطازجة إلى قطر.'
                 : 'We work with trusted growers and suppliers across the world, combining strong global partnerships with local expertise to bring the best fresh produce to Qatar.'}
             </p>
 
@@ -130,8 +130,8 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                   <h3 className="font-display font-bold text-lg sm:text-xl text-[#111814] leading-snug">
                     {isAr ? (
                       <>
-                        استيراد وتوريد من <br />
-                        مختلف قارات العالم
+                        التوريد من <br />
+                        جميع أنحاء العالم
                       </>
                     ) : (
                       <>
@@ -142,13 +142,13 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                   </h3>
                   <p className="font-sans text-xs sm:text-[13px] text-[#6B7280] leading-[1.6]">
                     {isAr
-                      ? 'نستورد المحاصيل الطازجة من أبرز المناطق الزراعية في بلاد الشام، الخليج العربي، إفريقيا، آسيا، وأوروبا، بما يضمن استمرارية الإمداد وتوفر الأصناف على مدار العام.'
+                      ? 'نحن نورد منتجات طازجة من مناطق الزراعة الرائدة عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يضمن إمداداً متسقاً وتوافراً على مدار العام.'
                       : 'We source fresh produce from leading growing regions across the Levant, Gulf, Africa, Asia and beyond, ensuring consistent supply and year-round availability.'}
                   </p>
                   <div className="pt-1">
                     <CtaButton
                       href={isAr ? '/ar/company#sourcing' : '/company#sourcing'}
-                      text={isAr ? 'مناطق التوريد العالمية' : 'Our Sourcing Regions'}
+                      text={isAr ? 'مناطق التوريد لدينا' : 'Our Sourcing Regions'}
                       variant="primary"
                     />
                   </div>
@@ -166,7 +166,7 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                       15+
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
-                      {isAr ? 'منشأ أساسي' : 'Core Origins'}
+                      {isAr ? 'أصول رئيسية' : 'Core Origins'}
                     </span>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                       1,200+
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
-                      {isAr ? 'صنف نشط' : 'Active Lines'}
+                      {isAr ? 'خطوط نشطة' : 'Active Lines'}
                     </span>
                   </div>
                 </div>
@@ -194,7 +194,7 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                       {isAr ? 'على مدار العام' : 'Year-Round'}
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
-                      {isAr ? 'وفرة مستمرة' : 'Availability'}
+                      {isAr ? 'التوافر' : 'Availability'}
                     </span>
                   </div>
                 </div>

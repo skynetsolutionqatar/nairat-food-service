@@ -140,14 +140,14 @@ export function SourcingMap(): React.ReactNode {
           {/* Right Column on Desktop / Top on Mobile: Sourcing Text & Country Pills */}
           <div className="order-1 lg:order-2 lg:col-span-7 space-y-4 sm:space-y-5 2xl:space-y-6">
             <div className="sourcing-header-item">
-              <SectionEyebrow title={isAr ? 'بلدان الاستيراد والتوريد' : 'SOURCING COUNTRIES'} />
+              <SectionEyebrow title={isAr ? 'بلدان التوريد' : 'SOURCING COUNTRIES'} />
             </div>
 
             <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-start">
               {isAr ? (
                 <>
-                  نستورد محاصيلنا من أجود <br />
-                  <span className="text-[#168849]">مزارع العالم</span>
+                  تم التوريد من جميع أنحاء <br />
+                  <span className="text-[#168849]">العالم</span>
                 </>
               ) : (
                 <>

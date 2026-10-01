@@ -14,7 +14,7 @@ const categoryArabicTitles: Record<string, string> = {
   vegetables: 'خضروات طازجة',
   fruits: 'فواكه طازجة',
   'leafy-herbs': 'ورقيات وأعشاب',
-  'specialty-gourmet': 'أصناف فاخرة ونادرة',
+  'specialty-gourmet': 'أصناف خاصة وفاخرة',
 };
 
 export function generateStaticParams() {
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!data) {
     return {
       title: 'منتجاتنا — نيرات للخدمات الغذائية قطر',
-      description: 'استكشف خطوط إنتاج نيرات للخدمات الغذائية في دولة قطر.',
+      description: 'استكشف خطوط منتجات نيرات للخدمات الغذائية في قطر.',
     };
   }
 
@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${arabicTitle} — نيرات للخدمات الغذائية قطر`,
-    description: `توريد تجاري عالي الجودة ومضبوط بدرجات الحرارة لـ ${arabicTitle} في كافة أنحاء دولة قطر.`,
+    description: `توريد تجاري عالي الجودة ويتم التحكم في درجة حرارته لـ ${arabicTitle} في جميع أنحاء قطر.`,
     openGraph: {
       title: `${arabicTitle} — نيرات للخدمات الغذائية`,
       description: data.description,

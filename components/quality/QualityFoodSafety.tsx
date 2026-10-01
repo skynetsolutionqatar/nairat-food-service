@@ -30,16 +30,16 @@ export function QualityFoodSafety(): React.ReactNode {
       title: 'HACCP',
       subtitle: isAr ? 'نظام إدارة سلامة الغذاء' : 'Food Safety Management System',
       description: isAr
-        ? 'حاصلون على شهادة الهاسب (HACCP) لضمان أعلى معايير السلامة الغذائية والتحكم بنقاط الخطر في جميع مراحل عملياتنا.'
+        ? 'معتمدون وفقاً لمعايير HACCP لضمان سلامة الغذاء في كل مرحلة من مراحل عملياتنا.'
         : 'Certified in accordance with HACCP standards to ensure food safety at every stage of our operations.',
       imageSrc: '/certificates/c1-1-1.png',
     },
     {
       id: 'iso22000',
       title: 'ISO 22000:2018',
-      subtitle: isAr ? 'نظام إدارة سلامة الغذاء الدولي' : 'Food Safety Management System',
+      subtitle: isAr ? 'نظام إدارة سلامة الغذاء' : 'Food Safety Management System',
       description: isAr
-        ? 'معتمدون وفق معايير ISO 22000:2018 العالمية لتطبيق نظام إدارة سلامة غذاء متكامل وموثوق ومعترف به دولياً.'
+        ? 'معتمدون وفقاً لمعايير ISO 22000:2018 لنظام إدارة سلامة غذاء متسق وموثوق.'
         : 'Certified to ISO 22000:2018 standards for a consistent and reliable food safety management system.',
       imageSrc: '/certificates/c2-2-1.png',
     },
@@ -87,8 +87,8 @@ export function QualityFoodSafety(): React.ReactNode {
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-bold text-[#111814] leading-[1.15] tracking-tight">
               {isAr ? (
                 <>
-                  فحوصات صارمة، <br className="hidden sm:inline" />
-                  لجودة استثنائية.
+                  فحوصات صارمة. <br className="hidden sm:inline" />
+                  جودة فائقة.
                 </>
               ) : (
                 <>
@@ -100,14 +100,14 @@ export function QualityFoodSafety(): React.ReactNode {
 
             <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
               {isAr
-                ? 'نطبق إجراءات رقابة صارمة على الجودة في كل مرحلة من مراحل سلسلة الإمداد — من بلد المنشأ وحتى التسليم النهائي. تخضع محاصيلنا للفحص والاختبار الدقيق والمعاملة وفق بيئات حرارية محكمة لضمان أعلى مستويات الطزاجة والسلامة الغذائية.'
+                ? 'نحن نتبع تدابير صارمة لمراقبة الجودة في كل مرحلة من مراحل سلسلة التوريد - من المنشأ إلى التسليم. يتم فحص واختبار والتعامل مع منتجاتنا في ظل ظروف خاضعة للرقابة لضمان أقصى قدر من النضارة والسلامة.'
                 : 'We follow strict quality control measures at every stage of the supply chain — from origin to delivery. Our produce is inspected, tested and handled under controlled conditions to ensure maximum freshness and safety.'}
             </p>
 
             <div className="pt-2">
               <CtaButton
                 href={isAr ? '/ar/company#quality' : '/company#quality'}
-                text={isAr ? 'منظومة الجودة لدينا' : 'Our Quality Process'}
+                text={isAr ? 'عملية الجودة لدينا' : 'Our Quality Process'}
                 variant="primary"
               />
             </div>

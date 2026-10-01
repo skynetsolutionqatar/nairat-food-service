@@ -31,25 +31,25 @@ const timelineSteps: TimelineStep[] = [
     step: '1',
     icon: <ClipboardCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     title: 'Inspected at Origin',
-    titleAr: 'فحص دقيق في بلد المنشأ',
+    titleAr: 'تم الفحص في بلد المنشأ',
     desc: 'Carefully selected and inspected at source to ensure the best quality.',
-    descAr: 'اختيار دقيق وفحص في المصدر لضمان أعلى معايير الجودة الغذائية.',
+    descAr: 'تم الاختيار والفحص بعناية في المصدر لضمان أفضل جودة.',
   },
   {
     step: '2',
     icon: <TestTube className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     title: 'Tested on Arrival',
-    titleAr: 'فحص مخبري عند الوصول',
+    titleAr: 'تم الاختبار عند الوصول',
     desc: 'Laboratory testing in line with Qatar food-safety requirements.',
-    descAr: 'اختبارات مخبرية مطابقة لمتطلبات سلامة الغذاء في دولة قطر.',
+    descAr: 'اختبارات مخبرية تتماشى مع متطلبات سلامة الغذاء في قطر.',
   },
   {
     step: '3',
     icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     title: 'Protected Through Cold Chain',
-    titleAr: 'حماية عبر سلسلة التبريد',
+    titleAr: 'محمية عبر سلسلة التبريد',
     desc: 'Temperature-controlled storage and transport preserve freshness.',
-    descAr: 'تخزين ونقل مبرد ومضبوط حرارياً للحفاظ على طزاجة المحاصيل.',
+    descAr: 'تخزين ونقل يتم التحكم في درجة حرارته للحفاظ على النضارة.',
   },
 ];
 
@@ -59,15 +59,15 @@ const certificates: Certificate[] = [
     title: 'Food Safety Management',
     titleAr: 'إدارة سلامة الغذاء',
     subtitle: 'Quality Compliance Certificate',
-    subtitleAr: 'شهادة الامتثال لمعايير الجودة',
+    subtitleAr: 'شهادة الامتثال للجودة',
     imageSrc: '/certificates/c1-1-1.png',
   },
   {
     id: 'cert-2',
     title: 'ISO Accreditation',
-    titleAr: 'اعتماد الآيزو العالمي',
+    titleAr: 'اعتماد الآيزو',
     subtitle: 'Official Supply Chain Accreditation',
-    subtitleAr: 'اعتماد رسمي لسلاسل الإمداد والتوريد',
+    subtitleAr: 'اعتماد رسمي لسلسلة التوريد',
     imageSrc: '/certificates/c2-2-1.png',
   },
 ];
@@ -131,14 +131,14 @@ export function QualityTimeline() {
             {/* Headings */}
             <div className="space-y-2.5 2xl:space-y-3">
               <div className="quality-header-item">
-                <SectionEyebrow title={isAr ? 'الشهادات ومعايير الجودة' : 'CERTIFICATIONS & QUALITY'} />
+                <SectionEyebrow title={isAr ? 'الشهادات والجودة' : 'CERTIFICATIONS & QUALITY'} />
               </div>
               <h2 className="quality-header-item font-display type-h2 font-semibold text-[#111814] text-start">
-                {isAr ? 'جودة يمكنك الوثوق بها دائماً.' : 'Quality You Can Trust.'}
+                {isAr ? 'جودة يمكنك الوثوق بها.' : 'Quality You Can Trust.'}
               </h2>
               <p className="quality-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
                 {isAr
-                  ? 'تعتبر الجودة وسلامة الغذاء جزءاً أساسياً في كل مرحلة من مراحل سلسلة التوريد لدينا — بدءاً من الفحص في بلد المنشأ إلى الفحص المخبري عند الوصول والنقل المبرد.'
+                  ? 'تم بناء الجودة وسلامة الغذاء في كل مرحلة من مراحل سلسلة التوريد لدينا – بدءاً من الفحص في بلد المنشأ إلى الاختبارات المخبرية عند الوصول والتسليم الذي يتم التحكم في درجة حرارته.'
                   : 'Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.'}
               </p>
             </div>

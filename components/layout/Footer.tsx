@@ -49,7 +49,7 @@ export function Footer() {
           {/* Center: Bold Headline */}
           <div className="text-start md:text-center">
             <h2 className="font-display font-medium text-[20px] min-[380px]:text-[22px] min-[480px]:text-2xl sm:text-3xl lg:text-4xl text-[#111814] tracking-[-0.03em] leading-tight">
-              {locale === 'ar' ? 'طازجة دائماً نحو المستقبل' : 'Go Fresh for Future'}
+              {dict.footer.goFreshForFuture}
             </h2>
           </div>
 
@@ -126,7 +126,7 @@ export function Footer() {
         <div className="footer-content-item flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4 text-[11px] min-[380px]:text-xs text-[#9CA3AF] font-normal text-start">
           <p className="text-start">
             {locale === 'ar'
-              ? `جميع الحقوق محفوظة © ${new Date().getFullYear()} نيرات للخدمات الغذائية.`
+              ? `حقوق النشر © ${new Date().getFullYear()} نيرات للخدمات الغذائية. جميع الحقوق محفوظة.`
               : `Copyright © ${new Date().getFullYear()} Nairat Food Services. All rights reserved.`}
           </p>
 

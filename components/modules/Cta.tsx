@@ -79,10 +79,10 @@ export function Cta() {
             </div>
             <div className="font-sans text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-sm text-white leading-tight sm:leading-snug text-start">
               <span className="block font-semibold text-white">
-                {locale === 'ar' ? 'منتقاة من أرقى مزارع العالم.' : 'Sourced Around the World.'}
+                {locale === 'ar' ? 'تم التوريد من جميع أنحاء العالم.' : 'Sourced Around the World.'}
               </span>
               <span className="block text-white/80">
-                {locale === 'ar' ? 'تُسلّم إلى كافة أنحاء قطر.' : 'Delivered Across Qatar.'}
+                {locale === 'ar' ? 'يتم التوصيل في جميع أنحاء قطر.' : 'Delivered Across Qatar.'}
               </span>
             </div>
           </div>

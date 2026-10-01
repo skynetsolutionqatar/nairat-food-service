@@ -59,7 +59,7 @@ const countryPartners: CountryPartner[] = [
   },
   {
     name: 'Global Origins',
-    nameAr: 'مناشئ عالمية أخرى',
+    nameAr: 'أصول عالمية',
     flag: '/cta/ctacontry.webp',
     crops: 'Specialty culinary lines from India, Turkey, and Europe',
   },
@@ -106,13 +106,13 @@ export function PartnerCountryGrid(): React.ReactNode {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
         <div className="country-header-item space-y-3 text-start">
-          <SectionEyebrow title={isAr ? 'شراكات التوريد الزراعي العالمية' : 'GLOBAL SOURCING PARTNERSHIPS'} />
+          <SectionEyebrow title={isAr ? 'شراكات التوريد العالمية' : 'GLOBAL SOURCING PARTNERSHIPS'} />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
             {isAr ? (
               <>
-                شراكات استراتيجية طويلة الأمد مع <br />
-                <span className="text-[#168849]">كبرى المزارع وبيوت التصدير العالمية</span>
+                شراكات طويلة الأمد مع <br />
+                <span className="text-[#168849]">المزارعين وبيوت التصدير</span>
               </>
             ) : (
               <>

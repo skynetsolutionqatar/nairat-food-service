@@ -52,13 +52,13 @@ export function PartnerRetail(): React.ReactNode {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
         <div className="retail-header-item space-y-3 text-start">
-          <SectionEyebrow title={isAr ? 'شركاء قطاع التجزئة' : 'OUR RETAIL PARTNERS'} />
+          <SectionEyebrow title={isAr ? 'شركاؤنا في التجزئة' : 'OUR RETAIL PARTNERS'} />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
             {isAr ? (
               <>
-                المورد اليومي الموثوق <br />
-                <span className="text-[#168849]">لكبرى مجموعات التجزئة في دولة قطر</span>
+                المورد اليومي الموثوق به <br />
+                <span className="text-[#168849]">لمجموعات التجزئة الرائدة في قطر</span>
               </>
             ) : (
               <>

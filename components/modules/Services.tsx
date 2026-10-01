@@ -28,7 +28,7 @@ const serviceCards: ServiceCard[] = [
     title: 'Retail & Wholesale Distribution',
     titleAr: 'توزيع التجزئة والجملة',
     desc: 'Daily fresh-produce supply to retailers, wholesalers, supermarkets and food-service businesses across Qatar.',
-    descAr: 'توريد يومي للمحاصيل الطازجة لمتاجر التجزئة ومحلات السوبرماركت ومؤسسات الضيافة في قطر.',
+    descAr: 'إمداد يومي بالمنتجات الطازجة لتجار التجزئة وتجار الجملة ومحلات السوبرماركت وشركات الخدمات الغذائية في جميع أنحاء قطر.',
     imageUrl: '/services/wholesale-distribution.avif',
     actionText: 'Explore Distribution',
     actionTextAr: 'استكشف التوزيع',
@@ -40,10 +40,10 @@ const serviceCards: ServiceCard[] = [
     title: 'Grower & Exporter Partnerships',
     titleAr: 'شراكات المزارعين والمصدرين',
     desc: 'A reliable local partner for growers and exporters looking to bring fresh produce to the Qatar market.',
-    descAr: 'شريك محلي موثوق للمزارعين والمصدرين الراغبين في توريد محاصيلهم إلى السوق القطري.',
+    descAr: 'شريك محلي موثوق للمزارعين والمصدرين الذين يتطلعون إلى جلب المنتجات الطازجة إلى سوق قطر.',
     imageUrl: '/services/grower-and-exporter.avif',
     actionText: 'Partner With Us',
-    actionTextAr: 'شاركنا النجاح',
+    actionTextAr: 'كن شريكاً معنا',
     actionHref: '/contact?subject=grower',
     actionHrefAr: '/ar/contact?subject=grower',
   },
@@ -52,7 +52,7 @@ const serviceCards: ServiceCard[] = [
     title: 'Nairat Retail Shop',
     titleAr: 'متجر نيرات للتجزئة',
     desc: 'Fresh fruits and vegetables available directly to consumers at our retail store.',
-    descAr: 'فواكه وخضروات طازجة متاحة مباشرة للمستهلكين في متجرنا الخاص بالدوحة.',
+    descAr: 'فواكه وخضروات طازجة متوفرة مباشرة للمستهلكين في متجر التجزئة الخاص بنا.',
     imageUrl: '/services/nairat-shop.avif',
     actionText: 'Visit Nairat Shop',
     actionTextAr: 'زيارة متجر نيرات',
@@ -102,13 +102,13 @@ export function Services() {
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
             <div className="service-header-item">
-              <SectionEyebrow title={isAr ? 'خدماتنا' : 'WHAT WE DO'} />
+              <SectionEyebrow title={isAr ? 'ما نقوم به' : 'WHAT WE DO'} />
             </div>
             <h2 className="service-header-item font-display type-h2 font-semibold text-[#111814] text-start">
               {isAr ? (
                 <>
-                  توريد المحاصيل الطازجة <br />
-                  لكافة القطاعات.
+                  إمداد المنتجات الطازجة <br />
+                  على كل المستويات.
                 </>
               ) : (
                 <>
@@ -123,12 +123,12 @@ export function Services() {
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
             <p className="service-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
               {isAr
-                ? 'من التوريد وسلاسل التبريد إلى التوزيع والتجزئة، نربط أجود المحاصيل الطازجة بالشركات والمستهلكين في كافة أنحاء دولة قطر.'
+                ? 'من التوريد والتوزيع إلى التجزئة، نربط المنتجات الطازجة المتميزة بالشركات والمستهلكين في جميع أنحاء قطر.'
                 : 'From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.'}
             </p>
             <div className="service-header-item self-start lg:self-end">
               <CtaButton href={isAr ? '/ar/services' : '/services'}>
-                {isAr ? 'استكشف خدماتنا' : 'Learn More'}
+                {isAr ? 'اعرف المزيد' : 'Learn More'}
               </CtaButton>
             </div>
           </div>

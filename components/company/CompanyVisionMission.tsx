@@ -54,8 +54,8 @@ export function CompanyVisionMission() {
               {isAr ? (
                 <>
                   مسيرتنا: <br />
-                  <span className="text-[#168849]">نبني مستقبلاً زراعياً</span> <br />
-                  أكثر طزاجة وازدهاراً لقطر.
+                  <span className="text-[#168849]">تنمية مستقبل أكثر نضارة</span> <br />
+                  لقطر.
                 </>
               ) : (
                 <>
@@ -69,12 +69,12 @@ export function CompanyVisionMission() {
             <div className="vision-mission-text-item space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
               <p>
                 {isAr
-                  ? 'منذ تأسيس شركتنا في عام 2020، طوّرت نيرات للأغذية قدراتها التشغيلية لتلبية الطلب المتزايد على المحاصيل الطازجة في السوق القطري.'
+                  ? 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر.'
                   : 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar.'}
               </p>
               <p>
                 {isAr
-                  ? 'من التوريد العالمي المباشر إلى شبكات التبريد والتوزيع المعتمدة، نجمع بين الخبرة العميقة بالسوق المحلي وشراكات الإنتاج العالمية لتوريد الخضروات والفواكه الطازجة بجودة ثابتة وتوفر دائم على مدار العام.'
+                  ? 'من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية لتقديم منتجات طازجة ومتسقة لعملاء التجزئة والتجاريين على مدار العام.'
                   : 'From global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.'}
               </p>
             </div>
@@ -90,11 +90,11 @@ export function CompanyVisionMission() {
                 </span>
               </div>
               <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug text-start">
-                {isAr ? 'نحو مستقبل أكثر طزاجة ونماء لدولة قطر.' : 'Growing a fresher future for Qatar.'}
+                {isAr ? 'تنمية مستقبل أكثر نضارة لقطر.' : 'Growing a fresher future for Qatar.'}
               </h3>
               <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55] text-start">
                 {isAr
-                  ? 'أن نكون الشريك والمورّد الرائد في دولة قطر للفواكه والخضروات الطازجة، بتقديم جودة استثنائية، وخدمة يُعتمد عليها، وتوفر مستمر على مدار العام، مع تحقيق قيمة مستدامة لعملائنا وشركائنا ومجتمعنا.'
+                  ? 'أن نكون المزود الرائد للفواكه والخضروات الطازجة في قطر، ونقدم جودة استثنائية، وخدمة موثوقة، وتوافراً على مدار العام مع خلق قيمة دائمة لعملائنا، وموردينا، ومجتمعاتنا.'
                   : "To be Qatar's premier provider of fresh fruits and vegetables, offering exceptional quality, dependable service and year-round availability while creating lasting value for our customers, suppliers and communities."}
               </p>
             </div>
@@ -107,11 +107,11 @@ export function CompanyVisionMission() {
                 </span>
               </div>
               <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug text-start">
-                {isAr ? 'الجودة، سلامة الغذاء، والقيمة المشتركة' : 'Quality, Safety & Stakeholder Value'}
+                {isAr ? 'الجودة، والسلامة وقيمة أصحاب المصلحة' : 'Quality, Safety & Stakeholder Value'}
               </h3>
               <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55] text-start">
                 {isAr
-                  ? 'نلتزم بتوريد محاصيل زراعية طازجة فائقة الجودة وبأسعار تنافسية، مع ترسيخ ثقافة صارمة لسلامة الغذاء في كافة مراحل العمليات. ونواصل الاستثمار في كوادرنا وأنظمتنا وبنيتنا التحتية لبناء شراكات طويلة الأمد.'
+                  ? 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل جانب من جوانب عملياتنا. نحن نستثمر باستمرار في موظفينا، وعملياتنا، وبنيتنا التحتية لبناء علاقات طويلة الأمد.'
                   : 'We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every aspect of our operations. We continuously invest in our people, processes and infrastructure to build long-term relationships.'}
               </p>
             </div>

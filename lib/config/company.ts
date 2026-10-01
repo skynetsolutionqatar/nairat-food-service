@@ -72,27 +72,27 @@ export const companyProfile: CompanyProfile = {
   values: {
     safetyFirst: {
       en: 'Food safety and workplace safety are non-negotiable. Certified systems, trained people and checks that happen every day.',
-      ar: 'سلامة الغذاء وبيئة العمل أولوية مطلقة لا مساومة فيها، عبر أنظمة معتمدة وكوادر مدربة وفحوصات مخبرية يومية.',
+      ar: 'سلامة الغذاء وسلامة مكان العمل غير قابلة للتفاوض. أنظمة معتمدة، وأفراد مدربون، وفحوصات تتم كل يوم.',
     },
     freshEveryDay: {
       en: 'Short lead times and an unbroken cold chain from the moment a shipment lands to the moment it reaches the shelf.',
-      ar: 'أوقات استجابة سريعة وسلسلة تبريد محكمة غير منقطعة من لحظة وصول الشحنة وحتى رفوف العرض.',
+      ar: 'مهل زمنية قصيرة وسلسلة تبريد غير منقطعة من لحظة وصول الشحنة إلى لحظة وصولها إلى الرف.',
     },
     reliableAtScale: {
       en: 'Volumes and planning that keep more than 100 branches stocked, with availability mapped across origins and seasons.',
-      ar: 'أحجام توريد وتخطيط دقيق يضمن استمرار إمداد أكثر من 100 فرع مع مراعاة تنوع المصادر والمواسم الزراعية.',
+      ar: 'كميات وتخطيط يحافظ على تزويد أكثر من 100 فرع، مع تحديد التوافر عبر المصادر والمواسم.',
     },
     truePartnership: {
       en: 'We work as an extension of our customers’ fresh teams, from forecasting and pricing to full category management.',
-      ar: 'نعمل كامتداد متكامل لفرق المنتجات الطازجة لدى عملائنا، بدءاً من التنبؤ بالطلب والتسعير ووصولاً لإدارة كامل الأصناف.',
+      ar: 'نعمل كامتداد لفرق المنتجات الطازجة لعملائنا، بدءاً من التنبؤ والتسعير إلى الإدارة الكاملة للفئات.',
     },
   },
   vision: {
     en: 'To be Qatar’s premier supplier of fresh fruits and vegetables: the partner retailers rely on for range, quality and availability in every season.',
-    ar: 'أن نكون المورد الأول والموثوق للفواكه والخضروات الطازجة في دولة قطر، والشريك الذي تعتمد عليه كبرى المتاجر للجودة والوفرة في كل موسم.',
+    ar: 'أن نكون المورد الأول للفواكه والخضروات الطازجة في قطر: الشريك الذي يعتمد عليه تجار التجزئة في التشكيلة والجودة والتوافر في كل موسم.',
   },
   mission: {
     en: 'To supply high-quality, affordable fresh produce with food safety built into every step, to keep our people safe and growing, and to be a long-term, trusted partner to our customers, suppliers and community.',
-    ar: 'توريد محاصيل زراعية طازجة فائقة الجودة وبأسعار منافسة مع ترسيخ سلامة الغذاء في كل مرحلة، وتطوير كوادرنا، وبناء شراكات موثوقة ومستدامة مع عملائنا وموردينا ومجتمعنا.',
+    ar: 'توريد منتجات طازجة عالية الجودة وبأسعار معقولة مع دمج سلامة الغذاء في كل خطوة، والحفاظ على سلامة أفرادنا ونموهم، وأن نكون شريكاً موثوقاً طويل الأمد لعملائنا وموردينا ومجتمعنا.',
   },
 };

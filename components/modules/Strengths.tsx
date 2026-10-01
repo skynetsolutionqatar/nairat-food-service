@@ -25,31 +25,31 @@ export function Strengths() {
     {
       id: 'chiller-rooms',
       number: locale === 'ar' ? '20' : '20',
-      title: locale === 'ar' ? 'غرف تبريد متخصصة' : 'Dedicated Chiller Rooms',
-      desc: locale === 'ar' ? 'نطاقات حرارية مخصصة لضبط درجات الحرارة بدقة لكل صنف من الفواكه والخضروات.' : 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
+      title: locale === 'ar' ? 'غرف تبريد مخصصة' : 'Dedicated Chiller Rooms',
+      desc: locale === 'ar' ? 'نطاقات درجات حرارة مخصصة تم ضبطها خصيصاً للحفاظ على ذروة النضارة لكل نوع من الفواكه والخضروات.' : 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
       imageUrl: '/whychooseus/chiller-warehouse.avif',
       alt: '20 Dedicated Chiller Rooms',
     },
     {
       id: 'warehouse',
       number: '5,000 m²',
-      title: locale === 'ar' ? 'مستودع مبرد متطور' : 'Cold-Chain Warehouse',
-      desc: locale === 'ar' ? 'مرفق تخزين مبرد حديث يضمن استمرارية التحكم الصارم في معايير الجودة وسلامة الغذاء.' : 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.',
+      title: locale === 'ar' ? 'مستودع سلسلة التبريد' : 'Cold-Chain Warehouse',
+      desc: locale === 'ar' ? 'منشأة تخزين مبرد فسيحة وحديثة تضمن مراقبة جودة متواصلة من الاستلام حتى الإرسال.' : 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.',
       imageUrl: '/whychooseus/warehouse.avif',
       alt: '5,000 m² Cold-Chain Warehouse',
     },
     {
       id: 'cold-chain',
       title: locale === 'ar' ? 'سلسلة تبريد غير منقطعة' : 'Cold Chain Unbroken',
-      desc: locale === 'ar' ? 'تطبيق دقيق لنظام الوارد أولاً يصرف أولاً (FIFO) مع مراقبة حرارية مستمرة على مدار الساعة.' : 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
+      desc: locale === 'ar' ? 'تدوير صارم بنظام ما يدخل أولاً يخرج أولاً (FIFO) ومراقبة مستمرة للمناخ للحفاظ على المنتجات الطازجة في حالة مثالية عبر جميع مراحل النقل.' : 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
       imageUrl: '/whychooseus/temperature-controlled.avif',
       alt: 'Cold Chain Unbroken',
     },
     {
       id: 'fleet',
       number: locale === 'ar' ? '40' : '40',
-      title: locale === 'ar' ? 'مركبة نقل مبردة' : 'Refrigerated Vehicles',
-      desc: locale === 'ar' ? 'أسطول توزيع مبرد حديث ينقل المحاصيل الطازجة لمختلف مناطق قطر بانتظام تام.' : 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
+      title: locale === 'ar' ? 'مركبات مبردة' : 'Refrigerated Vehicles',
+      desc: locale === 'ar' ? 'أسطول توزيع حديث مضبوط الحرارة يوصل المنتجات الطازجة في جميع أنحاء قطر وفق جداول زمنية دقيقة.' : 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
       imageUrl: '/whychooseus/truck.avif',
       alt: '40 Refrigerated Vehicles',
     },
@@ -57,8 +57,8 @@ export function Strengths() {
 
   const tallCard: StrengthCard = {
     id: 'sourced-origin',
-    title: locale === 'ar' ? 'استيراد مباشر من المصدر' : 'Sourced at Origin',
-    desc: locale === 'ar' ? 'شراكات وثيقة مع مزارع عالمية معتمدة تضمن وصول المحاصيل الطازجة مباشرة إلى دولة قطر.' : 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
+    title: locale === 'ar' ? 'التوريد من المنشأ' : 'Sourced at Origin',
+    desc: locale === 'ar' ? 'شراكات مباشرة مع مزارعين دوليين معتمدين تضمن توصيل منتجات طازجة من المزرعة مباشرة إلى قطر.' : 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
     imageUrl: '/whychooseus/sourced-from-origin.avif',
     alt: 'Sourced at Origin',
   };
@@ -145,8 +145,8 @@ export function Strengths() {
             <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-start">
               {locale === 'ar' ? (
                 <>
-                  صُممت للحفاظ على النضارة. <br />
-                  جاهزون للتسليم الفوري.
+                  صُممت من أجل النضارة. <br />
+                  جاهزون للتوصيل.
                 </>
               ) : (
                 <>
@@ -161,7 +161,7 @@ export function Strengths() {
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
             <p className="strength-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
               {locale === 'ar'
-                ? 'من التوريد العالمي وحتى التسليم النهائي، صُممت سلسلة التبريد المتكاملة لدينا لحماية الجودة وضمان ثبات المعايير وتوفير المنتجات الطازجة لجميع مناطق قطر.'
+                ? 'من التوريد العالمي إلى التوصيل في المرحلة الأخيرة، صُممت سلسلة التوريد المتكاملة لدينا لحماية الجودة، والحفاظ على الاتساق، وتوصيل المنتجات الطازجة بموثوقية في جميع أنحاء قطر.'
                 : 'From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.'}
             </p>
             <div className="strength-header-item self-start lg:self-end">

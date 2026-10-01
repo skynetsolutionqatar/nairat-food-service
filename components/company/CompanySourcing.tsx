@@ -54,7 +54,7 @@ export function CompanySourcing() {
               {isAr ? (
                 <>
                   التوريد الاستراتيجي: <br />
-                  <span className="text-[#168849]">من مزارع العالم الكبرى</span> <br />
+                  <span className="text-[#168849]">من البساتين العالمية</span> <br />
                   إلى قطر.
                 </>
               ) : (
@@ -69,17 +69,17 @@ export function CompanySourcing() {
             <div className="sourcing-header-item space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
               <p>
                 {isAr
-                  ? 'المحاصيل الطازجة ترتبط بالمواسم، ولكن توريدنا يجب أن يكون مستمراً وموثوقاً. لذلك تعمل نيرات مباشرة مع كبار المزارعين والموردين في أهم المناطق الزراعية حول العالم.'
+                  ? 'المنتجات الطازجة موسمية. وإمدادنا يحتاج إلى أن يكون موثوقاً. تعمل نيرات مباشرة مع المزارعين والموردين عبر مناطق الإنتاج الرئيسية حول العالم.'
                   : 'Fresh produce is seasonal. Our supply needs to be dependable. Nairat works directly with growers and suppliers across major producing regions around the world.'}
               </p>
               <p>
                 {isAr
-                  ? 'تمتد شبكة توريدنا عبر بلاد الشام والخليج وإفريقيا وآسيا وحول العالم، مما يمكننا من جدولة التوريد وفقاً لمواسم الحصاد وحجم الطلب في السوق القطري.'
+                  ? 'تمتد شبكة التوريد لدينا عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يسمح لنا بتخطيط الإمداد وفقاً للتوافر الموسمي والطلب في السوق.'
                   : 'Our sourcing network spans the Levant, Gulf, Africa, Asia and beyond, allowing us to plan supply according to seasonal availability and market demand.'}
               </p>
               <p>
                 {isAr
-                  ? 'ومن خلال التوريد المتزامن من مناطق جغرافية متعددة، نحافظ على ثبات أعلى مستويات الجودة والتنوع والوفرة للمستهلكين طوال أشهر السنة.'
+                  ? 'من خلال التوريد من مناطق متعددة في وقت واحد، نحافظ على اتساق أكبر في جودة المنتج وتنوعه وتوافره طوال العام بأكمله.'
                   : 'By sourcing from multiple regions simultaneously, we maintain greater consistency in product quality, variety, and availability throughout the entire year.'}
               </p>
             </div>
@@ -91,15 +91,15 @@ export function CompanySourcing() {
             <div className="sourcing-card-item p-6 sm:p-7 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80 shadow-2xs space-y-3">
               <div className="inline-block">
                 <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
-                  {isAr ? 'توريد عالمي متعدد المصادر' : 'Diversified Sourcing'}
+                  {isAr ? 'توريد متنوع' : 'Diversified Sourcing'}
                 </span>
               </div>
               <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug text-start">
-                {isAr ? 'بلاد الشام، الخليج، إفريقيا، وآسيا' : 'The Levant, Gulf, Africa & Asia'}
+                {isAr ? 'بلاد الشام، والخليج، وإفريقيا وآسيا' : 'The Levant, Gulf, Africa & Asia'}
               </h3>
               <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55] text-start">
                 {isAr
-                  ? 'علاقات مباشرة مع مزارع معتمدة في الأردن، لبنان، سوريا، السعودية، مصر، جنوب إفريقيا، تركيا، والهند، تضمن تدفقاً يومياً لا ينقطع للحمضيات، الفواكه الصيفية، الورقيات، المحاصيل الجذرية، والأصناف الخاصة.'
+                  ? 'علاقات مباشرة مع مزارعين موثوقين عبر الأردن، ولبنان، وسوريا، والمملكة العربية السعودية، ومصر، وجنوب إفريقيا، وتركيا، والهند تضمن وصولاً دون انقطاع للحمضيات، والفواكه ذات النواة الحجرية، والخضروات الورقية، والخضروات الجذرية، وخطوط الطهي الغريبة.'
                   : 'Direct relationships with verified growers across Jordan, Lebanon, Syria, Saudi Arabia, Egypt, South Africa, Turkey, and India ensure uninterrupted arrivals of citrus, stone fruits, leafy greens, root vegetables, and exotic culinary lines.'}
               </p>
             </div>
@@ -108,15 +108,15 @@ export function CompanySourcing() {
             <div className="sourcing-card-item p-6 sm:p-7 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80 shadow-2xs space-y-3">
               <div className="inline-block">
                 <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
-                  {isAr ? 'منفذ أبو سمرة وضبط الجودة' : 'Abu Samra Border & QA'}
+                  {isAr ? 'حدود أبو سمرة وضمان الجودة' : 'Abu Samra Border & QA'}
                 </span>
               </div>
               <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug text-start">
-                {isAr ? 'الحجر الزراعي والرقابة عند الوصول' : 'Border Quarantine & Origin Inspection'}
+                {isAr ? 'الحجر الصحي على الحدود والفحص في المنشأ' : 'Border Quarantine & Origin Inspection'}
               </h3>
               <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55] text-start">
                 {isAr
-                  ? 'تتولى فرقنا فحص الشحنات في بلد المنشأ وتُجري تدقيقاً مخبرياً دقيقاً عند نقاط الدخول الرئيسية، بما في ذلك التفتيش البري بمنفذ أبو سمرة الحدودي، قبل إدخال البضائع إلى مستودعاتنا المبردة بالدوحة.'
+                  ? 'تقوم فرق المشتريات لدينا بفحص الشحنات في بلد المنشأ والحفاظ على التحقق الفعال من الجودة في نقاط الدخول الرئيسية، بما في ذلك فحص ضمان الجودة البري عند حدود أبو سمرة البرية، قبل دخول الشحنة إلى مستودعنا الذي يتم التحكم في درجة حرارته في الدوحة.'
                   : 'Our procurement teams inspect consignments at origin and maintain active quality verification at key entry points, including overland QA inspection at the Abu Samra land border, before cargo enters our temperature-controlled warehouse in Doha.'}
               </p>
             </div>

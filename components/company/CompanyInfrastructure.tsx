@@ -18,44 +18,44 @@ const scaleItems: ScaleItem[] = [
   {
     value: '200+',
     label: 'Team Members',
-    labelAr: 'عضو في فريق العمل',
+    labelAr: 'أعضاء الفريق',
     description: 'Skilled logistics professionals, QA inspectors, and cold-storage operators.',
-    descriptionAr: 'فريق متخصص من الخبراء اللوجستيين ومفتشي الجودة ومشغلي التبريد المركزي.',
+    descriptionAr: 'متخصصون لوجستيون ماهرون، ومفتشو ضمان الجودة، ومشغلو التخزين المبرد.',
   },
   {
     value: '5,000 m²',
     label: 'Cold-Chain Warehouse',
-    labelAr: 'مستودع سلاسل التبريد',
+    labelAr: 'مستودع سلسلة التبريد',
     description: 'Purpose-built facility in Doha’s Industrial Area engineered for high-volume fresh handling.',
-    descriptionAr: 'منشأة مركزية مجهزة في المنطقة الصناعية بالدوحة لمناولة كميات ضخمة بكفاءة.',
+    descriptionAr: 'منشأة مصممة خصيصاً في المنطقة الصناعية بالدوحة ومجهزة للتعامل مع كميات كبيرة من المنتجات الطازجة.',
   },
   {
     value: '20',
     label: 'Dedicated Chiller Rooms',
-    labelAr: 'غرفة تبريد متخصصة',
+    labelAr: 'غرف تبريد مخصصة',
     description: 'Custom temperature-controlled rooms, storing produce according to specific climate needs.',
-    descriptionAr: 'غرف تحكم حراري مستقلة لتخزين كل محصول وفق البيئة المناخية المثلى له.',
+    descriptionAr: 'غرف مخصصة يتم التحكم في درجة حرارتها، لتخزين المنتجات وفقاً للاحتياجات المناخية المحددة.',
   },
   {
     value: '40',
     label: 'Refrigerated Vehicles',
-    labelAr: 'مركبة توزيع مبردة',
+    labelAr: 'مركبات مبردة',
     description: 'Temperature-controlled fleet providing reliable daily distribution across all districts in Qatar.',
-    descriptionAr: 'أسطول مبرد يضمن التوزيع اليومي الموثوق إلى كافة مناطق ومتاجر دولة قطر.',
+    descriptionAr: 'أسطول يتم التحكم في درجة حرارته يوفر توزيعاً يومياً موثوقاً في جميع مناطق قطر.',
   },
   {
     value: '6',
     label: 'Loading-Dock Truck Doors',
-    labelAr: 'أرصفة تحميل للشاحنات',
+    labelAr: 'أبواب أرصفة تحميل الشاحنات',
     description: 'High-throughput receiving and dispatch bays minimizing produce exposure to ambient heat.',
-    descriptionAr: 'أرصفة استلام وتفريغ سريعة تمنع تعرض المحاصيل للحرارة وتحفظ سلسلة التبريد.',
+    descriptionAr: 'أرصفة استلام وإرسال عالية السعة تقلل من تعرض المنتجات للحرارة المحيطة.',
   },
   {
     value: '1,200+',
     label: 'Active Produce Lines',
-    labelAr: 'صنف زراعي نشط',
+    labelAr: 'خطوط منتجات طازجة نشطة',
     description: 'Diverse catalog spanning fresh fruits, vegetables, and specialty gourmet lines across Qatar.',
-    descriptionAr: 'كتالوج شامل يغطي أجود أنواع الخضار والفواكه والمنتجات الطازجة لكافة القطاعات.',
+    descriptionAr: 'كتالوج متنوع يشمل الفواكه الطازجة، والخضروات، وخطوط المنتجات الفاخرة المتخصصة في جميع أنحاء قطر.',
   },
 ];
 
@@ -120,8 +120,8 @@ export function CompanyInfrastructure() {
             <h2 className="infra-green-header font-display type-h2 font-semibold text-white text-start leading-[1.12]">
               {isAr ? (
                 <>
-                  صُممت لترسيخ الطزاجة: <br />
-                  <span className="text-[#D4F056]">بنية تحتية للطاقة الاستيعابية الكبرى</span>
+                  صُممت حول النضارة: <br />
+                  <span className="text-[#D4F056]">بنية تحتية مصممة للنمو والتوسع</span>
                 </>
               ) : (
                 <>
@@ -135,7 +135,7 @@ export function CompanyInfrastructure() {
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end">
             <p className="infra-green-header font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-white/90 leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
               {isAr
-                ? 'تُشكّل منشأتنا وسلاسل تبريدنا بالمنطقة الصناعية في الدوحة القلب النابض لعمليات التوزيع لدينا. مع غرف التبريد المخصصة، وأرصفة الشحن المتطورة، وأسطول النقل المبرد، صُممت بنيتنا التحتية لنقل وتوزيع المحاصيل الطازجة بأقصى سرعة وأعلى معايير الأمان الغذائي.'
+                ? 'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.'
                 : "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery."}
             </p>
           </div>
@@ -148,7 +148,7 @@ export function CompanyInfrastructure() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/5]">
               <Image
                 src="/whychooseus/chiller-warehouse.avif"
-                alt={isAr ? "مستودعات التبريد المركزي لشركة نيرات للأغذية" : "Nairat Food Cold Storage Chiller Warehouse Facility"}
+                alt={isAr ? "منشأة مستودع التخزين المبرد لشركة نيرات للأغذية" : "Nairat Food Cold Storage Chiller Warehouse Facility"}
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 500px"
@@ -157,11 +157,11 @@ export function CompanyInfrastructure() {
 
               <div className="absolute bottom-4 start-4 end-4 p-4 rounded-2xl bg-black/50 backdrop-blur-md text-white text-xs space-y-1 text-start">
                 <span className="font-semibold text-[#D4F056] block uppercase tracking-wider">
-                  {isAr ? 'المركز الرئيسي بالمنطقة الصناعية · الدوحة' : 'Industrial Area Hub · Doha'}
+                  {isAr ? 'مركز المنطقة الصناعية · الدوحة' : 'Industrial Area Hub · Doha'}
                 </span>
                 <span className="text-white/80 block">
                   {isAr
-                    ? 'منظومة سلاسل تبريد غير منقطعة تعمل على مدار الساعة لخدمة قطر.'
+                    ? 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.'
                     : 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.'}
                 </span>
               </div>

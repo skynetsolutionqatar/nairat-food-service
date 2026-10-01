@@ -11,13 +11,13 @@ import { CompanyLookingAhead } from '@/components/company/CompanyLookingAhead';
 import { Cta } from '@/components/modules/Cta';
 
 export const metadata: Metadata = {
-  title: 'عن الشركة — نيرات للخدمات الغذائية قطر',
+  title: 'الشركة — نيرات للخدمات الغذائية قطر',
   description:
-    'تعرف على شركة نيرات للخدمات الغذائية: الشريك الرائد في استيراد وتوزيع المحاصيل الزراعية الطازجة في دولة قطر. مستودعات مبردة بمساحة 5,000 م²، وأسطول توزيع مبرد.',
+    'اكتشف نيرات للخدمات الغذائية: شريك المنتجات الطازجة الرائد في قطر منذ عام 2020. مستودع سلسلة التبريد بمساحة 5,000 م²، و20 غرفة تبريد، و40 مركبة مبردة، وسلامة غذاء معتمدة بشهادات ISO 22000 / HACCP.',
   openGraph: {
-    title: 'عن شركة نيرات للخدمات الغذائية — شريك التوريد الزراعي في قطر',
+    title: 'حول نيرات للخدمات الغذائية — شريك المنتجات الطازجة لقطر',
     description:
-      'نربط المزارع العالمية الرائدة بأسواق قطر عبر منظومة تخزين وسلاسل تبريد متكاملة.',
+      'من التوريد العالمي إلى التوصيل المحلي عبر سلسلة التبريد، تربط نيرات للأغذية أرقى المنتجات الطازجة في العالم بالعملاء في جميع أنحاء قطر.',
     url: 'https://nairatfoodservices.com/ar/company',
     siteName: 'نيرات للخدمات الغذائية',
     locale: 'ar_QA',
@@ -30,10 +30,10 @@ export default function ArabicCompanyPage() {
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title="عن الشركة"
+        title="الشركة"
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
-          { label: 'عن الشركة' },
+          { label: 'الشركة' },
         ]}
       />
 

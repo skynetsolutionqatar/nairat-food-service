@@ -81,14 +81,14 @@ export function CompanyDelivering() {
           {/* Right Column: Narrative Copy + Commitment Box (7 cols) */}
           <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
             <div className="delivering-text-item">
-              <SectionEyebrow title={isAr ? 'نقدم الطزاجة والجودة' : 'Delivering Freshness'} />
+              <SectionEyebrow title={isAr ? 'توصيل النضارة' : 'Delivering Freshness'} />
             </div>
 
             <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
               {isAr ? (
                 <>
-                  شريك متكامل لتوريد المحاصيل <br className="hidden sm:inline" />
-                  <span className="text-[#168849]">الطازجة في دولة قطر.</span>
+                  شريك شامل للمنتجات <br className="hidden sm:inline" />
+                  <span className="text-[#168849]">الطازجة لقطر.</span>
                 </>
               ) : (
                 <>
@@ -101,17 +101,17 @@ export function CompanyDelivering() {
             <div className="space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
               <p className="delivering-text-item">
                 {isAr
-                  ? 'تعد شركة نيرات للخدمات الغذائية إحدى كبرى الشركات الرائدة في استيراد وتوزيع وتوريد الخضروات والفواكه الطازجة في دولة قطر.'
+                  ? 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.'
                   : "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables."}
               </p>
               <p className="delivering-text-item">
                 {isAr
-                  ? 'تأسست نيرات عام 2020 وشهدت نمواً متسارعاً عبر الدمج بين التوريد العالمي المباشر، والمعرفة العميقة بالسوق المحلي، والخدمات اللوجستية الموثوقة. واليوم نخدم كبرى سلاسل الهايبرماركت، والسوبرماركت، وأسواق الجملة، وقطاع الضيافة في قطر.'
+                  ? 'تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.'
                   : 'Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.'}
               </p>
               <p className="delivering-text-item">
                 {isAr
-                  ? 'من مزارع بلاد الشام والخليج وإفريقيا وآسيا وحول العالم، تصل محاصيلنا عبر سلسلة إمداد وتبريد متكاملة مصممة لحفظ الطزاجة من المصدر وحتى العميل.'
+                  ? 'من المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.'
                   : 'From farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.'}
               </p>
             </div>
@@ -126,11 +126,11 @@ export function CompanyDelivering() {
               </div>
               <div className="space-y-1.5 flex-1 text-start">
                 <h3 className="font-display font-semibold text-base sm:text-lg text-[#111814]">
-                  {isAr ? 'التزامنا الجوهري' : 'Our Core Commitment'}
+                  {isAr ? 'التزامنا الأساسي' : 'Our Core Commitment'}
                 </h3>
                 <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
                   {isAr
-                    ? 'توريد محاصيل طازجة فائقة الجودة بأعلى معايير السلامة والكفاءة والاستمرارية. تُنتقى بعناية، وتُعامل بدقة، وتُسلّم بكل ثقة.'
+                    ? 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.'
                     : 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.'}
                 </p>
               </div>

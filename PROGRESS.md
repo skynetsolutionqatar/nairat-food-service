@@ -161,4 +161,12 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
 - [x] **A10: Unified Partners**: Built `data/partners.ts` with 10 verified retail and wholesale partners.
 - [x] **A11: Contact Form Delivery**: Configured multi-provider SMTP with proper error handling and contact channel fallbacks.
 - [x] **A12: Domain & SEO Cutover**: Set `metadataBase` to `https://nairatfoodservices.com`, created dynamic `sitemap.ts` (32 routes) and `robots.ts`, and configured 301 legacy redirects in `next.config.ts`.
+- [x] **A14: 1:1 Exact Arabic Translation Alignment**:
+  - Re-translated all Arabic content 1:1 literally and semantically from English source across all files without poetic omission or embellishment, ensuring back-translation directly matches English.
+  - Rewrote central i18n dictionaries (`lib/i18n/dictionaries/ar.ts` & `en.ts`) including form fields, labels, placeholders, and error messages.
+  - Aligned all subpage components (`components/company/*`, `components/services/*`, `components/quality/*`, `components/partners/*`, `components/contact/*`).
+  - Aligned all subpage metadata and page banners across `app/ar/*` (`/ar`, `/ar/company`, `/ar/services`, `/ar/quality`, `/ar/partners`, `/ar/contact`, `/ar/products/[category]`, `/ar/privacy`, `/ar/terms`).
+  - Aligned all 34 product Arabic names in `data/products.ts` and regional sourcing keys in `data/sourcing.ts`.
+  - Zero TypeScript errors (`npx tsc --noEmit`) and verified static production build (32/32 routes).
+  - Validated via `agent-browser` with screenshots of `/ar`, `/ar/company`, `/ar/services`, `/ar/quality`, `/ar/partners`, `/ar/contact`, `/ar/products/vegetables`.
 

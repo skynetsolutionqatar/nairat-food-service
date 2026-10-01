@@ -22,17 +22,17 @@ export function QualitySupplyChain(): React.ReactNode {
   const steps: StepItem[] = [
     {
       number: '01',
-      title: isAr ? 'التوريد المباشر' : 'Source',
+      title: isAr ? 'التوريد' : 'Source',
       description: isAr
-        ? 'نتعاون مع نخبة من المزارعين والمنتجين المعتمدين حول العالم.'
+        ? 'نحن نتشارك مع مزارعين وموردين موثوقين في جميع أنحاء العالم.'
         : 'We partner with trusted growers and suppliers worldwide.',
       icon: <Sprout className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
     {
       number: '02',
-      title: isAr ? 'الفحص والمعاينة' : 'Inspect',
+      title: isAr ? 'الفحص' : 'Inspect',
       description: isAr
-        ? 'تخضع كل شحنة للفحص الدقيق والاختبارات المخبرية للتأكد من السلامة والمطابقة.'
+        ? 'يتم فحص واختبار كل شحنة للتأكد من الجودة والسلامة.'
         : 'Every consignment is inspected and tested for quality and safety.',
       icon: <Search className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
@@ -40,15 +40,15 @@ export function QualitySupplyChain(): React.ReactNode {
       number: '03',
       title: isAr ? 'سلسلة التبريد' : 'Cold Chain',
       description: isAr
-        ? 'تخزين ونقل مبرد مع ضبط مستمر لدرجات الحرارة لحفظ النضارة.'
+        ? 'تخزين ونقل يتم التحكم في درجة حرارته للحفاظ على النضارة.'
         : 'Temperature-controlled storage and transport maintain freshness.',
       icon: <Snowflake className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
     {
       number: '04',
-      title: isAr ? 'التسليم والتوزيع' : 'Deliver',
+      title: isAr ? 'التسليم' : 'Deliver',
       description: isAr
-        ? 'تصل المحاصيل الطازجة يومياً لعملائنا في كافة مناطق دولة قطر.'
+        ? 'تصل المنتجات الطازجة إلى عملائنا في جميع أنحاء قطر.'
         : 'Fresh produce reaches our customers across Qatar.',
       icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
@@ -91,15 +91,15 @@ export function QualitySupplyChain(): React.ReactNode {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Heading & Narrative (4 cols) */}
           <div className="chain-anim-left lg:col-span-4 space-y-4 text-start">
-            <SectionEyebrow title={isAr ? 'سلسلة الإمداد والتوريد' : 'OUR SUPPLY CHAIN'} />
+            <SectionEyebrow title={isAr ? 'سلسلة التوريد لدينا' : 'OUR SUPPLY CHAIN'} />
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.15] tracking-tight">
-              {isAr ? 'من الحقل إلى مائدتكم' : 'From Farm to You'}
+              {isAr ? 'من المزرعة إليك' : 'From Farm to You'}
             </h2>
 
             <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
               {isAr
-                ? 'تستند سلسلة الإمداد لدينا إلى الشفافية التامة، والتحكم الدقيق، والموثوقية العالية — لضمان وصول المحاصيل الطازجة إليكم بأبهى حالة وبأعلى درجات الجودة.'
+                ? 'تم بناء سلسلة التوريد لدينا على الشفافية، والتحكم، والموثوقية - مما يضمن وصول المنتجات الطازجة إليك في حالة ممتازة.'
                 : 'Our supply chain is built on transparency, control and reliability — ensuring fresh produce reaches you in perfect condition.'}
             </p>
           </div>

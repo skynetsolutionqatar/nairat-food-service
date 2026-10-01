@@ -47,11 +47,11 @@ export function ContactMap() {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Section Header */}
         <div className="map-anim-header space-y-3">
-          <SectionEyebrow title={isAr ? 'موقع المرافق المركزية' : 'FACILITY LOCATION'} />
+          <SectionEyebrow title={isAr ? 'موقع المنشأة' : 'FACILITY LOCATION'} />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
             {isAr
-              ? 'مستودعنا المركزي ومرافق التبريد بالدوحة'
+              ? 'مستودعنا المركزي والتخزين المبرد في الدوحة'
               : 'Our Doha Central Warehouse & Cold Storage'}
           </h2>
         </div>
@@ -80,10 +80,10 @@ export function ContactMap() {
               </div>
               <div>
                 <span className="text-[11px] text-[#6B7280] block">
-                  {isAr ? 'الطاقة الاستيعابية' : 'Capacity'}
+                  {isAr ? 'السعة' : 'Capacity'}
                 </span>
                 <span className="font-semibold text-[#111814]">
-                  {isAr ? '5,000 م² • 20 غرفة تبريد' : '5,000 m² • 20 Chillers'}
+                  {isAr ? '5,000 م² • 20 مبرداً' : '5,000 m² • 20 Chillers'}
                 </span>
               </div>
             </div>
@@ -97,7 +97,7 @@ export function ContactMap() {
                   {isAr ? 'العمليات' : 'Operations'}
                 </span>
                 <span className="font-semibold text-[#111814]">
-                  {isAr ? 'استلام وتوزيع 24/7' : '24/7 Receiving & Dispatch'}
+                  {isAr ? 'الاستلام والإرسال 24/7' : '24/7 Receiving & Dispatch'}
                 </span>
               </div>
             </div>
@@ -108,10 +108,10 @@ export function ContactMap() {
               </div>
               <div>
                 <span className="text-[11px] text-[#6B7280] block">
-                  {isAr ? 'الامتثال والجودة' : 'Compliance'}
+                  {isAr ? 'الامتثال' : 'Compliance'}
                 </span>
                 <span className="font-semibold text-[#111814]">
-                  {isAr ? 'الهاسب • آيزو 22000' : 'HACCP • ISO 22000'}
+                  {isAr ? 'HACCP • ISO 22000' : 'HACCP • ISO 22000'}
                 </span>
               </div>
             </div>

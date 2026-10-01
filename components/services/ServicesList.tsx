@@ -34,22 +34,22 @@ export function ServicesList(): React.ReactNode {
       title: locale === 'ar' ? 'توزيع التجزئة والجملة' : 'Retail & Wholesale Distribution',
       description:
         locale === 'ar'
-          ? 'برامج توريد يومية لسلاسل الهايبرماركت، السوبرماركت، ومنصات البقالة الإلكترونية (طلبات مارت) مع توصيل مباشر للمتاجر وتجارة الجملة.'
+          ? 'إمداد برامجي يومي للهايبرماركت، والسوبرماركت، ومنصات البقالة عبر الإنترنت (طلبات مارت) في جميع أنحاء قطر مع التوصيل على مستوى المتاجر، بالإضافة إلى التجارة في سوق الجملة.'
           : 'Daily programme supply to hypermarkets, supermarkets and online grocery platforms (Talabat Mart) across Qatar with store-level delivery, plus wholesale market trading.',
       imageUrl: '/services/wholesale-distribution.avif',
       features:
         locale === 'ar'
           ? [
-              'توصيل يومي مجدول على مستوى المتاجر والفروع',
-              'تغطية كبرى الهايبرماركت والسوبرماركت وتطبيقات التوصيل السريع',
-              'توريد كميات تجارية ضخمة وتداول بأسواق الجملة المركزية',
+              'توصيل يومي مجدول على مستوى المتاجر',
+              'الهايبرماركت، والسوبرماركت، والمنصات عبر الإنترنت (طلبات مارت)',
+              'التجارة في سوق الجملة وتوريد كميات كبيرة',
             ]
           : [
               'Daily scheduled store-level delivery',
               'Hypermarkets, supermarkets & online platforms (Talabat Mart)',
               'Wholesale market trading & high-volume bulk supply',
             ],
-      actionText: locale === 'ar' ? 'استفسر عن خدمات التوزيع' : 'Inquire About Distribution',
+      actionText: locale === 'ar' ? 'استفسر عن التوزيع' : 'Inquire About Distribution',
       actionHref: `${prefix}/contact`,
       icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
@@ -60,41 +60,41 @@ export function ServicesList(): React.ReactNode {
       title: locale === 'ar' ? 'للمزارعين والمصدرين' : 'For Growers & Exporters',
       description:
         locale === 'ar'
-          ? 'شراكات أمانة واستيراد مباشر: تستقبل نيرات شحناتكم، وتتولى التخليص والتخزين والتسويق والتوزيع في قطر مع تسويات مالية شفافة.'
+          ? 'شراكات الأمانة والتجارة المباشرة: تستقبل نيرات منتجاتك وتخلصها وتخزنها وتسوقها وتوزعها في قطر مع تسوية شفافة.'
           : 'Consignment and direct-trading partnerships: Nairat receives, clears, stores, markets and distributes your produce in Qatar with transparent settlement.',
       imageUrl: '/services/grower-and-exporter.avif',
       features:
         locale === 'ar'
           ? [
-              'تخليص جمركي ومينائي ومعاملات الرقابة الصحية المعتمدة',
-              'مستودعات مبردة بمساحة 5,000 م² تضم 20 غرفة تبريد مستقلة',
-              'تقارير سوقية شفافة، وسجلات تدقيق فورية، وتسويات عادلة',
+              'التخليص في الميناء، والتعامل الجمركي، والوثائق التنظيمية المحلية',
+              'تخزين مبرد بمساحة 5,000 م² مع 20 غرفة تبريد مستقلة',
+              'تقارير سوقية شفافة، وسجلات تدقيق سريعة، وتسوية عادلة',
             ]
           : [
               'Port clearance, customs handling, and local regulatory documentation',
               '5,000 m² cold storage with 20 independent chiller chambers',
               'Transparent market reporting, prompt audit trails, and fair settlement',
             ],
-      actionText: locale === 'ar' ? 'شاركنا النجاح' : 'Partner With Us',
+      actionText: locale === 'ar' ? 'كن شريكاً معنا' : 'Partner With Us',
       actionHref: `${prefix}/contact`,
       icon: <Handshake className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
     {
       id: 'nairat-shop',
       number: '03',
-      category: locale === 'ar' ? 'منافذ البيع المباشر' : 'Direct Retail',
-      title: locale === 'ar' ? 'متجر نيرات للتجزئة' : 'Nairat Shop',
+      category: locale === 'ar' ? 'البيع المباشر بالتجزئة' : 'Direct Retail',
+      title: locale === 'ar' ? 'متجر نيرات' : 'Nairat Shop',
       description:
         locale === 'ar'
-          ? 'متجر مخصص للمستهلكين في موقع مستودعنا بالمنطقة الصناعية (شارع 37)، يعرض تشكيلة كاملة من الخضروات والفواكه الطازجة بأسعار تنافسية.'
+          ? 'متجر التجزئة الخاص بنا للمنتجات الطازجة، مفتوح للجمهور، مع التشكيلة الكاملة بأسعار السوق الطازجة.'
           : 'Our own fresh-produce retail store, open to the public, with the full range at market-fresh prices.',
       imageUrl: '/services/nairat-shop.avif',
       features:
         locale === 'ar'
           ? [
-              'متاح للجمهور والزوار يومياً بأسعار الجملة المباشرة',
-              'تشكيلة متكاملة من أرقى الفواكه والخضروات والورقيات الطازجة',
-              'نضارة فائقة مباشرة من المزارع دون وسطاء بأسعار تنافسية',
+              'مفتوح لعامة الجمهور مع إمكانية الدخول المباشر',
+              'مجموعة شاملة من الفواكه، والخضروات، والأعشاب المتخصصة الفاخرة',
+              'نضارة لا تضاهى مباشرة من المزرعة بأسعار تنافسية في السوق',
             ]
           : [
               'Open to the general public with walk-in access',

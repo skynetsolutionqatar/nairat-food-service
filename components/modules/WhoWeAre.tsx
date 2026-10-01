@@ -25,22 +25,22 @@ export function WhoWeAre() {
     {
       number: '01',
       icon: <Globe2 className="w-5 h-5 text-[#D4F056]" aria-hidden="true" />,
-      title: locale === 'ar' ? 'التوريد العالمي المباشر' : 'Global Sourcing',
-      description: locale === 'ar' ? 'علاقات موثوقة مع كبرى المزارع والتعاونيات الزراعية حول العالم.' : 'Reliable sourcing from multiple growing regions across the world.',
+      title: locale === 'ar' ? 'التوريد العالمي' : 'Global Sourcing',
+      description: locale === 'ar' ? 'توريد موثوق من مناطق زراعية متعددة حول العالم.' : 'Reliable sourcing from multiple growing regions across the world.',
       isDark: true,
     },
     {
       number: '02',
       icon: <Calendar className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: locale === 'ar' ? 'إمداد مستمر طوال العام' : 'Year-Round Supply',
-      description: locale === 'ar' ? 'تنوع مصادر الإنتاج الموسمي يضمن تدفق المنتجات دون أي انقطاع.' : 'Seasonal sourcing helps maintain consistent availability throughout the year.',
+      title: locale === 'ar' ? 'إمداد طوال العام' : 'Year-Round Supply',
+      description: locale === 'ar' ? 'يساعد التوريد الموسمي في الحفاظ على توفر ثابت طوال العام.' : 'Seasonal sourcing helps maintain consistent availability throughout the year.',
       isDark: false,
     },
     {
       number: '03',
       icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: locale === 'ar' ? 'منظومة صُممت لقطر' : 'Built for Qatar',
-      description: locale === 'ar' ? 'شبكة توزيع مبردة متطورة ومرافق تخزين وتوصيل يومي لكافة الأسواق.' : 'Trusted distribution, cold-chain logistics and daily delivery across Qatar.',
+      title: locale === 'ar' ? 'صُممت لقطر' : 'Built for Qatar',
+      description: locale === 'ar' ? 'توزيع موثوق، وخدمات لوجستية لسلسلة التبريد، وتوصيل يومي في جميع أنحاء قطر.' : 'Trusted distribution, cold-chain logistics and daily delivery across Qatar.',
       isDark: false,
     },
   ];
@@ -128,9 +128,9 @@ export function WhoWeAre() {
             <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-start">
               {locale === 'ar' ? (
                 <>
-                  محاصيل طازجة. <br />
-                  توريد مستدام. <br />
-                  <span className="text-[#168849]">موثوق في كافة أنحاء قطر.</span>
+                  منتجات طازجة. <br />
+                  إمداد قوي. <br />
+                  <span className="text-[#168849]">موثوق في جميع أنحاء قطر.</span>
                 </>
               ) : (
                 <>
@@ -145,14 +145,14 @@ export function WhoWeAre() {
           <div className="lg:col-span-5 space-y-4 2xl:space-y-5 flex flex-col items-start lg:items-end">
             <p className="who-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
               {locale === 'ar'
-                ? 'تعد شركة نيرات للخدمات الغذائية إحدى الشركات الرائدة في توريد المنتجات الزراعية الطازجة في دولة قطر، حيث نستورد أجود الفواكه والخضروات من كبرى المزارع العالمية لتوزيعها على قطاعات التجزئة والجملة والضيافة.'
+                ? 'نيرات فود هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.'
                 : 'Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.'}
             </p>
 
             <div className="who-header-item self-start lg:self-end">
               <CtaButton
                 href={`${prefix}/company`}
-                text={locale === 'ar' ? 'اكتشف قصة نيرات' : 'Discover Our Story'}
+                text={locale === 'ar' ? 'اكتشف قصتنا' : 'Discover Our Story'}
               />
             </div>
           </div>

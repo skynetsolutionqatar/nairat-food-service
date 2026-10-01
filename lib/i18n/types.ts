@@ -39,6 +39,7 @@ export interface Dictionary {
     privacyPolicy: string;
     termsOfService: string;
     sitemap: string;
+    goFreshForFuture: string;
   };
   hero: {
     titleLine1: string;
