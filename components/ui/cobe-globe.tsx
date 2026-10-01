@@ -64,7 +64,6 @@ export function Globe({
   const phiOffsetRef = useRef(0)
   const thetaOffsetRef = useRef(0)
   const isPausedRef = useRef(false)
-  const isIntersectingRef = useRef(false)
 
   // Keep latest props in refs to avoid tearing down WebGL context on prop changes
   const propsRef = useRef({
@@ -221,7 +220,7 @@ export function Globe({
       })
 
       function animate() {
-        if (isDestroyed || !globe || !isIntersectingRef.current) return
+        if (isDestroyed || !globe) return
 
         const p = propsRef.current
         if (!isPausedRef.current) {
@@ -244,7 +243,7 @@ export function Globe({
           }
         }
 
-        if (isDestroyed || !globe || !isIntersectingRef.current) return
+        if (isDestroyed || !globe) return
 
         globe.update({
           phi: phi + phiOffsetRef.current + dragOffset.current.phi,
@@ -267,14 +266,12 @@ export function Globe({
           })),
         })
 
-        if (!isDestroyed && isIntersectingRef.current) {
+        if (!isDestroyed) {
           animationId = requestAnimationFrame(animate)
         }
       }
 
-      if (isIntersectingRef.current) {
-        animate()
-      }
+      animate()
       setTimeout(() => {
         if (!isDestroyed && canvas) {
           canvas.style.opacity = "1"
@@ -298,21 +295,8 @@ export function Globe({
       resizeObserver.observe(canvas)
     }
 
-    let intersectionObserver: IntersectionObserver | null = new IntersectionObserver(([entry]) => {
-      isIntersectingRef.current = entry.isIntersecting;
-      if (entry.isIntersecting && !isDestroyed && globe) {
-        cancelAnimationFrame(animationId);
-        animationId = requestAnimationFrame(animate);
-      }
-    }, { threshold: 0.05 });
-    intersectionObserver.observe(canvas);
-
     return () => {
       isDestroyed = true
-      if (intersectionObserver) {
-        intersectionObserver.disconnect()
-        intersectionObserver = null
-      }
       if (resizeObserver) {
         resizeObserver.disconnect()
       }
