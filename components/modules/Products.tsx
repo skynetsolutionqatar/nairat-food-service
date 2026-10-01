@@ -326,6 +326,7 @@ export function Products() {
   const prefix = locale === 'ar' ? '/ar' : '';
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isInView, setIsInView] = useState(false);
   const [fadeState, setFadeState] = useState<'visible' | 'fading'>('visible');
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -335,6 +336,20 @@ export function Products() {
   const touchStartYRef = useRef(0);
 
   const activeCategory = categoriesData[categoryIndex];
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const handleCategorySelect = (index: number) => {
     if (index === categoryIndex) return;
@@ -362,9 +377,9 @@ export function Products() {
     };
   }, []);
 
-  // Auto rotate categories smoothly when not hovered or interacting
+  // Auto rotate categories smoothly only when in view and not hovered or interacting
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || !isInView) return;
 
     const interval = setInterval(() => {
       setFadeState('fading');
@@ -375,7 +390,7 @@ export function Products() {
     }, 5500);
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, isInView]);
 
   // Touch Swipe Handlers for Mobile
   const handleTouchStart = (e: React.TouchEvent) => {

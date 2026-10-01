@@ -32,16 +32,32 @@ export function Hero() {
 
     playVideo();
 
+    let isIntersecting = true;
+
+    // Pause playback when scrolled out of viewport to save GPU/CPU and battery
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isIntersecting = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          playVideo();
+        } else if (!video.paused) {
+          video.pause();
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(video);
+
     // Auto-resume if tab becomes active after being in background or minimized
     const handleVisibility = () => {
-      if (document.visibilityState === 'visible' && video.paused) {
+      if (document.visibilityState === 'visible' && isIntersecting && video.paused) {
         playVideo();
       }
     };
 
     // Auto-resume if stream temporarily stalled or was waiting for buffer
     const handleStall = () => {
-      if (video.paused) {
+      if (video.paused && isIntersecting) {
         playVideo();
       }
     };
@@ -51,6 +67,7 @@ export function Hero() {
     video.addEventListener('stalled', handleStall);
 
     return () => {
+      observer.disconnect();
       document.removeEventListener('visibilitychange', handleVisibility);
       video.removeEventListener('waiting', handleStall);
       video.removeEventListener('stalled', handleStall);
@@ -103,7 +120,7 @@ export function Hero() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         poster="/hero-poster.webp"
         disablePictureInPicture
         disableRemotePlayback
