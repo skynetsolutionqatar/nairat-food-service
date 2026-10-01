@@ -20,12 +20,6 @@ interface CategoryData {
   id: string;
   label: string;
   labelAr: string;
-  leftBarTitle: string;
-  leftBarTitleAr: string;
-  leftBarColor: string;
-  rightBarTitle: string;
-  rightBarTitleAr: string;
-  rightBarColor: string;
   productsRow1: ProductItem[];
   productsRow2: ProductItem[];
 }
@@ -35,12 +29,6 @@ const categoriesData: CategoryData[] = [
     id: 'vegetables',
     label: 'Vegetables',
     labelAr: 'خضروات',
-    leftBarTitle: 'LOCAL VARIETIES',
-    leftBarTitleAr: 'أصناف محلية',
-    leftBarColor: 'bg-[#38A84E]',
-    rightBarTitle: 'IMPORTED VARIETIES',
-    rightBarTitleAr: 'أصناف مستوردة',
-    rightBarColor: 'bg-[#F3C623]',
     productsRow1: [
       {
         id: 'tomatoes',
@@ -114,12 +102,6 @@ const categoriesData: CategoryData[] = [
     id: 'fruits',
     label: 'Fruits',
     labelAr: 'فواكه',
-    leftBarTitle: 'INDIAN VARIETIES',
-    leftBarTitleAr: 'أصناف استوائية',
-    leftBarColor: 'bg-[#38A84E]',
-    rightBarTitle: 'IMPORTED VARIETIES',
-    rightBarTitleAr: 'فواكه مستوردة',
-    rightBarColor: 'bg-[#F3C623]',
     productsRow1: [
       {
         id: 'melons',
@@ -193,12 +175,6 @@ const categoriesData: CategoryData[] = [
     id: 'leafy-herbs',
     label: 'Leafy & Herbs',
     labelAr: 'ورقيات وأعشاب',
-    leftBarTitle: 'CULINARY HERBS',
-    leftBarTitleAr: 'أعشاب طهي',
-    leftBarColor: 'bg-[#15803D]',
-    rightBarTitle: 'LEAFY SELECTION',
-    rightBarTitleAr: 'تشكيلة ورقيات',
-    rightBarColor: 'bg-[#0D9488]',
     productsRow1: [
       {
         id: 'lettuce-romaine-iceberg',
@@ -272,12 +248,6 @@ const categoriesData: CategoryData[] = [
     id: 'specialty-gourmet',
     label: 'Specialty & Gourmet',
     labelAr: 'أصناف خاصة وفاخرة',
-    leftBarTitle: 'EXOTIC SELECTION',
-    leftBarTitleAr: 'أصناف نادرة',
-    leftBarColor: 'bg-[#C2410C]',
-    rightBarTitle: 'GOURMET SPECIALS',
-    rightBarTitleAr: 'أصناف الشيف',
-    rightBarColor: 'bg-[#D97706]',
     productsRow1: [
       {
         id: 'baby-leaves',
@@ -364,8 +334,6 @@ export function Products() {
   const isDownRef = useRef(false);
   const startXRef = useRef(0);
   const scrollLeftRef = useRef(0);
-
-  const activeCategory = categoriesData[categoryIndex];
 
   const handleCategorySelect = (index: number) => {
     setCategoryIndex(index);
@@ -542,6 +510,7 @@ export function Products() {
 
         {/* 100% Edge-to-Edge Full Width Product Showcase Gallery Container with Drag to Scroll */}
         <div
+          dir="ltr"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => {
             setIsPaused(false);
@@ -553,136 +522,118 @@ export function Products() {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleMouseUpOrLeave}
-          className={`product-gallery-wrapper relative w-full rounded-none overflow-hidden bg-neutral-950 flex flex-col gap-0 select-none ${
+          className={`product-gallery-wrapper relative w-full rounded-none overflow-hidden bg-white flex flex-col gap-0 select-none ${
             isDragging ? 'cursor-grabbing' : 'cursor-grab'
           }`}
         >
-          {/* ROW 1: Left Vertical Bar + Horizontal Card Scroll Track */}
-          <div className="flex flex-row items-stretch w-full overflow-hidden">
-            {/* Left Colored Sidebar Bar */}
-            <div
-              className={`w-7 xs:w-9 sm:w-14 md:w-16 lg:w-20 ${activeCategory.leftBarColor} flex items-center justify-center shrink-0 select-none overflow-hidden transition-colors duration-500`}
-            >
-              <span className="[writing-mode:vertical-lr] rotate-180 font-sans text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base font-extrabold tracking-widest text-white uppercase whitespace-nowrap">
-                {isAr ? activeCategory.leftBarTitleAr : activeCategory.leftBarTitle}
-              </span>
-            </div>
+          {/* ROW 1: Horizontal Card Scroll Track */}
+          <div
+            ref={row1Ref}
+            className="flex flex-row overflow-x-hidden scroll-smooth w-full"
+          >
+            {categoriesData.map((cat) => (
+              <div
+                key={`row1-${cat.id}`}
+                className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
+              >
+                {cat.productsRow1.map((item, itemIndex) => {
+                  const itemName = isAr && item.nameAr ? item.nameAr : item.name;
+                  const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
 
-            {/* Horizontal Scrolling Cards Track for Row 1 */}
-            <div
-              ref={row1Ref}
-              className="flex flex-row flex-grow overflow-x-hidden scroll-smooth w-full"
-            >
-              {categoriesData.map((cat) => (
-                <div
-                  key={`row1-${cat.id}`}
-                  className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
-                >
-                  {cat.productsRow1.map((item, itemIndex) => {
-                    const itemName = isAr && item.nameAr ? item.nameAr : item.name;
-                    const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
+                  return (
+                    <div
+                      key={item.id}
+                      className={`group relative aspect-square w-full overflow-hidden bg-white cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
+                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                      }`}
+                    >
+                      {/* Full-bleed Product Image */}
+                      <Image
+                        src={item.imageUrl}
+                        alt={itemName}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                        className="object-cover scale-[1.01] transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
+                        loading="lazy"
+                      />
 
-                    return (
+                      {/* Dark Gradient Bottom Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 pointer-events-none" />
+
+                      {/* Bottom Title Text Overlay */}
                       <div
-                        key={item.id}
-                        className={`group relative aspect-square w-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
-                          itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                        }`}
+                        className="relative z-10 text-center space-y-0.5 sm:space-y-1"
+                        dir={isAr ? 'rtl' : 'ltr'}
                       >
-                        {/* Full-bleed Product Image */}
-                        <Image
-                          src={item.imageUrl}
-                          alt={itemName}
-                          fill
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
-                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
-                          loading="lazy"
-                        />
-
-                        {/* Dark Gradient Bottom Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 pointer-events-none" />
-
-                        {/* Bottom Title Text Overlay */}
-                        <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
-                          <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
-                            {itemName}
-                          </h3>
-                          {itemSubName && (
-                            <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
-                              {itemSubName}
-                            </p>
-                          )}
-                        </div>
+                        <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
+                          {itemName}
+                        </h3>
+                        {itemSubName && (
+                          <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
+                            {itemSubName}
+                          </p>
+                        )}
                       </div>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
 
-          {/* ROW 2: Horizontal Card Scroll Track + Right Vertical Bar */}
-          <div className="flex flex-row items-stretch w-full overflow-hidden">
-            {/* Horizontal Scrolling Cards Track for Row 2 */}
-            <div
-              ref={row2Ref}
-              className="flex flex-row flex-grow overflow-x-hidden scroll-smooth w-full"
-            >
-              {categoriesData.map((cat) => (
-                <div
-                  key={`row2-${cat.id}`}
-                  className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
-                >
-                  {cat.productsRow2.map((item, itemIndex) => {
-                    const itemName = isAr && item.nameAr ? item.nameAr : item.name;
-                    const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
+          {/* ROW 2: Horizontal Card Scroll Track */}
+          <div
+            ref={row2Ref}
+            className="flex flex-row overflow-x-hidden scroll-smooth w-full"
+          >
+            {categoriesData.map((cat) => (
+              <div
+                key={`row2-${cat.id}`}
+                className="grid grid-cols-2 sm:grid-cols-4 min-w-full flex-shrink-0 gap-0"
+              >
+                {cat.productsRow2.map((item, itemIndex) => {
+                  const itemName = isAr && item.nameAr ? item.nameAr : item.name;
+                  const itemSubName = isAr && item.subNameAr ? item.subNameAr : item.subName;
 
-                    return (
+                  return (
+                    <div
+                      key={item.id}
+                      className={`group relative aspect-square w-full overflow-hidden bg-white cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
+                        itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
+                      }`}
+                    >
+                      {/* Full-bleed Product Image */}
+                      <Image
+                        src={item.imageUrl}
+                        alt={itemName}
+                        fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
+                        className="object-cover scale-[1.01] transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
+                        loading="lazy"
+                      />
+
+                      {/* Dark Gradient Bottom Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent transition-opacity duration-300 pointer-events-none" />
+
+                      {/* Bottom Title Text Overlay */}
                       <div
-                        key={item.id}
-                        className={`group relative aspect-square w-full overflow-hidden bg-neutral-900 cursor-pointer flex flex-col justify-end p-2 xs:p-3 sm:p-5 md:p-6 lg:p-7 ${
-                          itemIndex >= 2 ? 'hidden sm:flex' : 'flex'
-                        }`}
+                        className="relative z-10 text-center space-y-0.5 sm:space-y-1"
+                        dir={isAr ? 'rtl' : 'ltr'}
                       >
-                        {/* Full-bleed Product Image */}
-                        <Image
-                          src={item.imageUrl}
-                          alt={itemName}
-                          fill
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 320px"
-                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110 will-change-transform transform-gpu"
-                          loading="lazy"
-                        />
-
-                        {/* Dark Gradient Bottom Overlay */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent transition-opacity duration-300 pointer-events-none" />
-
-                        {/* Bottom Title Text Overlay */}
-                        <div className="relative z-10 text-center space-y-0.5 sm:space-y-1">
-                          <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
-                            {itemName}
-                          </h3>
-                          {itemSubName && (
-                            <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
-                              {itemSubName}
-                            </p>
-                          )}
-                        </div>
+                        <h3 className="font-display font-semibold text-[11px] xs:text-xs sm:text-base md:text-lg text-white drop-shadow-md tracking-[-0.015em] leading-tight">
+                          {itemName}
+                        </h3>
+                        {itemSubName && (
+                          <p className="font-sans text-[9px] xs:text-[10px] sm:text-xs text-white/80 font-normal drop-shadow-sm leading-tight">
+                            {itemSubName}
+                          </p>
+                        )}
                       </div>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-
-            {/* Right Colored Sidebar Bar */}
-            <div
-              className={`w-7 xs:w-9 sm:w-14 md:w-16 lg:w-20 ${activeCategory.rightBarColor} flex items-center justify-center shrink-0 select-none overflow-hidden transition-colors duration-500`}
-            >
-              <span className="[writing-mode:vertical-lr] font-sans text-[9px] xs:text-[10px] sm:text-xs md:text-sm lg:text-base font-extrabold tracking-widest text-white uppercase whitespace-nowrap">
-                {isAr ? activeCategory.rightBarTitleAr : activeCategory.rightBarTitle}
-              </span>
-            </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
         </div>
 
