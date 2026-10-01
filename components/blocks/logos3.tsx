@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { gsap, useGSAP } from "@/lib/gsap";
+import { useLocale } from "@/context/LocaleContext";
 
 import {
   Carousel,
@@ -89,6 +90,7 @@ const Logos3 = ({
   ],
 }: Logos3Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isRTL } = useLocale();
 
   // Duplicate logos to allow Embla infinite loop to function smoothly
   const duplicatedLogos = [...logos, ...logos, ...logos];
@@ -128,7 +130,12 @@ const Logos3 = ({
       <div className="pt-3 sm:pt-4">
         <div className="relative mx-auto flex items-center justify-center max-w-[1140px] 2xl:max-w-[1240px] px-4 sm:px-6 lg:px-8">
           <Carousel
-            opts={{ loop: true, align: "start" }}
+            key={isRTL ? "rtl" : "ltr"}
+            opts={{
+              loop: true,
+              align: "start",
+              direction: isRTL ? "rtl" : "ltr",
+            }}
             plugins={[
               AutoScroll({
                 playOnInit: true,
