@@ -125,7 +125,7 @@ export function ContactMap() {
                   ? 'موقع مستودع نيرات للأغذية المركزي بالدوحة'
                   : 'Nairat Food Central Warehouse Location Doha Qatar'
               }
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14436.327854619374!2d51.42875155!3d25.1979435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d070d65b75b9%3A0x13c7cbdf4b2568f6!2sIndustrial%20Area%2C%20Street%2037%2C%20Doha%2C%20Qatar!5e0!3m2!1sen!2sqa!4v1700000000000!5m2!1sen!2sqa"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57763.27363835163!2d51.3660583!3d25.1963217!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d10076a23d59%3A0x3ee7f3ae5d1130be!2sNairat%20Food%20-%20Main%20Warehouse!5e0!3m2!1sen!2sqa!4v1790839233998!5m2!1sen!2sqa"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -148,7 +148,7 @@ export function ContactMap() {
                 </span>
               </div>
               <a
-                href="https://maps.google.com/?q=Street+37+Industrial+Area+Doha+Qatar"
+                href="https://maps.app.goo.gl/FGEeJiMmQ172UCx3A"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#168849] hover:bg-[#12723c] text-white text-xs font-semibold shadow-xs transition-colors shrink-0"
