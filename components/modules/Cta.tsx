@@ -82,7 +82,7 @@ export function Cta() {
                 {locale === 'ar' ? 'تم التوريد من جميع أنحاء العالم.' : 'Sourced Around the World.'}
               </span>
               <span className="block text-white/80">
-                {locale === 'ar' ? 'يتم التوصيل في جميع أنحاء قطر.' : 'Delivered Across Qatar.'}
+                {locale === 'ar' ? 'تُسلَّم عبر أرجاء قطر.' : 'Delivered Across Qatar.'}
               </span>
             </div>
           </div>
