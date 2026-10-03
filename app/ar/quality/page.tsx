@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
 import { QualitySourcingPhilosophy } from '@/components/quality/QualitySourcingPhilosophy';
 import { QualityFoodSafety } from '@/components/quality/QualityFoodSafety';
+import { QualityTeamInspection } from '@/components/quality/QualityTeamInspection';
 import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
 import { Cta } from '@/components/modules/Cta';
 
@@ -39,10 +40,13 @@ export default function ArabicQualityPage(): React.ReactNode {
       {/* 3. Quality & Food Safety */}
       <QualityFoodSafety />
 
-      {/* 4. Our Supply Chain */}
+      {/* 4. Dedicated QA Team & Pre-Shipment Inspection */}
+      <QualityTeamInspection />
+
+      {/* 5. Our Supply Chain (5-Step Controls) */}
       <QualitySupplyChain />
 
-      {/* 5. Global Contact & Inquiry Module */}
+      {/* 6. Global Contact & Inquiry Module */}
       <Cta />
     </div>
   );

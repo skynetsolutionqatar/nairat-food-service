@@ -28,19 +28,19 @@ export function QualityFoodSafety(): React.ReactNode {
     {
       id: 'haccp',
       title: 'HACCP',
-      subtitle: isAr ? 'نظام إدارة سلامة الغذاء' : 'Food Safety Management System',
+      subtitle: isAr ? 'شهادة الامتثال' : 'Certificate of Compliance',
       description: isAr
-        ? 'معتمدون وفقاً لمعايير HACCP لضمان سلامة الغذاء في كل مرحلة من مراحل عملياتنا.'
-        : 'Certified in accordance with HACCP standards to ensure food safety at every stage of our operations.',
+        ? 'تحليل المخاطر ونقاط التحكم الحرجة، هيئة الدستور الغذائي (Codex Alimentarius).'
+        : 'Hazard Analysis and Critical Control Points, Codex Alimentarius.',
       imageSrc: '/certificates/c1-1-1.png',
     },
     {
       id: 'iso22000',
       title: 'ISO 22000:2018',
-      subtitle: isAr ? 'نظام إدارة سلامة الغذاء' : 'Food Safety Management System',
+      subtitle: isAr ? 'شهادة التسجيل والاعتماد' : 'Certificate of Registration',
       description: isAr
-        ? 'معتمدون وفقاً لمعايير ISO 22000:2018 لنظام إدارة سلامة غذاء متسق وموثوق.'
-        : 'Certified to ISO 22000:2018 standards for a consistent and reliable food safety management system.',
+        ? 'نظام إدارة سلامة الغذاء العالمي المعتمد لضمان النظافة والتتبع الكامل.'
+        : 'Food safety management system certified for end-to-end traceability and hygiene.',
       imageSrc: '/certificates/c2-2-1.png',
     },
   ];
@@ -80,28 +80,28 @@ export function QualityFoodSafety(): React.ReactNode {
     >
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column: Eyebrow, Heading, Narrative & CTA (4.5 cols) */}
+          {/* Left Column: Eyebrow, Heading, Narrative & CTA (5 cols) */}
           <div className="safety-anim-left lg:col-span-5 space-y-5 text-start">
             <SectionEyebrow title={isAr ? 'الجودة وسلامة الغذاء' : 'QUALITY & FOOD SAFETY'} />
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-bold text-[#111814] leading-[1.15] tracking-tight">
               {isAr ? (
                 <>
-                  فحوصات صارمة. <br className="hidden sm:inline" />
-                  جودة فائقة.
+                  سلامة الغذاء أولاً <br className="hidden sm:inline" />
+                  في كل خطوة وعملية.
                 </>
               ) : (
                 <>
-                  Rigorous Checks. <br className="hidden sm:inline" />
-                  Superior Quality.
+                  Food Safety First <br className="hidden sm:inline" />
+                  in Every Process.
                 </>
               )}
             </h2>
 
             <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
               {isAr
-                ? 'نحن نتبع تدابير صارمة لمراقبة الجودة في كل مرحلة من مراحل سلسلة التوريد - من المنشأ إلى التسليم. يتم فحص واختبار والتعامل مع منتجاتنا في ظل ظروف خاضعة للرقابة لضمان أقصى قدر من النضارة والسلامة.'
-                : 'We follow strict quality control measures at every stage of the supply chain — from origin to delivery. Our produce is inspected, tested and handled under controlled conditions to ensure maximum freshness and safety.'}
+                ? 'تأتي سلامة الغذاء في مقدمة أولوياتنا في كل عملية داخل نيرات. تعمل منشأتنا بنظام إدارة سلامة الغذاء القائم على تحليل المخاطر ونقاط التحكم الحرجة (HACCP) والمعتمد وفق معيار ISO 22000:2018، كما أن إجراءاتنا مصممة للامتثال لكافة القوانين واللوائح القطرية المنظمة لسلامة الأغذية. تُطبَّق تدابير الرقابة والتحكم في كل مرحلة، من الاستلام والفرز إلى التعبئة والتخزين والتوزيع، لضمان وصول المنتجات لعملائنا آمنة، طازجة وقابلة للتتبع بالكامل.'
+                : 'Food safety comes first in every process at Nairat. Our facility runs a HACCP-based food safety management system certified to ISO 22000:2018, and our procedures are designed to comply with all Qatari laws and regulations governing food safety. Control measures apply at every stage, from receiving and sorting to packing, storage and distribution, so that produce reaches our customers safe, fresh and traceable.'}
             </p>
 
             <div className="pt-2">
