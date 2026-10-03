@@ -25,7 +25,7 @@ export function QualitySupplyChain(): React.ReactNode {
       description: isAr
         ? 'فحوصات لدرجة الحرارة والجودة عند الوصول، مع رفض قاطع للبضائع غير المطابقة.'
         : 'Temperature and quality checks on arrival, with rejection of non-conforming goods.',
-      icon: <ClipboardCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      icon: <ClipboardCheck className="w-5 h-5" aria-hidden="true" />,
     },
     {
       number: '02',
@@ -33,7 +33,7 @@ export function QualitySupplyChain(): React.ReactNode {
       description: isAr
         ? 'فحص وتصنيف كل دفعة بعناية داخل صالة مجهزة ومضبوطة النظافة الصحية.'
         : 'Every lot inspected and graded in the hygiene-controlled hall.',
-      icon: <Filter className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      icon: <Filter className="w-5 h-5" aria-hidden="true" />,
     },
     {
       number: '03',
@@ -41,7 +41,7 @@ export function QualitySupplyChain(): React.ReactNode {
       description: isAr
         ? 'تعبئة مخصصة وفق مواصفات العميل مع ترميز التتبع الكامل للدفعات.'
         : 'Packed to customer specification with full lot traceability.',
-      icon: <PackageCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      icon: <PackageCheck className="w-5 h-5" aria-hidden="true" />,
     },
     {
       number: '04',
@@ -49,7 +49,7 @@ export function QualitySupplyChain(): React.ReactNode {
       description: isAr
         ? 'حفظ بدرجات حرارة مثالية دقيقة ومراقبة محوسبة على مدار الساعة.'
         : 'Held at the right temperature, monitored around the clock.',
-      icon: <Snowflake className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      icon: <Snowflake className="w-5 h-5" aria-hidden="true" />,
     },
     {
       number: '05',
@@ -57,7 +57,7 @@ export function QualitySupplyChain(): React.ReactNode {
       description: isAr
         ? 'مركبات مبردة تحافظ على سلسلة التبريد دون انقطاع حتى باب العميل.'
         : 'Refrigerated vehicles keep the cold chain unbroken to the customer’s door.',
-      icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      icon: <Truck className="w-5 h-5" aria-hidden="true" />,
     },
   ];
 
@@ -126,7 +126,7 @@ export function QualitySupplyChain(): React.ReactNode {
               <div>
                 {/* Step Icon with Connecting Arrow */}
                 <div className="flex items-center justify-between">
-                  <div className="w-11 h-11 rounded-xl bg-[#168849]/10 border border-[#168849]/20 flex items-center justify-center transition-colors group-hover:bg-[#168849] group-hover:text-white">
+                  <div className="w-11 h-11 rounded-xl bg-[#168849]/10 text-[#168849] border border-[#168849]/20 flex items-center justify-center transition-all duration-300 group-hover:bg-[#168849] group-hover:text-white group-hover:scale-105">
                     {step.icon}
                   </div>
 
@@ -145,7 +145,7 @@ export function QualitySupplyChain(): React.ReactNode {
                   <span className="font-mono text-xs font-bold text-[#168849] tracking-wider block">
                     {step.number}
                   </span>
-                  <h3 className="font-display font-semibold text-base text-[#111814] mt-1 leading-snug">
+                  <h3 className="font-display font-semibold text-base text-[#111814] mt-1 leading-snug group-hover:text-[#168849] transition-colors">
                     {step.title}
                   </h3>
                 </div>
