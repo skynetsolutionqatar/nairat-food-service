@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import { CheckCircle2, Store, Truck, Handshake } from 'lucide-react';
+import { CheckCircle2, Globe, ShoppingBag, Truck, Zap, Warehouse, Sprout } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { useLocale } from '@/context/LocaleContext';
@@ -28,84 +28,160 @@ export function ServicesList(): React.ReactNode {
 
   const servicesData: ServiceItem[] = [
     {
-      id: 'retail-wholesale',
+      id: 'global-sourcing-import',
       number: '01',
-      category: locale === 'ar' ? 'التوريد التجاري' : 'Commercial Supply',
-      title: locale === 'ar' ? 'توزيع التجزئة والجملة' : 'Retail & Wholesale Distribution',
+      category: locale === 'ar' ? 'المشتريات والاستيراد العالمي' : 'Global Procurement & Import',
+      title: locale === 'ar' ? 'التوريد العالمي والاستيراد' : 'Global Sourcing & Import',
       description:
         locale === 'ar'
-          ? 'إمداد برامجي يومي للهايبرماركت، والسوبرماركت، ومنصات البقالة عبر الإنترنت (طلبات مارت) في جميع أنحاء قطر مع التوصيل على مستوى المتاجر، بالإضافة إلى التجارة في سوق الجملة.'
-          : 'Daily programme supply to hypermarkets, supermarkets and online grocery platforms (Talabat Mart) across Qatar with store-level delivery, plus wholesale market trading.',
-      imageUrl: '/services/wholesale-distribution.avif',
+          ? 'علاقات مباشرة مع المزارعين والمصدرين عبر أوروبا والشرق الأوسط وآسيا. أكثر من 1,200 صنف نشط، مختارة للجودة وفترة الصلاحية والقيمة، ومجمعة عبر عمليات الاستيراد الخاصة بنا.'
+          : 'Direct relationship with growers and exporters across Europe, the Middle East and Asia. More than 1,200 active lines, selected for quality, shelf life and value, and consolidated through our own import operation.',
+      imageUrl: '/services/global-sourcing-import.webp',
       features:
         locale === 'ar'
           ? [
-              'توصيل يومي مجدول على مستوى المتاجر',
-              'الهايبرماركت، والسوبرماركت، والمنصات عبر الإنترنت (طلبات مارت)',
-              'التجارة في سوق الجملة وتوريد كميات كبيرة',
+              'علاقات مباشرة مع المزارعين عبر أوروبا والشرق الأوسط وآسيا',
+              'أكثر من 1,200 صنف نشط تم اختيارها للجودة والنضارة وفترة الصلاحية',
+              'تخليص جمركي موحد في الموانئ والمطارات مع استلام مبرد فوري',
             ]
           : [
-              'Daily scheduled store-level delivery',
-              'Hypermarkets, supermarkets & online platforms (Talabat Mart)',
-              'Wholesale market trading & high-volume bulk supply',
+              'Direct grower relationships across Europe, Middle East & Asia',
+              'Over 1,200 active lines selected for quality, freshness & shelf life',
+              'Consolidated port & airport customs clearance and rapid cold intake',
             ],
-      actionText: locale === 'ar' ? 'استفسر عن التوزيع' : 'Inquire About Distribution',
-      actionHref: `${prefix}/contact`,
+      actionText: locale === 'ar' ? 'استفسر عن التوريد العالمي' : 'Inquire About Global Sourcing',
+      actionHref: `${prefix}/contact?subject=sourcing`,
+      icon: <Globe className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    },
+    {
+      id: 'retail-supply-management',
+      number: '02',
+      category: locale === 'ar' ? 'التجزئة وإدارة الأقسام' : 'Retail & Category Management',
+      title: locale === 'ar' ? 'توريد التجزئة وإدارة الفئات' : 'Retail Supply & Category Management',
+      description:
+        locale === 'ar'
+          ? 'إمداد يومي لسلاسل الهايبرماركت والسوبرماركت، من تجديد المخزون الأساسي إلى الإدارة الكاملة لفئة المنتجات الطازجة، بما في ذلك تخطيط التشكيلة والتسعير والتوافر على الرفوف.'
+          : 'Daily supply to hypermarket and supermarket chains, from basic replenishment to full category management of the fresh section, including range planning, pricing and in-store availability.',
+      imageUrl: '/services/retail-supply-management.webp',
+      features:
+        locale === 'ar'
+          ? [
+              'توصيل يومي مجدول على مستوى المتاجر لسلاسل الهايبرماركت والسوبرماركت',
+              'إدارة متكاملة لقسم المنتجات الطازجة وتخطيط التشكيلة الموسمية',
+              'هيكلية تسعير تنافسية وضمان أعلى مستويات التوافر والنضارة على الرفوف',
+            ]
+          : [
+              'Daily scheduled store-level delivery to hypermarket & supermarket chains',
+              'End-to-end fresh section category management and seasonal range planning',
+              'Competitive price architecture and maximum on-shelf fresh availability',
+            ],
+      actionText: locale === 'ar' ? 'استفسر عن توريد التجزئة' : 'Inquire for Retail Supply',
+      actionHref: `${prefix}/contact?subject=retail`,
+      icon: <ShoppingBag className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    },
+    {
+      id: 'wholesale-foodservice',
+      number: '03',
+      category: locale === 'ar' ? 'الجملة والتموين المؤسسي' : 'Wholesale & Commercial Foodservice',
+      title: locale === 'ar' ? 'التوريد بالجملة والخدمات الغذائية' : 'Wholesale & Foodservice',
+      description:
+        locale === 'ar'
+          ? 'توريد كميات كبيرة لتجار الجملة، ومتعهدي الحفلات، والمطاعم، ومتاجر البقالة المستقلة، بنفس معايير الفرز والتعبئة وسلسلة التبريد المطبقة في برنامجنا للتجزئة.'
+          : 'Bulk supply to wholesalers, caterers, restaurants and independent grocers, with the same sorting, packing and cold-chain standards as our retail programme.',
+      imageUrl: '/services/wholesale-foodservice.webp',
+      features:
+        locale === 'ar'
+          ? [
+              'إمداد بكميات كبيرة للمطابخ المركزية وشركات التموين والمطاعم',
+              'فرز وتصنيف دقيق وتعبئة مبردة تلبي أعلى معايير الطهي الاحترافي',
+              'تجارة في سوق الجملة المركزي مع تخصيص كميات يومية موثوقة',
+            ]
+          : [
+              'High-volume bulk supply for central kitchens, catering operators & restaurants',
+              'Culinary-grade sorting, temperature-controlled packing & consistent spec grading',
+              'Central wholesale market trading with predictable daily volume allocations',
+            ],
+      actionText: locale === 'ar' ? 'اطلب أسعار الجملة' : 'Request Wholesale Rates',
+      actionHref: `${prefix}/contact?subject=wholesale`,
       icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
     {
-      id: 'growers-exporters',
-      number: '02',
-      category: locale === 'ar' ? 'الشراكات التجارية' : 'Trade Partnerships',
-      title: locale === 'ar' ? 'للمزارعين والمصدرين' : 'For Growers & Exporters',
+      id: 'quick-commerce-grocery',
+      number: '04',
+      category: locale === 'ar' ? 'التجارة السريعة والرقمية' : 'Quick-Commerce & Digital Grocery',
+      title: locale === 'ar' ? 'التجارة السريعة والبقالة الإلكترونية' : 'Quick-Commerce & Online Grocery',
       description:
         locale === 'ar'
-          ? 'شراكات الأمانة والتجارة المباشرة: تستقبل نيرات منتجاتك وتخلصها وتخزنها وتسوقها وتوزعها في قطر مع تسوية شفافة.'
-          : 'Consignment and direct-trading partnerships: Nairat receives, clears, stores, markets and distributes your produce in Qatar with transparent settlement.',
-      imageUrl: '/services/grower-and-exporter.avif',
+          ? 'إمداد مباشر ومتقاطع لشبكات المتاجر المظلمة وتطبيقات البقالة الرقمية، معبأ حسب الطلب ومسلّم وفق إيقاع تشغيلها، مع قوائم أسعار أسبوعية وأوقات استجابة سريعة.'
+          : 'Cross-dock supply to dark-store and online grocery networks, packed to order and delivered to their operating rhythm, with weekly price lists and short lead times.',
+      imageUrl: '/services/quick-commerce-grocery.webp',
       features:
         locale === 'ar'
           ? [
-              'التخليص في الميناء، والتعامل الجمركي، والوثائق التنظيمية المحلية',
-              'تخزين مبرد بمساحة 5,000 م² مع 20 غرفة تبريد مستقلة',
-              'تقارير سوقية شفافة، وسجلات تدقيق سريعة، وتسوية عادلة',
+              'عمليات إمداد عبر التوصيل المباشر (Cross-dock) مهيأة للمتاجر المظلمة',
+              'تعبئة حسب الطلب مطابقة لتطبيقات توصيل البقالة والمواصفات الاستهلاكية',
+              'قوائم تسعير أسبوعية ديناميكية، ودورات توريد سريعة وشحنات ليلية',
             ]
           : [
-              'Port clearance, customs handling, and local regulatory documentation',
-              '5,000 m² cold storage with 20 independent chiller chambers',
-              'Transparent market reporting, prompt audit trails, and fair settlement',
+              'Agile cross-dock fulfillment engineered for micro-fulfillment & dark stores',
+              'Pack-to-order produce calibrated to online grocery consumer app SKUs',
+              'Dynamic weekly price schedules, rapid fulfillment cycles & off-peak dispatch',
             ],
-      actionText: locale === 'ar' ? 'كن شريكاً معنا' : 'Partner With Us',
-      actionHref: `${prefix}/contact`,
-      icon: <Handshake className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      actionText: locale === 'ar' ? 'تواصل لخدمات التجارة السريعة' : 'Connect for Q-Commerce',
+      actionHref: `${prefix}/contact?subject=qcommerce`,
+      icon: <Zap className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
     {
-      id: 'nairat-shop',
-      number: '03',
-      category: locale === 'ar' ? 'البيع المباشر بالتجزئة' : 'Direct Retail',
-      title: locale === 'ar' ? 'متجر نيرات' : 'Nairat Shop',
+      id: 'cold-storage-logistics',
+      number: '05',
+      category: locale === 'ar' ? 'اللوجستيات والتخزين المبرد' : 'Cold Chain & Logistics',
+      title: locale === 'ar' ? 'التخزين المبرد والخدمات اللوجستية للشركاء' : 'Cold Storage & Logistics for Partners',
       description:
         locale === 'ar'
-          ? 'متجر التجزئة الخاص بنا للمنتجات الطازجة، مفتوح للجمهور، مع التشكيلة الكاملة بأسعار السوق الطازجة.'
-          : 'Our own fresh-produce retail store, open to the public, with the full range at market-fresh prices.',
-      imageUrl: '/services/nairat-shop.avif',
+          ? 'غرف تبريد يتم التحكم بدرجات حرارتها مع رفوف للطبليات، ومناولة بالرافعات الشوكية، وانتقاء الطلبات، وتوصيل مبرد، متاحة لشركاء التجزئة والتجارة الإلكترونية المحتاجين لمستودع مركزي في الدوحة.'
+          : 'Temperature-controlled cold rooms with pallet racking, forklift handling, order picking and refrigerated delivery, available to retail and e-commerce partners who need a central warehouse in Doha.',
+      imageUrl: '/services/cold-storage-logistics.webp',
       features:
         locale === 'ar'
           ? [
-              'مفتوح لعامة الجمهور مع إمكانية الدخول المباشر',
-              'مجموعة شاملة من الفواكه، والخضروات، والأعشاب المتخصصة الفاخرة',
-              'نضارة لا تضاهى مباشرة من المزرعة بأسعار تنافسية في السوق',
+              'منشأة تبريد حديثة بمساحة 5,000 م² بالمنطقة الصناعية مع غرف متعددة الحرارة',
+              'رفوف طبليات، ورافعات شوكية متطورة، وانتقاء دقيق للشحنات والطلبات',
+              'أسطول يضم أكثر من 40 شاحنة مبردة تعمل يومياً في جميع أنحاء قطر',
             ]
           : [
-              'Open to the general public with walk-in access',
-              'Comprehensive selection of premium fruits, vegetables, and specialty herbs',
-              'Unbeatable farm-direct freshness at market-competitive pricing',
+              '5,000 m² modern cold facility in Industrial Area with multi-zone chillers',
+              'Pallet racking, reach truck forklifts, and precision order picking',
+              '40+ refrigerated fleet vehicles operating daily across all Qatar zones',
             ],
-      actionText: locale === 'ar' ? 'زيارة متجر نيرات' : 'Visit Nairat Shop',
-      actionHref:
-        'https://www.google.com/maps/place/Nairat+Food+Service/@25.1879132,51.451866,17z/data=!3m1!4b1!4m6!3m5!1s0x3e45d1d6fa5f0107:0x208dd617d12cb28c!8m2!3d25.1879084!4d51.4544409!16s%2Fg%2F11q3d_k5z2?entry=ttu&g_ep=EgoyMDI2MDkwMi4wIKXMDSoASAFQAw%3D%3D',
-      isExternal: true,
-      icon: <Store className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      actionText: locale === 'ar' ? 'احجز التخزين واللوجستيات' : 'Book Storage & Logistics',
+      actionHref: `${prefix}/contact?subject=logistics`,
+      icon: <Warehouse className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    },
+    {
+      id: 'local-farm-partnerships',
+      number: '06',
+      category: locale === 'ar' ? 'الإنتاج المحلي والأمن الغذائي' : 'Local Farms & Food Security',
+      title: locale === 'ar' ? 'شراكات المزارع المحلية' : 'Local Farm Partnerships',
+      description:
+        locale === 'ar'
+          ? 'من خلال اتفاقيتنا مع شركة "محاصيل"، شركة التسويق الزراعي القطرية، نطرح الخضروات المزروعة محلياً في الأسواق جنباً إلى جنب مع الواردات، دعماً للمزارعين المحليين والأمن الغذائي الوطني.'
+          : "Through our agreement with Mahaseel, Qatar's agricultural marketing company, we bring Qatari-grown vegetables to market alongside imports, supporting local farmers and national food security.",
+      imageUrl: '/services/local-farm-partnerships.webp',
+      features:
+        locale === 'ar'
+          ? [
+              'شراكة استراتيجية رسمية مع شركة "محاصيل" (شركة التسويق الزراعي القطرية)',
+              'قنوات تسويق وتوزيع مباشرة لإنتاج البيوت المحمية والمزارع القطرية',
+              'التزام راسخ بدعم المزارعين المحليين وتعزيز منظومة الأمن الغذائي لدولة قطر',
+            ]
+          : [
+              'Official strategic partnership with Mahaseel (Qatar Agricultural Marketing Co.)',
+              'Direct market distribution channels for Qatari greenhouse & field harvests',
+              'Firm commitment to supporting local growers and advancing Qatar\'s food security',
+            ],
+      actionText: locale === 'ar' ? 'شارك في الإنتاج المحلي' : 'Partner Local Produce',
+      actionHref: `${prefix}/contact?subject=local-farms`,
+      icon: <Sprout className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
     },
   ];
 
@@ -166,7 +242,7 @@ export function ServicesList(): React.ReactNode {
                 {/* Floating Service Number Badge */}
                 <div className="absolute top-4 start-4 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md text-white text-xs font-semibold">
                   <span className="font-mono text-[#D4F056] font-bold">{service.number}</span>
-                  <span className="text-white/80">/ 03</span>
+                  <span className="text-white/80">/ 06</span>
                 </div>
               </div>
 
