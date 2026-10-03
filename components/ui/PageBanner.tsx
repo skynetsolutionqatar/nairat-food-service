@@ -41,22 +41,22 @@ export function PageBanner({
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       tl.fromTo(
         '.banner-anim-title',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.65 }
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.45 }
       );
       if (description) {
         tl.fromTo(
           '.banner-anim-desc',
-          { opacity: 0, y: 14 },
-          { opacity: 1, y: 0, duration: 0.5 },
-          '-=0.4'
+          { opacity: 0, y: 10 },
+          { opacity: 1, y: 0, duration: 0.38 },
+          '-=0.3'
         );
       }
       tl.fromTo(
         '.banner-anim-breadcrumbs',
-        { opacity: 0, y: 10 },
-        { opacity: 1, y: 0, duration: 0.45 },
-        '-=0.35'
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.35 },
+        '-=0.25'
       );
     },
     { scope: bannerRef }

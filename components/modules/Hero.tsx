@@ -79,29 +79,29 @@ export function Hero() {
       const container = containerRef.current;
       if (!container) return;
 
-      // Initial page-load text reveal sequence with rich timing
+      // Initial page-load text reveal sequence with faster, responsive timing
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
       tl.from('.hero-title-line', {
-        y: 35,
+        y: 22,
         opacity: 0,
-        duration: 0.9,
-        stagger: 0.12,
+        duration: 0.55,
+        stagger: 0.06,
       }).from(
         '.hero-sub-text',
         {
-          y: 20,
+          y: 14,
           opacity: 0,
-          duration: 0.7,
+          duration: 0.42,
         },
-        '-=0.5'
+        '-=0.35'
       ).from(
         '.hero-cta-btn',
         {
-          y: 15,
+          y: 10,
           opacity: 0,
-          duration: 0.6,
+          duration: 0.38,
         },
-        '-=0.4'
+        '-=0.25'
       );
     },
     { scope: containerRef }

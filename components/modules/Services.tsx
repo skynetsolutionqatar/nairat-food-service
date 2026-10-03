@@ -110,20 +110,20 @@ export function Services() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
-          start: 'top 82%',
+          start: 'top 88%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.service-header-item',
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power3.out' }
       ).fromTo(
         '.service-card-item',
-        { opacity: 0, y: 30, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.08, ease: 'power3.out' },
-        '-=0.3'
+        { opacity: 0, y: 20, scale: 0.99 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.48, stagger: 0.05, ease: 'power3.out' },
+        '-=0.25'
       );
     },
     { scope: containerRef }

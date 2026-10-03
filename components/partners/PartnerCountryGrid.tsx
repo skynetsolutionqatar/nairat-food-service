@@ -78,20 +78,20 @@ export function PartnerCountryGrid(): React.ReactNode {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 80%',
+          start: 'top 88%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.country-header-item',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' }
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.42, ease: 'power3.out' }
       ).fromTo(
         '.country-grid-container',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out' },
-        '-=0.35'
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' },
+        '-=0.25'
       );
     },
     { scope: sectionRef }

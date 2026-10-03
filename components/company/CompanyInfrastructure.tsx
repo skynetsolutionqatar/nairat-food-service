@@ -75,7 +75,7 @@ export function CompanyInfrastructure() {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%',
+        start: 'top 88%',
         once: true,
       },
     });
@@ -83,25 +83,25 @@ export function CompanyInfrastructure() {
     timeline
       .fromTo(
         headers,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' }
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power3.out' }
       );
 
     if (cards.length > 0) {
       timeline.fromTo(
         cards,
-        { opacity: 0, scale: 0.96 },
-        { opacity: 1, scale: 1, duration: 0.7, ease: 'power2.out' },
-        '-=0.3'
+        { opacity: 0, scale: 0.98 },
+        { opacity: 1, scale: 1, duration: 0.48, ease: 'power2.out' },
+        '-=0.25'
       );
     }
 
     if (items.length > 0) {
       timeline.fromTo(
         items,
-        { opacity: 0, x: 20 },
-        { opacity: 1, x: 0, duration: 0.5, stagger: 0.06, ease: 'power2.out' },
-        '-=0.4'
+        { opacity: 0, x: 14 },
+        { opacity: 1, x: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out' },
+        '-=0.3'
       );
     }
   });

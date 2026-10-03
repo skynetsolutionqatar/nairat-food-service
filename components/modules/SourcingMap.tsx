@@ -87,27 +87,27 @@ export function SourcingMap(): React.ReactNode {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: container,
-              start: 'top 82%',
+              start: 'top 88%',
               once: true,
             },
           });
 
           tl.fromTo(
             '.sourcing-globe-container',
-            { opacity: 0, scale: 0.9 },
-            { opacity: 1, scale: 1, duration: 0.75, ease: 'power3.out' }
+            { opacity: 0, scale: 0.94 },
+            { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' }
           )
             .fromTo(
               '.sourcing-header-item',
-              { opacity: 0, y: 25 },
-              { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' },
-              '-=0.5'
+              { opacity: 0, y: 18 },
+              { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power3.out' },
+              '-=0.35'
             )
             .fromTo(
               '.sourcing-country-pill',
-              { opacity: 0, scale: 0.9, y: 12 },
-              { opacity: 1, scale: 1, y: 0, duration: 0.45, stagger: 0.04, ease: 'back.out(1.5)' },
-              '-=0.4'
+              { opacity: 0, scale: 0.92, y: 10 },
+              { opacity: 1, scale: 1, y: 0, duration: 0.35, stagger: 0.025, ease: 'back.out(1.5)' },
+              '-=0.3'
             );
         },
         containerRef

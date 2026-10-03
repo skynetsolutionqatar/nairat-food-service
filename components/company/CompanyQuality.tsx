@@ -24,15 +24,15 @@ export function CompanyQuality() {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%',
+        start: 'top 88%',
         once: true,
       },
     });
 
     timeline.fromTo(
       card,
-      { opacity: 0, y: 24 },
-      { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }
     );
   });
 

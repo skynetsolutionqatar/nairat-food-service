@@ -428,20 +428,20 @@ export function Products() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: container,
-          start: 'top 85%',
+          start: 'top 88%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.product-header-item',
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power3.out' }
       ).fromTo(
         '.product-gallery-wrapper',
-        { opacity: 0, y: 30, scale: 0.99 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'power3.out' },
-        '-=0.3'
+        { opacity: 0, y: 20, scale: 0.99 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: 'power3.out' },
+        '-=0.25'
       );
     },
     { scope: containerRef }

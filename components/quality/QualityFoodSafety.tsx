@@ -53,20 +53,20 @@ export function QualityFoodSafety(): React.ReactNode {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 80%',
+          start: 'top 88%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.safety-anim-left',
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }
       ).fromTo(
         '.safety-card-item',
-        { opacity: 0, y: 28 },
-        { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out' },
-        '-=0.35'
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: 'power3.out' },
+        '-=0.25'
       );
     },
     { scope: sectionRef }

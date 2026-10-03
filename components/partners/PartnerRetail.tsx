@@ -23,7 +23,7 @@ export function PartnerRetail(): React.ReactNode {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 85%',
+          start: 'top 88%',
           once: true,
         },
         defaults: { ease: 'power2.out' },
@@ -31,13 +31,13 @@ export function PartnerRetail(): React.ReactNode {
 
       tl.fromTo(
         '.retail-header-item',
-        { opacity: 0, y: 14 },
-        { opacity: 1, y: 0, duration: 0.55 }
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.42 }
       ).fromTo(
         '.retail-grid-container',
-        { opacity: 0, y: 14 },
-        { opacity: 1, y: 0, duration: 0.55 },
-        '-=0.35'
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.45 },
+        '-=0.25'
       );
     },
     { scope: sectionRef }

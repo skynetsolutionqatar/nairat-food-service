@@ -43,7 +43,7 @@ export function ContactSection(): React.ReactNode {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 85%',
+          start: 'top 88%',
           once: true,
         },
         defaults: { ease: 'power2.out' },
@@ -51,20 +51,20 @@ export function ContactSection(): React.ReactNode {
 
       tl.fromTo(
         '.contact-anim-header',
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.55 }
+        { opacity: 0, y: 14 },
+        { opacity: 1, y: 0, duration: 0.42 }
       )
         .fromTo(
           '.contact-info-card',
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.5, stagger: 0.08 },
-          '-=0.3'
+          { opacity: 0, y: 14 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.05 },
+          '-=0.25'
         )
         .fromTo(
           '.contact-form-card',
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.6 },
-          '-=0.4'
+          { opacity: 0, y: 16 },
+          { opacity: 1, y: 0, duration: 0.45 },
+          '-=0.3'
         );
     },
     { scope: sectionRef }

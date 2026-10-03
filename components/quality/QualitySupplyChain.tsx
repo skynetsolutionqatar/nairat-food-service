@@ -69,20 +69,20 @@ export function QualitySupplyChain(): React.ReactNode {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 80%',
+          start: 'top 88%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.chain-header-item',
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power3.out' }
       ).fromTo(
         '.chain-step-node',
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' },
-        '-=0.35'
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.42, stagger: 0.05, ease: 'power3.out' },
+        '-=0.25'
       );
     },
     { scope: sectionRef }

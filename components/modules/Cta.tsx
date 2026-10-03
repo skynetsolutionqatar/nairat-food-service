@@ -21,15 +21,15 @@ export function Cta() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container,
-        start: 'top 85%',
+        start: 'top 88%',
         once: true,
       },
     });
 
     tl.fromTo(
       items,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' }
+      { opacity: 0, y: 16 },
+      { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power3.out' }
     );
   });
 

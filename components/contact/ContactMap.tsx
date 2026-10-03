@@ -19,20 +19,20 @@ export function ContactMap() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 80%',
+          start: 'top 88%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.map-anim-header',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.45, ease: 'power3.out' }
       ).fromTo(
         '.map-container-card',
-        { opacity: 0, y: 24, scale: 0.99 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.65, ease: 'power3.out' },
-        '-=0.35'
+        { opacity: 0, y: 18, scale: 0.99 },
+        { opacity: 1, y: 0, scale: 1, duration: 0.48, ease: 'power3.out' },
+        '-=0.25'
       );
     },
     { scope: sectionRef }

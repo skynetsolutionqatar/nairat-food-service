@@ -34,14 +34,14 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
     if (isPointerFine) {
       lenisInstance = new Lenis({
-        duration: 1.4,
+        duration: 0.9,
         easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.0,
+        wheelMultiplier: 1.1,
         touchMultiplier: 1.0,
-        lerp: 0.08,
+        lerp: 0.12,
       });
 
       queueMicrotask(() => {

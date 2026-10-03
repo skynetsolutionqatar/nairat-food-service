@@ -20,15 +20,15 @@ export function PartnerLocalGrid() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 80%',
+          start: 'top 88%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.local-anim-item',
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' }
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power3.out' }
       );
     },
     { scope: sectionRef }

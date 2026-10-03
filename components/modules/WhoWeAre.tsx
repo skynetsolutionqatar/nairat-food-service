@@ -77,36 +77,36 @@ export function WhoWeAre() {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: container,
-              start: 'top 85%',
+              start: 'top 88%',
               once: true,
             },
           });
 
-          // Smooth coordinated reveal on desktop
+          // Snappy coordinated reveal on desktop
           tl.fromTo(
             headerItems,
-            { opacity: 0, y: 25 },
+            { opacity: 0, y: 18 },
             {
               opacity: 1,
               y: 0,
-              duration: 0.65,
-              stagger: 0.08,
+              duration: 0.45,
+              stagger: 0.05,
               ease: 'power3.out',
               clearProps: 'opacity,transform',
             }
           ).fromTo(
             cards,
-            { opacity: 0, y: 30, scale: 0.98 },
+            { opacity: 0, y: 20, scale: 0.99 },
             {
               opacity: 1,
               y: 0,
               scale: 1,
-              duration: 0.65,
-              stagger: 0.1,
+              duration: 0.48,
+              stagger: 0.06,
               ease: 'power3.out',
               clearProps: 'opacity,transform',
             },
-            '-=0.3'
+            '-=0.25'
           );
         },
         containerRef

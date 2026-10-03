@@ -21,7 +21,7 @@ export function CompanyVisionMission() {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%',
+        start: 'top 88%',
         once: true,
       },
     });
@@ -29,14 +29,14 @@ export function CompanyVisionMission() {
     timeline
       .fromTo(
         textItems,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power3.out' }
       )
       .fromTo(
         cards,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
-        '-=0.3'
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power2.out' },
+        '-=0.25'
       );
   });
 

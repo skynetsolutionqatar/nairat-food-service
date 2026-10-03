@@ -197,20 +197,20 @@ export function ServicesList(): React.ReactNode {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: card,
-            start: 'top 85%',
+            start: 'top 88%',
             once: true,
           },
         });
 
         tl.fromTo(
           card,
-          { opacity: 0, y: 32 },
-          { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.48, ease: 'power3.out' }
         ).fromTo(
           card.querySelectorAll('.service-card-item'),
-          { opacity: 0, y: 16 },
-          { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' },
-          '-=0.45'
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.4, stagger: 0.05, ease: 'power3.out' },
+          '-=0.3'
         );
       });
     },

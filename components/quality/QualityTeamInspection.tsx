@@ -20,20 +20,20 @@ export function QualityTeamInspection(): React.ReactNode {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top 80%',
+          start: 'top 88%',
           once: true,
         },
       });
 
       tl.fromTo(
         '.team-anim-image',
-        { opacity: 0, x: isAr ? 30 : -30 },
-        { opacity: 1, x: 0, duration: 0.7, ease: 'power3.out' }
+        { opacity: 0, x: isAr ? 20 : -20 },
+        { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out' }
       ).fromTo(
         '.team-anim-content',
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.1, ease: 'power3.out' },
-        '-=0.4'
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power3.out' },
+        '-=0.3'
       );
     },
     { scope: sectionRef }

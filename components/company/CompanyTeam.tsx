@@ -23,7 +23,7 @@ export function CompanyTeam() {
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%',
+        start: 'top 88%',
         once: true,
       },
     });
@@ -31,14 +31,14 @@ export function CompanyTeam() {
     timeline
       .fromTo(
         headers,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.65, stagger: 0.08, ease: 'power3.out' }
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power3.out' }
       )
       .fromTo(
         imageContainer,
-        { opacity: 0, scale: 0.96 },
-        { opacity: 1, scale: 1, duration: 0.75, ease: 'power2.out' },
-        '-=0.3'
+        { opacity: 0, scale: 0.98 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' },
+        '-=0.25'
       );
   });
 
