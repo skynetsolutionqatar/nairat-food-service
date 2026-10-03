@@ -20,6 +20,7 @@ export function SectionEyebrow({
         width={32}
         height={16}
         className="h-4 w-auto object-contain shrink-0"
+        style={{ width: 'auto', height: 'auto' }}
         aria-hidden="true"
       />
       <span className={`font-display type-eyebrow ${textColor} block uppercase tracking-wider`}>

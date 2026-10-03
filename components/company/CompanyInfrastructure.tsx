@@ -4,47 +4,64 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 
+import { useLocale } from '@/context/LocaleContext';
+
 interface ScaleItem {
   value: string;
+  valueAr?: string;
   label: string;
-  description: string;
+  labelAr: string;
 }
 
 const scaleItems: ScaleItem[] = [
   {
-    value: '200+',
-    label: 'Team Members',
-    description: 'Skilled logistics professionals, QA inspectors, and cold-storage operators.',
+    value: '1,200+',
+    label: 'active fresh produce lines',
+    labelAr: 'خطوط منتجات طازجة نشطة',
+  },
+  {
+    value: '15+',
+    label: 'origin countries, plus Qatari farms',
+    labelAr: 'دولة منشأ، بالإضافة إلى المزارع القطرية',
+  },
+  {
+    value: '100+',
+    label: 'retail branches supplied',
+    labelAr: 'فرع تجزئة يتم توريده',
+  },
+  {
+    value: '~100 t',
+    valueAr: '~100 طن',
+    label: 'of fresh produce delivered every day',
+    labelAr: 'من المنتجات الطازجة تُسلَّم يومياً',
   },
   {
     value: '5,000 m²',
-    label: 'Cold-Chain Warehouse',
-    description: 'Purpose-built facility in Doha’s Industrial Area engineered for high-volume fresh handling.',
-  },
-  {
-    value: '20',
-    label: 'Dedicated Chiller Rooms',
-    description: 'Custom temperature-controlled rooms, storing produce according to specific climate needs.',
+    valueAr: '5,000 م²',
+    label: 'new temperature-controlled warehouse',
+    labelAr: 'مستودع جديد يتم التحكم في درجة حرارته',
   },
   {
     value: '40',
-    label: 'Refrigerated Vehicles',
-    description: 'Temperature-controlled fleet providing reliable daily distribution across all districts in Qatar.',
+    label: 'refrigerated delivery vehicles',
+    labelAr: 'مركبة توصيل مبردة',
   },
   {
-    value: '6',
-    label: 'Loading-Dock Truck Doors',
-    description: 'High-throughput receiving and dispatch bays minimizing produce exposure to ambient heat.',
+    value: '200+',
+    label: 'people across sourcing, quality, warehousing and delivery',
+    labelAr: 'شخص عبر التوريد والجودة والتخزين والتوصيل',
   },
   {
-    value: '1500+',
-    label: 'Product Lines',
-    description: 'Diverse catalog spanning premium fresh fruits, vegetables, and specialty lines.',
+    value: 'HACCP',
+    label: 'and ISO 22000:2018 certified food safety management',
+    labelAr: 'وإدارة سلامة الغذاء المعتمدة وفق معيار ISO 22000:2018',
   },
 ];
 
 export function CompanyInfrastructure() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -99,15 +116,26 @@ export function CompanyInfrastructure() {
         {/* Top Header: Left Title | Right Narrative */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end border-b border-white/20 pb-8 sm:pb-10">
           <div className="lg:col-span-7">
-            <h2 className="infra-green-header font-display type-h2 font-semibold text-white text-left leading-[1.12]">
-              Built Around Freshness: <br />
-              <span className="text-[#D4F056]">Infrastructure Designed for Scale</span>
+            <h2 className="infra-green-header font-display type-h2 font-semibold text-white text-start leading-[1.12]">
+              {isAr ? (
+                <>
+                  صُممت حول النضارة: <br />
+                  <span className="text-[#D4F056]">بنية تحتية مصممة للنمو والتوسع</span>
+                </>
+              ) : (
+                <>
+                  Built Around Freshness: <br />
+                  <span className="text-[#D4F056]">Infrastructure Designed for Scale</span>
+                </>
+              )}
             </h2>
           </div>
 
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end">
             <p className="infra-green-header font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-white/90 leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
-              Our purpose-built cold-chain facility in Doha&apos;s Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.
+              {isAr
+                ? 'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.'
+                : "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery."}
             </p>
           </div>
         </div>
@@ -119,44 +147,46 @@ export function CompanyInfrastructure() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/5]">
               <Image
                 src="/whychooseus/chiller-warehouse.avif"
-                alt="Nairat Food Cold Storage Chiller Warehouse Facility"
+                alt={isAr ? "منشأة مستودع التخزين المبرد لشركة نيرات للأغذية" : "Nairat Food Cold Storage Chiller Warehouse Facility"}
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 500px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/50 backdrop-blur-md text-white text-xs space-y-1">
+              <div className="absolute bottom-4 start-4 end-4 p-4 rounded-2xl bg-black/50 backdrop-blur-md text-white text-xs space-y-1 text-start">
                 <span className="font-semibold text-[#D4F056] block uppercase tracking-wider">
-                  Industrial Area Hub · Doha
+                  {isAr ? 'مركز المنطقة الصناعية · الدوحة' : 'Industrial Area Hub · Doha'}
                 </span>
                 <span className="text-white/80 block">
-                  Unbroken cold-chain infrastructure operating 24/7 across Qatar.
+                  {isAr
+                    ? 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.'
+                    : 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.'}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Right: Vertical Stack of 6 Scale Items */}
-          <div className="lg:col-span-7 space-y-5">
-            {scaleItems.map((item) => (
-              <div
-                key={item.label}
-                className="infra-green-item pb-4 border-b border-white/15 last:border-b-0 last:pb-0 space-y-1"
-              >
-                <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
-                  <span className="font-mono text-xl sm:text-2xl font-bold text-[#D4F056]">
-                    {item.value}
+          {/* Right: 8 Scale Items */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+            {scaleItems.map((item, idx) => {
+              const val = isAr && item.valueAr ? item.valueAr : item.value;
+              const label = isAr ? item.labelAr : item.label;
+
+              return (
+                <div
+                  key={idx}
+                  className="infra-green-item p-4 sm:p-5 rounded-2xl bg-white/10 backdrop-blur-xs border border-white/15 hover:bg-white/15 transition-colors duration-300 space-y-1.5 text-start flex flex-col justify-center"
+                >
+                  <span className="font-display font-extrabold text-2xl sm:text-3xl text-[#D4F056] block tracking-tight">
+                    {val}
                   </span>
-                  <span className="font-display text-base sm:text-lg font-semibold text-white">
-                    {item.label}
-                  </span>
+                  <h3 className="font-display font-medium sm:font-semibold text-sm sm:text-base text-white leading-snug">
+                    {label}
+                  </h3>
                 </div>
-                <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

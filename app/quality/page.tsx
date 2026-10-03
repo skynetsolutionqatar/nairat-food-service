@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
 import { QualitySourcingPhilosophy } from '@/components/quality/QualitySourcingPhilosophy';
 import { QualityFoodSafety } from '@/components/quality/QualityFoodSafety';
+import { QualityTeamInspection } from '@/components/quality/QualityTeamInspection';
 import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
 import { Cta } from '@/components/modules/Cta';
 
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     title: 'Sourcing & Quality — Nairat Food Services Qatar',
     description:
       'Freshness is logistics. Dual-tier origin and Qatar arrival laboratory testing, multi-zone cold chain, HACCP & ISO 22000:2018 certifications, and year-round seasonal produce supply.',
-    url: 'https://nairatfood.com/quality',
+    url: 'https://nairatfoodservices.com/quality',
     siteName: 'Nairat Food Services',
     locale: 'en_US',
     type: 'website',
@@ -36,15 +37,16 @@ export default function QualityPage(): React.ReactNode {
       {/* 2. Our Sourcing Philosophy (Fresh Produce, Sourced Responsibly & 3 Pillars) */}
       <QualitySourcingPhilosophy />
 
-      {/* 3. Quality & Food Safety (Rigorous Checks & HACCP / ISO Certificates) */}
+      {/* 3. Quality & Food Safety (HACCP & ISO 22000:2018 Certificates) */}
       <QualityFoodSafety />
 
-      {/* 4. Our Supply Chain (From Farm to You: 01 Source -> 02 Inspect -> 03 Cold Chain -> 04 Deliver) */}
+      {/* 4. Dedicated QA Team & Pre-Shipment Inspection */}
+      <QualityTeamInspection />
+
+      {/* 5. Controls at Every Step (5-Step Operational Controls) */}
       <QualitySupplyChain />
 
-
-
-      {/* 7. Global Contact & Inquiry Module */}
+      {/* 6. Global Contact & Inquiry Module */}
       <Cta />
     </div>
   );

@@ -1,12 +1,15 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
+import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { MapPin, Navigation, Clock, Warehouse, ShieldCheck } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { useLocale } from '@/context/LocaleContext';
 
 export function ContactMap() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(
     () => {
@@ -44,22 +47,12 @@ export function ContactMap() {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Section Header */}
         <div className="map-anim-header space-y-3">
-          <div className="flex items-center gap-2">
-            <Image
-              src="/icon/icon.png"
-              alt=""
-              width={32}
-              height={16}
-              className="h-4 w-auto object-contain"
-              aria-hidden="true"
-            />
-            <span className="font-display type-eyebrow text-[#168849] block">
-              FACILITY LOCATION
-            </span>
-          </div>
+          <SectionEyebrow title={isAr ? 'موقع المنشأة' : 'FACILITY LOCATION'} />
 
-          <h2 className="font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]">
-            Our Doha Central Warehouse &amp; Cold Storage
+          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+            {isAr
+              ? 'مستودعنا المركزي والتخزين المبرد في الدوحة'
+              : 'Our Doha Central Warehouse & Cold Storage'}
           </h2>
         </div>
 
@@ -72,8 +65,12 @@ export function ContactMap() {
                 <MapPin className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[11px] text-[#6B7280] block">Location</span>
-                <span className="font-semibold text-[#111814]">Street 37, Industrial Area</span>
+                <span className="text-[11px] text-[#6B7280] block">
+                  {isAr ? 'الموقع' : 'Location'}
+                </span>
+                <span className="font-semibold text-[#111814]">
+                  {isAr ? 'شارع 37، المنطقة الصناعية' : 'Street 37, Industrial Area'}
+                </span>
               </div>
             </div>
 
@@ -82,8 +79,12 @@ export function ContactMap() {
                 <Warehouse className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[11px] text-[#6B7280] block">Capacity</span>
-                <span className="font-semibold text-[#111814]">5,000 m² &bull; 20 Chillers</span>
+                <span className="text-[11px] text-[#6B7280] block">
+                  {isAr ? 'السعة' : 'Capacity'}
+                </span>
+                <span className="font-semibold text-[#111814]">
+                  {isAr ? '5,000 م² • 20 مبرداً' : '5,000 m² • 20 Chillers'}
+                </span>
               </div>
             </div>
 
@@ -92,8 +93,12 @@ export function ContactMap() {
                 <Clock className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[11px] text-[#6B7280] block">Operations</span>
-                <span className="font-semibold text-[#111814]">24/7 Receiving &amp; Dispatch</span>
+                <span className="text-[11px] text-[#6B7280] block">
+                  {isAr ? 'العمليات' : 'Operations'}
+                </span>
+                <span className="font-semibold text-[#111814]">
+                  {isAr ? 'الاستلام والإرسال 24/7' : '24/7 Receiving & Dispatch'}
+                </span>
               </div>
             </div>
 
@@ -102,8 +107,12 @@ export function ContactMap() {
                 <ShieldCheck className="w-4 h-4" />
               </div>
               <div>
-                <span className="text-[11px] text-[#6B7280] block">Compliance</span>
-                <span className="font-semibold text-[#111814]">HACCP &bull; ISO 22000</span>
+                <span className="text-[11px] text-[#6B7280] block">
+                  {isAr ? 'الامتثال' : 'Compliance'}
+                </span>
+                <span className="font-semibold text-[#111814]">
+                  {isAr ? 'HACCP • ISO 22000' : 'HACCP • ISO 22000'}
+                </span>
               </div>
             </div>
           </div>
@@ -111,8 +120,12 @@ export function ContactMap() {
           {/* Interactive Google Map Embed */}
           <div className="relative w-full h-[380px] sm:h-[440px] lg:h-[480px]">
             <iframe
-              title="Nairat Food Central Warehouse Location Doha Qatar"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14436.327854619374!2d51.42875155!3d25.1979435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d070d65b75b9%3A0x13c7cbdf4b2568f6!2sIndustrial%20Area%2C%20Street%2037%2C%20Doha%2C%20Qatar!5e0!3m2!1sen!2sqa!4v1700000000000!5m2!1sen!2sqa"
+              title={
+                isAr
+                  ? 'موقع مستودع نيرات للأغذية المركزي بالدوحة'
+                  : 'Nairat Food Central Warehouse Location Doha Qatar'
+              }
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57763.27363835163!2d51.3660583!3d25.1963217!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d10076a23d59%3A0x3ee7f3ae5d1130be!2sNairat%20Food%20-%20Main%20Warehouse!5e0!3m2!1sen!2sqa!4v1790839233998!5m2!1sen!2sqa"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -123,23 +136,25 @@ export function ContactMap() {
             />
 
             {/* Float Navigation Card */}
-            <div className="absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-xs p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-neutral-200 shadow-md flex items-center justify-between gap-4">
+            <div className="absolute bottom-4 start-4 end-4 sm:end-auto sm:max-w-xs p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-neutral-200 shadow-md flex items-center justify-between gap-4">
               <div>
                 <span className="font-display font-bold text-sm text-[#111814] block">
-                  Nairat Food Services
+                  {isAr ? 'شركة نيرات للخدمات الغذائية' : 'Nairat Food Services'}
                 </span>
                 <span className="font-sans text-xs text-[#6B7280] block">
-                  Street 37, Industrial Area, Doha
+                  {isAr
+                    ? 'شارع 37، المنطقة الصناعية، الدوحة'
+                    : 'Street 37, Industrial Area, Doha'}
                 </span>
               </div>
               <a
-                href="https://maps.google.com/?q=Street+37+Industrial+Area+Doha+Qatar"
+                href="https://maps.app.goo.gl/FGEeJiMmQ172UCx3A"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#168849] hover:bg-[#12723c] text-white text-xs font-semibold shadow-xs transition-colors shrink-0"
               >
-                <Navigation className="w-3.5 h-3.5" />
-                <span>Directions</span>
+                <Navigation className="w-3.5 h-3.5 rtl:rotate-180" />
+                <span>{isAr ? 'الاتجاهات' : 'Directions'}</span>
               </a>
             </div>
           </div>

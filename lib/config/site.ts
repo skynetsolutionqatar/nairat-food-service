@@ -7,6 +7,7 @@ export const siteConfig = {
   crNumber: '144352',
   contact: {
     address: 'Industrial Area, Street 37, Doha, Qatar',
+    poBox: 'P.O. Box 64040, Doha, Qatar',
     email: 'info@nairat.net',
     tel: '+974 4429 0400',
     telSecondary: '+974 4429 0300',

@@ -3,6 +3,7 @@
 import React, { useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { X } from 'lucide-react';
+import { useLocale } from '@/context/LocaleContext';
 
 export interface CertificateModalData {
   title: string;
@@ -21,6 +22,9 @@ export function CertificateModal({
   onClose,
   certificate,
 }: CertificateModalProps): React.ReactNode {
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -55,7 +59,7 @@ export function CertificateModal({
       onClick={onClose}
     >
       <div
-        className="relative max-w-xl sm:max-w-2xl w-full bg-white rounded-3xl p-5 sm:p-7 shadow-2xl border border-neutral-200 overflow-hidden transform transition-all duration-300 animate-in zoom-in-95"
+        className="relative max-w-xl sm:max-w-2xl w-full bg-white rounded-3xl p-5 sm:p-7 shadow-2xl border border-neutral-200 overflow-hidden transform transition-all duration-300 animate-in zoom-in-95 text-start"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
@@ -77,7 +81,7 @@ export function CertificateModal({
             type="button"
             onClick={onClose}
             className="p-2 rounded-full hover:bg-neutral-100 transition-colors cursor-pointer text-neutral-500 hover:text-neutral-900"
-            aria-label="Close certificate preview"
+            aria-label={isAr ? 'إغلاق معاينة الشهادة' : 'Close certificate preview'}
           >
             <X className="w-5 h-5" />
           </button>
@@ -98,14 +102,14 @@ export function CertificateModal({
         {/* Modal Footer */}
         <div className="pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-[#6B7280]">
           <span className="font-mono text-[11px] text-[#168849] font-medium">
-            Official Verification · Qatar
+            {isAr ? 'تحقق رسمي · قطر' : 'Official Verification · Qatar'}
           </span>
           <button
             type="button"
             onClick={onClose}
             className="px-4 py-1.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-[#111814] font-semibold text-xs transition-colors cursor-pointer"
           >
-            Close Preview
+            {isAr ? 'إغلاق المعاينة' : 'Close Preview'}
           </button>
         </div>
       </div>

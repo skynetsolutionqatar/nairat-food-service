@@ -69,7 +69,7 @@ export function PageBanner({
     >
       {/* Decorative Organic Brand Watermark */}
       {showWatermark && (
-        <div className="absolute -right-8 -bottom-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 opacity-[0.08] pointer-events-none select-none">
+        <div className="absolute -end-8 -bottom-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 opacity-[0.08] pointer-events-none select-none">
           <Image
             src="/icon/icon.png"
             alt=""
@@ -81,7 +81,7 @@ export function PageBanner({
         </div>
       )}
 
-      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-start">
         <h1 className="banner-anim-title font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
           {title}
         </h1>

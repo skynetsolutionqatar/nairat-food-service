@@ -5,9 +5,12 @@ import Image from 'next/image';
 import { CheckCircle2 } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import { useLocale } from '@/context/LocaleContext';
 
 export function PartnerLocalGrid() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
 
   useGSAP(
     () => {
@@ -45,41 +48,43 @@ export function PartnerLocalGrid() {
               <div className="relative h-16 sm:h-20 w-44 sm:w-52 flex items-center justify-center">
                 <Image
                   src="/partners/mahaseel.png"
-                  alt="Mahaseel Agricultural Services Company Qatar"
+                  alt={isAr ? 'شركة محاصيل للخدمات الزراعية قطر' : 'Mahaseel Agricultural Services Company Qatar'}
                   fill
                   className="object-contain"
                   sizes="210px"
                 />
               </div>
               <span className="font-mono text-xs font-bold text-[#168849] uppercase tracking-wider mt-3">
-                Strategic Local Partner
+                {isAr ? 'شريك محلي استراتيجي' : 'Strategic Local Partner'}
               </span>
             </div>
 
             {/* Right Column: Heading & Content (8 cols) */}
-            <div className="lg:col-span-8 space-y-4">
-              <SectionEyebrow title="LOCAL AGRICULTURAL ALLIANCE" />
+            <div className="lg:col-span-8 space-y-4 text-start">
+              <SectionEyebrow title={isAr ? 'تحالف زراعي محلي' : 'LOCAL AGRICULTURAL ALLIANCE'} />
 
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#111814] tracking-tight">
-                Connecting Qatari Farms to the Market
+                {isAr ? 'ربط المزارع القطرية بالسوق' : 'Connecting Qatari Farms to the Market'}
               </h3>
 
               <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
-                Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.
+                {isAr
+                  ? 'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.'
+                  : 'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.'}
               </p>
 
               <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-xs sm:text-sm font-semibold text-[#111814]">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#168849]" />
-                  <span>Qatari-Grown Seasonal Supply</span>
+                  <span>{isAr ? 'إمداد موسمي مزروع في قطر' : 'Qatari-Grown Seasonal Supply'}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#168849]" />
-                  <span>Direct Farm-to-Shelf Distribution</span>
+                  <span>{isAr ? 'توزيع مباشر من المزرعة إلى الرف' : 'Direct Farm-to-Shelf Distribution'}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#168849]" />
-                  <span>Supporting National Food Security</span>
+                  <span>{isAr ? 'دعم الأمن الغذائي الوطني' : 'Supporting National Food Security'}</span>
                 </div>
               </div>
             </div>

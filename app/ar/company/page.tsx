@@ -1,0 +1,65 @@
+import React from 'react';
+import type { Metadata } from 'next';
+import { PageBanner } from '@/components/ui/PageBanner';
+import { CompanyDelivering } from '@/components/company/CompanyDelivering';
+import { CompanyVisionMission } from '@/components/company/CompanyVisionMission';
+import { CompanyInfrastructure } from '@/components/company/CompanyInfrastructure';
+import { CompanySourcing } from '@/components/company/CompanySourcing';
+import { CompanyTeam } from '@/components/company/CompanyTeam';
+import { CompanyQuality } from '@/components/company/CompanyQuality';
+import { CompanyLookingAhead } from '@/components/company/CompanyLookingAhead';
+import { Cta } from '@/components/modules/Cta';
+
+export const metadata: Metadata = {
+  title: 'الشركة — نيرات للخدمات الغذائية قطر',
+  description:
+    'اكتشف نيرات للخدمات الغذائية: شريك المنتجات الطازجة الرائد في قطر منذ عام 2020. مستودع سلسلة التبريد بمساحة 5,000 م²، و20 غرفة تبريد، و40 مركبة مبردة، وسلامة غذاء معتمدة بشهادات ISO 22000 / HACCP.',
+  openGraph: {
+    title: 'حول نيرات للخدمات الغذائية — شريك المنتجات الطازجة لقطر',
+    description:
+      'من التوريد العالمي إلى التوصيل المحلي عبر سلسلة التبريد، تربط نيرات للأغذية أرقى المنتجات الطازجة في العالم بالعملاء في جميع أنحاء قطر.',
+    url: 'https://nairatfoodservices.com/ar/company',
+    siteName: 'نيرات للخدمات الغذائية',
+    locale: 'ar_QA',
+    type: 'website',
+  },
+};
+
+export default function ArabicCompanyPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      {/* 1. Header Banner */}
+      <PageBanner
+        title="الشركة"
+        breadcrumbs={[
+          { label: 'الرئيسية', href: '/ar' },
+          { label: 'الشركة' },
+        ]}
+      />
+
+      {/* 2. Delivering Freshness */}
+      <CompanyDelivering />
+
+      {/* 3. Our Journey: Vision & Mission */}
+      <CompanyVisionMission />
+
+      {/* 4. Infrastructure & Operational Scale */}
+      <CompanyInfrastructure />
+
+      {/* 5. Strategic Global Sourcing */}
+      <CompanySourcing />
+
+      {/* 6. Our Team */}
+      <CompanyTeam />
+
+      {/* 7. Quality & Food Safety */}
+      <CompanyQuality />
+
+      {/* 8. Looking Ahead */}
+      <CompanyLookingAhead />
+
+      {/* 9. Final CTA */}
+      <Cta />
+    </div>
+  );
+}

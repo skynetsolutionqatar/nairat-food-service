@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'About Nairat Food Services — Fresh Produce Partner for Qatar',
     description:
       'From global sourcing to local cold-chain delivery, Nairat Food connects the world’s finest fresh produce with customers across Qatar.',
-    url: 'https://nairatfood.com/company',
+    url: 'https://nairatfoodservices.com/company',
     siteName: 'Nairat Food Services',
     locale: 'en_US',
     type: 'website',

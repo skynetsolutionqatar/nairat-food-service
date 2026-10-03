@@ -7,27 +7,30 @@ import { Globe, ShieldCheck, Sprout, ArrowRight, Calendar } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '../ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
-
-const pillars = [
-  {
-    icon: <Globe className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-    title: 'Global Network',
-    description: 'Trusted partners across 30+ countries',
-  },
-  {
-    icon: <ShieldCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-    title: 'Quality First',
-    description: 'Strict inspection at every stage',
-  },
-  {
-    icon: <Sprout className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-    title: 'Sustainable Sourcing',
-    description: 'Supporting responsible farming practices',
-  },
-];
+import { useLocale } from '@/context/LocaleContext';
 
 export function QualitySourcingPhilosophy(): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
+  const { locale } = useLocale();
+  const isAr = locale === 'ar';
+
+  const pillars = [
+    {
+      icon: <Globe className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      title: isAr ? 'شبكة عالمية' : 'Global Network',
+      description: isAr ? 'شركاء موثوقون عبر 60 دولة' : 'Trusted partners across 60 countries',
+    },
+    {
+      icon: <ShieldCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      title: isAr ? 'الجودة أولاً' : 'Quality First',
+      description: isAr ? 'فحص صارم في كل مرحلة' : 'Strict inspection at every stage',
+    },
+    {
+      icon: <Sprout className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      title: isAr ? 'توريد مستدام' : 'Sustainable Sourcing',
+      description: isAr ? 'دعم ممارسات الزراعة المسؤولة' : 'Supporting responsible farming practices',
+    },
+  ];
 
   useGSAP(
     () => {
@@ -65,16 +68,27 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Heading, Narrative & 3 Value Pillars (5 cols) */}
-          <div className="philosophy-anim-left lg:col-span-5 space-y-6">
-            <SectionEyebrow title="OUR SOURCING PHILOSOPHY" />
+          <div className="philosophy-anim-left lg:col-span-5 space-y-6 text-start">
+            <SectionEyebrow title={isAr ? 'فلسفة التوريد لدينا' : 'OUR SOURCING PHILOSOPHY'} />
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.14] tracking-tight">
-              Fresh Produce, <br className="hidden sm:inline" />
-              Sourced Responsibly.
+              {isAr ? (
+                <>
+                  منتجات طازجة، <br className="hidden sm:inline" />
+                  تم توريدها بمسؤولية.
+                </>
+              ) : (
+                <>
+                  Fresh Produce, <br className="hidden sm:inline" />
+                  Sourced Responsibly.
+                </>
+              )}
             </h2>
 
             <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
-              We work with trusted growers and suppliers across the world, combining strong global partnerships with local expertise to bring the best fresh produce to Qatar.
+              {isAr
+                ? 'نحن نعمل مع مزارعين وموردين موثوقين في جميع أنحاء العالم، ونجمع بين الشراكات العالمية القوية والخبرة المحلية لجلب أفضل المنتجات الطازجة إلى قطر.'
+                : 'We work with trusted growers and suppliers across the world, combining strong global partnerships with local expertise to bring the best fresh produce to Qatar.'}
             </p>
 
             {/* 3 Pillars Row */}
@@ -105,51 +119,54 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                 <div className="sm:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-xs">
                   <Image
                     src="/quality/cargo-ship.jpg"
-                    alt="International Sourcing Cargo Container Ship"
+                    alt={isAr ? 'شحنات استيراد بحري للمحاصيل الزراعية' : 'International Sourcing Cargo Container Ship'}
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, 360px"
                   />
                 </div>
 
-                <div className="sm:col-span-6 space-y-3">
+                <div className="sm:col-span-6 space-y-3 text-start">
                   <h3 className="font-display font-bold text-lg sm:text-xl text-[#111814] leading-snug">
-                    Sourcing from <br />
-                    Around the World
+                    {isAr ? (
+                      <>
+                        التوريد من <br />
+                        جميع أنحاء العالم
+                      </>
+                    ) : (
+                      <>
+                        Sourcing from <br />
+                        Around the World
+                      </>
+                    )}
                   </h3>
                   <p className="font-sans text-xs sm:text-[13px] text-[#6B7280] leading-[1.6]">
-                    We source fresh produce from leading growing regions across the Levant, Gulf, Africa, Asia and beyond, ensuring consistent supply and year-round availability.
+                    {isAr
+                      ? 'نحن نورد منتجات طازجة من مناطق الزراعة الرائدة عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يضمن إمداداً متسقاً وتوافراً على مدار العام.'
+                      : 'We source fresh produce from leading growing regions across the Levant, Gulf, Africa, Asia and beyond, ensuring consistent supply and year-round availability.'}
                   </p>
                   <div className="pt-1">
-                    {/* <Link
-                      href="#supply-chain"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#168849] hover:bg-[#063B27] text-white text-xs font-semibold shadow-xs hover:shadow-md transition-all group cursor-pointer"
-                    >
-                      <span>Our Sourcing Regions</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
-                    </Link> */}
                     <CtaButton
-                      href="/company"
-                      text="Our Sourcing Regions"
+                      href={isAr ? '/ar/company#sourcing' : '/company#sourcing'}
+                      text={isAr ? 'مناطق التوريد لدينا' : 'Our Sourcing Regions'}
                       variant="primary"
-
                     />
                   </div>
                 </div>
               </div>
 
               {/* Bottom Row: 3 Highlight Metrics */}
-              <div className="pt-4 border-t border-[#E3EBE5] grid grid-cols-3 gap-3 sm:gap-4 items-center">
+              <div className="pt-4 border-t border-[#E3EBE5] grid grid-cols-3 gap-3 sm:gap-4 items-center text-start">
                 <div className="flex items-center gap-2.5 sm:gap-3">
                   <div className="w-8 h-8 rounded-lg bg-white border border-[#E3EBE5] flex items-center justify-center shrink-0">
                     <Globe className="w-4 h-4 text-[#168849]" />
                   </div>
                   <div>
                     <span className="font-display font-bold text-base sm:text-lg text-[#111814] block leading-none">
-                      30+
+                      15+
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
-                      Countries
+                      {isAr ? 'أصول رئيسية' : 'Core Origins'}
                     </span>
                   </div>
                 </div>
@@ -160,10 +177,10 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                   </div>
                   <div>
                     <span className="font-display font-bold text-base sm:text-lg text-[#111814] block leading-none">
-                      1500+
+                      1,200+
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
-                      Product Lines
+                      {isAr ? 'خطوط نشطة' : 'Active Lines'}
                     </span>
                   </div>
                 </div>
@@ -174,10 +191,10 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
                   </div>
                   <div>
                     <span className="font-display font-bold text-sm sm:text-base text-[#111814] block leading-none whitespace-nowrap">
-                      Year-Round
+                      {isAr ? 'على مدار العام' : 'Year-Round'}
                     </span>
                     <span className="text-[11px] text-[#6B7280] block mt-0.5">
-                      Availability
+                      {isAr ? 'التوافر' : 'Availability'}
                     </span>
                   </div>
                 </div>

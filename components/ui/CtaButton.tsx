@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowUpLeft } from 'lucide-react';
+import { useLocale } from '@/context/LocaleContext';
 import { cn } from '@/lib/utils';
 
 type CommonProps = {
@@ -28,6 +31,7 @@ export function CtaButton({
   disabled,
   ...props
 }: CtaButtonProps) {
+  const { isRTL } = useLocale();
   const isButton = as === 'button' || (!href && (type !== undefined || as !== 'a')) || type === 'submit';
 
   const getStyles = () => {
@@ -68,7 +72,7 @@ export function CtaButton({
 
   const sharedClasses = cn(
     'group inline-flex items-center gap-2.5 sm:gap-3 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#168849] focus-visible:ring-offset-2 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:pointer-events-none',
-    showIcon ? 'pl-4 sm:pl-5 pr-1.5 sm:pr-2 py-1.5 sm:py-2' : 'px-5 sm:px-6 py-2 sm:py-2.5',
+    showIcon ? 'ps-4 sm:ps-5 pe-1.5 sm:pe-2 py-1.5 sm:py-2' : 'px-5 sm:px-6 py-2 sm:py-2.5',
     getStyles(),
     className
   );
@@ -83,7 +87,11 @@ export function CtaButton({
             getBadgeStyles()
           )}
         >
-          <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5] transition-transform duration-300 group-hover:rotate-45 group-hover:translate-x-0.5" />
+          {isRTL ? (
+            <ArrowUpLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5] cta-arrow cta-arrow-rtl" />
+          ) : (
+            <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5] cta-arrow cta-arrow-ltr" />
+          )}
         </div>
       )}
     </>
