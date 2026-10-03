@@ -8,54 +8,53 @@ import { useLocale } from '@/context/LocaleContext';
 
 interface ScaleItem {
   value: string;
+  valueAr?: string;
   label: string;
   labelAr: string;
-  description: string;
-  descriptionAr: string;
 }
 
 const scaleItems: ScaleItem[] = [
   {
-    value: '200+',
-    label: 'Team Members',
-    labelAr: 'أعضاء الفريق',
-    description: 'Skilled logistics professionals, QA inspectors, and cold-storage operators.',
-    descriptionAr: 'متخصصون لوجستيون ماهرون، ومفتشو ضمان الجودة، ومشغلو التخزين المبرد.',
+    value: '1,200+',
+    label: 'active fresh produce lines',
+    labelAr: 'خطوط منتجات طازجة نشطة',
+  },
+  {
+    value: '15+',
+    label: 'origin countries, plus Qatari farms',
+    labelAr: 'دولة منشأ، بالإضافة إلى المزارع القطرية',
+  },
+  {
+    value: '100+',
+    label: 'retail branches supplied',
+    labelAr: 'فرع تجزئة يتم توريده',
+  },
+  {
+    value: '~100 t',
+    valueAr: '~100 طن',
+    label: 'of fresh produce delivered every day',
+    labelAr: 'من المنتجات الطازجة تُسلَّم يومياً',
   },
   {
     value: '5,000 m²',
-    label: 'Cold-Chain Warehouse',
-    labelAr: 'مستودع سلسلة التبريد',
-    description: 'Purpose-built facility in Doha’s Industrial Area engineered for high-volume fresh handling.',
-    descriptionAr: 'منشأة مصممة خصيصاً في المنطقة الصناعية بالدوحة ومجهزة للتعامل مع كميات كبيرة من المنتجات الطازجة.',
-  },
-  {
-    value: '20',
-    label: 'Dedicated Chiller Rooms',
-    labelAr: 'غرف تبريد مخصصة',
-    description: 'Custom temperature-controlled rooms, storing produce according to specific climate needs.',
-    descriptionAr: 'غرف مخصصة يتم التحكم في درجة حرارتها، لتخزين المنتجات وفقاً للاحتياجات المناخية المحددة.',
+    valueAr: '5,000 م²',
+    label: 'new temperature-controlled warehouse',
+    labelAr: 'مستودع جديد يتم التحكم في درجة حرارته',
   },
   {
     value: '40',
-    label: 'Refrigerated Vehicles',
-    labelAr: 'مركبات مبردة',
-    description: 'Temperature-controlled fleet providing reliable daily distribution across all districts in Qatar.',
-    descriptionAr: 'أسطول يتم التحكم في درجة حرارته يوفر توزيعاً يومياً موثوقاً في جميع مناطق قطر.',
+    label: 'refrigerated delivery vehicles',
+    labelAr: 'مركبة توصيل مبردة',
   },
   {
-    value: '6',
-    label: 'Loading-Dock Truck Doors',
-    labelAr: 'أبواب أرصفة تحميل الشاحنات',
-    description: 'High-throughput receiving and dispatch bays minimizing produce exposure to ambient heat.',
-    descriptionAr: 'أرصفة استلام وإرسال عالية السعة تقلل من تعرض المنتجات للحرارة المحيطة.',
+    value: '200+',
+    label: 'people across sourcing, quality, warehousing and delivery',
+    labelAr: 'شخص عبر التوريد والجودة والتخزين والتوصيل',
   },
   {
-    value: '1,200+',
-    label: 'Active Produce Lines',
-    labelAr: 'خطوط منتجات طازجة نشطة',
-    description: 'Diverse catalog spanning fresh fruits, vegetables, and specialty gourmet lines across Qatar.',
-    descriptionAr: 'كتالوج متنوع يشمل الفواكه الطازجة، والخضروات، وخطوط المنتجات الفاخرة المتخصصة في جميع أنحاء قطر.',
+    value: 'HACCP',
+    label: 'and ISO 22000:2018 certified food safety management',
+    labelAr: 'وإدارة سلامة الغذاء المعتمدة وفق معيار ISO 22000:2018',
   },
 ];
 
@@ -168,26 +167,23 @@ export function CompanyInfrastructure() {
             </div>
           </div>
 
-          {/* Right: Vertical Stack of 6 Scale Items */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+          {/* Right: 8 Scale Items */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
             {scaleItems.map((item, idx) => {
+              const val = isAr && item.valueAr ? item.valueAr : item.value;
               const label = isAr ? item.labelAr : item.label;
-              const desc = isAr ? item.descriptionAr : item.description;
 
               return (
                 <div
                   key={idx}
-                  className="infra-green-item p-5 sm:p-6 rounded-2xl bg-white/10 backdrop-blur-xs border border-white/15 hover:bg-white/15 transition-colors duration-300 space-y-2 text-start"
+                  className="infra-green-item p-4 sm:p-5 rounded-2xl bg-white/10 backdrop-blur-xs border border-white/15 hover:bg-white/15 transition-colors duration-300 space-y-1.5 text-start flex flex-col justify-center"
                 >
-                  <span className="font-display font-extrabold text-2xl sm:text-3xl text-[#D4F056] block">
-                    {item.value}
+                  <span className="font-display font-extrabold text-2xl sm:text-3xl text-[#D4F056] block tracking-tight">
+                    {val}
                   </span>
-                  <h3 className="font-display font-semibold text-sm sm:text-base text-white">
+                  <h3 className="font-display font-medium sm:font-semibold text-sm sm:text-base text-white leading-snug">
                     {label}
                   </h3>
-                  <p className="font-sans text-xs text-white/80 leading-[1.5]">
-                    {desc}
-                  </p>
                 </div>
               );
             })}
