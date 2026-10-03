@@ -24,41 +24,76 @@ interface ServiceCard {
 
 const serviceCards: ServiceCard[] = [
   {
-    id: 'retail-wholesale',
-    title: 'Retail & Wholesale Distribution',
-    titleAr: 'توزيع التجزئة والجملة',
-    desc: 'Daily fresh-produce supply to retailers, wholesalers, supermarkets and food-service businesses across Qatar.',
-    descAr: 'إمداد يومي بالمنتجات الطازجة لتجار التجزئة وتجار الجملة ومحلات السوبرماركت وشركات الخدمات الغذائية في جميع أنحاء قطر.',
-    imageUrl: '/services/wholesale-distribution.avif',
-    actionText: 'Explore Distribution',
-    actionTextAr: 'استكشف التوزيع',
-    actionHref: '/services',
-    actionHrefAr: '/ar/services',
+    id: 'global-sourcing-import',
+    title: 'Global Sourcing & Import',
+    titleAr: 'التوريد العالمي والاستيراد',
+    desc: 'Direct relationship with growers and exporters across Europe, the Middle East and Asia. More than 1,200 active lines, selected for quality, shelf life and value, and consolidated through our own import operation.',
+    descAr: 'علاقات مباشرة مع المزارعين والمصدرين عبر أوروبا والشرق الأوسط وآسيا. أكثر من 1,200 صنف نشط، مختارة للجودة وفترة الصلاحية والقيمة، ومجمعة عبر عمليات الاستيراد الخاصة بنا.',
+    imageUrl: '/services/global-sourcing-import.webp',
+    actionText: 'Partner with Sourcing',
+    actionTextAr: 'استكشف التوريد العالمي',
+    actionHref: '/contact?subject=sourcing',
+    actionHrefAr: '/ar/contact?subject=sourcing',
   },
   {
-    id: 'grower-partnerships',
-    title: 'Grower & Exporter Partnerships',
-    titleAr: 'شراكات المزارعين والمصدرين',
-    desc: 'A reliable local partner for growers and exporters looking to bring fresh produce to the Qatar market.',
-    descAr: 'شريك محلي موثوق للمزارعين والمصدرين الذين يتطلعون إلى جلب المنتجات الطازجة إلى سوق قطر.',
-    imageUrl: '/services/grower-and-exporter.avif',
-    actionText: 'Partner With Us',
-    actionTextAr: 'كن شريكاً معنا',
-    actionHref: '/contact?subject=grower',
-    actionHrefAr: '/ar/contact?subject=grower',
+    id: 'retail-supply-management',
+    title: 'Retail Supply & Category Management',
+    titleAr: 'توريد التجزئة وإدارة الفئات',
+    desc: 'Daily supply to hypermarket and supermarket chains, from basic replenishment to full category management of the fresh section, including range planning, pricing and in-store availability.',
+    descAr: 'إمداد يومي لسلاسل الهايبرماركت والسوبرماركت، من تجديد المخزون الأساسي إلى الإدارة الكاملة لفئة المنتجات الطازجة، بما في ذلك تخطيط التشكيلة والتسعير والتوافر على الرفوف.',
+    imageUrl: '/services/retail-supply-management.webp',
+    actionText: 'Inquire for Retail Supply',
+    actionTextAr: 'استفسر عن توريد التجزئة',
+    actionHref: '/contact?subject=retail',
+    actionHrefAr: '/ar/contact?subject=retail',
   },
   {
-    id: 'nairat-shop',
-    title: 'Nairat Retail Shop',
-    titleAr: 'متجر نيرات للتجزئة',
-    desc: 'Fresh fruits and vegetables available directly to consumers at our retail store.',
-    descAr: 'فواكه وخضروات طازجة متوفرة مباشرة للمستهلكين في متجر التجزئة الخاص بنا.',
-    imageUrl: '/services/nairat-shop.avif',
-    actionText: 'Visit Nairat Shop',
-    actionTextAr: 'زيارة متجر نيرات',
-    actionHref: 'https://maps.app.goo.gl/FGEeJiMmQ172UCx3A',
-    actionHrefAr: 'https://maps.app.goo.gl/FGEeJiMmQ172UCx3A',
-    isExternal: true,
+    id: 'wholesale-foodservice',
+    title: 'Wholesale & Foodservice',
+    titleAr: 'التوريد بالجملة والخدمات الغذائية',
+    desc: 'Bulk supply to wholesalers, caterers, restaurants and independent grocers, with the same sorting, packing and cold-chain standards as our retail programme.',
+    descAr: 'توريد كميات كبيرة لتجار الجملة، ومتعهدي الحفلات، والمطاعم، ومتاجر البقالة المستقلة، بنفس معايير الفرز والتعبئة وسلسلة التبريد المطبقة في برنامجنا للتجزئة.',
+    imageUrl: '/services/wholesale-foodservice.webp',
+    actionText: 'Request Wholesale Rates',
+    actionTextAr: 'اطلب أسعار الجملة',
+    actionHref: '/contact?subject=wholesale',
+    actionHrefAr: '/ar/contact?subject=wholesale',
+  },
+  {
+    id: 'quick-commerce-grocery',
+    title: 'Quick-Commerce & Online Grocery',
+    titleAr: 'التجارة السريعة والبقالة الإلكترونية',
+    desc: 'Cross-dock supply to dark-store and online grocery networks, packed to order and delivered to their operating rhythm, with weekly price lists and short lead times.',
+    descAr: 'إمداد مباشر ومتقاطع لشبكات المتاجر المظلمة وتطبيقات البقالة الرقمية، معبأ حسب الطلب ومسلّم وفق إيقاع تشغيلها، مع قوائم أسعار أسبوعية وأوقات استجابة سريعة.',
+    imageUrl: '/services/quick-commerce-grocery.webp',
+    actionText: 'Connect for Q-Commerce',
+    actionTextAr: 'تواصل لخدمات التجارة السريعة',
+    actionHref: '/contact?subject=qcommerce',
+    actionHrefAr: '/ar/contact?subject=qcommerce',
+  },
+  {
+    id: 'cold-storage-logistics',
+    title: 'Cold Storage & Logistics for Partners',
+    titleAr: 'التخزين المبرد والخدمات اللوجستية للشركاء',
+    desc: 'Temperature-controlled cold rooms with pallet racking, forklift handling, order picking and refrigerated delivery, available to retail and e-commerce partners who need a central warehouse in Doha.',
+    descAr: 'غرف تبريد يتم التحكم بدرجات حرارتها مع رفوف للطبليات، ومناولة بالرافعات الشوكية، وانتقاء الطلبات، وتوصيل مبرد، متاحة لشركاء التجزئة والتجارة الإلكترونية المحتاجين لمستودع مركزي في الدوحة.',
+    imageUrl: '/services/cold-storage-logistics.webp',
+    actionText: 'Book Storage & Logistics',
+    actionTextAr: 'احجز التخزين واللوجستيات',
+    actionHref: '/contact?subject=logistics',
+    actionHrefAr: '/ar/contact?subject=logistics',
+  },
+  {
+    id: 'local-farm-partnerships',
+    title: 'Local Farm Partnerships',
+    titleAr: 'شراكات المزارع المحلية',
+    desc: "Through our agreement with Mahaseel, Qatar's agricultural marketing company, we bring Qatari-grown vegetables to market alongside imports, supporting local farmers and national food security.",
+    descAr: 'من خلال اتفاقيتنا مع شركة "محاصيل"، شركة التسويق الزراعي القطرية، نطرح الخضروات المزروعة محلياً في الأسواق جنباً إلى جنب مع الواردات، دعماً للمزارعين المحليين والأمن الغذائي الوطني.',
+    imageUrl: '/services/local-farm-partnerships.webp',
+    actionText: 'Partner Local Produce',
+    actionTextAr: 'شارك في الإنتاج المحلي',
+    actionHref: '/contact?subject=local-farms',
+    actionHrefAr: '/ar/contact?subject=local-farms',
   },
 ];
 
@@ -87,7 +122,7 @@ export function Services() {
       ).fromTo(
         '.service-card-item',
         { opacity: 0, y: 30, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.1, ease: 'power3.out' },
+        { opacity: 1, y: 0, scale: 1, duration: 0.65, stagger: 0.08, ease: 'power3.out' },
         '-=0.3'
       );
     },
@@ -134,8 +169,8 @@ export function Services() {
           </div>
         </div>
 
-        {/* 3 Services Cards Grid */}
-        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 2xl:gap-8">
+        {/* 6 Services Cards Grid */}
+        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 2xl:gap-8">
           {serviceCards.map((service) => {
             const title = isAr ? service.titleAr : service.title;
             const desc = isAr ? service.descAr : service.desc;
@@ -145,29 +180,31 @@ export function Services() {
             return (
               <div
                 key={service.id}
-                className="service-card-item flex flex-col space-y-3.5 group hover:-translate-y-1 transition-transform duration-300"
+                className="service-card-item flex flex-col justify-between space-y-3.5 group hover:-translate-y-1 transition-transform duration-300"
               >
                 {/* Top Rounded Image */}
-                <div className="relative w-full h-48 sm:h-52 md:h-56 2xl:h-64 rounded-2xl overflow-hidden bg-neutral-100">
+                <div className="relative w-full h-48 sm:h-52 md:h-56 2xl:h-60 rounded-2xl overflow-hidden bg-neutral-100">
                   <Image
                     src={service.imageUrl}
                     alt={title}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 380px"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
                     loading="lazy"
                   />
                 </div>
 
                 {/* Card Text & Link below image */}
-                <div className="space-y-2 pt-0.5">
-                  <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200 text-start">
-                    {title}
-                  </h3>
-                  <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55] text-start">
-                    {desc}
-                  </p>
-                  <div className="pt-1.5">
+                <div className="flex flex-col flex-1 justify-between space-y-3 pt-0.5">
+                  <div className="space-y-2">
+                    <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200 text-start">
+                      {title}
+                    </h3>
+                    <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.6] text-start">
+                      {desc}
+                    </p>
+                  </div>
+                  <div className="pt-1">
                     <a
                       href={actionHref}
                       target={service.isExternal ? '_blank' : undefined}
