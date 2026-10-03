@@ -42,8 +42,8 @@ export const en: Dictionary = {
     goFreshForFuture: 'Go fresh for future',
   },
   hero: {
-    titleLine1: 'Fresh from the Source',
-    titleLine2: 'Delivered Across Qatar',
+    titleLine1: 'Fresh from the Source.',
+    titleLine2: 'Delivered Across Qatar.',
     subtitle: 'Nairat Food imports, distributes and delivers premium fresh fruit and vegetables to Qatar’s leading supermarkets, markets and foodservice customers – every day of the year.',
     ctaPrimary: 'Partner With Us',
     ctaSecondary: 'View Product Range',
