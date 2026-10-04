@@ -80,12 +80,24 @@ export async function getProducts(category?: string): Promise<ProductItem[]> {
           imageUrl: urlForImage(doc.image) || '/products/vegetables/tomatoes.jpg',
         }));
 
-        // Sanity products appear first, followed by static items that were not overridden
-        const sanitySlugs = new Set(sanityProducts.map((p) => p.id));
-        return [
-          ...sanityProducts,
-          ...staticProducts.filter((p) => !sanitySlugs.has(p.id)),
-        ];
+        // Multi-tier deduplication: match by normalized English name AND stripped slug/ID
+        const sanityNames = new Set(
+          sanityProducts.map((p) => p.name.toLowerCase().trim())
+        );
+        const sanitySlugs = new Set(
+          sanityProducts.flatMap((p) => [
+            p.id.toLowerCase().trim(),
+            p.id.replace(/^[a-z-]+-/, '').toLowerCase().trim(),
+          ])
+        );
+
+        const remainingStatic = staticProducts.filter(
+          (p) =>
+            !sanityNames.has(p.name.toLowerCase().trim()) &&
+            !sanitySlugs.has(p.id.toLowerCase().trim())
+        );
+
+        return [...sanityProducts, ...remainingStatic];
       }
     } catch (err) {
       console.warn('[Sanity] Could not fetch products, falling back to local dataset:', err);
@@ -523,10 +535,22 @@ export async function getServices(): Promise<ServiceData[]> {
           order: doc.order ?? index,
         }));
 
-        const sanitySlugs = new Set(sanityServices.map((s) => s.id));
+        const sanitySlugs = new Set(
+          sanityServices.flatMap((s) => [
+            s.id.toLowerCase().trim(),
+            s.slug.toLowerCase().trim(),
+          ])
+        );
+        const sanityTitles = new Set(
+          sanityServices.map((s) => s.title.toLowerCase().trim())
+        );
         return [
           ...sanityServices,
-          ...defaultServicesData.filter((s) => !sanitySlugs.has(s.id)),
+          ...defaultServicesData.filter(
+            (s) =>
+              !sanitySlugs.has(s.id.toLowerCase().trim()) &&
+              !sanityTitles.has(s.title.toLowerCase().trim())
+          ),
         ];
       }
     } catch {
