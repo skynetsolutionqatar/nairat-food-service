@@ -62,6 +62,24 @@ export async function POST(req: NextRequest) {
       if (body._type === 'service') {
         triggerTag('services');
       }
+      if (body._type === 'homePage') {
+        triggerTag('homePage');
+      }
+      if (body._type === 'companyPage') {
+        triggerTag('companyPage');
+      }
+      if (body._type === 'qualityPage') {
+        triggerTag('qualityPage');
+      }
+      if (body._type === 'servicesPage') {
+        triggerTag('servicesPage');
+      }
+      if (body._type === 'partnersPage') {
+        triggerTag('partnersPage');
+      }
+      if (body._type === 'contactPage') {
+        triggerTag('contactPage');
+      }
     }
 
     if (Array.isArray(body?.tags)) {

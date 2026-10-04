@@ -15,12 +15,65 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
   const { locale } = useLocale();
   const isAr = locale === 'ar';
 
-  const title = isAr
-    ? (content?.visionMissionTitleAr || 'مسيرتنا: تنمية مستقبل أكثر نضارة لقطر.')
-    : (content?.visionMissionTitle || 'Our Journey: Growing a Fresher Future for Qatar.');
-  const narrative = isAr
-    ? (content?.visionMissionNarrativeAr || 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر. من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية لتقديم منتجات طازجة ومتسقة لعملاء التجزئة والتجاريين على مدار العام.')
-    : (content?.visionMissionNarrative || 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar. From global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.');
+  const defaultNarrativeParagraphs = isAr
+    ? [
+        'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر.',
+        'من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية لتقديم منتجات طازجة ومتسقة لعملاء التجزئة والتجاريين على مدار العام.',
+      ]
+    : [
+        'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar.',
+        'From global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
+      ];
+
+  const narrativeText = isAr ? content?.visionMissionNarrativeAr : content?.visionMissionNarrative;
+  const narrativeParagraphs = narrativeText?.includes('\n')
+    ? narrativeText.split(/\n\s*\n|\n/).filter(Boolean)
+    : narrativeText
+    ? [narrativeText]
+    : defaultNarrativeParagraphs;
+
+  const renderTitle = () => {
+    if (!isAr) {
+      const text = content?.visionMissionTitle;
+      if (text && text.includes('Growing a Fresher Future')) {
+        return (
+          <>
+            Our Journey: <br />
+            <span className="text-[#168849]">Growing a Fresher Future</span> <br />
+            for Qatar.
+          </>
+        );
+      }
+      if (text) return text;
+      return (
+        <>
+          Our Journey: <br />
+          <span className="text-[#168849]">Growing a Fresher Future</span> <br />
+          for Qatar.
+        </>
+      );
+    } else {
+      const text = content?.visionMissionTitleAr;
+      if (text && text.includes('تنمية مستقبل أكثر نضارة')) {
+        return (
+          <>
+            مسيرتنا: <br />
+            <span className="text-[#168849]">تنمية مستقبل أكثر نضارة</span> <br />
+            لقطر.
+          </>
+        );
+      }
+      if (text) return text;
+      return (
+        <>
+          مسيرتنا: <br />
+          <span className="text-[#168849]">تنمية مستقبل أكثر نضارة</span> <br />
+          لقطر.
+        </>
+      );
+    }
+  };
+
   const visionTitle = isAr
     ? (content?.visionTitleAr || 'تنمية مستقبل أكثر نضارة لقطر.')
     : (content?.visionTitle || 'Growing a fresher future for Qatar.');
@@ -74,14 +127,14 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           {/* Left Column: Heading & Narrative (6 cols) */}
           <div className="lg:col-span-6 space-y-5">
-            <h2 className="vision-mission-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12] whitespace-pre-line">
-              {title}
+            <h2 className="vision-mission-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+              {renderTitle()}
             </h2>
 
             <div className="vision-mission-text-item space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
-              <p>
-                {narrative}
-              </p>
+              {narrativeParagraphs.map((p, idx) => (
+                <p key={idx}>{p}</p>
+              ))}
             </div>
           </div>
 

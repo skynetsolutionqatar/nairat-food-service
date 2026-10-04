@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
 import { getCompanyProfile } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'شروط الخدمة — نيرات للخدمات الغذائية قطر',

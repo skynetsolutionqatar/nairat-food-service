@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import type { HomePageContent } from '@/sanity/lib/data';
 
 interface ServiceCard {
   id: string;
@@ -97,10 +98,32 @@ const serviceCards: ServiceCard[] = [
   },
 ];
 
-export function Services() {
+interface ServicesProps {
+  content?: HomePageContent;
+}
+
+export function Services({ content }: ServicesProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? content?.servicesEyebrowAr || 'ما نقوم به'
+    : content?.servicesEyebrow || 'WHAT WE DO';
+
+  const title = isAr
+    ? content?.servicesTitleAr || 'إمداد المنتجات الطازجة على كل المستويات.'
+    : content?.servicesTitle || 'Fresh Produce Supply at Every Scale.';
+
+  const narrative = isAr
+    ? content?.servicesNarrativeAr ||
+      'من التوريد والتوزيع إلى التجزئة، نربط المنتجات الطازجة المتميزة بالشركات والمستهلكين في جميع أنحاء قطر.'
+    : content?.servicesNarrative ||
+      'From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.';
+
+  const ctaText = isAr
+    ? content?.servicesCtaTextAr || 'اعرف المزيد'
+    : content?.servicesCtaText || 'Learn More';
 
   useGSAP(
     () => {
@@ -137,33 +160,21 @@ export function Services() {
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
             <div className="service-header-item">
-              <SectionEyebrow title={isAr ? 'ما نقوم به' : 'WHAT WE DO'} />
+              <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="service-header-item font-display type-h2 font-semibold text-[#111814] text-start">
-              {isAr ? (
-                <>
-                  إمداد المنتجات الطازجة <br />
-                  على كل المستويات.
-                </>
-              ) : (
-                <>
-                  Fresh Produce Supply <br />
-                  at Every Scale.
-                </>
-              )}
+            <h2 className="service-header-item font-display type-h2 font-semibold text-[#111814] text-start whitespace-pre-line">
+              {title}
             </h2>
           </div>
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
             <p className="service-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
-              {isAr
-                ? 'من التوريد والتوزيع إلى التجزئة، نربط المنتجات الطازجة المتميزة بالشركات والمستهلكين في جميع أنحاء قطر.'
-                : 'From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.'}
+              {narrative}
             </p>
             <div className="service-header-item self-start lg:self-end">
               <CtaButton href={isAr ? '/ar/services' : '/services'}>
-                {isAr ? 'اعرف المزيد' : 'Learn More'}
+                {ctaText}
               </CtaButton>
             </div>
           </div>

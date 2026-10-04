@@ -8,7 +8,7 @@ import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
 import { Cta } from '@/components/modules/Cta';
 import { getQualityCertificates, getQualityPageContent } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Sourcing & Quality — Nairat Food Services Qatar',
@@ -36,7 +36,6 @@ export default async function QualityPage(): Promise<React.ReactNode> {
       {/* 1. Header Banner */}
       <PageBanner
         title={qualityContent.bannerTitle || 'Sourcing & Quality'}
-        description={qualityContent.bannerSubtitle}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Sourcing & Quality' },

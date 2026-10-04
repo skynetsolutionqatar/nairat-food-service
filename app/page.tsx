@@ -10,7 +10,7 @@ import { QualityTimeline } from '@/components/modules/QualityTimeline';
 import { Cta } from '@/components/modules/Cta';
 import { getPartners, getCompanyProfile, getHomePageContent } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export default async function Home() {
   const [featuredPartners, company, homeContent] = await Promise.all([
@@ -22,14 +22,14 @@ export default async function Home() {
   return (
     <div className="flex flex-col min-h-screen">
       <Hero content={homeContent} />
-      <Partners partners={featuredPartners} />
+      <Partners partners={featuredPartners} content={homeContent} />
       <WhoWeAre content={homeContent} />
       <Strengths company={company} content={homeContent} />
-      <Services />
-      <Products />
-      <SourcingMap />
-      <QualityTimeline />
-      <Cta />
+      <Services content={homeContent} />
+      <Products content={homeContent} />
+      <SourcingMap content={homeContent} />
+      <QualityTimeline content={homeContent} />
+      <Cta content={homeContent} />
     </div>
   );
 }

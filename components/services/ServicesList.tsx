@@ -278,18 +278,7 @@ export function ServicesList({ services, content }: ServicesListProps = {}): Rea
 
   return (
     <section ref={sectionRef} className="py-12 sm:py-16 lg:py-20 bg-[#F8FAF8] text-[#111814]">
-      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
-        {/* Commercial Overview Intro Header */}
-        <div className="space-y-3 max-w-3xl text-start">
-          <SectionEyebrow title={isAr ? 'حلولنا التشغيلية' : 'OPERATIONAL SOLUTIONS'} />
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-[#111814] tracking-tight">
-            {overviewHeadline}
-          </h2>
-          <p className="font-sans text-xs sm:text-[15px] text-[#47554E] leading-relaxed">
-            {overviewNarrative}
-          </p>
-        </div>
-
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {activeServices.map((service, index) => (
           <article
             key={service.id}

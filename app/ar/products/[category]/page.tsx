@@ -18,7 +18,7 @@ const categoryArabicTitles: Record<string, string> = {
   'specialty-gourmet': 'أصناف خاصة وفاخرة',
 };
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export function generateStaticParams() {
   return Object.keys(productCategoriesData).map((slug) => ({

@@ -28,11 +28,41 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
   const isAr = locale === 'ar';
 
   const eyebrow = isAr
-    ? (content?.whoWeAreEyebrowAr || 'عن نيرات للخدمات الغذائية')
-    : (content?.whoWeAreEyebrow || 'About Nairat Food Services');
-  const headline = isAr
-    ? (content?.whoWeAreTitleAr || 'منتجات طازجة. إمداد قوي. موثوق في جميع أنحاء قطر.')
-    : (content?.whoWeAreTitle || 'Fresh Produce. Strong Supply. Trusted Across Qatar.');
+    ? (content?.whoWeAreEyebrowAr && content.whoWeAreEyebrowAr !== 'عن نيرات للخدمات الغذائية'
+      ? content.whoWeAreEyebrowAr
+      : 'من نحن')
+    : (content?.whoWeAreEyebrow && content.whoWeAreEyebrow !== 'About Nairat Food Services'
+      ? content.whoWeAreEyebrow
+      : 'WHO WE ARE');
+
+  const renderHeadline = () => {
+    if (!isAr) {
+      const text = content?.whoWeAreTitle || 'Fresh Produce. Strong Supply. Trusted Across Qatar.';
+      if (text.includes('Trusted Across Qatar.')) {
+        return (
+          <>
+            Fresh Produce. <br />
+            Strong Supply. <br />
+            <span className="text-[#168849]">Trusted Across Qatar.</span>
+          </>
+        );
+      }
+      return text;
+    } else {
+      const text = content?.whoWeAreTitleAr || 'منتجات طازجة. إمداد قوي. موثوق في جميع أنحاء قطر.';
+      if (text.includes('موثوق في جميع أنحاء قطر.')) {
+        return (
+          <>
+            منتجات طازجة. <br />
+            إمداد قوي. <br />
+            <span className="text-[#168849]">موثوق في جميع أنحاء قطر.</span>
+          </>
+        );
+      }
+      return text;
+    }
+  };
+
   const narrative = isAr
     ? (content?.whoWeAreNarrativeAr || 'نيرات فود هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.')
     : (content?.whoWeAreNarrative || 'Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.');
@@ -153,8 +183,8 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
             <div className="who-header-item">
               <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-start whitespace-pre-line">
-              {headline}
+            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+              {renderHeadline()}
             </h2>
           </div>
 

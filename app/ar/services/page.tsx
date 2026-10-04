@@ -5,7 +5,7 @@ import { ServicesList } from '@/components/services/ServicesList';
 import { Cta } from '@/components/modules/Cta';
 import { getServices, getServicesPageContent } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'خدماتنا — نيرات للخدمات الغذائية قطر',
@@ -33,7 +33,6 @@ export default async function ArabicServicesPage(): Promise<React.ReactNode> {
       {/* 1. Header Banner */}
       <PageBanner
         title={servicesContent.bannerTitleAr || 'خدماتنا'}
-        description={servicesContent.bannerSubtitleAr}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
           { label: 'خدماتنا' },

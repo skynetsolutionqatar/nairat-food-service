@@ -7,6 +7,7 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { CertificateModal } from '@/components/ui/CertificateModal';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import type { HomePageContent } from '@/sanity/lib/data';
 
 interface TimelineStep {
   step: string;
@@ -72,11 +73,29 @@ const certificates: Certificate[] = [
   },
 ];
 
-export function QualityTimeline() {
+interface QualityTimelineProps {
+  content?: HomePageContent;
+}
+
+export function QualityTimeline({ content }: QualityTimelineProps = {}) {
   const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? content?.qualityEyebrowAr || 'الشهادات والجودة'
+    : content?.qualityEyebrow || 'CERTIFICATIONS & QUALITY';
+
+  const title = isAr
+    ? content?.qualityTitleAr || 'جودة يمكنك الوثوق بها.'
+    : content?.qualityTitle || 'Quality You Can Trust.';
+
+  const narrative = isAr
+    ? content?.qualityNarrativeAr ||
+      'تم بناء الجودة وسلامة الغذاء في كل مرحلة من مراحل سلسلة التوريد لدينا – بدءاً من الفحص في بلد المنشأ إلى الاختبارات المخبرية عند الوصول والتسليم الذي يتم التحكم في درجة حرارته.'
+    : content?.qualityNarrative ||
+      'Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.';
 
   useGSAP(
     () => {
@@ -131,15 +150,13 @@ export function QualityTimeline() {
             {/* Headings */}
             <div className="space-y-2.5 2xl:space-y-3">
               <div className="quality-header-item">
-                <SectionEyebrow title={isAr ? 'الشهادات والجودة' : 'CERTIFICATIONS & QUALITY'} />
+                <SectionEyebrow title={eyebrow} />
               </div>
               <h2 className="quality-header-item font-display type-h2 font-semibold text-[#111814] text-start">
-                {isAr ? 'جودة يمكنك الوثوق بها.' : 'Quality You Can Trust.'}
+                {title}
               </h2>
               <p className="quality-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
-                {isAr
-                  ? 'تم بناء الجودة وسلامة الغذاء في كل مرحلة من مراحل سلسلة التوريد لدينا – بدءاً من الفحص في بلد المنشأ إلى الاختبارات المخبرية عند الوصول والتسليم الذي يتم التحكم في درجة حرارته.'
-                  : 'Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.'}
+                {narrative}
               </p>
             </div>
 

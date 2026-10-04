@@ -8,7 +8,7 @@ import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
 import { Cta } from '@/components/modules/Cta';
 import { getQualityCertificates, getQualityPageContent } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'التوريد والجودة — نيرات للخدمات الغذائية قطر',
@@ -36,7 +36,6 @@ export default async function ArabicQualityPage(): Promise<React.ReactNode> {
       {/* 1. Header Banner */}
       <PageBanner
         title={qualityContent.bannerTitleAr || 'التوريد والجودة'}
-        description={qualityContent.bannerSubtitleAr}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
           { label: 'التوريد والجودة' },

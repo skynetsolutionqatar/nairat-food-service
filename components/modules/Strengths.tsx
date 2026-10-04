@@ -34,9 +34,33 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
   const eyebrow = isAr
     ? (content?.strengthsEyebrowAr || 'لماذا تختار نيرات')
     : (content?.strengthsEyebrow || 'WHY CHOOSE US');
-  const headline = isAr
-    ? (content?.strengthsTitleAr || 'صُممت من أجل النضارة. جاهزون للتوصيل.')
-    : (content?.strengthsTitle || 'Built for Freshness. Ready to Deliver.');
+  const renderHeadline = () => {
+    if (!isAr) {
+      const text = content?.strengthsTitle || 'Built for Freshness. Ready to Deliver.';
+      if (text.includes('Ready to Deliver.')) {
+        const parts = text.split('Ready to Deliver.');
+        return (
+          <>
+            {parts[0]} <br />
+            Ready to Deliver.
+          </>
+        );
+      }
+      return text;
+    } else {
+      const text = content?.strengthsTitleAr || 'صُممت من أجل النضارة. جاهزون للتوصيل.';
+      if (text.includes('جاهزون للتوصيل.')) {
+        const parts = text.split('جاهزون للتوصيل.');
+        return (
+          <>
+            {parts[0]} <br />
+            جاهزون للتوصيل.
+          </>
+        );
+      }
+      return text;
+    }
+  };
 
   const strengthsList: StrengthCard[] = [
     {
@@ -169,8 +193,8 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
             <div className="strength-header-item">
               <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-start whitespace-pre-line">
-              {headline}
+            <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+              {renderHeadline()}
             </h2>
           </div>
 

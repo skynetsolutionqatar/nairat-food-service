@@ -21,18 +21,74 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
   const eyebrow = isAr
     ? (content?.deliveringEyebrowAr || 'توصيل النضارة')
     : (content?.deliveringEyebrow || 'Delivering Freshness');
-  const title = isAr
-    ? (content?.deliveringTitleAr || 'شريك شامل للمنتجات الطازجة لقطر.')
-    : (content?.deliveringTitle || 'A comprehensive fresh-produce partner for Qatar.');
-  const narrative = isAr
-    ? (content?.deliveringNarrativeAr || 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.')
-    : (content?.deliveringNarrative || "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.");
+
+  const defaultParagraphs = isAr
+    ? [
+        'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.',
+        'تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.',
+        'من المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.',
+      ]
+    : [
+        "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.",
+        'Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.',
+        'From farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.',
+      ];
+
+  const narrativeText = isAr ? content?.deliveringNarrativeAr : content?.deliveringNarrative;
+  const paragraphs = narrativeText?.includes('\n')
+    ? narrativeText.split(/\n\s*\n|\n/).filter(Boolean)
+    : narrativeText
+    ? [narrativeText]
+    : defaultParagraphs;
+
   const commitmentTitle = isAr
     ? (content?.deliveringCommitmentTitleAr || 'التزامنا الأساسي')
     : (content?.deliveringCommitmentTitle || 'Our Core Commitment');
   const commitmentBody = isAr
     ? (content?.deliveringCommitmentBodyAr || 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.')
     : (content?.deliveringCommitmentBody || 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.');
+
+  const renderTitle = () => {
+    if (!isAr) {
+      const text = content?.deliveringTitle;
+      if (text && text.includes('partner for Qatar.')) {
+        const parts = text.split('partner for Qatar.');
+        return (
+          <>
+            {parts[0]} <br className="hidden sm:inline" />
+            <span className="text-[#168849]">partner for Qatar.</span>
+            {parts[1]}
+          </>
+        );
+      }
+      if (text) return text;
+      return (
+        <>
+          A comprehensive fresh-produce <br className="hidden sm:inline" />
+          <span className="text-[#168849]">partner for Qatar.</span>
+        </>
+      );
+    } else {
+      const text = content?.deliveringTitleAr;
+      if (text && text.includes('الطازجة لقطر.')) {
+        const parts = text.split('الطازجة لقطر.');
+        return (
+          <>
+            {parts[0]} <br className="hidden sm:inline" />
+            <span className="text-[#168849]">الطازجة لقطر.</span>
+            {parts[1]}
+          </>
+        );
+      }
+      if (text) return text;
+      return (
+        <>
+          شريك شامل للمنتجات <br className="hidden sm:inline" />
+          <span className="text-[#168849]">الطازجة لقطر.</span>
+        </>
+      );
+    }
+  };
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -105,14 +161,16 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
               <SectionEyebrow title={eyebrow} />
             </div>
 
-            <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12] whitespace-pre-line">
-              {title}
+            <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+              {renderTitle()}
             </h2>
 
             <div className="space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
-              <p className="delivering-text-item">
-                {narrative}
-              </p>
+              {paragraphs.map((p, idx) => (
+                <p key={idx} className="delivering-text-item">
+                  {p}
+                </p>
+              ))}
             </div>
 
             {/* Commitment Box Matching Reference Card */}

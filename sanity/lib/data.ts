@@ -584,6 +584,8 @@ export interface HomePageContent {
   heroCtaPrimaryAr: string;
   heroCtaSecondary: string;
   heroCtaSecondaryAr: string;
+  partnersHeading: string;
+  partnersHeadingAr: string;
   whoWeAreEyebrow: string;
   whoWeAreEyebrowAr: string;
   whoWeAreTitle: string;
@@ -616,6 +618,36 @@ export interface HomePageContent {
   strengthsColdChainDescAr: string;
   strengthsFleetDesc: string;
   strengthsFleetDescAr: string;
+  servicesEyebrow: string;
+  servicesEyebrowAr: string;
+  servicesTitle: string;
+  servicesTitleAr: string;
+  servicesNarrative: string;
+  servicesNarrativeAr: string;
+  servicesCtaText: string;
+  servicesCtaTextAr: string;
+  productsEyebrow: string;
+  productsEyebrowAr: string;
+  productsTitle: string;
+  productsTitleAr: string;
+  sourcingMapEyebrow: string;
+  sourcingMapEyebrowAr: string;
+  sourcingMapTitle: string;
+  sourcingMapTitleAr: string;
+  qualityEyebrow: string;
+  qualityEyebrowAr: string;
+  qualityTitle: string;
+  qualityTitleAr: string;
+  qualityNarrative: string;
+  qualityNarrativeAr: string;
+  ctaLine1: string;
+  ctaLine1Ar: string;
+  ctaLine2: string;
+  ctaLine2Ar: string;
+  ctaSubtext1: string;
+  ctaSubtext1Ar: string;
+  ctaSubtext2: string;
+  ctaSubtext2Ar: string;
   ctaHeadline: string;
   ctaHeadlineAr: string;
   ctaDescription: string;
@@ -635,6 +667,8 @@ export const defaultHomePageContent: HomePageContent = {
   heroCtaPrimaryAr: ar.hero.ctaPrimary,
   heroCtaSecondary: en.hero.ctaSecondary,
   heroCtaSecondaryAr: ar.hero.ctaSecondary,
+  partnersHeading: 'TRUSTED BY QATAR’S LEADING PARTNERS',
+  partnersHeadingAr: 'شريك موثوق لكبرى المتاجر والشركات في قطر',
   whoWeAreEyebrow: 'About Nairat Food Services',
   whoWeAreEyebrowAr: 'عن نيرات للخدمات الغذائية',
   whoWeAreTitle: "Connecting Farms to Qatar's Tables",
@@ -667,12 +701,42 @@ export const defaultHomePageContent: HomePageContent = {
   strengthsColdChainDescAr: 'تدوير صارم بنظام ما يدخل أولاً يخرج أولاً (FIFO) ومراقبة مستمرة للمناخ للحفاظ على المنتجات الطازجة في حالة مثالية عبر جميع مراحل النقل.',
   strengthsFleetDesc: 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
   strengthsFleetDescAr: 'أسطول توزيع حديث مضبوط الحرارة يوصل المنتجات الطازجة في جميع أنحاء قطر وفق جداول زمنية دقيقة.',
+  servicesEyebrow: 'WHAT WE DO',
+  servicesEyebrowAr: 'ما نقوم به',
+  servicesTitle: 'Fresh Produce Supply at Every Scale.',
+  servicesTitleAr: 'إمداد المنتجات الطازجة على كل المستويات.',
+  servicesNarrative: 'From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.',
+  servicesNarrativeAr: 'من التوريد والتوزيع إلى التجزئة، نربط المنتجات الطازجة المتميزة بالشركات والمستهلكين في جميع أنحاء قطر.',
+  servicesCtaText: 'Learn More',
+  servicesCtaTextAr: 'اعرف المزيد',
+  productsEyebrow: 'OUR PRODUCTS',
+  productsEyebrowAr: 'منتجاتنا',
+  productsTitle: 'Freshness, Sourced From Around the World.',
+  productsTitleAr: 'نضارة، تم توريدها من جميع أنحاء العالم.',
+  sourcingMapEyebrow: 'SOURCING COUNTRIES',
+  sourcingMapEyebrowAr: 'بلدان التوريد',
+  sourcingMapTitle: 'Sourced From Around the World',
+  sourcingMapTitleAr: 'تم التوريد من جميع أنحاء العالم',
+  qualityEyebrow: 'CERTIFICATIONS & QUALITY',
+  qualityEyebrowAr: 'الشهادات والجودة',
+  qualityTitle: 'Quality You Can Trust.',
+  qualityTitleAr: 'جودة يمكنك الوثوق بها.',
+  qualityNarrative: 'Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.',
+  qualityNarrativeAr: 'تم بناء الجودة وسلامة الغذاء في كل مرحلة من مراحل سلسلة التوريد لدينا – بدءاً من الفحص في بلد المنشأ إلى الاختبارات المخبرية عند الوصول والتسليم الذي يتم التحكم في درجة حرارته.',
+  ctaLine1: 'Fresh Fruits & Vegetables from',
+  ctaLine1Ar: 'فواكه وخضروات طازجة من',
+  ctaLine2: 'Around the World',
+  ctaLine2Ar: 'جميع أنحاء العالم',
+  ctaSubtext1: 'Sourced Around the World.',
+  ctaSubtext1Ar: 'تم التوريد من جميع أنحاء العالم.',
+  ctaSubtext2: 'Delivered Across Qatar.',
+  ctaSubtext2Ar: 'تُسلَّم عبر أرجاء قطر.',
   ctaHeadline: 'Ready to Partner With Qatar’s Fresh Produce Leader?',
   ctaHeadlineAr: 'هل أنت مستعد للشراكة مع رائد الأغذية الطازجة في قطر؟',
   ctaDescription: 'Contact our procurement specialists today to discuss wholesale contracts, direct farm imports, or scheduled cold-chain delivery.',
   ctaDescriptionAr: 'تواصل مع خبراء التوريد لدينا اليوم لمناقشة عقود التوريد بالجملة أو الاستيراد المباشر أو التوصيل المجدول بسلسلة التبريد.',
-  ctaButtonText: 'Get In Touch',
-  ctaButtonTextAr: 'تواصل معنا الآن',
+  ctaButtonText: 'Contact Us',
+  ctaButtonTextAr: 'اتصل بنا',
 };
 
 export async function getHomePageContent(): Promise<HomePageContent> {
@@ -701,6 +765,8 @@ export async function getHomePageContent(): Promise<HomePageContent> {
           heroCtaPrimaryAr: data.heroCtaPrimaryAr || defaultHomePageContent.heroCtaPrimaryAr,
           heroCtaSecondary: data.heroCtaSecondary || defaultHomePageContent.heroCtaSecondary,
           heroCtaSecondaryAr: data.heroCtaSecondaryAr || defaultHomePageContent.heroCtaSecondaryAr,
+          partnersHeading: data.partnersHeading || defaultHomePageContent.partnersHeading,
+          partnersHeadingAr: data.partnersHeadingAr || defaultHomePageContent.partnersHeadingAr,
           whoWeAreEyebrow: data.whoWeAreEyebrow || defaultHomePageContent.whoWeAreEyebrow,
           whoWeAreEyebrowAr: data.whoWeAreEyebrowAr || defaultHomePageContent.whoWeAreEyebrowAr,
           whoWeAreTitle: data.whoWeAreTitle || defaultHomePageContent.whoWeAreTitle,
@@ -733,6 +799,36 @@ export async function getHomePageContent(): Promise<HomePageContent> {
           strengthsColdChainDescAr: data.strengthsColdChainDescAr || defaultHomePageContent.strengthsColdChainDescAr,
           strengthsFleetDesc: data.strengthsFleetDesc || defaultHomePageContent.strengthsFleetDesc,
           strengthsFleetDescAr: data.strengthsFleetDescAr || defaultHomePageContent.strengthsFleetDescAr,
+          servicesEyebrow: data.servicesEyebrow || defaultHomePageContent.servicesEyebrow,
+          servicesEyebrowAr: data.servicesEyebrowAr || defaultHomePageContent.servicesEyebrowAr,
+          servicesTitle: data.servicesTitle || defaultHomePageContent.servicesTitle,
+          servicesTitleAr: data.servicesTitleAr || defaultHomePageContent.servicesTitleAr,
+          servicesNarrative: data.servicesNarrative || defaultHomePageContent.servicesNarrative,
+          servicesNarrativeAr: data.servicesNarrativeAr || defaultHomePageContent.servicesNarrativeAr,
+          servicesCtaText: data.servicesCtaText || defaultHomePageContent.servicesCtaText,
+          servicesCtaTextAr: data.servicesCtaTextAr || defaultHomePageContent.servicesCtaTextAr,
+          productsEyebrow: data.productsEyebrow || defaultHomePageContent.productsEyebrow,
+          productsEyebrowAr: data.productsEyebrowAr || defaultHomePageContent.productsEyebrowAr,
+          productsTitle: data.productsTitle || defaultHomePageContent.productsTitle,
+          productsTitleAr: data.productsTitleAr || defaultHomePageContent.productsTitleAr,
+          sourcingMapEyebrow: data.sourcingMapEyebrow || defaultHomePageContent.sourcingMapEyebrow,
+          sourcingMapEyebrowAr: data.sourcingMapEyebrowAr || defaultHomePageContent.sourcingMapEyebrowAr,
+          sourcingMapTitle: data.sourcingMapTitle || defaultHomePageContent.sourcingMapTitle,
+          sourcingMapTitleAr: data.sourcingMapTitleAr || defaultHomePageContent.sourcingMapTitleAr,
+          qualityEyebrow: data.qualityEyebrow || defaultHomePageContent.qualityEyebrow,
+          qualityEyebrowAr: data.qualityEyebrowAr || defaultHomePageContent.qualityEyebrowAr,
+          qualityTitle: data.qualityTitle || defaultHomePageContent.qualityTitle,
+          qualityTitleAr: data.qualityTitleAr || defaultHomePageContent.qualityTitleAr,
+          qualityNarrative: data.qualityNarrative || defaultHomePageContent.qualityNarrative,
+          qualityNarrativeAr: data.qualityNarrativeAr || defaultHomePageContent.qualityNarrativeAr,
+          ctaLine1: data.ctaLine1 || defaultHomePageContent.ctaLine1,
+          ctaLine1Ar: data.ctaLine1Ar || defaultHomePageContent.ctaLine1Ar,
+          ctaLine2: data.ctaLine2 || defaultHomePageContent.ctaLine2,
+          ctaLine2Ar: data.ctaLine2Ar || defaultHomePageContent.ctaLine2Ar,
+          ctaSubtext1: data.ctaSubtext1 || defaultHomePageContent.ctaSubtext1,
+          ctaSubtext1Ar: data.ctaSubtext1Ar || defaultHomePageContent.ctaSubtext1Ar,
+          ctaSubtext2: data.ctaSubtext2 || defaultHomePageContent.ctaSubtext2,
+          ctaSubtext2Ar: data.ctaSubtext2Ar || defaultHomePageContent.ctaSubtext2Ar,
           ctaHeadline: data.ctaHeadline || defaultHomePageContent.ctaHeadline,
           ctaHeadlineAr: data.ctaHeadlineAr || defaultHomePageContent.ctaHeadlineAr,
           ctaDescription: data.ctaDescription || defaultHomePageContent.ctaDescription,

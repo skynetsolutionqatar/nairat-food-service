@@ -23,13 +23,11 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
 
   const eyebrow = isAr
     ? (content?.inquiryEyebrowAr || 'تواصل معنا')
-    : (content?.inquiryEyebrow || 'Get in Touch');
+    : (content?.inquiryEyebrow || 'CONTACT US');
   const headline = isAr
-    ? (content?.inquiryTitleAr || 'تواصل مع فريق التوريد التجاري لدينا')
-    : (content?.inquiryTitle || 'Connect with Our Commercial Procurement Team');
-  const subtitle = isAr
-    ? (content?.inquirySubtitleAr || 'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، فإن خبراءنا على استعداد لمساعدتك.')
-    : (content?.inquirySubtitle || 'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, our specialists are ready to assist.');
+    ? (content?.inquiryTitleAr || 'تواصل معنا')
+    : (content?.inquiryTitle || 'Get in Touch with Us');
+  const subtitle = isAr ? content?.inquirySubtitleAr : content?.inquirySubtitle;
   const [formData, setFormData] = useState({
     name: '',
     email: '',

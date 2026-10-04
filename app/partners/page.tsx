@@ -7,7 +7,7 @@ import { PartnerCountryGrid } from '@/components/partners/PartnerCountryGrid';
 import { Cta } from '@/components/modules/Cta';
 import { getPartners, getPartnersPageContent } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Partners — Nairat Food Services Qatar',
@@ -35,7 +35,6 @@ export default async function PartnersPage(): Promise<React.ReactNode> {
       {/* 1. Header Banner */}
       <PageBanner
         title={partnersContent.bannerTitle || 'Partners'}
-        description={partnersContent.bannerSubtitle}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Partners' },

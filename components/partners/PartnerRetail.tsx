@@ -29,9 +29,31 @@ export function PartnerRetail({ partners, content }: PartnerRetailProps = {}): R
   const eyebrow = isAr
     ? (content?.retailEyebrowAr || 'شركاؤنا في التجزئة')
     : (content?.retailEyebrow || 'OUR RETAIL PARTNERS');
-  const headline = isAr
-    ? (content?.retailTitleAr || 'المورد اليومي الموثوق به لمجموعات التجزئة الرائدة في قطر')
-    : (content?.retailTitle || "Trusted Daily Supplier to Qatar's Leading Retail Groups");
+  const renderHeadline = () => {
+    if (!isAr) {
+      const text = content?.retailTitle || "Trusted Daily Supplier to Qatar's Leading Retail Groups";
+      if (text.includes("Qatar's Leading Retail Groups") || text.includes("Qatar’s Leading Retail Groups")) {
+        return (
+          <>
+            Trusted Daily Supplier to <br />
+            <span className="text-[#168849]">Qatar&apos;s Leading Retail Groups</span>
+          </>
+        );
+      }
+      return text;
+    } else {
+      const text = content?.retailTitleAr || 'المورد اليومي الموثوق به لمجموعات التجزئة الرائدة في قطر';
+      if (text.includes('لمجموعات التجزئة الرائدة في قطر')) {
+        return (
+          <>
+            المورد اليومي الموثوق به <br />
+            <span className="text-[#168849]">لمجموعات التجزئة الرائدة في قطر</span>
+          </>
+        );
+      }
+      return text;
+    }
+  };
 
   useGSAP(
     () => {
@@ -72,8 +94,8 @@ export function PartnerRetail({ partners, content }: PartnerRetailProps = {}): R
         <div className="retail-header-item space-y-3 text-start">
           <SectionEyebrow title={eyebrow} />
 
-          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12] whitespace-pre-line">
-            {headline}
+          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+            {renderHeadline()}
           </h2>
         </div>
 

@@ -6,6 +6,7 @@ import type { Marker, Arc } from '@/components/ui/cobe-globe';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import type { HomePageContent } from '@/sanity/lib/data';
 
 const Globe = dynamic(
   () => import('@/components/ui/cobe-globe').then((mod) => mod.Globe),
@@ -49,10 +50,18 @@ const globeArcs: Arc[] = [
   { id: 'jordan-uae', from: [31.9539, 35.9106], to: [25.2048, 55.2708], label: 'Jordan → Qatar' },
 ];
 
-export function SourcingMap(): React.ReactNode {
+interface SourcingMapProps {
+  content?: HomePageContent;
+}
+
+export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode {
   const containerRef = useRef<HTMLDivElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? content?.sourcingMapEyebrowAr || 'بلدان التوريد'
+    : content?.sourcingMapEyebrow || 'SOURCING COUNTRIES';
 
   useGSAP(
     () => {
@@ -140,20 +149,28 @@ export function SourcingMap(): React.ReactNode {
           {/* Right Column on Desktop / Top on Mobile: Sourcing Text & Country Pills */}
           <div className="order-1 lg:order-2 lg:col-span-7 space-y-4 sm:space-y-5 2xl:space-y-6">
             <div className="sourcing-header-item">
-              <SectionEyebrow title={isAr ? 'بلدان التوريد' : 'SOURCING COUNTRIES'} />
+              <SectionEyebrow title={eyebrow} />
             </div>
 
             <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-start">
               {isAr ? (
-                <>
-                  تم التوريد من جميع أنحاء <br />
-                  <span className="text-[#168849]">العالم</span>
-                </>
+                content?.sourcingMapTitleAr ? (
+                  <span className="whitespace-pre-line">{content.sourcingMapTitleAr}</span>
+                ) : (
+                  <>
+                    تم التوريد من جميع أنحاء <br />
+                    <span className="text-[#168849]">العالم</span>
+                  </>
+                )
               ) : (
-                <>
-                  Sourced From Around <br />
-                  <span className="text-[#168849]">the World</span>
-                </>
+                content?.sourcingMapTitle ? (
+                  <span className="whitespace-pre-line">{content.sourcingMapTitle}</span>
+                ) : (
+                  <>
+                    Sourced From Around <br />
+                    <span className="text-[#168849]">the World</span>
+                  </>
+                )
               )}
             </h2>
 

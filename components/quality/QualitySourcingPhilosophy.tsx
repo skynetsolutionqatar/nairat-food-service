@@ -20,11 +20,34 @@ export function QualitySourcingPhilosophy({ content }: QualitySourcingPhilosophy
   const isAr = locale === 'ar';
 
   const eyebrow = isAr
-    ? (content?.philosophyEyebrowAr || 'فلسفتنا في التوريد')
+    ? (content?.philosophyEyebrowAr || 'فلسفة التوريد لدينا')
     : (content?.philosophyEyebrow || 'OUR SOURCING PHILOSOPHY');
-  const headline = isAr
-    ? (content?.philosophyTitleAr || 'منتجات طازجة، تم توريدها بمسؤولية.')
-    : (content?.philosophyTitle || 'Fresh Produce, Sourced Responsibly.');
+
+  const renderHeadline = () => {
+    if (!isAr) {
+      const text = content?.philosophyTitle || 'Fresh Produce, Sourced Responsibly.';
+      if (text.includes('Sourced Responsibly.')) {
+        return (
+          <>
+            Fresh Produce, <br className="hidden sm:inline" />
+            Sourced Responsibly.
+          </>
+        );
+      }
+      return text;
+    } else {
+      const text = content?.philosophyTitleAr || 'منتجات طازجة، تم توريدها بمسؤولية.';
+      if (text.includes('تم توريدها بمسؤولية.')) {
+        return (
+          <>
+            منتجات طازجة، <br className="hidden sm:inline" />
+            تم توريدها بمسؤولية.
+          </>
+        );
+      }
+      return text;
+    }
+  };
   const narrative = isAr
     ? (content?.philosophyNarrativeAr || 'نحن نعمل مع مزارعين وموردين موثوقين في جميع أنحاء العالم، ونجمع بين الشراكات العالمية القوية والخبرة المحلية لجلب أفضل المنتجات الطازجة إلى قطر.')
     : (content?.philosophyNarrative || 'We work with trusted growers and suppliers across the world, combining strong global partnerships with local expertise to bring the best fresh produce to Qatar.');
@@ -98,8 +121,8 @@ export function QualitySourcingPhilosophy({ content }: QualitySourcingPhilosophy
           <div className="philosophy-anim-left lg:col-span-5 space-y-6 text-start">
             <SectionEyebrow title={eyebrow} />
 
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.14] tracking-tight whitespace-pre-line">
-              {headline}
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.14] tracking-tight">
+              {renderHeadline()}
             </h2>
 
             <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">

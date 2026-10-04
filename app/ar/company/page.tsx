@@ -11,7 +11,7 @@ import { CompanyLookingAhead } from '@/components/company/CompanyLookingAhead';
 import { Cta } from '@/components/modules/Cta';
 import { getCompanyProfile, getCompanyPageContent } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'الشركة — نيرات للخدمات الغذائية قطر',
@@ -38,7 +38,7 @@ export default async function ArabicCompanyPage() {
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title={companyContent.bannerTitleAr || 'عن نيرات للخدمات الغذائية'}
+        title={companyContent.bannerTitleAr || 'الشركة'}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
           { label: 'الشركة' },

@@ -79,12 +79,32 @@ export function PartnerCountryGrid({ content }: PartnerCountryGridProps = {}): R
   const eyebrow = isAr
     ? (content?.globalEyebrowAr || 'شراكات التوريد العالمية')
     : (content?.globalEyebrow || 'GLOBAL SOURCING PARTNERSHIPS');
-  const headline = isAr
-    ? (content?.globalTitleAr || 'من البساتين العالمية إلى موائد قطر')
-    : (content?.globalTitle || 'From Global Orchards to Qatar’s Tables');
-  const subtitle = isAr
-    ? (content?.globalSubtitleAr || 'شراكات مباشرة مع منتجين زراعيين معتمدين في أبرز المناطق الزراعية لضمان توفر المنتجات الطازجة على مدار العام.')
-    : (content?.globalSubtitle || 'Partnering directly with certified agricultural producers across key growing regions to secure year-round availability of premium fresh produce.');
+
+  const renderHeadline = () => {
+    if (!isAr) {
+      const text = content?.globalTitle || 'Long-Standing Partnerships with Growers & Export Houses';
+      if (text.includes('Growers & Export Houses') || text.includes('Growers &amp; Export Houses')) {
+        return (
+          <>
+            Long-Standing Partnerships with <br />
+            <span className="text-[#168849]">Growers &amp; Export Houses</span>
+          </>
+        );
+      }
+      return text;
+    } else {
+      const text = content?.globalTitleAr || 'شراكات طويلة الأمد مع المزارعين وبيوت التصدير';
+      if (text.includes('المزارعين وبيوت التصدير')) {
+        return (
+          <>
+            شراكات طويلة الأمد مع <br />
+            <span className="text-[#168849]">المزارعين وبيوت التصدير</span>
+          </>
+        );
+      }
+      return text;
+    }
+  };
 
   useGSAP(
     () => {
@@ -124,13 +144,15 @@ export function PartnerCountryGrid({ content }: PartnerCountryGridProps = {}): R
         <div className="country-header-item space-y-3 text-start">
           <SectionEyebrow title={eyebrow} />
 
-          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12] whitespace-pre-line">
-            {headline}
+          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+            {renderHeadline()}
           </h2>
 
-          <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] max-w-2xl">
-            {subtitle}
-          </p>
+          {((isAr ? content?.globalSubtitleAr : content?.globalSubtitle)) && (
+            <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] max-w-2xl">
+              {isAr ? content?.globalSubtitleAr : content?.globalSubtitle}
+            </p>
+          )}
         </div>
 
         {/* Country Logo / Flag Grid */}

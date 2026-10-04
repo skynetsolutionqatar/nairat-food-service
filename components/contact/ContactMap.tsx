@@ -24,7 +24,7 @@ export function ContactMap({ company, content }: ContactMapProps = {}) {
     : (content?.facilityEyebrow || 'FACILITY LOCATION');
   const headline = isAr
     ? (content?.facilityTitleAr || 'مستودعنا المركزي والتخزين المبرد في الدوحة')
-    : (content?.facilityTitle || 'Our Central Cold Storage & Distribution Facility in Doha');
+    : (content?.facilityTitle || 'Our Doha Central Warehouse & Cold Storage');
 
   useGSAP(
     () => {

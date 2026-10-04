@@ -5,11 +5,37 @@ import Image from 'next/image';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { useLocale } from '@/context/LocaleContext';
+import type { HomePageContent } from '@/sanity/lib/data';
 
-export function Cta() {
+interface CtaProps {
+  content?: HomePageContent;
+}
+
+export function Cta({ content }: CtaProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { locale, dict } = useLocale();
   const prefix = locale === 'ar' ? '/ar' : '';
+  const isAr = locale === 'ar';
+
+  const line1 = isAr
+    ? content?.ctaLine1Ar || 'فواكه وخضروات طازجة من'
+    : content?.ctaLine1 || 'Fresh Fruits & Vegetables from';
+
+  const line2 = isAr
+    ? content?.ctaLine2Ar || 'جميع أنحاء العالم'
+    : content?.ctaLine2 || 'Around the World';
+
+  const subtext1 = isAr
+    ? content?.ctaSubtext1Ar || 'تم التوريد من جميع أنحاء العالم.'
+    : content?.ctaSubtext1 || 'Sourced Around the World.';
+
+  const subtext2 = isAr
+    ? content?.ctaSubtext2Ar || 'تُسلَّم عبر أرجاء قطر.'
+    : content?.ctaSubtext2 || 'Delivered Across Qatar.';
+
+  const buttonText = isAr
+    ? content?.ctaButtonTextAr || dict.common.contactUs
+    : content?.ctaButtonText || dict.common.contactUs;
 
   useGSAP(() => {
     const container = containerRef.current;
@@ -58,10 +84,10 @@ export function Cta() {
           {/* Headline */}
           <h2 className="cta-header-item font-display text-[21px] min-[380px]:text-[23px] min-[440px]:text-[26px] sm:text-[32px] md:text-[38px] lg:text-[44px] xl:text-[50px] 2xl:text-[54px] font-semibold text-white text-start leading-[1.14] sm:leading-[1.1] md:leading-[1.08] tracking-[-0.025em]">
             <span className="block sm:whitespace-nowrap">
-              {locale === 'ar' ? 'فواكه وخضروات طازجة من' : 'Fresh Fruits & Vegetables from'}
+              {line1}
             </span>
             <span className="block sm:whitespace-nowrap mt-0.5 sm:mt-1">
-              {locale === 'ar' ? 'جميع أنحاء العالم' : 'Around the World'}
+              {line2}
             </span>
           </h2>
 
@@ -79,10 +105,10 @@ export function Cta() {
             </div>
             <div className="font-sans text-[11px] min-[380px]:text-xs sm:text-[13px] md:text-sm text-white leading-tight sm:leading-snug text-start">
               <span className="block font-semibold text-white">
-                {locale === 'ar' ? 'تم التوريد من جميع أنحاء العالم.' : 'Sourced Around the World.'}
+                {subtext1}
               </span>
               <span className="block text-white/80">
-                {locale === 'ar' ? 'تُسلَّم عبر أرجاء قطر.' : 'Delivered Across Qatar.'}
+                {subtext2}
               </span>
             </div>
           </div>
@@ -91,7 +117,7 @@ export function Cta() {
           <div className="cta-header-item pt-1 flex flex-wrap gap-4 items-center">
             <CtaButton
               href={`${prefix}/contact`}
-              text={dict.common.contactUs}
+              text={buttonText}
               variant="primary"
             />
           </div>

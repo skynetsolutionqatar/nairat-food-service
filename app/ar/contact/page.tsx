@@ -6,7 +6,7 @@ import { ContactMap } from '@/components/contact/ContactMap';
 import { Cta } from '@/components/modules/Cta';
 import { getCompanyProfile, getContactPageContent } from '@/sanity/lib/data';
 
-export const dynamic = 'force-dynamic';
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'اتصل بنا — نيرات للخدمات الغذائية قطر',
@@ -34,7 +34,6 @@ export default async function ArabicContactPage(): Promise<React.ReactNode> {
       {/* 1. Header Banner */}
       <PageBanner
         title={contactContent.bannerTitleAr || 'اتصل بنا'}
-        description={contactContent.bannerSubtitleAr}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
           { label: 'اتصل بنا' },

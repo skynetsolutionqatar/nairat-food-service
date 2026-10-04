@@ -7,6 +7,7 @@ import { Leaf } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import type { HomePageContent } from '@/sanity/lib/data';
 
 interface ProductItem {
   id: string;
@@ -320,10 +321,16 @@ const categoriesData: CategoryData[] = [
   },
 ];
 
-export function Products() {
+export function Products({ content }: { content?: HomePageContent } = {}) {
   const { locale } = useLocale();
   const isAr = locale === 'ar';
   const prefix = locale === 'ar' ? '/ar' : '';
+  const eyebrow = isAr
+    ? content?.productsEyebrowAr || 'منتجاتنا'
+    : content?.productsEyebrow || 'OUR PRODUCTS';
+  const title = isAr
+    ? content?.productsTitleAr || 'نضارة، تم توريدها من جميع أنحاء العالم.'
+    : content?.productsTitle || 'Freshness, Sourced From Around the World.';
   const [categoryIndex, setCategoryIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isInView, setIsInView] = useState(false);
@@ -454,11 +461,11 @@ export function Products() {
         {/* Section Header */}
         <div className="max-w-3xl 2xl:max-w-4xl mx-auto text-center space-y-3 px-4">
           <div className="product-header-item flex justify-center">
-            <SectionEyebrow title={isAr ? 'منتجاتنا' : 'OUR PRODUCTS'} />
+            <SectionEyebrow title={eyebrow} />
           </div>
 
           <h2 className="product-header-item font-display type-h2 font-semibold text-[#111814]">
-            {isAr ? 'نضارة، تم توريدها من جميع أنحاء العالم.' : 'Freshness, Sourced From Around the World.'}
+            {title}
           </h2>
 
           {/* Interactive Category Selector Pills with True Filtering */}
