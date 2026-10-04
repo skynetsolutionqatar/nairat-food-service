@@ -6,7 +6,7 @@ import { QualityFoodSafety } from '@/components/quality/QualityFoodSafety';
 import { QualityTeamInspection } from '@/components/quality/QualityTeamInspection';
 import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
 import { Cta } from '@/components/modules/Cta';
-import { getQualityCertificates } from '@/sanity/lib/data';
+import { getQualityCertificates, getQualityPageContent } from '@/sanity/lib/data';
 
 export const dynamic = 'force-dynamic';
 
@@ -26,13 +26,17 @@ export const metadata: Metadata = {
 };
 
 export default async function ArabicQualityPage(): Promise<React.ReactNode> {
-  const certs = await getQualityCertificates();
+  const [certs, qualityContent] = await Promise.all([
+    getQualityCertificates(),
+    getQualityPageContent(),
+  ]);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title="التوريد والجودة"
+        title={qualityContent.bannerTitleAr || 'التوريد والجودة'}
+        description={qualityContent.bannerSubtitleAr}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
           { label: 'التوريد والجودة' },
@@ -40,16 +44,16 @@ export default async function ArabicQualityPage(): Promise<React.ReactNode> {
       />
 
       {/* 2. Our Sourcing Philosophy */}
-      <QualitySourcingPhilosophy />
+      <QualitySourcingPhilosophy content={qualityContent} />
 
       {/* 3. Quality & Food Safety */}
       <QualityFoodSafety certs={certs} />
 
       {/* 4. Dedicated QA Team & Pre-Shipment Inspection */}
-      <QualityTeamInspection />
+      <QualityTeamInspection content={qualityContent} />
 
       {/* 5. Our Supply Chain (5-Step Controls) */}
-      <QualitySupplyChain />
+      <QualitySupplyChain content={qualityContent} />
 
       {/* 6. Global Contact & Inquiry Module */}
       <Cta />

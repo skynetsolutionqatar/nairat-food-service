@@ -7,6 +7,7 @@ import { Globe2, Calendar, Truck, Leaf } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import type { HomePageContent } from '@/sanity/lib/data';
 
 interface MetricCard {
   number: string;
@@ -16,31 +17,58 @@ interface MetricCard {
   isDark: boolean;
 }
 
-export function WhoWeAre() {
+interface WhoWeAreProps {
+  content?: HomePageContent;
+}
+
+export function WhoWeAre({ content }: WhoWeAreProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { locale, dict } = useLocale();
   const prefix = locale === 'ar' ? '/ar' : '';
+  const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.whoWeAreEyebrowAr || 'عن نيرات للخدمات الغذائية')
+    : (content?.whoWeAreEyebrow || 'About Nairat Food Services');
+  const headline = isAr
+    ? (content?.whoWeAreTitleAr || 'منتجات طازجة. إمداد قوي. موثوق في جميع أنحاء قطر.')
+    : (content?.whoWeAreTitle || 'Fresh Produce. Strong Supply. Trusted Across Qatar.');
+  const narrative = isAr
+    ? (content?.whoWeAreNarrativeAr || 'نيرات فود هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.')
+    : (content?.whoWeAreNarrative || 'Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.');
 
   const metricCards: MetricCard[] = [
     {
       number: '01',
       icon: <Globe2 className="w-5 h-5 text-[#D4F056]" aria-hidden="true" />,
-      title: locale === 'ar' ? 'التوريد العالمي' : 'Global Sourcing',
-      description: locale === 'ar' ? 'توريد موثوق من مناطق زراعية متعددة حول العالم.' : 'Reliable sourcing from multiple growing regions across the world.',
+      title: isAr
+        ? (content?.whoWeArePillar1TitleAr || 'التوريد العالمي')
+        : (content?.whoWeArePillar1Title || 'Global Sourcing'),
+      description: isAr
+        ? (content?.whoWeArePillar1DescAr || 'توريد موثوق من مناطق زراعية متعددة حول العالم.')
+        : (content?.whoWeArePillar1Desc || 'Reliable sourcing from multiple growing regions across the world.'),
       isDark: true,
     },
     {
       number: '02',
       icon: <Calendar className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: locale === 'ar' ? 'إمداد طوال العام' : 'Year-Round Supply',
-      description: locale === 'ar' ? 'يساعد التوريد الموسمي في الحفاظ على توفر ثابت طوال العام.' : 'Seasonal sourcing helps maintain consistent availability throughout the year.',
+      title: isAr
+        ? (content?.whoWeArePillar2TitleAr || 'إمداد طوال العام')
+        : (content?.whoWeArePillar2Title || 'Year-Round Supply'),
+      description: isAr
+        ? (content?.whoWeArePillar2DescAr || 'يساعد التوريد الموسمي في الحفاظ على توفر ثابت طوال العام.')
+        : (content?.whoWeArePillar2Desc || 'Seasonal sourcing helps maintain consistent availability throughout the year.'),
       isDark: false,
     },
     {
       number: '03',
       icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: locale === 'ar' ? 'صُممت لقطر' : 'Built for Qatar',
-      description: locale === 'ar' ? 'توزيع موثوق، وخدمات لوجستية لسلسلة التبريد، وتوصيل يومي في جميع أنحاء قطر.' : 'Trusted distribution, cold-chain logistics and daily delivery across Qatar.',
+      title: isAr
+        ? (content?.whoWeArePillar3TitleAr || 'صُممت لقطر')
+        : (content?.whoWeArePillar3Title || 'Built for Qatar'),
+      description: isAr
+        ? (content?.whoWeArePillar3DescAr || 'توزيع موثوق، وخدمات لوجستية لسلسلة التبريد، وتوصيل يومي في جميع أنحاء قطر.')
+        : (content?.whoWeArePillar3Desc || 'Trusted distribution, cold-chain logistics and daily delivery across Qatar.'),
       isDark: false,
     },
   ];
@@ -123,30 +151,16 @@ export function WhoWeAre() {
           <div className="lg:col-span-7 space-y-3">
 
             <div className="who-header-item">
-              <SectionEyebrow title={locale === 'ar' ? 'من نحن' : 'WHO WE ARE'} />
+              <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-start">
-              {locale === 'ar' ? (
-                <>
-                  منتجات طازجة. <br />
-                  إمداد قوي. <br />
-                  <span className="text-[#168849]">موثوق في جميع أنحاء قطر.</span>
-                </>
-              ) : (
-                <>
-                  Fresh Produce. <br />
-                  Strong Supply. <br />
-                  <span className="text-[#168849]">Trusted Across Qatar.</span>
-                </>
-              )}
+            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-start whitespace-pre-line">
+              {headline}
             </h2>
           </div>
 
           <div className="lg:col-span-5 space-y-4 2xl:space-y-5 flex flex-col items-start lg:items-end">
             <p className="who-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
-              {locale === 'ar'
-                ? 'نيرات فود هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.'
-                : 'Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.'}
+              {narrative}
             </p>
 
             <div className="who-header-item self-start lg:self-end">

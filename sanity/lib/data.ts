@@ -10,6 +10,12 @@ import {
   SERVICES_QUERY,
   QUALITY_CERTS_QUERY,
   COMPANY_PROFILE_QUERY,
+  HOME_PAGE_QUERY,
+  COMPANY_PAGE_QUERY,
+  QUALITY_PAGE_QUERY,
+  SERVICES_PAGE_QUERY,
+  PARTNERS_PAGE_QUERY,
+  CONTACT_PAGE_QUERY,
 } from './queries';
 import {
   ProductItem,
@@ -18,6 +24,8 @@ import {
 } from '@/data/products';
 import { PartnerItem, partnerLogos } from '@/data/partners';
 import { CompanyProfile, companyProfile } from '@/lib/config/company';
+import { en } from '@/lib/i18n/dictionaries/en';
+import { ar } from '@/lib/i18n/dictionaries/ar';
 
 export interface ServiceData {
   id: string;
@@ -560,3 +568,734 @@ export async function getServices(): Promise<ServiceData[]> {
 
   return defaultServicesData;
 }
+
+// ==========================================
+// 6 Page Singletons Data Fetchers & Contracts
+// ==========================================
+
+export interface HomePageContent {
+  heroTitleLine1: string;
+  heroTitleLine1Ar: string;
+  heroTitleLine2: string;
+  heroTitleLine2Ar: string;
+  heroSubtitle: string;
+  heroSubtitleAr: string;
+  heroCtaPrimary: string;
+  heroCtaPrimaryAr: string;
+  heroCtaSecondary: string;
+  heroCtaSecondaryAr: string;
+  whoWeAreEyebrow: string;
+  whoWeAreEyebrowAr: string;
+  whoWeAreTitle: string;
+  whoWeAreTitleAr: string;
+  whoWeAreNarrative: string;
+  whoWeAreNarrativeAr: string;
+  whoWeArePillar1Title: string;
+  whoWeArePillar1TitleAr: string;
+  whoWeArePillar1Desc: string;
+  whoWeArePillar1DescAr: string;
+  whoWeArePillar2Title: string;
+  whoWeArePillar2TitleAr: string;
+  whoWeArePillar2Desc: string;
+  whoWeArePillar2DescAr: string;
+  whoWeArePillar3Title: string;
+  whoWeArePillar3TitleAr: string;
+  whoWeArePillar3Desc: string;
+  whoWeArePillar3DescAr: string;
+  strengthsEyebrow: string;
+  strengthsEyebrowAr: string;
+  strengthsTitle: string;
+  strengthsTitleAr: string;
+  strengthsOriginDesc: string;
+  strengthsOriginDescAr: string;
+  strengthsChillerDesc: string;
+  strengthsChillerDescAr: string;
+  strengthsWarehouseDesc: string;
+  strengthsWarehouseDescAr: string;
+  strengthsColdChainDesc: string;
+  strengthsColdChainDescAr: string;
+  strengthsFleetDesc: string;
+  strengthsFleetDescAr: string;
+  ctaHeadline: string;
+  ctaHeadlineAr: string;
+  ctaDescription: string;
+  ctaDescriptionAr: string;
+  ctaButtonText: string;
+  ctaButtonTextAr: string;
+}
+
+export const defaultHomePageContent: HomePageContent = {
+  heroTitleLine1: en.hero.titleLine1,
+  heroTitleLine1Ar: ar.hero.titleLine1,
+  heroTitleLine2: en.hero.titleLine2,
+  heroTitleLine2Ar: ar.hero.titleLine2,
+  heroSubtitle: en.hero.subtitle,
+  heroSubtitleAr: ar.hero.subtitle,
+  heroCtaPrimary: en.hero.ctaPrimary,
+  heroCtaPrimaryAr: ar.hero.ctaPrimary,
+  heroCtaSecondary: en.hero.ctaSecondary,
+  heroCtaSecondaryAr: ar.hero.ctaSecondary,
+  whoWeAreEyebrow: 'About Nairat Food Services',
+  whoWeAreEyebrowAr: 'عن نيرات للخدمات الغذائية',
+  whoWeAreTitle: "Connecting Farms to Qatar's Tables",
+  whoWeAreTitleAr: 'نربط المزارع بمائدة قطر',
+  whoWeAreNarrative: 'Nairat Food is a premier fresh produce company in Qatar, specializing in importing, distributing, and delivering high-quality fruit and vegetables to supermarkets, wholesale markets, and foodservice providers across the country.',
+  whoWeAreNarrativeAr: 'نيرات فود هي شركة رائدة في قطاع الأغذية الطازجة في دولة قطر، متخصصة في استيراد وتوزيع وتوريد أرقى أصناف الفواكه والخضروات لسلاسل السوبرماركت وأسواق الجملة ومؤسسات الخدمات الغذائية في جميع أنحاء الدولة.',
+  whoWeArePillar1Title: 'Global Sourcing',
+  whoWeArePillar1TitleAr: 'التوريد العالمي',
+  whoWeArePillar1Desc: 'Reliable sourcing from multiple growing regions across the world.',
+  whoWeArePillar1DescAr: 'توريد موثوق من مناطق زراعية متعددة حول العالم.',
+  whoWeArePillar2Title: 'Year-Round Supply',
+  whoWeArePillar2TitleAr: 'إمداد طوال العام',
+  whoWeArePillar2Desc: 'Seasonal sourcing helps maintain consistent availability throughout the year.',
+  whoWeArePillar2DescAr: 'يساعد التوريد الموسمي في الحفاظ على توفر ثابت طوال العام.',
+  whoWeArePillar3Title: 'Built for Qatar',
+  whoWeArePillar3TitleAr: 'صُممت لقطر',
+  whoWeArePillar3Desc: 'Trusted distribution, cold-chain logistics and daily delivery across Qatar.',
+  whoWeArePillar3DescAr: 'توزيع موثوق، وخدمات لوجستية لسلسلة التبريد، وتوصيل يومي في جميع أنحاء قطر.',
+  strengthsEyebrow: 'Why Choose Nairat',
+  strengthsEyebrowAr: 'لماذا تختار نيرات',
+  strengthsTitle: 'Infrastructure Built for Freshness',
+  strengthsTitleAr: 'بنية تحتية صُممت للحفاظ على النضارة',
+  strengthsOriginDesc: 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
+  strengthsOriginDescAr: 'شراكات مباشرة مع مزارعين دوليين معتمدين تضمن توصيل منتجات طازجة من المزرعة مباشرة إلى قطر.',
+  strengthsChillerDesc: 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
+  strengthsChillerDescAr: 'نطاقات درجات حرارة مخصصة تم ضبطها خصيصاً للحفاظ على ذروة النضارة لكل نوع من الفواكه والخضروات.',
+  strengthsWarehouseDesc: 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.',
+  strengthsWarehouseDescAr: 'منشأة تخزين مبرد فسيحة وحديثة تضمن مراقبة جودة متواصلة من الاستلام حتى الإرسال.',
+  strengthsColdChainDesc: 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
+  strengthsColdChainDescAr: 'تدوير صارم بنظام ما يدخل أولاً يخرج أولاً (FIFO) ومراقبة مستمرة للمناخ للحفاظ على المنتجات الطازجة في حالة مثالية عبر جميع مراحل النقل.',
+  strengthsFleetDesc: 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
+  strengthsFleetDescAr: 'أسطول توزيع حديث مضبوط الحرارة يوصل المنتجات الطازجة في جميع أنحاء قطر وفق جداول زمنية دقيقة.',
+  ctaHeadline: 'Ready to Partner With Qatar’s Fresh Produce Leader?',
+  ctaHeadlineAr: 'هل أنت مستعد للشراكة مع رائد الأغذية الطازجة في قطر؟',
+  ctaDescription: 'Contact our procurement specialists today to discuss wholesale contracts, direct farm imports, or scheduled cold-chain delivery.',
+  ctaDescriptionAr: 'تواصل مع خبراء التوريد لدينا اليوم لمناقشة عقود التوريد بالجملة أو الاستيراد المباشر أو التوصيل المجدول بسلسلة التبريد.',
+  ctaButtonText: 'Get In Touch',
+  ctaButtonTextAr: 'تواصل معنا الآن',
+};
+
+export async function getHomePageContent(): Promise<HomePageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        HOME_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['homePage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        return {
+          heroTitleLine1: data.heroTitleLine1 || defaultHomePageContent.heroTitleLine1,
+          heroTitleLine1Ar: data.heroTitleLine1Ar || defaultHomePageContent.heroTitleLine1Ar,
+          heroTitleLine2: data.heroTitleLine2 || defaultHomePageContent.heroTitleLine2,
+          heroTitleLine2Ar: data.heroTitleLine2Ar || defaultHomePageContent.heroTitleLine2Ar,
+          heroSubtitle: data.heroSubtitle || defaultHomePageContent.heroSubtitle,
+          heroSubtitleAr: data.heroSubtitleAr || defaultHomePageContent.heroSubtitleAr,
+          heroCtaPrimary: data.heroCtaPrimary || defaultHomePageContent.heroCtaPrimary,
+          heroCtaPrimaryAr: data.heroCtaPrimaryAr || defaultHomePageContent.heroCtaPrimaryAr,
+          heroCtaSecondary: data.heroCtaSecondary || defaultHomePageContent.heroCtaSecondary,
+          heroCtaSecondaryAr: data.heroCtaSecondaryAr || defaultHomePageContent.heroCtaSecondaryAr,
+          whoWeAreEyebrow: data.whoWeAreEyebrow || defaultHomePageContent.whoWeAreEyebrow,
+          whoWeAreEyebrowAr: data.whoWeAreEyebrowAr || defaultHomePageContent.whoWeAreEyebrowAr,
+          whoWeAreTitle: data.whoWeAreTitle || defaultHomePageContent.whoWeAreTitle,
+          whoWeAreTitleAr: data.whoWeAreTitleAr || defaultHomePageContent.whoWeAreTitleAr,
+          whoWeAreNarrative: data.whoWeAreNarrative || defaultHomePageContent.whoWeAreNarrative,
+          whoWeAreNarrativeAr: data.whoWeAreNarrativeAr || defaultHomePageContent.whoWeAreNarrativeAr,
+          whoWeArePillar1Title: data.whoWeArePillar1Title || defaultHomePageContent.whoWeArePillar1Title,
+          whoWeArePillar1TitleAr: data.whoWeArePillar1TitleAr || defaultHomePageContent.whoWeArePillar1TitleAr,
+          whoWeArePillar1Desc: data.whoWeArePillar1Desc || defaultHomePageContent.whoWeArePillar1Desc,
+          whoWeArePillar1DescAr: data.whoWeArePillar1DescAr || defaultHomePageContent.whoWeArePillar1DescAr,
+          whoWeArePillar2Title: data.whoWeArePillar2Title || defaultHomePageContent.whoWeArePillar2Title,
+          whoWeArePillar2TitleAr: data.whoWeArePillar2TitleAr || defaultHomePageContent.whoWeArePillar2TitleAr,
+          whoWeArePillar2Desc: data.whoWeArePillar2Desc || defaultHomePageContent.whoWeArePillar2Desc,
+          whoWeArePillar2DescAr: data.whoWeArePillar2DescAr || defaultHomePageContent.whoWeArePillar2DescAr,
+          whoWeArePillar3Title: data.whoWeArePillar3Title || defaultHomePageContent.whoWeArePillar3Title,
+          whoWeArePillar3TitleAr: data.whoWeArePillar3TitleAr || defaultHomePageContent.whoWeArePillar3TitleAr,
+          whoWeArePillar3Desc: data.whoWeArePillar3Desc || defaultHomePageContent.whoWeArePillar3Desc,
+          whoWeArePillar3DescAr: data.whoWeArePillar3DescAr || defaultHomePageContent.whoWeArePillar3DescAr,
+          strengthsEyebrow: data.strengthsEyebrow || defaultHomePageContent.strengthsEyebrow,
+          strengthsEyebrowAr: data.strengthsEyebrowAr || defaultHomePageContent.strengthsEyebrowAr,
+          strengthsTitle: data.strengthsTitle || defaultHomePageContent.strengthsTitle,
+          strengthsTitleAr: data.strengthsTitleAr || defaultHomePageContent.strengthsTitleAr,
+          strengthsOriginDesc: data.strengthsOriginDesc || defaultHomePageContent.strengthsOriginDesc,
+          strengthsOriginDescAr: data.strengthsOriginDescAr || defaultHomePageContent.strengthsOriginDescAr,
+          strengthsChillerDesc: data.strengthsChillerDesc || defaultHomePageContent.strengthsChillerDesc,
+          strengthsChillerDescAr: data.strengthsChillerDescAr || defaultHomePageContent.strengthsChillerDescAr,
+          strengthsWarehouseDesc: data.strengthsWarehouseDesc || defaultHomePageContent.strengthsWarehouseDesc,
+          strengthsWarehouseDescAr: data.strengthsWarehouseDescAr || defaultHomePageContent.strengthsWarehouseDescAr,
+          strengthsColdChainDesc: data.strengthsColdChainDesc || defaultHomePageContent.strengthsColdChainDesc,
+          strengthsColdChainDescAr: data.strengthsColdChainDescAr || defaultHomePageContent.strengthsColdChainDescAr,
+          strengthsFleetDesc: data.strengthsFleetDesc || defaultHomePageContent.strengthsFleetDesc,
+          strengthsFleetDescAr: data.strengthsFleetDescAr || defaultHomePageContent.strengthsFleetDescAr,
+          ctaHeadline: data.ctaHeadline || defaultHomePageContent.ctaHeadline,
+          ctaHeadlineAr: data.ctaHeadlineAr || defaultHomePageContent.ctaHeadlineAr,
+          ctaDescription: data.ctaDescription || defaultHomePageContent.ctaDescription,
+          ctaDescriptionAr: data.ctaDescriptionAr || defaultHomePageContent.ctaDescriptionAr,
+          ctaButtonText: data.ctaButtonText || defaultHomePageContent.ctaButtonText,
+          ctaButtonTextAr: data.ctaButtonTextAr || defaultHomePageContent.ctaButtonTextAr,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultHomePageContent;
+}
+
+export interface CompanyPageContent {
+  bannerTitle: string;
+  bannerTitleAr: string;
+  bannerSubtitle: string;
+  bannerSubtitleAr: string;
+  deliveringEyebrow: string;
+  deliveringEyebrowAr: string;
+  deliveringTitle: string;
+  deliveringTitleAr: string;
+  deliveringNarrative: string;
+  deliveringNarrativeAr: string;
+  deliveringCommitmentTitle: string;
+  deliveringCommitmentTitleAr: string;
+  deliveringCommitmentBody: string;
+  deliveringCommitmentBodyAr: string;
+  visionMissionTitle: string;
+  visionMissionTitleAr: string;
+  visionMissionNarrative: string;
+  visionMissionNarrativeAr: string;
+  visionTitle: string;
+  visionTitleAr: string;
+  visionBody: string;
+  visionBodyAr: string;
+  missionTitle: string;
+  missionTitleAr: string;
+  missionBody: string;
+  missionBodyAr: string;
+  sourcingEyebrow: string;
+  sourcingEyebrowAr: string;
+  sourcingHeadline: string;
+  sourcingHeadlineAr: string;
+  sourcingNarrative: string;
+  sourcingNarrativeAr: string;
+  teamEyebrow: string;
+  teamEyebrowAr: string;
+  teamHeadline: string;
+  teamHeadlineAr: string;
+  teamNarrative: string;
+  teamNarrativeAr: string;
+  lookingAheadHeadline: string;
+  lookingAheadHeadlineAr: string;
+  lookingAheadNarrative: string;
+  lookingAheadNarrativeAr: string;
+}
+
+export const defaultCompanyPageContent: CompanyPageContent = {
+  bannerTitle: en.company.badge,
+  bannerTitleAr: ar.company.badge,
+  bannerSubtitle: en.company.heroSubtitle,
+  bannerSubtitleAr: ar.company.heroSubtitle,
+  deliveringEyebrow: 'Delivering Freshness',
+  deliveringEyebrowAr: 'توصيل النضارة',
+  deliveringTitle: 'A comprehensive fresh-produce partner for Qatar.',
+  deliveringTitleAr: 'شريك شامل للمنتجات الطازجة لقطر.',
+  deliveringNarrative: "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables. Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.",
+  deliveringNarrativeAr: 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة. تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة.',
+  deliveringCommitmentTitle: 'Our Core Commitment',
+  deliveringCommitmentTitleAr: 'التزامنا الأساسي',
+  deliveringCommitmentBody: 'We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every step of our operations.',
+  deliveringCommitmentBodyAr: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل خطوة من خطوات عملياتنا.',
+  visionMissionTitle: 'Our Journey: Growing a Fresher Future for Qatar.',
+  visionMissionTitleAr: 'مسيرتنا: تنمية مستقبل أكثر نضارة لقطر.',
+  visionMissionNarrative: 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar. From global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
+  visionMissionNarrativeAr: 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر. من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية.',
+  visionTitle: en.company.visionTitle,
+  visionTitleAr: ar.company.visionTitle,
+  visionBody: en.company.visionDesc,
+  visionBodyAr: ar.company.visionDesc,
+  missionTitle: en.company.missionTitle,
+  missionTitleAr: ar.company.missionTitle,
+  missionBody: en.company.missionDesc,
+  missionBodyAr: ar.company.missionDesc,
+  sourcingEyebrow: 'Global Sourcing',
+  sourcingEyebrowAr: 'التوريد العالمي',
+  sourcingHeadline: 'Strategic Sourcing: From Global Orchards to Qatar.',
+  sourcingHeadlineAr: 'التوريد الاستراتيجي: من البساتين العالمية إلى قطر.',
+  sourcingNarrative: 'Our global sourcing network is the foundation of our business. We partner directly with certified growers, agricultural cooperatives and international exporters across more than 60 countries.',
+  sourcingNarrativeAr: 'شبكة التوريد العالمية الخاصة بنا هي أساس أعمالنا. نحن نتشارك مباشرة مع مزارعين معتمدين وتعاونيات زراعية ومصدرين دوليين عبر أكثر من 60 دولة.',
+  teamEyebrow: 'Our Team',
+  teamEyebrowAr: 'فريقنا',
+  teamHeadline: 'The People Driving Our Growth',
+  teamHeadlineAr: 'الأشخاص الذين يقودون نمونا',
+  teamNarrative: 'At Nairat Food, we understand the goals and aspirations of each team member, as well as the needs of our growing business. With 200 employees, we are committed to helping our team reach their full potential. Our people are one of our most valuable assets, and we prioritize their well-being, development and a safe working environment to ensure the continued success of our company.',
+  teamNarrativeAr: 'في نيرات للأغذية، نفهم أهداف وتطلعات كل عضو في الفريق، بالإضافة إلى احتياجات أعمالنا المتنامية. مع 200 موظف، نحن ملتزمون بمساعدة فريقنا على الوصول إلى أقصى إمكاناتهم. إن موظفينا هم أحد أثمن أصولنا، ونحن نعطي الأولوية لرفاهيتهم وتطويرهم وبيئة عمل آمنة لضمان النجاح المستمر لشركتنا.',
+  lookingAheadHeadline: 'Looking Ahead: Building Long-Term Value in Fresh Produce.',
+  lookingAheadHeadlineAr: 'نظرة مستقبلية: بناء قيمة طويلة الأجل في قطاع المنتجات الطازجة.',
+  lookingAheadNarrative: 'As Qatar continues to grow, so does the demand for higher standards in fresh food supply. Nairat is committed to continuous improvement across every part of our operations — expanding our cold chain, deepening grower relationships, and adopting modern technologies that make fresh food supply smarter, faster, and more sustainable.',
+  lookingAheadNarrativeAr: 'مع استمرار نمو دولة قطر، يتزايد الطلب على معايير أعلى في إمدادات الأغذية الطازجة. تلتزم نيرات بالتحسين المستمر عبر كل جانب من جوانب عملياتنا - توسيع سلسلة التبريد، وتعميق العلاقات مع المزارعين، واعتماد تقنيات حديثة تجعل إمداد الغذاء الطازج أكثر ذكاءً وسرعة واستدامة.',
+};
+
+export async function getCompanyPageContent(): Promise<CompanyPageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        COMPANY_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['companyPage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        return {
+          bannerTitle: data.bannerTitle || defaultCompanyPageContent.bannerTitle,
+          bannerTitleAr: data.bannerTitleAr || defaultCompanyPageContent.bannerTitleAr,
+          bannerSubtitle: data.bannerSubtitle || defaultCompanyPageContent.bannerSubtitle,
+          bannerSubtitleAr: data.bannerSubtitleAr || defaultCompanyPageContent.bannerSubtitleAr,
+          deliveringEyebrow: data.deliveringEyebrow || defaultCompanyPageContent.deliveringEyebrow,
+          deliveringEyebrowAr: data.deliveringEyebrowAr || defaultCompanyPageContent.deliveringEyebrowAr,
+          deliveringTitle: data.deliveringTitle || defaultCompanyPageContent.deliveringTitle,
+          deliveringTitleAr: data.deliveringTitleAr || defaultCompanyPageContent.deliveringTitleAr,
+          deliveringNarrative: data.deliveringNarrative || defaultCompanyPageContent.deliveringNarrative,
+          deliveringNarrativeAr: data.deliveringNarrativeAr || defaultCompanyPageContent.deliveringNarrativeAr,
+          deliveringCommitmentTitle: data.deliveringCommitmentTitle || defaultCompanyPageContent.deliveringCommitmentTitle,
+          deliveringCommitmentTitleAr: data.deliveringCommitmentTitleAr || defaultCompanyPageContent.deliveringCommitmentTitleAr,
+          deliveringCommitmentBody: data.deliveringCommitmentBody || defaultCompanyPageContent.deliveringCommitmentBody,
+          deliveringCommitmentBodyAr: data.deliveringCommitmentBodyAr || defaultCompanyPageContent.deliveringCommitmentBodyAr,
+          visionMissionTitle: data.visionMissionTitle || defaultCompanyPageContent.visionMissionTitle,
+          visionMissionTitleAr: data.visionMissionTitleAr || defaultCompanyPageContent.visionMissionTitleAr,
+          visionMissionNarrative: data.visionMissionNarrative || defaultCompanyPageContent.visionMissionNarrative,
+          visionMissionNarrativeAr: data.visionMissionNarrativeAr || defaultCompanyPageContent.visionMissionNarrativeAr,
+          visionTitle: data.visionTitle || defaultCompanyPageContent.visionTitle,
+          visionTitleAr: data.visionTitleAr || defaultCompanyPageContent.visionTitleAr,
+          visionBody: data.visionBody || defaultCompanyPageContent.visionBody,
+          visionBodyAr: data.visionBodyAr || defaultCompanyPageContent.visionBodyAr,
+          missionTitle: data.missionTitle || defaultCompanyPageContent.missionTitle,
+          missionTitleAr: data.missionTitleAr || defaultCompanyPageContent.missionTitleAr,
+          missionBody: data.missionBody || defaultCompanyPageContent.missionBody,
+          missionBodyAr: data.missionBodyAr || defaultCompanyPageContent.missionBodyAr,
+          sourcingEyebrow: data.sourcingEyebrow || defaultCompanyPageContent.sourcingEyebrow,
+          sourcingEyebrowAr: data.sourcingEyebrowAr || defaultCompanyPageContent.sourcingEyebrowAr,
+          sourcingHeadline: data.sourcingHeadline || defaultCompanyPageContent.sourcingHeadline,
+          sourcingHeadlineAr: data.sourcingHeadlineAr || defaultCompanyPageContent.sourcingHeadlineAr,
+          sourcingNarrative: data.sourcingNarrative || defaultCompanyPageContent.sourcingNarrative,
+          sourcingNarrativeAr: data.sourcingNarrativeAr || defaultCompanyPageContent.sourcingNarrativeAr,
+          teamEyebrow: data.teamEyebrow || defaultCompanyPageContent.teamEyebrow,
+          teamEyebrowAr: data.teamEyebrowAr || defaultCompanyPageContent.teamEyebrowAr,
+          teamHeadline: data.teamHeadline || defaultCompanyPageContent.teamHeadline,
+          teamHeadlineAr: data.teamHeadlineAr || defaultCompanyPageContent.teamHeadlineAr,
+          teamNarrative: data.teamNarrative || defaultCompanyPageContent.teamNarrative,
+          teamNarrativeAr: data.teamNarrativeAr || defaultCompanyPageContent.teamNarrativeAr,
+          lookingAheadHeadline: data.lookingAheadHeadline || defaultCompanyPageContent.lookingAheadHeadline,
+          lookingAheadHeadlineAr: data.lookingAheadHeadlineAr || defaultCompanyPageContent.lookingAheadHeadlineAr,
+          lookingAheadNarrative: data.lookingAheadNarrative || defaultCompanyPageContent.lookingAheadNarrative,
+          lookingAheadNarrativeAr: data.lookingAheadNarrativeAr || defaultCompanyPageContent.lookingAheadNarrativeAr,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultCompanyPageContent;
+}
+
+export interface QualityPageContent {
+  bannerTitle: string;
+  bannerTitleAr: string;
+  bannerSubtitle: string;
+  bannerSubtitleAr: string;
+  philosophyEyebrow: string;
+  philosophyEyebrowAr: string;
+  philosophyTitle: string;
+  philosophyTitleAr: string;
+  philosophyNarrative: string;
+  philosophyNarrativeAr: string;
+  philosophyPillar1Title: string;
+  philosophyPillar1TitleAr: string;
+  philosophyPillar1Desc: string;
+  philosophyPillar1DescAr: string;
+  philosophyPillar2Title: string;
+  philosophyPillar2TitleAr: string;
+  philosophyPillar2Desc: string;
+  philosophyPillar2DescAr: string;
+  philosophyPillar3Title: string;
+  philosophyPillar3TitleAr: string;
+  philosophyPillar3Desc: string;
+  philosophyPillar3DescAr: string;
+  inspectionEyebrow: string;
+  inspectionEyebrowAr: string;
+  inspectionTitle: string;
+  inspectionTitleAr: string;
+  inspectionPillar1Title: string;
+  inspectionPillar1TitleAr: string;
+  inspectionPillar1Desc: string;
+  inspectionPillar1DescAr: string;
+  inspectionPillar2Title: string;
+  inspectionPillar2TitleAr: string;
+  inspectionPillar2Desc: string;
+  inspectionPillar2DescAr: string;
+  supplyChainEyebrow: string;
+  supplyChainEyebrowAr: string;
+  supplyChainTitle: string;
+  supplyChainTitleAr: string;
+  supplyChainSubtitle: string;
+  supplyChainSubtitleAr: string;
+}
+
+export const defaultQualityPageContent: QualityPageContent = {
+  bannerTitle: en.quality.badge,
+  bannerTitleAr: ar.quality.badge,
+  bannerSubtitle: en.quality.heroSubtitle,
+  bannerSubtitleAr: ar.quality.heroSubtitle,
+  philosophyEyebrow: 'Our Sourcing Philosophy',
+  philosophyEyebrowAr: 'فلسفتنا في التوريد',
+  philosophyTitle: 'Every Product Begins at the Source',
+  philosophyTitleAr: 'تبدأ رحلة كل منتج من المصدر',
+  philosophyNarrative: 'We believe exceptional quality can only be achieved by working directly with growers who share our commitment to excellence. Through long-term grower partnerships, on-site quality assessments, and a fully traceable cold chain, we ensure every carton meets our exacting standards before it arrives in Qatar.',
+  philosophyNarrativeAr: 'نؤمن بأن الجودة الاستثنائية لا تتحقق إلا من خلال العمل المباشر مع المزارعين الذين يشاركوننا التزامنا بالتميز. ومن خلال الشراكات طويلة الأمد، وتقييمات الجودة في الميدان، وسلسلة التبريد الموثوقة القابلة للتتبع، نضمن مطابقة كل شحنة لأعلى المعايير.',
+  philosophyPillar1Title: 'Global Network',
+  philosophyPillar1TitleAr: 'شبكة عالمية',
+  philosophyPillar1Desc: 'Trusted partners across 60 countries',
+  philosophyPillar1DescAr: 'شركاء موثوقون عبر 60 دولة',
+  philosophyPillar2Title: 'Quality First',
+  philosophyPillar2TitleAr: 'الجودة أولاً',
+  philosophyPillar2Desc: 'Strict inspection at every stage',
+  philosophyPillar2DescAr: 'فحص صارم في كل مرحلة',
+  philosophyPillar3Title: 'Sustainable Sourcing',
+  philosophyPillar3TitleAr: 'توريد مستدام',
+  philosophyPillar3Desc: 'Supporting responsible farming practices',
+  philosophyPillar3DescAr: 'دعم ممارسات الزراعة المسؤولة',
+  inspectionEyebrow: 'INSPECTION & HYGIENE',
+  inspectionEyebrowAr: 'الفحص والرقابة الصحية',
+  inspectionTitle: 'A Dedicated QA Team. Inspected Before It Ships.',
+  inspectionTitleAr: 'فريق رقابة متخصص. فحص دقيق قبل كل شحنة.',
+  inspectionPillar1Title: 'A Dedicated Food Safety & Hygiene Team',
+  inspectionPillar1TitleAr: 'فريق متخصص لسلامة الغذاء والنظافة الصحية',
+  inspectionPillar1Desc: 'Our food safety and hygiene department sets the policies, trains every employee and audits the floor. Training runs continuously, from basic food safety and housekeeping to ISO 22000:2018 management training for supervisors.',
+  inspectionPillar1DescAr: 'يضع قسم سلامة الغذاء والنظافة الصحية لدينا السياسات الصارمة، ويدرب كل موظف ويدقق العمليات على أرض الواقع باستمرار. تمتد برامج التدريب بشكل دوري، من أساسيات سلامة الغذاء وحسن الإدارة إلى تدريب المشرفين على إدارة معايير ISO 22000:2018.',
+  inspectionPillar2Title: 'Inspected Before It Ships',
+  inspectionPillar2TitleAr: 'فحص دقيق قبل كل شحنة وتوزيع',
+  inspectionPillar2Desc: 'Quality checks do not stop at the receiving dock. Before any order leaves our facility for delivery to supermarkets, wholesale clients, or foodservice partners, our QA team inspects outgoing pallets for freshness, correct labeling, and temperature compliance.',
+  inspectionPillar2DescAr: 'لا تتوقف فحوصات الجودة عند رصيف الاستلام فقط؛ فقبل خروج أي طلبية من مستودعاتنا للتوزيع، يقوم فريق فحص الجودة بفحص المنصات والتأكد من النضارة والمطابقة والتغليف السليم ودرجة الحرارة.',
+  supplyChainEyebrow: 'SUPPLY CHAIN JOURNEY',
+  supplyChainEyebrowAr: 'مسار سلسلة التوريد',
+  supplyChainTitle: 'From Harvest to Shelf: The Quality Journey',
+  supplyChainTitleAr: 'من الحصاد إلى الرف: رحلة الجودة المتكاملة',
+  supplyChainSubtitle: 'Four disciplined phases ensuring farm-fresh taste, food safety, and dependable availability.',
+  supplyChainSubtitleAr: 'أربع مراحل تشغيلية منضبطة تضمن الحفاظ على طزاجة المحصول، وسلامة الغذاء، واستدامة الإمداد.',
+};
+
+export async function getQualityPageContent(): Promise<QualityPageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        QUALITY_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['qualityPage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        return {
+          bannerTitle: data.bannerTitle || defaultQualityPageContent.bannerTitle,
+          bannerTitleAr: data.bannerTitleAr || defaultQualityPageContent.bannerTitleAr,
+          bannerSubtitle: data.bannerSubtitle || defaultQualityPageContent.bannerSubtitle,
+          bannerSubtitleAr: data.bannerSubtitleAr || defaultQualityPageContent.bannerSubtitleAr,
+          philosophyEyebrow: data.philosophyEyebrow || defaultQualityPageContent.philosophyEyebrow,
+          philosophyEyebrowAr: data.philosophyEyebrowAr || defaultQualityPageContent.philosophyEyebrowAr,
+          philosophyTitle: data.philosophyTitle || defaultQualityPageContent.philosophyTitle,
+          philosophyTitleAr: data.philosophyTitleAr || defaultQualityPageContent.philosophyTitleAr,
+          philosophyNarrative: data.philosophyNarrative || defaultQualityPageContent.philosophyNarrative,
+          philosophyNarrativeAr: data.philosophyNarrativeAr || defaultQualityPageContent.philosophyNarrativeAr,
+          philosophyPillar1Title: data.philosophyPillar1Title || defaultQualityPageContent.philosophyPillar1Title,
+          philosophyPillar1TitleAr: data.philosophyPillar1TitleAr || defaultQualityPageContent.philosophyPillar1TitleAr,
+          philosophyPillar1Desc: data.philosophyPillar1Desc || defaultQualityPageContent.philosophyPillar1Desc,
+          philosophyPillar1DescAr: data.philosophyPillar1DescAr || defaultQualityPageContent.philosophyPillar1DescAr,
+          philosophyPillar2Title: data.philosophyPillar2Title || defaultQualityPageContent.philosophyPillar2Title,
+          philosophyPillar2TitleAr: data.philosophyPillar2TitleAr || defaultQualityPageContent.philosophyPillar2TitleAr,
+          philosophyPillar2Desc: data.philosophyPillar2Desc || defaultQualityPageContent.philosophyPillar2Desc,
+          philosophyPillar2DescAr: data.philosophyPillar2DescAr || defaultQualityPageContent.philosophyPillar2DescAr,
+          philosophyPillar3Title: data.philosophyPillar3Title || defaultQualityPageContent.philosophyPillar3Title,
+          philosophyPillar3TitleAr: data.philosophyPillar3TitleAr || defaultQualityPageContent.philosophyPillar3TitleAr,
+          philosophyPillar3Desc: data.philosophyPillar3Desc || defaultQualityPageContent.philosophyPillar3Desc,
+          philosophyPillar3DescAr: data.philosophyPillar3DescAr || defaultQualityPageContent.philosophyPillar3DescAr,
+          inspectionEyebrow: data.inspectionEyebrow || defaultQualityPageContent.inspectionEyebrow,
+          inspectionEyebrowAr: data.inspectionEyebrowAr || defaultQualityPageContent.inspectionEyebrowAr,
+          inspectionTitle: data.inspectionTitle || defaultQualityPageContent.inspectionTitle,
+          inspectionTitleAr: data.inspectionTitleAr || defaultQualityPageContent.inspectionTitleAr,
+          inspectionPillar1Title: data.inspectionPillar1Title || defaultQualityPageContent.inspectionPillar1Title,
+          inspectionPillar1TitleAr: data.inspectionPillar1TitleAr || defaultQualityPageContent.inspectionPillar1TitleAr,
+          inspectionPillar1Desc: data.inspectionPillar1Desc || defaultQualityPageContent.inspectionPillar1Desc,
+          inspectionPillar1DescAr: data.inspectionPillar1DescAr || defaultQualityPageContent.inspectionPillar1DescAr,
+          inspectionPillar2Title: data.inspectionPillar2Title || defaultQualityPageContent.inspectionPillar2Title,
+          inspectionPillar2TitleAr: data.inspectionPillar2TitleAr || defaultQualityPageContent.inspectionPillar2TitleAr,
+          inspectionPillar2Desc: data.inspectionPillar2Desc || defaultQualityPageContent.inspectionPillar2Desc,
+          inspectionPillar2DescAr: data.inspectionPillar2DescAr || defaultQualityPageContent.inspectionPillar2DescAr,
+          supplyChainEyebrow: data.supplyChainEyebrow || defaultQualityPageContent.supplyChainEyebrow,
+          supplyChainEyebrowAr: data.supplyChainEyebrowAr || defaultQualityPageContent.supplyChainEyebrowAr,
+          supplyChainTitle: data.supplyChainTitle || defaultQualityPageContent.supplyChainTitle,
+          supplyChainTitleAr: data.supplyChainTitleAr || defaultQualityPageContent.supplyChainTitleAr,
+          supplyChainSubtitle: data.supplyChainSubtitle || defaultQualityPageContent.supplyChainSubtitle,
+          supplyChainSubtitleAr: data.supplyChainSubtitleAr || defaultQualityPageContent.supplyChainSubtitleAr,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultQualityPageContent;
+}
+
+export interface ServicesPageContent {
+  bannerTitle: string;
+  bannerTitleAr: string;
+  bannerSubtitle: string;
+  bannerSubtitleAr: string;
+  overviewHeadline: string;
+  overviewHeadlineAr: string;
+  overviewNarrative: string;
+  overviewNarrativeAr: string;
+}
+
+export const defaultServicesPageContent: ServicesPageContent = {
+  bannerTitle: en.services.badge,
+  bannerTitleAr: ar.services.badge,
+  bannerSubtitle: en.services.heroSubtitle,
+  bannerSubtitleAr: ar.services.heroSubtitle,
+  overviewHeadline: en.services.heroTitle,
+  overviewHeadlineAr: ar.services.heroTitle,
+  overviewNarrative: 'From international procurement and chilled customs clearance to daily fleet delivery and farm consignment trading, we power Qatar’s food retail ecosystem.',
+  overviewNarrativeAr: 'من المشتريات الدولية والتخليص الجمركي المبرد إلى التوزيع اليومي بالأسطول وتجارة الأمانة للمزارعين، نحن ندعم منظومة التجزئة الغذائية في قطر.',
+};
+
+export async function getServicesPageContent(): Promise<ServicesPageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        SERVICES_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['servicesPage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        return {
+          bannerTitle: data.bannerTitle || defaultServicesPageContent.bannerTitle,
+          bannerTitleAr: data.bannerTitleAr || defaultServicesPageContent.bannerTitleAr,
+          bannerSubtitle: data.bannerSubtitle || defaultServicesPageContent.bannerSubtitle,
+          bannerSubtitleAr: data.bannerSubtitleAr || defaultServicesPageContent.bannerSubtitleAr,
+          overviewHeadline: data.overviewHeadline || defaultServicesPageContent.overviewHeadline,
+          overviewHeadlineAr: data.overviewHeadlineAr || defaultServicesPageContent.overviewHeadlineAr,
+          overviewNarrative: data.overviewNarrative || defaultServicesPageContent.overviewNarrative,
+          overviewNarrativeAr: data.overviewNarrativeAr || defaultServicesPageContent.overviewNarrativeAr,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultServicesPageContent;
+}
+
+export interface PartnersPageContent {
+  bannerTitle: string;
+  bannerTitleAr: string;
+  bannerSubtitle: string;
+  bannerSubtitleAr: string;
+  retailEyebrow: string;
+  retailEyebrowAr: string;
+  retailTitle: string;
+  retailTitleAr: string;
+  localEyebrow: string;
+  localEyebrowAr: string;
+  localTitle: string;
+  localTitleAr: string;
+  localNarrative: string;
+  localNarrativeAr: string;
+  localTag1: string;
+  localTag1Ar: string;
+  localTag2: string;
+  localTag2Ar: string;
+  localTag3: string;
+  localTag3Ar: string;
+  globalEyebrow: string;
+  globalEyebrowAr: string;
+  globalTitle: string;
+  globalTitleAr: string;
+  globalSubtitle: string;
+  globalSubtitleAr: string;
+}
+
+export const defaultPartnersPageContent: PartnersPageContent = {
+  bannerTitle: en.partners.badge,
+  bannerTitleAr: ar.partners.badge,
+  bannerSubtitle: en.partners.heroSubtitle,
+  bannerSubtitleAr: ar.partners.heroSubtitle,
+  retailEyebrow: 'OUR RETAIL PARTNERS',
+  retailEyebrowAr: 'شركاؤنا في التجزئة',
+  retailTitle: "Trusted Daily Supplier to Qatar's Leading Retail Groups",
+  retailTitleAr: 'المورد اليومي الموثوق به لمجموعات التجزئة الرائدة في قطر',
+  localEyebrow: 'LOCAL AGRICULTURAL ALLIANCE',
+  localEyebrowAr: 'تحالف زراعي محلي',
+  localTitle: 'Connecting Qatari Farms to the Market',
+  localTitleAr: 'ربط المزارع القطرية بالسوق',
+  localNarrative: 'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.',
+  localNarrativeAr: 'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.',
+  localTag1: 'Qatari-Grown Seasonal Supply',
+  localTag1Ar: 'إمداد موسمي مزروع في قطر',
+  localTag2: 'Direct Farm-to-Shelf Distribution',
+  localTag2Ar: 'توزيع مباشر من المزرعة إلى الرف',
+  localTag3: 'Supporting National Food Security',
+  localTag3Ar: 'دعم الأمن الغذائي الوطني',
+  globalEyebrow: 'GLOBAL SOURCING ALLIANCES',
+  globalEyebrowAr: 'تحالفات التوريد العالمية',
+  globalTitle: 'From Global Orchards to Qatar’s Tables',
+  globalTitleAr: 'من البساتين العالمية إلى موائد قطر',
+  globalSubtitle: 'Partnering directly with certified agricultural producers across key growing regions to secure year-round availability of premium fresh produce.',
+  globalSubtitleAr: 'شراكات مباشرة مع منتجين زراعيين معتمدين في أبرز المناطق الزراعية لضمان توفر المنتجات الطازجة على مدار العام.',
+};
+
+export async function getPartnersPageContent(): Promise<PartnersPageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        PARTNERS_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['partnersPage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        return {
+          bannerTitle: data.bannerTitle || defaultPartnersPageContent.bannerTitle,
+          bannerTitleAr: data.bannerTitleAr || defaultPartnersPageContent.bannerTitleAr,
+          bannerSubtitle: data.bannerSubtitle || defaultPartnersPageContent.bannerSubtitle,
+          bannerSubtitleAr: data.bannerSubtitleAr || defaultPartnersPageContent.bannerSubtitleAr,
+          retailEyebrow: data.retailEyebrow || defaultPartnersPageContent.retailEyebrow,
+          retailEyebrowAr: data.retailEyebrowAr || defaultPartnersPageContent.retailEyebrowAr,
+          retailTitle: data.retailTitle || defaultPartnersPageContent.retailTitle,
+          retailTitleAr: data.retailTitleAr || defaultPartnersPageContent.retailTitleAr,
+          localEyebrow: data.localEyebrow || defaultPartnersPageContent.localEyebrow,
+          localEyebrowAr: data.localEyebrowAr || defaultPartnersPageContent.localEyebrowAr,
+          localTitle: data.localTitle || defaultPartnersPageContent.localTitle,
+          localTitleAr: data.localTitleAr || defaultPartnersPageContent.localTitleAr,
+          localNarrative: data.localNarrative || defaultPartnersPageContent.localNarrative,
+          localNarrativeAr: data.localNarrativeAr || defaultPartnersPageContent.localNarrativeAr,
+          localTag1: data.localTag1 || defaultPartnersPageContent.localTag1,
+          localTag1Ar: data.localTag1Ar || defaultPartnersPageContent.localTag1Ar,
+          localTag2: data.localTag2 || defaultPartnersPageContent.localTag2,
+          localTag2Ar: data.localTag2Ar || defaultPartnersPageContent.localTag2Ar,
+          localTag3: data.localTag3 || defaultPartnersPageContent.localTag3,
+          localTag3Ar: data.localTag3Ar || defaultPartnersPageContent.localTag3Ar,
+          globalEyebrow: data.globalEyebrow || defaultPartnersPageContent.globalEyebrow,
+          globalEyebrowAr: data.globalEyebrowAr || defaultPartnersPageContent.globalEyebrowAr,
+          globalTitle: data.globalTitle || defaultPartnersPageContent.globalTitle,
+          globalTitleAr: data.globalTitleAr || defaultPartnersPageContent.globalTitleAr,
+          globalSubtitle: data.globalSubtitle || defaultPartnersPageContent.globalSubtitle,
+          globalSubtitleAr: data.globalSubtitleAr || defaultPartnersPageContent.globalSubtitleAr,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultPartnersPageContent;
+}
+
+export interface ContactPageContent {
+  bannerTitle: string;
+  bannerTitleAr: string;
+  bannerSubtitle: string;
+  bannerSubtitleAr: string;
+  inquiryEyebrow: string;
+  inquiryEyebrowAr: string;
+  inquiryTitle: string;
+  inquiryTitleAr: string;
+  inquirySubtitle: string;
+  inquirySubtitleAr: string;
+  facilityEyebrow: string;
+  facilityEyebrowAr: string;
+  facilityTitle: string;
+  facilityTitleAr: string;
+  facilityOperatingHours: string;
+  facilityOperatingHoursAr: string;
+}
+
+export const defaultContactPageContent: ContactPageContent = {
+  bannerTitle: en.contact.badge,
+  bannerTitleAr: ar.contact.badge,
+  bannerSubtitle: en.contact.heroSubtitle,
+  bannerSubtitleAr: ar.contact.heroSubtitle,
+  inquiryEyebrow: en.contact.badge,
+  inquiryEyebrowAr: ar.contact.badge,
+  inquiryTitle: en.contact.heroTitle,
+  inquiryTitleAr: ar.contact.heroTitle,
+  inquirySubtitle: en.contact.heroSubtitle,
+  inquirySubtitleAr: ar.contact.heroSubtitle,
+  facilityEyebrow: 'FACILITY LOCATION',
+  facilityEyebrowAr: 'موقع المنشأة',
+  facilityTitle: 'Our Central Cold Storage & Distribution Facility in Doha',
+  facilityTitleAr: 'مستودعنا المركزي والتخزين المبرد في الدوحة',
+  facilityOperatingHours: en.common.workingHoursVal,
+  facilityOperatingHoursAr: ar.common.workingHoursVal,
+};
+
+export async function getContactPageContent(): Promise<ContactPageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        CONTACT_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['contactPage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        return {
+          bannerTitle: data.bannerTitle || defaultContactPageContent.bannerTitle,
+          bannerTitleAr: data.bannerTitleAr || defaultContactPageContent.bannerTitleAr,
+          bannerSubtitle: data.bannerSubtitle || defaultContactPageContent.bannerSubtitle,
+          bannerSubtitleAr: data.bannerSubtitleAr || defaultContactPageContent.bannerSubtitleAr,
+          inquiryEyebrow: data.inquiryEyebrow || defaultContactPageContent.inquiryEyebrow,
+          inquiryEyebrowAr: data.inquiryEyebrowAr || defaultContactPageContent.inquiryEyebrowAr,
+          inquiryTitle: data.inquiryTitle || defaultContactPageContent.inquiryTitle,
+          inquiryTitleAr: data.inquiryTitleAr || defaultContactPageContent.inquiryTitleAr,
+          inquirySubtitle: data.inquirySubtitle || defaultContactPageContent.inquirySubtitle,
+          inquirySubtitleAr: data.inquirySubtitleAr || defaultContactPageContent.inquirySubtitleAr,
+          facilityEyebrow: data.facilityEyebrow || defaultContactPageContent.facilityEyebrow,
+          facilityEyebrowAr: data.facilityEyebrowAr || defaultContactPageContent.facilityEyebrowAr,
+          facilityTitle: data.facilityTitle || defaultContactPageContent.facilityTitle,
+          facilityTitleAr: data.facilityTitleAr || defaultContactPageContent.facilityTitleAr,
+          facilityOperatingHours: data.facilityOperatingHours || defaultContactPageContent.facilityOperatingHours,
+          facilityOperatingHoursAr: data.facilityOperatingHoursAr || defaultContactPageContent.facilityOperatingHoursAr,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultContactPageContent;
+}
+

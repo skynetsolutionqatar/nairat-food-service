@@ -4,6 +4,12 @@ import { partner } from './documents/partner';
 import { service } from './documents/service';
 import { qualityCert } from './documents/qualityCert';
 import { companyProfile } from './documents/companyProfile';
+import { homePage } from './pages/homePage';
+import { companyPage } from './pages/companyPage';
+import { qualityPage } from './pages/qualityPage';
+import { servicesPage } from './pages/servicesPage';
+import { partnersPage } from './pages/partnersPage';
+import { contactPage } from './pages/contactPage';
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   product,
@@ -11,4 +17,10 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   service,
   qualityCert,
   companyProfile,
+  homePage,
+  companyPage,
+  qualityPage,
+  servicesPage,
+  partnersPage,
+  contactPage,
 ];

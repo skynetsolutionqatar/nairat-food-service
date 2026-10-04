@@ -5,7 +5,7 @@ import { PartnerRetail } from '@/components/partners/PartnerRetail';
 import { PartnerLocalGrid } from '@/components/partners/PartnerLocalGrid';
 import { PartnerCountryGrid } from '@/components/partners/PartnerCountryGrid';
 import { Cta } from '@/components/modules/Cta';
-import { getPartners } from '@/sanity/lib/data';
+import { getPartners, getPartnersPageContent } from '@/sanity/lib/data';
 
 export const dynamic = 'force-dynamic';
 
@@ -25,13 +25,17 @@ export const metadata: Metadata = {
 };
 
 export default async function PartnersPage(): Promise<React.ReactNode> {
-  const partners = await getPartners();
+  const [partners, partnersContent] = await Promise.all([
+    getPartners(),
+    getPartnersPageContent(),
+  ]);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title="Partners"
+        title={partnersContent.bannerTitle || 'Partners'}
+        description={partnersContent.bannerSubtitle}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Partners' },
@@ -39,13 +43,13 @@ export default async function PartnersPage(): Promise<React.ReactNode> {
       />
 
       {/* 2. Retail & Online Grocery Groups Logo Grid */}
-      <PartnerRetail partners={partners} />
+      <PartnerRetail partners={partners} content={partnersContent} />
 
       {/* 3. Strategic Local Agriculture: Mahaseel Partnership */}
-      <PartnerLocalGrid />
+      <PartnerLocalGrid content={partnersContent} />
 
       {/* 4. Global Sourcing Countries with Country Flags/Logos */}
-      <PartnerCountryGrid />
+      <PartnerCountryGrid content={partnersContent} />
 
       {/* 5. Global Contact & Inquiry Module */}
       <Cta />

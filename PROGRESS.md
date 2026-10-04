@@ -181,3 +181,19 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - Zero TypeScript errors (`npx tsc --noEmit`) and verified static production build (32/32 routes).
   - Validated via `agent-browser` with screenshots of `/ar`, `/ar/company`, `/ar/services`, `/ar/quality`, `/ar/partners`, `/ar/contact`, `/ar/products/vegetables`.
 
+- [x] **Milestone 4: Section-Wise & Page-Wise Editable Sanity CMS** [Completed]
+  - [x] Designed custom 3-tier desk structure (`sanity/structure.ts`) with Pages & Section Content (Singletons), Catalogs & Collections, and Company Profile & Metrics.
+  - [x] Created 6 bilingual page singleton schemas in `sanity/schemaTypes/pages/`:
+    - `homePage.ts` (Hero, Who We Are, Strengths)
+    - `companyPage.ts` (Banner, Delivering Freshness, Vision & Mission)
+    - `qualityPage.ts` (Banner, Sourcing Philosophy, QA Inspection, Supply Chain)
+    - `servicesPage.ts` (Banner, Commercial Overview)
+    - `partnersPage.ts` (Banner, Retail Partners, Local Agriculture / Mahaseel, Global Origins)
+    - `contactPage.ts` (Banner, Commercial Inquiry, Facility & Map)
+  - [x] Extended migration & seeding script (`scripts/seed-sanity.ts`) to seed all 6 page singletons directly into Sanity Content Lake with verified live English and Arabic content.
+  - [x] Updated data fetchers and queries in `sanity/lib/queries.ts` and `sanity/lib/data.ts` with strict TypeScript typings and automatic static dictionary fallbacks.
+  - [x] Wired all 12 page routes (`/`, `/ar`, `/company`, `/ar/company`, `/quality`, `/ar/quality`, `/services`, `/ar/services`, `/partners`, `/ar/partners`, `/contact`, `/ar/contact`) and their respective components to dynamic CMS content.
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and HTTP 200 responses across all 12 routes.
+  - [x] Visual validation via `agent-browser` (captured screenshots of all 6 pages in English and Arabic).
+
+

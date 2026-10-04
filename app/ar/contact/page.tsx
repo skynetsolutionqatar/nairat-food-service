@@ -4,6 +4,9 @@ import { PageBanner } from '@/components/ui/PageBanner';
 import { ContactSection } from '@/components/contact/ContactSection';
 import { ContactMap } from '@/components/contact/ContactMap';
 import { Cta } from '@/components/modules/Cta';
+import { getCompanyProfile, getContactPageContent } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'اتصل بنا — نيرات للخدمات الغذائية قطر',
@@ -20,12 +23,18 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ArabicContactPage(): React.ReactNode {
+export default async function ArabicContactPage(): Promise<React.ReactNode> {
+  const [company, contactContent] = await Promise.all([
+    getCompanyProfile(),
+    getContactPageContent(),
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title="اتصل بنا"
+        title={contactContent.bannerTitleAr || 'اتصل بنا'}
+        description={contactContent.bannerSubtitleAr}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
           { label: 'اتصل بنا' },
@@ -33,10 +42,10 @@ export default function ArabicContactPage(): React.ReactNode {
       />
 
       {/* 2. Contact Section: Two-Column Info Cards & Form */}
-      <ContactSection />
+      <ContactSection company={company} content={contactContent} />
 
       {/* 3. Warehouse Location Map */}
-      <ContactMap />
+      <ContactMap company={company} content={contactContent} />
 
       {/* 4. Global Contact & Inquiry Module */}
       <Cta />

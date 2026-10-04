@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
 import { ServicesList } from '@/components/services/ServicesList';
 import { Cta } from '@/components/modules/Cta';
-import { getServices } from '@/sanity/lib/data';
+import { getServices, getServicesPageContent } from '@/sanity/lib/data';
 
 export const dynamic = 'force-dynamic';
 
@@ -23,13 +23,17 @@ export const metadata: Metadata = {
 };
 
 export default async function ServicesPage(): Promise<React.ReactNode> {
-  const services = await getServices();
+  const [services, servicesContent] = await Promise.all([
+    getServices(),
+    getServicesPageContent(),
+  ]);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title="Our Services"
+        title={servicesContent.bannerTitle || 'Our Services'}
+        description={servicesContent.bannerSubtitle}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Our Services' },
@@ -37,7 +41,7 @@ export default async function ServicesPage(): Promise<React.ReactNode> {
       />
 
       {/* 2. Horizontal Service Cards */}
-      <ServicesList services={services} />
+      <ServicesList services={services} content={servicesContent} />
 
       {/* 3. Global CTA Module */}
       <Cta />

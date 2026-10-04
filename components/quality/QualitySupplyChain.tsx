@@ -6,6 +6,8 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 
+import type { QualityPageContent } from '@/sanity/lib/data';
+
 interface StepItem {
   number: string;
   title: string;
@@ -13,10 +15,24 @@ interface StepItem {
   icon: React.ReactNode;
 }
 
-export function QualitySupplyChain(): React.ReactNode {
+interface QualitySupplyChainProps {
+  content?: QualityPageContent;
+}
+
+export function QualitySupplyChain({ content }: QualitySupplyChainProps = {}): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.supplyChainEyebrowAr || 'ضوابط في كل مرحلة')
+    : (content?.supplyChainEyebrow || 'CONTROLS AT EVERY STEP');
+  const headline = isAr
+    ? (content?.supplyChainTitleAr || 'ضوابط رقابية صارمة في كل خطوة')
+    : (content?.supplyChainTitle || 'Controls at Every Step');
+  const subtitle = isAr
+    ? (content?.supplyChainSubtitleAr || 'من استلام الشحنات إلى باب العميل، تحمي بروتوكولات التحقق الصارمة سلامة المنتجات وتحافظ على سلسلة تبريد غير منقطعة مع التتبع الكامل.')
+    : (content?.supplyChainSubtitle || 'From arrival to the customer’s door, strict verification protocols protect product integrity and maintain an unbroken cold chain.');
 
   const steps: StepItem[] = [
     {
@@ -99,19 +115,17 @@ export function QualitySupplyChain(): React.ReactNode {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end">
           <div className="lg:col-span-7 space-y-3 text-start">
             <div className="chain-header-item">
-              <SectionEyebrow title={isAr ? 'ضوابط في كل مرحلة' : 'CONTROLS AT EVERY STEP'} />
+              <SectionEyebrow title={eyebrow} />
             </div>
 
             <h2 className="chain-header-item font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.15] tracking-tight">
-              {isAr ? 'ضوابط رقابية صارمة في كل خطوة' : 'Controls at Every Step'}
+              {headline}
             </h2>
           </div>
 
           <div className="lg:col-span-5 text-start lg:text-end">
             <p className="chain-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] max-w-[48ch] lg:ms-auto">
-              {isAr
-                ? 'من استلام الشحنات إلى باب العميل، تحمي بروتوكولات التحقق الصارمة سلامة المنتجات وتحافظ على سلسلة تبريد غير منقطعة مع التتبع الكامل.'
-                : 'From arrival to the customer’s door, strict verification protocols protect product integrity and maintain an unbroken cold chain.'}
+              {subtitle}
             </p>
           </div>
         </div>

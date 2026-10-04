@@ -8,13 +8,16 @@ import { useLocale } from '@/context/LocaleContext';
 
 import { partnerLogos, PartnerItem } from '@/data/partners';
 
+import type { PartnersPageContent } from '@/sanity/lib/data';
+
 const retailPartners = partnerLogos.filter((partner) => partner.id !== 'mahaseel');
 
 interface PartnerRetailProps {
   partners?: PartnerItem[];
+  content?: PartnersPageContent;
 }
 
-export function PartnerRetail({ partners }: PartnerRetailProps = {}): React.ReactNode {
+export function PartnerRetail({ partners, content }: PartnerRetailProps = {}): React.ReactNode {
   const activePartners = partners && partners.length > 0
     ? partners.filter((p) => p.id !== 'mahaseel')
     : retailPartners;
@@ -22,6 +25,13 @@ export function PartnerRetail({ partners }: PartnerRetailProps = {}): React.Reac
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.retailEyebrowAr || 'شركاؤنا في التجزئة')
+    : (content?.retailEyebrow || 'OUR RETAIL PARTNERS');
+  const headline = isAr
+    ? (content?.retailTitleAr || 'المورد اليومي الموثوق به لمجموعات التجزئة الرائدة في قطر')
+    : (content?.retailTitle || "Trusted Daily Supplier to Qatar's Leading Retail Groups");
 
   useGSAP(
     () => {
@@ -60,20 +70,10 @@ export function PartnerRetail({ partners }: PartnerRetailProps = {}): React.Reac
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
         <div className="retail-header-item space-y-3 text-start">
-          <SectionEyebrow title={isAr ? 'شركاؤنا في التجزئة' : 'OUR RETAIL PARTNERS'} />
+          <SectionEyebrow title={eyebrow} />
 
-          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
-            {isAr ? (
-              <>
-                المورد اليومي الموثوق به <br />
-                <span className="text-[#168849]">لمجموعات التجزئة الرائدة في قطر</span>
-              </>
-            ) : (
-              <>
-                Trusted Daily Supplier to <br />
-                <span className="text-[#168849]">Qatar&apos;s Leading Retail Groups</span>
-              </>
-            )}
+          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12] whitespace-pre-line">
+            {headline}
           </h2>
         </div>
 

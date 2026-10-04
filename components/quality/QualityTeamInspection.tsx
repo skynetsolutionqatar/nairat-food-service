@@ -7,10 +7,35 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 
-export function QualityTeamInspection(): React.ReactNode {
+import type { QualityPageContent } from '@/sanity/lib/data';
+
+interface QualityTeamInspectionProps {
+  content?: QualityPageContent;
+}
+
+export function QualityTeamInspection({ content }: QualityTeamInspectionProps = {}): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.inspectionEyebrowAr || 'الفحص والرقابة الصحية')
+    : (content?.inspectionEyebrow || 'INSPECTION & HYGIENE');
+  const headline = isAr
+    ? (content?.inspectionTitleAr || 'فريق رقابة متخصص. فحص دقيق قبل كل شحنة.')
+    : (content?.inspectionTitle || 'A Dedicated QA Team. Inspected Before It Ships.');
+  const pillar1Title = isAr
+    ? (content?.inspectionPillar1TitleAr || 'فريق متخصص لسلامة الغذاء والنظافة الصحية')
+    : (content?.inspectionPillar1Title || 'A Dedicated Food Safety & Hygiene Team');
+  const pillar1Desc = isAr
+    ? (content?.inspectionPillar1DescAr || 'يضع قسم سلامة الغذاء والنظافة الصحية لدينا السياسات الصارمة، ويدرب كل موظف ويدقق العمليات على أرض الواقع باستمرار. تمتد برامج التدريب بشكل دوري، من أساسيات سلامة الغذاء وحسن الإدارة إلى تدريب المشرفين على إدارة معايير ISO 22000:2018.')
+    : (content?.inspectionPillar1Desc || 'Our food safety and hygiene department sets the policies, trains every employee and audits the floor. Training runs continuously, from basic food safety and housekeeping to ISO 22000:2018 management training for supervisors.');
+  const pillar2Title = isAr
+    ? (content?.inspectionPillar2TitleAr || 'فحص دقيق قبل كل شحنة وتوزيع')
+    : (content?.inspectionPillar2Title || 'Inspected Before It Ships');
+  const pillar2Desc = isAr
+    ? (content?.inspectionPillar2DescAr || 'يتم فحص كل دفعة واردة ومطابقتها لمواصفاتنا المحددة لدرجة الحرارة، ومستوى النضج، والحجم، وخلوها من العيوب. تُرفض المنتجات غير المطابقة أو تُخفض درجتها قبل وصولها لخط التعبئة، وتغادر كل شحنة برقم الدفعة المرجعي لضمان التتبع الكامل.')
+    : (content?.inspectionPillar2Desc || 'Every incoming lot is checked against our specifications for temperature, ripeness, size and defects. Goods that fail are rejected or downgraded before they reach the packing line, and every delivery leaves with its lot reference for full traceability.');
 
   useGSAP(
     () => {
@@ -80,20 +105,10 @@ export function QualityTeamInspection(): React.ReactNode {
           {/* Right Column: Narrative & 2 Detailed Quality Pillars (6 cols) */}
           <div className="lg:col-span-6 space-y-6 text-start">
             <div className="team-anim-content space-y-3">
-              <SectionEyebrow title={isAr ? 'الفحص والرقابة الصحية' : 'INSPECTION & HYGIENE'} />
+              <SectionEyebrow title={eyebrow} />
 
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#111814] leading-[1.18] tracking-tight">
-                {isAr ? (
-                  <>
-                    فريق رقابة متخصص. <br />
-                    فحص دقيق قبل كل شحنة.
-                  </>
-                ) : (
-                  <>
-                    A Dedicated QA Team. <br />
-                    Inspected Before It Ships.
-                  </>
-                )}
+              <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#111814] leading-[1.18] tracking-tight whitespace-pre-line">
+                {headline}
               </h2>
             </div>
 
@@ -104,15 +119,11 @@ export function QualityTeamInspection(): React.ReactNode {
                   <ShieldCheck className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <h3 className="font-display font-semibold text-base sm:text-lg text-[#111814]">
-                  {isAr
-                    ? 'فريق متخصص لسلامة الغذاء والنظافة الصحية'
-                    : 'A Dedicated Food Safety & Hygiene Team'}
+                  {pillar1Title}
                 </h3>
               </div>
               <p className="font-sans text-xs sm:text-[14px] text-[#47554E] leading-[1.6]">
-                {isAr
-                  ? 'يضع قسم سلامة الغذاء والنظافة الصحية لدينا السياسات الصارمة، ويدرب كل موظف ويدقق العمليات على أرض الواقع باستمرار. تمتد برامج التدريب بشكل دوري، من أساسيات سلامة الغذاء وحسن الإدارة إلى تدريب المشرفين على إدارة معايير ISO 22000:2018.'
-                  : 'Our food safety and hygiene department sets the policies, trains every employee and audits the floor. Training runs continuously, from basic food safety and housekeeping to ISO 22000:2018 management training for supervisors.'}
+                {pillar1Desc}
               </p>
             </div>
 
@@ -123,13 +134,11 @@ export function QualityTeamInspection(): React.ReactNode {
                   <CheckCheck className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <h3 className="font-display font-semibold text-base sm:text-lg text-[#111814]">
-                  {isAr ? 'فحص دقيق قبل كل شحنة وتوزيع' : 'Inspected Before It Ships'}
+                  {pillar2Title}
                 </h3>
               </div>
               <p className="font-sans text-xs sm:text-[14px] text-[#47554E] leading-[1.6]">
-                {isAr
-                  ? 'يتم فحص كل دفعة واردة ومطابقتها لمواصفاتنا المحددة لدرجة الحرارة، ومستوى النضج، والحجم، وخلوها من العيوب. تُرفض المنتجات غير المطابقة أو تُخفض درجتها قبل وصولها لخط التعبئة، وتغادر كل شحنة برقم الدفعة المرجعي لضمان التتبع الكامل.'
-                  : 'Every incoming lot is checked against our specifications for temperature, ripeness, size and defects. Goods that fail are rejected or downgraded before they reach the packing line, and every delivery leaves with its lot reference for full traceability.'}
+                {pillar2Desc}
               </p>
             </div>
           </div>

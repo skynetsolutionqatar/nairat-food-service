@@ -9,6 +9,9 @@ import { CompanyTeam } from '@/components/company/CompanyTeam';
 import { CompanyQuality } from '@/components/company/CompanyQuality';
 import { CompanyLookingAhead } from '@/components/company/CompanyLookingAhead';
 import { Cta } from '@/components/modules/Cta';
+import { getCompanyProfile, getCompanyPageContent } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'الشركة — نيرات للخدمات الغذائية قطر',
@@ -25,12 +28,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ArabicCompanyPage() {
+export default async function ArabicCompanyPage() {
+  const [company, companyContent] = await Promise.all([
+    getCompanyProfile(),
+    getCompanyPageContent(),
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title="الشركة"
+        title={companyContent.bannerTitleAr || 'عن نيرات للخدمات الغذائية'}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
           { label: 'الشركة' },
@@ -38,13 +46,13 @@ export default function ArabicCompanyPage() {
       />
 
       {/* 2. Delivering Freshness */}
-      <CompanyDelivering />
+      <CompanyDelivering content={companyContent} />
 
       {/* 3. Our Journey: Vision & Mission */}
-      <CompanyVisionMission />
+      <CompanyVisionMission content={companyContent} />
 
       {/* 4. Infrastructure & Operational Scale */}
-      <CompanyInfrastructure />
+      <CompanyInfrastructure company={company} />
 
       {/* 5. Strategic Global Sourcing */}
       <CompanySourcing />

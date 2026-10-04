@@ -1,7 +1,9 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
-import { companyProfile } from '@/lib/config/company';
+import { getCompanyProfile } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'شروط الخدمة — نيرات للخدمات الغذائية قطر',
@@ -17,7 +19,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ArTermsPage(): React.ReactNode {
+export default async function ArTermsPage(): Promise<React.ReactNode> {
+  const companyProfile = await getCompanyProfile();
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <PageBanner

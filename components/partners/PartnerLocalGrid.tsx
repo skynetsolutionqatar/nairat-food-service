@@ -7,10 +7,35 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 
-export function PartnerLocalGrid() {
+import type { PartnersPageContent } from '@/sanity/lib/data';
+
+interface PartnerLocalGridProps {
+  content?: PartnersPageContent;
+}
+
+export function PartnerLocalGrid({ content }: PartnerLocalGridProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.localEyebrowAr || 'تحالف زراعي محلي')
+    : (content?.localEyebrow || 'LOCAL AGRICULTURAL ALLIANCE');
+  const headline = isAr
+    ? (content?.localTitleAr || 'ربط المزارع القطرية بالسوق')
+    : (content?.localTitle || 'Connecting Qatari Farms to the Market');
+  const narrative = isAr
+    ? (content?.localNarrativeAr || 'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.')
+    : (content?.localNarrative || 'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.');
+  const tag1 = isAr
+    ? (content?.localTag1Ar || 'إمداد موسمي مزروع في قطر')
+    : (content?.localTag1 || 'Qatari-Grown Seasonal Supply');
+  const tag2 = isAr
+    ? (content?.localTag2Ar || 'توزيع مباشر من المزرعة إلى الرف')
+    : (content?.localTag2 || 'Direct Farm-to-Shelf Distribution');
+  const tag3 = isAr
+    ? (content?.localTag3Ar || 'دعم الأمن الغذائي الوطني')
+    : (content?.localTag3 || 'Supporting National Food Security');
 
   useGSAP(
     () => {
@@ -61,30 +86,28 @@ export function PartnerLocalGrid() {
 
             {/* Right Column: Heading & Content (8 cols) */}
             <div className="lg:col-span-8 space-y-4 text-start">
-              <SectionEyebrow title={isAr ? 'تحالف زراعي محلي' : 'LOCAL AGRICULTURAL ALLIANCE'} />
+              <SectionEyebrow title={eyebrow} />
 
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-[#111814] tracking-tight">
-                {isAr ? 'ربط المزارع القطرية بالسوق' : 'Connecting Qatari Farms to the Market'}
+                {headline}
               </h3>
 
               <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
-                {isAr
-                  ? 'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.'
-                  : 'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.'}
+                {narrative}
               </p>
 
               <div className="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-xs sm:text-sm font-semibold text-[#111814]">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#168849]" />
-                  <span>{isAr ? 'إمداد موسمي مزروع في قطر' : 'Qatari-Grown Seasonal Supply'}</span>
+                  <span>{tag1}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#168849]" />
-                  <span>{isAr ? 'توزيع مباشر من المزرعة إلى الرف' : 'Direct Farm-to-Shelf Distribution'}</span>
+                  <span>{tag2}</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4 text-[#168849]" />
-                  <span>{isAr ? 'دعم الأمن الغذائي الوطني' : 'Supporting National Food Security'}</span>
+                  <span>{tag3}</span>
                 </div>
               </div>
             </div>

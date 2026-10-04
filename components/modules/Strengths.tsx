@@ -6,6 +6,7 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import { CompanyProfile, companyProfile as defaultCompany } from '@/lib/config/company';
 
 interface StrengthCard {
   id: string;
@@ -16,49 +17,75 @@ interface StrengthCard {
   alt: string;
 }
 
-export function Strengths() {
+import type { HomePageContent } from '@/sanity/lib/data';
+
+interface StrengthsProps {
+  company?: CompanyProfile;
+  content?: HomePageContent;
+}
+
+export function Strengths({ company, content }: StrengthsProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { locale, dict } = useLocale();
   const prefix = locale === 'ar' ? '/ar' : '';
+  const profile = company || defaultCompany;
+  const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.strengthsEyebrowAr || 'لماذا تختار نيرات')
+    : (content?.strengthsEyebrow || 'WHY CHOOSE US');
+  const headline = isAr
+    ? (content?.strengthsTitleAr || 'صُممت من أجل النضارة. جاهزون للتوصيل.')
+    : (content?.strengthsTitle || 'Built for Freshness. Ready to Deliver.');
 
   const strengthsList: StrengthCard[] = [
     {
       id: 'chiller-rooms',
       number: locale === 'ar' ? '20' : '20',
       title: locale === 'ar' ? 'غرف تبريد مخصصة' : 'Dedicated Chiller Rooms',
-      desc: locale === 'ar' ? 'نطاقات درجات حرارة مخصصة تم ضبطها خصيصاً للحفاظ على ذروة النضارة لكل نوع من الفواكه والخضروات.' : 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
+      desc: isAr
+        ? (content?.strengthsChillerDescAr || 'نطاقات درجات حرارة مخصصة تم ضبطها خصيصاً للحفاظ على ذروة النضارة لكل نوع من الفواكه والخضروات.')
+        : (content?.strengthsChillerDesc || 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.'),
       imageUrl: '/whychooseus/chiller-warehouse.avif',
       alt: '20 Dedicated Chiller Rooms',
     },
     {
       id: 'warehouse',
-      number: '5,000 m²',
+      number: locale === 'ar' ? (profile.warehouseArea || '5,000 م²').replace(/m²\b/, 'م²') : (profile.warehouseArea || '5,000 m²'),
       title: locale === 'ar' ? 'مستودع سلسلة التبريد' : 'Cold-Chain Warehouse',
-      desc: locale === 'ar' ? 'منشأة تخزين مبرد فسيحة وحديثة تضمن مراقبة جودة متواصلة من الاستلام حتى الإرسال.' : 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.',
+      desc: isAr
+        ? (content?.strengthsWarehouseDescAr || 'منشأة تخزين مبرد فسيحة وحديثة تضمن مراقبة جودة متواصلة من الاستلام حتى الإرسال.')
+        : (content?.strengthsWarehouseDesc || 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.'),
       imageUrl: '/whychooseus/warehouse.avif',
-      alt: '5,000 m² Cold-Chain Warehouse',
+      alt: `${profile.warehouseArea || '5,000 m²'} Cold-Chain Warehouse`,
     },
     {
       id: 'cold-chain',
       title: locale === 'ar' ? 'سلسلة تبريد غير منقطعة' : 'Cold Chain Unbroken',
-      desc: locale === 'ar' ? 'تدوير صارم بنظام ما يدخل أولاً يخرج أولاً (FIFO) ومراقبة مستمرة للمناخ للحفاظ على المنتجات الطازجة في حالة مثالية عبر جميع مراحل النقل.' : 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
+      desc: isAr
+        ? (content?.strengthsColdChainDescAr || 'تدوير صارم بنظام ما يدخل أولاً يخرج أولاً (FIFO) ومراقبة مستمرة للمناخ للحفاظ على المنتجات الطازجة في حالة مثالية عبر جميع مراحل النقل.')
+        : (content?.strengthsColdChainDesc || 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.'),
       imageUrl: '/whychooseus/temperature-controlled.avif',
       alt: 'Cold Chain Unbroken',
     },
     {
       id: 'fleet',
-      number: locale === 'ar' ? '40' : '40',
+      number: profile.fleetVehiclesCount || '40',
       title: locale === 'ar' ? 'مركبات مبردة' : 'Refrigerated Vehicles',
-      desc: locale === 'ar' ? 'أسطول توزيع حديث مضبوط الحرارة يوصل المنتجات الطازجة في جميع أنحاء قطر وفق جداول زمنية دقيقة.' : 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
+      desc: isAr
+        ? (content?.strengthsFleetDescAr || 'أسطول توزيع حديث مضبوط الحرارة يوصل المنتجات الطازجة في جميع أنحاء قطر وفق جداول زمنية دقيقة.')
+        : (content?.strengthsFleetDesc || 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.'),
       imageUrl: '/whychooseus/truck.avif',
-      alt: '40 Refrigerated Vehicles',
+      alt: `${profile.fleetVehiclesCount || '40'} Refrigerated Vehicles`,
     },
   ];
 
   const tallCard: StrengthCard = {
     id: 'sourced-origin',
     title: locale === 'ar' ? 'التوريد من المنشأ' : 'Sourced at Origin',
-    desc: locale === 'ar' ? 'شراكات مباشرة مع مزارعين دوليين معتمدين تضمن توصيل منتجات طازجة من المزرعة مباشرة إلى قطر.' : 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
+    desc: isAr
+      ? (content?.strengthsOriginDescAr || 'شراكات مباشرة مع مزارعين دوليين معتمدين تضمن توصيل منتجات طازجة من المزرعة مباشرة إلى قطر.')
+      : (content?.strengthsOriginDesc || 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.'),
     imageUrl: '/whychooseus/sourced-from-origin.avif',
     alt: 'Sourced at Origin',
   };
@@ -140,20 +167,10 @@ export function Strengths() {
           {/* Left Headline */}
           <div className="lg:col-span-7 space-y-3">
             <div className="strength-header-item">
-              <SectionEyebrow title={locale === 'ar' ? 'لماذا تختار نيرات' : 'WHY CHOOSE US'} />
+              <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-start">
-              {locale === 'ar' ? (
-                <>
-                  صُممت من أجل النضارة. <br />
-                  جاهزون للتوصيل.
-                </>
-              ) : (
-                <>
-                  Built for Freshness. <br />
-                  Ready to Deliver.
-                </>
-              )}
+            <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-start whitespace-pre-line">
+              {headline}
             </h2>
           </div>
 

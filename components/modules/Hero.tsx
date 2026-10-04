@@ -4,13 +4,32 @@ import React, { useRef, useEffect } from 'react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '../ui/CtaButton';
 import { useLocale } from '@/context/LocaleContext';
+import type { HomePageContent } from '@/sanity/lib/data';
 
-export function Hero() {
+interface HeroProps {
+  content?: HomePageContent;
+}
+
+export function Hero({ content }: HeroProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const { locale, dict } = useLocale();
   const prefix = locale === 'ar' ? '/ar' : '';
+  const isAr = locale === 'ar';
+
+  const titleLine1 = isAr
+    ? (content?.heroTitleLine1Ar || dict.hero.titleLine1)
+    : (content?.heroTitleLine1 || dict.hero.titleLine1);
+  const titleLine2 = isAr
+    ? (content?.heroTitleLine2Ar || dict.hero.titleLine2)
+    : (content?.heroTitleLine2 || dict.hero.titleLine2);
+  const subtitle = isAr
+    ? (content?.heroSubtitleAr || dict.hero.subtitle)
+    : (content?.heroSubtitle || dict.hero.subtitle);
+  const ctaPrimary = isAr
+    ? (content?.heroCtaPrimaryAr || dict.hero.ctaPrimary)
+    : (content?.heroCtaPrimary || dict.hero.ctaPrimary);
 
   // Auto-recovery & resilient playback handling
   useEffect(() => {
@@ -142,20 +161,20 @@ export function Hero() {
           {/* DIV 1: Heading */}
           <div className="w-full lg:w-[62%] text-start">
             <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[48px] xl:text-[54px] 2xl:text-[60px] font-bold text-white text-start tracking-[-0.035em] leading-[1.16] sm:leading-[1.18] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
-              <span className="hero-title-line block sm:whitespace-nowrap">{dict.hero.titleLine1}</span>
-              <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2.5">{dict.hero.titleLine2}</span>
+              <span className="hero-title-line block sm:whitespace-nowrap">{titleLine1}</span>
+              <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2.5">{titleLine2}</span>
             </h1>
           </div>
 
           {/* DIV 2: Subheading & CTA Button */}
           <div className="w-full lg:w-[38%] flex flex-col justify-end items-start gap-5 2xl:gap-6 text-start">
             <p className="hero-sub-text font-sans text-xs sm:text-[13px] 2xl:text-[14px] text-gray-300 leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-start">
-              {dict.hero.subtitle}
+              {subtitle}
             </p>
 
             <div className="hero-cta-btn">
               <CtaButton href={`${prefix}/contact`}>
-                {dict.hero.ctaPrimary}
+                {ctaPrimary}
               </CtaButton>
             </div>
           </div>

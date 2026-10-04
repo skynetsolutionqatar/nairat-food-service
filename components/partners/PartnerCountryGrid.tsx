@@ -65,10 +65,26 @@ const countryPartners: CountryPartner[] = [
   },
 ];
 
-export function PartnerCountryGrid(): React.ReactNode {
+import type { PartnersPageContent } from '@/sanity/lib/data';
+
+interface PartnerCountryGridProps {
+  content?: PartnersPageContent;
+}
+
+export function PartnerCountryGrid({ content }: PartnerCountryGridProps = {}): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.globalEyebrowAr || 'شراكات التوريد العالمية')
+    : (content?.globalEyebrow || 'GLOBAL SOURCING PARTNERSHIPS');
+  const headline = isAr
+    ? (content?.globalTitleAr || 'من البساتين العالمية إلى موائد قطر')
+    : (content?.globalTitle || 'From Global Orchards to Qatar’s Tables');
+  const subtitle = isAr
+    ? (content?.globalSubtitleAr || 'شراكات مباشرة مع منتجين زراعيين معتمدين في أبرز المناطق الزراعية لضمان توفر المنتجات الطازجة على مدار العام.')
+    : (content?.globalSubtitle || 'Partnering directly with certified agricultural producers across key growing regions to secure year-round availability of premium fresh produce.');
 
   useGSAP(
     () => {
@@ -106,21 +122,15 @@ export function PartnerCountryGrid(): React.ReactNode {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
         <div className="country-header-item space-y-3 text-start">
-          <SectionEyebrow title={isAr ? 'شراكات التوريد العالمية' : 'GLOBAL SOURCING PARTNERSHIPS'} />
+          <SectionEyebrow title={eyebrow} />
 
-          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
-            {isAr ? (
-              <>
-                شراكات طويلة الأمد مع <br />
-                <span className="text-[#168849]">المزارعين وبيوت التصدير</span>
-              </>
-            ) : (
-              <>
-                Long-Standing Partnerships with <br />
-                <span className="text-[#168849]">Growers &amp; Export Houses</span>
-              </>
-            )}
+          <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12] whitespace-pre-line">
+            {headline}
           </h2>
+
+          <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] max-w-2xl">
+            {subtitle}
+          </p>
         </div>
 
         {/* Country Logo / Flag Grid */}

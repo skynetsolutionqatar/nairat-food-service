@@ -15,6 +15,8 @@ import { createClient } from '@sanity/client';
 import { productCategoriesData } from '../data/products';
 import { partnerLogos } from '../data/partners';
 import { companyProfile } from '../lib/config/company';
+import { en } from '../lib/i18n/dictionaries/en';
+import { ar } from '../lib/i18n/dictionaries/ar';
 
 // 1. Automatically load .env.local if present
 const envPath = path.resolve(process.cwd(), '.env.local');
@@ -414,6 +416,223 @@ async function seed() {
     poBox: companyProfile.contact.poBox,
   });
 
+  console.log('\n--- 6. Processing 6 Page Singletons ---');
+  // 6.1 Home Page
+  operations.push({
+    _id: 'homePage-singleton',
+    _type: 'homePage',
+    heroTitleLine1: en.hero.titleLine1,
+    heroTitleLine1Ar: ar.hero.titleLine1,
+    heroTitleLine2: en.hero.titleLine2,
+    heroTitleLine2Ar: ar.hero.titleLine2,
+    heroSubtitle: en.hero.subtitle,
+    heroSubtitleAr: ar.hero.subtitle,
+    heroCtaPrimary: en.hero.ctaPrimary,
+    heroCtaPrimaryAr: ar.hero.ctaPrimary,
+    heroCtaSecondary: en.hero.ctaSecondary,
+    heroCtaSecondaryAr: ar.hero.ctaSecondary,
+    whoWeAreEyebrow: 'About Nairat Food Services',
+    whoWeAreEyebrowAr: 'عن نيرات للخدمات الغذائية',
+    whoWeAreTitle: "Connecting Farms to Qatar's Tables",
+    whoWeAreTitleAr: 'نربط المزارع بمائدة قطر',
+    whoWeAreNarrative: 'Nairat Food is a premier fresh produce company in Qatar, specializing in importing, distributing, and delivering high-quality fruit and vegetables to supermarkets, wholesale markets, and foodservice providers across the country.',
+    whoWeAreNarrativeAr: 'نيرات فود هي شركة رائدة في قطاع الأغذية الطازجة في دولة قطر، متخصصة في استيراد وتوزيع وتوريد أرقى أصناف الفواكه والخضروات لسلاسل السوبرماركت وأسواق الجملة ومؤسسات الخدمات الغذائية في جميع أنحاء الدولة.',
+    whoWeArePillar1Title: 'Global Sourcing',
+    whoWeArePillar1TitleAr: 'التوريد العالمي',
+    whoWeArePillar1Desc: 'Reliable sourcing from multiple growing regions across the world.',
+    whoWeArePillar1DescAr: 'توريد موثوق من مناطق زراعية متعددة حول العالم.',
+    whoWeArePillar2Title: 'Year-Round Supply',
+    whoWeArePillar2TitleAr: 'إمداد طوال العام',
+    whoWeArePillar2Desc: 'Seasonal sourcing helps maintain consistent availability throughout the year.',
+    whoWeArePillar2DescAr: 'يساعد التوريد الموسمي في الحفاظ على توفر ثابت طوال العام.',
+    whoWeArePillar3Title: 'Built for Qatar',
+    whoWeArePillar3TitleAr: 'صُممت لقطر',
+    whoWeArePillar3Desc: 'Trusted distribution, cold-chain logistics and daily delivery across Qatar.',
+    whoWeArePillar3DescAr: 'توزيع موثوق، وخدمات لوجستية لسلسلة التبريد، وتوصيل يومي في جميع أنحاء قطر.',
+    strengthsEyebrow: 'Why Choose Nairat',
+    strengthsEyebrowAr: 'لماذا تختار نيرات',
+    strengthsTitle: 'Infrastructure Built for Freshness',
+    strengthsTitleAr: 'بنية تحتية صُممت للحفاظ على النضارة',
+    strengthsOriginDesc: 'Direct partnerships with certified international growers guaranteeing premium farm-fresh produce delivered directly to Qatar.',
+    strengthsOriginDescAr: 'شراكات مباشرة مع مزارعين دوليين معتمدين تضمن توصيل منتجات طازجة من المزرعة مباشرة إلى قطر.',
+    strengthsChillerDesc: 'Custom temperature zones configured specifically to maintain peak freshness for every variety of fruits and vegetables.',
+    strengthsChillerDescAr: 'نطاقات درجات حرارة مخصصة تم ضبطها خصيصاً للحفاظ على ذروة النضارة لكل نوع من الفواكه والخضروات.',
+    strengthsWarehouseDesc: 'Spacious, state-of-the-art cold storage facility ensuring uninterrupted quality control from intake to dispatch.',
+    strengthsWarehouseDescAr: 'منشأة تخزين مبرد فسيحة وحديثة تضمن مراقبة جودة متواصلة من الاستلام حتى الإرسال.',
+    strengthsColdChainDesc: 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
+    strengthsColdChainDescAr: 'تدوير صارم بنظام ما يدخل أولاً يخرج أولاً (FIFO) ومراقبة مستمرة للمناخ للحفاظ على المنتجات الطازجة في حالة مثالية عبر جميع مراحل النقل.',
+    strengthsFleetDesc: 'Modern temperature-controlled distribution fleet delivering fresh produce across Qatar on precise schedules.',
+    strengthsFleetDescAr: 'أسطول توزيع حديث مضبوط الحرارة يوصل المنتجات الطازجة في جميع أنحاء قطر وفق جداول زمنية دقيقة.',
+    ctaHeadline: 'Ready to Partner With Qatar’s Fresh Produce Leader?',
+    ctaHeadlineAr: 'هل أنت مستعد للشراكة مع رائد الأغذية الطازجة في قطر؟',
+    ctaDescription: 'Contact our procurement specialists today to discuss wholesale contracts, direct farm imports, or scheduled cold-chain delivery.',
+    ctaDescriptionAr: 'تواصل مع خبراء التوريد لدينا اليوم لمناقشة عقود التوريد بالجملة أو الاستيراد المباشر أو التوصيل المجدول بسلسلة التبريد.',
+    ctaButtonText: 'Get In Touch',
+    ctaButtonTextAr: 'تواصل معنا الآن',
+  });
+
+  // 6.2 Company Page
+  operations.push({
+    _id: 'companyPage-singleton',
+    _type: 'companyPage',
+    bannerTitle: en.company.badge,
+    bannerTitleAr: ar.company.badge,
+    bannerSubtitle: en.company.heroSubtitle,
+    bannerSubtitleAr: ar.company.heroSubtitle,
+    deliveringEyebrow: 'Delivering Freshness',
+    deliveringEyebrowAr: 'توصيل النضارة',
+    deliveringTitle: 'A comprehensive fresh-produce partner for Qatar.',
+    deliveringTitleAr: 'شريك شامل للمنتجات الطازجة لقطر.',
+    deliveringNarrative: "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables. Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.",
+    deliveringNarrativeAr: 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة. تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة.',
+    deliveringCommitmentTitle: 'Our Core Commitment',
+    deliveringCommitmentTitleAr: 'التزامنا الأساسي',
+    deliveringCommitmentBody: 'We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every step of our operations.',
+    deliveringCommitmentBodyAr: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل خطوة من خطوات عملياتنا.',
+    visionMissionTitle: 'Our Journey: Growing a Fresher Future for Qatar.',
+    visionMissionTitleAr: 'مسيرتنا: تنمية مستقبل أكثر نضارة لقطر.',
+    visionMissionNarrative: 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar. From global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
+    visionMissionNarrativeAr: 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر. من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية.',
+    visionTitle: en.company.visionTitle,
+    visionTitleAr: ar.company.visionTitle,
+    visionBody: en.company.visionDesc,
+    visionBodyAr: ar.company.visionDesc,
+    missionTitle: en.company.missionTitle,
+    missionTitleAr: ar.company.missionTitle,
+    missionBody: en.company.missionDesc,
+    missionBodyAr: ar.company.missionDesc,
+    sourcingEyebrow: 'Global Sourcing',
+    sourcingEyebrowAr: 'التوريد العالمي',
+    sourcingHeadline: 'Strategic Sourcing: From Global Orchards to Qatar.',
+    sourcingHeadlineAr: 'التوريد الاستراتيجي: من البساتين العالمية إلى قطر.',
+    sourcingNarrative: 'Our global sourcing network is the foundation of our business. We partner directly with certified growers, agricultural cooperatives and international exporters across more than 60 countries.',
+    sourcingNarrativeAr: 'شبكة التوريد العالمية الخاصة بنا هي أساس أعمالنا. نحن نتشارك مباشرة مع مزارعين معتمدين وتعاونيات زراعية ومصدرين دوليين عبر أكثر من 60 دولة.',
+    teamEyebrow: 'Our Team',
+    teamEyebrowAr: 'فريقنا',
+    teamHeadline: 'The People Driving Our Growth',
+    teamHeadlineAr: 'الأشخاص الذين يقودون نمونا',
+    teamNarrative: 'At Nairat Food, we understand the goals and aspirations of each team member, as well as the needs of our growing business. With 200 employees, we are committed to helping our team reach their full potential. Our people are one of our most valuable assets, and we prioritize their well-being, development and a safe working environment to ensure the continued success of our company.',
+    teamNarrativeAr: 'في نيرات للأغذية، نفهم أهداف وتطلعات كل عضو في الفريق، بالإضافة إلى احتياجات أعمالنا المتنامية. مع 200 موظف، نحن ملتزمون بمساعدة فريقنا على الوصول إلى أقصى إمكاناتهم. إن موظفينا هم أحد أثمن أصولنا، ونحن نعطي الأولوية لرفاهيتهم وتطويرهم وبيئة عمل آمنة لضمان النجاح المستمر لشركتنا.',
+    lookingAheadHeadline: 'Looking Ahead: Building Long-Term Value in Fresh Produce.',
+    lookingAheadHeadlineAr: 'نظرة مستقبلية: بناء قيمة طويلة الأجل في قطاع المنتجات الطازجة.',
+    lookingAheadNarrative: 'As Qatar continues to grow, so does the demand for higher standards in fresh food supply. Nairat is committed to continuous improvement across every part of our operations — expanding our cold chain, deepening grower relationships, and adopting modern technologies that make fresh food supply smarter, faster, and more sustainable.',
+    lookingAheadNarrativeAr: 'مع استمرار نمو دولة قطر، يتزايد الطلب على معايير أعلى في إمدادات الأغذية الطازجة. تلتزم نيرات بالتحسين المستمر عبر كل جانب من جوانب عملياتنا - توسيع سلسلة التبريد، وتعميق العلاقات مع المزارعين، واعتماد تقنيات حديثة تجعل إمداد الغذاء الطازج أكثر ذكاءً وسرعة واستدامة.',
+  });
+
+  // 6.3 Quality Page
+  operations.push({
+    _id: 'qualityPage-singleton',
+    _type: 'qualityPage',
+    bannerTitle: en.quality.badge,
+    bannerTitleAr: ar.quality.badge,
+    bannerSubtitle: en.quality.heroSubtitle,
+    bannerSubtitleAr: ar.quality.heroSubtitle,
+    philosophyEyebrow: 'Our Sourcing Philosophy',
+    philosophyEyebrowAr: 'فلسفتنا في التوريد',
+    philosophyTitle: 'Every Product Begins at the Source',
+    philosophyTitleAr: 'تبدأ رحلة كل منتج من المصدر',
+    philosophyNarrative: 'We believe exceptional quality can only be achieved by working directly with growers who share our commitment to excellence. Through long-term grower partnerships, on-site quality assessments, and a fully traceable cold chain, we ensure every carton meets our exacting standards before it arrives in Qatar.',
+    philosophyNarrativeAr: 'نؤمن بأن الجودة الاستثنائية لا تتحقق إلا من خلال العمل المباشر مع المزارعين الذين يشاركوننا التزامنا بالتميز. ومن خلال الشراكات طويلة الأمد، وتقييمات الجودة في الميدان، وسلسلة التبريد الموثوقة القابلة للتتبع، نضمن مطابقة كل شحنة لأعلى المعايير.',
+    philosophyPillar1Title: 'Global Network',
+    philosophyPillar1TitleAr: 'شبكة عالمية',
+    philosophyPillar1Desc: 'Trusted partners across 60 countries',
+    philosophyPillar1DescAr: 'شركاء موثوقون عبر 60 دولة',
+    philosophyPillar2Title: 'Quality First',
+    philosophyPillar2TitleAr: 'الجودة أولاً',
+    philosophyPillar2Desc: 'Strict inspection at every stage',
+    philosophyPillar2DescAr: 'فحص صارم في كل مرحلة',
+    philosophyPillar3Title: 'Sustainable Sourcing',
+    philosophyPillar3TitleAr: 'توريد مستدام',
+    philosophyPillar3Desc: 'Supporting responsible farming practices',
+    philosophyPillar3DescAr: 'دعم ممارسات الزراعة المسؤولة',
+    inspectionEyebrow: 'INSPECTION & HYGIENE',
+    inspectionEyebrowAr: 'الفحص والرقابة الصحية',
+    inspectionTitle: 'A Dedicated QA Team. Inspected Before It Ships.',
+    inspectionTitleAr: 'فريق رقابة متخصص. فحص دقيق قبل كل شحنة.',
+    inspectionPillar1Title: 'A Dedicated Food Safety & Hygiene Team',
+    inspectionPillar1TitleAr: 'فريق متخصص لسلامة الغذاء والنظافة الصحية',
+    inspectionPillar1Desc: 'Our food safety and hygiene department sets the policies, trains every employee and audits the floor. Training runs continuously, from basic food safety and housekeeping to ISO 22000:2018 management training for supervisors.',
+    inspectionPillar1DescAr: 'يضع قسم سلامة الغذاء والنظافة الصحية لدينا السياسات الصارمة، ويدرب كل موظف ويدقق العمليات على أرض الواقع باستمرار. تمتد برامج التدريب بشكل دوري، من أساسيات سلامة الغذاء وحسن الإدارة إلى تدريب المشرفين على إدارة معايير ISO 22000:2018.',
+    inspectionPillar2Title: 'Inspected Before It Ships',
+    inspectionPillar2TitleAr: 'فحص دقيق قبل كل شحنة وتوزيع',
+    inspectionPillar2Desc: 'Quality checks do not stop at the receiving dock. Before any order leaves our facility for delivery to supermarkets, wholesale clients, or foodservice partners, our QA team inspects outgoing pallets for freshness, correct labeling, and temperature compliance.',
+    inspectionPillar2DescAr: 'لا تتوقف فحوصات الجودة عند رصيف الاستلام فقط؛ فقبل خروج أي طلبية من مستودعاتنا للتوزيع، يقوم فريق فحص الجودة بفحص المنصات والتأكد من النضارة والمطابقة والتغليف السليم ودرجة الحرارة.',
+    supplyChainEyebrow: 'SUPPLY CHAIN JOURNEY',
+    supplyChainEyebrowAr: 'مسار سلسلة التوريد',
+    supplyChainTitle: 'From Harvest to Shelf: The Quality Journey',
+    supplyChainTitleAr: 'من الحصاد إلى الرف: رحلة الجودة المتكاملة',
+    supplyChainSubtitle: 'Four disciplined phases ensuring farm-fresh taste, food safety, and dependable availability.',
+    supplyChainSubtitleAr: 'أربع مراحل تشغيلية منضبطة تضمن الحفاظ على طزاجة المحصول، وسلامة الغذاء، واستدامة الإمداد.',
+  });
+
+  // 6.4 Services Page
+  operations.push({
+    _id: 'servicesPage-singleton',
+    _type: 'servicesPage',
+    bannerTitle: en.services.badge,
+    bannerTitleAr: ar.services.badge,
+    bannerSubtitle: en.services.heroSubtitle,
+    bannerSubtitleAr: ar.services.heroSubtitle,
+    overviewHeadline: en.services.heroTitle,
+    overviewHeadlineAr: ar.services.heroTitle,
+    overviewNarrative: 'From international procurement and chilled customs clearance to daily fleet delivery and farm consignment trading, we power Qatar’s food retail ecosystem.',
+    overviewNarrativeAr: 'من المشتريات الدولية والتخليص الجمركي المبرد إلى التوزيع اليومي بالأسطول وتجارة الأمانة للمزارعين، نحن ندعم منظومة التجزئة الغذائية في قطر.',
+  });
+
+  // 6.5 Partners Page
+  operations.push({
+    _id: 'partnersPage-singleton',
+    _type: 'partnersPage',
+    bannerTitle: en.partners.badge,
+    bannerTitleAr: ar.partners.badge,
+    bannerSubtitle: en.partners.heroSubtitle,
+    bannerSubtitleAr: ar.partners.heroSubtitle,
+    retailEyebrow: 'OUR RETAIL PARTNERS',
+    retailEyebrowAr: 'شركاؤنا في التجزئة',
+    retailTitle: "Trusted Daily Supplier to Qatar's Leading Retail Groups",
+    retailTitleAr: 'المورد اليومي الموثوق به لمجموعات التجزئة الرائدة في قطر',
+    localEyebrow: 'LOCAL AGRICULTURAL ALLIANCE',
+    localEyebrowAr: 'تحالف زراعي محلي',
+    localTitle: 'Connecting Qatari Farms to the Market',
+    localTitleAr: 'ربط المزارع القطرية بالسوق',
+    localNarrative: 'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.',
+    localNarrativeAr: 'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.',
+    localTag1: 'Qatari-Grown Seasonal Supply',
+    localTag1Ar: 'إمداد موسمي مزروع في قطر',
+    localTag2: 'Direct Farm-to-Shelf Distribution',
+    localTag2Ar: 'توزيع مباشر من المزرعة إلى الرف',
+    localTag3: 'Supporting National Food Security',
+    localTag3Ar: 'دعم الأمن الغذائي الوطني',
+    globalEyebrow: 'GLOBAL SOURCING ALLIANCES',
+    globalEyebrowAr: 'تحالفات التوريد العالمية',
+    globalTitle: 'From Global Orchards to Qatar’s Tables',
+    globalTitleAr: 'من البساتين العالمية إلى موائد قطر',
+    globalSubtitle: 'Partnering directly with certified agricultural producers across key growing regions to secure year-round availability of premium fresh produce.',
+    globalSubtitleAr: 'شراكات مباشرة مع منتجين زراعيين معتمدين في أبرز المناطق الزراعية لضمان توفر المنتجات الطازجة على مدار العام.',
+  });
+
+  // 6.6 Contact Page
+  operations.push({
+    _id: 'contactPage-singleton',
+    _type: 'contactPage',
+    bannerTitle: en.contact.badge,
+    bannerTitleAr: ar.contact.badge,
+    bannerSubtitle: en.contact.heroSubtitle,
+    bannerSubtitleAr: ar.contact.heroSubtitle,
+    inquiryEyebrow: en.contact.badge,
+    inquiryEyebrowAr: ar.contact.badge,
+    inquiryTitle: en.contact.heroTitle,
+    inquiryTitleAr: ar.contact.heroTitle,
+    inquirySubtitle: en.contact.heroSubtitle,
+    inquirySubtitleAr: ar.contact.heroSubtitle,
+    facilityEyebrow: 'FACILITY LOCATION',
+    facilityEyebrowAr: 'موقع المنشأة',
+    facilityTitle: 'Our Central Cold Storage & Distribution Facility in Doha',
+    facilityTitleAr: 'مستودعنا المركزي والتخزين المبرد في الدوحة',
+    facilityOperatingHours: en.common.workingHoursVal,
+    facilityOperatingHoursAr: ar.common.workingHoursVal,
+  });
+
   console.log('\n==================================================');
   console.log(`Prepared total of ${operations.length} documents:`);
   console.log(`- ${productOrder} Produce Items`);
@@ -421,6 +640,7 @@ async function seed() {
   console.log(`- ${serviceOrder} Commercial Services`);
   console.log(`- ${certOrder} Quality Certificates`);
   console.log(`- 1 Company Profile Document`);
+  console.log(`- 6 Page Singleton Documents (Home, Company, Quality, Services, Partners, Contact)`);
   console.log('==================================================');
 
   if (isDryRun) {

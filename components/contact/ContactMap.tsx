@@ -5,11 +5,26 @@ import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { MapPin, Navigation, Clock, Warehouse, ShieldCheck } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { useLocale } from '@/context/LocaleContext';
+import { CompanyProfile, companyProfile as defaultCompany } from '@/lib/config/company';
+import type { ContactPageContent } from '@/sanity/lib/data';
 
-export function ContactMap() {
+interface ContactMapProps {
+  company?: CompanyProfile;
+  content?: ContactPageContent;
+}
+
+export function ContactMap({ company, content }: ContactMapProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+  const profile = company || defaultCompany;
+
+  const eyebrow = isAr
+    ? (content?.facilityEyebrowAr || 'موقع المنشأة')
+    : (content?.facilityEyebrow || 'FACILITY LOCATION');
+  const headline = isAr
+    ? (content?.facilityTitleAr || 'مستودعنا المركزي والتخزين المبرد في الدوحة')
+    : (content?.facilityTitle || 'Our Central Cold Storage & Distribution Facility in Doha');
 
   useGSAP(
     () => {
@@ -47,12 +62,10 @@ export function ContactMap() {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Section Header */}
         <div className="map-anim-header space-y-3">
-          <SectionEyebrow title={isAr ? 'موقع المنشأة' : 'FACILITY LOCATION'} />
+          <SectionEyebrow title={eyebrow} />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
-            {isAr
-              ? 'مستودعنا المركزي والتخزين المبرد في الدوحة'
-              : 'Our Doha Central Warehouse & Cold Storage'}
+            {headline}
           </h2>
         </div>
 
@@ -83,7 +96,9 @@ export function ContactMap() {
                   {isAr ? 'السعة' : 'Capacity'}
                 </span>
                 <span className="font-semibold text-[#111814]">
-                  {isAr ? '5,000 م² • 20 مبرداً' : '5,000 m² • 20 Chillers'}
+                  {isAr
+                    ? `${(profile.warehouseArea || '5,000 م²').replace(/m²\b/, 'م²')} • 20 مبرداً`
+                    : `${profile.warehouseArea || '5,000 m²'} • 20 Chillers`}
                 </span>
               </div>
             </div>

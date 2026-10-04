@@ -7,11 +7,32 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 import { useLocale } from '@/context/LocaleContext';
+import type { CompanyPageContent } from '@/sanity/lib/data';
 
-export function CompanyDelivering() {
+interface CompanyDeliveringProps {
+  content?: CompanyPageContent;
+}
+
+export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.deliveringEyebrowAr || 'توصيل النضارة')
+    : (content?.deliveringEyebrow || 'Delivering Freshness');
+  const title = isAr
+    ? (content?.deliveringTitleAr || 'شريك شامل للمنتجات الطازجة لقطر.')
+    : (content?.deliveringTitle || 'A comprehensive fresh-produce partner for Qatar.');
+  const narrative = isAr
+    ? (content?.deliveringNarrativeAr || 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.')
+    : (content?.deliveringNarrative || "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.");
+  const commitmentTitle = isAr
+    ? (content?.deliveringCommitmentTitleAr || 'التزامنا الأساسي')
+    : (content?.deliveringCommitmentTitle || 'Our Core Commitment');
+  const commitmentBody = isAr
+    ? (content?.deliveringCommitmentBodyAr || 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.')
+    : (content?.deliveringCommitmentBody || 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.');
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -81,38 +102,16 @@ export function CompanyDelivering() {
           {/* Right Column: Narrative Copy + Commitment Box (7 cols) */}
           <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
             <div className="delivering-text-item">
-              <SectionEyebrow title={isAr ? 'توصيل النضارة' : 'Delivering Freshness'} />
+              <SectionEyebrow title={eyebrow} />
             </div>
 
-            <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
-              {isAr ? (
-                <>
-                  شريك شامل للمنتجات <br className="hidden sm:inline" />
-                  <span className="text-[#168849]">الطازجة لقطر.</span>
-                </>
-              ) : (
-                <>
-                  A comprehensive fresh-produce <br className="hidden sm:inline" />
-                  <span className="text-[#168849]">partner for Qatar.</span>
-                </>
-              )}
+            <h2 className="delivering-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12] whitespace-pre-line">
+              {title}
             </h2>
 
             <div className="space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
               <p className="delivering-text-item">
-                {isAr
-                  ? 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.'
-                  : "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables."}
-              </p>
-              <p className="delivering-text-item">
-                {isAr
-                  ? 'تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.'
-                  : 'Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.'}
-              </p>
-              <p className="delivering-text-item">
-                {isAr
-                  ? 'من المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.'
-                  : 'From farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.'}
+                {narrative}
               </p>
             </div>
 
@@ -126,12 +125,10 @@ export function CompanyDelivering() {
               </div>
               <div className="space-y-1.5 flex-1 text-start">
                 <h3 className="font-display font-semibold text-base sm:text-lg text-[#111814]">
-                  {isAr ? 'التزامنا الأساسي' : 'Our Core Commitment'}
+                  {commitmentTitle}
                 </h3>
                 <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]">
-                  {isAr
-                    ? 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.'
-                    : 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.'}
+                  {commitmentBody}
                 </p>
               </div>
             </div>

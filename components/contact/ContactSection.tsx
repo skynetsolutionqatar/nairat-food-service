@@ -7,10 +7,29 @@ import { CtaButton } from '@/components/ui/CtaButton';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import { CompanyProfile, companyProfile as defaultCompany } from '@/lib/config/company';
+import type { ContactPageContent } from '@/sanity/lib/data';
 
-export function ContactSection(): React.ReactNode {
+interface ContactSectionProps {
+  company?: CompanyProfile;
+  content?: ContactPageContent;
+}
+
+export function ContactSection({ company, content }: ContactSectionProps = {}): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale, dict } = useLocale();
+  const isAr = locale === 'ar';
+  const profile = company || defaultCompany;
+
+  const eyebrow = isAr
+    ? (content?.inquiryEyebrowAr || 'تواصل معنا')
+    : (content?.inquiryEyebrow || 'Get in Touch');
+  const headline = isAr
+    ? (content?.inquiryTitleAr || 'تواصل مع فريق التوريد التجاري لدينا')
+    : (content?.inquiryTitle || 'Connect with Our Commercial Procurement Team');
+  const subtitle = isAr
+    ? (content?.inquirySubtitleAr || 'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، فإن خبراءنا على استعداد لمساعدتك.')
+    : (content?.inquirySubtitle || 'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, our specialists are ready to assist.');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -135,11 +154,17 @@ export function ContactSection(): React.ReactNode {
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
         {/* Section Header */}
         <div className="contact-anim-header space-y-3">
-          <SectionEyebrow title={locale === 'ar' ? 'تواصل معنا' : 'CONTACT US'} />
+          <SectionEyebrow title={eyebrow} />
 
           <h2 className="font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
-            {locale === 'ar' ? 'تواصل معنا' : 'Get in Touch with Us'}
+            {headline}
           </h2>
+
+          {subtitle && (
+            <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] max-w-2xl text-start">
+              {subtitle}
+            </p>
+          )}
         </div>
 
         {/* Two-Column Grid: Info Cards (Left) vs Green Form (Right) */}
@@ -156,7 +181,7 @@ export function ContactSection(): React.ReactNode {
                   {locale === 'ar' ? 'العنوان:' : 'Address:'}
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-[#6B7280] leading-relaxed">
-                  {locale === 'ar' ? 'المنطقة الصناعية، شارع 37، الدوحة، قطر.' : 'Industrial Area, Street 37, Doha, Qatar.'}
+                  {profile.contact?.address || (locale === 'ar' ? 'المنطقة الصناعية، شارع 37، الدوحة، قطر.' : 'Industrial Area, Street 37, Doha, Qatar.')}
                 </p>
                 <span className="font-mono text-xs text-[#168849] font-medium block pt-0.5">
                   {locale === 'ar' ? 'السجل التجاري رقم 144352' : 'CR No. 144352'}
@@ -175,10 +200,10 @@ export function ContactSection(): React.ReactNode {
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
                   <a
-                    href="mailto:info@nairat.net"
+                    href={`mailto:${profile.contact?.email || 'info@nairat.net'}`}
                     className="hover:text-[#168849] transition-colors underline-offset-2 hover:underline"
                   >
-                    info@nairat.net
+                    {profile.contact?.email || 'info@nairat.net'}
                   </a>
                 </p>
               </div>

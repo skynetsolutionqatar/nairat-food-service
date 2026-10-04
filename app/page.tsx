@@ -8,19 +8,23 @@ import { Products } from '@/components/modules/Products';
 import { SourcingMap } from '@/components/modules/SourcingMap';
 import { QualityTimeline } from '@/components/modules/QualityTimeline';
 import { Cta } from '@/components/modules/Cta';
-import { getPartners } from '@/sanity/lib/data';
+import { getPartners, getCompanyProfile, getHomePageContent } from '@/sanity/lib/data';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const featuredPartners = await getPartners(true);
+  const [featuredPartners, company, homeContent] = await Promise.all([
+    getPartners(true),
+    getCompanyProfile(),
+    getHomePageContent(),
+  ]);
 
   return (
     <div className="flex flex-col min-h-screen">
-      <Hero />
+      <Hero content={homeContent} />
       <Partners partners={featuredPartners} />
-      <WhoWeAre />
-      <Strengths />
+      <WhoWeAre content={homeContent} />
+      <Strengths company={company} content={homeContent} />
       <Services />
       <Products />
       <SourcingMap />

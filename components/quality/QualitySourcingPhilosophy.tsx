@@ -8,27 +8,54 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '../ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import type { QualityPageContent } from '@/sanity/lib/data';
 
-export function QualitySourcingPhilosophy(): React.ReactNode {
+interface QualitySourcingPhilosophyProps {
+  content?: QualityPageContent;
+}
+
+export function QualitySourcingPhilosophy({ content }: QualitySourcingPhilosophyProps = {}): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
 
+  const eyebrow = isAr
+    ? (content?.philosophyEyebrowAr || 'فلسفتنا في التوريد')
+    : (content?.philosophyEyebrow || 'OUR SOURCING PHILOSOPHY');
+  const headline = isAr
+    ? (content?.philosophyTitleAr || 'منتجات طازجة، تم توريدها بمسؤولية.')
+    : (content?.philosophyTitle || 'Fresh Produce, Sourced Responsibly.');
+  const narrative = isAr
+    ? (content?.philosophyNarrativeAr || 'نحن نعمل مع مزارعين وموردين موثوقين في جميع أنحاء العالم، ونجمع بين الشراكات العالمية القوية والخبرة المحلية لجلب أفضل المنتجات الطازجة إلى قطر.')
+    : (content?.philosophyNarrative || 'We work with trusted growers and suppliers across the world, combining strong global partnerships with local expertise to bring the best fresh produce to Qatar.');
+
   const pillars = [
     {
       icon: <Globe className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: isAr ? 'شبكة عالمية' : 'Global Network',
-      description: isAr ? 'شركاء موثوقون عبر 60 دولة' : 'Trusted partners across 60 countries',
+      title: isAr
+        ? (content?.philosophyPillar1TitleAr || 'شبكة عالمية')
+        : (content?.philosophyPillar1Title || 'Global Network'),
+      description: isAr
+        ? (content?.philosophyPillar1DescAr || 'شركاء موثوقون عبر 60 دولة')
+        : (content?.philosophyPillar1Desc || 'Trusted partners across 60 countries'),
     },
     {
       icon: <ShieldCheck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: isAr ? 'الجودة أولاً' : 'Quality First',
-      description: isAr ? 'فحص صارم في كل مرحلة' : 'Strict inspection at every stage',
+      title: isAr
+        ? (content?.philosophyPillar2TitleAr || 'الجودة أولاً')
+        : (content?.philosophyPillar2Title || 'Quality First'),
+      description: isAr
+        ? (content?.philosophyPillar2DescAr || 'فحص صارم في كل مرحلة')
+        : (content?.philosophyPillar2Desc || 'Strict inspection at every stage'),
     },
     {
       icon: <Sprout className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
-      title: isAr ? 'توريد مستدام' : 'Sustainable Sourcing',
-      description: isAr ? 'دعم ممارسات الزراعة المسؤولة' : 'Supporting responsible farming practices',
+      title: isAr
+        ? (content?.philosophyPillar3TitleAr || 'توريد مستدام')
+        : (content?.philosophyPillar3Title || 'Sustainable Sourcing'),
+      description: isAr
+        ? (content?.philosophyPillar3DescAr || 'دعم ممارسات الزراعة المسؤولة')
+        : (content?.philosophyPillar3Desc || 'Supporting responsible farming practices'),
     },
   ];
 
@@ -69,26 +96,14 @@ export function QualitySourcingPhilosophy(): React.ReactNode {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           {/* Left Column: Heading, Narrative & 3 Value Pillars (5 cols) */}
           <div className="philosophy-anim-left lg:col-span-5 space-y-6 text-start">
-            <SectionEyebrow title={isAr ? 'فلسفة التوريد لدينا' : 'OUR SOURCING PHILOSOPHY'} />
+            <SectionEyebrow title={eyebrow} />
 
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.14] tracking-tight">
-              {isAr ? (
-                <>
-                  منتجات طازجة، <br className="hidden sm:inline" />
-                  تم توريدها بمسؤولية.
-                </>
-              ) : (
-                <>
-                  Fresh Produce, <br className="hidden sm:inline" />
-                  Sourced Responsibly.
-                </>
-              )}
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-[40px] font-bold text-[#111814] leading-[1.14] tracking-tight whitespace-pre-line">
+              {headline}
             </h2>
 
             <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
-              {isAr
-                ? 'نحن نعمل مع مزارعين وموردين موثوقين في جميع أنحاء العالم، ونجمع بين الشراكات العالمية القوية والخبرة المحلية لجلب أفضل المنتجات الطازجة إلى قطر.'
-                : 'We work with trusted growers and suppliers across the world, combining strong global partnerships with local expertise to bring the best fresh produce to Qatar.'}
+              {narrative}
             </p>
 
             {/* 3 Pillars Row */}
