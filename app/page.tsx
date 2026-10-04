@@ -8,12 +8,17 @@ import { Products } from '@/components/modules/Products';
 import { SourcingMap } from '@/components/modules/SourcingMap';
 import { QualityTimeline } from '@/components/modules/QualityTimeline';
 import { Cta } from '@/components/modules/Cta';
+import { getPartners } from '@/sanity/lib/data';
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  const featuredPartners = await getPartners(true);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
-      <Partners />
+      <Partners partners={featuredPartners} />
       <WhoWeAre />
       <Strengths />
       <Services />

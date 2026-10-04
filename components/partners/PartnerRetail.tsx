@@ -6,11 +6,19 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 
-import { partnerLogos } from '@/data/partners';
+import { partnerLogos, PartnerItem } from '@/data/partners';
 
 const retailPartners = partnerLogos.filter((partner) => partner.id !== 'mahaseel');
 
-export function PartnerRetail(): React.ReactNode {
+interface PartnerRetailProps {
+  partners?: PartnerItem[];
+}
+
+export function PartnerRetail({ partners }: PartnerRetailProps = {}): React.ReactNode {
+  const activePartners = partners && partners.length > 0
+    ? partners.filter((p) => p.id !== 'mahaseel')
+    : retailPartners;
+
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
@@ -71,7 +79,7 @@ export function PartnerRetail(): React.ReactNode {
 
         {/* 4-Column Partner Logo Grid */}
         <div className="retail-grid-container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {retailPartners.map((partner) => (
+          {activePartners.map((partner) => (
             <div
               key={partner.id}
               className="retail-partner-card group p-5 sm:p-6 rounded-2xl bg-[#F8FAF8] border border-neutral-200/90 shadow-2xs hover:shadow-md hover:border-[#168849]/50 hover:bg-white transition-all duration-300 flex items-center justify-center text-center min-h-[110px] sm:min-h-[125px]"

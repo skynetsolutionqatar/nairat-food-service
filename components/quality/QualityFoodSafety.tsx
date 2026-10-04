@@ -9,6 +9,7 @@ import { CertificateModal } from '@/components/ui/CertificateModal';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { CtaButton } from '../ui/CtaButton';
 import { useLocale } from '@/context/LocaleContext';
+import type { CertData } from '@/sanity/lib/data';
 
 interface CertCardItem {
   id: string;
@@ -18,13 +19,17 @@ interface CertCardItem {
   imageSrc: string;
 }
 
-export function QualityFoodSafety(): React.ReactNode {
+interface QualityFoodSafetyProps {
+  certs?: CertData[];
+}
+
+export function QualityFoodSafety({ certs }: QualityFoodSafetyProps = {}): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
   const [selectedCert, setSelectedCert] = useState<CertCardItem | null>(null);
 
-  const certificates: CertCardItem[] = [
+  const defaultCertificates: CertCardItem[] = [
     {
       id: 'haccp',
       title: 'HACCP',
@@ -44,6 +49,16 @@ export function QualityFoodSafety(): React.ReactNode {
       imageSrc: '/certificates/c2-2-1.png',
     },
   ];
+
+  const certificates: CertCardItem[] = certs && certs.length > 0
+    ? certs.map((c) => ({
+        id: c.id,
+        title: isAr && c.titleAr ? c.titleAr : c.title,
+        subtitle: isAr && c.subtitleAr ? c.subtitleAr : c.subtitle,
+        description: isAr && c.descriptionAr ? c.descriptionAr : c.description,
+        imageSrc: c.imageSrc,
+      }))
+    : defaultCertificates;
 
   useGSAP(
     () => {

@@ -5,6 +5,9 @@ import { PartnerRetail } from '@/components/partners/PartnerRetail';
 import { PartnerLocalGrid } from '@/components/partners/PartnerLocalGrid';
 import { PartnerCountryGrid } from '@/components/partners/PartnerCountryGrid';
 import { Cta } from '@/components/modules/Cta';
+import { getPartners } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Partners — Nairat Food Services Qatar',
@@ -21,7 +24,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PartnersPage(): React.ReactNode {
+export default async function PartnersPage(): Promise<React.ReactNode> {
+  const partners = await getPartners();
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
@@ -34,7 +39,7 @@ export default function PartnersPage(): React.ReactNode {
       />
 
       {/* 2. Retail & Online Grocery Groups Logo Grid */}
-      <PartnerRetail />
+      <PartnerRetail partners={partners} />
 
       {/* 3. Strategic Local Agriculture: Mahaseel Partnership */}
       <PartnerLocalGrid />

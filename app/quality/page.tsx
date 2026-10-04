@@ -6,6 +6,9 @@ import { QualityFoodSafety } from '@/components/quality/QualityFoodSafety';
 import { QualityTeamInspection } from '@/components/quality/QualityTeamInspection';
 import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
 import { Cta } from '@/components/modules/Cta';
+import { getQualityCertificates } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Sourcing & Quality — Nairat Food Services Qatar',
@@ -22,7 +25,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function QualityPage(): React.ReactNode {
+export default async function QualityPage(): Promise<React.ReactNode> {
+  const certs = await getQualityCertificates();
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
@@ -38,7 +43,7 @@ export default function QualityPage(): React.ReactNode {
       <QualitySourcingPhilosophy />
 
       {/* 3. Quality & Food Safety (HACCP & ISO 22000:2018 Certificates) */}
-      <QualityFoodSafety />
+      <QualityFoodSafety certs={certs} />
 
       {/* 4. Dedicated QA Team & Pre-Shipment Inspection */}
       <QualityTeamInspection />

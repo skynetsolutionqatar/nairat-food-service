@@ -3,8 +3,8 @@
 This document tracks the implementation progress of the Nairat Food Services website across all three scheduled phases:
 
 - **Phase 1: Landing Page** [Completed]
-- **Phase 2: Page Creation Phase** [In Progress / Next]
-- **Phase 3: RTL and Sanity Phase** [In Progress]
+- **Phase 2: Page Creation Phase** [Completed]
+- **Phase 3: RTL and Sanity Phase** [Completed]
 
 ---
 
@@ -132,16 +132,27 @@ Each page will be planned and built **one by one in strict sequential order**. C
   - [x] Add Arabic names (`nameAr`) to all produce catalog items in `data/products.ts`
   - [x] Implement directional CTA button arrow micro-interactions (`CtaButton.tsx` and `globals.css`): `ArrowUpRight` (`↗` → `➔`) in English, `ArrowUpLeft` (`↖` → `⬅`) in Arabic
   - [x] Verified full static production build (26/26 routes generated) and visual E2E verification via `agent-browser` (captured screenshots of `/ar`, `/ar/company`, `/ar/quality`, `/ar/partners`, `/ar/services`, `/ar/contact`, `/ar/products/vegetables`)
-- [ ] **Milestone 2: Sanity Headless CMS Integration**
-  - [ ] Install and configure Sanity Studio dependencies (`next-sanity`, `@sanity/client`, `@sanity/image-url`, `sanity`)
-  - [ ] Set up Sanity Studio embedded route (`app/studio/[[...tool]]/page.tsx`) and configuration (`sanity.config.ts`)
-  - [ ] Define content schemas: `product`, `category`, `service`, `company`, `partner`, `quality`
-  - [ ] Implement robust 4-tier caching client with Next.js Data Cache tags (`tags: ['products']`, etc.) and static fail-safe fallback
-  - [ ] Create on-demand webhook revalidation route (`app/api/revalidate/route.ts`)
-  - [ ] Connect frontend data fetchers to Sanity queries with fallback to static datasets
-- [ ] **Milestone 3: Full-Site Verification**
-  - [ ] Validate RTL responsiveness and navigation across all routes with `agent-browser`
-  - [ ] Verify instant data revalidation triggers upon publishing changes in CMS
+- [x] **Milestone 2: Sanity Headless CMS Integration** [Completed]
+  - [x] Install and configure Sanity Studio dependencies (`next-sanity`, `@sanity/client`, `@sanity/image-url`, `sanity`, `@sanity/vision`, `@sanity/icons`)
+  - [x] Set up standalone-capable embedded Sanity Studio route at `/studio` (`app/studio/[[...tool]]/page.tsx`, `app/studio/layout.tsx`) and root config (`sanity.config.ts`, `sanity/env.ts`)
+  - [x] Define comprehensive bilingual content schemas in `sanity/schemaTypes/`:
+    - `product` (bilingual produce lines, categories, varieties, storage temperatures, origins, image hotspots, manual ordering)
+    - `partner` (commercial retail, wholesale, quick-commerce partners, logos, featured tags)
+    - `service` (commercial services, taglines, detailed narratives, bilingual feature points)
+    - `qualityCert` (food safety accreditations, HACCP, ISO 22000:2018, scope, certificate scans)
+    - `companyProfile` (singleton company profile with official 2026 verified metrics, fleet, cold-chain capacity, contact lines)
+  - [x] Implement resilient data access layer (`sanity/lib/client.ts`, `sanity/lib/image.ts`, `sanity/lib/queries.ts`, `sanity/lib/data.ts`) with Next.js Data Cache tags (`tags: ['products']`, `['partners']`, etc.) and zero-downtime automatic fallback to local datasets (`data/products.ts`, `data/partners.ts`, `lib/config/company.ts`)
+  - [x] Create on-demand webhook revalidation route (`app/api/revalidate/route.ts`) supporting HMAC signature validation and cache tag invalidation
+  - [x] Connect frontend server pages (`/products/[category]`, `/ar/products/[category]`, `/partners`, `/ar/partners`, `/quality`, `/ar/quality`) to data fetchers
+  - [x] Create automated database migration & seeding script (`scripts/seed-sanity.ts`, `pnpm seed:sanity`) with dry-run support
+  - [x] Configure Next.js image domain whitelist (`images.remotePatterns`) for `cdn.sanity.io` in `next.config.ts`
+  - [x] Verified full static production build and visual E2E verification via `agent-browser` (captured screenshots of `/studio`, `/products/vegetables`, `/ar/products/vegetables`, `/partners`, and live Sanity product "Apple" in `/products/specialty-gourmet`)
+  - [x] Executed full migration script (`scripts/seed-sanity.ts`): uploaded 50+ local image assets directly to Sanity Asset Pipeline and committed 53 live documents across all schemas.
+- [x] **Milestone 3: Full-Site Verification** [Completed]
+  - [x] Verified live Content Lake document counts via API query (34 products, 10 partners, 6 services, 2 certificates, 1 company profile).
+  - [x] Verified dynamic server component rendering (`force-dynamic`) across `/products/[category]`, `/partners`, `/services`, `/quality`, and all `/ar/*` equivalents.
+  - [x] Verified instant cache revalidation route (`/api/revalidate`) supporting Sanity webhook HMAC signatures and Next 16 cache invalidation (`revalidateTag(tag, 'max')`).
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`).
 
 ---
 

@@ -5,10 +5,13 @@ import { PageBanner } from '@/components/ui/PageBanner';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { Cta } from '@/components/modules/Cta';
 import { productCategoriesData } from '@/data/products';
+import { getProducts } from '@/sanity/lib/data';
 
 interface PageProps {
   params: Promise<{ category: string }>;
 }
+
+export const dynamic = 'force-dynamic';
 
 export function generateStaticParams() {
   return Object.keys(productCategoriesData).map((slug) => ({
@@ -49,6 +52,9 @@ export default async function ProductCategoryPage({ params }: PageProps): Promis
     notFound();
   }
 
+  const products = await getProducts(category);
+  const categoryData = { ...data, products };
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner (Matches /company style: title + breadcrumbs) */}
@@ -62,7 +68,7 @@ export default async function ProductCategoryPage({ params }: PageProps): Promis
       />
 
       {/* 2. 4-in-a-Row Product Grid */}
-      <ProductGrid category={data} />
+      <ProductGrid category={categoryData} />
 
       {/* 3. Final Sourcing & Partner CTA */}
       <Cta />

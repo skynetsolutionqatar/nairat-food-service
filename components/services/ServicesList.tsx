@@ -6,6 +6,7 @@ import { CheckCircle2, Globe, ShoppingBag, Truck, Zap, Warehouse, Sprout } from 
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { useLocale } from '@/context/LocaleContext';
+import type { ServiceData } from '@/sanity/lib/data';
 
 interface ServiceItem {
   id: string;
@@ -21,7 +22,11 @@ interface ServiceItem {
   icon: React.ReactNode;
 }
 
-export function ServicesList(): React.ReactNode {
+interface ServicesListProps {
+  services?: ServiceData[];
+}
+
+export function ServicesList({ services }: ServicesListProps = {}): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale, dict } = useLocale();
   const prefix = locale === 'ar' ? '/ar' : '';
@@ -185,6 +190,50 @@ export function ServicesList(): React.ReactNode {
     },
   ];
 
+  const iconMap: Record<string, React.ReactNode> = {
+    'global-sourcing-import': <Globe className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    'retail-supply-management': <ShoppingBag className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    'wholesale-foodservice': <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    'quick-commerce-grocery': <Zap className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    'cold-storage-logistics': <Warehouse className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+    'local-farm-partnerships': <Sprout className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+  };
+
+  const actionTextMap: Record<string, { en: string; ar: string }> = {
+    'global-sourcing-import': { en: 'Inquire About Global Sourcing', ar: 'استفسر عن التوريد العالمي' },
+    'retail-supply-management': { en: 'Inquire for Retail Supply', ar: 'استفسر عن توريد التجزئة' },
+    'wholesale-foodservice': { en: 'Request Wholesale Rates', ar: 'اطلب أسعار الجملة' },
+    'quick-commerce-grocery': { en: 'Connect for Q-Commerce', ar: 'تواصل لخدمات التجارة السريعة' },
+    'cold-storage-logistics': { en: 'Book Storage & Logistics', ar: 'احجز التخزين واللوجستيات' },
+    'local-farm-partnerships': { en: 'Partner Local Produce', ar: 'شارك في الإنتاج المحلي' },
+  };
+
+  const actionHrefMap: Record<string, string> = {
+    'global-sourcing-import': `${prefix}/contact?subject=sourcing`,
+    'retail-supply-management': `${prefix}/contact?subject=retail`,
+    'wholesale-foodservice': `${prefix}/contact?subject=wholesale`,
+    'quick-commerce-grocery': `${prefix}/contact?subject=qcommerce`,
+    'cold-storage-logistics': `${prefix}/contact?subject=logistics`,
+    'local-farm-partnerships': `${prefix}/contact?subject=local-farms`,
+  };
+
+  const activeServices: ServiceItem[] = services && services.length > 0
+    ? services.map((s, idx) => ({
+        id: s.id,
+        number: String(idx + 1).padStart(2, '0'),
+        title: locale === 'ar' && s.titleAr ? s.titleAr : s.title,
+        category: locale === 'ar' && s.taglineAr ? s.taglineAr : s.tagline,
+        description: locale === 'ar' && s.descriptionAr ? s.descriptionAr : s.description,
+        imageUrl: s.imageUrl,
+        features: s.features.map((f) => (locale === 'ar' && f.ar ? f.ar : f.en)),
+        actionText: actionTextMap[s.id]
+          ? (locale === 'ar' ? actionTextMap[s.id].ar : actionTextMap[s.id].en)
+          : (locale === 'ar' ? 'استفسر الآن' : 'Inquire Now'),
+        actionHref: actionHrefMap[s.id] || `${prefix}/contact`,
+        icon: iconMap[s.id] || <Globe className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      }))
+    : servicesData;
+
   useGSAP(
     () => {
       const section = sectionRef.current;
@@ -220,7 +269,7 @@ export function ServicesList(): React.ReactNode {
   return (
     <section ref={sectionRef} className="py-12 sm:py-16 lg:py-20 bg-[#F8FAF8] text-[#111814]">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
-        {servicesData.map((service, index) => (
+        {activeServices.map((service, index) => (
           <article
             key={service.id}
             id={service.id}

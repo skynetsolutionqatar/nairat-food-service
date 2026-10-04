@@ -25,11 +25,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ArabicHomePage() {
+import { getPartners } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
+
+export default async function ArabicHomePage() {
+  const featuredPartners = await getPartners(true);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Hero />
-      <Partners />
+      <Partners partners={featuredPartners} />
       <WhoWeAre />
       <Strengths />
       <Services />

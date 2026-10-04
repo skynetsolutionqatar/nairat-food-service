@@ -6,6 +6,9 @@ import { QualityFoodSafety } from '@/components/quality/QualityFoodSafety';
 import { QualityTeamInspection } from '@/components/quality/QualityTeamInspection';
 import { QualitySupplyChain } from '@/components/quality/QualitySupplyChain';
 import { Cta } from '@/components/modules/Cta';
+import { getQualityCertificates } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'التوريد والجودة — نيرات للخدمات الغذائية قطر',
@@ -22,7 +25,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ArabicQualityPage(): React.ReactNode {
+export default async function ArabicQualityPage(): Promise<React.ReactNode> {
+  const certs = await getQualityCertificates();
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
@@ -38,7 +43,7 @@ export default function ArabicQualityPage(): React.ReactNode {
       <QualitySourcingPhilosophy />
 
       {/* 3. Quality & Food Safety */}
-      <QualityFoodSafety />
+      <QualityFoodSafety certs={certs} />
 
       {/* 4. Dedicated QA Team & Pre-Shipment Inspection */}
       <QualityTeamInspection />

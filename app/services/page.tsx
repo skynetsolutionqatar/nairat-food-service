@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
 import { ServicesList } from '@/components/services/ServicesList';
 import { Cta } from '@/components/modules/Cta';
+import { getServices } from '@/sanity/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Our Services — Nairat Food Services Qatar',
@@ -19,7 +22,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ServicesPage(): React.ReactNode {
+export default async function ServicesPage(): Promise<React.ReactNode> {
+  const services = await getServices();
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
@@ -29,11 +34,10 @@ export default function ServicesPage(): React.ReactNode {
           { label: 'Home', href: '/' },
           { label: 'Our Services' },
         ]}
-
       />
 
-      {/* 2. 3 Horizontal Service Cards (Row-wise Layout) */}
-      <ServicesList />
+      {/* 2. Horizontal Service Cards */}
+      <ServicesList services={services} />
 
       {/* 3. Global CTA Module */}
       <Cta />

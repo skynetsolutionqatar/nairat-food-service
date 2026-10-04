@@ -5,6 +5,7 @@ import { PageBanner } from '@/components/ui/PageBanner';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { Cta } from '@/components/modules/Cta';
 import { productCategoriesData } from '@/data/products';
+import { getProducts } from '@/sanity/lib/data';
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -16,6 +17,8 @@ const categoryArabicTitles: Record<string, string> = {
   'leafy-herbs': 'ورقيات وأعشاب',
   'specialty-gourmet': 'أصناف خاصة وفاخرة',
 };
+
+export const dynamic = 'force-dynamic';
 
 export function generateStaticParams() {
   return Object.keys(productCategoriesData).map((slug) => ({
@@ -59,6 +62,8 @@ export default async function ArabicProductCategoryPage({ params }: PageProps): 
   }
 
   const arabicTitle = categoryArabicTitles[category] || data.title;
+  const products = await getProducts(category);
+  const categoryData = { ...data, products };
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -73,7 +78,7 @@ export default async function ArabicProductCategoryPage({ params }: PageProps): 
       />
 
       {/* 2. 4-in-a-Row Product Grid */}
-      <ProductGrid category={data} />
+      <ProductGrid category={categoryData} />
 
       {/* 3. Final Sourcing & Partner CTA */}
       <Cta />
