@@ -1,8 +1,45 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
+function escapeHtml(text: string): string {
+  const map: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+  return text.replace(/[&<>"']/g, (m) => map[m]);
+}
+
+const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
+
+function checkRateLimit(ip: string, limit = 5, windowMs = 60_000): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(ip);
+  if (!record || now > record.expiresAt) {
+    rateLimitMap.set(ip, { count: 1, expiresAt: now + windowMs });
+    return true;
+  }
+  if (record.count >= limit) {
+    return false;
+  }
+  record.count += 1;
+  return true;
+}
+
 export async function POST(req: Request) {
   try {
+    const forwarded = req.headers.get('x-forwarded-for');
+    const clientIp = forwarded ? forwarded.split(',')[0].trim() : (req.headers.get('x-real-ip') || 'unknown');
+
+    if (!checkRateLimit(clientIp)) {
+      return NextResponse.json(
+        { success: false, message: 'Too many requests. Please wait a moment before trying again.' },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
     const { name, email, phone, message, botcheck } = body;
 
@@ -15,7 +52,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // 2. Input Validation
+    // 2. Input Validation & Bounds Checking
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
       return NextResponse.json(
         { success: false, message: 'Please provide your full name.' },
@@ -23,10 +60,24 @@ export async function POST(req: Request) {
       );
     }
 
+    if (name.length > 100) {
+      return NextResponse.json(
+        { success: false, message: 'Name must not exceed 100 characters.' },
+        { status: 400 }
+      );
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email || typeof email !== 'string' || !emailRegex.test(email.trim())) {
+    if (!email || typeof email !== 'string' || !emailRegex.test(email.trim()) || email.length > 100) {
       return NextResponse.json(
         { success: false, message: 'Please provide a valid email address.' },
+        { status: 400 }
+      );
+    }
+
+    if (phone && (typeof phone !== 'string' || phone.length > 35)) {
+      return NextResponse.json(
+        { success: false, message: 'Phone number is invalid or exceeds 35 characters.' },
         { status: 400 }
       );
     }
@@ -38,9 +89,17 @@ export async function POST(req: Request) {
       );
     }
 
-    const cleanName = name.trim();
-    const cleanEmail = email.trim();
-    const cleanPhone = (phone || '').trim();
+    if (message.length > 3000) {
+      return NextResponse.json(
+        { success: false, message: 'Message must not exceed 3000 characters.' },
+        { status: 400 }
+      );
+    }
+
+    // Strip carriage returns and line feeds from single-line fields
+    const cleanName = name.replace(/[\r\n]+/g, ' ').trim();
+    const cleanEmail = email.replace(/[\r\n]+/g, '').trim();
+    const cleanPhone = (phone || '').replace(/[\r\n]+/g, ' ').trim();
     const cleanMessage = message.trim();
 
     const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com';
@@ -125,26 +184,26 @@ Sent from https://nairatfoodservices.com/contact
             <table style="width: 100%; border-collapse: collapse;">
               <tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px; width: 100px;"><strong>Name:</strong></td>
-                <td style="padding: 8px 0; color: #111814; font-size: 15px; font-weight: 600;">${cleanName}</td>
+                <td style="padding: 8px 0; color: #111814; font-size: 15px; font-weight: 600;">${escapeHtml(cleanName)}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px;"><strong>Email:</strong></td>
-                <td style="padding: 8px 0; color: #168849; font-size: 15px;"><a href="mailto:${cleanEmail}" style="color: #168849; text-decoration: underline;">${cleanEmail}</a></td>
+                <td style="padding: 8px 0; color: #168849; font-size: 15px;"><a href="mailto:${escapeHtml(cleanEmail)}" style="color: #168849; text-decoration: underline;">${escapeHtml(cleanEmail)}</a></td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; color: #6b7280; font-size: 14px;"><strong>Phone:</strong></td>
-                <td style="padding: 8px 0; color: #111814; font-size: 15px;">${cleanPhone || 'Not provided'}</td>
+                <td style="padding: 8px 0; color: #111814; font-size: 15px;">${escapeHtml(cleanPhone || 'Not provided')}</td>
               </tr>
             </table>
 
             <div style="margin-top: 20px; padding: 16px; background-color: #f9fafb; border-radius: 8px; border-left: 4px solid #168849;">
               <p style="margin: 0 0 6px 0; color: #6b7280; font-size: 12px; font-weight: 600; text-transform: uppercase;">Message Content:</p>
-              <p style="margin: 0; color: #1f2937; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${cleanMessage}</p>
+              <p style="margin: 0; color: #1f2937; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(cleanMessage)}</p>
             </div>
           </div>
 
           <div style="padding-top: 16px; border-top: 1px solid #f3f4f6; text-align: center; color: #9ca3af; font-size: 12px;">
-            <p style="margin: 0;">You can reply directly to this email to respond to <strong>${cleanName}</strong>.</p>
+            <p style="margin: 0;">You can reply directly to this email to respond to <strong>${escapeHtml(cleanName)}</strong>.</p>
           </div>
         </div>
       `,
