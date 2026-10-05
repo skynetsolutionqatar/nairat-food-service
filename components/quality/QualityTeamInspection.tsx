@@ -76,7 +76,7 @@ export function QualityTeamInspection({ content }: QualityTeamInspectionProps = 
           <div className="team-anim-image lg:col-span-6 relative">
             <div className="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200/90 aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] bg-neutral-100 group">
               <Image
-                src="/quality/qa-team-inspection.webp"
+                src={content?.inspectionImageUrl || '/quality/qa-team-inspection.webp'}
                 alt={
                   isAr
                     ? 'فريق ضمان الجودة وسلامة الغذاء لشركة نيرات أثناء فحص المنتجات الطازجة'
@@ -91,12 +91,14 @@ export function QualityTeamInspection({ content }: QualityTeamInspectionProps = 
               {/* Floating Facility Badge */}
               <div className="absolute bottom-4 start-4 end-4 p-4 rounded-2xl bg-black/65 backdrop-blur-md text-white text-xs space-y-1 text-start">
                 <span className="font-semibold text-[#D4F056] block uppercase tracking-wider">
-                  {isAr ? 'صالة فحص الجودة · المنطقة الصناعية، الدوحة' : 'QA Inspection Hall · Industrial Area, Doha'}
+                  {isAr
+                    ? (content?.inspectionBadgeTitleAr || 'صالة فحص الجودة · المنطقة الصناعية، الدوحة')
+                    : (content?.inspectionBadgeTitle || 'QA Inspection Hall · Industrial Area, Doha')}
                 </span>
                 <span className="text-white/85 block leading-relaxed">
                   {isAr
-                    ? 'فحص مخبري مستمر ومراقبة درجات الحرارة لجميع الشحنات الواردة لضمان التتبع والأمان.'
-                    : 'Continuous lot sampling, digital refractometry, and core temperature checks on arrival.'}
+                    ? (content?.inspectionBadgeDescAr || 'فحص مخبري مستمر ومراقبة درجات الحرارة لجميع الشحنات الواردة لضمان التتبع والأمان.')
+                    : (content?.inspectionBadgeDesc || 'Continuous lot sampling, digital refractometry, and core temperature checks on arrival.')}
                 </span>
               </div>
             </div>

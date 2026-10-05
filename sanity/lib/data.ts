@@ -1192,10 +1192,28 @@ export interface QualityPageContent {
   philosophyPillar3TitleAr: string;
   philosophyPillar3Desc: string;
   philosophyPillar3DescAr: string;
+  sourcingCardImageUrl?: string;
+  sourcingCardTitle?: string;
+  sourcingCardTitleAr?: string;
+  sourcingCardDesc?: string;
+  sourcingCardDescAr?: string;
+  foodSafetyEyebrow: string;
+  foodSafetyEyebrowAr: string;
+  foodSafetyTitle: string;
+  foodSafetyTitleAr: string;
+  foodSafetyNarrative: string;
+  foodSafetyNarrativeAr: string;
+  foodSafetyCtaText: string;
+  foodSafetyCtaTextAr: string;
   inspectionEyebrow: string;
   inspectionEyebrowAr: string;
   inspectionTitle: string;
   inspectionTitleAr: string;
+  inspectionImageUrl?: string;
+  inspectionBadgeTitle: string;
+  inspectionBadgeTitleAr: string;
+  inspectionBadgeDesc: string;
+  inspectionBadgeDescAr: string;
   inspectionPillar1Title: string;
   inspectionPillar1TitleAr: string;
   inspectionPillar1Desc: string;
@@ -1213,16 +1231,16 @@ export interface QualityPageContent {
 }
 
 export const defaultQualityPageContent: QualityPageContent = {
-  bannerTitle: en.quality.badge,
-  bannerTitleAr: ar.quality.badge,
-  bannerSubtitle: en.quality.heroSubtitle,
-  bannerSubtitleAr: ar.quality.heroSubtitle,
-  philosophyEyebrow: 'Our Sourcing Philosophy',
-  philosophyEyebrowAr: 'فلسفتنا في التوريد',
-  philosophyTitle: 'Every Product Begins at the Source',
-  philosophyTitleAr: 'تبدأ رحلة كل منتج من المصدر',
-  philosophyNarrative: 'We believe exceptional quality can only be achieved by working directly with growers who share our commitment to excellence. Through long-term grower partnerships, on-site quality assessments, and a fully traceable cold chain, we ensure every carton meets our exacting standards before it arrives in Qatar.',
-  philosophyNarrativeAr: 'نؤمن بأن الجودة الاستثنائية لا تتحقق إلا من خلال العمل المباشر مع المزارعين الذين يشاركوننا التزامنا بالتميز. ومن خلال الشراكات طويلة الأمد، وتقييمات الجودة في الميدان، وسلسلة التبريد الموثوقة القابلة للتتبع، نضمن مطابقة كل شحنة لأعلى المعايير.',
+  bannerTitle: 'Sourcing & Quality',
+  bannerTitleAr: 'التوريد والجودة',
+  bannerSubtitle: 'Rigorous food safety, direct farm partnerships, and an unbroken cold chain delivering peak freshness across Qatar.',
+  bannerSubtitleAr: 'معايير سلامة غذاء صارمة، شراكات زراعية مباشرة، وسلسلة تبريد متكاملة تضمن أعلى درجات النضارة في جميع أنحاء قطر.',
+  philosophyEyebrow: 'OUR SOURCING PHILOSOPHY',
+  philosophyEyebrowAr: 'فلسفة التوريد لدينا',
+  philosophyTitle: 'Fresh Produce, Sourced Responsibly.',
+  philosophyTitleAr: 'منتجات طازجة، تم توريدها بمسؤولية.',
+  philosophyNarrative: 'We work with trusted growers and suppliers across the world, combining strong global partnerships with local expertise to bring the best fresh produce to Qatar.',
+  philosophyNarrativeAr: 'نحن نعمل مع مزارعين وموردين موثوقين في جميع أنحاء العالم، ونجمع بين الشراكات العالمية القوية والخبرة المحلية لجلب أفضل المنتجات الطازجة إلى قطر.',
   philosophyPillar1Title: 'Global Network',
   philosophyPillar1TitleAr: 'شبكة عالمية',
   philosophyPillar1Desc: 'Trusted partners across 60 countries',
@@ -1235,24 +1253,42 @@ export const defaultQualityPageContent: QualityPageContent = {
   philosophyPillar3TitleAr: 'توريد مستدام',
   philosophyPillar3Desc: 'Supporting responsible farming practices',
   philosophyPillar3DescAr: 'دعم ممارسات الزراعة المسؤولة',
+  sourcingCardImageUrl: '/quality/cargo-ship.jpg',
+  sourcingCardTitle: 'Sourcing from Around the World',
+  sourcingCardTitleAr: 'التوريد من جميع أنحاء العالم',
+  sourcingCardDesc: 'We source fresh produce from leading growing regions across the Levant, Gulf, Africa, Asia and beyond, ensuring consistent supply and year-round availability.',
+  sourcingCardDescAr: 'نحن نورد منتجات طازجة من مناطق الزراعة الرائدة عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يضمن إمداداً متسقاً وتوافراً على مدار العام.',
+  foodSafetyEyebrow: 'QUALITY & FOOD SAFETY',
+  foodSafetyEyebrowAr: 'الجودة وسلامة الغذاء',
+  foodSafetyTitle: 'Food Safety First in Every Process.',
+  foodSafetyTitleAr: 'سلامة الغذاء أولاً في كل خطوة وعملية.',
+  foodSafetyNarrative: 'Food safety comes first in every process at Nairat. Our facility runs a HACCP-based food safety management system certified to ISO 22000:2018, and our procedures are designed to comply with all Qatari laws and regulations governing food safety. Control measures apply at every stage, from receiving and sorting to packing, storage and distribution, so that produce reaches our customers safe, fresh and traceable.',
+  foodSafetyNarrativeAr: 'تأتي سلامة الغذاء في مقدمة أولوياتنا في كل عملية داخل نيرات. تعمل منشأتنا بنظام إدارة سلامة الغذاء القائم على تحليل المخاطر ونقاط التحكم الحرجة (HACCP) والمعتمد وفق معيار ISO 22000:2018، كما أن إجراءاتنا مصممة للامتثال لكافة القوانين واللوائح القطرية المنظمة لسلامة الأغذية. تُطبَّق تدابير الرقابة والتحكم في كل مرحلة، من الاستلام والفرز إلى التعبئة والتخزين والتوزيع، لضمان وصول المنتجات لعملائنا آمنة، طازجة وقابلة للتتبع بالكامل.',
+  foodSafetyCtaText: 'Our Quality Process',
+  foodSafetyCtaTextAr: 'عملية الجودة لدينا',
   inspectionEyebrow: 'INSPECTION & HYGIENE',
   inspectionEyebrowAr: 'الفحص والرقابة الصحية',
   inspectionTitle: 'A Dedicated QA Team. Inspected Before It Ships.',
   inspectionTitleAr: 'فريق رقابة متخصص. فحص دقيق قبل كل شحنة.',
+  inspectionImageUrl: '/quality/qa-team-inspection.webp',
+  inspectionBadgeTitle: 'QA Inspection Hall · Industrial Area, Doha',
+  inspectionBadgeTitleAr: 'صالة فحص الجودة · المنطقة الصناعية، الدوحة',
+  inspectionBadgeDesc: 'Continuous lot sampling, digital refractometry, and core temperature checks on arrival.',
+  inspectionBadgeDescAr: 'فحص مخبري مستمر ومراقبة درجات الحرارة لجميع الشحنات الواردة لضمان التتبع والأمان.',
   inspectionPillar1Title: 'A Dedicated Food Safety & Hygiene Team',
   inspectionPillar1TitleAr: 'فريق متخصص لسلامة الغذاء والنظافة الصحية',
   inspectionPillar1Desc: 'Our food safety and hygiene department sets the policies, trains every employee and audits the floor. Training runs continuously, from basic food safety and housekeeping to ISO 22000:2018 management training for supervisors.',
   inspectionPillar1DescAr: 'يضع قسم سلامة الغذاء والنظافة الصحية لدينا السياسات الصارمة، ويدرب كل موظف ويدقق العمليات على أرض الواقع باستمرار. تمتد برامج التدريب بشكل دوري، من أساسيات سلامة الغذاء وحسن الإدارة إلى تدريب المشرفين على إدارة معايير ISO 22000:2018.',
   inspectionPillar2Title: 'Inspected Before It Ships',
   inspectionPillar2TitleAr: 'فحص دقيق قبل كل شحنة وتوزيع',
-  inspectionPillar2Desc: 'Quality checks do not stop at the receiving dock. Before any order leaves our facility for delivery to supermarkets, wholesale clients, or foodservice partners, our QA team inspects outgoing pallets for freshness, correct labeling, and temperature compliance.',
-  inspectionPillar2DescAr: 'لا تتوقف فحوصات الجودة عند رصيف الاستلام فقط؛ فقبل خروج أي طلبية من مستودعاتنا للتوزيع، يقوم فريق فحص الجودة بفحص المنصات والتأكد من النضارة والمطابقة والتغليف السليم ودرجة الحرارة.',
-  supplyChainEyebrow: 'SUPPLY CHAIN JOURNEY',
-  supplyChainEyebrowAr: 'مسار سلسلة التوريد',
-  supplyChainTitle: 'From Harvest to Shelf: The Quality Journey',
-  supplyChainTitleAr: 'من الحصاد إلى الرف: رحلة الجودة المتكاملة',
-  supplyChainSubtitle: 'Four disciplined phases ensuring farm-fresh taste, food safety, and dependable availability.',
-  supplyChainSubtitleAr: 'أربع مراحل تشغيلية منضبطة تضمن الحفاظ على طزاجة المحصول، وسلامة الغذاء، واستدامة الإمداد.',
+  inspectionPillar2Desc: 'Every incoming lot is checked against our specifications for temperature, ripeness, size and defects. Goods that fail are rejected or downgraded before they reach the packing line, and every delivery leaves with its lot reference for full traceability.',
+  inspectionPillar2DescAr: 'يتم فحص كل دفعة واردة ومطابقتها لمواصفاتنا المحددة لدرجة الحرارة، ومستوى النضج، والحجم، وخلوها من العيوب. تُرفض المنتجات غير المطابقة أو تُخفض درجتها قبل وصولها لخط التعبئة، وتغادر كل شحنة برقم الدفعة المرجعي لضمان التتبع الكامل.',
+  supplyChainEyebrow: 'CONTROLS AT EVERY STEP',
+  supplyChainEyebrowAr: 'ضوابط في كل مرحلة',
+  supplyChainTitle: 'Controls at Every Step',
+  supplyChainTitleAr: 'ضوابط رقابية صارمة في كل خطوة',
+  supplyChainSubtitle: 'From arrival to the customer’s door, strict verification protocols protect product integrity and maintain an unbroken cold chain.',
+  supplyChainSubtitleAr: 'من استلام الشحنات إلى باب العميل، تحمي بروتوكولات التحقق الصارمة سلامة المنتجات وتحافظ على سلسلة تبريد غير منقطعة مع التتبع الكامل.',
 };
 
 export async function getQualityPageContent(): Promise<QualityPageContent> {
@@ -1293,10 +1329,28 @@ export async function getQualityPageContent(): Promise<QualityPageContent> {
           philosophyPillar3TitleAr: data.philosophyPillar3TitleAr || defaultQualityPageContent.philosophyPillar3TitleAr,
           philosophyPillar3Desc: data.philosophyPillar3Desc || defaultQualityPageContent.philosophyPillar3Desc,
           philosophyPillar3DescAr: data.philosophyPillar3DescAr || defaultQualityPageContent.philosophyPillar3DescAr,
+          sourcingCardImageUrl: data.sourcingCardImage ? urlForImage(data.sourcingCardImage) : defaultQualityPageContent.sourcingCardImageUrl,
+          sourcingCardTitle: data.sourcingCardTitle || defaultQualityPageContent.sourcingCardTitle,
+          sourcingCardTitleAr: data.sourcingCardTitleAr || defaultQualityPageContent.sourcingCardTitleAr,
+          sourcingCardDesc: data.sourcingCardDesc || defaultQualityPageContent.sourcingCardDesc,
+          sourcingCardDescAr: data.sourcingCardDescAr || defaultQualityPageContent.sourcingCardDescAr,
+          foodSafetyEyebrow: data.foodSafetyEyebrow || defaultQualityPageContent.foodSafetyEyebrow,
+          foodSafetyEyebrowAr: data.foodSafetyEyebrowAr || defaultQualityPageContent.foodSafetyEyebrowAr,
+          foodSafetyTitle: data.foodSafetyTitle || defaultQualityPageContent.foodSafetyTitle,
+          foodSafetyTitleAr: data.foodSafetyTitleAr || defaultQualityPageContent.foodSafetyTitleAr,
+          foodSafetyNarrative: data.foodSafetyNarrative || defaultQualityPageContent.foodSafetyNarrative,
+          foodSafetyNarrativeAr: data.foodSafetyNarrativeAr || defaultQualityPageContent.foodSafetyNarrativeAr,
+          foodSafetyCtaText: data.foodSafetyCtaText || defaultQualityPageContent.foodSafetyCtaText,
+          foodSafetyCtaTextAr: data.foodSafetyCtaTextAr || defaultQualityPageContent.foodSafetyCtaTextAr,
           inspectionEyebrow: data.inspectionEyebrow || defaultQualityPageContent.inspectionEyebrow,
           inspectionEyebrowAr: data.inspectionEyebrowAr || defaultQualityPageContent.inspectionEyebrowAr,
           inspectionTitle: data.inspectionTitle || defaultQualityPageContent.inspectionTitle,
           inspectionTitleAr: data.inspectionTitleAr || defaultQualityPageContent.inspectionTitleAr,
+          inspectionImageUrl: data.inspectionImage ? urlForImage(data.inspectionImage) : defaultQualityPageContent.inspectionImageUrl,
+          inspectionBadgeTitle: data.inspectionBadgeTitle || defaultQualityPageContent.inspectionBadgeTitle,
+          inspectionBadgeTitleAr: data.inspectionBadgeTitleAr || defaultQualityPageContent.inspectionBadgeTitleAr,
+          inspectionBadgeDesc: data.inspectionBadgeDesc || defaultQualityPageContent.inspectionBadgeDesc,
+          inspectionBadgeDescAr: data.inspectionBadgeDescAr || defaultQualityPageContent.inspectionBadgeDescAr,
           inspectionPillar1Title: data.inspectionPillar1Title || defaultQualityPageContent.inspectionPillar1Title,
           inspectionPillar1TitleAr: data.inspectionPillar1TitleAr || defaultQualityPageContent.inspectionPillar1TitleAr,
           inspectionPillar1Desc: data.inspectionPillar1Desc || defaultQualityPageContent.inspectionPillar1Desc,

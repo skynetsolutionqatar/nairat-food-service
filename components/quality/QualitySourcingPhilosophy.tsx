@@ -156,7 +156,7 @@ export function QualitySourcingPhilosophy({ content }: QualitySourcingPhilosophy
               <div className="grid grid-cols-1 sm:grid-cols-12 gap-5 sm:gap-6 items-center">
                 <div className="sm:col-span-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-neutral-100 border border-neutral-200/80 shadow-xs">
                   <Image
-                    src="/quality/cargo-ship.jpg"
+                    src={content?.sourcingCardImageUrl || '/quality/cargo-ship.jpg'}
                     alt={isAr ? 'شحنات استيراد بحري للمحاصيل الزراعية' : 'International Sourcing Cargo Container Ship'}
                     fill
                     className="object-cover"
@@ -166,22 +166,14 @@ export function QualitySourcingPhilosophy({ content }: QualitySourcingPhilosophy
 
                 <div className="sm:col-span-6 space-y-3 text-start">
                   <h3 className="font-display font-bold text-lg sm:text-xl text-[#111814] leading-snug">
-                    {isAr ? (
-                      <>
-                        التوريد من <br />
-                        جميع أنحاء العالم
-                      </>
-                    ) : (
-                      <>
-                        Sourcing from <br />
-                        Around the World
-                      </>
-                    )}
+                    {isAr
+                      ? (content?.sourcingCardTitleAr || 'التوريد من جميع أنحاء العالم')
+                      : (content?.sourcingCardTitle || 'Sourcing from Around the World')}
                   </h3>
                   <p className="font-sans text-xs sm:text-[13px] text-[#6B7280] leading-[1.6]">
                     {isAr
-                      ? 'نحن نورد منتجات طازجة من مناطق الزراعة الرائدة عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يضمن إمداداً متسقاً وتوافراً على مدار العام.'
-                      : 'We source fresh produce from leading growing regions across the Levant, Gulf, Africa, Asia and beyond, ensuring consistent supply and year-round availability.'}
+                      ? (content?.sourcingCardDescAr || 'نحن نورد منتجات طازجة من مناطق الزراعة الرائدة عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يضمن إمداداً متسقاً وتوافراً على مدار العام.')
+                      : (content?.sourcingCardDesc || 'We source fresh produce from leading growing regions across the Levant, Gulf, Africa, Asia and beyond, ensuring consistent supply and year-round availability.')}
                   </p>
                   <div className="pt-1">
                     <CtaButton

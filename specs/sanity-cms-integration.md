@@ -107,6 +107,14 @@ graph TD
   7. **Quality & Food Safety**: `qualityEyebrow`, `qualityTitle`, `qualityNarrative`, `qualityImage`, `qualityBadgeText`, `qualityBadgeSubtext` (bilingual)
   8. **Looking Ahead**: `lookingAheadEyebrow`, `lookingAheadHeadline`, `lookingAheadNarrative`, `lookingAheadAmbitionLabel`, `lookingAheadAmbitionQuote`, `lookingAheadImage`, `lookingAheadBadgeText`, `lookingAheadBadgeSubtext` (bilingual)
 
+### 3.7 Sourcing & Quality Page (`qualityPage` Singleton)
+- Comprehensive 5-section CMS coverage aligned 1:1 with `/quality` and `/ar/quality`:
+  1. **Page Banner**: `bannerTitle`, `bannerTitleAr`, `bannerSubtitle`, `bannerSubtitleAr`
+  2. **Sourcing Philosophy**: `philosophyEyebrow`, `philosophyTitle`, `philosophyNarrative`, Pillars 1-3 (Titles & Descs bilingual), `sourcingCardImage` (upload with hotspot), `sourcingCardTitle`, `sourcingCardDesc`, and metrics.
+  3. **Quality & Food Safety**: `foodSafetyEyebrow`, `foodSafetyTitle`, `foodSafetyNarrative`, `foodSafetyCtaText` (bilingual).
+  4. **QA Inspection & Hygiene**: `inspectionEyebrow`, `inspectionTitle`, `inspectionImage` (photo upload with hotspot), Facility Badge title/desc, and inspection pillars 1-2.
+  5. **Controls at Every Step (Supply Chain)**: `supplyChainEyebrow`, `supplyChainTitle`, `supplyChainSubtitle` (bilingual).
+
 ---
 
 ## 4. Implementation Steps

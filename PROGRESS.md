@@ -204,3 +204,14 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - [x] Wired all company components (`CompanyInfrastructure`, `CompanySourcing`, `CompanyTeam`, `CompanyQuality`, `CompanyLookingAhead`, `CompanyDelivering`) to consume live Sanity CMS data with graceful fallbacks.
   - [x] Successfully migrated and seeded live Sanity Content Lake with complete 8-section content and uploaded team showcase photo asset.
   - [x] Verified zero TypeScript compilation errors and end-to-end verified via `agent-browser`.
+
+- [x] **Milestone 6: Sourcing & Quality Page Realignment, Food Safety Section & Photo Uploads** [Completed]
+  - [x] Realigned `qualityPage.ts` Sanity schema to encompass all 5 sections (1. Page Banner, 2. Sourcing Philosophy Section, 3. Quality & Food Safety Section, 4. QA Inspection & Hygiene Section, 5. Controls at Every Step Section).
+  - [x] Added previously missing **Quality & Food Safety** section (`foodSafetyEyebrow`, `foodSafetyTitle`, `foodSafetyNarrative`, `foodSafetyCtaText` bilingual) to Sanity schema.
+  - [x] Added image upload fields with hotspot support: `sourcingCardImage` (cargo ship feature card) and `inspectionImage` (QA inspection hall photo).
+  - [x] Resolved all content mismatches across all 5 sections between Sanity and the Next.js page components (fixed headline text, 5-step supply chain labels, facility badge copy, and default titles).
+  - [x] Wired `QualityFoodSafety`, `QualitySourcingPhilosophy`, and `QualityTeamInspection` components to receive `content={qualityContent}` dynamically.
+  - [x] Updated GROQ queries (`QUALITY_PAGE_QUERY`), `QualityPageContent` TypeScript interface, and fallback resolver in `sanity/lib/data.ts`.
+  - [x] Uploaded image assets to live Sanity Content Lake and synchronized `qualityPage-singleton` document.
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and end-to-end tested `/quality` and `/ar/quality` via `agent-browser`.
+

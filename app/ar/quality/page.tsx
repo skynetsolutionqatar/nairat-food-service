@@ -46,7 +46,7 @@ export default async function ArabicQualityPage(): Promise<React.ReactNode> {
       <QualitySourcingPhilosophy content={qualityContent} />
 
       {/* 3. Quality & Food Safety */}
-      <QualityFoodSafety certs={certs} />
+      <QualityFoodSafety certs={certs} content={qualityContent} />
 
       {/* 4. Dedicated QA Team & Pre-Shipment Inspection */}
       <QualityTeamInspection content={qualityContent} />

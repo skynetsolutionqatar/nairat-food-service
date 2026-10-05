@@ -7,8 +7,9 @@ export const qualityPage = defineType({
   fieldsets: [
     { name: 'banner', title: '1. Page Banner', options: { collapsible: true, collapsed: false } },
     { name: 'philosophy', title: '2. Sourcing Philosophy Section', options: { collapsible: true, collapsed: true } },
-    { name: 'inspection', title: '3. QA Inspection & Hygiene Section', options: { collapsible: true, collapsed: true } },
-    { name: 'supplyChain', title: '4. Cold Supply Chain Section', options: { collapsible: true, collapsed: true } },
+    { name: 'foodSafety', title: '3. Quality & Food Safety Section', options: { collapsible: true, collapsed: true } },
+    { name: 'inspection', title: '4. QA Inspection & Hygiene Section', options: { collapsible: true, collapsed: true } },
+    { name: 'supplyChain', title: '5. Controls at Every Step Section', options: { collapsible: true, collapsed: true } },
   ],
   fields: [
     // --- 1. BANNER ---
@@ -17,14 +18,14 @@ export const qualityPage = defineType({
       title: 'Banner Title (EN)',
       type: 'string',
       fieldset: 'banner',
-      initialValue: 'Sourcing & Quality Assurance',
+      initialValue: 'Sourcing & Quality',
     }),
     defineField({
       name: 'bannerTitleAr',
       title: 'Banner Title (AR)',
       type: 'string',
       fieldset: 'banner',
-      initialValue: 'التوريد وضمان الجودة',
+      initialValue: 'التوريد والجودة',
     }),
     defineField({
       name: 'bannerSubtitle',
@@ -43,34 +44,34 @@ export const qualityPage = defineType({
       initialValue: 'معايير سلامة غذاء صارمة، شراكات زراعية مباشرة، وسلسلة تبريد متكاملة تضمن أعلى درجات النضارة في جميع أنحاء قطر.',
     }),
 
-    // --- 2. PHILOSOPHY ---
+    // --- 2. SOURCING PHILOSOPHY ---
     defineField({
       name: 'philosophyEyebrow',
       title: 'Philosophy Eyebrow (EN)',
       type: 'string',
       fieldset: 'philosophy',
-      initialValue: 'Our Sourcing Philosophy',
+      initialValue: 'OUR SOURCING PHILOSOPHY',
     }),
     defineField({
       name: 'philosophyEyebrowAr',
       title: 'Philosophy Eyebrow (AR)',
       type: 'string',
       fieldset: 'philosophy',
-      initialValue: 'فلسفتنا في التوريد',
+      initialValue: 'فلسفة التوريد لدينا',
     }),
     defineField({
       name: 'philosophyTitle',
       title: 'Philosophy Headline (EN)',
       type: 'string',
       fieldset: 'philosophy',
-      initialValue: 'Every Product Begins at the Source',
+      initialValue: 'Fresh Produce, Sourced Responsibly.',
     }),
     defineField({
       name: 'philosophyTitleAr',
       title: 'Philosophy Headline (AR)',
       type: 'string',
       fieldset: 'philosophy',
-      initialValue: 'تبدأ رحلة كل منتج من المصدر',
+      initialValue: 'منتجات طازجة، تم توريدها بمسؤولية.',
     }),
     defineField({
       name: 'philosophyNarrative',
@@ -78,7 +79,7 @@ export const qualityPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'philosophy',
-      initialValue: 'We believe exceptional quality can only be achieved by working directly with growers who share our commitment to excellence. Through long-term grower partnerships, on-site quality assessments, and a fully traceable cold chain, we ensure every carton meets our exacting standards before it arrives in Qatar.',
+      initialValue: 'We work with trusted growers and suppliers across the world, combining strong global partnerships with local expertise to bring the best fresh produce to Qatar.',
     }),
     defineField({
       name: 'philosophyNarrativeAr',
@@ -86,7 +87,7 @@ export const qualityPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'philosophy',
-      initialValue: 'نؤمن بأن الجودة الاستثنائية لا تتحقق إلا من خلال العمل المباشر مع المزارعين الذين يشاركوننا التزامنا بالتميز. ومن خلال الشراكات طويلة الأمد، وتقييمات الجودة في الميدان، وسلسلة التبريد الموثوقة القابلة للتتبع، نضمن مطابقة كل شحنة لأعلى المعايير.',
+      initialValue: 'نحن نعمل مع مزارعين وموردين موثوقين في جميع أنحاء العالم، ونجمع بين الشراكات العالمية القوية والخبرة المحلية لجلب أفضل المنتجات الطازجة إلى قطر.',
     }),
     defineField({
       name: 'philosophyPillar1Title',
@@ -172,8 +173,107 @@ export const qualityPage = defineType({
       fieldset: 'philosophy',
       initialValue: 'دعم ممارسات الزراعة المسؤولة',
     }),
+    // Sourcing Feature Card (Cargo Ship)
+    defineField({
+      name: 'sourcingCardImage',
+      title: 'Sourcing Card Image',
+      type: 'image',
+      fieldset: 'philosophy',
+      options: { hotspot: true },
+      description: 'Main feature card photo (e.g. international cargo ship)',
+    }),
+    defineField({
+      name: 'sourcingCardTitle',
+      title: 'Sourcing Card Title (EN)',
+      type: 'string',
+      fieldset: 'philosophy',
+      initialValue: 'Sourcing from Around the World',
+    }),
+    defineField({
+      name: 'sourcingCardTitleAr',
+      title: 'Sourcing Card Title (AR)',
+      type: 'string',
+      fieldset: 'philosophy',
+      initialValue: 'التوريد من جميع أنحاء العالم',
+    }),
+    defineField({
+      name: 'sourcingCardDesc',
+      title: 'Sourcing Card Description (EN)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'philosophy',
+      initialValue: 'We source fresh produce from leading growing regions across the Levant, Gulf, Africa, Asia and beyond, ensuring consistent supply and year-round availability.',
+    }),
+    defineField({
+      name: 'sourcingCardDescAr',
+      title: 'Sourcing Card Description (AR)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'philosophy',
+      initialValue: 'نحن نورد منتجات طازجة من مناطق الزراعة الرائدة عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يضمن إمداداً متسقاً وتوافراً على مدار العام.',
+    }),
 
-    // --- 3. INSPECTION & HYGIENE ---
+    // --- 3. QUALITY & FOOD SAFETY (PREVIOUSLY MISSING) ---
+    defineField({
+      name: 'foodSafetyEyebrow',
+      title: 'Food Safety Eyebrow (EN)',
+      type: 'string',
+      fieldset: 'foodSafety',
+      initialValue: 'QUALITY & FOOD SAFETY',
+    }),
+    defineField({
+      name: 'foodSafetyEyebrowAr',
+      title: 'Food Safety Eyebrow (AR)',
+      type: 'string',
+      fieldset: 'foodSafety',
+      initialValue: 'الجودة وسلامة الغذاء',
+    }),
+    defineField({
+      name: 'foodSafetyTitle',
+      title: 'Food Safety Headline (EN)',
+      type: 'string',
+      fieldset: 'foodSafety',
+      initialValue: 'Food Safety First in Every Process.',
+    }),
+    defineField({
+      name: 'foodSafetyTitleAr',
+      title: 'Food Safety Headline (AR)',
+      type: 'string',
+      fieldset: 'foodSafety',
+      initialValue: 'سلامة الغذاء أولاً في كل خطوة وعملية.',
+    }),
+    defineField({
+      name: 'foodSafetyNarrative',
+      title: 'Food Safety Narrative (EN)',
+      type: 'text',
+      rows: 4,
+      fieldset: 'foodSafety',
+      initialValue: 'Food safety comes first in every process at Nairat. Our facility runs a HACCP-based food safety management system certified to ISO 22000:2018, and our procedures are designed to comply with all Qatari laws and regulations governing food safety. Control measures apply at every stage, from receiving and sorting to packing, storage and distribution, so that produce reaches our customers safe, fresh and traceable.',
+    }),
+    defineField({
+      name: 'foodSafetyNarrativeAr',
+      title: 'Food Safety Narrative (AR)',
+      type: 'text',
+      rows: 4,
+      fieldset: 'foodSafety',
+      initialValue: 'تأتي سلامة الغذاء في مقدمة أولوياتنا في كل عملية داخل نيرات. تعمل منشأتنا بنظام إدارة سلامة الغذاء القائم على تحليل المخاطر ونقاط التحكم الحرجة (HACCP) والمعتمد وفق معيار ISO 22000:2018، كما أن إجراءاتنا مصممة للامتثال لكافة القوانين واللوائح القطرية المنظمة لسلامة الأغذية. تُطبَّق تدابير الرقابة والتحكم في كل مرحلة، من الاستلام والفرز إلى التعبئة والتخزين والتوزيع، لضمان وصول المنتجات لعملائنا آمنة، طازجة وقابلة للتتبع بالكامل.',
+    }),
+    defineField({
+      name: 'foodSafetyCtaText',
+      title: 'Food Safety CTA Text (EN)',
+      type: 'string',
+      fieldset: 'foodSafety',
+      initialValue: 'Our Quality Process',
+    }),
+    defineField({
+      name: 'foodSafetyCtaTextAr',
+      title: 'Food Safety CTA Text (AR)',
+      type: 'string',
+      fieldset: 'foodSafety',
+      initialValue: 'عملية الجودة لدينا',
+    }),
+
+    // --- 4. QA INSPECTION & HYGIENE ---
     defineField({
       name: 'inspectionEyebrow',
       title: 'Inspection Eyebrow (EN)',
@@ -201,6 +301,44 @@ export const qualityPage = defineType({
       type: 'string',
       fieldset: 'inspection',
       initialValue: 'فريق رقابة متخصص. فحص دقيق قبل كل شحنة.',
+    }),
+    defineField({
+      name: 'inspectionImage',
+      title: 'QA Inspection Image',
+      type: 'image',
+      fieldset: 'inspection',
+      options: { hotspot: true },
+      description: 'QA team inspection hall photograph',
+    }),
+    defineField({
+      name: 'inspectionBadgeTitle',
+      title: 'Facility Badge Title (EN)',
+      type: 'string',
+      fieldset: 'inspection',
+      initialValue: 'QA Inspection Hall · Industrial Area, Doha',
+    }),
+    defineField({
+      name: 'inspectionBadgeTitleAr',
+      title: 'Facility Badge Title (AR)',
+      type: 'string',
+      fieldset: 'inspection',
+      initialValue: 'صالة فحص الجودة · المنطقة الصناعية، الدوحة',
+    }),
+    defineField({
+      name: 'inspectionBadgeDesc',
+      title: 'Facility Badge Description (EN)',
+      type: 'text',
+      rows: 2,
+      fieldset: 'inspection',
+      initialValue: 'Continuous lot sampling, digital refractometry, and core temperature checks on arrival.',
+    }),
+    defineField({
+      name: 'inspectionBadgeDescAr',
+      title: 'Facility Badge Description (AR)',
+      type: 'text',
+      rows: 2,
+      fieldset: 'inspection',
+      initialValue: 'فحص مخبري مستمر ومراقبة درجات الحرارة لجميع الشحنات الواردة لضمان التتبع والأمان.',
     }),
     defineField({
       name: 'inspectionPillar1Title',
@@ -252,7 +390,7 @@ export const qualityPage = defineType({
       type: 'text',
       rows: 3,
       fieldset: 'inspection',
-      initialValue: 'Quality checks do not stop at the receiving dock. Before any order leaves our facility for delivery to supermarkets, wholesale clients, or foodservice partners, our QA team inspects outgoing pallets for freshness, correct labeling, and temperature compliance.',
+      initialValue: 'Every incoming lot is checked against our specifications for temperature, ripeness, size and defects. Goods that fail are rejected or downgraded before they reach the packing line, and every delivery leaves with its lot reference for full traceability.',
     }),
     defineField({
       name: 'inspectionPillar2DescAr',
@@ -260,37 +398,37 @@ export const qualityPage = defineType({
       type: 'text',
       rows: 3,
       fieldset: 'inspection',
-      initialValue: 'لا تتوقف فحوصات الجودة عند رصيف الاستلام فقط؛ فقبل خروج أي طلبية من مستودعاتنا للتوزيع، يقوم فريق فحص الجودة بفحص المنصات والتأكد من النضارة والمطابقة والتغليف السليم ودرجة الحرارة.',
+      initialValue: 'يتم فحص كل دفعة واردة ومطابقتها لمواصفاتنا المحددة لدرجة الحرارة، ومستوى النضج، والحجم، وخلوها من العيوب. تُرفض المنتجات غير المطابقة أو تُخفض درجتها قبل وصولها لخط التعبئة، وتغادر كل شحنة برقم الدفعة المرجعي لضمان التتبع الكامل.',
     }),
 
-    // --- 4. SUPPLY CHAIN ---
+    // --- 5. CONTROLS AT EVERY STEP / SUPPLY CHAIN ---
     defineField({
       name: 'supplyChainEyebrow',
       title: 'Supply Chain Eyebrow (EN)',
       type: 'string',
       fieldset: 'supplyChain',
-      initialValue: 'SUPPLY CHAIN JOURNEY',
+      initialValue: 'CONTROLS AT EVERY STEP',
     }),
     defineField({
       name: 'supplyChainEyebrowAr',
       title: 'Supply Chain Eyebrow (AR)',
       type: 'string',
       fieldset: 'supplyChain',
-      initialValue: 'مسار سلسلة التوريد',
+      initialValue: 'ضوابط في كل مرحلة',
     }),
     defineField({
       name: 'supplyChainTitle',
       title: 'Supply Chain Headline (EN)',
       type: 'string',
       fieldset: 'supplyChain',
-      initialValue: 'From Harvest to Shelf: The Quality Journey',
+      initialValue: 'Controls at Every Step',
     }),
     defineField({
       name: 'supplyChainTitleAr',
       title: 'Supply Chain Headline (AR)',
       type: 'string',
       fieldset: 'supplyChain',
-      initialValue: 'من الحصاد إلى الرف: رحلة الجودة المتكاملة',
+      initialValue: 'ضوابط رقابية صارمة في كل خطوة',
     }),
     defineField({
       name: 'supplyChainSubtitle',
@@ -298,7 +436,7 @@ export const qualityPage = defineType({
       type: 'text',
       rows: 2,
       fieldset: 'supplyChain',
-      initialValue: 'Four disciplined phases ensuring farm-fresh taste, food safety, and dependable availability.',
+      initialValue: 'From arrival to the customer’s door, strict verification protocols protect product integrity and maintain an unbroken cold chain.',
     }),
     defineField({
       name: 'supplyChainSubtitleAr',
@@ -306,7 +444,7 @@ export const qualityPage = defineType({
       type: 'text',
       rows: 2,
       fieldset: 'supplyChain',
-      initialValue: 'أربع مراحل تشغيلية منضبطة تضمن الحفاظ على طزاجة المحصول، وسلامة الغذاء، واستدامة الإمداد.',
+      initialValue: 'من استلام الشحنات إلى باب العميل، تحمي بروتوكولات التحقق الصارمة سلامة المنتجات وتحافظ على سلسلة تبريد غير منقطعة مع التتبع الكامل.',
     }),
   ],
   preview: {
