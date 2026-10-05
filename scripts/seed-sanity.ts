@@ -897,6 +897,124 @@ async function seed() {
     facilityOperatingHoursAr: ar.common.workingHoursVal,
   });
 
+  // 6.7 Products Page
+  operations.push({
+    _id: 'productsPage-singleton',
+    _type: 'productsPage',
+    bannerTitle: 'Our Products',
+    bannerTitleAr: 'منتجاتنا',
+    bannerSubtitle:
+      'Explore our high-yield produce lines sourced globally and delivered daily across Qatar.',
+    bannerSubtitleAr:
+      'استكشف خطوط منتجاتنا عالية الجودة الموردة عالمياً والموزعة يومياً في قطر.',
+    categorySections: [
+      {
+        _key: 'cat-vegetables',
+        slug: 'vegetables',
+        title: 'Fresh Vegetables',
+        titleAr: 'خضروات طازجة',
+        subtitle:
+          'High-yield, daily farm arrivals for retail and culinary supply across Qatar.',
+        subtitleAr:
+          'وصول يومي من المزارع بإنتاجية عالية لتوريد التجزئة والطهي في جميع أنحاء قطر.',
+        description:
+          'Sourced from certified growers across the Levant, Turkey, Europe, and India, our fresh vegetable lines undergo rigorous origin inspection and temperature-controlled logistics to guarantee peak freshness.',
+        descriptionAr:
+          'يتم توريد خطوط الخضروات الطازجة لدينا من مزارعين معتمدين في بلاد الشام وتركيا وأوروبا والهند، وتخضع لفحص دقيق في بلد المنشأ ولوجستيات منضبطة الحرارة لضمان أقصى درجات النضارة.',
+        badge: 'FARM FRESH',
+        badgeAr: 'طازج من المزرعة',
+      },
+      {
+        _key: 'cat-fruits',
+        slug: 'fruits',
+        title: 'Fresh Fruits',
+        titleAr: 'فواكه طازجة',
+        subtitle:
+          'Sun-ripened orchard and citrus lines sourced directly from verified international growers.',
+        subtitleAr:
+          'محاصيل بساتين وحمضيات ناضجة تحت الشمس يتم توريدها مباشرة من مزارعين دوليين معتمدين.',
+        description:
+          'From Mediterranean citrus and seasonal stone fruits to year-round tropical melons and table grapes, Nairat delivers fruit with consistent brix levels, calibrated sizing, and intact cold-chain assurance.',
+        descriptionAr:
+          'من الحمضيات المتوسطية وفواكه النواة الحجرية الموسمية إلى البطيخ الاستوائي وعنب المائدة على مدار العام، تقدم نيرات فواكه بمستويات حلاوة متسقة وأحجام مدروسة مع ضمان سلامة سلسلة التبريد.',
+        badge: 'ORCHARD SELECT',
+        badgeAr: 'مختارات البساتين',
+      },
+      {
+        _key: 'cat-leafy-herbs',
+        slug: 'leafy-herbs',
+        title: 'Leafy & Herbs',
+        titleAr: 'ورقيات وأعشاب',
+        subtitle:
+          'Crisp greenhouse lettuces, field greens, and aromatic culinary herbs delivered daily.',
+        subtitleAr:
+          'خس بيوت محمية مقرمش، وخضروات حقلية، وأعشاب طهي عطرية تُسلَّم يومياً.',
+        description:
+          "Harvested at dawn and pre-cooled within hours, our leafy and fresh herb programs supply Qatar's leading hotel dining rooms and retail chains with vibrant, unblemished produce.",
+        descriptionAr:
+          'تُحصد عند الفجر ويتم تبريدها مسبقاً خلال ساعات، حيث تغذي برامجنا للورقيات والأعشاب الطازجة مطاعم الفنادق الرائدة وسلاسل التجزئة في قطر بمنتجات نضرة وخالية من العيوب.',
+        badge: 'GREENHOUSE HARVEST',
+        badgeAr: 'حصاد البيوت المحمية',
+      },
+      {
+        _key: 'cat-specialty-gourmet',
+        slug: 'specialty-gourmet',
+        title: 'Specialty & Gourmet',
+        titleAr: 'أصناف خاصة وفاخرة',
+        subtitle:
+          'Air-freighted exotics, baby leaves, and niche varieties for fine dining and premium retail.',
+        subtitleAr:
+          'أصناف استوائية مشحونة جواً، وأوراق صغيرة، وأصناف مميزة للمطاعم الراقية ومحلات التجزئة الفاخرة.',
+        description:
+          "Direct air-cargo links with specialty growers in Europe, South America, and Southeast Asia ensure Qatar's culinary leaders have access to the world's most sought-after seasonal produce.",
+        descriptionAr:
+          'تضمن خطوط الشحن الجوي المباشرة مع مزارعين متخصصين في أوروبا وأمريكا الجنوبية وجنوب شرق آسيا وصول قادة الطهي في قطر إلى أرقى المنتجات الموسمية المرغوبة عالمياً.',
+        badge: 'AIR FREIGHT EXOTICS',
+        badgeAr: 'أصناف استوائية جوية',
+      },
+    ],
+    vegTitle: 'Fresh Vegetables',
+    vegTitleAr: 'خضروات طازجة',
+    vegSubtitle:
+      'High-yield, daily farm arrivals for retail and culinary supply across Qatar.',
+    vegSubtitleAr:
+      'وصول يومي من المزارع بإنتاجية عالية لتوريد التجزئة والطهي في جميع أنحاء قطر.',
+    vegDescription:
+      'Sourced from certified growers across the Levant, Turkey, Europe, and India, our fresh vegetable lines undergo rigorous origin inspection and temperature-controlled logistics to guarantee peak freshness.',
+    vegDescriptionAr:
+      'يتم توريد خطوط الخضروات الطازجة لدينا من مزارعين معتمدين في بلاد الشام وتركيا وأوروبا والهند، وتخضع لفحص دقيق في بلد المنشأ ولوجستيات منضبطة الحرارة لضمان أقصى درجات النضارة.',
+    fruitsTitle: 'Fresh Fruits',
+    fruitsTitleAr: 'فواكه طازجة',
+    fruitsSubtitle:
+      'Sun-ripened orchard and citrus lines sourced directly from verified international growers.',
+    fruitsSubtitleAr:
+      'محاصيل بساتين وحمضيات ناضجة تحت الشمس يتم توريدها مباشرة من مزارعين دوليين معتمدين.',
+    fruitsDescription:
+      'From Mediterranean citrus and seasonal stone fruits to year-round tropical melons and table grapes, Nairat delivers fruit with consistent brix levels, calibrated sizing, and intact cold-chain assurance.',
+    fruitsDescriptionAr:
+      'من الحمضيات المتوسطية وفواكه النواة الحجرية الموسمية إلى البطيخ الاستوائي وعنب المائدة على مدار العام، تقدم نيرات فواكه بمستويات حلاوة متسقة وأحجام مدروسة مع ضمان سلامة سلسلة التبريد.',
+    leafyTitle: 'Leafy & Herbs',
+    leafyTitleAr: 'ورقيات وأعشاب',
+    leafySubtitle:
+      'Crisp greenhouse lettuces, field greens, and aromatic culinary herbs delivered daily.',
+    leafySubtitleAr:
+      'خس بيوت محمية مقرمش، وخضروات حقلية، وأعشاب طهي عطرية تُسلَّم يومياً.',
+    leafyDescription:
+      "Harvested at dawn and pre-cooled within hours, our leafy and fresh herb programs supply Qatar's leading hotel dining rooms and retail chains with vibrant, unblemished produce.",
+    leafyDescriptionAr:
+      'تُحصد عند الفجر ويتم تبريدها مسبقاً خلال ساعات، حيث تغذي برامجنا للورقيات والأعشاب الطازجة مطاعم الفنادق الرائدة وسلاسل التجزئة في قطر بمنتجات نضرة وخالية من العيوب.',
+    specialtyTitle: 'Specialty & Gourmet',
+    specialtyTitleAr: 'أصناف خاصة وفاخرة',
+    specialtySubtitle:
+      'Air-freighted exotics, baby leaves, and niche varieties for fine dining and premium retail.',
+    specialtySubtitleAr:
+      'أصناف استوائية مشحونة جواً، وأوراق صغيرة، وأصناف مميزة للمطاعم الراقية ومحلات التجزئة الفاخرة.',
+    specialtyDescription:
+      "Direct air-cargo links with specialty growers in Europe, South America, and Southeast Asia ensure Qatar's culinary leaders have access to the world's most sought-after seasonal produce.",
+    specialtyDescriptionAr:
+      'تضمن خطوط الشحن الجوي المباشرة مع مزارعين متخصصين في أوروبا وأمريكا الجنوبية وجنوب شرق آسيا وصول قادة الطهي في قطر إلى أرقى المنتجات الموسمية المرغوبة عالمياً.',
+  });
+
   console.log('\n==================================================');
   console.log(`Prepared total of ${operations.length} documents:`);
   console.log(`- ${productOrder} Produce Items`);
@@ -904,7 +1022,7 @@ async function seed() {
   console.log(`- ${serviceOrder} Commercial Services`);
   console.log(`- ${certOrder} Quality Certificates`);
   console.log(`- 1 Company Profile Document`);
-  console.log(`- 6 Page Singleton Documents (Home, Company, Quality, Services, Partners, Contact)`);
+  console.log(`- 7 Page Singleton Documents (Home, Company, Products, Quality, Services, Partners, Contact)`);
   console.log('==================================================');
 
   if (isDryRun) {

@@ -5,7 +5,11 @@ import { PageBanner } from '@/components/ui/PageBanner';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { Cta } from '@/components/modules/Cta';
 import { productCategoriesData } from '@/data/products';
-import { getProducts } from '@/sanity/lib/data';
+import {
+  getProducts,
+  getProductsPageContent,
+  getCategorySection,
+} from '@/sanity/lib/data';
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -37,14 +41,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const arabicTitle = categoryArabicTitles[category] || data.title;
+  const categorySection = await getCategorySection(category);
+  const arabicTitle =
+    categorySection?.titleAr || categoryArabicTitles[category] || data.title;
+  const arabicDesc = categorySection?.descriptionAr || data.description;
 
   return {
     title: `${arabicTitle} — نيرات للخدمات الغذائية قطر`,
     description: `توريد تجاري عالي الجودة ويتم التحكم في درجة حرارته لـ ${arabicTitle} في جميع أنحاء قطر.`,
     openGraph: {
       title: `${arabicTitle} — نيرات للخدمات الغذائية`,
-      description: data.description,
+      description: arabicDesc,
       url: `https://nairatfoodservices.com/ar/products/${data.slug}`,
       siteName: 'نيرات للخدمات الغذائية',
       locale: 'ar_QA',
@@ -61,24 +68,42 @@ export default async function ArabicProductCategoryPage({ params }: PageProps): 
     notFound();
   }
 
-  const arabicTitle = categoryArabicTitles[category] || data.title;
-  const products = await getProducts(category);
-  const categoryData = { ...data, products };
+  const [products, productsPage, categorySection] = await Promise.all([
+    getProducts(category),
+    getProductsPageContent(),
+    getCategorySection(category),
+  ]);
+
+  const arabicCategoryTitle =
+    categorySection?.titleAr || categoryArabicTitles[category] || data.title;
+  const bannerTitle = productsPage.bannerTitleAr || 'منتجاتنا';
+
+  const categoryData = {
+    ...data,
+    title: arabicCategoryTitle,
+    subtitle: categorySection?.subtitleAr || data.subtitle,
+    description: categorySection?.descriptionAr || data.description,
+    products,
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title={arabicTitle}
+        title={bannerTitle}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
-          { label: 'منتجاتنا' },
-          { label: arabicTitle },
+          { label: bannerTitle },
+          { label: arabicCategoryTitle },
         ]}
       />
 
-      {/* 2. 4-in-a-Row Product Grid */}
-      <ProductGrid category={categoryData} />
+      {/* 2. 4-in-a-Row Product Grid with Category Selector Tabs and Header */}
+      <ProductGrid
+        category={categoryData}
+        categorySection={categorySection}
+        pageContent={productsPage}
+      />
 
       {/* 3. Final Sourcing & Partner CTA */}
       <Cta />

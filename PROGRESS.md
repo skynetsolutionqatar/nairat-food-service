@@ -246,3 +246,18 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - [x] Wired `ContactMap.tsx` to dynamically render the 4 facility badges, editable Google Maps embed URL, external directions target URL, and floating card text with full bilingual support.
   - [x] Updated `scripts/seed-sanity.ts` and synchronized live Sanity Content Lake document `contactPage-singleton`.
   - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and end-to-end verified `/contact` and `/ar/contact` via `agent-browser`.
+
+- [x] **Milestone 10: Our Products Page CMS Integration & Nested Category Schema** [Completed]
+  - [x] Created `productsPage.ts` Sanity schema with collapsible fieldsets:
+    - **1. Page Banner** (`bannerTitle`, `bannerTitleAr`, `bannerSubtitle`, `bannerSubtitleAr`).
+    - **2. Category Sections (Nested Schema)** (`categorySections` array of category objects with `slug`, `title`, `titleAr`, `subtitle`, `subtitleAr`, `description`, `descriptionAr`, `badge`, `badgeAr`, and `heroImage`).
+    - **3. Dedicated Category Sections** (Fresh Vegetables, Fresh Fruits, Leafy & Herbs, Specialty & Gourmet overview fields in EN & AR).
+  - [x] Updated Sanity Desk Structure (`sanity/structure.ts`):
+    - Added **Our Products Page** (`productsPage-singleton`) under `Pages & Section Content`.
+    - Organized **Produce Catalog by Category** under `Catalogs & Collections` with nested filtered views for Fresh Vegetables (11), Fresh Fruits (8), Leafy & Herbs (8), Specialty & Gourmet (7), and All Produce Lines (34).
+  - [x] Added `PRODUCTS_PAGE_QUERY` in `sanity/lib/queries.ts`.
+  - [x] Extended `sanity/lib/data.ts` with `ProductsPageContent`, `CategorySectionItem`, `defaultProductsPageContent`, `getProductsPageContent()`, and `getCategorySection(slug)`.
+  - [x] Upgraded `ProductGrid.tsx` with interactive category selector pills (Vegetables, Fruits, Leafy & Herbs, Specialty & Gourmet), dynamic category narrative headers, and GSAP staggered reveal animations.
+  - [x] Connected `/products/[category]` and `/ar/products/[category]` routes to dynamic CMS category titles, subtitles, descriptions, and produce lines.
+  - [x] Synchronized `productsPage-singleton` document directly to the live Sanity Content Lake.
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and end-to-end verified category navigation and rendering via `agent-browser`.

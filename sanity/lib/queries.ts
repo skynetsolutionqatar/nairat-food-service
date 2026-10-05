@@ -504,3 +504,51 @@ export const CONTACT_PAGE_QUERY = defineQuery(`
   }
 `);
 
+export const PRODUCTS_PAGE_QUERY = defineQuery(`
+  *[_id == "productsPage-singleton" || _type == "productsPage"][0] {
+    _id,
+    bannerTitle,
+    bannerTitleAr,
+    bannerSubtitle,
+    bannerSubtitleAr,
+    categorySections[] {
+      _key,
+      slug,
+      title,
+      titleAr,
+      subtitle,
+      subtitleAr,
+      description,
+      descriptionAr,
+      badge,
+      badgeAr,
+      heroImage
+    },
+    vegTitle,
+    vegTitleAr,
+    vegSubtitle,
+    vegSubtitleAr,
+    vegDescription,
+    vegDescriptionAr,
+    fruitsTitle,
+    fruitsTitleAr,
+    fruitsSubtitle,
+    fruitsSubtitleAr,
+    fruitsDescription,
+    fruitsDescriptionAr,
+    leafyTitle,
+    leafyTitleAr,
+    leafySubtitle,
+    leafySubtitleAr,
+    leafyDescription,
+    leafyDescriptionAr,
+    specialtyTitle,
+    specialtyTitleAr,
+    specialtySubtitle,
+    specialtySubtitleAr,
+    specialtyDescription,
+    specialtyDescriptionAr
+  }
+`);
+
+

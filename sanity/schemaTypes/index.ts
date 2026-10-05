@@ -10,6 +10,7 @@ import { qualityPage } from './pages/qualityPage';
 import { servicesPage } from './pages/servicesPage';
 import { partnersPage } from './pages/partnersPage';
 import { contactPage } from './pages/contactPage';
+import { productsPage } from './pages/productsPage';
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   product,
@@ -19,6 +20,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   companyProfile,
   homePage,
   companyPage,
+  productsPage,
   qualityPage,
   servicesPage,
   partnersPage,

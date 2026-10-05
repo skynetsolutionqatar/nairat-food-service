@@ -16,6 +16,7 @@ import {
   SERVICES_PAGE_QUERY,
   PARTNERS_PAGE_QUERY,
   CONTACT_PAGE_QUERY,
+  PRODUCTS_PAGE_QUERY,
 } from './queries';
 import {
   ProductItem,
@@ -1978,5 +1979,298 @@ export async function getContactPageContent(): Promise<ContactPageContent> {
     }
   }
   return defaultContactPageContent;
+}
+
+export interface CategorySectionItem {
+  _key?: string;
+  slug: string;
+  title: string;
+  titleAr: string;
+  subtitle: string;
+  subtitleAr: string;
+  description: string;
+  descriptionAr: string;
+  badge?: string;
+  badgeAr?: string;
+  heroImageUrl?: string;
+}
+
+export interface ProductsPageContent {
+  bannerTitle: string;
+  bannerTitleAr: string;
+  bannerSubtitle: string;
+  bannerSubtitleAr: string;
+  categorySections: CategorySectionItem[];
+  vegTitle: string;
+  vegTitleAr: string;
+  vegSubtitle: string;
+  vegSubtitleAr: string;
+  vegDescription: string;
+  vegDescriptionAr: string;
+  fruitsTitle: string;
+  fruitsTitleAr: string;
+  fruitsSubtitle: string;
+  fruitsSubtitleAr: string;
+  fruitsDescription: string;
+  fruitsDescriptionAr: string;
+  leafyTitle: string;
+  leafyTitleAr: string;
+  leafySubtitle: string;
+  leafySubtitleAr: string;
+  leafyDescription: string;
+  leafyDescriptionAr: string;
+  specialtyTitle: string;
+  specialtyTitleAr: string;
+  specialtySubtitle: string;
+  specialtySubtitleAr: string;
+  specialtyDescription: string;
+  specialtyDescriptionAr: string;
+}
+
+export const defaultProductsPageContent: ProductsPageContent = {
+  bannerTitle: 'Our Products',
+  bannerTitleAr: 'منتجاتنا',
+  bannerSubtitle:
+    'Explore our high-yield produce lines sourced globally and delivered daily across Qatar.',
+  bannerSubtitleAr:
+    'استكشف خطوط منتجاتنا عالية الجودة الموردة عالمياً والموزعة يومياً في قطر.',
+  categorySections: [
+    {
+      _key: 'cat-vegetables',
+      slug: 'vegetables',
+      title: 'Fresh Vegetables',
+      titleAr: 'خضروات طازجة',
+      subtitle:
+        'High-yield, daily farm arrivals for retail and culinary supply across Qatar.',
+      subtitleAr:
+        'وصول يومي من المزارع بإنتاجية عالية لتوريد التجزئة والطهي في جميع أنحاء قطر.',
+      description:
+        'Sourced from certified growers across the Levant, Turkey, Europe, and India, our fresh vegetable lines undergo rigorous origin inspection and temperature-controlled logistics to guarantee peak freshness.',
+      descriptionAr:
+        'يتم توريد خطوط الخضروات الطازجة لدينا من مزارعين معتمدين في بلاد الشام وتركيا وأوروبا والهند، وتخضع لفحص دقيق في بلد المنشأ ولوجستيات منضبطة الحرارة لضمان أقصى درجات النضارة.',
+      badge: 'FARM FRESH',
+      badgeAr: 'طازج من المزرعة',
+    },
+    {
+      _key: 'cat-fruits',
+      slug: 'fruits',
+      title: 'Fresh Fruits',
+      titleAr: 'فواكه طازجة',
+      subtitle:
+        'Sun-ripened orchard and citrus lines sourced directly from verified international growers.',
+      subtitleAr:
+        'محاصيل بساتين وحمضيات ناضجة تحت الشمس يتم توريدها مباشرة من مزارعين دوليين معتمدين.',
+      description:
+        'From Mediterranean citrus and seasonal stone fruits to year-round tropical melons and table grapes, Nairat delivers fruit with consistent brix levels, calibrated sizing, and intact cold-chain assurance.',
+      descriptionAr:
+        'من الحمضيات المتوسطية وفواكه النواة الحجرية الموسمية إلى البطيخ الاستوائي وعنب المائدة على مدار العام، تقدم نيرات فواكه بمستويات حلاوة متسقة وأحجام مدروسة مع ضمان سلامة سلسلة التبريد.',
+      badge: 'ORCHARD SELECT',
+      badgeAr: 'مختارات البساتين',
+    },
+    {
+      _key: 'cat-leafy-herbs',
+      slug: 'leafy-herbs',
+      title: 'Leafy & Herbs',
+      titleAr: 'ورقيات وأعشاب',
+      subtitle:
+        'Crisp greenhouse lettuces, field greens, and aromatic culinary herbs delivered daily.',
+      subtitleAr:
+        'خس بيوت محمية مقرمش، وخضروات حقلية، وأعشاب طهي عطرية تُسلَّم يومياً.',
+      description:
+        "Harvested at dawn and pre-cooled within hours, our leafy and fresh herb programs supply Qatar's leading hotel dining rooms and retail chains with vibrant, unblemished produce.",
+      descriptionAr:
+        'تُحصد عند الفجر ويتم تبريدها مسبقاً خلال ساعات، حيث تغذي برامجنا للورقيات والأعشاب الطازجة مطاعم الفنادق الرائدة وسلاسل التجزئة في قطر بمنتجات نضرة وخالية من العيوب.',
+      badge: 'GREENHOUSE HARVEST',
+      badgeAr: 'حصاد البيوت المحمية',
+    },
+    {
+      _key: 'cat-specialty-gourmet',
+      slug: 'specialty-gourmet',
+      title: 'Specialty & Gourmet',
+      titleAr: 'أصناف خاصة وفاخرة',
+      subtitle:
+        'Air-freighted exotics, baby leaves, and niche varieties for fine dining and premium retail.',
+      subtitleAr:
+        'أصناف استوائية مشحونة جواً، وأوراق صغيرة، وأصناف مميزة للمطاعم الراقية ومحلات التجزئة الفاخرة.',
+      description:
+        "Direct air-cargo links with specialty growers in Europe, South America, and Southeast Asia ensure Qatar's culinary leaders have access to the world's most sought-after seasonal produce.",
+      descriptionAr:
+        'تضمن خطوط الشحن الجوي المباشرة مع مزارعين متخصصين في أوروبا وأمريكا الجنوبية وجنوب شرق آسيا وصول قادة الطهي في قطر إلى أرقى المنتجات الموسمية المرغوبة عالمياً.',
+      badge: 'AIR FREIGHT EXOTICS',
+      badgeAr: 'أصناف استوائية جوية',
+    },
+  ],
+  vegTitle: 'Fresh Vegetables',
+  vegTitleAr: 'خضروات طازجة',
+  vegSubtitle:
+    'High-yield, daily farm arrivals for retail and culinary supply across Qatar.',
+  vegSubtitleAr:
+    'وصول يومي من المزارع بإنتاجية عالية لتوريد التجزئة والطهي في جميع أنحاء قطر.',
+  vegDescription:
+    'Sourced from certified growers across the Levant, Turkey, Europe, and India, our fresh vegetable lines undergo rigorous origin inspection and temperature-controlled logistics to guarantee peak freshness.',
+  vegDescriptionAr:
+    'يتم توريد خطوط الخضروات الطازجة لدينا من مزارعين معتمدين في بلاد الشام وتركيا وأوروبا والهند، وتخضع لفحص دقيق في بلد المنشأ ولوجستيات منضبطة الحرارة لضمان أقصى درجات النضارة.',
+  fruitsTitle: 'Fresh Fruits',
+  fruitsTitleAr: 'فواكه طازجة',
+  fruitsSubtitle:
+    'Sun-ripened orchard and citrus lines sourced directly from verified international growers.',
+  fruitsSubtitleAr:
+    'محاصيل بساتين وحمضيات ناضجة تحت الشمس يتم توريدها مباشرة من مزارعين دوليين معتمدين.',
+  fruitsDescription:
+    'From Mediterranean citrus and seasonal stone fruits to year-round tropical melons and table grapes, Nairat delivers fruit with consistent brix levels, calibrated sizing, and intact cold-chain assurance.',
+  fruitsDescriptionAr:
+    'من الحمضيات المتوسطية وفواكه النواة الحجرية الموسمية إلى البطيخ الاستوائي وعنب المائدة على مدار العام، تقدم نيرات فواكه بمستويات حلاوة متسقة وأحجام مدروسة مع ضمان سلامة سلسلة التبريد.',
+  leafyTitle: 'Leafy & Herbs',
+  leafyTitleAr: 'ورقيات وأعشاب',
+  leafySubtitle:
+    'Crisp greenhouse lettuces, field greens, and aromatic culinary herbs delivered daily.',
+  leafySubtitleAr:
+    'خس بيوت محمية مقرمش، وخضروات حقلية، وأعشاب طهي عطرية تُسلَّم يومياً.',
+  leafyDescription:
+    "Harvested at dawn and pre-cooled within hours, our leafy and fresh herb programs supply Qatar's leading hotel dining rooms and retail chains with vibrant, unblemished produce.",
+  leafyDescriptionAr:
+    'تُحصد عند الفجر ويتم تبريدها مسبقاً خلال ساعات، حيث تغذي برامجنا للورقيات والأعشاب الطازجة مطاعم الفنادق الرائدة وسلاسل التجزئة في قطر بمنتجات نضرة وخالية من العيوب.',
+  specialtyTitle: 'Specialty & Gourmet',
+  specialtyTitleAr: 'أصناف خاصة وفاخرة',
+  specialtySubtitle:
+    'Air-freighted exotics, baby leaves, and niche varieties for fine dining and premium retail.',
+  specialtySubtitleAr:
+    'أصناف استوائية مشحونة جواً، وأوراق صغيرة، وأصناف مميزة للمطاعم الراقية ومحلات التجزئة الفاخرة.',
+  specialtyDescription:
+    "Direct air-cargo links with specialty growers in Europe, South America, and Southeast Asia ensure Qatar's culinary leaders have access to the world's most sought-after seasonal produce.",
+  specialtyDescriptionAr:
+    'تضمن خطوط الشحن الجوي المباشرة مع مزارعين متخصصين في أوروبا وأمريكا الجنوبية وجنوب شرق آسيا وصول قادة الطهي في قطر إلى أرقى المنتجات الموسمية المرغوبة عالمياً.',
+};
+
+export async function getProductsPageContent(): Promise<ProductsPageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        PRODUCTS_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['productsPage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const rawCategories = Array.isArray(data.categorySections) ? data.categorySections : [];
+        const categorySections: CategorySectionItem[] = rawCategories.map(
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (item: any): CategorySectionItem => ({
+            _key: item._key || item.slug,
+            slug: item.slug,
+            title: item.title || '',
+            titleAr: item.titleAr || item.title || '',
+            subtitle: item.subtitle || '',
+            subtitleAr: item.subtitleAr || '',
+            description: item.description || '',
+            descriptionAr: item.descriptionAr || '',
+            badge: item.badge || 'OUR PRODUCE',
+            badgeAr: item.badgeAr || 'منتجاتنا',
+            heroImageUrl: item.heroImage ? urlForImage(item.heroImage) : undefined,
+          })
+        );
+
+        return {
+          bannerTitle: data.bannerTitle || defaultProductsPageContent.bannerTitle,
+          bannerTitleAr: data.bannerTitleAr || defaultProductsPageContent.bannerTitleAr,
+          bannerSubtitle: data.bannerSubtitle || defaultProductsPageContent.bannerSubtitle,
+          bannerSubtitleAr: data.bannerSubtitleAr || defaultProductsPageContent.bannerSubtitleAr,
+          categorySections:
+            categorySections.length > 0
+              ? categorySections
+              : defaultProductsPageContent.categorySections,
+          vegTitle: data.vegTitle || defaultProductsPageContent.vegTitle,
+          vegTitleAr: data.vegTitleAr || defaultProductsPageContent.vegTitleAr,
+          vegSubtitle: data.vegSubtitle || defaultProductsPageContent.vegSubtitle,
+          vegSubtitleAr: data.vegSubtitleAr || defaultProductsPageContent.vegSubtitleAr,
+          vegDescription: data.vegDescription || defaultProductsPageContent.vegDescription,
+          vegDescriptionAr: data.vegDescriptionAr || defaultProductsPageContent.vegDescriptionAr,
+          fruitsTitle: data.fruitsTitle || defaultProductsPageContent.fruitsTitle,
+          fruitsTitleAr: data.fruitsTitleAr || defaultProductsPageContent.fruitsTitleAr,
+          fruitsSubtitle: data.fruitsSubtitle || defaultProductsPageContent.fruitsSubtitle,
+          fruitsSubtitleAr: data.fruitsSubtitleAr || defaultProductsPageContent.fruitsSubtitleAr,
+          fruitsDescription: data.fruitsDescription || defaultProductsPageContent.fruitsDescription,
+          fruitsDescriptionAr: data.fruitsDescriptionAr || defaultProductsPageContent.fruitsDescriptionAr,
+          leafyTitle: data.leafyTitle || defaultProductsPageContent.leafyTitle,
+          leafyTitleAr: data.leafyTitleAr || defaultProductsPageContent.leafyTitleAr,
+          leafySubtitle: data.leafySubtitle || defaultProductsPageContent.leafySubtitle,
+          leafySubtitleAr: data.leafySubtitleAr || defaultProductsPageContent.leafySubtitleAr,
+          leafyDescription: data.leafyDescription || defaultProductsPageContent.leafyDescription,
+          leafyDescriptionAr: data.leafyDescriptionAr || defaultProductsPageContent.leafyDescriptionAr,
+          specialtyTitle: data.specialtyTitle || defaultProductsPageContent.specialtyTitle,
+          specialtyTitleAr: data.specialtyTitleAr || defaultProductsPageContent.specialtyTitleAr,
+          specialtySubtitle: data.specialtySubtitle || defaultProductsPageContent.specialtySubtitle,
+          specialtySubtitleAr: data.specialtySubtitleAr || defaultProductsPageContent.specialtySubtitleAr,
+          specialtyDescription: data.specialtyDescription || defaultProductsPageContent.specialtyDescription,
+          specialtyDescriptionAr: data.specialtyDescriptionAr || defaultProductsPageContent.specialtyDescriptionAr,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultProductsPageContent;
+}
+
+export async function getCategorySection(categorySlug: string): Promise<CategorySectionItem> {
+  const pageContent = await getProductsPageContent();
+  const found = pageContent.categorySections.find((cat) => cat.slug === categorySlug);
+  if (found) {
+    return found;
+  }
+
+  // Fallback to static mapping by slug
+  if (categorySlug === 'vegetables') {
+    return {
+      slug: 'vegetables',
+      title: pageContent.vegTitle,
+      titleAr: pageContent.vegTitleAr,
+      subtitle: pageContent.vegSubtitle,
+      subtitleAr: pageContent.vegSubtitleAr,
+      description: pageContent.vegDescription,
+      descriptionAr: pageContent.vegDescriptionAr,
+    };
+  }
+  if (categorySlug === 'fruits') {
+    return {
+      slug: 'fruits',
+      title: pageContent.fruitsTitle,
+      titleAr: pageContent.fruitsTitleAr,
+      subtitle: pageContent.fruitsSubtitle,
+      subtitleAr: pageContent.fruitsSubtitleAr,
+      description: pageContent.fruitsDescription,
+      descriptionAr: pageContent.fruitsDescriptionAr,
+    };
+  }
+  if (categorySlug === 'leafy-herbs') {
+    return {
+      slug: 'leafy-herbs',
+      title: pageContent.leafyTitle,
+      titleAr: pageContent.leafyTitleAr,
+      subtitle: pageContent.leafySubtitle,
+      subtitleAr: pageContent.leafySubtitleAr,
+      description: pageContent.leafyDescription,
+      descriptionAr: pageContent.leafyDescriptionAr,
+    };
+  }
+  if (categorySlug === 'specialty-gourmet') {
+    return {
+      slug: 'specialty-gourmet',
+      title: pageContent.specialtyTitle,
+      titleAr: pageContent.specialtyTitleAr,
+      subtitle: pageContent.specialtySubtitle,
+      subtitleAr: pageContent.specialtySubtitleAr,
+      description: pageContent.specialtyDescription,
+      descriptionAr: pageContent.specialtyDescriptionAr,
+    };
+  }
+
+  return defaultProductsPageContent.categorySections[0];
 }
 

@@ -28,6 +28,14 @@ export const structure: StructureResolver = (S) =>
                     .title('Company Page Sections')
                 ),
               S.listItem()
+                .title('Our Products Page')
+                .child(
+                  S.document()
+                    .schemaType('productsPage')
+                    .documentId('productsPage-singleton')
+                    .title('Our Products Page & Category Sections')
+                ),
+              S.listItem()
                 .title('Sourcing & Quality Page')
                 .child(
                   S.document()
@@ -71,7 +79,51 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Catalogs & Collections')
             .items([
-              S.documentTypeListItem('product').title('Produce Lines (34)'),
+              S.listItem()
+                .title('Produce Catalog by Category')
+                .child(
+                  S.list()
+                    .title('Produce Categories')
+                    .items([
+                      S.listItem()
+                        .title('All Produce Lines (34)')
+                        .schemaType('product')
+                        .child(S.documentTypeList('product').title('All Produce Lines (34)')),
+                      S.divider(),
+                      S.listItem()
+                        .title('Fresh Vegetables (11)')
+                        .schemaType('product')
+                        .child(
+                          S.documentList()
+                            .title('Fresh Vegetables')
+                            .filter('_type == "product" && category == "vegetables"')
+                        ),
+                      S.listItem()
+                        .title('Fresh Fruits (8)')
+                        .schemaType('product')
+                        .child(
+                          S.documentList()
+                            .title('Fresh Fruits')
+                            .filter('_type == "product" && category == "fruits"')
+                        ),
+                      S.listItem()
+                        .title('Leafy & Herbs (8)')
+                        .schemaType('product')
+                        .child(
+                          S.documentList()
+                            .title('Leafy & Herbs')
+                            .filter('_type == "product" && category == "leafy-herbs"')
+                        ),
+                      S.listItem()
+                        .title('Specialty & Gourmet (7)')
+                        .schemaType('product')
+                        .child(
+                          S.documentList()
+                            .title('Specialty & Gourmet')
+                            .filter('_type == "product" && category == "specialty-gourmet"')
+                        ),
+                    ])
+                ),
               S.documentTypeListItem('partner').title('Partners & Clients (10)'),
               S.documentTypeListItem('service').title('Commercial Services (6)'),
               S.documentTypeListItem('qualityCert').title('Quality Accreditations (2)'),

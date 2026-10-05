@@ -5,7 +5,11 @@ import { PageBanner } from '@/components/ui/PageBanner';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { Cta } from '@/components/modules/Cta';
 import { productCategoriesData } from '@/data/products';
-import { getProducts } from '@/sanity/lib/data';
+import {
+  getProducts,
+  getProductsPageContent,
+  getCategorySection,
+} from '@/sanity/lib/data';
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -30,12 +34,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const categorySection = await getCategorySection(category);
+  const displayTitle = categorySection?.title || data.title;
+  const displayDesc = categorySection?.description || data.description;
+
   return {
-    title: `${data.title} — Nairat Food Services Qatar`,
-    description: `${data.description} High-yield, temperature-controlled commercial supply across Qatar.`,
+    title: `${displayTitle} — Nairat Food Services Qatar`,
+    description: `${displayDesc} High-yield, temperature-controlled commercial supply across Qatar.`,
     openGraph: {
-      title: `${data.title} — Nairat Food Services Qatar`,
-      description: data.description,
+      title: `${displayTitle} — Nairat Food Services Qatar`,
+      description: displayDesc,
       url: `https://nairatfoodservices.com/products/${data.slug}`,
       siteName: 'Nairat Food Services',
       locale: 'en_US',
@@ -52,23 +60,41 @@ export default async function ProductCategoryPage({ params }: PageProps): Promis
     notFound();
   }
 
-  const products = await getProducts(category);
-  const categoryData = { ...data, products };
+  const [products, productsPage, categorySection] = await Promise.all([
+    getProducts(category),
+    getProductsPageContent(),
+    getCategorySection(category),
+  ]);
+
+  const categoryData = {
+    ...data,
+    title: categorySection?.title || data.title,
+    subtitle: categorySection?.subtitle || data.subtitle,
+    description: categorySection?.description || data.description,
+    products,
+  };
+
+  const bannerTitle = productsPage.bannerTitle || 'Our Products';
+  const displayCategoryTitle = categorySection?.title || data.title;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* 1. Header Banner (Matches /company style: title + breadcrumbs) */}
+      {/* 1. Header Banner */}
       <PageBanner
-        title={data.title}
+        title={bannerTitle}
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'Our Products' },
-          { label: data.title },
+          { label: bannerTitle },
+          { label: displayCategoryTitle },
         ]}
       />
 
-      {/* 2. 4-in-a-Row Product Grid */}
-      <ProductGrid category={categoryData} />
+      {/* 2. 4-in-a-Row Product Grid with Category Selector Tabs and Header */}
+      <ProductGrid
+        category={categoryData}
+        categorySection={categorySection}
+        pageContent={productsPage}
+      />
 
       {/* 3. Final Sourcing & Partner CTA */}
       <Cta />
