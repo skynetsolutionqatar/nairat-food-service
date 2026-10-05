@@ -48,6 +48,14 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
     ? (content?.deliveringCommitmentBodyAr || 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.')
     : (content?.deliveringCommitmentBody || 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.');
 
+  const deliveringImageUrl = content?.deliveringImageUrl || '/whychooseus/warehouse.avif';
+  const badgeEst = isAr
+    ? (content?.deliveringBadgeEstAr || 'تأسست 2020')
+    : (content?.deliveringBadgeEst || 'Est. 2020');
+  const badgeLocation = isAr
+    ? (content?.deliveringBadgeLocationAr || 'شارع 37، المنطقة الصناعية')
+    : (content?.deliveringBadgeLocation || 'Street 37, Industrial Area');
+
   const renderTitle = () => {
     if (!isAr) {
       const text = content?.deliveringTitle;
@@ -132,7 +140,7 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
           <div className="delivering-image-card lg:col-span-5 relative order-2 lg:order-1">
             <div className="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200/80 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/4.5]">
               <Image
-                src="/whychooseus/warehouse.avif"
+                src={deliveringImageUrl}
                 alt={isAr ? "مرافق التوزيع وسلاسل التبريد لشركة نيرات بالدوحة" : "Nairat Food Cold-Chain Distribution Facility in Doha"}
                 fill
                 priority
@@ -145,11 +153,11 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
               <div className="absolute bottom-4 start-4 end-4 flex items-center justify-between gap-3 text-white text-xs font-semibold">
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#168849]/95 backdrop-blur-md shadow-sm">
                   <Calendar className="w-3.5 h-3.5" aria-hidden="true" />
-                  <span>{isAr ? 'تأسست 2020' : 'Est. 2020'}</span>
+                  <span>{badgeEst}</span>
                 </div>
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-md">
                   <MapPin className="w-3.5 h-3.5 text-[#D4F056]" aria-hidden="true" />
-                  <span>{isAr ? 'شارع 37، المنطقة الصناعية' : 'Street 37, Industrial Area'}</span>
+                  <span>{badgeLocation}</span>
                 </div>
               </div>
             </div>

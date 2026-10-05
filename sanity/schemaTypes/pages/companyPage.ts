@@ -8,25 +8,29 @@ export const companyPage = defineType({
     { name: 'banner', title: '1. Page Banner', options: { collapsible: true, collapsed: false } },
     { name: 'delivering', title: '2. Delivering Freshness Section', options: { collapsible: true, collapsed: true } },
     { name: 'visionMission', title: '3. Vision & Mission Section', options: { collapsible: true, collapsed: true } },
-    { name: 'sourcing', title: '4. Strategic Sourcing Section', options: { collapsible: true, collapsed: true } },
-    { name: 'team', title: '5. Dedicated Team Section', options: { collapsible: true, collapsed: true } },
-    { name: 'lookingAhead', title: '6. Looking Ahead Section', options: { collapsible: true, collapsed: true } },
+    { name: 'infrastructure', title: '4. Infrastructure & Operational Scale Section', options: { collapsible: true, collapsed: true } },
+    { name: 'sourcing', title: '5. Strategic Global Sourcing Section', options: { collapsible: true, collapsed: true } },
+    { name: 'team', title: '6. Dedicated Team Section', options: { collapsible: true, collapsed: true } },
+    { name: 'quality', title: '7. Quality & Food Safety Section', options: { collapsible: true, collapsed: true } },
+    { name: 'lookingAhead', title: '8. Looking Ahead Section', options: { collapsible: true, collapsed: true } },
   ],
   fields: [
+    // ==========================================
     // --- 1. BANNER ---
+    // ==========================================
     defineField({
       name: 'bannerTitle',
       title: 'Banner Title (EN)',
       type: 'string',
       fieldset: 'banner',
-      initialValue: 'About Nairat Food Services',
+      initialValue: 'Company',
     }),
     defineField({
       name: 'bannerTitleAr',
       title: 'Banner Title (AR)',
       type: 'string',
       fieldset: 'banner',
-      initialValue: 'عن نيرات للخدمات الغذائية',
+      initialValue: 'الشركة',
     }),
     defineField({
       name: 'bannerSubtitle',
@@ -45,7 +49,9 @@ export const companyPage = defineType({
       initialValue: 'نربط أبرز المزارع العالمية بقطاعات التجزئة والضيافة في قطر من خلال بنية تحتية لوجستية متطورة لسلسلة التبريد.',
     }),
 
+    // ==========================================
     // --- 2. DELIVERING FRESHNESS ---
+    // ==========================================
     defineField({
       name: 'deliveringEyebrow',
       title: 'Delivering Eyebrow (EN)',
@@ -80,7 +86,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'delivering',
-      initialValue: "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables. Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.",
+      initialValue: "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.\n\nEstablished in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.\n\nFrom farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.",
     }),
     defineField({
       name: 'deliveringNarrativeAr',
@@ -88,7 +94,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'delivering',
-      initialValue: 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة. تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة.',
+      initialValue: 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.\n\nتأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.\n\nمن المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.',
     }),
     defineField({
       name: 'deliveringCommitmentTitle',
@@ -110,7 +116,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 2,
       fieldset: 'delivering',
-      initialValue: 'We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every step of our operations.',
+      initialValue: 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.',
     }),
     defineField({
       name: 'deliveringCommitmentBodyAr',
@@ -118,10 +124,47 @@ export const companyPage = defineType({
       type: 'text',
       rows: 2,
       fieldset: 'delivering',
-      initialValue: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل خطوة من خطوات عملياتنا.',
+      initialValue: 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.',
+    }),
+    defineField({
+      name: 'deliveringImage',
+      title: 'Warehouse & Facility Image',
+      type: 'image',
+      fieldset: 'delivering',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'deliveringBadgeEst',
+      title: 'Badge Established Text (EN)',
+      type: 'string',
+      fieldset: 'delivering',
+      initialValue: 'Est. 2020',
+    }),
+    defineField({
+      name: 'deliveringBadgeEstAr',
+      title: 'Badge Established Text (AR)',
+      type: 'string',
+      fieldset: 'delivering',
+      initialValue: 'تأسست 2020',
+    }),
+    defineField({
+      name: 'deliveringBadgeLocation',
+      title: 'Badge Location Text (EN)',
+      type: 'string',
+      fieldset: 'delivering',
+      initialValue: 'Street 37, Industrial Area',
+    }),
+    defineField({
+      name: 'deliveringBadgeLocationAr',
+      title: 'Badge Location Text (AR)',
+      type: 'string',
+      fieldset: 'delivering',
+      initialValue: 'شارع 37، المنطقة الصناعية',
     }),
 
+    // ==========================================
     // --- 3. VISION & MISSION ---
+    // ==========================================
     defineField({
       name: 'visionMissionTitle',
       title: 'Vision & Mission Title (EN)',
@@ -142,7 +185,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 3,
       fieldset: 'visionMission',
-      initialValue: 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar. From global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
+      initialValue: 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar.\n\nFrom global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
     }),
     defineField({
       name: 'visionMissionNarrativeAr',
@@ -150,7 +193,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 3,
       fieldset: 'visionMission',
-      initialValue: 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر. من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية.',
+      initialValue: 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر.\n\nمن التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية لتقديم منتجات طازجة ومتسقة لعملاء التجزئة والتجاريين على مدار العام.',
     }),
     defineField({
       name: 'visionTitle',
@@ -210,10 +253,81 @@ export const companyPage = defineType({
       type: 'text',
       rows: 3,
       fieldset: 'visionMission',
-      initialValue: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل جانب من جوانب عملياتنا. نحن نستثمر باستمرار في موظفينا، وعملياتنا، وبنيتنا التحتية.',
+      initialValue: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل جانب من جوانب عملياتنا. نحن نستثمر باستمرار في موظفينا، وعملياتنا، وبنيتنا التحتية لبناء علاقات طويلة الأمد.',
     }),
 
-    // --- 4. SOURCING ---
+    // ==========================================
+    // --- 4. INFRASTRUCTURE & OPERATIONAL SCALE ---
+    // ==========================================
+    defineField({
+      name: 'infraTitle',
+      title: 'Infrastructure Headline (EN)',
+      type: 'string',
+      fieldset: 'infrastructure',
+      initialValue: 'Built Around Freshness: Infrastructure Designed for Scale',
+    }),
+    defineField({
+      name: 'infraTitleAr',
+      title: 'Infrastructure Headline (AR)',
+      type: 'string',
+      fieldset: 'infrastructure',
+      initialValue: 'صُممت حول النضارة: بنية تحتية مصممة للنمو والتوسع',
+    }),
+    defineField({
+      name: 'infraNarrative',
+      title: 'Infrastructure Narrative (EN)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'infrastructure',
+      initialValue: "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.",
+    }),
+    defineField({
+      name: 'infraNarrativeAr',
+      title: 'Infrastructure Narrative (AR)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'infrastructure',
+      initialValue: 'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.',
+    }),
+    defineField({
+      name: 'infraImage',
+      title: 'Chiller Facility Photo',
+      type: 'image',
+      fieldset: 'infrastructure',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'infraHubBadgeTitle',
+      title: 'Facility Hub Badge Title (EN)',
+      type: 'string',
+      fieldset: 'infrastructure',
+      initialValue: 'Industrial Area Hub · Doha',
+    }),
+    defineField({
+      name: 'infraHubBadgeTitleAr',
+      title: 'Facility Hub Badge Title (AR)',
+      type: 'string',
+      fieldset: 'infrastructure',
+      initialValue: 'مركز المنطقة الصناعية · الدوحة',
+    }),
+    defineField({
+      name: 'infraHubBadgeDesc',
+      title: 'Facility Hub Badge Subtitle (EN)',
+      type: 'string',
+      fieldset: 'infrastructure',
+      initialValue: 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.',
+    }),
+    defineField({
+      name: 'infraHubBadgeDescAr',
+      title: 'Facility Hub Badge Subtitle (AR)',
+      type: 'string',
+      fieldset: 'infrastructure',
+      initialValue: 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.',
+    }),
+
+    // ==========================================
+    // --- 5. STRATEGIC GLOBAL SOURCING ---
+    // ==========================================
     defineField({
       name: 'sourcingEyebrow',
       title: 'Sourcing Eyebrow (EN)',
@@ -246,20 +360,112 @@ export const companyPage = defineType({
       name: 'sourcingNarrative',
       title: 'Sourcing Narrative (EN)',
       type: 'text',
-      rows: 3,
+      rows: 4,
       fieldset: 'sourcing',
-      initialValue: 'Our global sourcing network is the foundation of our business. We partner directly with certified growers, agricultural cooperatives and international exporters across more than 60 countries.',
+      initialValue: "Fresh produce is seasonal. Our supply needs to be dependable. Nairat works directly with growers and suppliers across major producing regions around the world.\n\nOur sourcing network spans the Levant, Gulf, Africa, Asia and beyond, allowing us to plan supply according to seasonal availability and market demand.\n\nBy sourcing from multiple regions simultaneously, we maintain greater consistency in product quality, variety, and availability throughout the entire year.",
     }),
     defineField({
       name: 'sourcingNarrativeAr',
       title: 'Sourcing Narrative (AR)',
       type: 'text',
+      rows: 4,
+      fieldset: 'sourcing',
+      initialValue: 'المنتجات الطازجة موسمية. وإمدادنا يحتاج إلى أن يكون موثوقاً. تعمل نيرات مباشرة مع المزارعين والموردين عبر مناطق الإنتاج الرئيسية حول العالم.\n\nتمتد شبكة التوريد لدينا عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يسمح لنا بتخطيط الإمداد وفقاً للتوافر الموسمي والطلب في السوق.\n\nمن خلال التوريد من مناطق متعددة في وقت واحد، نحافظ على اتساق أكبر في جودة المنتج وتنوعه وتوافره طوال العام بأكمله.',
+    }),
+    // Card 1
+    defineField({
+      name: 'sourcingCard1Badge',
+      title: 'Card 1 Badge (EN)',
+      type: 'string',
+      fieldset: 'sourcing',
+      initialValue: 'Diversified Sourcing',
+    }),
+    defineField({
+      name: 'sourcingCard1BadgeAr',
+      title: 'Card 1 Badge (AR)',
+      type: 'string',
+      fieldset: 'sourcing',
+      initialValue: 'توريد متنوع',
+    }),
+    defineField({
+      name: 'sourcingCard1Title',
+      title: 'Card 1 Title (EN)',
+      type: 'string',
+      fieldset: 'sourcing',
+      initialValue: 'The Levant, Gulf, Africa & Asia',
+    }),
+    defineField({
+      name: 'sourcingCard1TitleAr',
+      title: 'Card 1 Title (AR)',
+      type: 'string',
+      fieldset: 'sourcing',
+      initialValue: 'بلاد الشام، والخليج، وإفريقيا وآسيا',
+    }),
+    defineField({
+      name: 'sourcingCard1Desc',
+      title: 'Card 1 Description (EN)',
+      type: 'text',
       rows: 3,
       fieldset: 'sourcing',
-      initialValue: 'شبكة التوريد العالمية الخاصة بنا هي أساس أعمالنا. نحن نتشارك مباشرة مع مزارعين معتمدين وتعاونيات زراعية ومصدرين دوليين عبر أكثر من 60 دولة.',
+      initialValue: 'Direct relationships with verified growers across Jordan, Lebanon, Syria, Saudi Arabia, Egypt, South Africa, Turkey, and India ensure uninterrupted arrivals of citrus, stone fruits, leafy greens, root vegetables, and exotic culinary lines.',
+    }),
+    defineField({
+      name: 'sourcingCard1DescAr',
+      title: 'Card 1 Description (AR)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'sourcing',
+      initialValue: 'علاقات مباشرة مع مزارعين موثوقين عبر الأردن، ولبنان، وسوريا، والمملكة العربية السعودية، ومصر، وجنوب إفريقيا، وتركيا، والهند تضمن وصولاً دون انقطاع للحمضيات، والفواكه ذات النواة الحجرية، والخضروات الورقية، والخضروات الجذرية، وخطوط الطهي الغريبة.',
+    }),
+    // Card 2
+    defineField({
+      name: 'sourcingCard2Badge',
+      title: 'Card 2 Badge (EN)',
+      type: 'string',
+      fieldset: 'sourcing',
+      initialValue: 'Abu Samra Border & QA',
+    }),
+    defineField({
+      name: 'sourcingCard2BadgeAr',
+      title: 'Card 2 Badge (AR)',
+      type: 'string',
+      fieldset: 'sourcing',
+      initialValue: 'حدود أبو سمرة وضمان الجودة',
+    }),
+    defineField({
+      name: 'sourcingCard2Title',
+      title: 'Card 2 Title (EN)',
+      type: 'string',
+      fieldset: 'sourcing',
+      initialValue: 'Border Quarantine & Origin Inspection',
+    }),
+    defineField({
+      name: 'sourcingCard2TitleAr',
+      title: 'Card 2 Title (AR)',
+      type: 'string',
+      fieldset: 'sourcing',
+      initialValue: 'الحجر الصحي على الحدود والفحص في المنشأ',
+    }),
+    defineField({
+      name: 'sourcingCard2Desc',
+      title: 'Card 2 Description (EN)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'sourcing',
+      initialValue: 'Our procurement teams inspect consignments at origin and maintain active quality verification at key entry points, including overland QA inspection at the Abu Samra land border, before cargo enters our temperature-controlled warehouse in Doha.',
+    }),
+    defineField({
+      name: 'sourcingCard2DescAr',
+      title: 'Card 2 Description (AR)',
+      type: 'text',
+      rows: 3,
+      fieldset: 'sourcing',
+      initialValue: 'تقوم فرق المشتريات لدينا بفحص الشحنات في بلد المنشأ والحفاظ على التحقق الفعال من الجودة في نقاط الدخول الرئيسية، بما في ذلك فحص ضمان الجودة البري عند حدود أبو سمرة البرية، قبل دخول الشحنة إلى مستودعنا الذي يتم التحكم في درجة حرارته في الدوحة.',
     }),
 
-    // --- 5. TEAM ---
+    // ==========================================
+    // --- 6. DEDICATED TEAM ---
+    // ==========================================
     defineField({
       name: 'teamEyebrow',
       title: 'Team Eyebrow (EN)',
@@ -304,21 +510,128 @@ export const companyPage = defineType({
       fieldset: 'team',
       initialValue: 'في نيرات للأغذية، نفهم أهداف وتطلعات كل عضو في الفريق، بالإضافة إلى احتياجات أعمالنا المتنامية. مع 200 موظف، نحن ملتزمون بمساعدة فريقنا على الوصول إلى أقصى إمكاناتهم. إن موظفينا هم أحد أثمن أصولنا، ونحن نعطي الأولوية لرفاهيتهم وتطويرهم وبيئة عمل آمنة لضمان النجاح المستمر لشركتنا.',
     }),
+    defineField({
+      name: 'teamImage',
+      title: 'Team Showcase Photo',
+      description: 'Upload a team photo banner for the team section',
+      type: 'image',
+      fieldset: 'team',
+      options: { hotspot: true },
+    }),
 
-    // --- 6. LOOKING AHEAD ---
+    // ==========================================
+    // --- 7. QUALITY & FOOD SAFETY ---
+    // ==========================================
+    defineField({
+      name: 'qualityEyebrow',
+      title: 'Quality Eyebrow (EN)',
+      type: 'string',
+      fieldset: 'quality',
+      initialValue: 'Quality & Food Safety',
+    }),
+    defineField({
+      name: 'qualityEyebrowAr',
+      title: 'Quality Eyebrow (AR)',
+      type: 'string',
+      fieldset: 'quality',
+      initialValue: 'الجودة وسلامة الغذاء',
+    }),
+    defineField({
+      name: 'qualityTitle',
+      title: 'Quality Headline (EN)',
+      type: 'string',
+      fieldset: 'quality',
+      initialValue: 'Quality You Can Trust: Rigorous Protocols from Source to Arrival',
+    }),
+    defineField({
+      name: 'qualityTitleAr',
+      title: 'Quality Headline (AR)',
+      type: 'string',
+      fieldset: 'quality',
+      initialValue: 'جودة يمكنك الوثوق بها: بروتوكولات صارمة من المصدر إلى الوصول',
+    }),
+    defineField({
+      name: 'qualityNarrative',
+      title: 'Quality Narrative (EN)',
+      type: 'text',
+      rows: 4,
+      fieldset: 'quality',
+      initialValue: 'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.\n\nOur produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
+    }),
+    defineField({
+      name: 'qualityNarrativeAr',
+      title: 'Quality Narrative (AR)',
+      type: 'text',
+      rows: 4,
+      fieldset: 'quality',
+      initialValue: 'في نيرات، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.\n\nيتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
+    }),
+    defineField({
+      name: 'qualityImage',
+      title: 'Quality Inspection Photo',
+      type: 'image',
+      fieldset: 'quality',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'qualityBadgeText',
+      title: 'Quality Badge Left Text (EN)',
+      type: 'string',
+      fieldset: 'quality',
+      initialValue: 'HACCP & ISO Certified',
+    }),
+    defineField({
+      name: 'qualityBadgeTextAr',
+      title: 'Quality Badge Left Text (AR)',
+      type: 'string',
+      fieldset: 'quality',
+      initialValue: 'معتمد بشهادة HACCP و ISO',
+    }),
+    defineField({
+      name: 'qualityBadgeSubtext',
+      title: 'Quality Badge Right Text (EN)',
+      type: 'string',
+      fieldset: 'quality',
+      initialValue: 'Qatar Verified',
+    }),
+    defineField({
+      name: 'qualityBadgeSubtextAr',
+      title: 'Quality Badge Right Text (AR)',
+      type: 'string',
+      fieldset: 'quality',
+      initialValue: 'معتمد في قطر',
+    }),
+
+    // ==========================================
+    // --- 8. LOOKING AHEAD ---
+    // ==========================================
+    defineField({
+      name: 'lookingAheadEyebrow',
+      title: 'Looking Ahead Eyebrow (EN)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: 'Looking Ahead',
+    }),
+    defineField({
+      name: 'lookingAheadEyebrowAr',
+      title: 'Looking Ahead Eyebrow (AR)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: 'التطلع إلى الأمام',
+    }),
     defineField({
       name: 'lookingAheadHeadline',
       title: 'Looking Ahead Headline (EN)',
       type: 'string',
       fieldset: 'lookingAhead',
-      initialValue: 'Looking Ahead: Building Long-Term Value in Fresh Produce.',
+      initialValue: 'Building the Future of Fresh-Produce Supply',
     }),
     defineField({
       name: 'lookingAheadHeadlineAr',
       title: 'Looking Ahead Headline (AR)',
       type: 'string',
       fieldset: 'lookingAhead',
-      initialValue: 'نظرة مستقبلية: بناء قيمة طويلة الأجل في قطاع المنتجات الطازجة.',
+      initialValue: 'بناء مستقبل إمداد المنتجات الطازجة',
     }),
     defineField({
       name: 'lookingAheadNarrative',
@@ -326,7 +639,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'lookingAhead',
-      initialValue: 'As Qatar continues to grow, so does the demand for higher standards in fresh food supply. Nairat is committed to continuous improvement across every part of our operations — expanding our cold chain, deepening grower relationships, and adopting modern technologies that make fresh food supply smarter, faster, and more sustainable.',
+      initialValue: "Nairat Food continues to strengthen its sourcing network, operational capabilities and infrastructure to meet the evolving needs of Qatar's food and retail sectors.\n\nOur focus remains on building stronger partnerships, expanding access to quality produce and delivering a dependable fresh-produce supply throughout the year.",
     }),
     defineField({
       name: 'lookingAheadNarrativeAr',
@@ -334,7 +647,70 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'lookingAhead',
-      initialValue: 'مع استمرار نمو دولة قطر، يتزايد الطلب على معايير أعلى في إمدادات الأغذية الطازجة. تلتزم نيرات بالتحسين المستمر عبر كل جانب من جوانب عملياتنا - توسيع سلسلة التبريد، وتعميق العلاقات مع المزارعين، واعتماد تقنيات حديثة تجعل إمداد الغذاء الطازج أكثر ذكاءً وسرعة واستدامة.',
+      initialValue: 'تواصل نيرات للأغذية تعزيز شبكة التوريد الخاصة بها، وقدراتها التشغيلية، وبنيتها التحتية لتلبية الاحتياجات المتطورة لقطاعي الأغذية والتجزئة في قطر.\n\nيظل تركيزنا منصباً على بناء شراكات أقوى، وتوسيع نطاق الوصول إلى منتجات عالية الجودة، وتقديم إمداد موثوق من المنتجات الطازجة طوال العام.',
+    }),
+    defineField({
+      name: 'lookingAheadAmbitionLabel',
+      title: 'Ambition Box Label (EN)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: 'Our Strategic Ambition',
+    }),
+    defineField({
+      name: 'lookingAheadAmbitionLabelAr',
+      title: 'Ambition Box Label (AR)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: 'طموحنا الاستراتيجي',
+    }),
+    defineField({
+      name: 'lookingAheadAmbitionQuote',
+      title: 'Ambition Quote (EN)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: '“To become the trusted fresh-produce partner for businesses and consumers across Qatar.”',
+    }),
+    defineField({
+      name: 'lookingAheadAmbitionQuoteAr',
+      title: 'Ambition Quote (AR)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: '«أن نصبح شريك المنتجات الطازجة الموثوق به للشركات والمستهلكين في جميع أنحاء قطر.»',
+    }),
+    defineField({
+      name: 'lookingAheadImage',
+      title: 'Looking Ahead Fleet Image',
+      type: 'image',
+      fieldset: 'lookingAhead',
+      options: { hotspot: true },
+    }),
+    defineField({
+      name: 'lookingAheadBadgeText',
+      title: 'Badge Left Text (EN)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: 'Refrigerated Delivery Network',
+    }),
+    defineField({
+      name: 'lookingAheadBadgeTextAr',
+      title: 'Badge Left Text (AR)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: 'شبكة التوصيل المبرد',
+    }),
+    defineField({
+      name: 'lookingAheadBadgeSubtext',
+      title: 'Badge Right Text (EN)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: 'Active 24/7',
+    }),
+    defineField({
+      name: 'lookingAheadBadgeSubtextAr',
+      title: 'Badge Right Text (AR)',
+      type: 'string',
+      fieldset: 'lookingAhead',
+      initialValue: 'نشط 24/7',
     }),
   ],
   preview: {
@@ -345,7 +721,7 @@ export const companyPage = defineType({
     prepare({ title, subtitle }) {
       return {
         title: title || 'Company Page',
-        subtitle: subtitle || 'Company page section-by-section content',
+        subtitle: subtitle || 'Company page 8 section-by-section content',
       };
     },
   },

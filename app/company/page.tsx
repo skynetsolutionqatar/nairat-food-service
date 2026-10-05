@@ -52,21 +52,19 @@ export default async function CompanyPage() {
       <CompanyVisionMission content={companyContent} />
 
       {/* 4. Infrastructure & Operational Scale (Full-Bleed Solid Green Section) */}
-      <CompanyInfrastructure company={company} />
+      <CompanyInfrastructure company={company} content={companyContent} />
 
       {/* 5. Strategic Global Sourcing (Narrative on Left, Yellow-Badged Cards on Right) */}
-      <CompanySourcing />
+      <CompanySourcing content={companyContent} />
 
       {/* 6. Our Team (Dedicated Team Showcase & Growth to 200+) */}
-      <CompanyTeam />
-
-
+      <CompanyTeam content={companyContent} />
 
       {/* 7. Quality & Food Safety (Feature Card: Image on Left, Content & Certs on Right) */}
-      <CompanyQuality />
+      <CompanyQuality content={companyContent} />
 
       {/* 8. Looking Ahead (Feature Card: Content & Ambition on Left, Image on Right) */}
-      <CompanyLookingAhead />
+      <CompanyLookingAhead content={companyContent} />
 
       {/* 9. Final CTA (Home Page Parallax Banner & Drawer Form) */}
       <Cta />

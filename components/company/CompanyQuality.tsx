@@ -7,12 +7,52 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { CertificateModal, type CertificateModalData } from '@/components/ui/CertificateModal';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
+import type { CompanyPageContent } from '@/sanity/lib/data';
 
-export function CompanyQuality() {
+interface CompanyQualityProps {
+  content?: CompanyPageContent;
+}
+
+export function CompanyQuality({ content }: CompanyQualityProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const [activeCert, setActiveCert] = useState<CertificateModalData | null>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+
+  const eyebrow = isAr
+    ? (content?.qualityEyebrowAr || 'الجودة وسلامة الغذاء')
+    : (content?.qualityEyebrow || 'Quality & Food Safety');
+
+  const title = isAr
+    ? (content?.qualityTitleAr || 'جودة يمكنك الوثوق بها: بروتوكولات صارمة من المصدر إلى الوصول')
+    : (content?.qualityTitle || 'Quality You Can Trust: Rigorous Protocols from Source to Arrival');
+
+  const defaultParagraphs = isAr
+    ? [
+        'في نيرات، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.',
+        'يتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
+      ]
+    : [
+        'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.',
+        'Our produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
+      ];
+
+  const narrativeText = isAr ? content?.qualityNarrativeAr : content?.qualityNarrative;
+  const paragraphs = narrativeText?.includes('\n')
+    ? narrativeText.split(/\n\s*\n|\n/).filter(Boolean)
+    : narrativeText
+    ? [narrativeText]
+    : defaultParagraphs;
+
+  const imageUrl = content?.qualityImageUrl || '/whychooseus/temperature-controlled.avif';
+
+  const badgeText = isAr
+    ? (content?.qualityBadgeTextAr || 'معتمد بشهادة HACCP و ISO')
+    : (content?.qualityBadgeText || 'HACCP & ISO Certified');
+
+  const badgeSubtext = isAr
+    ? (content?.qualityBadgeSubtextAr || 'معتمد في قطر')
+    : (content?.qualityBadgeSubtext || 'Qatar Verified');
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -49,7 +89,7 @@ export function CompanyQuality() {
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-neutral-100 border border-neutral-200/80">
                 <Image
-                  src="/whychooseus/temperature-controlled.avif"
+                  src={imageUrl}
                   alt={isAr ? "فحص الجودة والتحكم بدرجات الحرارة لشركة نيرات" : "Nairat Food QA Laboratory Inspection & Temperature Control"}
                   fill
                   className="object-cover"
@@ -60,34 +100,25 @@ export function CompanyQuality() {
                 <div className="absolute bottom-3 start-3 end-3 flex items-center justify-between text-white text-xs font-semibold px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md">
                   <div className="flex items-center gap-1.5">
                     <CheckCircle2 className="w-3.5 h-3.5 text-[#D4F056]" />
-                    <span>{isAr ? 'معتمد بشهادة HACCP و ISO' : 'HACCP & ISO Certified'}</span>
+                    <span>{badgeText}</span>
                   </div>
-                  <span className="text-[#D4F056]">{isAr ? 'معتمد في قطر' : 'Qatar Verified'}</span>
+                  <span className="text-[#D4F056]">{badgeSubtext}</span>
                 </div>
               </div>
             </div>
 
             {/* Right: Narrative & Cert Badges (7 cols) */}
             <div className="lg:col-span-7 space-y-4 text-start">
-              <SectionEyebrow title={isAr ? 'الجودة وسلامة الغذاء' : 'Quality & Food Safety'} />
+              <SectionEyebrow title={eyebrow} />
 
               <h3 className="font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-[#111814] tracking-tight leading-[1.18] text-start">
-                {isAr
-                  ? 'جودة يمكنك الوثوق بها: بروتوكولات صارمة من المصدر إلى الوصول'
-                  : 'Quality You Can Trust: Rigorous Protocols from Source to Arrival'}
+                {title}
               </h3>
 
               <div className="space-y-3 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
-                <p>
-                  {isAr
-                    ? 'في نيرات، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.'
-                    : 'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.'}
-                </p>
-                <p>
-                  {isAr
-                    ? 'يتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.'
-                    : 'Our produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.'}
-                </p>
+                {paragraphs.map((p, idx) => (
+                  <p key={idx}>{p}</p>
+                ))}
               </div>
 
               {/* Certification Badges */}

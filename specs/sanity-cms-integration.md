@@ -96,6 +96,17 @@ graph TD
   - `teamSize` (e.g. "200+")
   - Contact details (phone, email, P.O. Box, address, CR number)
 
+### 3.6 Company Page (`companyPage` Singleton)
+- Comprehensive 8-section CMS coverage aligned 1:1 with `/company` and `/ar/company`:
+  1. **Page Banner**: `bannerTitle`, `bannerTitleAr`, `bannerSubtitle`, `bannerSubtitleAr`
+  2. **Delivering Freshness**: `deliveringEyebrow`, `deliveringTitle`, `deliveringNarrative`, `deliveringCommitmentTitle`, `deliveringCommitmentBody`, `deliveringImage`, `deliveringBadgeEst`, `deliveringBadgeLocation` (bilingual)
+  3. **Vision & Mission**: `visionMissionTitle`, `visionMissionNarrative`, `visionTitle`, `visionBody`, `missionTitle`, `missionBody` (bilingual)
+  4. **Infrastructure & Operational Scale**: `infraTitle`, `infraNarrative`, `infraImage`, `infraHubBadgeTitle`, `infraHubBadgeDesc` (bilingual)
+  5. **Strategic Global Sourcing**: `sourcingEyebrow`, `sourcingHeadline`, `sourcingNarrative`, `sourcingCard1Badge`, `sourcingCard1Title`, `sourcingCard1Desc`, `sourcingCard2Badge`, `sourcingCard2Title`, `sourcingCard2Desc` (bilingual)
+  6. **Dedicated Team**: `teamEyebrow`, `teamHeadline`, `teamNarrative` (bilingual), `teamImage` (Team photo upload option with hotspot support)
+  7. **Quality & Food Safety**: `qualityEyebrow`, `qualityTitle`, `qualityNarrative`, `qualityImage`, `qualityBadgeText`, `qualityBadgeSubtext` (bilingual)
+  8. **Looking Ahead**: `lookingAheadEyebrow`, `lookingAheadHeadline`, `lookingAheadNarrative`, `lookingAheadAmbitionLabel`, `lookingAheadAmbitionQuote`, `lookingAheadImage`, `lookingAheadBadgeText`, `lookingAheadBadgeSubtext` (bilingual)
+
 ---
 
 ## 4. Implementation Steps

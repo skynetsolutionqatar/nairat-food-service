@@ -196,4 +196,11 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and HTTP 200 responses across all 12 routes.
   - [x] Visual validation via `agent-browser` (captured screenshots of all 6 pages in English and Arabic).
 
-
+- [x] **Milestone 5: Company Page 8-Section CMS Expansion & Team Photo Upload** [Completed]
+  - [x] Realigned `companyPage.ts` Sanity schema to encompass all 8 sections (1. Banner, 2. Delivering Freshness, 3. Vision & Mission, 4. Infrastructure & Operational Scale, 5. Strategic Global Sourcing, 6. Dedicated Team, 7. Quality & Food Safety, 8. Looking Ahead).
+  - [x] Added `teamImage` image field (`hotspot: true`) in Sanity Studio under Dedicated Team section.
+  - [x] Resolved all content mismatches across all 8 sections between Sanity and the Next.js page components.
+  - [x] Updated GROQ queries (`COMPANY_PAGE_QUERY`) and data layer (`sanity/lib/data.ts`) to fetch and transform all fields and images.
+  - [x] Wired all company components (`CompanyInfrastructure`, `CompanySourcing`, `CompanyTeam`, `CompanyQuality`, `CompanyLookingAhead`, `CompanyDelivering`) to consume live Sanity CMS data with graceful fallbacks.
+  - [x] Successfully migrated and seeded live Sanity Content Lake with complete 8-section content and uploaded team showcase photo asset.
+  - [x] Verified zero TypeScript compilation errors and end-to-end verified via `agent-browser`.

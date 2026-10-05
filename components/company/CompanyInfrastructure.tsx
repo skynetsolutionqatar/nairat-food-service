@@ -7,6 +7,8 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { useLocale } from '@/context/LocaleContext';
 import { CompanyProfile, companyProfile as defaultCompany } from '@/lib/config/company';
 
+import type { CompanyPageContent } from '@/sanity/lib/data';
+
 interface ScaleItem {
   value: string;
   valueAr?: string;
@@ -16,13 +18,47 @@ interface ScaleItem {
 
 interface CompanyInfrastructureProps {
   company?: CompanyProfile;
+  content?: CompanyPageContent;
 }
 
-export function CompanyInfrastructure({ company }: CompanyInfrastructureProps = {}) {
+export function CompanyInfrastructure({ company, content }: CompanyInfrastructureProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
   const profile = company || defaultCompany;
+
+  const infraTitle = isAr
+    ? (content?.infraTitleAr || 'صُممت حول النضارة: بنية تحتية مصممة للنمو والتوسع')
+    : (content?.infraTitle || 'Built Around Freshness: Infrastructure Designed for Scale');
+
+  const infraNarrative = isAr
+    ? (content?.infraNarrativeAr ||
+        'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.')
+    : (content?.infraNarrative ||
+        "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.");
+
+  const infraImageUrl = content?.infraImageUrl || '/whychooseus/chiller-warehouse.avif';
+
+  const hubBadgeTitle = isAr
+    ? (content?.infraHubBadgeTitleAr || 'مركز المنطقة الصناعية · الدوحة')
+    : (content?.infraHubBadgeTitle || 'Industrial Area Hub · Doha');
+
+  const hubBadgeDesc = isAr
+    ? (content?.infraHubBadgeDescAr || 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.')
+    : (content?.infraHubBadgeDesc || 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.');
+
+  const renderTitle = () => {
+    if (infraTitle.includes(':')) {
+      const [first, ...rest] = infraTitle.split(':');
+      return (
+        <>
+          {first}: <br />
+          <span className="text-[#D4F056]">{rest.join(':').trim()}</span>
+        </>
+      );
+    }
+    return infraTitle;
+  };
 
   const scaleItems: ScaleItem[] = [
     {
@@ -123,25 +159,13 @@ export function CompanyInfrastructure({ company }: CompanyInfrastructureProps = 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-end border-b border-white/20 pb-8 sm:pb-10">
           <div className="lg:col-span-7">
             <h2 className="infra-green-header font-display type-h2 font-semibold text-white text-start leading-[1.12]">
-              {isAr ? (
-                <>
-                  صُممت حول النضارة: <br />
-                  <span className="text-[#D4F056]">بنية تحتية مصممة للنمو والتوسع</span>
-                </>
-              ) : (
-                <>
-                  Built Around Freshness: <br />
-                  <span className="text-[#D4F056]">Infrastructure Designed for Scale</span>
-                </>
-              )}
+              {renderTitle()}
             </h2>
           </div>
 
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end">
             <p className="infra-green-header font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-white/90 leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
-              {isAr
-                ? 'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.'
-                : "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery."}
+              {infraNarrative}
             </p>
           </div>
         </div>
@@ -152,7 +176,7 @@ export function CompanyInfrastructure({ company }: CompanyInfrastructureProps = 
           <div className="infra-green-card lg:col-span-5 relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/5]">
               <Image
-                src="/whychooseus/chiller-warehouse.avif"
+                src={infraImageUrl}
                 alt={isAr ? "منشأة مستودع التخزين المبرد لشركة نيرات للأغذية" : "Nairat Food Cold Storage Chiller Warehouse Facility"}
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
@@ -162,12 +186,10 @@ export function CompanyInfrastructure({ company }: CompanyInfrastructureProps = 
 
               <div className="absolute bottom-4 start-4 end-4 p-4 rounded-2xl bg-black/50 backdrop-blur-md text-white text-xs space-y-1 text-start">
                 <span className="font-semibold text-[#D4F056] block uppercase tracking-wider">
-                  {isAr ? 'مركز المنطقة الصناعية · الدوحة' : 'Industrial Area Hub · Doha'}
+                  {hubBadgeTitle}
                 </span>
                 <span className="text-white/80 block">
-                  {isAr
-                    ? 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.'
-                    : 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.'}
+                  {hubBadgeDesc}
                 </span>
               </div>
             </div>

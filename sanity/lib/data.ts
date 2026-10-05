@@ -849,6 +849,7 @@ export interface CompanyPageContent {
   bannerTitleAr: string;
   bannerSubtitle: string;
   bannerSubtitleAr: string;
+
   deliveringEyebrow: string;
   deliveringEyebrowAr: string;
   deliveringTitle: string;
@@ -859,6 +860,12 @@ export interface CompanyPageContent {
   deliveringCommitmentTitleAr: string;
   deliveringCommitmentBody: string;
   deliveringCommitmentBodyAr: string;
+  deliveringImageUrl?: string;
+  deliveringBadgeEst?: string;
+  deliveringBadgeEstAr?: string;
+  deliveringBadgeLocation?: string;
+  deliveringBadgeLocationAr?: string;
+
   visionMissionTitle: string;
   visionMissionTitleAr: string;
   visionMissionNarrative: string;
@@ -871,43 +878,99 @@ export interface CompanyPageContent {
   missionTitleAr: string;
   missionBody: string;
   missionBodyAr: string;
+
+  infraTitle: string;
+  infraTitleAr: string;
+  infraNarrative: string;
+  infraNarrativeAr: string;
+  infraImageUrl?: string;
+  infraHubBadgeTitle: string;
+  infraHubBadgeTitleAr: string;
+  infraHubBadgeDesc: string;
+  infraHubBadgeDescAr: string;
+
   sourcingEyebrow: string;
   sourcingEyebrowAr: string;
   sourcingHeadline: string;
   sourcingHeadlineAr: string;
   sourcingNarrative: string;
   sourcingNarrativeAr: string;
+  sourcingCard1Badge: string;
+  sourcingCard1BadgeAr: string;
+  sourcingCard1Title: string;
+  sourcingCard1TitleAr: string;
+  sourcingCard1Desc: string;
+  sourcingCard1DescAr: string;
+  sourcingCard2Badge: string;
+  sourcingCard2BadgeAr: string;
+  sourcingCard2Title: string;
+  sourcingCard2TitleAr: string;
+  sourcingCard2Desc: string;
+  sourcingCard2DescAr: string;
+
   teamEyebrow: string;
   teamEyebrowAr: string;
   teamHeadline: string;
   teamHeadlineAr: string;
   teamNarrative: string;
   teamNarrativeAr: string;
+  teamImageUrl?: string;
+
+  qualityEyebrow: string;
+  qualityEyebrowAr: string;
+  qualityTitle: string;
+  qualityTitleAr: string;
+  qualityNarrative: string;
+  qualityNarrativeAr: string;
+  qualityImageUrl?: string;
+  qualityBadgeText: string;
+  qualityBadgeTextAr: string;
+  qualityBadgeSubtext: string;
+  qualityBadgeSubtextAr: string;
+
+  lookingAheadEyebrow: string;
+  lookingAheadEyebrowAr: string;
   lookingAheadHeadline: string;
   lookingAheadHeadlineAr: string;
   lookingAheadNarrative: string;
   lookingAheadNarrativeAr: string;
+  lookingAheadAmbitionLabel: string;
+  lookingAheadAmbitionLabelAr: string;
+  lookingAheadAmbitionQuote: string;
+  lookingAheadAmbitionQuoteAr: string;
+  lookingAheadImageUrl?: string;
+  lookingAheadBadgeText: string;
+  lookingAheadBadgeTextAr: string;
+  lookingAheadBadgeSubtext: string;
+  lookingAheadBadgeSubtextAr: string;
 }
 
 export const defaultCompanyPageContent: CompanyPageContent = {
-  bannerTitle: en.company.badge,
-  bannerTitleAr: ar.company.badge,
-  bannerSubtitle: en.company.heroSubtitle,
-  bannerSubtitleAr: ar.company.heroSubtitle,
+  bannerTitle: 'Company',
+  bannerTitleAr: 'الشركة',
+  bannerSubtitle: 'Connecting global agricultural basins with Qatar’s food retail and hospitality sectors through state-of-the-art cold-chain logistics.',
+  bannerSubtitleAr: 'نربط أبرز المزارع العالمية بقطاعات التجزئة والضيافة في قطر من خلال بنية تحتية لوجستية متطورة لسلسلة التبريد.',
+
   deliveringEyebrow: 'Delivering Freshness',
   deliveringEyebrowAr: 'توصيل النضارة',
   deliveringTitle: 'A comprehensive fresh-produce partner for Qatar.',
   deliveringTitleAr: 'شريك شامل للمنتجات الطازجة لقطر.',
-  deliveringNarrative: "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables. Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.",
-  deliveringNarrativeAr: 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة. تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة.',
+  deliveringNarrative: "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.\n\nEstablished in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.\n\nFrom farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.",
+  deliveringNarrativeAr: 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.\n\nتأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.\n\nمن المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.',
   deliveringCommitmentTitle: 'Our Core Commitment',
   deliveringCommitmentTitleAr: 'التزامنا الأساسي',
-  deliveringCommitmentBody: 'We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every step of our operations.',
-  deliveringCommitmentBodyAr: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل خطوة من خطوات عملياتنا.',
+  deliveringCommitmentBody: 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.',
+  deliveringCommitmentBodyAr: 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.',
+  deliveringImageUrl: '/whychooseus/warehouse.avif',
+  deliveringBadgeEst: 'Est. 2020',
+  deliveringBadgeEstAr: 'تأسست 2020',
+  deliveringBadgeLocation: 'Street 37, Industrial Area',
+  deliveringBadgeLocationAr: 'شارع 37، المنطقة الصناعية',
+
   visionMissionTitle: 'Our Journey: Growing a Fresher Future for Qatar.',
   visionMissionTitleAr: 'مسيرتنا: تنمية مستقبل أكثر نضارة لقطر.',
-  visionMissionNarrative: 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar. From global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
-  visionMissionNarrativeAr: 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر. من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية.',
+  visionMissionNarrative: 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar.\n\nFrom global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
+  visionMissionNarrativeAr: 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر.\n\nمن التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية لتقديم منتجات طازجة ومتسقة لعملاء التجزئة والتجاريين على مدار العام.',
   visionTitle: en.company.visionTitle,
   visionTitleAr: ar.company.visionTitle,
   visionBody: en.company.visionDesc,
@@ -916,22 +979,71 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   missionTitleAr: ar.company.missionTitle,
   missionBody: en.company.missionDesc,
   missionBodyAr: ar.company.missionDesc,
-  sourcingEyebrow: 'Global Sourcing',
-  sourcingEyebrowAr: 'التوريد العالمي',
+
+  infraTitle: 'Built Around Freshness: Infrastructure Designed for Scale',
+  infraTitleAr: 'صُممت حول النضارة: بنية تحتية مصممة للنمو والتوسع',
+  infraNarrative: "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.",
+  infraNarrativeAr: 'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.',
+  infraImageUrl: '/whychooseus/chiller-warehouse.avif',
+  infraHubBadgeTitle: 'Industrial Area Hub · Doha',
+  infraHubBadgeTitleAr: 'مركز المنطقة الصناعية · الدوحة',
+  infraHubBadgeDesc: 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.',
+  infraHubBadgeDescAr: 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.',
+
+  sourcingEyebrow: 'Strategic Sourcing',
+  sourcingEyebrowAr: 'التوريد الاستراتيجي',
   sourcingHeadline: 'Strategic Sourcing: From Global Orchards to Qatar.',
   sourcingHeadlineAr: 'التوريد الاستراتيجي: من البساتين العالمية إلى قطر.',
-  sourcingNarrative: 'Our global sourcing network is the foundation of our business. We partner directly with certified growers, agricultural cooperatives and international exporters across more than 60 countries.',
-  sourcingNarrativeAr: 'شبكة التوريد العالمية الخاصة بنا هي أساس أعمالنا. نحن نتشارك مباشرة مع مزارعين معتمدين وتعاونيات زراعية ومصدرين دوليين عبر أكثر من 60 دولة.',
+  sourcingNarrative: "Fresh produce is seasonal. Our supply needs to be dependable. Nairat works directly with growers and suppliers across major producing regions around the world.\n\nOur sourcing network spans the Levant, Gulf, Africa, Asia and beyond, allowing us to plan supply according to seasonal availability and market demand.\n\nBy sourcing from multiple regions simultaneously, we maintain greater consistency in product quality, variety, and availability throughout the entire year.",
+  sourcingNarrativeAr: 'المنتجات الطازجة موسمية. وإمدادنا يحتاج إلى أن يكون موثوقاً. تعمل نيرات مباشرة مع المزارعين والموردين عبر مناطق الإنتاج الرئيسية حول العالم.\n\nتمتد شبكة التوريد لدينا عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يسمح لنا بتخطيط الإمداد وفقاً للتوافر الموسمي والطلب في السوق.\n\nمن خلال التوريد من مناطق متعددة في وقت واحد، نحافظ على اتساق أكبر في جودة المنتج وتنوعه وتوافره طوال العام بأكمله.',
+  sourcingCard1Badge: 'Diversified Sourcing',
+  sourcingCard1BadgeAr: 'توريد متنوع',
+  sourcingCard1Title: 'The Levant, Gulf, Africa & Asia',
+  sourcingCard1TitleAr: 'بلاد الشام، والخليج، وإفريقيا وآسيا',
+  sourcingCard1Desc: 'Direct relationships with verified growers across Jordan, Lebanon, Syria, Saudi Arabia, Egypt, South Africa, Turkey, and India ensure uninterrupted arrivals of citrus, stone fruits, leafy greens, root vegetables, and exotic culinary lines.',
+  sourcingCard1DescAr: 'علاقات مباشرة مع مزارعين موثوقين عبر الأردن، ولبنان، وسوريا، والمملكة العربية السعودية، ومصر، وجنوب إفريقيا، وتركيا، والهند تضمن وصولاً دون انقطاع للحمضيات، والفواكه ذات النواة الحجرية، والخضروات الورقية، والخضروات الجذرية، وخطوط الطهي الغريبة.',
+  sourcingCard2Badge: 'Abu Samra Border & QA',
+  sourcingCard2BadgeAr: 'حدود أبو سمرة وضمان الجودة',
+  sourcingCard2Title: 'Border Quarantine & Origin Inspection',
+  sourcingCard2TitleAr: 'الحجر الصحي على الحدود والفحص في المنشأ',
+  sourcingCard2Desc: 'Our procurement teams inspect consignments at origin and maintain active quality verification at key entry points, including overland QA inspection at the Abu Samra land border, before cargo enters our temperature-controlled warehouse in Doha.',
+  sourcingCard2DescAr: 'تقوم فرق المشتريات لدينا بفحص الشحنات في بلد المنشأ والحفاظ على التحقق الفعال من الجودة في نقاط الدخول الرئيسية، بما في ذلك فحص ضمان الجودة البري عند حدود أبو سمرة البرية، قبل دخول الشحنة إلى مستودعنا الذي يتم التحكم في درجة حرارته في الدوحة.',
+
   teamEyebrow: 'Our Team',
   teamEyebrowAr: 'فريقنا',
   teamHeadline: 'The People Driving Our Growth',
   teamHeadlineAr: 'الأشخاص الذين يقودون نمونا',
   teamNarrative: 'At Nairat Food, we understand the goals and aspirations of each team member, as well as the needs of our growing business. With 200 employees, we are committed to helping our team reach their full potential. Our people are one of our most valuable assets, and we prioritize their well-being, development and a safe working environment to ensure the continued success of our company.',
   teamNarrativeAr: 'في نيرات للأغذية، نفهم أهداف وتطلعات كل عضو في الفريق، بالإضافة إلى احتياجات أعمالنا المتنامية. مع 200 موظف، نحن ملتزمون بمساعدة فريقنا على الوصول إلى أقصى إمكاناتهم. إن موظفينا هم أحد أثمن أصولنا، ونحن نعطي الأولوية لرفاهيتهم وتطويرهم وبيئة عمل آمنة لضمان النجاح المستمر لشركتنا.',
-  lookingAheadHeadline: 'Looking Ahead: Building Long-Term Value in Fresh Produce.',
-  lookingAheadHeadlineAr: 'نظرة مستقبلية: بناء قيمة طويلة الأجل في قطاع المنتجات الطازجة.',
-  lookingAheadNarrative: 'As Qatar continues to grow, so does the demand for higher standards in fresh food supply. Nairat is committed to continuous improvement across every part of our operations — expanding our cold chain, deepening grower relationships, and adopting modern technologies that make fresh food supply smarter, faster, and more sustainable.',
-  lookingAheadNarrativeAr: 'مع استمرار نمو دولة قطر، يتزايد الطلب على معايير أعلى في إمدادات الأغذية الطازجة. تلتزم نيرات بالتحسين المستمر عبر كل جانب من جوانب عملياتنا - توسيع سلسلة التبريد، وتعميق العلاقات مع المزارعين، واعتماد تقنيات حديثة تجعل إمداد الغذاء الطازج أكثر ذكاءً وسرعة واستدامة.',
+  teamImageUrl: '/team/team.jpg',
+
+  qualityEyebrow: 'Quality & Food Safety',
+  qualityEyebrowAr: 'الجودة وسلامة الغذاء',
+  qualityTitle: 'Quality You Can Trust: Rigorous Protocols from Source to Arrival',
+  qualityTitleAr: 'جودة يمكنك الوثوق بها: بروتوكولات صارمة من المصدر إلى الوصول',
+  qualityNarrative: 'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.\n\nOur produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
+  qualityNarrativeAr: 'في نيرات، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.\n\nيتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
+  qualityImageUrl: '/whychooseus/temperature-controlled.avif',
+  qualityBadgeText: 'HACCP & ISO Certified',
+  qualityBadgeTextAr: 'معتمد بشهادة HACCP و ISO',
+  qualityBadgeSubtext: 'Qatar Verified',
+  qualityBadgeSubtextAr: 'معتمد في قطر',
+
+  lookingAheadEyebrow: 'Looking Ahead',
+  lookingAheadEyebrowAr: 'التطلع إلى الأمام',
+  lookingAheadHeadline: 'Building the Future of Fresh-Produce Supply',
+  lookingAheadHeadlineAr: 'بناء مستقبل إمداد المنتجات الطازجة',
+  lookingAheadNarrative: "Nairat Food continues to strengthen its sourcing network, operational capabilities and infrastructure to meet the evolving needs of Qatar's food and retail sectors.\n\nOur focus remains on building stronger partnerships, expanding access to quality produce and delivering a dependable fresh-produce supply throughout the year.",
+  lookingAheadNarrativeAr: 'تواصل نيرات للأغذية تعزيز شبكة التوريد الخاصة بها، وقدراتها التشغيلية، وبنيتها التحتية لتلبية الاحتياجات المتطورة لقطاعي الأغذية والتجزئة في قطر.\n\nيظل تركيزنا منصباً على بناء شراكات أقوى، وتوسيع نطاق الوصول إلى منتجات عالية الجودة، وتقديم إمداد موثوق من المنتجات الطازجة طوال العام.',
+  lookingAheadAmbitionLabel: 'Our Strategic Ambition',
+  lookingAheadAmbitionLabelAr: 'طموحنا الاستراتيجي',
+  lookingAheadAmbitionQuote: '“To become the trusted fresh-produce partner for businesses and consumers across Qatar.”',
+  lookingAheadAmbitionQuoteAr: '«أن نصبح شريك المنتجات الطازجة الموثوق به للشركات والمستهلكين في جميع أنحاء قطر.»',
+  lookingAheadImageUrl: '/whychooseus/truck.avif',
+  lookingAheadBadgeText: 'Refrigerated Delivery Network',
+  lookingAheadBadgeTextAr: 'شبكة التوصيل المبرد',
+  lookingAheadBadgeSubtext: 'Active 24/7',
+  lookingAheadBadgeSubtextAr: 'نشط 24/7',
 };
 
 export async function getCompanyPageContent(): Promise<CompanyPageContent> {
@@ -952,8 +1064,9 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
         return {
           bannerTitle: data.bannerTitle || defaultCompanyPageContent.bannerTitle,
           bannerTitleAr: data.bannerTitleAr || defaultCompanyPageContent.bannerTitleAr,
-          bannerSubtitle: data.bannerSubtitle || defaultCompanyPageContent.bannerSubtitle,
-          bannerSubtitleAr: data.bannerSubtitleAr || defaultCompanyPageContent.bannerSubtitleAr,
+          bannerSubtitle: data.bannerSubtitle ?? defaultCompanyPageContent.bannerSubtitle,
+          bannerSubtitleAr: data.bannerSubtitleAr ?? defaultCompanyPageContent.bannerSubtitleAr,
+
           deliveringEyebrow: data.deliveringEyebrow || defaultCompanyPageContent.deliveringEyebrow,
           deliveringEyebrowAr: data.deliveringEyebrowAr || defaultCompanyPageContent.deliveringEyebrowAr,
           deliveringTitle: data.deliveringTitle || defaultCompanyPageContent.deliveringTitle,
@@ -964,6 +1077,12 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           deliveringCommitmentTitleAr: data.deliveringCommitmentTitleAr || defaultCompanyPageContent.deliveringCommitmentTitleAr,
           deliveringCommitmentBody: data.deliveringCommitmentBody || defaultCompanyPageContent.deliveringCommitmentBody,
           deliveringCommitmentBodyAr: data.deliveringCommitmentBodyAr || defaultCompanyPageContent.deliveringCommitmentBodyAr,
+          deliveringImageUrl: (data.deliveringImage ? urlForImage(data.deliveringImage) : null) || defaultCompanyPageContent.deliveringImageUrl,
+          deliveringBadgeEst: data.deliveringBadgeEst || defaultCompanyPageContent.deliveringBadgeEst,
+          deliveringBadgeEstAr: data.deliveringBadgeEstAr || defaultCompanyPageContent.deliveringBadgeEstAr,
+          deliveringBadgeLocation: data.deliveringBadgeLocation || defaultCompanyPageContent.deliveringBadgeLocation,
+          deliveringBadgeLocationAr: data.deliveringBadgeLocationAr || defaultCompanyPageContent.deliveringBadgeLocationAr,
+
           visionMissionTitle: data.visionMissionTitle || defaultCompanyPageContent.visionMissionTitle,
           visionMissionTitleAr: data.visionMissionTitleAr || defaultCompanyPageContent.visionMissionTitleAr,
           visionMissionNarrative: data.visionMissionNarrative || defaultCompanyPageContent.visionMissionNarrative,
@@ -976,22 +1095,71 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           missionTitleAr: data.missionTitleAr || defaultCompanyPageContent.missionTitleAr,
           missionBody: data.missionBody || defaultCompanyPageContent.missionBody,
           missionBodyAr: data.missionBodyAr || defaultCompanyPageContent.missionBodyAr,
+
+          infraTitle: data.infraTitle || defaultCompanyPageContent.infraTitle,
+          infraTitleAr: data.infraTitleAr || defaultCompanyPageContent.infraTitleAr,
+          infraNarrative: data.infraNarrative || defaultCompanyPageContent.infraNarrative,
+          infraNarrativeAr: data.infraNarrativeAr || defaultCompanyPageContent.infraNarrativeAr,
+          infraImageUrl: (data.infraImage ? urlForImage(data.infraImage) : null) || defaultCompanyPageContent.infraImageUrl,
+          infraHubBadgeTitle: data.infraHubBadgeTitle || defaultCompanyPageContent.infraHubBadgeTitle,
+          infraHubBadgeTitleAr: data.infraHubBadgeTitleAr || defaultCompanyPageContent.infraHubBadgeTitleAr,
+          infraHubBadgeDesc: data.infraHubBadgeDesc || defaultCompanyPageContent.infraHubBadgeDesc,
+          infraHubBadgeDescAr: data.infraHubBadgeDescAr || defaultCompanyPageContent.infraHubBadgeDescAr,
+
           sourcingEyebrow: data.sourcingEyebrow || defaultCompanyPageContent.sourcingEyebrow,
           sourcingEyebrowAr: data.sourcingEyebrowAr || defaultCompanyPageContent.sourcingEyebrowAr,
           sourcingHeadline: data.sourcingHeadline || defaultCompanyPageContent.sourcingHeadline,
           sourcingHeadlineAr: data.sourcingHeadlineAr || defaultCompanyPageContent.sourcingHeadlineAr,
           sourcingNarrative: data.sourcingNarrative || defaultCompanyPageContent.sourcingNarrative,
           sourcingNarrativeAr: data.sourcingNarrativeAr || defaultCompanyPageContent.sourcingNarrativeAr,
+          sourcingCard1Badge: data.sourcingCard1Badge || defaultCompanyPageContent.sourcingCard1Badge,
+          sourcingCard1BadgeAr: data.sourcingCard1BadgeAr || defaultCompanyPageContent.sourcingCard1BadgeAr,
+          sourcingCard1Title: data.sourcingCard1Title || defaultCompanyPageContent.sourcingCard1Title,
+          sourcingCard1TitleAr: data.sourcingCard1TitleAr || defaultCompanyPageContent.sourcingCard1TitleAr,
+          sourcingCard1Desc: data.sourcingCard1Desc || defaultCompanyPageContent.sourcingCard1Desc,
+          sourcingCard1DescAr: data.sourcingCard1DescAr || defaultCompanyPageContent.sourcingCard1DescAr,
+          sourcingCard2Badge: data.sourcingCard2Badge || defaultCompanyPageContent.sourcingCard2Badge,
+          sourcingCard2BadgeAr: data.sourcingCard2BadgeAr || defaultCompanyPageContent.sourcingCard2BadgeAr,
+          sourcingCard2Title: data.sourcingCard2Title || defaultCompanyPageContent.sourcingCard2Title,
+          sourcingCard2TitleAr: data.sourcingCard2TitleAr || defaultCompanyPageContent.sourcingCard2TitleAr,
+          sourcingCard2Desc: data.sourcingCard2Desc || defaultCompanyPageContent.sourcingCard2Desc,
+          sourcingCard2DescAr: data.sourcingCard2DescAr || defaultCompanyPageContent.sourcingCard2DescAr,
+
           teamEyebrow: data.teamEyebrow || defaultCompanyPageContent.teamEyebrow,
           teamEyebrowAr: data.teamEyebrowAr || defaultCompanyPageContent.teamEyebrowAr,
           teamHeadline: data.teamHeadline || defaultCompanyPageContent.teamHeadline,
           teamHeadlineAr: data.teamHeadlineAr || defaultCompanyPageContent.teamHeadlineAr,
           teamNarrative: data.teamNarrative || defaultCompanyPageContent.teamNarrative,
           teamNarrativeAr: data.teamNarrativeAr || defaultCompanyPageContent.teamNarrativeAr,
+          teamImageUrl: (data.teamImage ? urlForImage(data.teamImage) : null) || defaultCompanyPageContent.teamImageUrl,
+
+          qualityEyebrow: data.qualityEyebrow || defaultCompanyPageContent.qualityEyebrow,
+          qualityEyebrowAr: data.qualityEyebrowAr || defaultCompanyPageContent.qualityEyebrowAr,
+          qualityTitle: data.qualityTitle || defaultCompanyPageContent.qualityTitle,
+          qualityTitleAr: data.qualityTitleAr || defaultCompanyPageContent.qualityTitleAr,
+          qualityNarrative: data.qualityNarrative || defaultCompanyPageContent.qualityNarrative,
+          qualityNarrativeAr: data.qualityNarrativeAr || defaultCompanyPageContent.qualityNarrativeAr,
+          qualityImageUrl: (data.qualityImage ? urlForImage(data.qualityImage) : null) || defaultCompanyPageContent.qualityImageUrl,
+          qualityBadgeText: data.qualityBadgeText || defaultCompanyPageContent.qualityBadgeText,
+          qualityBadgeTextAr: data.qualityBadgeTextAr || defaultCompanyPageContent.qualityBadgeTextAr,
+          qualityBadgeSubtext: data.qualityBadgeSubtext || defaultCompanyPageContent.qualityBadgeSubtext,
+          qualityBadgeSubtextAr: data.qualityBadgeSubtextAr || defaultCompanyPageContent.qualityBadgeSubtextAr,
+
+          lookingAheadEyebrow: data.lookingAheadEyebrow || defaultCompanyPageContent.lookingAheadEyebrow,
+          lookingAheadEyebrowAr: data.lookingAheadEyebrowAr || defaultCompanyPageContent.lookingAheadEyebrowAr,
           lookingAheadHeadline: data.lookingAheadHeadline || defaultCompanyPageContent.lookingAheadHeadline,
           lookingAheadHeadlineAr: data.lookingAheadHeadlineAr || defaultCompanyPageContent.lookingAheadHeadlineAr,
           lookingAheadNarrative: data.lookingAheadNarrative || defaultCompanyPageContent.lookingAheadNarrative,
           lookingAheadNarrativeAr: data.lookingAheadNarrativeAr || defaultCompanyPageContent.lookingAheadNarrativeAr,
+          lookingAheadAmbitionLabel: data.lookingAheadAmbitionLabel || defaultCompanyPageContent.lookingAheadAmbitionLabel,
+          lookingAheadAmbitionLabelAr: data.lookingAheadAmbitionLabelAr || defaultCompanyPageContent.lookingAheadAmbitionLabelAr,
+          lookingAheadAmbitionQuote: data.lookingAheadAmbitionQuote || defaultCompanyPageContent.lookingAheadAmbitionQuote,
+          lookingAheadAmbitionQuoteAr: data.lookingAheadAmbitionQuoteAr || defaultCompanyPageContent.lookingAheadAmbitionQuoteAr,
+          lookingAheadImageUrl: (data.lookingAheadImage ? urlForImage(data.lookingAheadImage) : null) || defaultCompanyPageContent.lookingAheadImageUrl,
+          lookingAheadBadgeText: data.lookingAheadBadgeText || defaultCompanyPageContent.lookingAheadBadgeText,
+          lookingAheadBadgeTextAr: data.lookingAheadBadgeTextAr || defaultCompanyPageContent.lookingAheadBadgeTextAr,
+          lookingAheadBadgeSubtext: data.lookingAheadBadgeSubtext || defaultCompanyPageContent.lookingAheadBadgeSubtext,
+          lookingAheadBadgeSubtextAr: data.lookingAheadBadgeSubtextAr || defaultCompanyPageContent.lookingAheadBadgeSubtextAr,
         };
       }
     } catch {

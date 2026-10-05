@@ -52,19 +52,19 @@ export default async function ArabicCompanyPage() {
       <CompanyVisionMission content={companyContent} />
 
       {/* 4. Infrastructure & Operational Scale */}
-      <CompanyInfrastructure company={company} />
+      <CompanyInfrastructure company={company} content={companyContent} />
 
       {/* 5. Strategic Global Sourcing */}
-      <CompanySourcing />
+      <CompanySourcing content={companyContent} />
 
       {/* 6. Our Team */}
-      <CompanyTeam />
+      <CompanyTeam content={companyContent} />
 
       {/* 7. Quality & Food Safety */}
-      <CompanyQuality />
+      <CompanyQuality content={companyContent} />
 
       {/* 8. Looking Ahead */}
-      <CompanyLookingAhead />
+      <CompanyLookingAhead content={companyContent} />
 
       {/* 9. Final CTA */}
       <Cta />
