@@ -257,7 +257,14 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
     - Organized **Produce Catalog by Category** under `Catalogs & Collections` with nested filtered views for Fresh Vegetables (11), Fresh Fruits (8), Leafy & Herbs (8), Specialty & Gourmet (7), and All Produce Lines (34).
   - [x] Added `PRODUCTS_PAGE_QUERY` in `sanity/lib/queries.ts`.
   - [x] Extended `sanity/lib/data.ts` with `ProductsPageContent`, `CategorySectionItem`, `defaultProductsPageContent`, `getProductsPageContent()`, and `getCategorySection(slug)`.
-  - [x] Upgraded `ProductGrid.tsx` with interactive category selector pills (Vegetables, Fruits, Leafy & Herbs, Specialty & Gourmet), dynamic category narrative headers, and GSAP staggered reveal animations.
-  - [x] Connected `/products/[category]` and `/ar/products/[category]` routes to dynamic CMS category titles, subtitles, descriptions, and produce lines.
   - [x] Synchronized `productsPage-singleton` document directly to the live Sanity Content Lake.
-  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and end-to-end verified category navigation and rendering via `agent-browser`.
+
+- [x] **Milestone 11: Products Category Page Clean Design Restoration** [Completed]
+  - [x] Restored original clean layout on `/products/[category]` and `/ar/products/[category]` per user feedback:
+    - Removed redundant separate `h2` heading, subtitle, and narrative description paragraph from `ProductGrid.tsx`.
+    - Removed category filter pills/tabs from the page body, maintaining navigation via the header dropdown and breadcrumbs.
+    - Preserved clean 4-in-a-row responsive product card grid directly beneath the category banner.
+    - PageBanner displays the Category Title with clean breadcrumb path (`Home / Our Products / [Category Name]`).
+  - [x] Maintained full Sanity CMS nested schema compatibility and data synchronization.
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and visual verification via `agent-browser` for both English and Arabic views.
+

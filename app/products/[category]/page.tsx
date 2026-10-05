@@ -5,11 +5,7 @@ import { PageBanner } from '@/components/ui/PageBanner';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { Cta } from '@/components/modules/Cta';
 import { productCategoriesData } from '@/data/products';
-import {
-  getProducts,
-  getProductsPageContent,
-  getCategorySection,
-} from '@/sanity/lib/data';
+import { getProducts, getCategorySection } from '@/sanity/lib/data';
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -60,41 +56,28 @@ export default async function ProductCategoryPage({ params }: PageProps): Promis
     notFound();
   }
 
-  const [products, productsPage, categorySection] = await Promise.all([
+  const [products, categorySection] = await Promise.all([
     getProducts(category),
-    getProductsPageContent(),
     getCategorySection(category),
   ]);
 
-  const categoryData = {
-    ...data,
-    title: categorySection?.title || data.title,
-    subtitle: categorySection?.subtitle || data.subtitle,
-    description: categorySection?.description || data.description,
-    products,
-  };
-
-  const bannerTitle = productsPage.bannerTitle || 'Our Products';
   const displayCategoryTitle = categorySection?.title || data.title;
+  const categoryData = { ...data, title: displayCategoryTitle, products };
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* 1. Header Banner */}
+      {/* 1. Header Banner (Title is category name, breadcrumb has Our Products) */}
       <PageBanner
-        title={bannerTitle}
+        title={displayCategoryTitle}
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: bannerTitle },
+          { label: 'Our Products' },
           { label: displayCategoryTitle },
         ]}
       />
 
-      {/* 2. 4-in-a-Row Product Grid with Category Selector Tabs and Header */}
-      <ProductGrid
-        category={categoryData}
-        categorySection={categorySection}
-        pageContent={productsPage}
-      />
+      {/* 2. 4-in-a-Row Product Grid (Older clean layout) */}
+      <ProductGrid category={categoryData} />
 
       {/* 3. Final Sourcing & Partner CTA */}
       <Cta />

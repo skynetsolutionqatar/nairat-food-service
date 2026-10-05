@@ -5,11 +5,7 @@ import { PageBanner } from '@/components/ui/PageBanner';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { Cta } from '@/components/modules/Cta';
 import { productCategoriesData } from '@/data/products';
-import {
-  getProducts,
-  getProductsPageContent,
-  getCategorySection,
-} from '@/sanity/lib/data';
+import { getProducts, getCategorySection } from '@/sanity/lib/data';
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -68,21 +64,17 @@ export default async function ArabicProductCategoryPage({ params }: PageProps): 
     notFound();
   }
 
-  const [products, productsPage, categorySection] = await Promise.all([
+  const [products, categorySection] = await Promise.all([
     getProducts(category),
-    getProductsPageContent(),
     getCategorySection(category),
   ]);
 
   const arabicCategoryTitle =
     categorySection?.titleAr || categoryArabicTitles[category] || data.title;
-  const bannerTitle = productsPage.bannerTitleAr || 'منتجاتنا';
 
   const categoryData = {
     ...data,
     title: arabicCategoryTitle,
-    subtitle: categorySection?.subtitleAr || data.subtitle,
-    description: categorySection?.descriptionAr || data.description,
     products,
   };
 
@@ -90,20 +82,16 @@ export default async function ArabicProductCategoryPage({ params }: PageProps): 
     <div className="flex flex-col min-h-screen bg-white">
       {/* 1. Header Banner */}
       <PageBanner
-        title={bannerTitle}
+        title={arabicCategoryTitle}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
-          { label: bannerTitle },
+          { label: 'منتجاتنا' },
           { label: arabicCategoryTitle },
         ]}
       />
 
-      {/* 2. 4-in-a-Row Product Grid with Category Selector Tabs and Header */}
-      <ProductGrid
-        category={categoryData}
-        categorySection={categorySection}
-        pageContent={productsPage}
-      />
+      {/* 2. 4-in-a-Row Product Grid (Older clean layout) */}
+      <ProductGrid category={categoryData} />
 
       {/* 3. Final Sourcing & Partner CTA */}
       <Cta />
