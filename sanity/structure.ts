@@ -1,4 +1,5 @@
 import type { StructureResolver } from 'sanity/structure';
+import { apiVersion } from './env';
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -96,6 +97,7 @@ export const structure: StructureResolver = (S) =>
                         .child(
                           S.documentList()
                             .title('Fresh Vegetables')
+                            .apiVersion(apiVersion)
                             .filter('_type == "product" && category == "vegetables"')
                         ),
                       S.listItem()
@@ -104,6 +106,7 @@ export const structure: StructureResolver = (S) =>
                         .child(
                           S.documentList()
                             .title('Fresh Fruits')
+                            .apiVersion(apiVersion)
                             .filter('_type == "product" && category == "fruits"')
                         ),
                       S.listItem()
@@ -112,6 +115,7 @@ export const structure: StructureResolver = (S) =>
                         .child(
                           S.documentList()
                             .title('Leafy & Herbs')
+                            .apiVersion(apiVersion)
                             .filter('_type == "product" && category == "leafy-herbs"')
                         ),
                       S.listItem()
@@ -120,6 +124,7 @@ export const structure: StructureResolver = (S) =>
                         .child(
                           S.documentList()
                             .title('Specialty & Gourmet')
+                            .apiVersion(apiVersion)
                             .filter('_type == "product" && category == "specialty-gourmet"')
                         ),
                     ])
