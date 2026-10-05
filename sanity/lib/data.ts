@@ -1228,6 +1228,14 @@ export interface QualityPageContent {
   supplyChainTitleAr: string;
   supplyChainSubtitle: string;
   supplyChainSubtitleAr: string;
+  supplyChainSteps?: Array<{
+    _key?: string;
+    number?: string;
+    title: string;
+    titleAr?: string;
+    description?: string;
+    descriptionAr?: string;
+  }>;
 }
 
 export const defaultQualityPageContent: QualityPageContent = {
@@ -1289,6 +1297,48 @@ export const defaultQualityPageContent: QualityPageContent = {
   supplyChainTitleAr: 'ضوابط رقابية صارمة في كل خطوة',
   supplyChainSubtitle: 'From arrival to the customer’s door, strict verification protocols protect product integrity and maintain an unbroken cold chain.',
   supplyChainSubtitleAr: 'من استلام الشحنات إلى باب العميل، تحمي بروتوكولات التحقق الصارمة سلامة المنتجات وتحافظ على سلسلة تبريد غير منقطعة مع التتبع الكامل.',
+  supplyChainSteps: [
+    {
+      _key: 'step-01',
+      number: '01',
+      title: 'Receiving',
+      titleAr: 'الاستلام والفحص',
+      description: 'Temperature and quality checks on arrival, with rejection of non-conforming goods.',
+      descriptionAr: 'فحوصات لدرجة الحرارة والجودة عند الوصول، مع رفض قاطع للبضائع غير المطابقة.',
+    },
+    {
+      _key: 'step-02',
+      number: '02',
+      title: 'Sorting & Grading',
+      titleAr: 'الفرز والتصنيف',
+      description: 'Every lot inspected and graded in the hygiene-controlled hall.',
+      descriptionAr: 'فحص وتصنيف كل دفعة بعناية داخل صالة مجهزة ومضبوطة النظافة الصحية.',
+    },
+    {
+      _key: 'step-03',
+      number: '03',
+      title: 'Packing',
+      titleAr: 'التعبئة والتغليف',
+      description: 'Packed to customer specification with full lot traceability.',
+      descriptionAr: 'تعبئة مخصصة وفق مواصفات العميل مع ترميز التتبع الكامل للدفعات.',
+    },
+    {
+      _key: 'step-04',
+      number: '04',
+      title: 'Cold Storage',
+      titleAr: 'التخزين المبرد',
+      description: 'Held at the right temperature, monitored around the clock.',
+      descriptionAr: 'حفظ بدرجات حرارة مثالية دقيقة ومراقبة محوسبة على مدار الساعة.',
+    },
+    {
+      _key: 'step-05',
+      number: '05',
+      title: 'Dispatch & Delivery',
+      titleAr: 'الشحن والتوصيل',
+      description: 'Refrigerated vehicles keep the cold chain unbroken to the customer’s door.',
+      descriptionAr: 'مركبات مبردة تحافظ على سلسلة التبريد دون انقطاع حتى باب العميل.',
+    },
+  ],
 };
 
 export async function getQualityPageContent(): Promise<QualityPageContent> {
@@ -1365,6 +1415,9 @@ export async function getQualityPageContent(): Promise<QualityPageContent> {
           supplyChainTitleAr: data.supplyChainTitleAr || defaultQualityPageContent.supplyChainTitleAr,
           supplyChainSubtitle: data.supplyChainSubtitle || defaultQualityPageContent.supplyChainSubtitle,
           supplyChainSubtitleAr: data.supplyChainSubtitleAr || defaultQualityPageContent.supplyChainSubtitleAr,
+          supplyChainSteps: data.supplyChainSteps && data.supplyChainSteps.length > 0
+            ? data.supplyChainSteps
+            : defaultQualityPageContent.supplyChainSteps,
         };
       }
     } catch {

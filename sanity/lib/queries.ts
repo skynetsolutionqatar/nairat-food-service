@@ -379,7 +379,8 @@ export const QUALITY_PAGE_QUERY = defineQuery(`
     supplyChainTitle,
     supplyChainTitleAr,
     supplyChainSubtitle,
-    supplyChainSubtitleAr
+    supplyChainSubtitleAr,
+    supplyChainSteps
   }
 `);
 

@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const qualityPage = defineType({
   name: 'qualityPage',
@@ -445,6 +445,62 @@ export const qualityPage = defineType({
       rows: 2,
       fieldset: 'supplyChain',
       initialValue: 'من استلام الشحنات إلى باب العميل، تحمي بروتوكولات التحقق الصارمة سلامة المنتجات وتحافظ على سلسلة تبريد غير منقطعة مع التتبع الكامل.',
+    }),
+    defineField({
+      name: 'supplyChainSteps',
+      title: '5-Step Operational Controls',
+      type: 'array',
+      fieldset: 'supplyChain',
+      description: 'The sequential operational steps from arrival to customer delivery',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'number',
+              title: 'Step Number (e.g. 01)',
+              type: 'string',
+            }),
+            defineField({
+              name: 'title',
+              title: 'Step Title (English)',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'titleAr',
+              title: 'Step Title (Arabic)',
+              type: 'string',
+            }),
+            defineField({
+              name: 'description',
+              title: 'Step Description (English)',
+              type: 'text',
+              rows: 2,
+            }),
+            defineField({
+              name: 'descriptionAr',
+              title: 'Step Description (Arabic)',
+              type: 'text',
+              rows: 2,
+            }),
+          ],
+          preview: {
+            select: {
+              number: 'number',
+              title: 'title',
+              titleAr: 'titleAr',
+              subtitle: 'description',
+            },
+            prepare({ number, title, titleAr, subtitle }) {
+              return {
+                title: `${number || '•'} · ${title || ''} ${titleAr ? `(${titleAr})` : ''}`,
+                subtitle,
+              };
+            },
+          },
+        }),
+      ],
     }),
   ],
   preview: {

@@ -215,3 +215,12 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - [x] Uploaded image assets to live Sanity Content Lake and synchronized `qualityPage-singleton` document.
   - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and end-to-end tested `/quality` and `/ar/quality` via `agent-browser`.
 
+- [x] **Milestone 7: Sourcing & Quality Page Controls at Every Step 5-Step CMS Array** [Completed]
+  - [x] Added editable `supplyChainSteps` array field to `qualityPage.ts` Sanity schema under the `supplyChain` fieldset with `number`, `title`, `titleAr`, `description`, `descriptionAr` fields, and formatted studio preview.
+  - [x] Added `supplyChainSteps` projection to `QUALITY_PAGE_QUERY` in `sanity/lib/queries.ts`.
+  - [x] Updated `QualityPageContent` interface, `defaultQualityPageContent`, and `getQualityPageContent()` in `sanity/lib/data.ts`.
+  - [x] Wired `QualitySupplyChain.tsx` to dynamically render steps from `content?.supplyChainSteps` with indexed Lucide icon mapping and bilingual title/description fallback.
+  - [x] Seeded and synchronized live Sanity Content Lake document `qualityPage-singleton` with all 5 steps (Receiving, Sorting & Grading, Packing, Cold Storage, Dispatch & Delivery) with unique `_key` IDs (`step-01` to `step-05`).
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and verified rendering on `/quality` and `/ar/quality` via `agent-browser`.
+
+

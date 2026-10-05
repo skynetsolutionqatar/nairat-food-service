@@ -34,48 +34,59 @@ export function QualitySupplyChain({ content }: QualitySupplyChainProps = {}): R
     ? (content?.supplyChainSubtitleAr || 'من استلام الشحنات إلى باب العميل، تحمي بروتوكولات التحقق الصارمة سلامة المنتجات وتحافظ على سلسلة تبريد غير منقطعة مع التتبع الكامل.')
     : (content?.supplyChainSubtitle || 'From arrival to the customer’s door, strict verification protocols protect product integrity and maintain an unbroken cold chain.');
 
-  const steps: StepItem[] = [
+  const stepIcons = [ClipboardCheck, Filter, PackageCheck, Snowflake, Truck];
+
+  const defaultRawSteps = [
     {
       number: '01',
-      title: isAr ? 'الاستلام والفحص' : 'Receiving',
-      description: isAr
-        ? 'فحوصات لدرجة الحرارة والجودة عند الوصول، مع رفض قاطع للبضائع غير المطابقة.'
-        : 'Temperature and quality checks on arrival, with rejection of non-conforming goods.',
-      icon: <ClipboardCheck className="w-5 h-5" aria-hidden="true" />,
+      title: 'Receiving',
+      titleAr: 'الاستلام والفحص',
+      description: 'Temperature and quality checks on arrival, with rejection of non-conforming goods.',
+      descriptionAr: 'فحوصات لدرجة الحرارة والجودة عند الوصول، مع رفض قاطع للبضائع غير المطابقة.',
     },
     {
       number: '02',
-      title: isAr ? 'الفرز والتصنيف' : 'Sorting & Grading',
-      description: isAr
-        ? 'فحص وتصنيف كل دفعة بعناية داخل صالة مجهزة ومضبوطة النظافة الصحية.'
-        : 'Every lot inspected and graded in the hygiene-controlled hall.',
-      icon: <Filter className="w-5 h-5" aria-hidden="true" />,
+      title: 'Sorting & Grading',
+      titleAr: 'الفرز والتصنيف',
+      description: 'Every lot inspected and graded in the hygiene-controlled hall.',
+      descriptionAr: 'فحص وتصنيف كل دفعة بعناية داخل صالة مجهزة ومضبوطة النظافة الصحية.',
     },
     {
       number: '03',
-      title: isAr ? 'التعبئة والتغليف' : 'Packing',
-      description: isAr
-        ? 'تعبئة مخصصة وفق مواصفات العميل مع ترميز التتبع الكامل للدفعات.'
-        : 'Packed to customer specification with full lot traceability.',
-      icon: <PackageCheck className="w-5 h-5" aria-hidden="true" />,
+      title: 'Packing',
+      titleAr: 'التعبئة والتغليف',
+      description: 'Packed to customer specification with full lot traceability.',
+      descriptionAr: 'تعبئة مخصصة وفق مواصفات العميل مع ترميز التتبع الكامل للدفعات.',
     },
     {
       number: '04',
-      title: isAr ? 'التخزين المبرد' : 'Cold Storage',
-      description: isAr
-        ? 'حفظ بدرجات حرارة مثالية دقيقة ومراقبة محوسبة على مدار الساعة.'
-        : 'Held at the right temperature, monitored around the clock.',
-      icon: <Snowflake className="w-5 h-5" aria-hidden="true" />,
+      title: 'Cold Storage',
+      titleAr: 'التخزين المبرد',
+      description: 'Held at the right temperature, monitored around the clock.',
+      descriptionAr: 'حفظ بدرجات حرارة مثالية دقيقة ومراقبة محوسبة على مدار الساعة.',
     },
     {
       number: '05',
-      title: isAr ? 'الشحن والتوصيل' : 'Dispatch & Delivery',
-      description: isAr
-        ? 'مركبات مبردة تحافظ على سلسلة التبريد دون انقطاع حتى باب العميل.'
-        : 'Refrigerated vehicles keep the cold chain unbroken to the customer’s door.',
-      icon: <Truck className="w-5 h-5" aria-hidden="true" />,
+      title: 'Dispatch & Delivery',
+      titleAr: 'الشحن والتوصيل',
+      description: 'Refrigerated vehicles keep the cold chain unbroken to the customer’s door.',
+      descriptionAr: 'مركبات مبردة تحافظ على سلسلة التبريد دون انقطاع حتى باب العميل.',
     },
   ];
+
+  const rawSteps = content?.supplyChainSteps && content.supplyChainSteps.length > 0
+    ? content.supplyChainSteps
+    : defaultRawSteps;
+
+  const steps: StepItem[] = rawSteps.map((step, index) => {
+    const IconComponent = stepIcons[index % stepIcons.length] || ClipboardCheck;
+    return {
+      number: step.number || `0${index + 1}`.slice(-2),
+      title: isAr && step.titleAr ? step.titleAr : step.title,
+      description: isAr && step.descriptionAr ? step.descriptionAr : (step.description || ''),
+      icon: <IconComponent className="w-5 h-5" aria-hidden="true" />,
+    };
+  });
 
   useGSAP(
     () => {
