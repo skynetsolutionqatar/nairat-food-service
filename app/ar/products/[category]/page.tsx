@@ -71,9 +71,6 @@ export default async function ArabicProductCategoryPage({ params }: PageProps): 
 
   const arabicCategoryTitle =
     categorySection?.titleAr || categoryArabicTitles[category] || data.title;
-  const arabicCategorySubtitle =
-    categorySection?.subtitleAr || categorySection?.descriptionAr || categorySection?.subtitle || data.subtitle;
-  const bannerImage = categorySection?.heroImageUrl;
 
   const categoryData = {
     ...data,
@@ -83,11 +80,9 @@ export default async function ArabicProductCategoryPage({ params }: PageProps): 
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* 1. Header Banner (Title is category name, breadcrumb has Our Products, photo & subtitle) */}
+      {/* 1. Header Banner (Matches original clean style: title + breadcrumbs) */}
       <PageBanner
         title={arabicCategoryTitle}
-        description={arabicCategorySubtitle}
-        image={bannerImage}
         breadcrumbs={[
           { label: 'الرئيسية', href: '/ar' },
           { label: 'منتجاتنا' },
