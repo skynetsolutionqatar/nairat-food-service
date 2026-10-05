@@ -28,13 +28,114 @@ export const structure: StructureResolver = (S) =>
                     .documentId('companyPage-singleton')
                     .title('Company Page Sections')
                 ),
+              // Our Products with subcategory pages (Fresh Vegetables, Fresh Fruits, Leafy & Herbs, Specialty & Gourmet)
               S.listItem()
-                .title('Our Products Page')
+                .title('Our Products')
                 .child(
-                  S.document()
-                    .schemaType('productsPage')
-                    .documentId('productsPage-singleton')
-                    .title('Our Products Page & Category Sections')
+                  S.list()
+                    .title('Product Category Pages')
+                    .items([
+                      S.listItem()
+                        .title('Fresh Vegetables')
+                        .child(
+                          S.list()
+                            .title('Fresh Vegetables Page')
+                            .items([
+                              S.listItem()
+                                .title('Page Banner & Heading')
+                                .child(
+                                  S.document()
+                                    .schemaType('categoryPage')
+                                    .documentId('categoryPage-vegetables')
+                                    .title('Fresh Vegetables — Banner & Headings')
+                                ),
+                              S.listItem()
+                                .title('Products (11)')
+                                .schemaType('product')
+                                .child(
+                                  S.documentList()
+                                    .title('Fresh Vegetables Products')
+                                    .apiVersion(apiVersion)
+                                    .filter('_type == "product" && category == "vegetables"')
+                                ),
+                            ])
+                        ),
+                      S.listItem()
+                        .title('Fresh Fruits')
+                        .child(
+                          S.list()
+                            .title('Fresh Fruits Page')
+                            .items([
+                              S.listItem()
+                                .title('Page Banner & Heading')
+                                .child(
+                                  S.document()
+                                    .schemaType('categoryPage')
+                                    .documentId('categoryPage-fruits')
+                                    .title('Fresh Fruits — Banner & Headings')
+                                ),
+                              S.listItem()
+                                .title('Products (8)')
+                                .schemaType('product')
+                                .child(
+                                  S.documentList()
+                                    .title('Fresh Fruits Products')
+                                    .apiVersion(apiVersion)
+                                    .filter('_type == "product" && category == "fruits"')
+                                ),
+                            ])
+                        ),
+                      S.listItem()
+                        .title('Leafy & Herbs')
+                        .child(
+                          S.list()
+                            .title('Leafy & Herbs Page')
+                            .items([
+                              S.listItem()
+                                .title('Page Banner & Heading')
+                                .child(
+                                  S.document()
+                                    .schemaType('categoryPage')
+                                    .documentId('categoryPage-leafy-herbs')
+                                    .title('Leafy & Herbs — Banner & Headings')
+                                ),
+                              S.listItem()
+                                .title('Products (8)')
+                                .schemaType('product')
+                                .child(
+                                  S.documentList()
+                                    .title('Leafy & Herbs Products')
+                                    .apiVersion(apiVersion)
+                                    .filter('_type == "product" && category == "leafy-herbs"')
+                                ),
+                            ])
+                        ),
+                      S.listItem()
+                        .title('Specialty & Gourmet')
+                        .child(
+                          S.list()
+                            .title('Specialty & Gourmet Page')
+                            .items([
+                              S.listItem()
+                                .title('Page Banner & Heading')
+                                .child(
+                                  S.document()
+                                    .schemaType('categoryPage')
+                                    .documentId('categoryPage-specialty-gourmet')
+                                    .title('Specialty & Gourmet — Banner & Headings')
+                                ),
+                              S.listItem()
+                                .title('Products (7)')
+                                .schemaType('product')
+                                .child(
+                                  S.documentList()
+                                    .title('Specialty & Gourmet Products')
+                                    .apiVersion(apiVersion)
+                                    .filter('_type == "product" && category == "specialty-gourmet"')
+                                ),
+                            ])
+                        ),
+                    ])
                 ),
               S.listItem()
                 .title('Sourcing & Quality Page')
@@ -80,55 +181,7 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Catalogs & Collections')
             .items([
-              S.listItem()
-                .title('Produce Catalog by Category')
-                .child(
-                  S.list()
-                    .title('Produce Categories')
-                    .items([
-                      S.listItem()
-                        .title('All Produce Lines (34)')
-                        .schemaType('product')
-                        .child(S.documentTypeList('product').title('All Produce Lines (34)')),
-                      S.divider(),
-                      S.listItem()
-                        .title('Fresh Vegetables (11)')
-                        .schemaType('product')
-                        .child(
-                          S.documentList()
-                            .title('Fresh Vegetables')
-                            .apiVersion(apiVersion)
-                            .filter('_type == "product" && category == "vegetables"')
-                        ),
-                      S.listItem()
-                        .title('Fresh Fruits (8)')
-                        .schemaType('product')
-                        .child(
-                          S.documentList()
-                            .title('Fresh Fruits')
-                            .apiVersion(apiVersion)
-                            .filter('_type == "product" && category == "fruits"')
-                        ),
-                      S.listItem()
-                        .title('Leafy & Herbs (8)')
-                        .schemaType('product')
-                        .child(
-                          S.documentList()
-                            .title('Leafy & Herbs')
-                            .apiVersion(apiVersion)
-                            .filter('_type == "product" && category == "leafy-herbs"')
-                        ),
-                      S.listItem()
-                        .title('Specialty & Gourmet (7)')
-                        .schemaType('product')
-                        .child(
-                          S.documentList()
-                            .title('Specialty & Gourmet')
-                            .apiVersion(apiVersion)
-                            .filter('_type == "product" && category == "specialty-gourmet"')
-                        ),
-                    ])
-                ),
+              S.documentTypeListItem('product').title('Produce Lines (34)'),
               S.documentTypeListItem('partner').title('Partners & Clients (10)'),
               S.documentTypeListItem('service').title('Commercial Services (6)'),
               S.documentTypeListItem('qualityCert').title('Quality Accreditations (2)'),

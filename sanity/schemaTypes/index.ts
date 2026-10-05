@@ -11,6 +11,7 @@ import { servicesPage } from './pages/servicesPage';
 import { partnersPage } from './pages/partnersPage';
 import { contactPage } from './pages/contactPage';
 import { productsPage } from './pages/productsPage';
+import { categoryPage } from './pages/categoryPage';
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   product,
@@ -21,6 +22,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   homePage,
   companyPage,
   productsPage,
+  categoryPage,
   qualityPage,
   servicesPage,
   partnersPage,

@@ -17,6 +17,7 @@ import {
   PARTNERS_PAGE_QUERY,
   CONTACT_PAGE_QUERY,
   PRODUCTS_PAGE_QUERY,
+  CATEGORY_PAGE_QUERY,
 } from './queries';
 import {
   ProductItem,
@@ -2219,6 +2220,40 @@ export async function getProductsPageContent(): Promise<ProductsPageContent> {
 }
 
 export async function getCategorySection(categorySlug: string): Promise<CategorySectionItem> {
+  if (isSanityConfigured()) {
+    try {
+      // 1. Check for dedicated categoryPage document
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const catDoc = await client.fetch<any>(
+        CATEGORY_PAGE_QUERY,
+        { id: `categoryPage-${categorySlug}`, slug: categorySlug },
+        {
+          next: {
+            tags: ['categoryPage', 'productsPage', `category-${categorySlug}`],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (catDoc && (catDoc.title || catDoc.bannerImage)) {
+        return {
+          _key: catDoc._id || `cat-${categorySlug}`,
+          slug: catDoc.category || categorySlug,
+          title: catDoc.title || '',
+          titleAr: catDoc.titleAr || catDoc.title || '',
+          subtitle: catDoc.subtitle || '',
+          subtitleAr: catDoc.subtitleAr || '',
+          description: catDoc.subtitle || '',
+          descriptionAr: catDoc.subtitleAr || '',
+          badge: catDoc.badge || 'OUR PRODUCE',
+          badgeAr: catDoc.badgeAr || 'منتجاتنا',
+          heroImageUrl: catDoc.bannerImage ? urlForImage(catDoc.bannerImage) : undefined,
+        };
+      }
+    } catch {
+      // fallback to productsPage
+    }
+  }
+
   const pageContent = await getProductsPageContent();
   const found = pageContent.categorySections.find((cat) => cat.slug === categorySlug);
   if (found) {

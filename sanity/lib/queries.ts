@@ -551,4 +551,19 @@ export const PRODUCTS_PAGE_QUERY = defineQuery(`
   }
 `);
 
+export const CATEGORY_PAGE_QUERY = defineQuery(`
+  *[_id == $id || (_type == "categoryPage" && category == $slug)][0] {
+    _id,
+    category,
+    title,
+    titleAr,
+    subtitle,
+    subtitleAr,
+    badge,
+    badgeAr,
+    bannerImage
+  }
+`);
+
+
 

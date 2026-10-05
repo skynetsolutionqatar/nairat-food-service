@@ -268,3 +268,15 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - [x] Maintained full Sanity CMS nested schema compatibility and data synchronization.
   - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and visual verification via `agent-browser` for both English and Arabic views.
 
+- [x] **Milestone 12: Product Category Pages CMS Structure, Banner Photos & Headings** [Completed]
+  - [x] Created `categoryPage.ts` Sanity schema for dedicated subcategory pages (Fresh Vegetables, Fresh Fruits, Leafy & Herbs, Specialty & Gourmet) with fields for Banner Heading (EN/AR), Subheading (EN/AR), Eyebrow Badge (EN/AR), and Banner Photo upload (`options: { hotspot: true }`).
+  - [x] Re-structured Sanity Desk Structure (`sanity/structure.ts`) under `Pages & Section Content`:
+    - Organized **Our Products** into 4 dedicated subcategory page nodes.
+    - For each subcategory, provided direct access to **Page Banner & Heading** (document editor for photo and headings) and **Products** (filtered list of produce lines).
+  - [x] Enhanced `PageBanner.tsx` to support optional high-resolution background photos (`image` prop) with ambient brand gradient overlay ensuring accessible, crisp white typography.
+  - [x] Updated data fetching layer (`sanity/lib/queries.ts` & `sanity/lib/data.ts`) with `CATEGORY_PAGE_QUERY` to fetch custom banner photos, titles, and subheadings with automatic fallback.
+  - [x] Wired `/products/[category]` and `/ar/products/[category]` to render custom banner photos, bilingual titles, and subheadings.
+  - [x] Seeded and synchronized all 4 `categoryPage` documents with live image assets in the Sanity Content Lake.
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and verified rendering on `/products/vegetables` and `/ar/products/vegetables` via `agent-browser`.
+
+

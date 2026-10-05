@@ -62,13 +62,17 @@ export default async function ProductCategoryPage({ params }: PageProps): Promis
   ]);
 
   const displayCategoryTitle = categorySection?.title || data.title;
+  const displayCategorySubtitle = categorySection?.subtitle || data.subtitle;
+  const bannerImage = categorySection?.heroImageUrl;
   const categoryData = { ...data, title: displayCategoryTitle, products };
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* 1. Header Banner (Title is category name, breadcrumb has Our Products) */}
+      {/* 1. Header Banner (Title is category name, breadcrumb has Our Products, photo & subtitle) */}
       <PageBanner
         title={displayCategoryTitle}
+        description={displayCategorySubtitle}
+        image={bannerImage}
         breadcrumbs={[
           { label: 'Home', href: '/' },
           { label: 'Our Products' },

@@ -14,6 +14,7 @@ export interface PageBannerProps {
   title?: string;
   breadcrumbs?: BreadcrumbItem[];
   description?: string;
+  image?: string;
   className?: string;
   showWatermark?: boolean;
 }
@@ -22,6 +23,7 @@ export function PageBanner({
   title = 'Company',
   breadcrumbs,
   description,
+  image,
   className = '',
   showWatermark = true,
 }: PageBannerProps): React.ReactNode {
@@ -67,8 +69,25 @@ export function PageBanner({
       ref={bannerRef}
       className={`relative pt-28 pb-10 sm:pt-32 sm:pb-12 lg:pt-36 lg:pb-14 bg-[#158647] text-white overflow-hidden ${className}`}
     >
+      {/* Background Banner Photo with high-end dark gradient overlay */}
+      {image && (
+        <>
+          <Image
+            src={image}
+            alt={title || ''}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center pointer-events-none select-none"
+          />
+          {/* Subtle gradient overlay to keep brand green tint & guarantee contrast */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0d592e]/92 via-[#158647]/85 to-[#0b3d20]/88 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/35" />
+        </>
+      )}
+
       {/* Decorative Organic Brand Watermark */}
-      {showWatermark && (
+      {showWatermark && !image && (
         <div className="absolute -end-8 -bottom-10 w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 opacity-[0.08] pointer-events-none select-none">
           <Image
             src="/icon/icon.png"
