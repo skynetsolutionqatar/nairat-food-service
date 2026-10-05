@@ -1470,6 +1470,24 @@ export async function getServicesPageContent(): Promise<ServicesPageContent> {
   return defaultServicesPageContent;
 }
 
+export interface RetailPartnerItem {
+  _key?: string;
+  id?: string;
+  name: string;
+  nameAr?: string;
+  image: string;
+  category?: string;
+}
+
+export interface SourcingCountryItem {
+  _key?: string;
+  name: string;
+  nameAr: string;
+  flag: string;
+  crops?: string;
+  cropsAr?: string;
+}
+
 export interface PartnersPageContent {
   bannerTitle: string;
   bannerTitleAr: string;
@@ -1479,12 +1497,16 @@ export interface PartnersPageContent {
   retailEyebrowAr: string;
   retailTitle: string;
   retailTitleAr: string;
+  retailPartners?: RetailPartnerItem[];
   localEyebrow: string;
   localEyebrowAr: string;
   localTitle: string;
   localTitleAr: string;
   localNarrative: string;
   localNarrativeAr: string;
+  localPartnerImageUrl?: string;
+  localBadge?: string;
+  localBadgeAr?: string;
   localTag1: string;
   localTag1Ar: string;
   localTag2: string;
@@ -1497,35 +1519,183 @@ export interface PartnersPageContent {
   globalTitleAr: string;
   globalSubtitle: string;
   globalSubtitleAr: string;
+  globalCountries?: SourcingCountryItem[];
 }
 
+export const defaultRetailPartners: RetailPartnerItem[] = [
+  {
+    _key: 'retail-almeera',
+    id: 'almeera',
+    name: 'Al Meera',
+    nameAr: 'الميرة',
+    image: '/partners/almeera-logo-b.svg',
+    category: 'hypermarket',
+  },
+  {
+    _key: 'retail-lulu',
+    id: 'lulu',
+    name: 'LuLu Hypermarket',
+    nameAr: 'لولو هايبرماركت',
+    image: '/partners/lulu-logo.png',
+    category: 'hypermarket',
+  },
+  {
+    _key: 'retail-carrefour',
+    id: 'carrefour',
+    name: 'Carrefour Qatar',
+    nameAr: 'كارفور قطر',
+    image: '/partners/careefour.svg',
+    category: 'hypermarket',
+  },
+  {
+    _key: 'retail-safari',
+    id: 'safari',
+    name: 'Safari Hypermarket',
+    nameAr: 'سفاري هايبرماركت',
+    image: '/partners/safari-hypermarket-logo.png',
+    category: 'hypermarket',
+  },
+  {
+    _key: 'retail-grand',
+    id: 'grand',
+    name: 'Grand Mall',
+    nameAr: 'جراند مول',
+    image: '/partners/grand-logo.webp',
+    category: 'hypermarket',
+  },
+  {
+    _key: 'retail-rawabi',
+    id: 'rawabi',
+    name: 'Rawabi Hypermarket',
+    nameAr: 'روابي هايبرماركت',
+    image: '/partners/rawabi-hypermarket.svg',
+    category: 'hypermarket',
+  },
+  {
+    _key: 'retail-saudia',
+    id: 'saudia',
+    name: 'Saudia Hypermarket',
+    nameAr: 'السعودية هايبرماركت',
+    image: '/partners/saudia.png',
+    category: 'hypermarket',
+  },
+  {
+    _key: 'retail-abcfresh',
+    id: 'abcfresh',
+    name: 'ABC Fresh',
+    nameAr: 'إيه بي سي فريش',
+    image: '/partners/abc.webp',
+    category: 'wholesale',
+  },
+  {
+    _key: 'retail-talabat',
+    id: 'talabat',
+    name: 'Talabat Mart',
+    nameAr: 'طلبات مارت',
+    image: '/partners/talabat-mart.svg',
+    category: 'quick-commerce',
+  },
+];
+
+export const defaultCountryPartners: SourcingCountryItem[] = [
+  {
+    _key: 'country-jordan',
+    name: 'Jordan',
+    nameAr: 'الأردن',
+    flag: '/flags/jordan.svg',
+    crops: 'Tomatoes, cucumbers, bell peppers, stone fruits',
+    cropsAr: 'طماطم، خيار، فلفل حلو، فواكه ذات نواة حجرية',
+  },
+  {
+    _key: 'country-saudi-arabia',
+    name: 'Saudi Arabia',
+    nameAr: 'المملكة العربية السعودية',
+    flag: '/flags/saudi-arabia.svg',
+    crops: 'Premium dates, seasonal open-field crops, hydroponics',
+    cropsAr: 'تمور فاخرة، محاصيل حقلية موسمية، زراعة مائية',
+  },
+  {
+    _key: 'country-lebanon',
+    name: 'Lebanon',
+    nameAr: 'لبنان',
+    flag: '/flags/lebanon.svg',
+    crops: 'Mountain apples, cherries, peaches, fresh herbs',
+    cropsAr: 'تفاح جبلي، كرز، دراق، أعشاب طازجة',
+  },
+  {
+    _key: 'country-egypt',
+    name: 'Egypt',
+    nameAr: 'مصر',
+    flag: '/flags/egypt.svg',
+    crops: 'Valencia citrus, yellow onions, potatoes, garlic',
+    cropsAr: 'حمضيات فالنسيا، بصل أصفر، بطاطس، ثوم',
+  },
+  {
+    _key: 'country-south-africa',
+    name: 'South Africa',
+    nameAr: 'جنوب إفريقيا',
+    flag: '/flags/south-africa.svg',
+    crops: 'Table grapes, navel citrus, lemons, stone fruits, pears',
+    cropsAr: 'عنب مائدة، برتقال أبو سرة، ليمون، فواكه ذات نواة، كمثرى',
+  },
+  {
+    _key: 'country-iran',
+    name: 'Iran',
+    nameAr: 'إيران',
+    flag: '/flags/iran.svg',
+    crops: 'Sweet watermelons, pomegranates, melons, pistachios',
+    cropsAr: 'بطيخ أحمر حلو، رمان، شمام، فستق',
+  },
+  {
+    _key: 'country-syria',
+    name: 'Syria',
+    nameAr: 'سوريا',
+    flag: '/flags/syria.svg',
+    crops: 'Citrus, stone fruits, pomegranates, seasonal root crops',
+    cropsAr: 'حمضيات، فواكه ذات نواة، رمان، محاصيل جذرية موسمية',
+  },
+  {
+    _key: 'country-global-origins',
+    name: 'Global Origins',
+    nameAr: 'أصول عالمية',
+    flag: '/cta/ctacontry.webp',
+    crops: 'Specialty culinary lines from India, Turkey, and Europe',
+    cropsAr: 'أصناف طهي متخصصة من الهند وتركيا وأوروبا',
+  },
+];
+
 export const defaultPartnersPageContent: PartnersPageContent = {
-  bannerTitle: en.partners.badge,
-  bannerTitleAr: ar.partners.badge,
-  bannerSubtitle: en.partners.heroSubtitle,
-  bannerSubtitleAr: ar.partners.heroSubtitle,
+  bannerTitle: 'Partners',
+  bannerTitleAr: 'الشركاء',
+  bannerSubtitle: 'Connecting global orchards and local Qatari farms to premier hypermarkets and digital grocery platforms with dependable cold-chain distribution.',
+  bannerSubtitleAr: 'ربط البساتين العالمية والمزارع القطرية المحلية بالهايبرماركت الرائدة ومنصات البقالة الرقمية بتوزيع موثوق عبر سلسلة التبريد.',
   retailEyebrow: 'OUR RETAIL PARTNERS',
   retailEyebrowAr: 'شركاؤنا في التجزئة',
   retailTitle: "Trusted Daily Supplier to Qatar's Leading Retail Groups",
   retailTitleAr: 'المورد اليومي الموثوق به لمجموعات التجزئة الرائدة في قطر',
+  retailPartners: defaultRetailPartners,
   localEyebrow: 'LOCAL AGRICULTURAL ALLIANCE',
   localEyebrowAr: 'تحالف زراعي محلي',
   localTitle: 'Connecting Qatari Farms to the Market',
   localTitleAr: 'ربط المزارع القطرية بالسوق',
   localNarrative: 'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.',
   localNarrativeAr: 'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.',
+  localPartnerImageUrl: '/partners/mahaseel.png',
+  localBadge: 'Strategic Local Partner',
+  localBadgeAr: 'شريك محلي استراتيجي',
   localTag1: 'Qatari-Grown Seasonal Supply',
   localTag1Ar: 'إمداد موسمي مزروع في قطر',
   localTag2: 'Direct Farm-to-Shelf Distribution',
   localTag2Ar: 'توزيع مباشر من المزرعة إلى الرف',
   localTag3: 'Supporting National Food Security',
   localTag3Ar: 'دعم الأمن الغذائي الوطني',
-  globalEyebrow: 'GLOBAL SOURCING ALLIANCES',
-  globalEyebrowAr: 'تحالفات التوريد العالمية',
-  globalTitle: 'From Global Orchards to Qatar’s Tables',
-  globalTitleAr: 'من البساتين العالمية إلى موائد قطر',
+  globalEyebrow: 'GLOBAL SOURCING PARTNERSHIPS',
+  globalEyebrowAr: 'شراكات التوريد العالمية',
+  globalTitle: 'Long-Standing Partnerships with Growers & Export Houses',
+  globalTitleAr: 'شراكات طويلة الأمد مع المزارعين وبيوت التصدير',
   globalSubtitle: 'Partnering directly with certified agricultural producers across key growing regions to secure year-round availability of premium fresh produce.',
   globalSubtitleAr: 'شراكات مباشرة مع منتجين زراعيين معتمدين في أبرز المناطق الزراعية لضمان توفر المنتجات الطازجة على مدار العام.',
+  globalCountries: defaultCountryPartners,
 };
 
 export async function getPartnersPageContent(): Promise<PartnersPageContent> {
@@ -1552,12 +1722,27 @@ export async function getPartnersPageContent(): Promise<PartnersPageContent> {
           retailEyebrowAr: data.retailEyebrowAr || defaultPartnersPageContent.retailEyebrowAr,
           retailTitle: data.retailTitle || defaultPartnersPageContent.retailTitle,
           retailTitleAr: data.retailTitleAr || defaultPartnersPageContent.retailTitleAr,
+          retailPartners: data.retailPartners && data.retailPartners.length > 0
+            ? data.retailPartners.map((item: any) => ({
+                _key: item._key,
+                id: item._key || item.name?.toLowerCase().replace(/\s+/g, '-'),
+                name: item.name,
+                nameAr: item.nameAr || item.name,
+                image: item.logo ? urlForImage(item.logo) : '/partners/almeera-logo-b.svg',
+                category: item.category || 'hypermarket',
+              }))
+            : defaultPartnersPageContent.retailPartners,
           localEyebrow: data.localEyebrow || defaultPartnersPageContent.localEyebrow,
           localEyebrowAr: data.localEyebrowAr || defaultPartnersPageContent.localEyebrowAr,
           localTitle: data.localTitle || defaultPartnersPageContent.localTitle,
           localTitleAr: data.localTitleAr || defaultPartnersPageContent.localTitleAr,
           localNarrative: data.localNarrative || defaultPartnersPageContent.localNarrative,
           localNarrativeAr: data.localNarrativeAr || defaultPartnersPageContent.localNarrativeAr,
+          localPartnerImageUrl: data.localPartnerImage
+            ? urlForImage(data.localPartnerImage)
+            : defaultPartnersPageContent.localPartnerImageUrl,
+          localBadge: data.localBadge || defaultPartnersPageContent.localBadge,
+          localBadgeAr: data.localBadgeAr || defaultPartnersPageContent.localBadgeAr,
           localTag1: data.localTag1 || defaultPartnersPageContent.localTag1,
           localTag1Ar: data.localTag1Ar || defaultPartnersPageContent.localTag1Ar,
           localTag2: data.localTag2 || defaultPartnersPageContent.localTag2,
@@ -1570,6 +1755,16 @@ export async function getPartnersPageContent(): Promise<PartnersPageContent> {
           globalTitleAr: data.globalTitleAr || defaultPartnersPageContent.globalTitleAr,
           globalSubtitle: data.globalSubtitle || defaultPartnersPageContent.globalSubtitle,
           globalSubtitleAr: data.globalSubtitleAr || defaultPartnersPageContent.globalSubtitleAr,
+          globalCountries: data.globalCountries && data.globalCountries.length > 0
+            ? data.globalCountries.map((item: any) => ({
+                _key: item._key,
+                name: item.name,
+                nameAr: item.nameAr || item.name,
+                flag: item.flag ? urlForImage(item.flag) : '/flags/jordan.svg',
+                crops: item.crops || '',
+                cropsAr: item.cropsAr || '',
+              }))
+            : defaultPartnersPageContent.globalCountries,
         };
       }
     } catch {

@@ -8,6 +8,7 @@ import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 
 interface CountryPartner {
+  _key?: string;
   name: string;
   nameAr: string;
   flag: string;
@@ -157,12 +158,17 @@ export function PartnerCountryGrid({ content }: PartnerCountryGridProps = {}): R
 
         {/* Country Logo / Flag Grid */}
         <div className="country-grid-container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {countryPartners.map((country) => {
-            const isGlobalOrigins = country.name === 'Global Origins';
+          {((content?.globalCountries && content.globalCountries.length > 0)
+            ? content.globalCountries
+            : countryPartners
+          ).map((country, index) => {
+            const isGlobalOrigins = country.name === 'Global Origins' || country.nameAr === 'أصول عالمية';
+            const countryName = isAr && country.nameAr ? country.nameAr : country.name;
+            const flagSrc = country.flag;
 
             return (
               <div
-                key={country.name}
+                key={country._key || country.name || index}
                 className="country-flag-card group p-5 sm:p-6 rounded-2xl bg-[#F8FAF8] border border-neutral-200/90 shadow-2xs hover:shadow-md hover:border-[#168849]/50 hover:bg-white transition-all duration-300 flex flex-col items-center justify-center text-center space-y-3 min-h-[120px] sm:min-h-[135px]"
               >
                 {/* Country Flag Logo */}
@@ -174,8 +180,8 @@ export function PartnerCountryGrid({ content }: PartnerCountryGridProps = {}): R
                   }
                 >
                   <Image
-                    src={country.flag}
-                    alt={isAr ? `علم ${country.nameAr}` : `${country.name} country flag logo`}
+                    src={flagSrc}
+                    alt={isAr ? `علم ${countryName}` : `${countryName} country flag logo`}
                     fill
                     sizes={isGlobalOrigins ? '160px' : '80px'}
                     className={isGlobalOrigins ? 'object-contain' : 'object-cover'}
@@ -183,7 +189,7 @@ export function PartnerCountryGrid({ content }: PartnerCountryGridProps = {}): R
                 </div>
 
                 <h3 className="font-display font-bold text-sm sm:text-base text-[#111814] group-hover:text-[#168849] transition-colors">
-                  {isAr ? country.nameAr : country.name}
+                  {countryName}
                 </h3>
               </div>
             );

@@ -744,23 +744,75 @@ async function seed() {
   });
 
   // 6.5 Partners Page
+  const partnerRetailList = [];
+  for (const p of partnerLogos.filter((x) => x.id !== 'mahaseel')) {
+    const assetId = await uploadLocalImage(p.image);
+    if (assetId) {
+      partnerRetailList.push({
+        _key: `retail-${p.id}`,
+        name: p.name,
+        nameAr: p.nameAr,
+        category: p.category,
+        logo: {
+          _type: 'image',
+          asset: { _type: 'reference', _ref: assetId },
+        },
+      });
+    }
+  }
+
+  const mahaseelPartnerAssetId = await uploadLocalImage('/partners/mahaseel.png');
+
+  const countrySeedList = [
+    { key: 'country-jordan', name: 'Jordan', nameAr: 'الأردن', file: '/flags/jordan.svg', crops: 'Tomatoes, cucumbers, bell peppers, stone fruits', cropsAr: 'طماطم، خيار، فلفل حلو، فواكه ذات نواة حجرية' },
+    { key: 'country-saudi-arabia', name: 'Saudi Arabia', nameAr: 'المملكة العربية السعودية', file: '/flags/saudi-arabia.svg', crops: 'Premium dates, seasonal open-field crops, hydroponics', cropsAr: 'تمور فاخرة، محاصيل حقلية موسمية، زراعة مائية' },
+    { key: 'country-lebanon', name: 'Lebanon', nameAr: 'لبنان', file: '/flags/lebanon.svg', crops: 'Mountain apples, cherries, peaches, fresh herbs', cropsAr: 'تفاح جبلي، كرز، دراق، أعشاب طازجة' },
+    { key: 'country-egypt', name: 'Egypt', nameAr: 'مصر', file: '/flags/egypt.svg', crops: 'Valencia citrus, yellow onions, potatoes, garlic', cropsAr: 'حمضيات فالنسيا، بصل أصفر، بطاطس، ثوم' },
+    { key: 'country-south-africa', name: 'South Africa', nameAr: 'جنوب إفريقيا', file: '/flags/south-africa.svg', crops: 'Table grapes, navel citrus, lemons, stone fruits, pears', cropsAr: 'عنب مائدة، برتقال أبو سرة، ليمون، فواكه ذات نواة، كمثرى' },
+    { key: 'country-iran', name: 'Iran', nameAr: 'إيران', file: '/flags/iran.svg', crops: 'Sweet watermelons, pomegranates, melons, pistachios', cropsAr: 'بطيخ أحمر حلو، رمان، شمام، فستق' },
+    { key: 'country-syria', name: 'Syria', nameAr: 'سوريا', file: '/flags/syria.svg', crops: 'Citrus, stone fruits, pomegranates, seasonal root crops', cropsAr: 'حمضيات، فواكه ذات نواة، رمان، محاصيل جذرية موسمية' },
+    { key: 'country-global-origins', name: 'Global Origins', nameAr: 'أصول عالمية', file: '/cta/ctacontry.webp', crops: 'Specialty culinary lines from India, Turkey, and Europe', cropsAr: 'أصناف طهي متخصصة من الهند وتركيا وأوروبا' },
+  ];
+
+  const globalCountryList = [];
+  for (const c of countrySeedList) {
+    const assetId = await uploadLocalImage(c.file);
+    if (assetId) {
+      globalCountryList.push({
+        _key: c.key,
+        name: c.name,
+        nameAr: c.nameAr,
+        crops: c.crops,
+        cropsAr: c.cropsAr,
+        flag: {
+          _type: 'image',
+          asset: { _type: 'reference', _ref: assetId },
+        },
+      });
+    }
+  }
+
   operations.push({
     _id: 'partnersPage-singleton',
     _type: 'partnersPage',
     bannerTitle: 'Partners',
     bannerTitleAr: 'الشركاء',
-    bannerSubtitle: '',
-    bannerSubtitleAr: '',
+    bannerSubtitle: 'Connecting global orchards and local Qatari farms to premier hypermarkets and digital grocery platforms with dependable cold-chain distribution.',
+    bannerSubtitleAr: 'ربط البساتين العالمية والمزارع القطرية المحلية بالهايبرماركت الرائدة ومنصات البقالة الرقمية بتوزيع موثوق عبر سلسلة التبريد.',
     retailEyebrow: 'OUR RETAIL PARTNERS',
     retailEyebrowAr: 'شركاؤنا في التجزئة',
     retailTitle: "Trusted Daily Supplier to Qatar's Leading Retail Groups",
     retailTitleAr: 'المورد اليومي الموثوق به لمجموعات التجزئة الرائدة في قطر',
+    retailPartners: partnerRetailList,
     localEyebrow: 'LOCAL AGRICULTURAL ALLIANCE',
     localEyebrowAr: 'تحالف زراعي محلي',
     localTitle: 'Connecting Qatari Farms to the Market',
     localTitleAr: 'ربط المزارع القطرية بالسوق',
     localNarrative: 'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.',
     localNarrativeAr: 'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.',
+    ...(mahaseelPartnerAssetId ? { localPartnerImage: { _type: 'image', asset: { _type: 'reference', _ref: mahaseelPartnerAssetId } } } : {}),
+    localBadge: 'Strategic Local Partner',
+    localBadgeAr: 'شريك محلي استراتيجي',
     localTag1: 'Qatari-Grown Seasonal Supply',
     localTag1Ar: 'إمداد موسمي مزروع في قطر',
     localTag2: 'Direct Farm-to-Shelf Distribution',
@@ -771,8 +823,9 @@ async function seed() {
     globalEyebrowAr: 'شراكات التوريد العالمية',
     globalTitle: 'Long-Standing Partnerships with Growers & Export Houses',
     globalTitleAr: 'شراكات طويلة الأمد مع المزارعين وبيوت التصدير',
-    globalSubtitle: '',
-    globalSubtitleAr: '',
+    globalSubtitle: 'Partnering directly with certified agricultural producers across key growing regions to secure year-round availability of premium fresh produce.',
+    globalSubtitleAr: 'شراكات مباشرة مع منتجين زراعيين معتمدين في أبرز المناطق الزراعية لضمان توفر المنتجات الطازجة على مدار العام.',
+    globalCountries: globalCountryList,
   });
 
   // 6.6 Contact Page

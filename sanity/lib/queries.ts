@@ -405,12 +405,22 @@ export const PARTNERS_PAGE_QUERY = defineQuery(`
     retailEyebrowAr,
     retailTitle,
     retailTitleAr,
+    retailPartners[] {
+      _key,
+      name,
+      nameAr,
+      category,
+      logo
+    },
     localEyebrow,
     localEyebrowAr,
     localTitle,
     localTitleAr,
     localNarrative,
     localNarrativeAr,
+    localPartnerImage,
+    localBadge,
+    localBadgeAr,
     localTag1,
     localTag1Ar,
     localTag2,
@@ -422,7 +432,15 @@ export const PARTNERS_PAGE_QUERY = defineQuery(`
     globalTitle,
     globalTitleAr,
     globalSubtitle,
-    globalSubtitleAr
+    globalSubtitleAr,
+    globalCountries[] {
+      _key,
+      name,
+      nameAr,
+      crops,
+      cropsAr,
+      flag
+    }
   }
 `);
 

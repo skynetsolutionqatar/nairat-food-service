@@ -72,7 +72,7 @@ export function PartnerLocalGrid({ content }: PartnerLocalGridProps = {}) {
             <div className="lg:col-span-4 flex flex-col items-center justify-center p-6 sm:p-8 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80">
               <div className="relative h-16 sm:h-20 w-44 sm:w-52 flex items-center justify-center">
                 <Image
-                  src="/partners/mahaseel.png"
+                  src={content?.localPartnerImageUrl || '/partners/mahaseel.png'}
                   alt={isAr ? 'شركة محاصيل للخدمات الزراعية قطر' : 'Mahaseel Agricultural Services Company Qatar'}
                   fill
                   className="object-contain"
@@ -80,7 +80,9 @@ export function PartnerLocalGrid({ content }: PartnerLocalGridProps = {}) {
                 />
               </div>
               <span className="font-mono text-xs font-bold text-[#168849] uppercase tracking-wider mt-3">
-                {isAr ? 'شريك محلي استراتيجي' : 'Strategic Local Partner'}
+                {isAr
+                  ? (content?.localBadgeAr || 'شريك محلي استراتيجي')
+                  : (content?.localBadge || 'Strategic Local Partner')}
               </span>
             </div>
 

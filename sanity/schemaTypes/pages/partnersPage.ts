@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const partnersPage = defineType({
   name: 'partnersPage',
@@ -6,9 +6,9 @@ export const partnersPage = defineType({
   type: 'document',
   fieldsets: [
     { name: 'banner', title: '1. Page Banner', options: { collapsible: true, collapsed: false } },
-    { name: 'retail', title: '2. Retail Partners Section', options: { collapsible: true, collapsed: true } },
-    { name: 'local', title: '3. Local Agriculture & Mahaseel Section', options: { collapsible: true, collapsed: true } },
-    { name: 'global', title: '4. Global Origins & Sourcing Section', options: { collapsible: true, collapsed: true } },
+    { name: 'retail', title: '2. Retail & Online Grocery Partners', options: { collapsible: true, collapsed: false } },
+    { name: 'local', title: '3. Strategic Local Agriculture (Mahaseel)', options: { collapsible: true, collapsed: false } },
+    { name: 'global', title: '4. Global Sourcing Partnerships', options: { collapsible: true, collapsed: false } },
   ],
   fields: [
     // --- 1. BANNER ---
@@ -17,14 +17,14 @@ export const partnersPage = defineType({
       title: 'Banner Title (EN)',
       type: 'string',
       fieldset: 'banner',
-      initialValue: 'Our Valued Partners',
+      initialValue: 'Partners',
     }),
     defineField({
       name: 'bannerTitleAr',
       title: 'Banner Title (AR)',
       type: 'string',
       fieldset: 'banner',
-      initialValue: 'شركاؤنا المميزون',
+      initialValue: 'الشركاء',
     }),
     defineField({
       name: 'bannerSubtitle',
@@ -32,7 +32,7 @@ export const partnersPage = defineType({
       type: 'text',
       rows: 2,
       fieldset: 'banner',
-      initialValue: 'Connecting global agricultural basins and local Qatari farms to premier hypermarkets and digital grocery platforms with dependable cold-chain distribution.',
+      initialValue: 'Connecting global orchards and local Qatari farms to premier hypermarkets and digital grocery platforms with dependable cold-chain distribution.',
     }),
     defineField({
       name: 'bannerSubtitleAr',
@@ -40,7 +40,7 @@ export const partnersPage = defineType({
       type: 'text',
       rows: 2,
       fieldset: 'banner',
-      initialValue: 'نربط كبرى المزارع العالمية والمحلية بأرقى سلاسل الهايبرماركت ومنصات التسوق الإلكتروني في قطر عبر شبكة توزيع مبردة وموثوقة.',
+      initialValue: 'ربط البساتين العالمية والمزارع القطرية المحلية بالهايبرماركت الرائدة ومنصات البقالة الرقمية بتوزيع موثوق عبر سلسلة التبريد.',
     }),
 
     // --- 2. RETAIL PARTNERS ---
@@ -71,6 +71,64 @@ export const partnersPage = defineType({
       type: 'string',
       fieldset: 'retail',
       initialValue: 'المورد اليومي الموثوق به لمجموعات التجزئة الرائدة في قطر',
+    }),
+    defineField({
+      name: 'retailPartners',
+      title: 'Retail & Online Grocery Partner Logos',
+      type: 'array',
+      fieldset: 'retail',
+      description: 'Editable list of retail & hypermarket partners displayed in the 4-column logo grid',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Partner Name (English)',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'nameAr',
+              title: 'Partner Name (Arabic)',
+              type: 'string',
+            }),
+            defineField({
+              name: 'logo',
+              title: 'Partner Logo Image',
+              type: 'image',
+              options: { hotspot: true },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'category',
+              title: 'Category',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Hypermarket', value: 'hypermarket' },
+                  { title: 'Supermarket', value: 'supermarket' },
+                  { title: 'Quick Commerce', value: 'quick-commerce' },
+                  { title: 'Wholesale', value: 'wholesale' },
+                ],
+              },
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'name',
+              subtitle: 'nameAr',
+              media: 'logo',
+            },
+            prepare({ title, subtitle, media }) {
+              return {
+                title: `${title || 'Untitled'} ${subtitle ? `(${subtitle})` : ''}`,
+                media,
+              };
+            },
+          },
+        }),
+      ],
     }),
 
     // --- 3. LOCAL AGRICULTURE ---
@@ -108,7 +166,8 @@ export const partnersPage = defineType({
       type: 'text',
       rows: 3,
       fieldset: 'local',
-      initialValue: 'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.',
+      initialValue:
+        'Strategic local partnerships with Mahaseel, connecting Qatari farms to the market with Qatari-grown seasonal supply. We aggregate fresh produce directly from local greenhouses and farms, providing cold-chain distribution into commercial supermarkets across Qatar.',
     }),
     defineField({
       name: 'localNarrativeAr',
@@ -116,7 +175,30 @@ export const partnersPage = defineType({
       type: 'text',
       rows: 3,
       fieldset: 'local',
-      initialValue: 'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.',
+      initialValue:
+        'شراكات محلية استراتيجية مع محاصيل، لربط المزارع القطرية بالسوق مع إمداد موسمي مزروع في قطر. نحن نجمع المنتجات الطازجة مباشرة من البيوت المحمية والمزارع المحلية، ونوفر توزيعاً عبر سلسلة التبريد إلى السوبرماركت التجارية في جميع أنحاء قطر.',
+    }),
+    defineField({
+      name: 'localPartnerImage',
+      title: 'Local Partner Logo / Showcase Image',
+      type: 'image',
+      fieldset: 'local',
+      options: { hotspot: true },
+      description: 'Logo showcase for Mahaseel or strategic local partner',
+    }),
+    defineField({
+      name: 'localBadge',
+      title: 'Local Partner Badge (EN)',
+      type: 'string',
+      fieldset: 'local',
+      initialValue: 'Strategic Local Partner',
+    }),
+    defineField({
+      name: 'localBadgeAr',
+      title: 'Local Partner Badge (AR)',
+      type: 'string',
+      fieldset: 'local',
+      initialValue: 'شريك محلي استراتيجي',
     }),
     defineField({
       name: 'localTag1',
@@ -167,28 +249,28 @@ export const partnersPage = defineType({
       title: 'Global Eyebrow (EN)',
       type: 'string',
       fieldset: 'global',
-      initialValue: 'GLOBAL SOURCING ALLIANCES',
+      initialValue: 'GLOBAL SOURCING PARTNERSHIPS',
     }),
     defineField({
       name: 'globalEyebrowAr',
       title: 'Global Eyebrow (AR)',
       type: 'string',
       fieldset: 'global',
-      initialValue: 'تحالفات التوريد العالمية',
+      initialValue: 'شراكات التوريد العالمية',
     }),
     defineField({
       name: 'globalTitle',
       title: 'Global Headline (EN)',
       type: 'string',
       fieldset: 'global',
-      initialValue: 'From Global Orchards to Qatar’s Tables',
+      initialValue: 'Long-Standing Partnerships with Growers & Export Houses',
     }),
     defineField({
       name: 'globalTitleAr',
       title: 'Global Headline (AR)',
       type: 'string',
       fieldset: 'global',
-      initialValue: 'من البساتين العالمية إلى موائد قطر',
+      initialValue: 'شراكات طويلة الأمد مع المزارعين وبيوت التصدير',
     }),
     defineField({
       name: 'globalSubtitle',
@@ -196,7 +278,8 @@ export const partnersPage = defineType({
       type: 'text',
       rows: 2,
       fieldset: 'global',
-      initialValue: 'Partnering directly with certified agricultural producers across key growing regions to secure year-round availability of premium fresh produce.',
+      initialValue:
+        'Partnering directly with certified agricultural producers across key growing regions to secure year-round availability of premium fresh produce.',
     }),
     defineField({
       name: 'globalSubtitleAr',
@@ -204,7 +287,65 @@ export const partnersPage = defineType({
       type: 'text',
       rows: 2,
       fieldset: 'global',
-      initialValue: 'شراكات مباشرة مع منتجين زراعيين معتمدين في أبرز المناطق الزراعية لضمان توفر المنتجات الطازجة على مدار العام.',
+      initialValue:
+        'شراكات مباشرة مع منتجين زراعيين معتمدين في أبرز المناطق الزراعية لضمان توفر المنتجات الطازجة على مدار العام.',
+    }),
+    defineField({
+      name: 'globalCountries',
+      title: 'Global Sourcing Countries & Flag Logos',
+      type: 'array',
+      fieldset: 'global',
+      description: 'Editable list of sourcing countries, flag images, and crop varieties',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({
+              name: 'name',
+              title: 'Country Name (English)',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'nameAr',
+              title: 'Country Name (Arabic)',
+              type: 'string',
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'flag',
+              title: 'Flag / Origin Image',
+              type: 'image',
+              options: { hotspot: true },
+              validation: (rule) => rule.required(),
+            }),
+            defineField({
+              name: 'crops',
+              title: 'Key Crops (English)',
+              type: 'string',
+            }),
+            defineField({
+              name: 'cropsAr',
+              title: 'Key Crops (Arabic)',
+              type: 'string',
+            }),
+          ],
+          preview: {
+            select: {
+              title: 'name',
+              subtitle: 'crops',
+              media: 'flag',
+            },
+            prepare({ title, subtitle, media }) {
+              return {
+                title: title || 'Country',
+                subtitle: subtitle,
+                media,
+              };
+            },
+          },
+        }),
+      ],
     }),
   ],
   preview: {

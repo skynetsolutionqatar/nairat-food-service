@@ -18,9 +18,11 @@ interface PartnerRetailProps {
 }
 
 export function PartnerRetail({ partners, content }: PartnerRetailProps = {}): React.ReactNode {
-  const activePartners = partners && partners.length > 0
-    ? partners.filter((p) => p.id !== 'mahaseel')
-    : retailPartners;
+  const activePartners = (content?.retailPartners && content.retailPartners.length > 0)
+    ? content.retailPartners
+    : (partners && partners.length > 0
+      ? partners.filter((p) => p.id !== 'mahaseel')
+      : retailPartners);
 
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
@@ -101,22 +103,25 @@ export function PartnerRetail({ partners, content }: PartnerRetailProps = {}): R
 
         {/* 4-Column Partner Logo Grid */}
         <div className="retail-grid-container grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {activePartners.map((partner) => (
-            <div
-              key={partner.id}
-              className="retail-partner-card group p-5 sm:p-6 rounded-2xl bg-[#F8FAF8] border border-neutral-200/90 shadow-2xs hover:shadow-md hover:border-[#168849]/50 hover:bg-white transition-all duration-300 flex items-center justify-center text-center min-h-[110px] sm:min-h-[125px]"
-            >
-              <div className="relative h-9 sm:h-10 w-28 sm:w-36 flex items-center justify-center">
-                <Image
-                  src={partner.image}
-                  alt={`${partner.name} logo`}
-                  fill
-                  sizes="(max-width: 640px) 120px, 150px"
-                  className="object-contain transition-transform duration-300 group-hover:scale-105"
-                />
+          {activePartners.map((partner, index) => {
+            const partnerName = isAr && partner.nameAr ? partner.nameAr : partner.name;
+            return (
+              <div
+                key={partner.id || partner.name || index}
+                className="retail-partner-card group p-5 sm:p-6 rounded-2xl bg-[#F8FAF8] border border-neutral-200/90 shadow-2xs hover:shadow-md hover:border-[#168849]/50 hover:bg-white transition-all duration-300 flex items-center justify-center text-center min-h-[110px] sm:min-h-[125px]"
+              >
+                <div className="relative h-9 sm:h-10 w-28 sm:w-36 flex items-center justify-center">
+                  <Image
+                    src={partner.image}
+                    alt={`${partnerName} logo`}
+                    fill
+                    sizes="(max-width: 640px) 120px, 150px"
+                    className="object-contain transition-transform duration-300 group-hover:scale-105"
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
