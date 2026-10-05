@@ -26,6 +26,49 @@ export function ContactMap({ company, content }: ContactMapProps = {}) {
     ? (content?.facilityTitleAr || 'مستودعنا المركزي والتخزين المبرد في الدوحة')
     : (content?.facilityTitle || 'Our Doha Central Warehouse & Cold Storage');
 
+  const badge1Label = isAr
+    ? (content?.badgeLocationLabelAr || 'الموقع')
+    : (content?.badgeLocationLabel || 'Location');
+  const badge1Value = isAr
+    ? (content?.badgeLocationValueAr || 'شارع 37، المنطقة الصناعية')
+    : (content?.badgeLocationValue || 'Street 37, Industrial Area');
+
+  const badge2Label = isAr
+    ? (content?.badgeCapacityLabelAr || 'السعة')
+    : (content?.badgeCapacityLabel || 'Capacity');
+  const badge2Value = isAr
+    ? (content?.badgeCapacityValueAr || `${(profile.warehouseArea || '5,000 م²').replace(/m²\b/, 'م²')} • 20 مبرداً`)
+    : (content?.badgeCapacityValue || `${profile.warehouseArea || '5,000 m²'} • 20 Chillers`);
+
+  const badge3Label = isAr
+    ? (content?.badgeOperationsLabelAr || 'العمليات')
+    : (content?.badgeOperationsLabel || 'Operations');
+  const badge3Value = isAr
+    ? (content?.badgeOperationsValueAr || 'الاستلام والإرسال 24/7')
+    : (content?.badgeOperationsValue || '24/7 Receiving & Dispatch');
+
+  const badge4Label = isAr
+    ? (content?.badgeComplianceLabelAr || 'الامتثال')
+    : (content?.badgeComplianceLabel || 'Compliance');
+  const badge4Value = isAr
+    ? (content?.badgeComplianceValueAr || 'HACCP • ISO 22000')
+    : (content?.badgeComplianceValue || 'HACCP • ISO 22000');
+
+  const googleMapsEmbedUrl =
+    content?.googleMapsEmbedUrl ||
+    'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57763.27363835163!2d51.3660583!3d25.1963217!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d10076a23d59%3A0x3ee7f3ae5d1130be!2sNairat%20Food%20-%20Main%20Warehouse!5e0!3m2!1sen!2sqa!4v1790839233998!5m2!1sen!2sqa';
+
+  const directionsUrl =
+    content?.directionsUrl || 'https://maps.app.goo.gl/FGEeJiMmQ172UCx3A';
+
+  const facilityCardTitle = isAr
+    ? (content?.facilityCardTitleAr || 'شركة نيرات للخدمات الغذائية')
+    : (content?.facilityCardTitle || 'Nairat Food Services');
+
+  const facilityCardAddress = isAr
+    ? (content?.facilityCardAddressAr || 'شارع 37، المنطقة الصناعية، الدوحة')
+    : (content?.facilityCardAddress || 'Street 37, Industrial Area, Doha');
+
   useGSAP(
     () => {
       const section = sectionRef.current;
@@ -79,10 +122,10 @@ export function ContactMap({ company, content }: ContactMapProps = {}) {
               </div>
               <div>
                 <span className="text-[11px] text-[#6B7280] block">
-                  {isAr ? 'الموقع' : 'Location'}
+                  {badge1Label}
                 </span>
                 <span className="font-semibold text-[#111814]">
-                  {isAr ? 'شارع 37، المنطقة الصناعية' : 'Street 37, Industrial Area'}
+                  {badge1Value}
                 </span>
               </div>
             </div>
@@ -93,12 +136,10 @@ export function ContactMap({ company, content }: ContactMapProps = {}) {
               </div>
               <div>
                 <span className="text-[11px] text-[#6B7280] block">
-                  {isAr ? 'السعة' : 'Capacity'}
+                  {badge2Label}
                 </span>
                 <span className="font-semibold text-[#111814]">
-                  {isAr
-                    ? `${(profile.warehouseArea || '5,000 م²').replace(/m²\b/, 'م²')} • 20 مبرداً`
-                    : `${profile.warehouseArea || '5,000 m²'} • 20 Chillers`}
+                  {badge2Value}
                 </span>
               </div>
             </div>
@@ -109,10 +150,10 @@ export function ContactMap({ company, content }: ContactMapProps = {}) {
               </div>
               <div>
                 <span className="text-[11px] text-[#6B7280] block">
-                  {isAr ? 'العمليات' : 'Operations'}
+                  {badge3Label}
                 </span>
                 <span className="font-semibold text-[#111814]">
-                  {isAr ? 'الاستلام والإرسال 24/7' : '24/7 Receiving & Dispatch'}
+                  {badge3Value}
                 </span>
               </div>
             </div>
@@ -123,10 +164,10 @@ export function ContactMap({ company, content }: ContactMapProps = {}) {
               </div>
               <div>
                 <span className="text-[11px] text-[#6B7280] block">
-                  {isAr ? 'الامتثال' : 'Compliance'}
+                  {badge4Label}
                 </span>
                 <span className="font-semibold text-[#111814]">
-                  {isAr ? 'HACCP • ISO 22000' : 'HACCP • ISO 22000'}
+                  {badge4Value}
                 </span>
               </div>
             </div>
@@ -140,7 +181,7 @@ export function ContactMap({ company, content }: ContactMapProps = {}) {
                   ? 'موقع مستودع نيرات للأغذية المركزي بالدوحة'
                   : 'Nairat Food Central Warehouse Location Doha Qatar'
               }
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57763.27363835163!2d51.3660583!3d25.1963217!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d10076a23d59%3A0x3ee7f3ae5d1130be!2sNairat%20Food%20-%20Main%20Warehouse!5e0!3m2!1sen!2sqa!4v1790839233998!5m2!1sen!2sqa"
+              src={googleMapsEmbedUrl}
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -154,16 +195,14 @@ export function ContactMap({ company, content }: ContactMapProps = {}) {
             <div className="absolute bottom-4 start-4 end-4 sm:end-auto sm:max-w-xs p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-neutral-200 shadow-md flex items-center justify-between gap-4">
               <div>
                 <span className="font-display font-bold text-sm text-[#111814] block">
-                  {isAr ? 'شركة نيرات للخدمات الغذائية' : 'Nairat Food Services'}
+                  {facilityCardTitle}
                 </span>
                 <span className="font-sans text-xs text-[#6B7280] block">
-                  {isAr
-                    ? 'شارع 37، المنطقة الصناعية، الدوحة'
-                    : 'Street 37, Industrial Area, Doha'}
+                  {facilityCardAddress}
                 </span>
               </div>
               <a
-                href="https://maps.app.goo.gl/FGEeJiMmQ172UCx3A"
+                href={directionsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#168849] hover:bg-[#12723c] text-white text-xs font-semibold shadow-xs transition-colors shrink-0"

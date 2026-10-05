@@ -1785,29 +1785,116 @@ export interface ContactPageContent {
   inquiryTitleAr: string;
   inquirySubtitle: string;
   inquirySubtitleAr: string;
+  addressLabel: string;
+  addressLabelAr: string;
+  addressText: string;
+  addressTextAr: string;
+  crNumber: string;
+  crNumberAr: string;
+  emailLabel: string;
+  emailLabelAr: string;
+  emailAddress: string;
+  callLabel: string;
+  callLabelAr: string;
+  phoneTel: string;
+  phoneMobile: string;
+  phoneWhatsApp: string;
+  formSubmitText: string;
+  formSubmitTextAr: string;
+  formSuccessMessage: string;
+  formSuccessMessageAr: string;
   facilityEyebrow: string;
   facilityEyebrowAr: string;
   facilityTitle: string;
   facilityTitleAr: string;
-  facilityOperatingHours: string;
-  facilityOperatingHoursAr: string;
+  badgeLocationLabel: string;
+  badgeLocationLabelAr: string;
+  badgeLocationValue: string;
+  badgeLocationValueAr: string;
+  badgeCapacityLabel: string;
+  badgeCapacityLabelAr: string;
+  badgeCapacityValue: string;
+  badgeCapacityValueAr: string;
+  badgeOperationsLabel: string;
+  badgeOperationsLabelAr: string;
+  badgeOperationsValue: string;
+  badgeOperationsValueAr: string;
+  badgeComplianceLabel: string;
+  badgeComplianceLabelAr: string;
+  badgeComplianceValue: string;
+  badgeComplianceValueAr: string;
+  googleMapsEmbedUrl: string;
+  directionsUrl: string;
+  facilityCardTitle: string;
+  facilityCardTitleAr: string;
+  facilityCardAddress: string;
+  facilityCardAddressAr: string;
+  facilityOperatingHours?: string;
+  facilityOperatingHoursAr?: string;
 }
 
 export const defaultContactPageContent: ContactPageContent = {
   bannerTitle: en.contact.badge,
   bannerTitleAr: ar.contact.badge,
-  bannerSubtitle: en.contact.heroSubtitle,
-  bannerSubtitleAr: ar.contact.heroSubtitle,
+  bannerSubtitle:
+    'Get in touch with our commercial produce procurement and cold-chain logistics team in Doha, Qatar.',
+  bannerSubtitleAr:
+    'تواصل مع فريق التوريد التجاري والخدمات اللوجستية لسلسلة التبريد في الدوحة، قطر.',
   inquiryEyebrow: en.contact.badge,
   inquiryEyebrowAr: ar.contact.badge,
   inquiryTitle: en.contact.heroTitle,
   inquiryTitleAr: ar.contact.heroTitle,
-  inquirySubtitle: en.contact.heroSubtitle,
-  inquirySubtitleAr: ar.contact.heroSubtitle,
+  inquirySubtitle:
+    'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, our specialists are ready to assist.',
+  inquirySubtitleAr:
+    'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، فإن خبراءنا على استعداد لمساعدتك.',
+  addressLabel: 'Address:',
+  addressLabelAr: 'العنوان:',
+  addressText: 'Industrial Area, Street 37, Doha, Qatar.',
+  addressTextAr: 'المنطقة الصناعية، شارع 37، الدوحة، قطر.',
+  crNumber: 'CR No. 144352',
+  crNumberAr: 'السجل التجاري رقم 144352',
+  emailLabel: 'Mail ID:',
+  emailLabelAr: 'البريد الإلكتروني:',
+  emailAddress: 'info@nairat.net',
+  callLabel: 'Call:',
+  callLabelAr: 'اتصل:',
+  phoneTel: '+974 4429 0400 / 4429 0300',
+  phoneMobile: '+974 3104 3814',
+  phoneWhatsApp: '+974 5032 9385',
+  formSubmitText: 'Submit',
+  formSubmitTextAr: 'إرسال',
+  formSuccessMessage:
+    'Thank you! Your inquiry has been received. Our team will contact you promptly.',
+  formSuccessMessageAr:
+    'شكراً لك! تم استلام استفسارك. سيتصل بك فريقنا قريباً.',
   facilityEyebrow: 'FACILITY LOCATION',
   facilityEyebrowAr: 'موقع المنشأة',
-  facilityTitle: 'Our Central Cold Storage & Distribution Facility in Doha',
+  facilityTitle: 'Our Doha Central Warehouse & Cold Storage',
   facilityTitleAr: 'مستودعنا المركزي والتخزين المبرد في الدوحة',
+  badgeLocationLabel: 'Location',
+  badgeLocationLabelAr: 'الموقع',
+  badgeLocationValue: 'Street 37, Industrial Area',
+  badgeLocationValueAr: 'شارع 37، المنطقة الصناعية',
+  badgeCapacityLabel: 'Capacity',
+  badgeCapacityLabelAr: 'السعة',
+  badgeCapacityValue: '5,000 m² • 20 Chillers',
+  badgeCapacityValueAr: '5,000 م² • 20 مبرداً',
+  badgeOperationsLabel: 'Operations',
+  badgeOperationsLabelAr: 'العمليات',
+  badgeOperationsValue: '24/7 Receiving & Dispatch',
+  badgeOperationsValueAr: 'الاستلام والإرسال 24/7',
+  badgeComplianceLabel: 'Compliance',
+  badgeComplianceLabelAr: 'الامتثال',
+  badgeComplianceValue: 'HACCP • ISO 22000',
+  badgeComplianceValueAr: 'HACCP • ISO 22000',
+  googleMapsEmbedUrl:
+    'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d57763.27363835163!2d51.3660583!3d25.1963217!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e45d10076a23d59%3A0x3ee7f3ae5d1130be!2sNairat%20Food%20-%20Main%20Warehouse!5e0!3m2!1sen!2sqa!4v1790839233998!5m2!1sen!2sqa',
+  directionsUrl: 'https://maps.app.goo.gl/FGEeJiMmQ172UCx3A',
+  facilityCardTitle: 'Nairat Food Services',
+  facilityCardTitleAr: 'شركة نيرات للخدمات الغذائية',
+  facilityCardAddress: 'Street 37, Industrial Area, Doha',
+  facilityCardAddressAr: 'شارع 37، المنطقة الصناعية، الدوحة',
   facilityOperatingHours: en.common.workingHoursVal,
   facilityOperatingHoursAr: ar.common.workingHoursVal,
 };
@@ -1838,10 +1925,50 @@ export async function getContactPageContent(): Promise<ContactPageContent> {
           inquiryTitleAr: data.inquiryTitleAr || defaultContactPageContent.inquiryTitleAr,
           inquirySubtitle: data.inquirySubtitle || defaultContactPageContent.inquirySubtitle,
           inquirySubtitleAr: data.inquirySubtitleAr || defaultContactPageContent.inquirySubtitleAr,
+          addressLabel: data.addressLabel || defaultContactPageContent.addressLabel,
+          addressLabelAr: data.addressLabelAr || defaultContactPageContent.addressLabelAr,
+          addressText: data.addressText || defaultContactPageContent.addressText,
+          addressTextAr: data.addressTextAr || defaultContactPageContent.addressTextAr,
+          crNumber: data.crNumber || defaultContactPageContent.crNumber,
+          crNumberAr: data.crNumberAr || defaultContactPageContent.crNumberAr,
+          emailLabel: data.emailLabel || defaultContactPageContent.emailLabel,
+          emailLabelAr: data.emailLabelAr || defaultContactPageContent.emailLabelAr,
+          emailAddress: data.emailAddress || defaultContactPageContent.emailAddress,
+          callLabel: data.callLabel || defaultContactPageContent.callLabel,
+          callLabelAr: data.callLabelAr || defaultContactPageContent.callLabelAr,
+          phoneTel: data.phoneTel || defaultContactPageContent.phoneTel,
+          phoneMobile: data.phoneMobile || defaultContactPageContent.phoneMobile,
+          phoneWhatsApp: data.phoneWhatsApp || defaultContactPageContent.phoneWhatsApp,
+          formSubmitText: data.formSubmitText || defaultContactPageContent.formSubmitText,
+          formSubmitTextAr: data.formSubmitTextAr || defaultContactPageContent.formSubmitTextAr,
+          formSuccessMessage: data.formSuccessMessage || defaultContactPageContent.formSuccessMessage,
+          formSuccessMessageAr: data.formSuccessMessageAr || defaultContactPageContent.formSuccessMessageAr,
           facilityEyebrow: data.facilityEyebrow || defaultContactPageContent.facilityEyebrow,
           facilityEyebrowAr: data.facilityEyebrowAr || defaultContactPageContent.facilityEyebrowAr,
           facilityTitle: data.facilityTitle || defaultContactPageContent.facilityTitle,
           facilityTitleAr: data.facilityTitleAr || defaultContactPageContent.facilityTitleAr,
+          badgeLocationLabel: data.badgeLocationLabel || defaultContactPageContent.badgeLocationLabel,
+          badgeLocationLabelAr: data.badgeLocationLabelAr || defaultContactPageContent.badgeLocationLabelAr,
+          badgeLocationValue: data.badgeLocationValue || defaultContactPageContent.badgeLocationValue,
+          badgeLocationValueAr: data.badgeLocationValueAr || defaultContactPageContent.badgeLocationValueAr,
+          badgeCapacityLabel: data.badgeCapacityLabel || defaultContactPageContent.badgeCapacityLabel,
+          badgeCapacityLabelAr: data.badgeCapacityLabelAr || defaultContactPageContent.badgeCapacityLabelAr,
+          badgeCapacityValue: data.badgeCapacityValue || defaultContactPageContent.badgeCapacityValue,
+          badgeCapacityValueAr: data.badgeCapacityValueAr || defaultContactPageContent.badgeCapacityValueAr,
+          badgeOperationsLabel: data.badgeOperationsLabel || defaultContactPageContent.badgeOperationsLabel,
+          badgeOperationsLabelAr: data.badgeOperationsLabelAr || defaultContactPageContent.badgeOperationsLabelAr,
+          badgeOperationsValue: data.badgeOperationsValue || defaultContactPageContent.badgeOperationsValue,
+          badgeOperationsValueAr: data.badgeOperationsValueAr || defaultContactPageContent.badgeOperationsValueAr,
+          badgeComplianceLabel: data.badgeComplianceLabel || defaultContactPageContent.badgeComplianceLabel,
+          badgeComplianceLabelAr: data.badgeComplianceLabelAr || defaultContactPageContent.badgeComplianceLabelAr,
+          badgeComplianceValue: data.badgeComplianceValue || defaultContactPageContent.badgeComplianceValue,
+          badgeComplianceValueAr: data.badgeComplianceValueAr || defaultContactPageContent.badgeComplianceValueAr,
+          googleMapsEmbedUrl: data.googleMapsEmbedUrl || defaultContactPageContent.googleMapsEmbedUrl,
+          directionsUrl: data.directionsUrl || defaultContactPageContent.directionsUrl,
+          facilityCardTitle: data.facilityCardTitle || defaultContactPageContent.facilityCardTitle,
+          facilityCardTitleAr: data.facilityCardTitleAr || defaultContactPageContent.facilityCardTitleAr,
+          facilityCardAddress: data.facilityCardAddress || defaultContactPageContent.facilityCardAddress,
+          facilityCardAddressAr: data.facilityCardAddressAr || defaultContactPageContent.facilityCardAddressAr,
           facilityOperatingHours: data.facilityOperatingHours || defaultContactPageContent.facilityOperatingHours,
           facilityOperatingHoursAr: data.facilityOperatingHoursAr || defaultContactPageContent.facilityOperatingHoursAr,
         };

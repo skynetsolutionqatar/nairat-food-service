@@ -234,5 +234,15 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - [x] Seeded and synced live Sanity Content Lake with 9 retail partner logos, Mahaseel logo, and 8 global sourcing country flags.
   - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and end-to-end verified via `agent-browser` (`/partners` and `/ar/partners`).
 
-
-
+- [x] **Milestone 9: Contact Us Page CMS Revamp, Content Alignment & Section Controls** [Completed]
+  - [x] Restructured `contactPage.ts` Sanity schema into 3 organized collapsible fieldsets:
+    - **1. Page Banner** (`bannerTitle`, `bannerTitleAr`, `bannerSubtitle`, `bannerSubtitleAr`).
+    - **2. Contact Details & Inquiry Form** (`inquiryEyebrow`, `inquiryTitle`, `inquirySubtitle`, address card label/text, CR number, email card label/email, call card label, landline numbers, mobile, WhatsApp, form submit button text, form success feedback message in EN & AR).
+    - **3. Facility Specs & Map Section** (`facilityEyebrow`, `facilityTitle`, 4 facility summary badges for Location, Capacity, Operations, Compliance, interactive Google Maps embed iframe URL, directions URL, and floating navigation card text in EN & AR).
+  - [x] Reconciled all content and headline mismatches between Sanity defaults, seed data, and frontend components.
+  - [x] Updated GROQ queries (`CONTACT_PAGE_QUERY` in `sanity/lib/queries.ts`) with projections for all newly introduced contact cards, form feedback, badges, and map parameters.
+  - [x] Extended `ContactPageContent` interface, `defaultContactPageContent`, and `getContactPageContent()` mapper in `sanity/lib/data.ts`.
+  - [x] Wired `ContactSection.tsx` to dynamically render contact info cards (address, CR, email, multi-phone with formatted dial links, WhatsApp direct link), dynamic submit button label, and localized success feedback message.
+  - [x] Wired `ContactMap.tsx` to dynamically render the 4 facility badges, editable Google Maps embed URL, external directions target URL, and floating card text with full bilingual support.
+  - [x] Updated `scripts/seed-sanity.ts` and synchronized live Sanity Content Lake document `contactPage-singleton`.
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and end-to-end verified `/contact` and `/ar/contact` via `agent-browser`.

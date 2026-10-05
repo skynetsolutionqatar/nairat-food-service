@@ -28,6 +28,37 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
     ? (content?.inquiryTitleAr || 'تواصل معنا')
     : (content?.inquiryTitle || 'Get in Touch with Us');
   const subtitle = isAr ? content?.inquirySubtitleAr : content?.inquirySubtitle;
+  const addressLabel = isAr
+    ? (content?.addressLabelAr || 'العنوان:')
+    : (content?.addressLabel || 'Address:');
+  const addressText = isAr
+    ? (content?.addressTextAr || profile.contact?.address || 'المنطقة الصناعية، شارع 37، الدوحة، قطر.')
+    : (content?.addressText || profile.contact?.address || 'Industrial Area, Street 37, Doha, Qatar.');
+  const crNumber = isAr
+    ? (content?.crNumberAr || 'السجل التجاري رقم 144352')
+    : (content?.crNumber || 'CR No. 144352');
+
+  const emailLabel = isAr
+    ? (content?.emailLabelAr || 'البريد الإلكتروني:')
+    : (content?.emailLabel || 'Mail ID:');
+  const emailAddress = content?.emailAddress || profile.contact?.email || 'info@nairat.net';
+
+  const callLabel = isAr
+    ? (content?.callLabelAr || 'اتصل:')
+    : (content?.callLabel || 'Call:');
+  const phoneTel = content?.phoneTel || '+974 4429 0400 / 4429 0300';
+  const phoneMobile = content?.phoneMobile || '+974 3104 3814';
+  const phoneWhatsApp = content?.phoneWhatsApp || '+974 5032 9385';
+  const cleanWhatsApp = phoneWhatsApp.replace(/[^0-9]/g, '');
+  const cleanMobile = phoneMobile.replace(/[^0-9+]/g, '');
+
+  const formSubmitText = isAr
+    ? (content?.formSubmitTextAr || 'إرسال')
+    : (content?.formSubmitText || 'Submit');
+  const formSuccessMessage = isAr
+    ? (content?.formSuccessMessageAr || 'شكراً لك! تم استلام استفسارك. سيتصل بك فريقنا قريباً.')
+    : (content?.formSuccessMessage || 'Thank you! Your inquiry has been received. Our team will contact you promptly.');
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -118,11 +149,7 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
 
       if (response.ok && result.success) {
         setSubmitStatus('success');
-        setFeedbackMessage(
-          locale === 'ar'
-            ? 'شكراً لك! تم استلام استفسارك. سيتصل بك فريقنا قريباً.'
-            : (result.message || 'Thank you! Your inquiry has been received. Our team will contact you promptly.')
-        );
+        setFeedbackMessage(formSuccessMessage || result.message);
         setFormData({ name: '', email: '', phone: '', message: '' });
       } else {
         setSubmitStatus('error');
@@ -176,13 +203,13 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
               </div>
               <div className="space-y-1 text-start">
                 <h3 className="font-display font-bold text-base sm:text-lg text-[#111814]">
-                  {locale === 'ar' ? 'العنوان:' : 'Address:'}
+                  {addressLabel}
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-[#6B7280] leading-relaxed">
-                  {profile.contact?.address || (locale === 'ar' ? 'المنطقة الصناعية، شارع 37، الدوحة، قطر.' : 'Industrial Area, Street 37, Doha, Qatar.')}
+                  {addressText}
                 </p>
                 <span className="font-mono text-xs text-[#168849] font-medium block pt-0.5">
-                  {locale === 'ar' ? 'السجل التجاري رقم 144352' : 'CR No. 144352'}
+                  {crNumber}
                 </span>
               </div>
             </div>
@@ -194,14 +221,14 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
               </div>
               <div className="space-y-1 text-start">
                 <h3 className="font-display font-bold text-base sm:text-lg text-[#111814]">
-                  {locale === 'ar' ? 'البريد الإلكتروني:' : 'Mail ID:'}
+                  {emailLabel}
                 </h3>
                 <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
                   <a
-                    href={`mailto:${profile.contact?.email || 'info@nairat.net'}`}
+                    href={`mailto:${emailAddress}`}
                     className="hover:text-[#168849] transition-colors underline-offset-2 hover:underline"
                   >
-                    {profile.contact?.email || 'info@nairat.net'}
+                    {emailAddress}
                   </a>
                 </p>
               </div>
@@ -214,34 +241,45 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
               </div>
               <div className="space-y-1.5 text-start">
                 <h3 className="font-display font-bold text-base sm:text-lg text-[#111814]">
-                  {locale === 'ar' ? 'اتصل:' : 'Call:'}
+                  {callLabel}
                 </h3>
                 <div className="font-sans text-xs sm:text-sm text-[#6B7280] space-y-1">
                   <div>
                     <span className="text-neutral-400 text-xs ms-1.5">{locale === 'ar' ? 'الهاتف:' : 'Tel:'}</span>
-                    <a href="tel:+97444290400" className="font-mono hover:text-[#168849] transition-colors">
-                      +974 4429 0400
-                    </a>
-                    <span className="mx-1 text-neutral-300">/</span>
-                    <a href="tel:+97444290300" className="font-mono hover:text-[#168849] transition-colors">
-                      4429 0300
-                    </a>
+                    {phoneTel.includes('/') ? (
+                      phoneTel.split('/').map((num, idx, arr) => {
+                        const trimmed = num.trim();
+                        const dial = trimmed.startsWith('+') ? trimmed : `+974${trimmed}`;
+                        return (
+                          <React.Fragment key={idx}>
+                            <a href={`tel:${dial.replace(/\s+/g, '')}`} className="font-mono hover:text-[#168849] transition-colors">
+                              {trimmed}
+                            </a>
+                            {idx < arr.length - 1 && <span className="mx-1 text-neutral-300">/</span>}
+                          </React.Fragment>
+                        );
+                      })
+                    ) : (
+                      <a href={`tel:${phoneTel.replace(/\s+/g, '')}`} className="font-mono hover:text-[#168849] transition-colors">
+                        {phoneTel}
+                      </a>
+                    )}
                   </div>
                   <div>
                     <span className="text-neutral-400 text-xs ms-1.5">{locale === 'ar' ? 'الجوال:' : 'Mobile:'}</span>
-                    <a href="tel:+97431043814" className="font-mono hover:text-[#168849] transition-colors">
-                      +974 3104 3814
+                    <a href={`tel:${cleanMobile}`} className="font-mono hover:text-[#168849] transition-colors">
+                      {phoneMobile}
                     </a>
                   </div>
                   <div className="pt-0.5">
                     <span className="text-neutral-400 text-xs ms-1.5">{locale === 'ar' ? 'واتساب:' : 'WhatsApp:'}</span>
                     <a
-                      href="https://wa.me/97450329385"
+                      href={`https://wa.me/${cleanWhatsApp}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="font-mono text-[#168849] font-semibold hover:underline"
                     >
-                      +974 5032 9385
+                      {phoneWhatsApp}
                     </a>
                   </div>
                 </div>
@@ -364,7 +402,7 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
                     text={
                       isSubmitting
                         ? (locale === 'ar' ? 'جارٍ الإرسال...' : 'Sending...')
-                        : (locale === 'ar' ? 'إرسال' : 'Submit')
+                        : formSubmitText
                     }
                     variant="white"
                   />
