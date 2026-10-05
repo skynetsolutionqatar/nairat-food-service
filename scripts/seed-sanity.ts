@@ -358,7 +358,10 @@ async function seed() {
       taglineAr: s.taglineAr,
       description: s.description,
       descriptionAr: s.descriptionAr,
-      features: s.features,
+      features: s.features.map((feat, fIndex) => ({
+        _key: `${s.id}-feat-${fIndex + 1}`,
+        ...feat,
+      })),
       image: assetId
         ? {
             _type: 'image',
