@@ -28,18 +28,10 @@ interface ServicesListProps {
   content?: ServicesPageContent;
 }
 
-export function ServicesList({ services, content }: ServicesListProps = {}): React.ReactNode {
+export function ServicesList({ services }: ServicesListProps = {}): React.ReactNode {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale, dict } = useLocale();
   const prefix = locale === 'ar' ? '/ar' : '';
-  const isAr = locale === 'ar';
-
-  const overviewHeadline = isAr
-    ? (content?.overviewHeadlineAr || 'حلول متكاملة للتوريد والتوزيع عبر سلسلة التبريد')
-    : (content?.overviewHeadline || 'End-to-End Cold-Chain Supply & Distribution Solutions');
-  const overviewNarrative = isAr
-    ? (content?.overviewNarrativeAr || 'من المشتريات الدولية والتخليص الجمركي المبرد إلى التوزيع اليومي بالأسطول وتجارة الأمانة للمزارعين، نحن ندعم منظومة التجزئة الغذائية في قطر.')
-    : (content?.overviewNarrative || 'From international procurement and chilled customs clearance to daily fleet delivery and farm consignment trading, we power Qatar’s food retail ecosystem.');
 
   const servicesData: ServiceItem[] = [
     {

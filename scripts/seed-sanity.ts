@@ -673,12 +673,8 @@ async function seed() {
     _type: 'servicesPage',
     bannerTitle: 'Our Services',
     bannerTitleAr: 'خدماتنا',
-    bannerSubtitle: '',
-    bannerSubtitleAr: '',
-    overviewHeadline: 'End-to-End Fresh Produce Solutions for Qatar',
-    overviewHeadlineAr: 'حلول متكاملة للمنتجات الطازجة في دولة قطر',
-    overviewNarrative: 'From international procurement and chilled customs clearance to daily fleet delivery and farm consignment trading, we power Qatar’s food retail ecosystem.',
-    overviewNarrativeAr: 'من المشتريات الدولية والتخليص الجمركي المبرد إلى التوزيع اليومي بالأسطول وتجارة الأمانة للمزارعين، نحن ندعم منظومة التجزئة الغذائية في قطر.',
+    bannerSubtitle: 'Comprehensive fresh-produce distribution, grower consignment partnerships, and retail store services across Qatar.',
+    bannerSubtitleAr: 'توزيع شامل للمنتجات الطازجة، شراكات بيع الأمانة للمزارعين، وخدمات التجزئة في جميع أنحاء قطر.',
   });
 
   // 6.5 Partners Page

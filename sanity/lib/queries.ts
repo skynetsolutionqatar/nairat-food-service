@@ -371,11 +371,7 @@ export const SERVICES_PAGE_QUERY = defineQuery(`
     bannerTitle,
     bannerTitleAr,
     bannerSubtitle,
-    bannerSubtitleAr,
-    overviewHeadline,
-    overviewHeadlineAr,
-    overviewNarrative,
-    overviewNarrativeAr
+    bannerSubtitleAr
   }
 `);
 

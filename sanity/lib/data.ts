@@ -1325,10 +1325,6 @@ export interface ServicesPageContent {
   bannerTitleAr: string;
   bannerSubtitle: string;
   bannerSubtitleAr: string;
-  overviewHeadline: string;
-  overviewHeadlineAr: string;
-  overviewNarrative: string;
-  overviewNarrativeAr: string;
 }
 
 export const defaultServicesPageContent: ServicesPageContent = {
@@ -1336,10 +1332,6 @@ export const defaultServicesPageContent: ServicesPageContent = {
   bannerTitleAr: ar.services.badge,
   bannerSubtitle: en.services.heroSubtitle,
   bannerSubtitleAr: ar.services.heroSubtitle,
-  overviewHeadline: en.services.heroTitle,
-  overviewHeadlineAr: ar.services.heroTitle,
-  overviewNarrative: 'From international procurement and chilled customs clearance to daily fleet delivery and farm consignment trading, we power Qatar’s food retail ecosystem.',
-  overviewNarrativeAr: 'من المشتريات الدولية والتخليص الجمركي المبرد إلى التوزيع اليومي بالأسطول وتجارة الأمانة للمزارعين، نحن ندعم منظومة التجزئة الغذائية في قطر.',
 };
 
 export async function getServicesPageContent(): Promise<ServicesPageContent> {
@@ -1362,10 +1354,6 @@ export async function getServicesPageContent(): Promise<ServicesPageContent> {
           bannerTitleAr: data.bannerTitleAr || defaultServicesPageContent.bannerTitleAr,
           bannerSubtitle: data.bannerSubtitle || defaultServicesPageContent.bannerSubtitle,
           bannerSubtitleAr: data.bannerSubtitleAr || defaultServicesPageContent.bannerSubtitleAr,
-          overviewHeadline: data.overviewHeadline || defaultServicesPageContent.overviewHeadline,
-          overviewHeadlineAr: data.overviewHeadlineAr || defaultServicesPageContent.overviewHeadlineAr,
-          overviewNarrative: data.overviewNarrative || defaultServicesPageContent.overviewNarrative,
-          overviewNarrativeAr: data.overviewNarrativeAr || defaultServicesPageContent.overviewNarrativeAr,
         };
       }
     } catch {
