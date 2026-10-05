@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
-import { getCompanyProfile } from '@/sanity/lib/data';
+import { getCompanyProfile, getTermsPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
@@ -20,14 +20,18 @@ export const metadata: Metadata = {
 };
 
 export default async function TermsPage(): Promise<React.ReactNode> {
-  const companyProfile = await getCompanyProfile();
+  const [content, companyProfile] = await Promise.all([
+    getTermsPageContent(),
+    getCompanyProfile(),
+  ]);
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <PageBanner
-        title="Terms of Service"
+        title={content.bannerTitle}
         breadcrumbs={[
           { label: 'Home', href: '/' },
-          { label: 'Terms of Service' },
+          { label: content.bannerTitle },
         ]}
       />
 
@@ -35,69 +39,42 @@ export default async function TermsPage(): Promise<React.ReactNode> {
         <div className="max-w-[860px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="space-y-3">
             <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#168849]">
-              Commercial Terms
+              {content.badge}
             </span>
             <h1 className="font-display type-h2 font-semibold text-[#111814]">
-              Terms &amp; Conditions of Supply
+              {content.title}
             </h1>
             <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
-              Last updated: January 2026 · Nairat Food Services W.L.L
+              {content.lastUpdated}
             </p>
           </div>
 
           <div className="prose prose-neutral max-w-none space-y-8 font-sans text-sm sm:text-base leading-relaxed text-[#374151]">
-            <div className="space-y-3">
-              <h2 className="font-display text-xl font-semibold text-[#111814]">
-                1. Scope of Agreement
-              </h2>
-              <p>
-                These Terms and Conditions govern the distribution, wholesale trading, consignment services, and website use provided by Nairat Food Services W.L.L (&quot;Nairat&quot;) within the State of Qatar. By engaging our services or accessing our site, clients and partners agree to these terms.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <h2 className="font-display text-xl font-semibold text-[#111814]">
-                2. Cold-Chain Quality &amp; Inspection
-              </h2>
-              <p>
-                All fresh fruits, vegetables, and culinary herbs supplied by Nairat are received, sorted, stored, and dispatched through our HACCP and ISO 22000:2018 certified facility in Doha Industrial Area. Buyers are required to inspect shipments upon delivery and verify temperature readings with our delivery drivers before sign-off.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <h2 className="font-display text-xl font-semibold text-[#111814]">
-                3. Orders, Scheduling &amp; Deliveries
-              </h2>
-              <p>
-                Commercial orders are fulfilled in accordance with agreed delivery schedules. Nairat operates an active refrigerated fleet of 40 vehicles ensuring store-level delivery across Qatar hypermarkets, supermarkets, and foodservice operators. Force majeure circumstances affecting international shipping or border crossings will be communicated promptly.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <h2 className="font-display text-xl font-semibold text-[#111814]">
-                4. Grower &amp; Consignment Partnerships
-              </h2>
-              <p>
-                Consignment agreements with international growers and local farms adhere to transparent audit trails, formal weight and grading inspections upon receipt, and agreed commercial settlement cycles.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <h2 className="font-display text-xl font-semibold text-[#111814]">
-                5. Corporate Enquiries &amp; Legal Notices
-              </h2>
-              <p>
-                All official notices or inquiries regarding these terms should be addressed in writing to:
-              </p>
-              <div className="p-5 rounded-2xl bg-[#F8FAF8] border border-neutral-200 space-y-1 text-sm text-[#111814]">
-                <p className="font-semibold">{companyProfile.legalName}</p>
-                <p>Commercial Registration: 144352</p>
-                <p>Facility: {companyProfile.contact.address}</p>
-                <p>Postal Address: {companyProfile.contact.poBox}</p>
-                <p>Telephone: {companyProfile.contact.phone}</p>
-                <p>Email: {companyProfile.contact.email}</p>
+            {content.sections.map((sec, idx) => (
+              <div key={sec._key || idx} className="space-y-3">
+                <h2 className="font-display text-xl font-semibold text-[#111814]">
+                  {sec.title}
+                </h2>
+                {sec.body && <p className="whitespace-pre-line">{sec.body}</p>}
+                {sec.bulletPoints && sec.bulletPoints.length > 0 && (
+                  <ul className="list-disc ps-6 space-y-1 text-sm sm:text-base text-[#4B5563]">
+                    {sec.bulletPoints.map((bp, bIdx) => (
+                      <li key={bp._key || bIdx}>{bp.text}</li>
+                    ))}
+                  </ul>
+                )}
+                {idx === content.sections.length - 1 && (
+                  <div className="p-5 rounded-2xl bg-[#F8FAF8] border border-neutral-200 space-y-1 text-sm text-[#111814] mt-4">
+                    <p className="font-semibold">{companyProfile.legalName}</p>
+                    <p>Commercial Registration: 144352</p>
+                    <p>Facility: {companyProfile.contact.address}</p>
+                    <p>Postal Address: {companyProfile.contact.poBox}</p>
+                    <p>Telephone: {companyProfile.contact.phone}</p>
+                    <p>Email: {companyProfile.contact.email}</p>
+                  </div>
+                )}
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

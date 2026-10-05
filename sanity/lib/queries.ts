@@ -565,5 +565,58 @@ export const CATEGORY_PAGE_QUERY = defineQuery(`
   }
 `);
 
+export const PRIVACY_PAGE_QUERY = defineQuery(`
+  *[_id == "privacyPage-singleton" || _type == "privacyPage"][0] {
+    _id,
+    bannerTitle,
+    bannerTitleAr,
+    badge,
+    badgeAr,
+    title,
+    titleAr,
+    lastUpdated,
+    lastUpdatedAr,
+    sections[] {
+      _key,
+      title,
+      titleAr,
+      body,
+      bodyAr,
+      bulletPoints[] {
+        _key,
+        text,
+        textAr
+      }
+    }
+  }
+`);
+
+export const TERMS_PAGE_QUERY = defineQuery(`
+  *[_id == "termsPage-singleton" || _type == "termsPage"][0] {
+    _id,
+    bannerTitle,
+    bannerTitleAr,
+    badge,
+    badgeAr,
+    title,
+    titleAr,
+    lastUpdated,
+    lastUpdatedAr,
+    sections[] {
+      _key,
+      title,
+      titleAr,
+      body,
+      bodyAr,
+      bulletPoints[] {
+        _key,
+        text,
+        textAr
+      }
+    }
+  }
+`);
+
+
 
 

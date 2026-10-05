@@ -18,6 +18,8 @@ import {
   CONTACT_PAGE_QUERY,
   PRODUCTS_PAGE_QUERY,
   CATEGORY_PAGE_QUERY,
+  PRIVACY_PAGE_QUERY,
+  TERMS_PAGE_QUERY,
 } from './queries';
 import {
   ProductItem,
@@ -2308,4 +2310,244 @@ export async function getCategorySection(categorySlug: string): Promise<Category
 
   return defaultProductsPageContent.categorySections[0];
 }
+
+export interface LegalBulletPoint {
+  _key?: string;
+  text: string;
+  textAr?: string;
+}
+
+export interface LegalSectionItem {
+  _key?: string;
+  title: string;
+  titleAr?: string;
+  body: string;
+  bodyAr?: string;
+  bulletPoints?: LegalBulletPoint[];
+}
+
+export interface LegalPageContent {
+  bannerTitle: string;
+  bannerTitleAr: string;
+  badge: string;
+  badgeAr: string;
+  title: string;
+  titleAr: string;
+  lastUpdated: string;
+  lastUpdatedAr: string;
+  sections: LegalSectionItem[];
+}
+
+export const defaultPrivacyPageContent: LegalPageContent = {
+  bannerTitle: 'Privacy Policy',
+  bannerTitleAr: 'سياسة الخصوصية',
+  badge: 'Legal & Compliance',
+  badgeAr: 'الشؤون القانونية والامتثال',
+  title: 'Privacy & Data Protection Policy',
+  titleAr: 'سياسة الخصوصية وحماية البيانات',
+  lastUpdated: 'Last updated: January 2026 · Nairat Food Services W.L.L',
+  lastUpdatedAr: 'آخر تحديث: يناير 2026 · نيرات للخدمات الغذائية ذ.م.م',
+  sections: [
+    {
+      _key: 'sec-1',
+      title: '1. Commitment to Privacy',
+      titleAr: '1. الالتزام بالخصوصية',
+      body: 'Nairat Food Services W.L.L ("Nairat", "we", "our", or "us") is committed to protecting the privacy of our commercial clients, retail customers, growers, and website visitors. This Privacy Policy outlines how we collect, handle, and safeguard information submitted through our website (nairatfoodservices.com) and commercial channels in the State of Qatar.',
+      bodyAr: 'تلتزم شركة نيرات للخدمات الغذائية ذ.م.م ("نيرات"، أو "نحن"، أو "خاصتنا") بحماية خصوصية عملائنا التجاريين، وعملاء التجزئة، والمزارعين، وزوار الموقع الإلكتروني. تحدد سياسة الخصوصية هذه كيفية جمعنا للمعلومات المقدمة من خلال موقعنا الإلكتروني (nairatfoodservices.com) وقنواتنا التجارية في دولة قطر والتعامل معها وحمايتها.',
+    },
+    {
+      _key: 'sec-2',
+      title: '2. Information We Collect',
+      titleAr: '2. المعلومات التي نجمعها',
+      body: 'We collect information solely for legitimate business operations, including:',
+      bodyAr: 'نحن نجمع المعلومات فقط للعمليات التجارية المشروعة، بما في ذلك:',
+      bulletPoints: [
+        {
+          _key: 'b1',
+          text: 'Contact information: Name, company name, business email, phone number, and delivery location.',
+          textAr: 'معلومات الاتصال: الاسم، واسم الشركة، والبريد الإلكتروني للعمل، ورقم الهاتف، وموقع التسليم.',
+        },
+        {
+          _key: 'b2',
+          text: 'Commercial procurement inquiries, requests for quotation (RFQs), and trade correspondence.',
+          textAr: 'استفسارات المشتريات التجارية، وطلبات عروض الأسعار (RFQs)، والمراسلات التجارية.',
+        },
+        {
+          _key: 'b3',
+          text: 'Grower and exporter consignment specifications, documentation, and certifications.',
+          textAr: 'مواصفات شحنات المزارعين والمصدرين، والوثائق، والشهادات.',
+        },
+        {
+          _key: 'b4',
+          text: 'Employment applications, resumes, and candidate profile submissions.',
+          textAr: 'طلبات التوظيف، والسير الذاتية، وملفات تعريف المرشحين المقدمة.',
+        },
+      ],
+    },
+    {
+      _key: 'sec-3',
+      title: '3. Purpose of Processing',
+      titleAr: '3. الغرض من المعالجة',
+      body: 'Information provided to Nairat is used exclusively to:',
+      bodyAr: 'تُستخدم المعلومات المقدمة إلى نيرات حصرياً من أجل:',
+      bulletPoints: [
+        {
+          _key: 'b1',
+          text: 'Fulfill commercial distribution agreements and schedule fresh produce deliveries.',
+          textAr: 'تنفيذ اتفاقيات التوزيع التجاري وجدولة تسليم المنتجات الطازجة.',
+        },
+        {
+          _key: 'b2',
+          text: 'Respond to business inquiries, service requests, and partnership proposals.',
+          textAr: 'الرد على استفسارات العمل، وطلبات الخدمة، ومقترحات الشراكة.',
+        },
+        {
+          _key: 'b3',
+          text: 'Comply with Qatar Ministry of Public Health, food safety, and trade regulations.',
+          textAr: 'الامتثال للوائح وزارة الصحة العامة القطرية، وسلامة الغذاء، والتجارة.',
+        },
+        {
+          _key: 'b4',
+          text: 'Enhance website performance, communication security, and user experience.',
+          textAr: 'تحسين أداء الموقع الإلكتروني، وأمن الاتصالات، وتجربة المستخدم.',
+        },
+      ],
+    },
+    {
+      _key: 'sec-4',
+      title: '4. Data Security & Retention',
+      titleAr: '4. أمن البيانات والاحتفاظ بها',
+      body: 'We implement industry-standard administrative, technical, and physical safeguards to prevent unauthorized access, disclosure, or loss of information. We do not sell, rent, or lease personal or commercial data to third parties.',
+      bodyAr: 'نحن نطبق ضمانات إدارية وفنية ومادية متوافقة مع معايير الصناعة لمنع الوصول غير المصرح به إلى المعلومات أو الكشف عنها أو فقدانها. نحن لا نبيع أو نؤجر البيانات الشخصية أو التجارية لأطراف ثالثة.',
+    },
+    {
+      _key: 'sec-5',
+      title: '5. Contact Information',
+      titleAr: '5. معلومات الاتصال',
+      body: 'For questions regarding this policy or to request data updates, please contact our compliance department:',
+      bodyAr: 'للأسئلة المتعلقة بهذه السياسة أو لطلب تحديثات البيانات، يرجى الاتصال بقسم الامتثال لدينا:',
+    },
+  ],
+};
+
+export const defaultTermsPageContent: LegalPageContent = {
+  bannerTitle: 'Terms of Service',
+  bannerTitleAr: 'شروط الخدمة',
+  badge: 'Commercial Terms',
+  badgeAr: 'الشروط التجارية',
+  title: 'Terms & Conditions of Supply',
+  titleAr: 'شروط وأحكام التوريد',
+  lastUpdated: 'Last updated: January 2026 · Nairat Food Services W.L.L',
+  lastUpdatedAr: 'آخر تحديث: يناير 2026 · نيرات للخدمات الغذائية ذ.م.م',
+  sections: [
+    {
+      _key: 'sec-1',
+      title: '1. Scope of Agreement',
+      titleAr: '1. نطاق الاتفاقية',
+      body: 'These Terms and Conditions govern the distribution, wholesale trading, consignment services, and website use provided by Nairat Food Services W.L.L ("Nairat") within the State of Qatar. By engaging our services or accessing our site, clients and partners agree to these terms.',
+      bodyAr: 'تحكم هذه الشروط والأحكام التوزيع، والتجارة بالجملة، وخدمات الأمانة، واستخدام الموقع الإلكتروني المقدم من شركة نيرات للخدمات الغذائية ذ.م.م ("نيرات") داخل دولة قطر. من خلال التعامل مع خدماتنا أو الوصول إلى موقعنا، يوافق العملاء والشركاء على هذه الشروط.',
+    },
+    {
+      _key: 'sec-2',
+      title: '2. Cold-Chain Quality & Inspection',
+      titleAr: '2. جودة سلسلة التبريد والفحص',
+      body: 'All fresh fruits, vegetables, and culinary herbs supplied by Nairat are received, sorted, stored, and dispatched through our HACCP and ISO 22000:2018 certified facility in Doha Industrial Area. Buyers are required to inspect shipments upon delivery and verify temperature readings with our delivery drivers before sign-off.',
+      bodyAr: 'يتم استلام جميع الفواكه الطازجة، والخضروات، وأعشاب الطهي الموردة من نيرات، وفرزها، وتخزينها، وإرسالها من خلال منشأتنا المعتمدة بشهادتي HACCP و ISO 22000:2018 في المنطقة الصناعية بالدوحة. يُطلب من المشترين فحص الشحنات عند التسليم والتحقق من قراءات درجة الحرارة مع سائقي التوصيل لدينا قبل التوقيع على الاستلام.',
+    },
+    {
+      _key: 'sec-3',
+      title: '3. Orders, Scheduling & Deliveries',
+      titleAr: '3. الطلبيات، والجدولة والتسليم',
+      body: 'Commercial orders are fulfilled in accordance with agreed delivery schedules. Nairat operates an active refrigerated fleet of 40 vehicles ensuring store-level delivery across Qatar hypermarkets, supermarkets, and foodservice operators. Force majeure circumstances affecting international shipping or border crossings will be communicated promptly.',
+      bodyAr: 'يتم تلبية الطلبيات التجارية وفقاً لجداول التسليم المتفق عليها. تشغل نيرات أسطولاً مبرداً نشطاً مكوناً من 40 مركبة مما يضمن التسليم على مستوى المتاجر عبر الهايبرماركت، والسوبرماركت، ومشغلي الخدمات الغذائية في قطر. سيتم إبلاغ الظروف القاهرة التي تؤثر على الشحن الدولي أو المعابر الحدودية على الفور.',
+    },
+    {
+      _key: 'sec-4',
+      title: '4. Grower & Consignment Partnerships',
+      titleAr: '4. شراكات المزارعين وتوريد الأمانة',
+      body: 'Consignment agreements with international growers and local farms adhere to transparent audit trails, formal weight and grading inspections upon receipt, and agreed commercial settlement cycles.',
+      bodyAr: 'تلتزم اتفاقيات الأمانة مع المزارعين الدوليين والمزارع المحلية بسجلات تدقيق شفافة، وعمليات فحص رسمية للوزن والتصنيف عند الاستلام، ودورات تسوية تجارية متفق عليها.',
+    },
+    {
+      _key: 'sec-5',
+      title: '5. Corporate Enquiries & Legal Notices',
+      titleAr: '5. استفسارات الشركات والإشعارات القانونية',
+      body: 'All official notices or inquiries regarding these terms should be addressed in writing to:',
+      bodyAr: 'يجب توجيه جميع الإشعارات أو الاستفسارات الرسمية المتعلقة بهذه الشروط كتابياً إلى:',
+    },
+  ],
+};
+
+export async function getPrivacyPageContent(): Promise<LegalPageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        PRIVACY_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['privacyPage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        return {
+          bannerTitle: data.bannerTitle || defaultPrivacyPageContent.bannerTitle,
+          bannerTitleAr: data.bannerTitleAr || defaultPrivacyPageContent.bannerTitleAr,
+          badge: data.badge || defaultPrivacyPageContent.badge,
+          badgeAr: data.badgeAr || defaultPrivacyPageContent.badgeAr,
+          title: data.title || defaultPrivacyPageContent.title,
+          titleAr: data.titleAr || defaultPrivacyPageContent.titleAr,
+          lastUpdated: data.lastUpdated || defaultPrivacyPageContent.lastUpdated,
+          lastUpdatedAr: data.lastUpdatedAr || defaultPrivacyPageContent.lastUpdatedAr,
+          sections: Array.isArray(data.sections) && data.sections.length > 0
+            ? data.sections
+            : defaultPrivacyPageContent.sections,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultPrivacyPageContent;
+}
+
+export async function getTermsPageContent(): Promise<LegalPageContent> {
+  if (isSanityConfigured()) {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const data = await client.fetch<any>(
+        TERMS_PAGE_QUERY,
+        {},
+        {
+          next: {
+            tags: ['termsPage'],
+            revalidate: process.env.NODE_ENV === 'development' ? 0 : 60,
+          },
+        }
+      );
+      if (data) {
+        return {
+          bannerTitle: data.bannerTitle || defaultTermsPageContent.bannerTitle,
+          bannerTitleAr: data.bannerTitleAr || defaultTermsPageContent.bannerTitleAr,
+          badge: data.badge || defaultTermsPageContent.badge,
+          badgeAr: data.badgeAr || defaultTermsPageContent.badgeAr,
+          title: data.title || defaultTermsPageContent.title,
+          titleAr: data.titleAr || defaultTermsPageContent.titleAr,
+          lastUpdated: data.lastUpdated || defaultTermsPageContent.lastUpdated,
+          lastUpdatedAr: data.lastUpdatedAr || defaultTermsPageContent.lastUpdatedAr,
+          sections: Array.isArray(data.sections) && data.sections.length > 0
+            ? data.sections
+            : defaultTermsPageContent.sections,
+        };
+      }
+    } catch {
+      // Fallback
+    }
+  }
+  return defaultTermsPageContent;
+}
+
 

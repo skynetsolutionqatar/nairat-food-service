@@ -279,4 +279,17 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - [x] Seeded and synchronized all 4 `categoryPage` documents with live image assets in the Sanity Content Lake.
   - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and verified rendering on `/products/vegetables` and `/ar/products/vegetables` via `agent-browser`.
 
+- [x] **Milestone 13: Privacy Policy & Terms of Service Editable CMS Integration** [Completed]
+  - [x] Created `privacyPage.ts` and `termsPage.ts` Sanity schemas under `sanity/schemaTypes/pages/` with collapsible fieldsets for:
+    - **1. Page Banner** (`bannerTitle`, `bannerTitleAr`).
+    - **2. Page Header** (`badge`, `badgeAr`, `title`, `titleAr`, `lastUpdated`, `lastUpdatedAr`).
+    - **3. Content Sections Array** (`sections` array with bilingual `title`, `titleAr`, `body`, `bodyAr`, and nested `bulletPoints` list items in EN & AR).
+  - [x] Registered schemas in `sanity/schemaTypes/index.ts` and added singleton document editors to Sanity Desk Structure (`sanity/structure.ts`) under `Pages & Section Content`.
+  - [x] Added `PRIVACY_PAGE_QUERY` and `TERMS_PAGE_QUERY` to `sanity/lib/queries.ts`.
+  - [x] Added `getPrivacyPageContent()` and `getTermsPageContent()` in `sanity/lib/data.ts` with automatic fallback to static legal dictionaries and cache tag invalidation.
+  - [x] Wired all legal routes (`/privacy`, `/ar/privacy`, `/terms`, `/ar/terms`) to dynamically render content and sections from Sanity.
+  - [x] Seeded and synchronized both `privacyPage-singleton` and `termsPage-singleton` documents into live Sanity Content Lake.
+  - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and verified rendering via `agent-browser`.
+
+
 

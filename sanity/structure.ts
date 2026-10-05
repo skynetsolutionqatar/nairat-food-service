@@ -169,6 +169,22 @@ export const structure: StructureResolver = (S) =>
                     .documentId('contactPage-singleton')
                     .title('Contact Us Page Sections')
                 ),
+              S.listItem()
+                .title('Privacy Policy Page')
+                .child(
+                  S.document()
+                    .schemaType('privacyPage')
+                    .documentId('privacyPage-singleton')
+                    .title('Privacy Policy Content & Sections')
+                ),
+              S.listItem()
+                .title('Terms & Conditions Page')
+                .child(
+                  S.document()
+                    .schemaType('termsPage')
+                    .documentId('termsPage-singleton')
+                    .title('Terms & Conditions Content & Sections')
+                ),
             ])
         ),
 
