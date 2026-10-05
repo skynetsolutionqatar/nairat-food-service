@@ -181,7 +181,6 @@ export const structure: StructureResolver = (S) =>
           S.list()
             .title('Catalogs & Collections')
             .items([
-              S.documentTypeListItem('product').title('Produce Lines (34)'),
               S.documentTypeListItem('partner').title('Partners & Clients (10)'),
               S.documentTypeListItem('service').title('Commercial Services (6)'),
               S.documentTypeListItem('qualityCert').title('Quality Accreditations (2)'),
