@@ -32,6 +32,8 @@ const cairo = Cairo({
 import { Providers } from "./providers";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getOrganizationJsonLd, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nairatfoodservices.com"),
@@ -50,19 +52,21 @@ export const metadata: Metadata = {
     title: "Nairat Food Services — Fresh Produce Importer & Distributor Qatar",
     description:
       "Qatar’s premier fresh fruits and vegetables importer, distributor, and cold-chain logistics partner for retail, wholesale, and foodservice.",
-  },
-  alternates: {
-    canonical: "/",
-    languages: {
-      en: "/",
-      ar: "/ar",
-    },
+    images: [
+      {
+        url: DEFAULT_OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: "Nairat Food Services Qatar",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Nairat Food Services — Fresh Produce Importer & Distributor Qatar",
     description:
       "Qatar’s premier fresh fruits and vegetables importer, distributor, and cold-chain logistics partner for retail, wholesale, and foodservice.",
+    images: [DEFAULT_OG_IMAGE],
   },
 };
 
@@ -73,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${figtree.variable} ${montserrat.variable} ${jetbrainsMono.variable} ${cairo.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <JsonLd data={getOrganizationJsonLd()} />
         <Providers>
           <Navbar />
           <main className="flex-grow">{children}</main>

@@ -13,20 +13,15 @@ import { getCompanyProfile, getCompanyPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'الشركة — نيرات للخدمات الغذائية قطر',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'الشركة والبنية التحتية — المنتجات الطازجة في قطر',
   description:
     'اكتشف نيرات للخدمات الغذائية: شريك المنتجات الطازجة الرائد في قطر منذ عام 2020. مستودع سلسلة التبريد بمساحة 5,000 م²، و20 غرفة تبريد، و40 مركبة مبردة، وسلامة غذاء معتمدة بشهادات ISO 22000 / HACCP.',
-  openGraph: {
-    title: 'حول نيرات للخدمات الغذائية — شريك المنتجات الطازجة لقطر',
-    description:
-      'من التوريد العالمي إلى التوصيل المحلي عبر سلسلة التبريد، تربط نيرات للأغذية أرقى المنتجات الطازجة في العالم بالعملاء في جميع أنحاء قطر.',
-    url: 'https://nairatfoodservices.com/ar/company',
-    siteName: 'نيرات للخدمات الغذائية',
-    locale: 'ar_QA',
-    type: 'website',
-  },
-};
+  pathname: '/ar/company',
+  isArabic: true,
+});
 
 export default async function ArabicCompanyPage() {
   const [company, companyContent] = await Promise.all([

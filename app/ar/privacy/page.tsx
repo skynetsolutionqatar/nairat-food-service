@@ -5,19 +5,15 @@ import { getCompanyProfile, getPrivacyPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'سياسة الخصوصية — نيرات للخدمات الغذائية قطر',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'سياسة الخصوصية وحماية البيانات',
   description:
     'سياسة الخصوصية وممارسات حماية البيانات الشخصية لشركة نيرات للخدمات الغذائية ذ.م.م في الدوحة، قطر.',
-  openGraph: {
-    title: 'سياسة الخصوصية — نيرات للخدمات الغذائية قطر',
-    description: 'سياسة خصوصية الشركة وحماية البيانات الشخصية لشركة نيرات للخدمات الغذائية ذ.م.م.',
-    url: 'https://nairatfoodservices.com/ar/privacy',
-    siteName: 'نيرات للخدمات الغذائية',
-    locale: 'ar_QA',
-    type: 'website',
-  },
-};
+  pathname: '/ar/privacy',
+  isArabic: true,
+});
 
 export default async function ArPrivacyPage(): Promise<React.ReactNode> {
   const [content, companyProfile] = await Promise.all([
@@ -46,9 +42,9 @@ export default async function ArPrivacyPage(): Promise<React.ReactNode> {
             <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#168849]">
               {badge}
             </span>
-            <h1 className="font-display type-h2 font-semibold text-[#111814]">
+            <h2 className="font-display type-h2 font-semibold text-[#111814]">
               {title}
-            </h1>
+            </h2>
             <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
               {lastUpdated}
             </p>

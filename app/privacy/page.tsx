@@ -5,19 +5,14 @@ import { getCompanyProfile, getPrivacyPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy — Nairat Food Services Qatar',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Privacy Policy & Data Protection',
   description:
     'Privacy Policy and personal data protection practices of Nairat Food Services W.L.L in Doha, Qatar.',
-  openGraph: {
-    title: 'Privacy Policy — Nairat Food Services Qatar',
-    description: 'Corporate privacy and personal data protection policy for Nairat Food Services W.L.L.',
-    url: 'https://nairatfoodservices.com/privacy',
-    siteName: 'Nairat Food Services',
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+  pathname: '/privacy',
+});
 
 export default async function PrivacyPage(): Promise<React.ReactNode> {
   const [content, companyProfile] = await Promise.all([
@@ -41,9 +36,9 @@ export default async function PrivacyPage(): Promise<React.ReactNode> {
             <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#168849]">
               {content.badge}
             </span>
-            <h1 className="font-display type-h2 font-semibold text-[#111814]">
+            <h2 className="font-display type-h2 font-semibold text-[#111814]">
               {content.title}
-            </h1>
+            </h2>
             <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
               {content.lastUpdated}
             </p>

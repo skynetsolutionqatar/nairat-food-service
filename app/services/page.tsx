@@ -7,20 +7,14 @@ import { getServices, getServicesPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'Our Services — Nairat Food Services Qatar',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Our Services — Cold-Chain & Distribution Qatar',
   description:
     'Comprehensive fresh-produce distribution, grower consignment partnerships, and retail store services across Qatar. Daily delivery to hypermarkets, supermarkets, and Talabat Mart.',
-  openGraph: {
-    title: 'Our Services — Nairat Food Services Qatar',
-    description:
-      'Daily retail and wholesale produce distribution, grower trade partnerships, and direct consumer retail in Qatar.',
-    url: 'https://nairatfoodservices.com/services',
-    siteName: 'Nairat Food Services',
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+  pathname: '/services',
+});
 
 export default async function ServicesPage(): Promise<React.ReactNode> {
   const [services, servicesContent] = await Promise.all([

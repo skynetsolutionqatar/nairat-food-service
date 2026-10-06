@@ -10,20 +10,15 @@ import { getQualityCertificates, getQualityPageContent } from '@/sanity/lib/data
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'التوريد والجودة — نيرات للخدمات الغذائية قطر',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'التوريد وضمان الجودة — معتمد بشهادات ISO و HACCP',
   description:
     'النضارة هي لوجستيات. فحص صارم من المنشأ إلى الوصول، ومستودع سلسلة تبريد بمساحة 5,000 متر مربع، و20 غرفة تبريد، و6 أرصفة تحميل، وسلامة غذاء معتمدة بشهادات الهاسب (HACCP) والآيزو ISO 22000:2018، وتوريد عالمي موسمي على مدار 12 شهراً.',
-  openGraph: {
-    title: 'التوريد والجودة — نيرات للخدمات الغذائية قطر',
-    description:
-      'النضارة هي لوجستيات. اختبارات معملية ثنائية المستوى في المنشأ وعند الوصول إلى قطر، وسلسلة تبريد متعددة المناطق، وشهادات الهاسب (HACCP) والآيزو ISO 22000:2018، وتوريد منتجات موسمية على مدار العام.',
-    url: 'https://nairatfoodservices.com/ar/quality',
-    siteName: 'نيرات للخدمات الغذائية',
-    locale: 'ar_QA',
-    type: 'website',
-  },
-};
+  pathname: '/ar/quality',
+  isArabic: true,
+});
 
 export default async function ArabicQualityPage(): Promise<React.ReactNode> {
   const [certs, qualityContent] = await Promise.all([

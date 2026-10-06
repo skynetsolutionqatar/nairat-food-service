@@ -7,20 +7,15 @@ import { getServices, getServicesPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'خدماتنا — نيرات للخدمات الغذائية قطر',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'خدماتنا — التوزيع وسلسلة التبريد في قطر',
   description:
     'توزيع شامل للمنتجات الطازجة، وشراكات شحنات الأمانة للمزارعين، وخدمات متاجر التجزئة في جميع أنحاء قطر. توصيل يومي إلى الهايبرماركت والسوبرماركت وطلبات مارت.',
-  openGraph: {
-    title: 'خدماتنا — نيرات للخدمات الغذائية قطر',
-    description:
-      'توزيع المنتجات الطازجة يومياً بالتجزئة والجملة، وشراكات تجارة المزارعين، وتجزئة المستهلك المباشرة في قطر.',
-    url: 'https://nairatfoodservices.com/ar/services',
-    siteName: 'نيرات للخدمات الغذائية',
-    locale: 'ar_QA',
-    type: 'website',
-  },
-};
+  pathname: '/ar/services',
+  isArabic: true,
+});
 
 export default async function ArabicServicesPage(): Promise<React.ReactNode> {
   const [services, servicesContent] = await Promise.all([

@@ -291,5 +291,18 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
   - [x] Seeded and synchronized both `privacyPage-singleton` and `termsPage-singleton` documents into live Sanity Content Lake.
   - [x] Verified zero TypeScript compilation errors (`npx tsc --noEmit`) and verified rendering via `agent-browser`.
 
-
-
+- [x] **Milestone 14: SEO Infrastructure Audit & Remediation** [Completed]
+  - [x] Installed `aaron-he-zhu/aaron-marketing-skills` ecosystem under `.agents/skills/`.
+  - [x] Conducted comprehensive audit across technical SEO, crawlability, indexability, structured data, and on-page headings.
+  - [x] Created and executed [specs/seo-optimization.md](file:///home/sfwnmuhd/Desktop/nairat/specs/seo-optimization.md):
+    - **P0 Fixed**: Removed inherited root `canonical: "/"` from `app/layout.tsx`. Implemented `lib/seo.ts` with `getAlternates()` and `buildPageMetadata()` ensuring each page declares its own unique canonical URL and bidirectional `en`/`ar` `hreflang` tags.
+    - **P1 Fixed**: Removed 30x redirected `/products` and `/ar/products` from `app/sitemap.ts`. Declared all 22 active canonical routes with proper frequencies and language alternates.
+    - **P1 Fixed**: Secured `app/robots.ts` by disallowing `/studio/` (Sanity Studio) and `/api/`, and added explicit allow/disallow policies for AI crawlers (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `Amazonbot`).
+    - **P1 Fixed**: Injected Google-compliant JSON-LD structured data via `components/seo/JsonLd.tsx`:
+      - Global `WholesaleStore` / `Organization` schema in root layout with legal name, Doha address, ISO 22000 & HACCP certifications, and contact channels.
+      - `BreadcrumbList` schema across interior and category pages.
+    - **P2 Fixed**: Deduplicated title tag template brand suffixes across all subpages.
+    - **P2 Fixed**: Resolved multiple `<h1>` tags on `/privacy`, `/ar/privacy`, `/terms`, `/ar/terms` by standardizing in-page section headings to `<h2>`.
+    - **P2 Fixed**: Added global fallback Open Graph and Twitter preview images.
+  - [x] Validated all 18 production routes with automated verification script: all canonicals, hreflang alternates, JSON-LD, and single H1 checks passed.
+  - [x] Confirmed zero TypeScript errors (`npx tsc --noEmit`).

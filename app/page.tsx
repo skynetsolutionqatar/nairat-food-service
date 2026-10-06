@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import { Hero } from '@/components/modules/Hero';
 import { Partners } from '@/components/modules/Partners';
 import { WhoWeAre } from '@/components/modules/WhoWeAre';
@@ -9,6 +10,11 @@ import { SourcingMap } from '@/components/modules/SourcingMap';
 import { QualityTimeline } from '@/components/modules/QualityTimeline';
 import { Cta } from '@/components/modules/Cta';
 import { getPartners, getCompanyProfile, getHomePageContent } from '@/sanity/lib/data';
+import { getAlternates } from '@/lib/seo';
+
+export const metadata: Metadata = {
+  alternates: getAlternates('/'),
+};
 
 export const revalidate = 60;
 

@@ -26,15 +26,20 @@ export function generateStaticParams() {
   }));
 }
 
+import { buildPageMetadata, getBreadcrumbJsonLd } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category } = await params;
   const data = productCategoriesData[category];
 
   if (!data) {
-    return {
-      title: 'منتجاتنا — نيرات للخدمات الغذائية قطر',
+    return buildPageMetadata({
+      title: 'منتجاتنا — توريد المنتجات الطازجة بالجملة',
       description: 'استكشف خطوط منتجات نيرات للخدمات الغذائية في قطر.',
-    };
+      pathname: '/ar/products/vegetables',
+      isArabic: true,
+    });
   }
 
   const categorySection = await getCategorySection(category);
@@ -42,18 +47,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     categorySection?.titleAr || categoryArabicTitles[category] || data.title;
   const arabicDesc = categorySection?.descriptionAr || data.description;
 
-  return {
-    title: `${arabicTitle} — نيرات للخدمات الغذائية قطر`,
+  return buildPageMetadata({
+    title: `${arabicTitle} بالجملة والتوزيع`,
     description: `توريد تجاري عالي الجودة ويتم التحكم في درجة حرارته لـ ${arabicTitle} في جميع أنحاء قطر.`,
-    openGraph: {
-      title: `${arabicTitle} — نيرات للخدمات الغذائية`,
-      description: arabicDesc,
-      url: `https://nairatfoodservices.com/ar/products/${data.slug}`,
-      siteName: 'نيرات للخدمات الغذائية',
-      locale: 'ar_QA',
-      type: 'website',
-    },
-  };
+    pathname: `/ar/products/${data.slug}`,
+    isArabic: true,
+  });
 }
 
 export default async function ArabicProductCategoryPage({ params }: PageProps): Promise<React.ReactNode> {
@@ -78,8 +77,15 @@ export default async function ArabicProductCategoryPage({ params }: PageProps): 
     products,
   };
 
+  const breadcrumbsData = [
+    { name: 'الرئيسية', url: '/ar' },
+    { name: 'منتجاتنا', url: '/ar/products/vegetables' },
+    { name: arabicCategoryTitle, url: `/ar/products/${data.slug}` },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <JsonLd data={getBreadcrumbJsonLd(breadcrumbsData)} />
       {/* 1. Header Banner (Matches original clean style: title + breadcrumbs) */}
       <PageBanner
         title={arabicCategoryTitle}

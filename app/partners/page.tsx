@@ -9,20 +9,14 @@ import { getPartners, getPartnersPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'Partners — Nairat Food Services Qatar',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Retail Partners & Global Sourcing Suppliers',
   description:
     'Trusted daily produce supplier to Qatar’s leading retail groups (Al Meera, LuLu, Carrefour, Safari, Grand Mall, Rawabi, Saudia, ABC Fresh) and Talabat Mart, strategic partner to Mahaseel for local Qatari farms, and global sourcing alliances.',
-  openGraph: {
-    title: 'Partners — Nairat Food Services Qatar',
-    description:
-      'Connecting global orchards and local Qatari farms to premier hypermarkets and digital grocery platforms with dependable cold-chain distribution.',
-    url: 'https://nairatfoodservices.com/partners',
-    siteName: 'Nairat Food Services',
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+  pathname: '/partners',
+});
 
 export default async function PartnersPage(): Promise<React.ReactNode> {
   const [partners, partnersContent] = await Promise.all([

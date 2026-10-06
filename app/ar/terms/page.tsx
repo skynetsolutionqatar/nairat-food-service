@@ -5,19 +5,15 @@ import { getCompanyProfile, getTermsPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'شروط الخدمة — نيرات للخدمات الغذائية قطر',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'شروط الخدمة والتوريد التجاري',
   description:
     'شروط الخدمة التجارية، وشروط التسليم، وشروط التداول لشركة نيرات للخدمات الغذائية ذ.م.م في الدوحة، قطر.',
-  openGraph: {
-    title: 'شروط الخدمة — نيرات للخدمات الغذائية قطر',
-    description: 'شروط وأحكام التوريد التجاري لشركة نيرات للخدمات الغذائية ذ.م.م.',
-    url: 'https://nairatfoodservices.com/ar/terms',
-    siteName: 'نيرات للخدمات الغذائية',
-    locale: 'ar_QA',
-    type: 'website',
-  },
-};
+  pathname: '/ar/terms',
+  isArabic: true,
+});
 
 export default async function ArTermsPage(): Promise<React.ReactNode> {
   const [content, companyProfile] = await Promise.all([
@@ -46,9 +42,9 @@ export default async function ArTermsPage(): Promise<React.ReactNode> {
             <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#168849]">
               {badge}
             </span>
-            <h1 className="font-display type-h2 font-semibold text-[#111814]">
+            <h2 className="font-display type-h2 font-semibold text-[#111814]">
               {title}
-            </h1>
+            </h2>
             <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
               {lastUpdated}
             </p>

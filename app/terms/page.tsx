@@ -5,19 +5,14 @@ import { getCompanyProfile, getTermsPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'Terms of Service — Nairat Food Services Qatar',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Terms of Service & Commercial Supply',
   description:
     'Commercial terms of service, delivery conditions, and trading terms for Nairat Food Services W.L.L in Doha, Qatar.',
-  openGraph: {
-    title: 'Terms of Service — Nairat Food Services Qatar',
-    description: 'Commercial supply terms and conditions for Nairat Food Services W.L.L.',
-    url: 'https://nairatfoodservices.com/terms',
-    siteName: 'Nairat Food Services',
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+  pathname: '/terms',
+});
 
 export default async function TermsPage(): Promise<React.ReactNode> {
   const [content, companyProfile] = await Promise.all([
@@ -41,9 +36,9 @@ export default async function TermsPage(): Promise<React.ReactNode> {
             <span className="font-sans text-xs font-bold uppercase tracking-wider text-[#168849]">
               {content.badge}
             </span>
-            <h1 className="font-display type-h2 font-semibold text-[#111814]">
+            <h2 className="font-display type-h2 font-semibold text-[#111814]">
               {content.title}
-            </h1>
+            </h2>
             <p className="font-sans text-xs sm:text-sm text-[#6B7280]">
               {content.lastUpdated}
             </p>

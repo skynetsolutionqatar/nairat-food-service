@@ -1,14 +1,12 @@
 import type { MetadataRoute } from 'next';
+import { getAlternates, SITE_URL } from '@/lib/seo';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://nairatfoodservices.com';
   const routes = [
     { path: '', changeFrequency: 'weekly' as const, priority: 1.0 },
     { path: '/ar', changeFrequency: 'weekly' as const, priority: 1.0 },
     { path: '/company', changeFrequency: 'monthly' as const, priority: 0.8 },
     { path: '/ar/company', changeFrequency: 'monthly' as const, priority: 0.8 },
-    { path: '/products', changeFrequency: 'weekly' as const, priority: 0.9 },
-    { path: '/ar/products', changeFrequency: 'weekly' as const, priority: 0.9 },
     { path: '/products/vegetables', changeFrequency: 'weekly' as const, priority: 0.8 },
     { path: '/ar/products/vegetables', changeFrequency: 'weekly' as const, priority: 0.8 },
     { path: '/products/fruits', changeFrequency: 'weekly' as const, priority: 0.8 },
@@ -31,10 +29,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/ar/terms', changeFrequency: 'yearly' as const, priority: 0.3 },
   ];
 
-  return routes.map((route) => ({
-    url: `${baseUrl}${route.path}`,
-    lastModified: new Date(),
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  return routes.map((route) => {
+    const alternates = getAlternates(route.path || '/');
+    return {
+      url: `${SITE_URL}${route.path}`,
+      lastModified: new Date('2026-10-01'),
+      changeFrequency: route.changeFrequency,
+      priority: route.priority,
+      alternates: {
+        languages: {
+          en: alternates.languages.en,
+          ar: alternates.languages.ar,
+        },
+      },
+    };
+  });
 }

@@ -19,33 +19,30 @@ export function generateStaticParams() {
   }));
 }
 
+import { buildPageMetadata, getBreadcrumbJsonLd } from '@/lib/seo';
+import { JsonLd } from '@/components/seo/JsonLd';
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { category } = await params;
   const data = productCategoriesData[category];
 
   if (!data) {
-    return {
-      title: 'Our Products — Nairat Food Services Qatar',
+    return buildPageMetadata({
+      title: 'Our Products — Fresh Wholesale Produce',
       description: 'Explore Nairat Food Services produce lines across Qatar.',
-    };
+      pathname: '/products/vegetables',
+    });
   }
 
   const categorySection = await getCategorySection(category);
   const displayTitle = categorySection?.title || data.title;
   const displayDesc = categorySection?.description || data.description;
 
-  return {
-    title: `${displayTitle} — Nairat Food Services Qatar`,
+  return buildPageMetadata({
+    title: `${displayTitle} Wholesale & Distribution`,
     description: `${displayDesc} High-yield, temperature-controlled commercial supply across Qatar.`,
-    openGraph: {
-      title: `${displayTitle} — Nairat Food Services Qatar`,
-      description: displayDesc,
-      url: `https://nairatfoodservices.com/products/${data.slug}`,
-      siteName: 'Nairat Food Services',
-      locale: 'en_US',
-      type: 'website',
-    },
-  };
+    pathname: `/products/${data.slug}`,
+  });
 }
 
 export default async function ProductCategoryPage({ params }: PageProps): Promise<React.ReactNode> {
@@ -64,8 +61,15 @@ export default async function ProductCategoryPage({ params }: PageProps): Promis
   const displayCategoryTitle = categorySection?.title || data.title;
   const categoryData = { ...data, title: displayCategoryTitle, products };
 
+  const breadcrumbsData = [
+    { name: 'Home', url: '/' },
+    { name: 'Our Products', url: '/products/vegetables' },
+    { name: displayCategoryTitle, url: `/products/${data.slug}` },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      <JsonLd data={getBreadcrumbJsonLd(breadcrumbsData)} />
       {/* 1. Header Banner (Matches original clean style: title + breadcrumbs) */}
       <PageBanner
         title={displayCategoryTitle}

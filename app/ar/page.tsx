@@ -10,20 +10,15 @@ import { SourcingMap } from '@/components/modules/SourcingMap';
 import { QualityTimeline } from '@/components/modules/QualityTimeline';
 import { Cta } from '@/components/modules/Cta';
 
-export const metadata: Metadata = {
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
   title: 'نيرات للخدمات الغذائية — مستورد وموزع المنتجات الطازجة في قطر',
   description:
     'المستورد والموزع الرائد للفواكه والخضروات الطازجة وشريك لوجستيات سلسلة التبريد لقطاعات التجزئة والجملة والخدمات الغذائية في قطر.',
-  openGraph: {
-    title: 'نيرات للخدمات الغذائية — مستورد وموزع المنتجات الطازجة في قطر',
-    description:
-      'المستورد والموزع الرائد للفواكه والخضروات الطازجة وشريك لوجستيات سلسلة التبريد لقطاعات التجزئة والجملة والخدمات الغذائية في قطر.',
-    url: 'https://nairatfoodservices.com/ar',
-    siteName: 'نيرات للخدمات الغذائية',
-    locale: 'ar_QA',
-    type: 'website',
-  },
-};
+  pathname: '/ar',
+  isArabic: true,
+});
 
 import { getPartners, getCompanyProfile, getHomePageContent } from '@/sanity/lib/data';
 

@@ -9,20 +9,15 @@ import { getPartners, getPartnersPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'الشركاء — نيرات للخدمات الغذائية قطر',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'شركاء التجزئة والموردون العالميون',
   description:
     'مورد يومي موثوق للمنتجات الطازجة لمجموعات التجزئة الرائدة في قطر (الميرة، لولو، كارفور، سفاري، جراند مول، الروابي، السعودية، إيه بي سي فريش) وطلبات مارت، وشريك استراتيجي لمحاصيل للمزارع القطرية المحلية، وتحالفات توريد عالمية.',
-  openGraph: {
-    title: 'الشركاء — نيرات للخدمات الغذائية قطر',
-    description:
-      'ربط البساتين العالمية والمزارع القطرية المحلية بالهايبرماركت الرائدة ومنصات البقالة الرقمية بتوزيع موثوق عبر سلسلة التبريد.',
-    url: 'https://nairatfoodservices.com/ar/partners',
-    siteName: 'نيرات للخدمات الغذائية',
-    locale: 'ar_QA',
-    type: 'website',
-  },
-};
+  pathname: '/ar/partners',
+  isArabic: true,
+});
 
 export default async function ArabicPartnersPage(): Promise<React.ReactNode> {
   const [partners, partnersContent] = await Promise.all([

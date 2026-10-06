@@ -13,20 +13,14 @@ import { getCompanyProfile, getCompanyPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'Company — Nairat Food Services Qatar',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Company & Infrastructure — Fresh Produce Qatar',
   description:
     'Discover Nairat Food Services: Qatar’s leading fresh-produce partner since 2020. 5,000 m² cold-chain warehouse, 20 chiller rooms, 40 refrigerated vehicles, and ISO 22000 / HACCP certified food safety.',
-  openGraph: {
-    title: 'About Nairat Food Services — Fresh Produce Partner for Qatar',
-    description:
-      'From global sourcing to local cold-chain delivery, Nairat Food connects the world’s finest fresh produce with customers across Qatar.',
-    url: 'https://nairatfoodservices.com/company',
-    siteName: 'Nairat Food Services',
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+  pathname: '/company',
+});
 
 export default async function CompanyPage() {
   const [company, companyContent] = await Promise.all([

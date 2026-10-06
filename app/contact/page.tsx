@@ -8,20 +8,14 @@ import { getCompanyProfile, getContactPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'Contact Us — Nairat Food Services Qatar',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Contact Us — Doha Central Warehouse & Offices',
   description:
     'Get in touch with Nairat Food Services in Doha, Qatar. Direct communication channels for wholesale produce inquiries, retail partnerships, grower consignment, and facility distribution.',
-  openGraph: {
-    title: 'Contact Us — Nairat Food Services Qatar',
-    description:
-      'Connect with our fresh produce distribution network in Qatar. Facility located at Street 37, Industrial Area, Doha.',
-    url: 'https://nairatfoodservices.com/contact',
-    siteName: 'Nairat Food Services',
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+  pathname: '/contact',
+});
 
 export default async function ContactPage(): Promise<React.ReactNode> {
   const [company, contactContent] = await Promise.all([

@@ -10,20 +10,14 @@ import { getQualityCertificates, getQualityPageContent } from '@/sanity/lib/data
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
-  title: 'Sourcing & Quality — Nairat Food Services Qatar',
+import { buildPageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = buildPageMetadata({
+  title: 'Sourcing & Quality Assurance — ISO & HACCP Certified',
   description:
     'Freshness is logistics. Rigorous origin-to-arrival inspection, 5,000 m² cold-chain warehouse, 20 chiller rooms, 6 loading docks, HACCP & ISO 22000:2018 certified food safety, and 12-month seasonal global sourcing.',
-  openGraph: {
-    title: 'Sourcing & Quality — Nairat Food Services Qatar',
-    description:
-      'Freshness is logistics. Dual-tier origin and Qatar arrival laboratory testing, multi-zone cold chain, HACCP & ISO 22000:2018 certifications, and year-round seasonal produce supply.',
-    url: 'https://nairatfoodservices.com/quality',
-    siteName: 'Nairat Food Services',
-    locale: 'en_US',
-    type: 'website',
-  },
-};
+  pathname: '/quality',
+});
 
 export default async function QualityPage(): Promise<React.ReactNode> {
   const [certs, qualityContent] = await Promise.all([
