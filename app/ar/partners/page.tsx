@@ -7,7 +7,7 @@ import { PartnerCountryGrid } from '@/components/partners/PartnerCountryGrid';
 import { Cta } from '@/components/modules/Cta';
 import { getPartners, getPartnersPageContent } from '@/sanity/lib/data';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 import { buildPageMetadata } from '@/lib/seo';
 

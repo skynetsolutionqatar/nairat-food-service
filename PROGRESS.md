@@ -306,3 +306,13 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
     - **P2 Fixed**: Added global fallback Open Graph and Twitter preview images.
   - [x] Validated all 18 production routes with automated verification script: all canonicals, hreflang alternates, JSON-LD, and single H1 checks passed.
   - [x] Confirmed zero TypeScript errors (`npx tsc --noEmit`).
+
+- [x] **Milestone 15: CDN & Asset Performance Optimization** [Completed]
+  - [x] Benchmarked live Netlify deployment (`https://nairatfoodservices.netlify.app/`) across TTFB, asset sizes, and CDN cache headers.
+  - [x] Created and executed [specs/performance-caching-optimization.md](file:///home/sfwnmuhd/Desktop/nairat/specs/performance-caching-optimization.md):
+    - Configured `Cache-Control: public, max-age=31536000, immutable` in `next.config.ts` for all static media (`.mp4`, `.webm`, `.webp`, `.png`, `.jpg`, `.svg`, `.ico`, `.woff2`).
+    - Created `netlify.toml` with edge caching rules for public assets and Next.js static bundles.
+    - Updated ISR cache window across all 18 routes from `revalidate = 60` to `revalidate = 3600` (1 hour) to ensure instant sub-100ms Netlify Edge CDN hits and eliminate serverless revalidation cold boots.
+    - Optimized `<video>` element in `Hero.tsx` by prioritizing WebM before MP4.
+  - [x] Verified via curl that static video and image responses return `max-age=31536000, immutable`.
+  - [x] Verified zero TypeScript errors (`npx tsc --noEmit`).

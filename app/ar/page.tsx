@@ -22,7 +22,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 import { getPartners, getCompanyProfile, getHomePageContent } from '@/sanity/lib/data';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export default async function ArabicHomePage() {
   const [featuredPartners, company, homeContent] = await Promise.all([

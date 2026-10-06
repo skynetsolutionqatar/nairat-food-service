@@ -11,7 +11,7 @@ interface PageProps {
   params: Promise<{ category: string }>;
 }
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 export function generateStaticParams() {
   return Object.keys(productCategoriesData).map((slug) => ({

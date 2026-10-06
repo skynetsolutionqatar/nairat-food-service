@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
 import { getCompanyProfile, getPrivacyPageContent } from '@/sanity/lib/data';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 import { buildPageMetadata } from '@/lib/seo';
 

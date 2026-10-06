@@ -5,7 +5,7 @@ import { ServicesList } from '@/components/services/ServicesList';
 import { Cta } from '@/components/modules/Cta';
 import { getServices, getServicesPageContent } from '@/sanity/lib/data';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 import { buildPageMetadata } from '@/lib/seo';
 

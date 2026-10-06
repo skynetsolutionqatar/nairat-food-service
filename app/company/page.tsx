@@ -11,7 +11,7 @@ import { CompanyLookingAhead } from '@/components/company/CompanyLookingAhead';
 import { Cta } from '@/components/modules/Cta';
 import { getCompanyProfile, getCompanyPageContent } from '@/sanity/lib/data';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 import { buildPageMetadata } from '@/lib/seo';
 

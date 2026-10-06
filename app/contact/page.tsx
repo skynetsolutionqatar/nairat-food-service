@@ -6,7 +6,7 @@ import { ContactMap } from '@/components/contact/ContactMap';
 import { Cta } from '@/components/modules/Cta';
 import { getCompanyProfile, getContactPageContent } from '@/sanity/lib/data';
 
-export const revalidate = 60;
+export const revalidate = 3600;
 
 import { buildPageMetadata } from '@/lib/seo';
 
