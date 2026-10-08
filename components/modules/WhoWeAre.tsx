@@ -41,8 +41,8 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
       if (text.includes('Trusted Across Qatar.')) {
         return (
           <>
-            Fresh Produce. <br />
-            Strong Supply. <br />
+            Fresh Produce. <br className="hidden sm:inline" />{' '}
+            Strong Supply. <br className="hidden sm:inline" />{' '}
             <span className="text-[#168849]">Trusted Across Qatar.</span>
           </>
         );
@@ -53,8 +53,8 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
       if (text.includes('موثوق في جميع أنحاء قطر.')) {
         return (
           <>
-            منتجات طازجة. <br />
-            إمداد قوي. <br />
+            منتجات طازجة. <br className="hidden sm:inline" />{' '}
+            إمداد قوي. <br className="hidden sm:inline" />{' '}
             <span className="text-[#168849]">موثوق في جميع أنحاء قطر.</span>
           </>
         );
@@ -174,22 +174,21 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
   );
 
   return (
-    <section id="about" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-white overflow-hidden">
-      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
+    <section id="about" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-10 min-[410px]:py-12 sm:py-16 2xl:py-22 bg-white overflow-hidden">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 2xl:space-y-12">
         {/* Left / Top Section Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end border-b border-neutral-200/90 pb-8 sm:pb-9 2xl:pb-10">
-          <div className="lg:col-span-7 space-y-3">
-
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 2xl:gap-10 items-end border-b border-neutral-200/90 pb-6 sm:pb-9 2xl:pb-10">
+          <div className="lg:col-span-7 space-y-2.5 sm:space-y-3">
             <div className="who-header-item">
               <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+            <h2 className="who-header-item font-display text-[22px] min-[360px]:text-[25px] min-[410px]:text-[28px] sm:text-3xl md:text-4xl lg:text-[44px] 2xl:text-[50px] font-semibold text-[#111814] text-start tracking-[-0.025em] leading-[1.18] sm:leading-[1.12]">
               {renderHeadline()}
             </h2>
           </div>
 
           <div className="lg:col-span-5 space-y-4 2xl:space-y-5 flex flex-col items-start lg:items-end">
-            <p className="who-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
+            <p className="who-header-item font-sans text-[12px] min-[360px]:text-[12.5px] min-[410px]:text-[13px] sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.65] text-justify w-full lg:max-w-[48ch] 2xl:max-w-[52ch]">
               {narrative}
             </p>
 
@@ -203,11 +202,11 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
         </div>
 
         {/* 3 Metric Cards Horizontal Grid */}
-        <div className="metric-cards-grid grid grid-cols-1 md:grid-cols-3 gap-5 2xl:gap-6 pt-1">
+        <div className="metric-cards-grid grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 2xl:gap-6 pt-1">
           {metricCards.map((card) => (
             <div
               key={card.number}
-              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-[background-color,border-color,box-shadow,transform] duration-300 will-change-transform hover:-translate-y-1 ${card.isDark
+              className={`metric-card group rounded-2xl sm:rounded-3xl p-5 sm:p-6 2xl:p-8 min-h-[auto] sm:min-h-[190px] 2xl:min-h-[220px] flex flex-col justify-between space-y-4 sm:space-y-5 transition-[background-color,border-color,box-shadow,transform] duration-300 will-change-transform hover:-translate-y-1 ${card.isDark
                 ? 'bg-[#0A2618] text-white shadow-md hover:shadow-xl'
                 : 'bg-[#F6F8F5] text-[#111814] border border-neutral-200/80 hover:border-neutral-300 hover:shadow-md'
                 }`}
@@ -215,14 +214,14 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
               {/* Number Header */}
               <div className="flex items-center justify-between">
                 <span
-                  className={`font-display font-semibold text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:scale-105 ${card.isDark ? 'text-white' : 'text-[#111814]'
+                  className={`font-display font-semibold text-2xl min-[410px]:text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:scale-105 ${card.isDark ? 'text-white' : 'text-[#111814]'
                     }`}
                 >
                   {card.number}
                 </span>
 
                 <div
-                  className={`w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 ${card.isDark
+                  className={`w-9 h-9 min-[410px]:w-10 min-[410px]:h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 ${card.isDark
                     ? 'bg-white/10 border-white/15'
                     : 'bg-white border-neutral-200 shadow-2xs'
                     }`}
@@ -232,15 +231,15 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
               </div>
 
               {/* Title & Description */}
-              <div className="space-y-1.5">
+              <div className="space-y-1 sm:space-y-1.5">
                 <h3
-                  className={`font-display font-semibold text-lg 2xl:text-xl tracking-[-0.015em] leading-snug ${card.isDark ? 'text-white' : 'text-[#111814]'
+                  className={`font-display font-semibold text-base min-[410px]:text-lg 2xl:text-xl tracking-[-0.015em] leading-snug ${card.isDark ? 'text-white' : 'text-[#111814]'
                     }`}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className={`font-sans text-xs sm:text-[13px] 2xl:text-sm leading-[1.55] ${card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
+                  className={`font-sans text-xs min-[410px]:text-[12.5px] sm:text-[13px] 2xl:text-sm leading-[1.55] ${card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
                     }`}
                 >
                   {card.description}

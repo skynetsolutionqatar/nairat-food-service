@@ -279,27 +279,37 @@ export function Globe({
       }, 100)
     }
 
-    let resizeObserver: ResizeObserver | null = null
-    if (canvas.offsetWidth > 0) {
-      init()
-    } else {
-      resizeObserver = new ResizeObserver((entries) => {
-        if (entries[0]?.contentRect.width > 0 && !isDestroyed) {
-          if (resizeObserver) {
-            resizeObserver.disconnect()
-            resizeObserver = null
+    let lastWidth = canvas.offsetWidth
+    const resizeObserver = new ResizeObserver((entries) => {
+      const entry = entries[0]
+      if (!entry || isDestroyed) return
+      const newWidth = Math.round(entry.contentRect.width)
+      if (newWidth > 0) {
+        if (!globe) {
+          lastWidth = newWidth
+          init()
+        } else if (Math.abs(newWidth - lastWidth) > 15) {
+          lastWidth = newWidth
+          if (globe) {
+            globe.destroy()
+            globe = null
+          }
+          if (animationId) {
+            cancelAnimationFrame(animationId)
           }
           init()
         }
-      })
-      resizeObserver.observe(canvas)
+      }
+    })
+
+    if (canvas.offsetWidth > 0) {
+      init()
     }
+    resizeObserver.observe(canvas)
 
     return () => {
       isDestroyed = true
-      if (resizeObserver) {
-        resizeObserver.disconnect()
-      }
+      resizeObserver.disconnect()
       if (animationId) {
         cancelAnimationFrame(animationId)
       }

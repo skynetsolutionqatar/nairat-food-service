@@ -101,7 +101,7 @@ export function PageBanner({
       )}
 
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-start">
-        <h1 className="banner-anim-title font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
+        <h1 className="banner-anim-title font-display text-2xl min-[410px]:text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-tight">
           {title}
         </h1>
 

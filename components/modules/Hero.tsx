@@ -155,20 +155,20 @@ export function Hero({ content }: HeroProps = {}) {
       {/* Main Content Container */}
       <div
         ref={contentRef}
-        className="relative max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 sm:pt-36 pb-14 lg:pb-16 2xl:pb-20 z-10 w-full will-change-transform"
+        className="relative max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-24 min-[410px]:pt-28 sm:pt-36 pb-10 min-[410px]:pb-12 sm:pb-14 lg:pb-16 2xl:pb-20 z-10 w-full will-change-transform"
       >
-        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 lg:gap-10 2xl:gap-14 w-full">
+        <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-5 min-[410px]:gap-6 lg:gap-10 2xl:gap-14 w-full">
           {/* DIV 1: Heading */}
-          <div className="w-full lg:w-[62%] text-start">
-            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-[48px] xl:text-[54px] 2xl:text-[60px] font-bold text-white text-start tracking-[-0.035em] leading-[1.16] sm:leading-[1.18] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
+          <div className="w-full lg:w-[60%] 2xl:w-[62%] text-start">
+            <h1 className="font-display text-[22px] min-[360px]:text-[25px] min-[390px]:text-[28px] min-[410px]:text-[32px] sm:text-[36px] md:text-[44px] lg:text-[44px] xl:text-[52px] 2xl:text-[60px] font-bold text-white text-start tracking-[-0.035em] leading-[1.2] min-[410px]:leading-[1.18] sm:leading-[1.16] drop-shadow-[0_2px_12px_rgba(0,0,0,0.35)]">
               <span className="hero-title-line block sm:whitespace-nowrap">{titleLine1}</span>
-              <span className="hero-title-line block sm:whitespace-nowrap mt-1.5 sm:mt-2.5">{titleLine2}</span>
+              <span className="hero-title-line block sm:whitespace-nowrap mt-1 min-[410px]:mt-1.5 sm:mt-2.5">{titleLine2}</span>
             </h1>
           </div>
 
           {/* DIV 2: Subheading & CTA Button */}
-          <div className="w-full lg:w-[38%] flex flex-col justify-end items-start gap-5 2xl:gap-6 text-start">
-            <p className="hero-sub-text font-sans text-xs sm:text-[13px] 2xl:text-[14px] text-gray-300 leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-start">
+          <div className="w-full lg:w-[40%] 2xl:w-[38%] flex flex-col justify-end items-start gap-4 min-[410px]:gap-5 2xl:gap-6 text-start">
+            <p className="hero-sub-text font-sans text-[11.5px] min-[360px]:text-xs min-[410px]:text-[13px] sm:text-sm md:text-[14.5px] lg:text-[13.5px] xl:text-[14.5px] 2xl:text-base text-gray-200/90 leading-relaxed max-w-[42ch] sm:max-w-[48ch] lg:max-w-[42ch] xl:max-w-[46ch] 2xl:max-w-[50ch] text-justify">
               {subtitle}
             </p>
 

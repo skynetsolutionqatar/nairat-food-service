@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -17,6 +17,7 @@ interface NavigationLink {
 
 export function Navbar() {
   const pathname = usePathname();
+  const navRef = useRef<HTMLElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
@@ -24,7 +25,6 @@ export function Navbar() {
   const { locale, dict, toggleLanguage } = useLocale();
   const isLanguageToggleEnabled = process.env.NEXT_PUBLIC_ENABLE_LANGUAGE_TOGGLE === 'true';
 
-  const isSubpage = pathname !== '/' && pathname !== '/ar';
   const prefix = locale === 'ar' ? '/ar' : '';
 
   const productCategories = [
@@ -62,6 +62,52 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close menus on route navigation
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setIsMobileProductsOpen(false);
+    setIsProductsDropdownOpen(false);
+  }, [pathname]);
+
+  // Close mobile drawer on desktop resize (>= 1024px)
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Close mobile menu on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        setIsProductsDropdownOpen(false);
+      }
+    };
+    if (isMobileMenuOpen || isProductsDropdownOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileMenuOpen, isProductsDropdownOpen]);
+
+  // Close mobile menu on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+        setIsProductsDropdownOpen(false);
+      }
+    };
+    if (isMobileMenuOpen || isProductsDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMobileMenuOpen, isProductsDropdownOpen]);
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen((prev) => !prev);
   };
@@ -71,9 +117,12 @@ export function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 transition-all duration-300">
+    <header
+      ref={navRef}
+      className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 transition-all duration-300"
+    >
       <div
-        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-full transition-all duration-300 px-5 sm:px-6 py-2.5 flex items-center justify-between border transform-gpu will-change-transform ${isScrolled
+        className={`max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-full transition-all duration-300 px-4 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between border transform-gpu will-change-transform ${isScrolled
           ? 'bg-[#158647] backdrop-blur-md shadow-lg border-white/20'
           : 'bg-[#158647] backdrop-blur-sm shadow-md border-white/10'
           }`}
@@ -81,7 +130,7 @@ export function Navbar() {
         {/* Left: Brand Logo */}
         <Link
           href={prefix || '/'}
-          className="relative flex items-center shrink-0 w-[86px] h-8 sm:h-9 focus-visible:outline-2 focus-visible:outline-white rounded"
+          className="relative flex items-center shrink-0 w-[80px] sm:w-[86px] h-8 sm:h-9 focus-visible:outline-2 focus-visible:outline-white rounded"
           onClick={closeMobileMenu}
         >
           <Image
@@ -94,8 +143,8 @@ export function Navbar() {
           />
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-3 xl:gap-5">
+        {/* Desktop Navigation Links (>= 1024px) */}
+        <nav className="hidden lg:flex items-center gap-2 xl:gap-5">
           {navigationLinks.map((link) => {
             const isProducts = link.id === 'products';
             const isActive = isProducts
@@ -118,7 +167,7 @@ export function Navbar() {
                       e.preventDefault();
                       setIsProductsDropdownOpen((prev) => !prev);
                     }}
-                    className={`inline-flex items-center gap-1.5 font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 tracking-[-0.01em] cursor-pointer ${isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
+                    className={`inline-flex items-center gap-1.5 font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2 xl:px-2.5 py-1 tracking-[-0.01em] cursor-pointer ${isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
                       }`}
                     aria-haspopup="true"
                     aria-expanded={isProductsDropdownOpen}
@@ -130,7 +179,7 @@ export function Navbar() {
                       aria-hidden="true"
                     />
                     <span
-                      className={`absolute bottom-1 start-2.5 end-7 h-0.5 bg-white transition-transform duration-200 rounded-full ${isActive || isProductsDropdownOpen ? 'scale-x-100' : 'scale-x-0'
+                      className={`absolute bottom-1 start-2 xl:start-2.5 end-6 xl:end-7 h-0.5 bg-white transition-transform duration-200 rounded-full ${isActive || isProductsDropdownOpen ? 'scale-x-100' : 'scale-x-0'
                         }`}
                     />
                   </button>
@@ -163,12 +212,12 @@ export function Navbar() {
               <Link
                 key={link.id}
                 href={link.href}
-                className={`font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2.5 py-1 relative group tracking-[-0.01em] ${isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
+                className={`font-sans text-xs xl:text-sm font-medium transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-white rounded px-2 xl:px-2.5 py-1 relative group tracking-[-0.01em] ${isActive ? 'text-white font-semibold' : 'text-white/90 hover:text-white'
                   }`}
               >
                 {link.label}
                 <span
-                  className={`absolute bottom-0 start-2.5 end-2.5 h-0.5 bg-white transition-transform duration-200 rounded-full ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  className={`absolute bottom-0 start-2 xl:start-2.5 end-2 xl:end-2.5 h-0.5 bg-white transition-transform duration-200 rounded-full ${isActive ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}
                 />
               </Link>
@@ -176,42 +225,32 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Right Actions: Language Toggle + CTA Button */}
-        <div className="hidden sm:flex items-center gap-3">
-          {/* Language Toggle Button: Shows العربية when in English, EN when in Arabic */}
+        {/* Right Actions: Language Toggle, CTA Button, Hamburger Menu */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Language Toggle Button: Available across desktop, tablet, and mobile */}
           {isLanguageToggleEnabled && (
             <button
               onClick={toggleLanguage}
-              className="inline-flex items-center justify-center min-w-[50px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
+              className="inline-flex items-center justify-center min-w-[44px] sm:min-w-[50px] px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
               aria-label="Toggle language"
             >
               <span>{locale === 'en' ? 'العربية' : 'EN'}</span>
             </button>
           )}
 
-          {/* Action CTA Button using CtaButton */}
-          <CtaButton
-            variant="white"
-            href={`${prefix}/contact`}
-            text={dict.common.contactUs}
-          />
-        </div>
+          {/* Action CTA Button: Shown on tablet & desktop (>= 640px), hidden on compact mobile */}
+          <div className="hidden sm:block">
+            <CtaButton
+              variant="white"
+              href={`${prefix}/contact`}
+              text={dict.common.contactUs}
+            />
+          </div>
 
-        {/* Mobile Actions: Language Toggle + Menu Button */}
-        <div className="sm:hidden flex items-center gap-2">
-          {isLanguageToggleEnabled && (
-            <button
-              onClick={toggleLanguage}
-              className="inline-flex items-center justify-center min-w-[44px] px-3 py-1.5 rounded-full border border-white/30 bg-white/10 text-white font-sans text-xs font-bold"
-              aria-label="Toggle language"
-            >
-              <span>{locale === 'en' ? 'عربي' : 'EN'}</span>
-            </button>
-          )}
-
+          {/* Hamburger Menu Toggle Button: Visible below 1024px (< lg), hidden on desktop (>= lg) */}
           <button
             onClick={toggleMobileMenu}
-            className="text-white hover:text-white/80 p-2 focus-visible:outline-2 focus-visible:outline-white rounded-md"
+            className="lg:hidden text-white hover:text-white/80 p-1.5 sm:p-2 focus-visible:outline-2 focus-visible:outline-white rounded-md cursor-pointer transition-colors"
             aria-expanded={isMobileMenuOpen}
             aria-label="Toggle navigation menu"
           >
@@ -224,9 +263,9 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Panel */}
+      {/* Mobile & Tablet Menu Panel (< 1024px) */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-[#168749] border border-white/20 px-6 py-5 absolute top-full start-4 end-4 rounded-3xl mt-3 shadow-2xl backdrop-blur-lg">
+        <div className="lg:hidden bg-[#168749] border border-white/20 px-5 sm:px-6 py-5 absolute top-full inset-x-4 sm:inset-x-6 max-w-[1140px] 2xl:max-w-[1240px] mx-auto rounded-3xl mt-3 shadow-2xl backdrop-blur-lg">
           <nav className="flex flex-col gap-2">
             {navigationLinks.map((link) => {
               if (link.id === 'products') {

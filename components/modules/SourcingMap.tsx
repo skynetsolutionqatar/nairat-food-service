@@ -13,8 +13,8 @@ const Globe = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="w-full aspect-square max-w-[360px] 2xl:max-w-[420px] rounded-full bg-neutral-100/60 animate-pulse flex items-center justify-center">
-        <div className="w-24 h-24 rounded-full border border-[#168849]/20" />
+      <div className="w-full aspect-square max-w-[200px] min-[360px]:max-w-[220px] min-[410px]:max-w-[240px] sm:max-w-[280px] md:max-w-[300px] lg:max-w-[320px] xl:max-w-[360px] 2xl:max-w-[400px] rounded-full bg-neutral-100/60 animate-pulse flex items-center justify-center">
+        <div className="w-14 sm:w-20 lg:w-24 h-14 sm:h-20 lg:h-24 rounded-full border border-[#168849]/20" />
       </div>
     ),
   }
@@ -126,13 +126,13 @@ export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode
   );
 
   return (
-    <section id="sourcing" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-10 sm:py-14 lg:py-16 2xl:py-20 bg-white overflow-hidden">
+    <section id="sourcing" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-10 min-[410px]:py-12 sm:py-16 2xl:py-22 bg-white overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 2xl:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 2xl:gap-12 items-center">
           
           {/* Left Column on Desktop / Bottom on Mobile: Interactive 3D World Globe */}
-          <div className="sourcing-globe-container order-2 lg:order-1 lg:col-span-5 relative flex items-center justify-center w-full max-w-[280px] sm:max-w-[340px] mx-auto lg:max-w-none will-change-transform">
-            <div className="w-full aspect-square max-w-[280px] sm:max-w-[360px] 2xl:max-w-[420px]">
+          <div className="sourcing-globe-container order-2 lg:order-1 lg:col-span-5 relative flex items-center justify-center w-full mx-auto will-change-transform">
+            <div className="w-full aspect-square max-w-[200px] min-[360px]:max-w-[220px] min-[410px]:max-w-[240px] sm:max-w-[280px] md:max-w-[300px] lg:max-w-[320px] xl:max-w-[360px] 2xl:max-w-[400px]">
               <Globe
                 markers={globeMarkers}
                 arcs={globeArcs}
@@ -147,18 +147,18 @@ export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode
           </div>
 
           {/* Right Column on Desktop / Top on Mobile: Sourcing Text & Country Pills */}
-          <div className="order-1 lg:order-2 lg:col-span-7 space-y-4 sm:space-y-5 2xl:space-y-6">
+          <div className="order-1 lg:order-2 lg:col-span-7 space-y-3.5 sm:space-y-4 lg:space-y-5 2xl:space-y-6">
             <div className="sourcing-header-item">
               <SectionEyebrow title={eyebrow} />
             </div>
 
-            <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+            <h2 className="sourcing-header-item font-display text-[22px] min-[360px]:text-[25px] min-[410px]:text-[28px] sm:text-3xl md:text-4xl lg:text-[44px] 2xl:text-[50px] font-semibold text-[#111814] text-start tracking-[-0.025em] leading-[1.18] sm:leading-[1.12]">
               {isAr ? (
                 content?.sourcingMapTitleAr ? (
                   <span className="whitespace-pre-line">{content.sourcingMapTitleAr}</span>
                 ) : (
                   <>
-                    تم التوريد من جميع أنحاء <br />
+                    تم التوريد من جميع أنحاء <br className="hidden sm:inline" />{' '}
                     <span className="text-[#168849]">العالم</span>
                   </>
                 )
@@ -167,7 +167,7 @@ export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode
                   <span className="whitespace-pre-line">{content.sourcingMapTitle}</span>
                 ) : (
                   <>
-                    Sourced From Around <br />
+                    Sourced From Around <br className="hidden sm:inline" />{' '}
                     <span className="text-[#168849]">the World</span>
                   </>
                 )
@@ -175,17 +175,17 @@ export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode
             </h2>
 
             {/* Country Pill Badges Grid */}
-            <div className="flex flex-wrap gap-2 2xl:gap-3 pt-1 max-w-2xl 2xl:max-w-3xl">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2 2xl:gap-3 pt-1 max-w-2xl 2xl:max-w-3xl">
               {sourcingCountriesData.map((item) => (
                 <span
                   key={item.en}
-                  className="sourcing-country-pill font-sans text-xs sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.05em] px-3.5 sm:px-4 2xl:px-5 py-1.5 sm:py-2 2xl:py-2.5 rounded-full border border-neutral-200 bg-neutral-50 text-[#6B7280] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] hover:scale-105 transition-all duration-200 cursor-default will-change-transform"
+                  className="sourcing-country-pill font-sans text-[11px] min-[360px]:text-xs sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.04em] sm:tracking-[0.05em] px-3 min-[360px]:px-3.5 sm:px-4 2xl:px-5 py-1 min-[360px]:py-1.5 sm:py-2 2xl:py-2.5 rounded-full border border-neutral-200 bg-neutral-50 text-[#6B7280] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] hover:scale-105 active:scale-95 transition-all duration-200 cursor-default will-change-transform"
                 >
                   {isAr ? item.ar : item.en}
                 </span>
               ))}
 
-              <span className="sourcing-country-pill font-sans text-xs sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.05em] px-4 sm:px-5 2xl:px-6 py-1.5 sm:py-2 2xl:py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20 hover:scale-105 transition-transform duration-200 will-change-transform">
+              <span className="sourcing-country-pill font-sans text-[11px] min-[360px]:text-xs sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.04em] sm:tracking-[0.05em] px-3.5 min-[360px]:px-4 sm:px-5 2xl:px-6 py-1 min-[360px]:py-1.5 sm:py-2 2xl:py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20 hover:scale-105 active:scale-95 transition-transform duration-200 will-change-transform">
                 {isAr ? 'والمزيد من الدول' : 'AND BEYOND'}
               </span>
             </div>

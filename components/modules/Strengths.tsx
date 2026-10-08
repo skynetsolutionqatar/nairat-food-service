@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { CtaButton } from '@/components/ui/CtaButton';
@@ -26,6 +26,7 @@ interface StrengthsProps {
 
 export function Strengths({ company, content }: StrengthsProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const { locale, dict } = useLocale();
   const prefix = locale === 'ar' ? '/ar' : '';
   const profile = company || defaultCompany;
@@ -41,7 +42,7 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
         const parts = text.split('Ready to Deliver.');
         return (
           <>
-            {parts[0]} <br />
+            {parts[0]} <br className="hidden sm:inline" />{' '}
             Ready to Deliver.
           </>
         );
@@ -53,7 +54,7 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
         const parts = text.split('جاهزون للتوصيل.');
         return (
           <>
-            {parts[0]} <br />
+            {parts[0]} <br className="hidden sm:inline" />{' '}
             جاهزون للتوصيل.
           </>
         );
@@ -184,23 +185,23 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
   );
 
   return (
-    <section id="strengths" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-[#F4F6F5] border-y border-neutral-200/70">
-      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
+    <section id="strengths" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-10 min-[410px]:py-12 sm:py-16 2xl:py-22 bg-[#F4F6F5] border-y border-neutral-200/70">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 2xl:space-y-12">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 2xl:gap-10 items-end">
           {/* Left Headline */}
-          <div className="lg:col-span-7 space-y-3">
+          <div className="lg:col-span-7 space-y-2.5 sm:space-y-3">
             <div className="strength-header-item">
               <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="strength-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+            <h2 className="strength-header-item font-display text-[22px] min-[360px]:text-[25px] min-[410px]:text-[28px] sm:text-3xl md:text-4xl lg:text-[44px] 2xl:text-[50px] font-semibold text-[#111814] text-start tracking-[-0.025em] leading-[1.18] sm:leading-[1.12]">
               {renderHeadline()}
             </h2>
           </div>
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
-            <p className="strength-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
+            <p className="strength-header-item font-sans text-[12px] min-[360px]:text-[12.5px] min-[410px]:text-[13px] sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.65] text-justify w-full lg:max-w-[48ch] 2xl:max-w-[52ch]">
               {locale === 'ar'
                 ? 'من التوريد العالمي إلى التوصيل في المرحلة الأخيرة، صُممت سلسلة التوريد المتكاملة لدينا لحماية الجودة، والحفاظ على الاتساق، وتوصيل المنتجات الطازجة بموثوقية في جميع أنحاء قطر.'
                 : 'From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality, maintain consistency and deliver fresh produce reliably across Qatar.'}
@@ -217,81 +218,139 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
         <div className="strengths-bento-grid grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 2xl:gap-6 items-stretch">
           {/* Left 2x2 Grid */}
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 2xl:gap-6">
-            {strengthsList.map((card) => (
+            {strengthsList.map((card) => {
+              const isActive = activeCardId === card.id;
+              return (
+                <div
+                  key={card.id}
+                  onClick={() => setActiveCardId((prev) => (prev === card.id ? null : card.id))}
+                  className={`strength-card-item group relative overflow-hidden rounded-2xl h-44 min-[360px]:h-48 sm:h-52 md:h-56 2xl:h-64 shadow-sm flex flex-col justify-end p-4 min-[360px]:p-5 2xl:p-6 bg-neutral-900 cursor-pointer transition-all duration-300 ${
+                    isActive ? 'ring-2 ring-[#168849]/70 shadow-lg -translate-y-1' : 'hover:-translate-y-1 active:scale-[0.99]'
+                  }`}
+                >
+                  {/* Background Image with Hover & Mobile Touch Zoom */}
+                  <Image
+                    src={card.imageUrl}
+                    alt={card.alt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
+                    className={`object-cover transition-transform duration-700 ease-out will-change-transform transform-gpu ${
+                      isActive ? 'scale-105' : 'group-hover:scale-105 group-active:scale-105'
+                    }`}
+                    loading="lazy"
+                  />
+
+                  {/* Dark Gradient Overlay */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-t transition-all duration-300 pointer-events-none ${
+                      isActive
+                        ? 'from-black/85 via-black/40 to-transparent'
+                        : 'from-black/75 via-black/30 to-transparent group-hover:from-black/85 group-hover:via-black/40 group-active:from-black/85'
+                    }`}
+                  />
+
+                  {/* Card Content Overlay */}
+                  <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
+                    {card.number && (
+                      <span
+                        className={`font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-white leading-none block drop-shadow-md mb-1 tracking-[-0.03em] transition-transform duration-300 ${
+                          isActive ? '-translate-y-0.5' : 'group-hover:-translate-y-0.5'
+                        }`}
+                      >
+                        {card.number}
+                      </span>
+                    )}
+                    <h3 className="font-display font-semibold text-base sm:text-lg 2xl:text-xl text-white tracking-[-0.015em] leading-snug drop-shadow-md">
+                      {card.title}
+                    </h3>
+
+                    {/* Description Paragraph (Visible on mobile active/hover, desktop hover) */}
+                    <div
+                      className={`grid transition-all duration-300 ease-out ${
+                        isActive
+                          ? 'grid-rows-[1fr]'
+                          : 'grid-rows-[1fr] sm:grid-rows-[0fr] sm:group-hover:grid-rows-[1fr] group-active:grid-rows-[1fr]'
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <p
+                          className={`font-sans text-[11px] sm:text-xs text-white/90 leading-[1.55] pt-1.5 transition-opacity duration-300 delay-75 ${
+                            isActive
+                              ? 'opacity-100'
+                              : 'opacity-100 sm:opacity-0 sm:group-hover:opacity-100 group-active:opacity-100'
+                          }`}
+                        >
+                          {card.desc}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Right Tall Card */}
+          {(() => {
+            const isTallActive = activeCardId === tallCard.id;
+            return (
               <div
-                key={card.id}
-                className="strength-card-item group relative overflow-hidden rounded-2xl h-48 sm:h-52 md:h-56 2xl:h-64 shadow-sm flex flex-col justify-end p-5 2xl:p-6 bg-neutral-900 cursor-pointer"
+                onClick={() => setActiveCardId((prev) => (prev === tallCard.id ? null : tallCard.id))}
+                className={`strength-card-item lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[220px] sm:min-h-[280px] lg:min-h-full shadow-sm flex flex-col justify-end p-4 min-[360px]:p-5 sm:p-6 2xl:p-7 bg-neutral-900 cursor-pointer transition-all duration-300 ${
+                  isTallActive ? 'ring-2 ring-[#168849]/70 shadow-lg -translate-y-1' : 'hover:-translate-y-1 active:scale-[0.99]'
+                }`}
               >
-                {/* Background Image with Hover Zoom */}
+                {/* Background Image with Hover & Mobile Touch Zoom */}
                 <Image
-                  src={card.imageUrl}
-                  alt={card.alt}
+                  src={tallCard.imageUrl}
+                  alt={tallCard.alt}
                   fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
+                  sizes="(max-width: 1024px) 100vw, 380px"
+                  className={`object-cover transition-transform duration-700 ease-out will-change-transform transform-gpu ${
+                    isTallActive ? 'scale-105' : 'group-hover:scale-105 group-active:scale-105'
+                  }`}
                   loading="lazy"
                 />
 
                 {/* Dark Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent group-hover:from-black/80 group-hover:via-black/35 transition-all duration-300 pointer-events-none" />
+                <div
+                  className={`absolute inset-0 bg-gradient-to-t transition-all duration-300 pointer-events-none ${
+                    isTallActive
+                      ? 'from-black/85 via-black/40 to-transparent'
+                      : 'from-black/75 via-black/30 to-transparent group-hover:from-black/85 group-hover:via-black/40 group-active:from-black/85'
+                  }`}
+                />
 
                 {/* Card Content Overlay */}
                 <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
-                  {card.number && (
-                    <span className="font-display font-semibold text-2xl sm:text-3xl 2xl:text-4xl text-white leading-none block drop-shadow-md mb-1 tracking-[-0.03em] transition-transform duration-300 group-hover:-translate-y-0.5">
-                      {card.number}
-                    </span>
-                  )}
-                  <h3 className="font-display font-semibold text-base sm:text-lg 2xl:text-xl text-white tracking-[-0.015em] leading-snug drop-shadow-md">
-                    {card.title}
+                  <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-white tracking-[-0.02em] leading-snug drop-shadow-md">
+                    {tallCard.title}
                   </h3>
 
-                  {/* Description Paragraph (Always visible on touch, hover expand on desktop) */}
-                  <div className="grid grid-rows-[1fr] sm:grid-rows-[0fr] sm:group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
+                  {/* Description Paragraph */}
+                  <div
+                    className={`grid transition-all duration-300 ease-out ${
+                      isTallActive
+                        ? 'grid-rows-[1fr]'
+                        : 'grid-rows-[1fr] sm:grid-rows-[0fr] sm:group-hover:grid-rows-[1fr] group-active:grid-rows-[1fr]'
+                    }`}
+                  >
                     <div className="overflow-hidden">
-                      <p className="font-sans text-[11px] sm:text-xs text-white/90 leading-[1.55] pt-1.5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 delay-75">
-                        {card.desc}
+                      <p
+                        className={`font-sans text-[11px] sm:text-xs text-white/90 leading-[1.55] pt-1.5 transition-opacity duration-300 delay-75 ${
+                          isTallActive
+                            ? 'opacity-100'
+                            : 'opacity-100 sm:opacity-0 sm:group-hover:opacity-100 group-active:opacity-100'
+                        }`}
+                      >
+                        {tallCard.desc}
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Right Tall Card */}
-          <div
-            className="strength-card-item lg:col-span-1 group relative overflow-hidden rounded-2xl min-h-[220px] sm:min-h-[280px] lg:min-h-full shadow-sm flex flex-col justify-end p-5 sm:p-6 2xl:p-7 bg-neutral-900 cursor-pointer"
-          >
-            {/* Background Image with Hover Zoom */}
-            <Image
-              src={tallCard.imageUrl}
-              alt={tallCard.alt}
-              fill
-              sizes="(max-width: 1024px) 100vw, 380px"
-              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
-              loading="lazy"
-            />
-
-            {/* Dark Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent group-hover:from-black/80 group-hover:via-black/35 transition-all duration-300 pointer-events-none" />
-
-            {/* Card Content Overlay */}
-            <div className="relative z-10 text-white flex flex-col justify-end transition-transform duration-300">
-              <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-white tracking-[-0.02em] leading-snug drop-shadow-md">
-                {tallCard.title}
-              </h3>
-
-              {/* Description Paragraph */}
-              <div className="grid grid-rows-[1fr] sm:grid-rows-[0fr] sm:group-hover:grid-rows-[1fr] transition-all duration-300 ease-out">
-                <div className="overflow-hidden">
-                  <p className="font-sans text-[11px] sm:text-xs text-white/90 leading-[1.55] pt-1.5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300 delay-75">
-                    {tallCard.desc}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+            );
+          })()}
         </div>
       </div>
     </section>

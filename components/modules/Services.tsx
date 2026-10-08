@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { ArrowRight } from 'lucide-react';
@@ -104,6 +104,7 @@ interface ServicesProps {
 
 export function Services({ content }: ServicesProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeCardId, setActiveCardId] = useState<string | null>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
 
@@ -153,23 +154,23 @@ export function Services({ content }: ServicesProps = {}) {
   );
 
   return (
-    <section id="services" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-white">
-      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
+    <section id="services" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-10 min-[410px]:py-12 sm:py-16 2xl:py-22 bg-white">
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10 2xl:space-y-12">
         {/* Header Grid: Left Headline vs Right Subtext & CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-8 2xl:gap-10 items-end">
           {/* Left Headline */}
-          <div className="lg:col-span-7 space-y-3">
+          <div className="lg:col-span-7 space-y-2.5 sm:space-y-3">
             <div className="service-header-item">
               <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="service-header-item font-display type-h2 font-semibold text-[#111814] text-start whitespace-pre-line">
+            <h2 className="service-header-item font-display text-[22px] min-[360px]:text-[25px] min-[410px]:text-[28px] sm:text-3xl md:text-4xl lg:text-[44px] 2xl:text-[50px] font-semibold text-[#111814] text-start tracking-[-0.025em] leading-[1.18] sm:leading-[1.12] whitespace-pre-line">
               {title}
             </h2>
           </div>
 
           {/* Right Paragraph & CTA Button */}
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end space-y-4 2xl:space-y-5">
-            <p className="service-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
+            <p className="service-header-item font-sans text-[12px] min-[360px]:text-[12.5px] min-[410px]:text-[13px] sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.65] text-justify w-full lg:max-w-[48ch] 2xl:max-w-[52ch]">
               {narrative}
             </p>
             <div className="service-header-item self-start lg:self-end">
@@ -181,37 +182,53 @@ export function Services({ content }: ServicesProps = {}) {
         </div>
 
         {/* 6 Services Cards Grid */}
-        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 2xl:gap-8">
+        <div className="services-cards-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 2xl:gap-8">
           {serviceCards.map((service) => {
             const title = isAr ? service.titleAr : service.title;
             const desc = isAr ? service.descAr : service.desc;
             const actionText = isAr ? service.actionTextAr : service.actionText;
             const actionHref = isAr ? service.actionHrefAr : service.actionHref;
+            const isActive = activeCardId === service.id;
 
             return (
               <div
                 key={service.id}
-                className="service-card-item flex flex-col justify-between space-y-3.5 group hover:-translate-y-1 transition-transform duration-300"
+                onClick={() => setActiveCardId((prev) => (prev === service.id ? null : service.id))}
+                className={`service-card-item flex flex-col justify-between space-y-3.5 group cursor-pointer transition-all duration-300 ${
+                  isActive ? '-translate-y-1' : 'hover:-translate-y-1 active:scale-[0.99]'
+                }`}
               >
-                {/* Top Rounded Image */}
-                <div className="relative w-full h-48 sm:h-52 md:h-56 2xl:h-60 rounded-2xl overflow-hidden bg-neutral-100">
+                {/* Top Rounded Image with hover & mobile tap zoom */}
+                <div className="relative w-full h-44 min-[360px]:h-48 sm:h-52 md:h-56 2xl:h-60 rounded-2xl overflow-hidden bg-neutral-100 shadow-xs">
                   <Image
                     src={service.imageUrl}
                     alt={title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
+                    className={`object-cover transition-transform duration-700 ease-out will-change-transform transform-gpu ${
+                      isActive ? 'scale-105' : 'group-hover:scale-105 group-active:scale-105'
+                    }`}
                     loading="lazy"
+                  />
+                  {/* Subtle highlight overlay on active/hover */}
+                  <div
+                    className={`absolute inset-0 transition-opacity duration-300 pointer-events-none rounded-2xl ${
+                      isActive ? 'bg-black/10 ring-2 ring-[#168849]/50' : 'group-hover:bg-black/5'
+                    }`}
                   />
                 </div>
 
                 {/* Card Text & Link below image */}
                 <div className="flex flex-col flex-1 justify-between space-y-3 pt-0.5">
-                  <div className="space-y-2">
-                    <h3 className="font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-[#111814] tracking-[-0.015em] leading-snug group-hover:text-[#168849] transition-colors duration-200 text-start">
+                  <div className="space-y-1.5 sm:space-y-2">
+                    <h3
+                      className={`font-display font-semibold text-base min-[410px]:text-lg sm:text-xl 2xl:text-2xl tracking-[-0.015em] leading-snug transition-colors duration-200 text-start ${
+                        isActive ? 'text-[#168849]' : 'text-[#111814] group-hover:text-[#168849]'
+                      }`}
+                    >
                       {title}
                     </h3>
-                    <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.6] text-start">
+                    <p className="font-sans text-xs min-[410px]:text-[12.5px] sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.6] text-start">
                       {desc}
                     </p>
                   </div>
@@ -220,10 +237,18 @@ export function Services({ content }: ServicesProps = {}) {
                       href={actionHref}
                       target={service.isExternal ? '_blank' : undefined}
                       rel={service.isExternal ? 'noopener noreferrer' : undefined}
-                      className="inline-flex items-center gap-1.5 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] text-[#111814] hover:text-[#168849] transition-colors group/link cursor-pointer"
+                      className={`inline-flex items-center gap-1.5 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] transition-colors group/link cursor-pointer ${
+                        isActive ? 'text-[#168849]' : 'text-[#111814] hover:text-[#168849]'
+                      }`}
                     >
                       <span>{actionText}</span>
-                      <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-1 rtl:rotate-180 rtl:group-hover/link:-translate-x-1" />
+                      <ArrowRight
+                        className={`w-3.5 h-3.5 transition-transform duration-200 rtl:rotate-180 ${
+                          isActive
+                            ? 'translate-x-1 rtl:-translate-x-1 text-[#168849]'
+                            : 'group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1'
+                        }`}
+                      />
                     </a>
                   </div>
                 </div>
