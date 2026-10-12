@@ -57,6 +57,15 @@ visit /
 click '#quality a[href="/quality"]'
 expect "Our Quality Process opens /quality" "/quality" "$(path)"
 
+visit /
+agent-browser eval "(() => { const e = document.querySelector('#products'); window.scrollTo({ top: e.getBoundingClientRect().top + scrollY - 100, behavior: 'instant' }); return 1; })()" >/dev/null 2>&1
+first_rail() { evaluate "document.querySelector('#products a[href*=\"/products/\"]').getAttribute('href')"; }
+expect "Products start on fruits and vegetables" "/products/fruits" "$(first_rail)"
+agent-browser wait 7000 >/dev/null 2>&1
+expect "Products rotate to leafy and specialty" "/products/leafy-herbs" "$(first_rail)"
+click '#products button[aria-pressed="false"]'
+expect "Pager returns to fruits and vegetables" "/products/fruits" "$(first_rail)"
+
 visit /ar
 expect "Arabic home is right-to-left" "rtl" "$(evaluate "getComputedStyle(document.querySelector('#products')).direction")"
 check_home_sections "arabic"
