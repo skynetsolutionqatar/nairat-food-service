@@ -311,4 +311,8 @@ Spec: [specs/home-redesign-design-system.md](specs/home-redesign-design-system.m
   - [x] `QualityTimeline.tsx`: three step cards and a forest certificate card opening the certificate viewer
 - [x] **Milestone 3: `design.md` rewrite, spec reconcile, e2e verification**
   - [x] `scripts/e2e-home.sh`: 26 checks across desktop, Arabic and mobile
-- [ ] **Not started: design system on the remaining home sections and inner pages** (out of scope; home page sections only were requested)
+- [x] **Milestone 4: Design system fonts site-wide** — spec: [specs/design-system-typography.md](specs/design-system-typography.md)
+  - [x] `font-display` and `.type-h*` resolve to Figtree; new `font-eyebrow` (Montserrat 700) for eyebrows and uppercase labels
+  - [x] Montserrat loaded at weight 700 only
+  - [x] `scripts/e2e-typography.sh`: 34 checks across eight English pages, two Arabic pages and mobile
+- [ ] **Not started: design system layout, colour and components on the remaining home sections and inner pages** (out of scope; home page sections only were requested)

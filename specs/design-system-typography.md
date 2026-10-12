@@ -2,6 +2,8 @@
 
 Apply the fonts of the Nairat Food Services design system (https://claude.ai/artifact/74DLs9diJLCY2e5ycFuzfJ) to every page. Layout, colour, spacing and components stay as they are: this is a font change only.
 
+**Status**: implemented and verified.
+
 ## Problem
 
 Five home sections follow the design system (Figtree headings, Montserrat eyebrows). The hero, Who We Are, CTA, footer and every inner page still set headings in Montserrat, so the typeface changes as a visitor scrolls or navigates.
@@ -40,3 +42,5 @@ Tokens in `globals.css` first, verified on the home hero and `/company` (one pag
 - On `/ar` and `/ar/company`, headings and eyebrows compute to Cairo.
 - No horizontal scroll at 1440px and 375px on `/` and `/company`.
 - `scripts/e2e-home.sh` still passes.
+
+Result: 34 of 34 typography checks and all home checks pass. `/products/fruits` and `/privacy` have no `.type-eyebrow`, so only their headings are exercised.

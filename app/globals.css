@@ -24,7 +24,8 @@
   --shadow-nav: 0 8px 24px rgba(10, 38, 24, 0.14);
 
   --font-sans: var(--font-figtree), "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: var(--font-montserrat), "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-sans);
+  --font-eyebrow: var(--font-montserrat), "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-mono), monospace;
   --font-arabic: var(--font-cairo), "Cairo", "Traditional Arabic", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
@@ -52,7 +53,9 @@ body {
 }
 
 [dir="rtl"] .font-display,
+[dir="rtl"] .font-eyebrow,
 [dir="rtl"] .font-sans,
+[dir="rtl"] .type-eyebrow,
 [dir="rtl"] .type-display,
 [dir="rtl"] .type-h1,
 [dir="rtl"] .type-h2,
@@ -62,54 +65,54 @@ body {
   letter-spacing: 0;
 }
 
-/* Fluid Typography Utility Tokens - Engineered with Montserrat & Figtree */
+/* Fluid typography classes: Figtree (primary) for headings and text, Montserrat (secondary) for eyebrows */
 .type-display {
-  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(44px, 5.2vw, 84px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.02;
   letter-spacing: -0.035em;
   text-wrap: balance;
 }
 
 .type-h1 {
-  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(38px, 4.2vw, 68px);
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.06;
   letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
 .type-h2 {
-  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(30px, 3.4vw, 52px);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.12;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
 .type-h3 {
-  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(22px, 2vw, 34px);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.22;
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
 .type-h4 {
-  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-family: var(--font-display);
   font-size: clamp(18px, 1.3vw, 22px);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
 .type-eyebrow {
-  font-family: var(--font-montserrat), "Montserrat", sans-serif;
+  font-family: var(--font-eyebrow);
   font-size: 11.5px;
   font-weight: 700;
   line-height: 1.2;

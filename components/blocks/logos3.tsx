@@ -123,7 +123,7 @@ const Logos3 = ({
       className="scroll-mt-24 sm:scroll-mt-28 py-5 sm:py-6 bg-white border-b border-black/5 relative overflow-hidden will-change-transform"
     >
       <div className="container mx-auto flex flex-col items-center text-center px-4">
-        <span className="font-display type-eyebrow text-[#6B7280] block">
+        <span className="font-eyebrow type-eyebrow text-[#6B7280] block">
           {heading}
         </span>
       </div>

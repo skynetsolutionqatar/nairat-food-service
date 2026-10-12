@@ -73,7 +73,7 @@ export function CompanyTeam({ content }: CompanyTeamProps = {}) {
         <div className="w-full space-y-4 text-start">
           <div className="team-header-item flex items-center gap-2">
             <Users className="w-4 h-4 text-[#168849]" aria-hidden="true" />
-            <span className="font-display type-eyebrow text-[#168849] block">
+            <span className="font-eyebrow type-eyebrow text-[#168849] block">
               {eyebrow}
             </span>
           </div>

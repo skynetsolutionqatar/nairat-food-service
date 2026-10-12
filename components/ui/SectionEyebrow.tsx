@@ -23,7 +23,7 @@ export function SectionEyebrow({
         style={{ width: 'auto', height: 'auto' }}
         aria-hidden="true"
       />
-      <span className={`font-display type-eyebrow ${textColor} block uppercase tracking-wider`}>
+      <span className={`font-eyebrow type-eyebrow ${textColor} block uppercase tracking-wider`}>
         {title}
       </span>
     </div>
