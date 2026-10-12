@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 interface SectionEyebrowProps {
   title: string;
@@ -9,11 +10,11 @@ interface SectionEyebrowProps {
 
 export function SectionEyebrow({
   title,
-  textColor = 'text-[#168849]',
+  textColor = 'text-nairat-green',
   className = '',
 }: SectionEyebrowProps) {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
+    <div className={cn('inline-flex items-center gap-2', className)}>
       <Image
         src="/icon/icon.png"
         alt=""
@@ -23,9 +24,7 @@ export function SectionEyebrow({
         style={{ width: 'auto', height: 'auto' }}
         aria-hidden="true"
       />
-      <span className={`font-display type-eyebrow ${textColor} block uppercase tracking-wider`}>
-        {title}
-      </span>
+      <span className={cn('type-eyebrow block', textColor)}>{title}</span>
     </div>
   );
 }
