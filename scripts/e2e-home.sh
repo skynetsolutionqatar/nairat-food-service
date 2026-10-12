@@ -32,7 +32,7 @@ banner_colour() { evaluate "getComputedStyle(document.querySelector('main sectio
 check_home_sections() {
   expect "$1: four strength cards" "5" "$(count '#strengths .strength-card-item')" # four cards + photo
   expect "$1: three service cards" "3" "$(count '#services .service-card-item')"
-  expect "$1: eight product tiles" "8" "$(count '#products .product-rail-item')"
+  expect "$1: ${2:-8} visible product tiles" "${2:-8}" "$(evaluate "[...document.querySelectorAll('#products .product-rail-item')].filter((tile) => tile.offsetParent).length")"
   expect "$1: ten sourcing pills" "10" "$(count '#sourcing .sourcing-country-pill')"
   expect "$1: four quality cards" "4" "$(count '#quality .quality-card-item')"
   expect "$1: no horizontal scroll" "false" "$(has_scroll)"
@@ -72,7 +72,7 @@ check_home_sections "arabic"
 
 agent-browser set viewport 375 800 >/dev/null 2>&1
 visit /
-check_home_sections "mobile"
+check_home_sections "mobile" 4
 agent-browser set viewport 1440 900 >/dev/null 2>&1
 
 # Inner pages are out of scope and must keep their original banner.

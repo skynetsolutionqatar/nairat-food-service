@@ -13,12 +13,20 @@ const toneStyles: Record<ProductRail['tone'], string> = {
   forest: 'bg-forest hover:bg-[#123524]',
 };
 
-function RailTile({ product }: { product: ProductItem }) {
+/** Phones show only the first two tiles of a rail; the rest appear from 640px up. */
+const PHONE_TILE_COUNT = 2;
+
+function RailTile({ product, phoneHidden }: { product: ProductItem; phoneHidden: boolean }) {
   const { locale } = useLocale();
   const name = (locale === 'ar' && product.nameAr) || product.name;
 
   return (
-    <li className="product-rail-item group relative h-[clamp(150px,46vw,220px)] sm:h-[240px] md:h-[280px] lg:h-[360px] 2xl:h-[clamp(400px,22vw,520px)] overflow-hidden bg-forest">
+    <li
+      className={cn(
+        'product-rail-item group relative h-[clamp(170px,52vw,240px)] sm:h-[240px] md:h-[280px] lg:h-[360px] 2xl:h-[clamp(400px,22vw,520px)] overflow-hidden bg-forest',
+        phoneHidden && 'hidden sm:block'
+      )}
+    >
       <Image
         src={product.imageUrl}
         alt=""
@@ -40,21 +48,21 @@ export function CategoryRail({ rail }: { rail: ProductRail }) {
   const prefix = locale === 'ar' ? '/ar' : '';
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-[56px_repeat(2,minmax(0,1fr))] md:grid-cols-[56px_repeat(4,minmax(0,1fr))] lg:grid-cols-[64px_repeat(4,minmax(0,1fr))] 2xl:grid-cols-[72px_repeat(4,minmax(0,1fr))]">
+    <div className="grid grid-cols-[44px_repeat(2,minmax(0,1fr))] sm:grid-cols-[56px_repeat(2,minmax(0,1fr))] md:grid-cols-[56px_repeat(4,minmax(0,1fr))] lg:grid-cols-[64px_repeat(4,minmax(0,1fr))] 2xl:grid-cols-[72px_repeat(4,minmax(0,1fr))]">
       <Link
         href={`${prefix}/products/${rail.slug}`}
         className={cn(
-          'col-span-2 sm:col-span-1 sm:row-span-2 md:row-span-1 grid place-items-center min-h-12 text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white',
+          'sm:row-span-2 md:row-span-1 grid place-items-center text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white',
           toneStyles[rail.tone]
         )}
       >
-        <span className="font-sans font-bold text-[12px] lg:text-[13px] 2xl:text-[14px] leading-none tracking-[0.14em] uppercase whitespace-nowrap rtl:tracking-normal sm:[writing-mode:vertical-rl] sm:rotate-180 rtl:sm:rotate-0">
+        <span className="font-sans font-bold text-[11px] sm:text-[12px] lg:text-[13px] 2xl:text-[14px] leading-none tracking-[0.08em] sm:tracking-[0.14em] uppercase whitespace-nowrap rtl:tracking-normal [writing-mode:vertical-rl] rotate-180 rtl:rotate-0">
           {rail.label[locale]}
         </span>
       </Link>
       <ul className="contents">
-        {rail.products.map((product) => (
-          <RailTile key={product.id} product={product} />
+        {rail.products.map((product, index) => (
+          <RailTile key={product.id} product={product} phoneHidden={index >= PHONE_TILE_COUNT} />
         ))}
       </ul>
     </div>
