@@ -11,19 +11,19 @@ Where the two disagree, the artboard wins on layout and on its deliberate choice
 
 ## Scope
 
-1. Rebuild five home sections to match the artboard: Why Choose Us, What We Do, Products, Sourcing, Certifications & Quality.
-2. Move the site onto the design-system tokens (colour, type, radius) through `app/globals.css` and the shared UI primitives.
-3. Give every inner page banner its page accent.
-4. Rewrite `design.md` from the design system.
+Home page only.
 
-Out of scope: restructuring Hero, Partners, Who We Are, CTA, Footer or any inner-page section. They only pick up the new tokens.
+1. Rebuild five home sections to match the artboard: Why Choose Us, What We Do, Products, Sourcing, Certifications & Quality.
+2. Add the design-system tokens to `app/globals.css` and the shared primitives the five sections need.
+3. Rewrite `design.md` from the design system.
+
+Out of scope: Hero, Partners, Who We Are, CTA, Footer, Navbar and every inner page. Their styling does not change. Page accents for inner-page banners are documented in `design.md` but not built.
 
 ## Tracer bullet order
 
 1. Tokens → shared primitives → **Why Choose Us** → browser check. One section through every layer before the rest.
 2. What We Do, Products, Sourcing, Certifications & Quality.
-3. Token sweep and page accents across the remaining pages.
-4. `design.md`, spec reconcile, `PROGRESS.md`.
+3. `design.md`, spec reconcile, `PROGRESS.md`.
 
 ## Tokens (`app/globals.css` `@theme`)
 
@@ -42,19 +42,19 @@ Out of scope: restructuring Hero, Partners, Who We Are, CTA, Footer or any inner
 | `line` | `#E3E8E5` | Hairlines. |
 | `citrus` / `sky` / `berry` | `#E8772E` / `#1F6E8C` / `#8E2A4E` | Page accents. |
 
-Radius: `card` 24px, `panel` 40px, `tile` 16px, pills full. Section padding 96px desktop, 64px mobile.
+Radius: `card` 24px, `panel` 40px, `tile` 16px, pills full. Section padding 96px desktop, 64px mobile (`.section-pad`).
 
-Type: Figtree for all headings and body (h2 700, display 800); Montserrat for eyebrows only; Cairo for Arabic.
+Type: redesigned sections use Figtree (`.type-section`, 700) with Montserrat eyebrows; Cairo for Arabic. The existing `.type-h*` Montserrat classes are untouched because other pages use them.
 
-## Shared primitives (`components/ui/`)
+## Shared primitives
 
 | Component | Behaviour |
 | --- | --- |
-| `CtaButton` | Pill with a 32px arrow chip, 48px min height. Variants `primary`, `light`, `lime`; legacy variant names map onto these. |
-| `SectionEyebrow` | Leaf glyph + uppercase label. |
-| `Highlight` | Green marker behind one or two words of a heading. One per heading. |
-| `SectionHeading` | Eyebrow + h2 + optional lead + optional action; `start` or `center`. |
-| `FeatureCard` | White card at 24px radius; `dark` variant on forest. |
+| `components/ui/CtaButton` | Existing button, plus a `light` variant (white, hairline, green chip). |
+| `components/ui/Highlight` | `Highlight`, `Accent` and `MarkedText` (marks a phrase inside CMS-supplied copy). |
+| `components/ui/SectionHeading` | Eyebrow + heading + optional lead + optional action; `start` or `center`. |
+| `components/ui/FeatureCard` | White card at 24px radius; `dark` variant on forest. |
+| `lib/useSectionReveal` | One scroll-in stagger shared by the five sections. |
 
 ## Sections
 
@@ -88,29 +88,20 @@ Type: Figtree for all headings and body (h2 700, display 800); Montserrat for ey
 - Header left ("Quality You Can [Trust.]"), "Our Quality Process" primary button right → `/quality`.
 - Four cards: three white cards with a large green numeral (the steps are a real sequence: Inspected at Origin → Tested on Arrival → Protected Through Cold Chain); one forest card with `HACCP` and `ISO 22000:2018` pills that open the certificate viewer.
 
-## Page accents (`components/ui/PageBanner.tsx`)
-
-| Page | Accent | Text |
-| --- | --- | --- |
-| Company | `forest` | white |
-| Products | `citrus` | ink |
-| Services | `nairat-green` | white |
-| Sourcing & Quality | `sky` | white |
-| Partners | `berry` | white |
-| Contact | `lime` | ink |
-| Privacy, Terms | `nairat-green` | white |
-
-Banners with a photo keep the photo and its overlay.
-
 ## Bilingual / RTL
 
 Every new label has an Arabic string. Layout uses logical properties; rail labels sit at the inline start in both directions.
 
 ## Verification
 
-- `pnpm lint`, `pnpm exec tsc --noEmit`, `pnpm build`.
-- `scripts/e2e-home.sh` with `agent-browser` against the dev server:
-  - `/` at 1440px and 375px: five sections present, no horizontal scroll.
-  - Four strength cards; three service cards; "All Services" → `/services`; rail labels → category pages; certificate pills open and `Escape` closes the viewer; "Our Quality Process" → `/quality`.
-  - `/ar`: sections render right-to-left.
-  - Inner pages show their accent banner.
+- `pnpm exec tsc --noEmit` and `pnpm build` pass. `pnpm lint` reports only problems that predate this work, none in the changed files.
+- `bash scripts/e2e-home.sh` (uses `agent-browser` against the dev server), 26 checks:
+  - `/` at 1440px, `/ar`, and `/` at 375px: card counts for all five sections, no horizontal scroll.
+  - HACCP pill opens the certificate viewer and `Escape` closes it; "All Services" → `/services`; Fresh Fruits rail → `/products/fruits`; "Our Quality Process" → `/quality`.
+  - `/company` and `/contact` banners keep their original colour.
+
+## Reconciliation notes
+
+- Scope was narrowed to the home page after the first pass; the site-wide token sweep and banner accents were reverted.
+- The 3D globe (`cobe`) was removed in favour of the artboard's flat map.
+- Home copy defaults in `sanity/lib/data.ts` and `scripts/seed-sanity.ts` now carry the design's shorter strength descriptions and the sourcing heading "Connecting Global Harvests With Qatar." The live Sanity document still holds the earlier copy and overrides these until it is edited in Studio.

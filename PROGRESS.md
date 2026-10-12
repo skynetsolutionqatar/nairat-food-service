@@ -300,7 +300,15 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
 
 Spec: [specs/home-redesign-design-system.md](specs/home-redesign-design-system.md)
 
-- [ ] **Milestone 1: Tokens, shared primitives and Why Choose Us (tracer bullet)**
-- [ ] **Milestone 2: What We Do, Products, Sourcing, Certifications & Quality**
-- [ ] **Milestone 3: Design-system tokens and page accents across remaining pages**
-- [ ] **Milestone 4: `design.md` rewrite, spec reconcile, e2e verification**
+- [x] **Milestone 1: Tokens, shared primitives and Why Choose Us (tracer bullet)**
+  - [x] Design-system colour, radius and type tokens in `app/globals.css`
+  - [x] `Highlight`, `SectionHeading`, `FeatureCard`, `light` button variant, `useSectionReveal`
+  - [x] `Strengths.tsx` rebuilt: centred heading, four stat cards, wide photo
+- [x] **Milestone 2: What We Do, Products, Sourcing, Certifications & Quality**
+  - [x] `Services.tsx`: three photo cards and "All Services"
+  - [x] `Products.tsx` + `CategoryRail.tsx`: two full-bleed category rails
+  - [x] `SourcingMap.tsx`: country pills and flat world map (3D globe and `cobe` removed)
+  - [x] `QualityTimeline.tsx`: three step cards and a forest certificate card opening the certificate viewer
+- [x] **Milestone 3: `design.md` rewrite, spec reconcile, e2e verification**
+  - [x] `scripts/e2e-home.sh`: 26 checks across desktop, Arabic and mobile
+- [ ] **Not started: design system on the remaining home sections and inner pages** (out of scope; home page sections only were requested)
