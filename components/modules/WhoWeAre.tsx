@@ -1,17 +1,27 @@
 'use client';
 
 import React, { useRef } from 'react';
-import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
-import { Globe2, Calendar, Truck, Leaf } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 import type { HomePageContent } from '@/sanity/lib/data';
 
+interface StatItem {
+  target: number;
+  prefix?: string;
+  suffix?: string;
+  suffixAr?: string;
+  hasSeparator?: boolean;
+  displayEn: string;
+  displayAr: string;
+  labelEn: string;
+  labelAr: string;
+}
+
 interface MetricCard {
   number: string;
-  icon: React.ReactNode;
+  badgeClass: string;
   title: string;
   description: string;
   isDark: boolean;
@@ -23,7 +33,8 @@ interface WhoWeAreProps {
 
 export function WhoWeAre({ content }: WhoWeAreProps = {}) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { locale, dict } = useLocale();
+  const statRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const { locale } = useLocale();
   const prefix = locale === 'ar' ? '/ar' : '';
   const isAr = locale === 'ar';
 
@@ -67,10 +78,54 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
     ? (content?.whoWeAreNarrativeAr || 'نيرات فود هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.')
     : (content?.whoWeAreNarrative || 'Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.');
 
+  const stats: StatItem[] = [
+    {
+      target: 1200,
+      prefix: '',
+      suffix: '+',
+      hasSeparator: true,
+      displayEn: '1,200+',
+      displayAr: '1,200+',
+      labelEn: 'Active produce lines',
+      labelAr: 'أصناف منتجات طازجة',
+    },
+    {
+      target: 15,
+      prefix: '',
+      suffix: '+',
+      hasSeparator: false,
+      displayEn: '15+',
+      displayAr: '15+',
+      labelEn: 'Origin countries',
+      labelAr: 'دولة منشأ',
+    },
+    {
+      target: 100,
+      prefix: '',
+      suffix: '+',
+      hasSeparator: false,
+      displayEn: '100+',
+      displayAr: '100+',
+      labelEn: 'Retail branches supplied',
+      labelAr: 'فرع تجزئة يتم تزويده',
+    },
+    {
+      target: 100,
+      prefix: '~',
+      suffix: 't',
+      suffixAr: ' طن',
+      hasSeparator: false,
+      displayEn: '~100t',
+      displayAr: '~100 طن',
+      labelEn: 'Delivered daily',
+      labelAr: 'يتم تسليمها يومياً',
+    },
+  ];
+
   const metricCards: MetricCard[] = [
     {
       number: '01',
-      icon: <Globe2 className="w-5 h-5 text-[#D4F056]" aria-hidden="true" />,
+      badgeClass: 'bg-[#F2BD1D] text-[#111814]',
       title: isAr
         ? (content?.whoWeArePillar1TitleAr || 'التوريد العالمي')
         : (content?.whoWeArePillar1Title || 'Global Sourcing'),
@@ -81,7 +136,7 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
     },
     {
       number: '02',
-      icon: <Calendar className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      badgeClass: 'bg-[#168849]/10 text-[#168849]',
       title: isAr
         ? (content?.whoWeArePillar2TitleAr || 'إمداد طوال العام')
         : (content?.whoWeArePillar2Title || 'Year-Round Supply'),
@@ -92,7 +147,7 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
     },
     {
       number: '03',
-      icon: <Truck className="w-5 h-5 text-[#168849]" aria-hidden="true" />,
+      badgeClass: 'bg-[#168849]/10 text-[#168849]',
       title: isAr
         ? (content?.whoWeArePillar3TitleAr || 'صُممت لقطر')
         : (content?.whoWeArePillar3Title || 'Built for Qatar'),
@@ -127,7 +182,7 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
             reduceMotion: boolean;
           };
 
-          if (reduceMotion || isMobile) {
+          if (reduceMotion) {
             gsap.set([headerItems, cards], { opacity: 1, y: 0, scale: 1, clearProps: 'all' });
             return;
           }
@@ -135,51 +190,86 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
           const tl = gsap.timeline({
             scrollTrigger: {
               trigger: container,
-              start: 'top 88%',
+              start: 'top 85%',
               once: true,
             },
           });
 
-          // Snappy coordinated reveal on desktop
-          tl.fromTo(
-            headerItems,
-            { opacity: 0, y: 18 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.45,
-              stagger: 0.05,
-              ease: 'power3.out',
-              clearProps: 'opacity,transform',
-            }
-          ).fromTo(
-            cards,
-            { opacity: 0, y: 20, scale: 0.99 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.48,
-              stagger: 0.06,
-              ease: 'power3.out',
-              clearProps: 'opacity,transform',
-            },
-            '-=0.25'
-          );
+          if (!isMobile) {
+            tl.fromTo(
+              headerItems,
+              { opacity: 0, y: 18 },
+              {
+                opacity: 1,
+                y: 0,
+                duration: 0.45,
+                stagger: 0.05,
+                ease: 'power3.out',
+                clearProps: 'opacity,transform',
+              }
+            ).fromTo(
+              cards,
+              { opacity: 0, y: 20, scale: 0.99 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.48,
+                stagger: 0.06,
+                ease: 'power3.out',
+                clearProps: 'opacity,transform',
+              },
+              '-=0.25'
+            );
+          } else {
+            gsap.set([headerItems, cards], { opacity: 1, y: 0, scale: 1, clearProps: 'all' });
+          }
+
+          // Count-up animation for stats
+          stats.forEach((stat, idx) => {
+            const el = statRefs.current[idx];
+            if (!el) return;
+
+            const counter = { val: 0 };
+            const suffix = isAr && stat.suffixAr !== undefined ? stat.suffixAr : (stat.suffix || '');
+            const prefix = stat.prefix || '';
+
+            tl.to(
+              counter,
+              {
+                val: stat.target,
+                duration: 1.6,
+                ease: 'power2.out',
+                onStart: () => {
+                  el.textContent = `${prefix}0${suffix}`;
+                },
+                onUpdate: () => {
+                  const current = Math.floor(counter.val);
+                  const formatted = stat.hasSeparator
+                    ? current.toLocaleString('en-US')
+                    : current.toString();
+                  el.textContent = `${prefix}${formatted}${suffix}`;
+                },
+                onComplete: () => {
+                  el.textContent = isAr ? stat.displayAr : stat.displayEn;
+                },
+              },
+              isMobile ? 0 : 0.1
+            );
+          });
         },
         containerRef
       );
     },
-    { scope: containerRef }
+    { scope: containerRef, dependencies: [isAr] }
   );
 
   return (
     <section id="about" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-white overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
-        {/* Left / Top Section Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-end border-b border-neutral-200/90 pb-8 sm:pb-9 2xl:pb-10">
+        {/* Top Section Content: Eyebrow + Title on left, Narrative on right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-start">
           <div className="lg:col-span-7 space-y-3">
-
             <div className="who-header-item">
               <SectionEyebrow title={eyebrow} />
             </div>
@@ -188,17 +278,40 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
             </h2>
           </div>
 
-          <div className="lg:col-span-5 space-y-4 2xl:space-y-5 flex flex-col items-start lg:items-end">
+          <div className="lg:col-span-5 flex flex-col items-start pt-1 lg:pt-8">
             <p className="who-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
               {narrative}
             </p>
+          </div>
+        </div>
 
-            <div className="who-header-item self-start lg:self-end">
-              <CtaButton
-                href={`${prefix}/company`}
-                text={locale === 'ar' ? 'اكتشف قصتنا' : 'Discover Our Story'}
-              />
-            </div>
+        {/* Stats & CTA Row */}
+        <div className="who-header-item flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8 border-b border-neutral-200/90 pb-8 sm:pb-9 2xl:pb-10">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 xl:gap-14">
+            {stats.map((stat, idx) => (
+              <div key={idx} className="who-stat-item flex flex-col text-start">
+                <span
+                  ref={(el) => {
+                    statRefs.current[idx] = el;
+                  }}
+                  className="font-display font-bold text-3xl sm:text-3xl lg:text-[34px] 2xl:text-4xl text-[#111814] tracking-tight leading-none tabular-nums"
+                  dir={isAr ? 'rtl' : 'ltr'}
+                >
+                  {isAr ? stat.displayAr : stat.displayEn}
+                </span>
+                <span className="font-sans text-xs sm:text-[13px] text-[#6B7280] font-normal mt-2 leading-tight">
+                  {isAr ? stat.labelAr : stat.labelEn}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="shrink-0 self-start lg:self-center">
+            <CtaButton
+              href={`${prefix}/company`}
+              text={locale === 'ar' ? 'اكتشف قصتنا' : 'Discover Our Story'}
+              className="[&>div]:bg-[#D4F056] [&>div]:text-[#063B27]"
+            />
           </div>
         </div>
 
@@ -207,41 +320,34 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
           {metricCards.map((card) => (
             <div
               key={card.number}
-              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[230px] flex flex-col justify-between space-y-5 transition-[background-color,border-color,box-shadow,transform] duration-300 will-change-transform hover:-translate-y-1 ${card.isDark
-                ? 'bg-[#0A2618] text-white shadow-md hover:shadow-xl'
-                : 'bg-[#F6F8F5] text-[#111814] border border-neutral-200/80 hover:border-neutral-300 hover:shadow-md'
-                }`}
+              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[220px] flex flex-col justify-between space-y-6 transition-[background-color,border-color,box-shadow,transform] duration-300 will-change-transform hover:-translate-y-1 ${
+                card.isDark
+                  ? 'bg-[#232323] text-white shadow-md hover:shadow-xl'
+                  : 'bg-white text-[#111814] border border-neutral-200/80 hover:border-neutral-300 hover:shadow-md'
+              }`}
             >
-              {/* Number Header */}
-              <div className="flex items-center justify-between">
+              {/* Badge Header */}
+              <div>
                 <span
-                  className={`font-display font-semibold text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em] transition-transform duration-300 group-hover:scale-105 ${card.isDark ? 'text-white' : 'text-[#111814]'
-                    }`}
+                  className={`inline-flex items-center justify-center w-8 h-8 rounded-full font-display font-semibold text-xs tracking-tight ${card.badgeClass}`}
                 >
                   {card.number}
                 </span>
-
-                <div
-                  className={`w-10 h-10 2xl:w-12 2xl:h-12 rounded-xl flex items-center justify-center border transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110 ${card.isDark
-                    ? 'bg-white/10 border-white/15'
-                    : 'bg-white border-neutral-200 shadow-2xs'
-                    }`}
-                >
-                  {card.icon}
-                </div>
               </div>
 
               {/* Title & Description */}
               <div className="space-y-1.5">
                 <h3
-                  className={`font-display font-semibold text-lg 2xl:text-xl tracking-[-0.015em] leading-snug ${card.isDark ? 'text-white' : 'text-[#111814]'
-                    }`}
+                  className={`font-display font-semibold text-lg 2xl:text-xl tracking-[-0.015em] leading-snug ${
+                    card.isDark ? 'text-white' : 'text-[#111814]'
+                  }`}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className={`font-sans text-xs sm:text-[13px] 2xl:text-sm leading-[1.55] ${card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
-                    }`}
+                  className={`font-sans text-xs sm:text-[13px] 2xl:text-sm leading-[1.55] ${
+                    card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
+                  }`}
                 >
                   {card.description}
                 </p>
