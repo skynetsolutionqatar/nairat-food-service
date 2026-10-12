@@ -39,7 +39,7 @@ const copy = {
 const accentPhrases = ['Qatar.', 'the World', 'بقطر.', 'العالم'];
 
 const pillBase =
-  'sourcing-country-pill px-4 py-2.5 rounded-full font-sans font-bold text-[13px] leading-none tracking-[0.06em] rtl:tracking-normal';
+  'sourcing-country-pill px-4 py-2.5 rounded-full font-sans text-[13px] leading-none tracking-[0.06em] rtl:tracking-normal';
 
 interface SourcingMapProps {
   content?: HomePageContent;
@@ -58,7 +58,7 @@ export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode
 
   return (
     <section id="sourcing" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 section-pad bg-white overflow-hidden">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
         <div className="flex flex-col gap-6">
           <SectionHeading
             eyebrow={eyebrow}
@@ -68,11 +68,11 @@ export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode
 
           <ul className="flex flex-wrap gap-2.5">
             {sourcingCountries.map((country) => (
-              <li key={country.en} className={cn(pillBase, 'ring-1 ring-inset ring-line text-ink')}>
+              <li key={country.en} className={cn(pillBase, 'ring-1 ring-inset ring-line font-normal text-ink-muted')}>
                 {country[locale]}
               </li>
             ))}
-            <li className={cn(pillBase, 'bg-nairat-green text-white')}>{text.beyond}</li>
+            <li className={cn(pillBase, 'bg-nairat-green font-bold text-white')}>{text.beyond}</li>
           </ul>
         </div>
 
@@ -81,8 +81,8 @@ export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode
           alt={text.mapAlt}
           width={862}
           height={484}
-          sizes="(max-width: 1024px) 100vw, 576px"
-          className="sourcing-map-item w-full h-auto"
+          sizes="(max-width: 640px) 320px, (max-width: 768px) 420px, (max-width: 1248px) 50vw, 576px"
+          className="sourcing-map-item w-full max-w-[320px] sm:max-w-[420px] md:max-w-none mx-auto h-auto"
         />
       </div>
     </section>
