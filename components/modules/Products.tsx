@@ -9,6 +9,7 @@ import { useLocale } from '@/context/LocaleContext';
 import { homeProductSlides, ProductRail } from '@/data/homeProductRails';
 import { useAutoRotate } from '@/lib/useAutoRotate';
 import { useSectionReveal } from '@/lib/useSectionReveal';
+import { useSwipe } from '@/lib/useSwipe';
 import type { HomePageContent } from '@/sanity/lib/data';
 
 const highlightPhrases = ['Around the World.', 'جميع أنحاء العالم.'];
@@ -27,7 +28,7 @@ function SlidePager({ activeIndex, onSelect }: SlidePagerProps) {
   const { locale } = useLocale();
 
   return (
-    <div className="product-header-item flex justify-center gap-1 mb-8">
+    <div className="product-header-item flex justify-center gap-1 mb-4 sm:mb-8">
       {homeProductSlides.map((slide, index) => (
         <button
           key={slide[0].slug}
@@ -59,6 +60,13 @@ export function Products({ content }: { content?: HomePageContent } = {}) {
     containerRef,
   });
 
+  // Swiping towards the reading direction's end shows the next slide.
+  const slideCount = homeProductSlides.length;
+  const swipeHandlers = useSwipe((direction) => {
+    const step = (direction === -1) === !isAr ? 1 : -1;
+    goTo((current) => (current + step + slideCount) % slideCount);
+  });
+
   const eyebrow = (isAr ? content?.productsEyebrowAr : content?.productsEyebrow) || (isAr ? 'منتجاتنا' : 'OUR PRODUCTS');
   const title =
     (isAr ? content?.productsTitleAr : content?.productsTitle) ||
@@ -67,24 +75,25 @@ export function Products({ content }: { content?: HomePageContent } = {}) {
   useSectionReveal(containerRef, ['.product-header-item', '.product-rail-item']);
 
   return (
-    <section id="products" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 pt-16 lg:pt-24 bg-white overflow-hidden">
+    <section id="products" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 pt-12 sm:pt-16 lg:pt-24 bg-white overflow-hidden">
       <SectionHeading
         align="center"
         eyebrow={eyebrow}
         title={<MarkedText text={title} phrase={highlightPhrases} />}
         itemClassName="product-header-item"
-        className="max-w-[1200px] mx-auto px-4 sm:px-6 mb-6"
+        className="max-w-[1200px] mx-auto px-4 sm:px-6 mb-4 sm:mb-6"
       />
 
       <SlidePager activeIndex={index} onSelect={goTo} />
 
-      {/* Rotation pauses while the pointer or keyboard focus is on the rails */}
+      {/* Rotation pauses while the pointer or keyboard focus is on the rails; touch devices can swipe */}
       <div
         className={cn('transition-opacity duration-200 motion-reduce:transition-none', fading ? 'opacity-0' : 'opacity-100')}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onFocus={() => setPaused(true)}
         onBlur={() => setPaused(false)}
+        {...swipeHandlers}
       >
         {homeProductSlides[index].map((rail) => (
           <CategoryRail key={rail.slug} rail={rail} />
