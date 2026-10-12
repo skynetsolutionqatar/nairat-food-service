@@ -16,20 +16,23 @@ export function Accent({ children }: HighlightProps) {
 
 interface MarkedTextProps {
   text: string;
-  phrase: string;
+  /** One phrase, or candidates in priority order; the first one found in `text` is marked. */
+  phrase: string | string[];
   as?: typeof Highlight | typeof Accent;
 }
 
 /** Renders `text` with the first occurrence of `phrase` emphasised. */
 export function MarkedText({ text, phrase, as: Mark = Highlight }: MarkedTextProps) {
-  const start = phrase ? text.indexOf(phrase) : -1;
-  if (start === -1) return <>{text}</>;
+  const match = [phrase].flat().find((candidate) => candidate && text.includes(candidate));
+  if (!match) return <>{text}</>;
+
+  const start = text.indexOf(match);
 
   return (
     <>
       {text.slice(0, start)}
-      <Mark>{phrase}</Mark>
-      {text.slice(start + phrase.length)}
+      <Mark>{match}</Mark>
+      {text.slice(start + match.length)}
     </>
   );
 }

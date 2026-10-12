@@ -9,6 +9,8 @@ export interface Dictionary {
     exploreProducts: string;
     learnMore: string;
     viewAll: string;
+    allServices: string;
+    qualityProcess: string;
     downloadCatalog: string;
     allRightsReserved: string;
     commercialRegistration: string;
