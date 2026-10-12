@@ -293,3 +293,14 @@ Implementation of verified 2026 client feedback (Items A1 – A13) and productio
 
 
 
+
+---
+
+## Phase 4: Home Redesign & Nairat Design System
+
+Spec: [specs/home-redesign-design-system.md](specs/home-redesign-design-system.md)
+
+- [ ] **Milestone 1: Tokens, shared primitives and Why Choose Us (tracer bullet)**
+- [ ] **Milestone 2: What We Do, Products, Sourcing, Certifications & Quality**
+- [ ] **Milestone 3: Design-system tokens and page accents across remaining pages**
+- [ ] **Milestone 4: `design.md` rewrite, spec reconcile, e2e verification**
