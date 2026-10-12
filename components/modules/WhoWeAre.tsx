@@ -268,18 +268,18 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
     <section id="about" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-14 sm:py-16 2xl:py-22 bg-white overflow-hidden">
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 space-y-10 2xl:space-y-12">
         {/* Top Section Content: Eyebrow + Title on left, Narrative on right */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 2xl:gap-10 items-start">
-          <div className="lg:col-span-7 space-y-3">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-8 2xl:gap-10 items-start">
+          <div className="md:col-span-7 space-y-3">
             <div className="who-header-item">
               <SectionEyebrow title={eyebrow} />
             </div>
-            <h2 className="who-header-item font-display type-h2 font-semibold text-[#111814] text-start">
+            <h2 className="who-header-item font-display type-h2 max-[359px]:text-[26px]! font-semibold text-[#111814] text-start">
               {renderHeadline()}
             </h2>
           </div>
 
-          <div className="lg:col-span-5 flex flex-col items-start pt-1 lg:pt-8">
-            <p className="who-header-item font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start max-w-[48ch] 2xl:max-w-[52ch]">
+          <div className="md:col-span-5 flex flex-col items-start md:pt-8">
+            <p className="who-header-item font-sans text-sm lg:text-[15px] xl:text-base 2xl:text-[17px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]">
               {narrative}
             </p>
           </div>
@@ -287,19 +287,19 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
 
         {/* Stats & CTA Row */}
         <div className="who-header-item flex flex-col lg:flex-row lg:items-center justify-between gap-6 sm:gap-8 border-b border-neutral-200/90 pb-8 sm:pb-9 2xl:pb-10">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 xl:gap-14">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-6 sm:gap-6 lg:gap-10 xl:gap-14">
             {stats.map((stat, idx) => (
               <div key={idx} className="who-stat-item flex flex-col text-start">
                 <span
                   ref={(el) => {
                     statRefs.current[idx] = el;
                   }}
-                  className="font-display font-bold text-3xl sm:text-3xl lg:text-[34px] 2xl:text-4xl text-[#111814] tracking-tight leading-none tabular-nums"
+                  className="font-display font-bold text-[26px] min-[360px]:text-[28px] md:text-3xl lg:text-[34px] xl:text-[38px] 2xl:text-[42px] text-[#111814] tracking-tight leading-none tabular-nums"
                   dir={isAr ? 'rtl' : 'ltr'}
                 >
                   {isAr ? stat.displayAr : stat.displayEn}
                 </span>
-                <span className="font-sans text-xs sm:text-[13px] text-[#6B7280] font-normal mt-2 leading-tight">
+                <span className="font-sans text-xs sm:text-[13px] xl:text-sm 2xl:text-[15px] text-[#6B7280] font-normal mt-2 leading-tight">
                   {isAr ? stat.labelAr : stat.labelEn}
                 </span>
               </div>
@@ -310,17 +310,16 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
             <CtaButton
               href={`${prefix}/company`}
               text={locale === 'ar' ? 'اكتشف قصتنا' : 'Discover Our Story'}
-              className="[&>div]:bg-[#D4F056] [&>div]:text-[#063B27]"
             />
           </div>
         </div>
 
         {/* 3 Metric Cards Horizontal Grid */}
-        <div className="metric-cards-grid grid grid-cols-1 md:grid-cols-3 gap-5 2xl:gap-6 pt-1">
+        <div className="metric-cards-grid grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5 2xl:gap-6 pt-1">
           {metricCards.map((card) => (
             <div
               key={card.number}
-              className={`metric-card group rounded-2xl sm:rounded-3xl p-6 sm:p-7 2xl:p-8 min-h-[200px] 2xl:min-h-[220px] flex flex-col justify-between space-y-6 transition-[background-color,border-color,box-shadow,transform] duration-300 will-change-transform hover:-translate-y-1 ${
+              className={`metric-card group rounded-2xl sm:rounded-3xl p-5 lg:p-7 2xl:p-8 md:min-h-[180px] lg:min-h-[200px] 2xl:min-h-[220px] flex flex-col justify-between space-y-4 md:space-y-6 transition-[background-color,border-color,box-shadow,transform] duration-300 will-change-transform hover:-translate-y-1 ${
                 card.isDark
                   ? 'bg-[#232323] text-white shadow-md hover:shadow-xl'
                   : 'bg-white text-[#111814] border border-neutral-200/80 hover:border-neutral-300 hover:shadow-md'
@@ -338,14 +337,14 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
               {/* Title & Description */}
               <div className="space-y-1.5">
                 <h3
-                  className={`font-display font-semibold text-lg 2xl:text-xl tracking-[-0.015em] leading-snug ${
+                  className={`font-display font-semibold text-base lg:text-lg xl:text-xl 2xl:text-[22px] tracking-[-0.015em] leading-snug ${
                     card.isDark ? 'text-white' : 'text-[#111814]'
                   }`}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className={`font-sans text-xs sm:text-[13px] 2xl:text-sm leading-[1.55] ${
+                  className={`font-sans text-[13px] lg:text-sm 2xl:text-[15px] leading-[1.55] ${
                     card.isDark ? 'text-gray-300' : 'text-[#6B7280]'
                   }`}
                 >
