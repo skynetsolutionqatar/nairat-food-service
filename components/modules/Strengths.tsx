@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import { CountUp } from '@/components/ui/CountUp';
 import { FeatureCard } from '@/components/ui/FeatureCard';
 import { MarkedText } from '@/components/ui/Highlight';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -46,8 +47,8 @@ function StrengthCard({ strength, profile, content }: StrengthCardProps) {
   return (
     <FeatureCard className="strength-card-item items-center text-center">
       <Icon className="w-11 h-11 text-nairat-green" strokeWidth={1.6} aria-hidden="true" />
-      <p className="font-sans font-bold text-[40px] leading-none tracking-[-0.02em]">
-        {strength.figure(profile)[locale]}
+      <p className="font-sans font-bold text-[40px] leading-none tracking-[-0.02em] tabular-nums">
+        <CountUp value={strength.figure(profile)[locale]} />
       </p>
       <h3 className="font-sans font-bold text-[17px] leading-[1.35]">
         <MarkedText text={strength.title[locale]} phrase={strength.highlight[locale]} />
