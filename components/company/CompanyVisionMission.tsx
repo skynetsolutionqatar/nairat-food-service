@@ -143,7 +143,7 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
             {/* Card 1: Our Vision */}
             <div className="vision-mission-card p-6 sm:p-7 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80 shadow-2xs space-y-3">
               <div className="inline-block">
-                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-eyebrow text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
                   {isAr ? 'رؤيتنا' : 'Our Vision'}
                 </span>
               </div>
@@ -158,7 +158,7 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
             {/* Card 2: Our Mission */}
             <div className="vision-mission-card p-6 sm:p-7 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80 shadow-2xs space-y-3">
               <div className="inline-block">
-                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-eyebrow text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
                   {isAr ? 'رسالتنا' : 'Our Mission'}
                 </span>
               </div>

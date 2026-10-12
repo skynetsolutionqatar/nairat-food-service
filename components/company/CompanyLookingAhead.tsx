@@ -106,7 +106,7 @@ export function CompanyLookingAhead({ content }: CompanyLookingAheadProps = {}) 
 
               {/* Ambition Highlight Quote Box */}
               <div className="p-4 sm:p-5 rounded-2xl bg-[#F4F6F5] border-s-4 border-[#168849] space-y-1">
-                <span className="font-eyebrow text-xs font-bold uppercase tracking-wider text-[#168849]">
+                <span className="font-display text-xs font-bold uppercase tracking-wider text-[#168849]">
                   {ambitionLabel}
                 </span>
                 <p className="font-display text-base font-semibold text-[#111814] leading-snug">

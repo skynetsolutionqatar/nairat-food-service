@@ -143,7 +143,7 @@ export function CompanySourcing({ content }: CompanySourcingProps = {}) {
             {/* Card 1: Multi-Region Network */}
             <div className="sourcing-card-item p-6 sm:p-7 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80 shadow-2xs space-y-3">
               <div className="inline-block">
-                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-eyebrow text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
                   {card1Badge}
                 </span>
               </div>
@@ -158,7 +158,7 @@ export function CompanySourcing({ content }: CompanySourcingProps = {}) {
             {/* Card 2: Point of Entry Inspection */}
             <div className="sourcing-card-item p-6 sm:p-7 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80 shadow-2xs space-y-3">
               <div className="inline-block">
-                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-eyebrow text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
                   {card2Badge}
                 </span>
               </div>

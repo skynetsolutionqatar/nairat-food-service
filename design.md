@@ -9,7 +9,7 @@ The visual language of the Nairat Food Services website ([nairatfoodservices.com
 | Design system (tokens, components, page variations) | "Nairat Food Services" — https://claude.ai/artifact/74DLs9diJLCY2e5ycFuzfJ |
 | Page designs (Home and inner pages) | "Nairat Website Redesign" canvas — https://claude.ai/artifact/72Jjn3ntruvC1anwDvMpNB |
 
-**Adoption status**: the design system is applied to five home page sections — Why Choose Us, What We Do, Products, Sourcing, Certifications & Quality. The design system fonts are applied to every page. The hero, partners strip, Who We Are, CTA, footer and all inner pages still use the previous layout and hardcoded colours. Section 6 lists what the design system specifies for them.
+**Adoption status**: the design system is applied to five home page sections — Why Choose Us, What We Do, Products, Sourcing, Certifications & Quality. The hero, partners strip, Who We Are, CTA, footer and all inner pages still use the previous styling (Montserrat headings, hardcoded colours). Section 6 lists what the design system specifies for them.
 
 ---
 
@@ -48,7 +48,7 @@ Defined in the `@theme` block of `app/globals.css`, so each colour is a Tailwind
 
 ### Type
 
-Fonts are loaded with `next/font/google` in `app/layout.tsx`. Figtree is the primary face (`font-sans`, `font-display`); Montserrat 700 is the secondary face (`font-eyebrow`), for eyebrows and small uppercase labels only.
+Fonts are loaded with `next/font/google` in `app/layout.tsx`.
 
 | Role | Face | Spec |
 | :--- | :--- | :--- |
@@ -61,7 +61,7 @@ Fonts are loaded with `next/font/google` in `app/layout.tsx`. Figtree is the pri
 | Button | Figtree 600 | 14px, leading 20px |
 | Arabic | Cairo | Replaces every face under `dir="rtl"`; headings at leading 1.4 |
 
-Classes `.type-display`, `.type-h1`–`.type-h4` set Figtree at the design system weights (800 for display and h1, 700 for h2–h4) and keep their fluid sizes for the sections and pages not yet migrated. `scripts/e2e-typography.sh` checks the fonts on every page.
+Legacy classes `.type-display`, `.type-h1`–`.type-h4` (Montserrat) remain for the sections and pages not yet migrated.
 
 ### Shape & rhythm
 

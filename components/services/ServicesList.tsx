@@ -305,7 +305,7 @@ export function ServicesList({ services }: ServicesListProps = {}): React.ReactN
                     <div className="w-8 h-8 rounded-full bg-[#168849]/10 flex items-center justify-center">
                       {service.icon}
                     </div>
-                    <span className="font-eyebrow type-eyebrow text-[#168849] block">
+                    <span className="font-display type-eyebrow text-[#168849] block">
                       {service.category}
                     </span>
                   </div>

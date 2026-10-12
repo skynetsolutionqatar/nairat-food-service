@@ -44,7 +44,7 @@ Out of scope: Hero, Partners, Who We Are, CTA, Footer, Navbar and every inner pa
 
 Radius: `card` 24px, `panel` 40px, `tile` 16px, pills full. Section padding 96px desktop, 64px mobile (`.section-pad`).
 
-Type: redesigned sections use Figtree (`.type-section`, 700) with Montserrat eyebrows; Cairo for Arabic. The `.type-h*` classes moved to Figtree site-wide afterwards: see [design-system-typography.md](design-system-typography.md).
+Type: redesigned sections use Figtree (`.type-section`, 700) with Montserrat eyebrows; Cairo for Arabic. The existing `.type-h*` Montserrat classes are untouched because other pages use them.
 
 ## Shared primitives
 
