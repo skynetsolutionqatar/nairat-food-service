@@ -46,10 +46,10 @@ function StrengthCard({ strength, profile, content }: StrengthCardProps) {
   return (
     <FeatureCard className="strength-card-item items-center text-center">
       <Icon className="w-11 h-11 text-nairat-green" strokeWidth={1.6} aria-hidden="true" />
-      <p className="font-display font-bold text-[40px] leading-none tracking-[-0.02em]">
+      <p className="font-sans font-bold text-[40px] leading-none tracking-[-0.02em]">
         {strength.figure(profile)[locale]}
       </p>
-      <h3 className="font-display font-bold text-[17px] leading-[1.35]">
+      <h3 className="font-sans font-bold text-[17px] leading-[1.35]">
         <MarkedText text={strength.title[locale]} phrase={strength.highlight[locale]} />
       </h3>
       <p className="font-sans text-sm leading-[1.6] text-ink-muted">{strength.description(content)[locale]}</p>

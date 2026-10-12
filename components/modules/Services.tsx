@@ -75,7 +75,7 @@ function ServiceCardLink({ service, href }: { service: ServiceCard; href: string
           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
       </div>
-      <h3 className="mt-1.5 mx-4 font-display font-bold text-xl leading-[1.3] text-ink text-start">
+      <h3 className="mt-1.5 mx-4 font-sans font-bold text-xl leading-[1.3] text-ink text-start">
         {service.title[locale]}
       </h3>
       <p className="mx-4 font-sans text-sm leading-[1.6] text-ink-muted text-start">{service.description[locale]}</p>

@@ -128,8 +128,8 @@ export function QualityTimeline({ content }: QualityTimelineProps = {}) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {qualitySteps.map((item) => (
             <FeatureCard key={item.step} className="quality-card-item gap-2.5 text-start">
-              <span className="font-display font-extrabold text-[40px] leading-none text-nairat-green-deep">{item.step}</span>
-              <h3 className="font-display font-bold text-lg leading-[1.35]">{item.title[locale]}</h3>
+              <span className="font-sans font-extrabold text-[40px] leading-none text-nairat-green-deep">{item.step}</span>
+              <h3 className="font-sans font-bold text-lg leading-[1.35]">{item.title[locale]}</h3>
               <p className="font-sans text-sm leading-[1.6] text-ink-muted">{item.description[locale]}</p>
             </FeatureCard>
           ))}
