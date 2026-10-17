@@ -1,26 +1,15 @@
 'use client';
 
 import React, { useRef } from 'react';
-import dynamic from 'next/dynamic';
-import type { Marker, Arc } from '@/components/ui/cobe-globe';
-import { gsap, useGSAP } from '@/lib/gsap';
-import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { Accent, MarkedText } from '@/components/ui/Highlight';
+import { SectionHeading } from '@/components/ui/SectionHeading';
 import { useLocale } from '@/context/LocaleContext';
+import { useSectionReveal } from '@/lib/useSectionReveal';
 import type { HomePageContent } from '@/sanity/lib/data';
 
-const Globe = dynamic(
-  () => import('@/components/ui/cobe-globe').then((mod) => mod.Globe),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full aspect-square max-w-[360px] 2xl:max-w-[420px] rounded-full bg-neutral-100/60 animate-pulse flex items-center justify-center">
-        <div className="w-24 h-24 rounded-full border border-[#168849]/20" />
-      </div>
-    ),
-  }
-);
-
-const sourcingCountriesData: { en: string; ar: string }[] = [
+const sourcingCountries: { en: string; ar: string }[] = [
   { en: 'JORDAN', ar: 'الأردن' },
   { en: 'SAUDI ARABIA', ar: 'المملكة العربية السعودية' },
   { en: 'SYRIA', ar: 'سوريا' },
@@ -32,165 +21,69 @@ const sourcingCountriesData: { en: string; ar: string }[] = [
   { en: 'INDIA', ar: 'الهند' },
 ];
 
-const globeMarkers: Marker[] = [
-  { id: 'uae', location: [25.2048, 55.2708], label: 'Qatar & Gulf Hub' },
-  { id: 'saudi', location: [24.7136, 46.6753], label: 'Saudi Arabia' },
-  { id: 'jordan', location: [31.9539, 35.9106], label: 'Jordan' },
-  { id: 'egypt', location: [30.0444, 31.2357], label: 'Egypt' },
-  { id: 'turkey', location: [39.9334, 32.8597], label: 'Turkey' },
-  { id: 'india', location: [20.5937, 78.9629], label: 'India' },
-  { id: 'southafrica', location: [-30.5595, 22.9375], label: 'South Africa' },
-  { id: 'lebanon', location: [33.8938, 35.5018], label: 'Lebanon' },
-];
+const copy = {
+  en: {
+    eyebrow: 'SOURCING COUNTRIES',
+    title: 'Connecting Global Harvests With Qatar.',
+    beyond: 'AND BEYOND',
+    mapAlt: 'World map showing the regions Nairat sources from',
+  },
+  ar: {
+    eyebrow: 'بلدان التوريد',
+    title: 'نربط المحاصيل العالمية بقطر.',
+    beyond: 'والمزيد من الدول',
+    mapAlt: 'خريطة العالم توضح مناطق التوريد لدى نيرات',
+  },
+};
 
-const globeArcs: Arc[] = [
-  { id: 'india-uae', from: [20.5937, 78.9629], to: [25.2048, 55.2708], label: 'India → Qatar' },
-  { id: 'egypt-uae', from: [30.0444, 31.2357], to: [25.2048, 55.2708], label: 'Egypt → Qatar' },
-  { id: 'turkey-uae', from: [39.9334, 32.8597], to: [25.2048, 55.2708], label: 'Turkey → Qatar' },
-  { id: 'jordan-uae', from: [31.9539, 35.9106], to: [25.2048, 55.2708], label: 'Jordan → Qatar' },
-];
+const accentPhrases = ['Qatar.', 'the World', 'بقطر.', 'العالم'];
+
+const pillBase =
+  'sourcing-country-pill px-4 py-2.5 rounded-full font-sans text-[13px] leading-none tracking-[0.06em] rtl:tracking-normal';
 
 interface SourcingMapProps {
   content?: HomePageContent;
 }
 
 export function SourcingMap({ content }: SourcingMapProps = {}): React.ReactNode {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
+  const text = copy[locale];
 
-  const eyebrow = isAr
-    ? content?.sourcingMapEyebrowAr || 'بلدان التوريد'
-    : content?.sourcingMapEyebrow || 'SOURCING COUNTRIES';
+  const eyebrow = (isAr ? content?.sourcingMapEyebrowAr : content?.sourcingMapEyebrow) || text.eyebrow;
+  const title = (isAr ? content?.sourcingMapTitleAr : content?.sourcingMapTitle) || text.title;
 
-  useGSAP(
-    () => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const mm = gsap.matchMedia();
-
-      mm.add(
-        {
-          isMobile: '(max-width: 768px)',
-          isDesktop: '(min-width: 769px)',
-          reduceMotion: '(prefers-reduced-motion: reduce)',
-        },
-        (context) => {
-          const { isMobile, reduceMotion } = context.conditions as {
-            isMobile: boolean;
-            isDesktop: boolean;
-            reduceMotion: boolean;
-          };
-
-          if (reduceMotion || isMobile) {
-            gsap.set(['.sourcing-globe-container', '.sourcing-header-item', '.sourcing-country-pill'], {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              clearProps: 'all',
-            });
-            return;
-          }
-
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: container,
-              start: 'top 88%',
-              once: true,
-            },
-          });
-
-          tl.fromTo(
-            '.sourcing-globe-container',
-            { opacity: 0, scale: 0.94 },
-            { opacity: 1, scale: 1, duration: 0.5, ease: 'power3.out' }
-          )
-            .fromTo(
-              '.sourcing-header-item',
-              { opacity: 0, y: 18 },
-              { opacity: 1, y: 0, duration: 0.45, stagger: 0.05, ease: 'power3.out' },
-              '-=0.35'
-            )
-            .fromTo(
-              '.sourcing-country-pill',
-              { opacity: 0, scale: 0.92, y: 10 },
-              { opacity: 1, scale: 1, y: 0, duration: 0.35, stagger: 0.025, ease: 'back.out(1.5)' },
-              '-=0.3'
-            );
-        },
-        containerRef
-      );
-    },
-    { scope: containerRef }
-  );
+  useSectionReveal(containerRef, ['.sourcing-header-item', '.sourcing-country-pill', '.sourcing-map-item']);
 
   return (
-    <section id="sourcing" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 py-10 sm:py-14 lg:py-16 2xl:py-20 bg-white overflow-hidden">
-      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 2xl:gap-12 items-center">
-          
-          {/* Left Column on Desktop / Bottom on Mobile: Interactive 3D World Globe */}
-          <div className="sourcing-globe-container order-2 lg:order-1 lg:col-span-5 relative flex items-center justify-center w-full max-w-[280px] sm:max-w-[340px] mx-auto lg:max-w-none will-change-transform">
-            <div className="w-full aspect-square max-w-[280px] sm:max-w-[360px] 2xl:max-w-[420px]">
-              <Globe
-                markers={globeMarkers}
-                arcs={globeArcs}
-                markerColor={[0.086, 0.533, 0.286]}
-                baseColor={[0.95, 0.96, 0.95]}
-                glowColor={[0.92, 0.95, 0.93]}
-                dark={0}
-                mapBrightness={8}
-                diffuse={1.2}
-              />
-            </div>
-          </div>
+    <section id="sourcing" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 section-pad bg-white overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-12 items-center">
+        <div className="flex flex-col gap-6">
+          <SectionHeading
+            eyebrow={eyebrow}
+            title={<MarkedText text={title} phrase={accentPhrases} as={Accent} />}
+            itemClassName="sourcing-header-item"
+          />
 
-          {/* Right Column on Desktop / Top on Mobile: Sourcing Text & Country Pills */}
-          <div className="order-1 lg:order-2 lg:col-span-7 space-y-4 sm:space-y-5 2xl:space-y-6">
-            <div className="sourcing-header-item">
-              <SectionEyebrow title={eyebrow} />
-            </div>
-
-            <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-start">
-              {isAr ? (
-                content?.sourcingMapTitleAr ? (
-                  <span className="whitespace-pre-line">{content.sourcingMapTitleAr}</span>
-                ) : (
-                  <>
-                    تم التوريد من جميع أنحاء <br />
-                    <span className="text-[#168849]">العالم</span>
-                  </>
-                )
-              ) : (
-                content?.sourcingMapTitle ? (
-                  <span className="whitespace-pre-line">{content.sourcingMapTitle}</span>
-                ) : (
-                  <>
-                    Sourced From Around <br />
-                    <span className="text-[#168849]">the World</span>
-                  </>
-                )
-              )}
-            </h2>
-
-            {/* Country Pill Badges Grid */}
-            <div className="flex flex-wrap gap-2 2xl:gap-3 pt-1 max-w-2xl 2xl:max-w-3xl">
-              {sourcingCountriesData.map((item) => (
-                <span
-                  key={item.en}
-                  className="sourcing-country-pill font-sans text-xs sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.05em] px-3.5 sm:px-4 2xl:px-5 py-1.5 sm:py-2 2xl:py-2.5 rounded-full border border-neutral-200 bg-neutral-50 text-[#6B7280] shadow-2xs hover:bg-[#168849]/10 hover:border-[#168849]/40 hover:text-[#168849] hover:scale-105 transition-all duration-200 cursor-default will-change-transform"
-                >
-                  {isAr ? item.ar : item.en}
-                </span>
-              ))}
-
-              <span className="sourcing-country-pill font-sans text-xs sm:text-[12.5px] 2xl:text-[13px] font-semibold uppercase tracking-[0.05em] px-4 sm:px-5 2xl:px-6 py-1.5 sm:py-2 2xl:py-2.5 rounded-full bg-[#168849] text-white shadow-md shadow-[#168849]/20 hover:scale-105 transition-transform duration-200 will-change-transform">
-                {isAr ? 'والمزيد من الدول' : 'AND BEYOND'}
-              </span>
-            </div>
-          </div>
+          <ul className="flex flex-wrap gap-2.5">
+            {sourcingCountries.map((country) => (
+              <li key={country.en} className={cn(pillBase, 'ring-1 ring-inset ring-line font-normal text-ink-muted')}>
+                {country[locale]}
+              </li>
+            ))}
+            <li className={cn(pillBase, 'bg-nairat-green font-bold text-white')}>{text.beyond}</li>
+          </ul>
         </div>
+
+        <Image
+          src="/sourcing/world-map.png"
+          alt={text.mapAlt}
+          width={862}
+          height={484}
+          sizes="(max-width: 640px) 320px, (max-width: 768px) 420px, (max-width: 1248px) 50vw, 576px"
+          className="sourcing-map-item w-full max-w-[320px] sm:max-w-[420px] md:max-w-none mx-auto h-auto"
+        />
       </div>
     </section>
   );

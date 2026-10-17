@@ -9,6 +9,8 @@ export const ar: Dictionary = {
     exploreProducts: 'استكشف منتجاتنا',
     learnMore: 'اعرف المزيد',
     viewAll: 'عرض الكل',
+    allServices: 'جميع الخدمات',
+    qualityProcess: 'منهجنا في الجودة',
     downloadCatalog: 'تحميل كتالوج الشركات (B2B)',
     allRightsReserved: 'جميع الحقوق محفوظة.',
     commercialRegistration: 'سجل تجاري رقم 144352 | شارع 37، المنطقة الصناعية، الدوحة، قطر',

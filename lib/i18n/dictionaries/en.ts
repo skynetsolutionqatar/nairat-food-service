@@ -9,6 +9,8 @@ export const en: Dictionary = {
     exploreProducts: 'Explore Our Products',
     learnMore: 'Learn More',
     viewAll: 'View All',
+    allServices: 'All Services',
+    qualityProcess: 'Our Quality Process',
     downloadCatalog: 'Download B2B Catalog',
     allRightsReserved: 'All rights reserved.',
     commercialRegistration: 'CR No. 144352 | Street 37, Industrial Area, Doha, Qatar',

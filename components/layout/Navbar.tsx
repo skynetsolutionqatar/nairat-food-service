@@ -176,57 +176,59 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Right Actions: Language Toggle + CTA Button */}
-        <div className="hidden sm:flex items-center gap-3">
-          {/* Language Toggle Button: Shows العربية when in English, EN when in Arabic */}
-          {isLanguageToggleEnabled && (
-            <button
-              onClick={toggleLanguage}
-              className="inline-flex items-center justify-center min-w-[50px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
-              aria-label="Toggle language"
-            >
-              <span>{locale === 'en' ? 'العربية' : 'EN'}</span>
-            </button>
-          )}
-
-          {/* Action CTA Button using CtaButton */}
-          <CtaButton
-            variant="white"
-            href={`${prefix}/contact`}
-            text={dict.common.contactUs}
-          />
-        </div>
-
-        {/* Mobile Actions: Language Toggle + Menu Button */}
-        <div className="sm:hidden flex items-center gap-2">
-          {isLanguageToggleEnabled && (
-            <button
-              onClick={toggleLanguage}
-              className="inline-flex items-center justify-center min-w-[44px] px-3 py-1.5 rounded-full border border-white/30 bg-white/10 text-white font-sans text-xs font-bold"
-              aria-label="Toggle language"
-            >
-              <span>{locale === 'en' ? 'عربي' : 'EN'}</span>
-            </button>
-          )}
-
-          <button
-            onClick={toggleMobileMenu}
-            className="text-white hover:text-white/80 p-2 focus-visible:outline-2 focus-visible:outline-white rounded-md"
-            aria-expanded={isMobileMenuOpen}
-            aria-label="Toggle navigation menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-6 h-6" aria-hidden="true" />
-            ) : (
-              <Menu className="w-6 h-6" aria-hidden="true" />
+        {/* Right Actions: Language Toggle + CTA Button, then the Menu Button below desktop */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <div className="hidden sm:flex items-center gap-3">
+            {/* Language Toggle Button: Shows العربية when in English, EN when in Arabic */}
+            {isLanguageToggleEnabled && (
+              <button
+                onClick={toggleLanguage}
+                className="inline-flex items-center justify-center min-w-[50px] px-3.5 py-1.5 rounded-full border border-white/30 hover:border-white/70 bg-white/10 hover:bg-white/20 text-white font-sans text-xs font-semibold transition-all duration-200 cursor-pointer shadow-xs active:scale-95 tracking-wide"
+                aria-label="Toggle language"
+              >
+                <span>{locale === 'en' ? 'العربية' : 'EN'}</span>
+              </button>
             )}
-          </button>
+
+            {/* Action CTA Button using CtaButton */}
+            <CtaButton
+              variant="white"
+              href={`${prefix}/contact`}
+              text={dict.common.contactUs}
+            />
+          </div>
+
+          {/* Mobile & Tablet Actions: Language Toggle (phones only) + Menu Button */}
+          <div className="lg:hidden flex items-center gap-2">
+            {isLanguageToggleEnabled && (
+              <button
+                onClick={toggleLanguage}
+                className="sm:hidden inline-flex items-center justify-center min-w-[44px] px-3 py-1.5 rounded-full border border-white/30 bg-white/10 text-white font-sans text-xs font-bold"
+                aria-label="Toggle language"
+              >
+                <span>{locale === 'en' ? 'عربي' : 'EN'}</span>
+              </button>
+            )}
+
+            <button
+              onClick={toggleMobileMenu}
+              className="text-white hover:text-white/80 p-2 focus-visible:outline-2 focus-visible:outline-white rounded-md"
+              aria-expanded={isMobileMenuOpen}
+              aria-label="Toggle navigation menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" aria-hidden="true" />
+              ) : (
+                <Menu className="w-6 h-6" aria-hidden="true" />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Mobile Menu Panel */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden bg-[#168749] border border-white/20 px-6 py-5 absolute top-full start-4 end-4 rounded-3xl mt-3 shadow-2xl backdrop-blur-lg">
+        <div className="lg:hidden bg-[#168749] border border-white/20 px-6 py-5 absolute top-full start-4 end-4 sm:start-6 sm:end-6 rounded-3xl mt-3 shadow-2xl backdrop-blur-lg">
           <nav className="flex flex-col gap-2">
             {navigationLinks.map((link) => {
               if (link.id === 'products') {
@@ -276,7 +278,7 @@ export function Navbar() {
               );
             })}
 
-            <div className="pt-3 flex flex-col gap-2.5">
+            <div className="sm:hidden pt-3 flex flex-col gap-2.5">
               {isLanguageToggleEnabled && (
                 <button
                   onClick={() => {

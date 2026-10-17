@@ -10,7 +10,7 @@ type CommonProps = {
   href?: string;
   className?: string;
   children?: React.ReactNode;
-  variant?: 'primary' | 'white' | 'slate' | 'forest' | 'outline' | 'amber';
+  variant?: 'primary' | 'light' | 'white' | 'slate' | 'forest' | 'outline' | 'amber';
   showIcon?: boolean;
   as?: 'a' | 'button';
   type?: 'button' | 'submit' | 'reset';
@@ -38,6 +38,8 @@ export function CtaButton({
     switch (variant) {
       case 'amber':
         return 'bg-[#F2BD1D] hover:bg-[#e2ad14] text-[#111814] focus-visible:ring-[#F2BD1D]/50 shadow-md';
+      case 'light':
+        return 'bg-white text-nairat-green-deep ring-1 ring-inset ring-line hover:ring-nairat-green';
       case 'white':
         return 'bg-white hover:bg-neutral-100 text-[#168849] focus-visible:ring-white/50 shadow-sm';
       case 'slate':
@@ -56,6 +58,7 @@ export function CtaButton({
     switch (variant) {
       case 'amber':
         return 'bg-white text-[#111814] group-hover:scale-105';
+      case 'light':
       case 'white':
         return 'bg-[#168849] text-white group-hover:scale-105';
       case 'slate':

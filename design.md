@@ -1,224 +1,176 @@
-# Nairat Food Services — Homepage Design Specification & Design System
+# Nairat Food Services — Design System & Homepage Specification
 
-This document provides the definitive design specification, visual tokens, structural architecture, interactive component behaviors, and motion guidelines for the **Nairat Food Services** homepage ([https://nairatfoodservices.com/](https://nairatfoodservices.com/)), as implemented in the production Next.js application.
+The visual language of the Nairat Food Services website ([nairatfoodservices.com](https://nairatfoodservices.com/)), as implemented in the Next.js application.
 
----
+**Sources of truth**
 
-## 1. Executive Summary & Brand Positioning
+| What | Where |
+| :--- | :--- |
+| Design system (tokens, components, page variations) | "Nairat Food Services" — https://claude.ai/artifact/74DLs9diJLCY2e5ycFuzfJ |
+| Page designs (Home and inner pages) | "Nairat Website Redesign" canvas — https://claude.ai/artifact/72Jjn3ntruvC1anwDvMpNB |
 
-*   **Subject**: Qatar's leading fresh-produce importer, cold-chain logistics operator, and distributor.
-*   **Target Audience**:
-    *   **Primary B2B**: Supermarket and hypermarket category managers, executive chefs, procurement heads of 5-star hotels, catering groups, and wholesale market traders.
-    *   **Institutional & Trade Partners**: International agricultural growers, exporters, customs authorities, and domestic retail partners.
-    *   **Direct Retail Consumers**: Consumers visiting Nairat's walk-in retail store in Qatar.
-*   **Core Brand Mantra**: *"Pure Freshness from Global Fields to Qatar."*
-*   **Single Job of the Homepage**: Establish immediate authority and trust in Nairat's unbroken cold-chain logistics, global agricultural sourcing footprint, and accredited food-safety standards (HACCP & ISO 22000), converting visitors into commercial clients and trade partners via direct inquiry.
-*   **Aesthetic Identity**:
-    *   A departure from generic wholesale sites that use flat, uninspired greens and plain white backgrounds.
-    *   Combines **rich brand forest greens** (`#168849` and `#063B27`) with **crisp modern typography**, **fresh lime highlights** (`#D4F056`), **warm saffron gold accents** (`#FDE047`), and **soft off-white structural surfaces** (`#F4F6F5` / `#F8FAF8`).
+**Adoption status**: the design system is applied to five home page sections — Why Choose Us, What We Do, Products, Sourcing, Certifications & Quality. The hero, partners strip, Who We Are, CTA, footer and all inner pages still use the previous styling (Montserrat headings, hardcoded colours). Section 6 lists what the design system specifies for them.
 
 ---
 
-## 2. Design System & Design Tokens
+## 1. Brand & Content Fundamentals
 
-### Color Palette
-The color system balances organic freshness with corporate logistics precision:
+*   **Subject**: Qatar's dependable fresh-produce importer, cold-chain operator and distributor.
+*   **Audience**: supermarket and hypermarket category managers, chefs and procurement heads, wholesale traders, growers and exporters, and shoppers at the Nairat retail store.
+*   **Single job of the homepage**: establish trust in Nairat's cold chain, sourcing reach and accredited food safety, and turn visitors into trade enquiries.
+*   **Voice**: short, confident three-beat headlines — "Fresh Produce. Strong Supply. Trusted Across Qatar." — "Built for Freshness. Ready to Deliver."
+*   **Casing**: Title Case headlines and buttons, UPPERCASE eyebrows, sentence case body.
+*   **Proof in numbers**: 1,200+ lines, 5,000 m² cold-chain warehouse, 20 chiller rooms, 40 refrigerated vehicles, ~100 t a day, HACCP and ISO 22000.
+*   **Bilingual**: English first with an Arabic toggle in the nav; every label has an Arabic string.
 
-| Token Name | Hex Code | Purpose & Usage |
+---
+
+## 2. Design Tokens
+
+Defined in the `@theme` block of `app/globals.css`, so each colour is a Tailwind utility (`bg-forest`, `text-ink-muted`, `ring-line`).
+
+### Colour
+
+| Token | Hex | Usage |
 | :--- | :--- | :--- |
-| `brand-green` | `#168849` | Primary brand signature color, active navigation states, primary buttons, icons |
-| `brand-forest` | `#063B27` | Deep corporate forest green for high-contrast headers, dark cards, footer accents |
-| `brand-dark` | `#042A1C` | Deepest green used for button hover states and dark card backgrounds |
-| `brand-lime` | `#D4F056` | Vibrant electric lime accent used for number badges, stats, and high-energy highlights |
-| `brand-saffron` | `#FDE047` | Warm golden amber accent used for category pills, rating stars, and vision tags |
-| `neutral-bg-base` | `#FFFFFF` | Pure white background for high-clarity content sections |
-| `neutral-bg-soft` | `#F8FAF8` / `#F4F6F5` | Muted cool-sand surfaces used for section alternates and card backgrounds |
-| `neutral-text-dark`| `#111814` | Primary high-legibility dark charcoal for titles and headings |
-| `neutral-text-body`| `#6B7280` | Clean neutral slate-gray for body paragraphs and lead narratives |
-| `neutral-text-muted`| `#6B7280` / `#9CA3AF`| Muted gray for captions, breadcrumbs, and secondary labels |
-| `neutral-border` | `rgba(0,0,0,0.08)` | Subtle border rules for cards and containers |
+| `nairat-green` | `#168849` | The logo's block green. Buttons, nav pill, rail label, big fills. White text passes at 4.5:1 — keep labels 14px/600 or larger. |
+| `nairat-green-deep` | `#13753F` | Text-safe green for accent words and links; button hover. |
+| `green-50` | `#EAF5EE` | Soft wash behind number badges and tags. |
+| `lime` | `#D4F056` | Accent pills and chips. Ink text only. |
+| `leaf` | `#C9E3B0` | The logo's pale leaf. Quiet tints and photo placeholders. |
+| `forest` | `#0A2618` | Dark surface: certificate card, vegetables rail label. |
+| `on-forest-muted` | `#C9D6CE` | Secondary text on forest. |
+| `ink` | `#111814` | Headlines and body. |
+| `ink-muted` | `#5C6660` | Paragraphs, captions, stat labels. |
+| `surface-alt` | `#F4F6F5` | Alternating section bands. |
+| `line` | `#E3E8E5` | Hairline borders and dividers. |
+| `citrus` / `sky` / `berry` | `#E8772E` / `#1F6E8C` / `#8E2A4E` | Page accents (see section 6). Not yet used. |
 
-### Typography Hierarchy & Standards (Homepage Benchmark)
-Implemented via `@next/font/google` in `app/layout.tsx` and custom fluid utility classes in `app/globals.css`:
+### Type
 
-*   **Display & Headings**: **Montserrat** (`var(--font-montserrat)`, `font-display`)
-    *   Modern, geometric sans-serif with distinct terminal curves that communicate institutional confidence and scale.
-    *   Applied to all section titles, hero statements, and card headings.
-*   **Body & Descriptions**: **Figtree** (`var(--font-figtree)`, `font-sans`)
-    *   Highly legible contemporary sans-serif engineered for optimal screen readability across all viewports.
-    *   Applied to narrative paragraphs, feature lists, button labels, and navigation.
-*   **Metrics & Data**: **JetBrains Mono** (`var(--font-mono)`, `font-mono`)
-    *   Clean, technical monospaced font that conveys cold-chain precision, temperatures, dates, and quantitative metrics.
+Fonts are loaded with `next/font/google` in `app/layout.tsx`.
 
-#### Exact Typography Implementation Standards:
-Across both the homepage and subpages (`/company`, `/products`, `/services`, and `/quality`), headings, subheadings, and paragraphs follow these exact specifications:
+| Role | Face | Spec |
+| :--- | :--- | :--- |
+| Section heading (`.type-section`) | Figtree 700 | `clamp(34px, 4vw, 52px)`, leading 1.08, tracking -0.02em |
+| Card title | Figtree 700 | 17–20px, leading 1.3–1.35 |
+| Figure | Figtree 700/800 | 40px, leading 1, tracking -0.02em |
+| Lead | Figtree 400 | 16px, leading 1.7, `ink-muted` |
+| Body | Figtree 400 | 14px, leading 1.6, `ink-muted` |
+| Eyebrow (`.type-eyebrow`) | Montserrat 700 | 11.5px, tracking 0.14em, uppercase, `nairat-green` |
+| Button | Figtree 600 | 14px, leading 20px |
+| Arabic | Cairo | Replaces every face under `dir="rtl"`; headings at leading 1.4 |
 
-| Role | Tailwind Classes | Color | Responsive Sizing & Leading | Usage Standard |
-| :--- | :--- | :--- | :--- | :--- |
-| **Section Eyebrow** | `font-display type-eyebrow text-[#168849] block` | `#168849` (Brand Green) | `11.5px`, uppercase, tracking `0.14em`, weight `700` | `WHO WE ARE`, `OUR QUALITY PHILOSOPHY`, `WHY CHOOSE US` |
-| **Section Headline (H2)** | `font-display type-h2 font-semibold text-[#111814] text-left leading-[1.12]` | `#111814` (Dark Charcoal) with `#168849` accent span | `clamp(30px, 3.4vw, 52px)`, leading `1.12`, tracking `-0.025em`, weight `600` | Primary section titles in 12-column grid (`lg:col-span-7`) |
-| **Section Subheading / Lead Narrative** | `font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-justify max-w-[48ch] 2xl:max-w-[52ch]` | `#6B7280` (Muted Slate Gray) | `text-xs sm:text-[14px] 2xl:text-[15px]`, `leading-[1.6]`, justified text alignment | Lead narrative beside headline in 12-column grid (`lg:col-span-5`) |
-| **Card Title (H3)** | `font-display font-semibold text-lg sm:text-xl 2xl:text-2xl text-[#111814] tracking-[-0.015em] leading-snug` | `#111814` (Dark Charcoal) | `text-lg sm:text-xl 2xl:text-2xl`, leading `1.2`–`1.3`, weight `600` | Bento cards, service cards, quality feature cards |
-| **Card Description / Body** | `font-sans text-xs sm:text-[13px] 2xl:text-sm text-[#6B7280] leading-[1.55]` | `#6B7280` (Muted Slate Gray) | `text-xs sm:text-[13px] 2xl:text-sm`, `leading-[1.55]`, weight `400` | Body copy inside cards, checkmark lists, steps |
-| **Large Numbers & Metrics** | `font-display font-semibold text-3xl lg:text-4xl 2xl:text-5xl leading-none tracking-[-0.03em]` | `#111814` or `#FFFFFF` (on dark) | `text-3xl lg:text-4xl 2xl:text-5xl`, weight `600` | `01`, `02`, `03` cards, `5,000 m²`, `20` |
+Legacy classes `.type-display`, `.type-h1`–`.type-h4` (Montserrat) remain for the sections and pages not yet migrated.
 
-#### Fluid Typography Classes (`app/globals.css`):
-*   `.type-display`: `clamp(44px, 5.2vw, 84px)`, weight 700, leading `1.02`, tracking `-0.035em`
-*   `.type-h1`: `clamp(38px, 4.2vw, 68px)`, weight 700, leading `1.06`, tracking `-0.03em`
-*   `.type-h2`: `clamp(30px, 3.4vw, 52px)`, weight 600, leading `1.12`, tracking `-0.025em`
-*   `.type-h3`: `clamp(22px, 2vw, 34px)`, weight 600, leading `1.22`, tracking `-0.015em`
-*   `.type-eyebrow`: `11.5px`, weight 700, tracking `0.14em`, uppercase
-*   `.type-lead`: `clamp(16px, 1.15vw, 19px)`, weight 400, leading `1.62`, max-width `55ch`
-*   `.type-body`: `clamp(14.5px, 1vw, 16.5px)`, weight 400, leading `1.65`, max-width `60ch`
+### Shape & rhythm
+
+| Token | Value | Usage |
+| :--- | :--- | :--- |
+| `rounded-tile` | 16px | Image tiles inside cards |
+| `rounded-card` | 24px | Feature cards |
+| `rounded-panel` | 40px | Section photos, framed panels |
+| `rounded-full` | pill | Buttons, country pills, certificate pills |
+| `.section-pad` | 96px desktop / 64px phones | Vertical section padding |
+| Container | `max-w-[1200px]`, 16px / 24px gutters | Redesigned sections |
+
+Hairline borders (`ring-line`) carry the cards; shadows are almost absent.
 
 ---
 
-## 3. Structural Homepage Architecture
+## 3. Components
 
-The homepage (`app/page.tsx`) consists of 9 strategically sequenced sections supported by a floating glassmorphic navbar and an institutional footer:
+| Component | File | Notes |
+| :--- | :--- | :--- |
+| Button | `components/ui/CtaButton.tsx` | Pill with a round arrow chip. `primary` (green, white chip) once per section; `light` (white, hairline, green chip) for secondary actions. Two or three words, Title Case. |
+| Eyebrow | `components/ui/SectionEyebrow.tsx` | Leaf glyph + uppercase label, always above a heading. |
+| Highlight / Accent | `components/ui/Highlight.tsx` | `Highlight`: green marker with white text behind one or two words, once per heading. `Accent`: green text for a second emphasis. `MarkedText` applies either to a phrase inside CMS-supplied copy. |
+| SectionHeading | `components/ui/SectionHeading.tsx` | Eyebrow → heading → optional lead, `start` or `center`, optional action at the inline end. |
+| FeatureCard | `components/ui/FeatureCard.tsx` | White card at `rounded-card`; `dark` variant on forest. |
+| CategoryRail | `components/products/CategoryRail.tsx` | Vertical category label, then full-height photo tiles with the name over a dark fade. |
+
+---
+
+## 4. Homepage Structure (`app/page.tsx`)
 
 ```text
 +-------------------------------------------------------------------------------+
-| 0. FLOATING NAVBAR (Sticky, pill-shaped, backdrop blur, products dropdown)    |
+| 0. FLOATING NAVBAR  (green pill, products dropdown, language toggle)          |
 +-------------------------------------------------------------------------------+
-| 1. HERO SECTION                                                               |
-|    - Fullscreen responsive HTML5 video background (/hero.mp4 & /hero.webm)    |
-|    - GSAP Parallax scrub & smooth entrance sequence                           |
-|    - Headline: "Pure Freshness from Global Fields to Qatar."                  |
-|    - CTAs: "Explore Our Products" & "Partner With Us"                         |
+| 1. HERO             Full-bleed video, headline, copy + "Partner With Us"      |
 +-------------------------------------------------------------------------------+
-| 2. PARTNERS TICKER                                                            |
-|    - Infinite horizontal logo loop of Qatar retail leaders (Al Meera, LuLu,   |
-|      Carrefour, Safari, Grand Mall, Monoprix, Family Food Centre, Talabat)    |
+| 2. PARTNERS         Logo loop of Qatar retail partners                        |
 +-------------------------------------------------------------------------------+
-| 3. WHO WE ARE (Overview & Scale)                                              |
-|    - Left: Narrative copy & "Fresh from the Source. Delivered Across Qatar."  |
-|    - Right: 3 Metric Cards (01 Global Sourcing, 02 Year-Round Supply,         |
-|      03 Built for Qatar's Standards)                                          |
+| 3. WHO WE ARE       Narrative, animated statistics, three numbered cards      |
 +-------------------------------------------------------------------------------+
-| 4. OUR STRENGTHS (Asymmetric 5-Cell Bento Grid)                               |
-|    - 20 Dedicated Chiller Rooms       | 5,000 m² Cold-Chain Warehouse         |
-|    - Cold Chain Unbroken              | 40 Refrigerated Fleet Vehicles        |
-|    - Sourced at Origin (Tall Feature Card with Grower Photography)            |
+| 4. WHY CHOOSE US    surface-alt · centred heading · 4 stat cards · wide photo |
 +-------------------------------------------------------------------------------+
-| 5. WHAT WE DO (Services Breakdown)                                            |
-|    - 3 Horizontal Row Cards:                                                  |
-|      1. Retail & Wholesale Distribution                                       |
-|      2. Grower & Exporter Partnerships                                        |
-|      3. Nairat Retail Shop                                                    |
+| 5. WHAT WE DO       white · heading + "All Services" · 3 photo cards          |
 +-------------------------------------------------------------------------------+
-| 6. OUR PRODUCTS (Interactive Catalog Grid)                                    |
-|    - Filter Tabs: All Products | Fruits | Vegetables | Leafy & Herbs | Gourmet|
-|    - 4-Column Card Grid with Origin Badges and Hover Zoom                     |
-|    - Detail Modal: Country of origin, seasonality matrix, packaging specs     |
+| 6. OUR PRODUCTS     white · centred heading · 2 full-bleed category rails     |
 +-------------------------------------------------------------------------------+
-| 7. GLOBAL SOURCING (Interactive SVG World Map)                                |
-|    - 15+ Countries, 5 Continents                                              |
-|    - Region Tabs: Middle East, Europe, Africa, Asia, Americas, Oceania        |
-|    - Interactive pulsing origin markers & seasonal harvest descriptions       |
+| 7. SOURCING         white · heading + country pills | dotted world map        |
 +-------------------------------------------------------------------------------+
-| 8. QUALITY & FOOD SAFETY (3-Step Timeline & Certifications)                   |
-|    - 1. Inspected at Origin -> 2. Tested on Arrival -> 3. Cold Chain Delivery |
-|    - Official Certificate Modal: HACCP & ISO 22000:2018 high-res viewers      |
+| 8. CERTIFICATIONS   surface-alt · heading + button · 3 step cards + cert card |
 +-------------------------------------------------------------------------------+
-| 9. GLOBAL CALL-TO-ACTION (Parallax Banner & Slide-Over Drawer)                |
-|    - Full-bleed fresh produce background with GSAP scroll parallax            |
-|    - Interactive slide-over contact drawer form with SMTP-ready validation    |
+| 9. CTA              Produce photo, headline, "Contact Us"                     |
 +-------------------------------------------------------------------------------+
-| 10. FOOTER                                                                    |
-|     - Brand logo, "Go Fresh for Future" slogan, social links, full navigation |
+| 10. FOOTER          Logo, "Go fresh for future", links, legal                 |
 +-------------------------------------------------------------------------------+
 ```
 
 ---
 
-## 4. Detailed Component Breakdown
+## 5. Section Breakdown
 
-### 1. Header Navigation (`components/layout/Navbar.tsx`)
-*   **Form Factor**: Centered floating pill with `max-w-[1140px] 2xl:max-w-[1240px]`, positioned `fixed top-0`.
-*   **Scroll State**: Transitions from semi-transparent `bg-[#158647]/80` to high-blur `bg-[#158647]/95 shadow-lg` on scroll (> 20px).
-*   **Navigation Links**:
-    *   Home (`/`)
-    *   Company (`/company`)
-    *   Our Products (`/products` with hover dropdown for Vegetables, Fruits, Leafy & Herbs, Specialty & Gourmet)
-    *   Services (`/services`)
-    *   Sourcing & Quality (`/quality`)
-    *   Partners (`/#partners`)
-*   **Language Switcher**: Dedicated pill toggle switching between English (`EN`) and Arabic (`AR`).
-*   **Mobile Experience**: Full-screen responsive accordion menu with accessible toggle button and nested product categories.
+### 0–3, 9–10. Navbar, Hero, Partners, Who We Are, CTA, Footer
+Unchanged by the redesign. `components/layout/Navbar.tsx`, `components/modules/Hero.tsx`, `Partners.tsx`, `WhoWeAre.tsx`, `Cta.tsx`, `components/layout/Footer.tsx`.
 
-### 2. Hero Section (`components/modules/Hero.tsx`)
-*   **Background**: High-definition ambient video loop (`/hero.mp4` and `/hero.webm`) with a fallback poster (`/hero-poster.webp`).
-*   **Visual Treatment**: Multi-stop gradient overlay (`from-black/75 via-black/40 to-black/80`) to ensure contrast against white text.
-*   **Motion**:
-    *   Page load GSAP timeline revealing eyebrow, title lines, subtitle, and CTA buttons with staggered ease (`power3.out`).
-    *   Compositor-promoted scroll parallax (`yPercent: 15, scale: 1.08`) scrubbed against window scroll.
+### 4. Why Choose Us (`components/modules/Strengths.tsx`, `data/strengths.ts`)
+*   `surface-alt` band, centred heading: "Built for **Freshness.** Ready to Deliver." with the highlight on "Freshness.".
+*   Four centred white cards: line icon in `nairat-green`, figure, title with one highlighted word, one line of copy.
+    *   `20` Dedicated Chiller Rooms · `5,000 m²` Cold-Chain Warehouse · `40` Refrigerated Vehicles · `Origin` Sourced at Origin.
+    *   Figures come from the company profile; descriptions from the home page CMS fields.
+*   One wide photo at `rounded-panel`, 420px (260px on phones).
 
-### 3. Partners Loop (`components/modules/Partners.tsx`)
-*   **Concept**: Seamless infinite horizontal marquee displaying prominent domestic supermarket chains and platforms:
-    *   Al Meera, LuLu Hypermarket, Carrefour Qatar, Safari Mall, Grand Mall, Monoprix, Family Food Centre, and Talabat Mart.
-*   **Styling**: Monochrome logos with opacity hover transitions that maintain elegance without visual clutter.
+### 5. What We Do (`components/modules/Services.tsx`)
+*   Heading at the start ("Fresh Produce Supply at *Every Scale.*"), "All Services" `light` button at the end.
+*   Three hairline cards, each a link to `/services`: 190px photo at `rounded-tile`, title, description — Global Sourcing & Import, Retail Supply & Category Management, Wholesale & Foodservice.
 
-### 4. Who We Are (`components/modules/WhoWeAre.tsx`)
-*   **Layout**: 12-column responsive split grid:
-    *   Left Column (6 cols): Primary value proposition narrative and direct link to `/company`.
-    *   Right Column (6 cols): Stack of 3 numbered metric cards with JetBrains Mono numbers (`01`, `02`, `03`) in lime badges.
-*   **Content**:
-    *   `01`: Global Sourcing Network across 5 continents.
-    *   `02`: Year-Round Supply Assurance bridging seasonal gaps.
-    *   `03`: Built for Qatar's Standards (MOPH compliance & fast customs clearance).
+### 6. Our Products (`components/modules/Products.tsx`, `data/homeProductRails.ts`)
+*   Centred heading: "Freshness, Sourced From **Around the World.**".
+*   Two full-bleed `CategoryRail`s. The 64px label links to the category page.
+    *   Fresh Fruits (`nairat-green`): Watermelon, Citrus Selection, Table Grapes, Mangoes.
+    *   Vegetables (`forest`): Tomatoes, Capsicum, Cauliflower, Potatoes.
+*   Tiles are 360px tall; on phones the label becomes a bar and tiles go two-up at 200px.
 
-### 5. Our Strengths (`components/modules/Strengths.tsx`)
-*   **Layout**: Asymmetric 5-cell grid combining quantitative statistics with lifestyle photography:
-    1.  **20 Dedicated Chiller Rooms**: Temperature-specific microclimates.
-    2.  **5,000 m² Cold-Chain Warehouse**: Purpose-built facility in Doha Industrial Area.
-    3.  **Cold Chain Unbroken**: FIFO rotation and strict temperature auditing.
-    4.  **40 Refrigerated Fleet**: Daily scheduled store delivery.
-    5.  **Sourced at Origin**: Tall feature card emphasizing grower partnerships.
-*   **Interactions**: Subtle card elevation and image scale on hover (`scale: 1.05`).
+### 7. Sourcing (`components/modules/SourcingMap.tsx`)
+*   Heading with the accent on the closing words, nine hairline country pills and a filled green "AND BEYOND".
+*   Dotted world map (`public/sourcing/world-map.png`) at the inline end.
 
-### 6. Services Overview (`components/modules/Services.tsx`)
-*   **Layout**: 3 distinct cards representing the primary business units:
-    1.  *Retail & Wholesale Distribution* (Hypermarkets, supermarkets, Talabat Mart).
-    2.  *Grower & Exporter Partnerships* (Consignment, customs clearance, cold storage).
-    3.  *Nairat Retail Shop* (Walk-in produce market open to the public).
-*   **CTAs**: Integrated [`CtaButton`](file:///home/sfwnmuhd/Desktop/nairat/components/ui/CtaButton.tsx) linking directly to `/services` and external maps.
-
-### 7. Products Catalog Showcase (`components/modules/Products.tsx`)
-*   **Filtering**: Client-side category switching between:
-    *   All Products
-    *   Fresh Fruits
-    *   Fresh Vegetables
-    *   Leafy & Herbs
-    *   Specialty & Gourmet
-*   **Product Cards**: Circular produce photography, country-of-origin pill, seasonal availability indicator, and quick-inquiry trigger.
-*   **Interactive Modal**: Detailed popup displaying product profile, origin harvest windows, and packaging specifications.
-
-### 8. Global Sourcing Map (`components/modules/SourcingMap.tsx`)
-*   **Interactive World Map**: SVG-based world vector map with clickable continent selectors:
-    *   Middle East, Europe, Africa, Asia, Americas, Oceania.
-*   **Dynamic Data**: Selecting a region pulses origin coordinates in `#D4F056` and updates the sourcing narrative to highlight in-season commodities.
-
-### 9. Quality & Food Safety (`components/modules/QualityTimeline.tsx`)
-*   **Process Flow**:
-    1.  *Inspected at Origin*: Pre-shipment sizing, Brix sweetness, and grading.
-    2.  *Tested on Arrival*: Qatar Ministry of Public Health (MOPH) laboratory clearance.
-    3.  *Protected Through Cold Chain*: Continuous digital temperature logger monitoring.
-*   **Accreditation Modals**: Dedicated interactive viewers for:
-    *   **HACCP** (`/certificates/c1-1-1.png`)
-    *   **ISO 22000:2018** (`/certificates/c2-2-1.png`)
-
-### 10. Call-to-Action & Contact Drawer (`components/modules/Cta.tsx`)
-*   **Design**: Rich fruit photography background with deep green overlay and GSAP parallax scrub.
-*   **Interaction**: Clicking "Start a Partnership" opens a slide-over contact drawer.
-*   **Form Capabilities**:
-    *   Full name, business email, phone number, and message fields.
-    *   Real-time client-side validation.
-    *   Nodemailer SMTP integration for direct delivery to `info@nairatfood.com`.
+### 8. Certifications & Quality (`components/modules/QualityTimeline.tsx`)
+*   `surface-alt` band. Heading "Quality You Can **Trust.**", "Our Quality Process" primary button → `/quality`.
+*   Three white cards numbered 1–3 (a real sequence): Inspected at Origin → Tested on Arrival → Protected Through Cold Chain.
+*   One forest card with `HACCP` (lime) and `ISO 22000:2018` (white) pills. Each pill is a button that opens the certificate viewer (`components/ui/CertificateModal.tsx`).
 
 ---
 
-## 5. Motion, Animation & Interaction Standards
+## 6. Page Variations (specified, not yet built)
+
+The design system gives each inner page one accent for its hero and one detail; buttons stay `nairat-green` everywhere.
+
+| Page | Hero accent | Twist |
+| :--- | :--- | :--- |
+| Company | `forest` | Milestone timeline; stat card grid led by a forest card |
+| Products | `citrus` (ink text) | Category tabs as pills |
+| Services | `nairat-green` | Six numbered panels, two-up |
+| Sourcing & Quality | `sky` | Connected four-step line; certificate cards |
+| Partners | `berry` | Partner logo wall; forest panel for the Mahaseel alliance |
+| Contact | `lime` (ink text) | Form card beside a forest details panel |
+
+---
+
+## 7. Motion, Animation & Interaction Standards
 
 1.  **Lenis Smooth Scrolling**:
     *   Provides inertial, continuous smooth scrolling across the entire page while respecting browser accessibility preferences.
@@ -229,13 +181,15 @@ The homepage (`app/page.tsx`) consists of 9 strategically sequenced sections sup
 3.  **Framer Motion**:
     *   Utilized for UI state transitions: product details modal, certificate image zoom viewer, and the slide-over contact drawer.
     *   Accessible backdrop dismissal and keyboard `Escape` key handling.
-4.  **Button Micro-Interactions (`CtaButton`)**:
+4.  **Section reveal (`lib/useSectionReveal.ts`)**:
+    *   The redesigned home sections share one hook: each selector group staggers in once at `top 88%`; skipped on phones and under reduced motion.
+5.  **Button Micro-Interactions (`CtaButton`)**:
     *   Isolated arrow badge that rotates 45° and scales on hover.
     *   Active button press scales down subtly (`active:scale-95`).
 
 ---
 
-## 6. Accessibility (a11y) & SEO Guidelines
+## 8. Accessibility (a11y) & SEO Guidelines
 
 *   **Color Contrast**: All text elements meet or exceed WCAG 2.1 AA contrast ratios (minimum 4.5:1 for body copy and 3:1 for large display titles).
 *   **Focus States**: Visible `focus-visible:ring-2 focus-visible:ring-[#168849]` rings on all interactive links, buttons, and form inputs.

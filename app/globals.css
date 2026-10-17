@@ -1,14 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-forest: #063B27;
-  --color-brand-lime: #4AA658;
-  --color-brand-saffron: #E2B93C;
-  --color-neutral-bg-base: #FFFFFF;
-  --color-neutral-bg-soft: #F4F6F5;
-  --color-neutral-text-dark: #111814;
-  --color-neutral-text-secondary: #6B7280;
-  --color-neutral-text-muted: #9CA3AF;
+  /* Nairat Food Services design system — https://claude.ai/artifact/74DLs9diJLCY2e5ycFuzfJ */
+  --color-nairat-green: #168849;
+  --color-nairat-green-deep: #13753F;
+  --color-green-50: #EAF5EE;
+  --color-lime: #D4F056;
+  --color-leaf: #C9E3B0;
+  --color-forest: #0A2618;
+  --color-on-forest-muted: #C9D6CE;
+  --color-ink: #111814;
+  --color-ink-muted: #5C6660;
+  --color-surface-alt: #F4F6F5;
+  --color-line: #E3E8E5;
+  --color-citrus: #E8772E;
+  --color-sky: #1F6E8C;
+  --color-berry: #8E2A4E;
+
+  --radius-tile: 16px;
+  --radius-card: 24px;
+  --radius-panel: 40px;
+
+  --shadow-nav: 0 8px 24px rgba(10, 38, 24, 0.14);
 
   --font-sans: var(--font-figtree), "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-display: var(--font-montserrat), "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -127,6 +140,44 @@ body {
   font-size: 13px;
   font-weight: 400;
   line-height: 1.5;
+}
+
+/* Home section heading (design system h2): Figtree 700 */
+.type-section {
+  font-family: var(--font-figtree), "Figtree", sans-serif;
+  font-size: clamp(34px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Arabic script needs taller lines so the word highlight clears the line above */
+[dir="rtl"] .type-section {
+  font-family: var(--font-arabic);
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+/* Word highlight: one per heading (design system "Highlight") */
+.highlight {
+  background: var(--color-nairat-green);
+  color: #FFFFFF;
+  padding: 0 0.16em;
+  border-radius: 6px;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Section rhythm: 96px desktop, 64px phones */
+.section-pad {
+  padding-block: 64px;
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-block: 96px;
+  }
 }
 
 /* Lenis smooth scrolling base styles */
