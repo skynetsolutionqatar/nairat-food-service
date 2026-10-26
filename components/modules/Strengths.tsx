@@ -87,11 +87,11 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
 
         <div className="strength-card-item relative h-[260px] sm:h-[420px] rounded-panel overflow-hidden bg-leaf">
           <Image
-            src="/whychooseus/truck.avif"
+            src="/whychooseus/warehouse.jpg"
             alt={text.photoAlt}
             fill
             sizes="(max-width: 1248px) 100vw, 1200px"
-            className="object-cover"
+            className="object-fill"
           />
         </div>
       </div>
