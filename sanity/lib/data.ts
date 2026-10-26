@@ -588,6 +588,9 @@ export interface HomePageContent {
   heroCtaPrimaryAr: string;
   heroCtaSecondary: string;
   heroCtaSecondaryAr: string;
+  heroVideoUrl?: string;
+  heroVideoWebmUrl?: string;
+  heroPosterUrl?: string;
   partnersHeading: string;
   partnersHeadingAr: string;
   whoWeAreEyebrow: string;
@@ -671,6 +674,9 @@ export const defaultHomePageContent: HomePageContent = {
   heroCtaPrimaryAr: ar.hero.ctaPrimary,
   heroCtaSecondary: en.hero.ctaSecondary,
   heroCtaSecondaryAr: ar.hero.ctaSecondary,
+  heroVideoUrl: '/hero.mp4',
+  heroVideoWebmUrl: '/hero.webm',
+  heroPosterUrl: '/hero-poster.webp',
   partnersHeading: 'TRUSTED BY QATAR’S LEADING PARTNERS',
   partnersHeadingAr: 'شريك موثوق لكبرى المتاجر والشركات في قطر',
   whoWeAreEyebrow: 'WHO WE ARE',
@@ -769,6 +775,9 @@ export async function getHomePageContent(): Promise<HomePageContent> {
           heroCtaPrimaryAr: data.heroCtaPrimaryAr || defaultHomePageContent.heroCtaPrimaryAr,
           heroCtaSecondary: data.heroCtaSecondary || defaultHomePageContent.heroCtaSecondary,
           heroCtaSecondaryAr: data.heroCtaSecondaryAr || defaultHomePageContent.heroCtaSecondaryAr,
+          heroVideoUrl: data.heroVideoUrl || data.heroVideoFileUrl || defaultHomePageContent.heroVideoUrl,
+          heroVideoWebmUrl: data.heroVideoWebmFileUrl || defaultHomePageContent.heroVideoWebmUrl,
+          heroPosterUrl: data.heroPosterUrl || defaultHomePageContent.heroPosterUrl,
           partnersHeading: data.partnersHeading || defaultHomePageContent.partnersHeading,
           partnersHeadingAr: data.partnersHeadingAr || defaultHomePageContent.partnersHeadingAr,
           whoWeAreEyebrow: data.whoWeAreEyebrow || defaultHomePageContent.whoWeAreEyebrow,

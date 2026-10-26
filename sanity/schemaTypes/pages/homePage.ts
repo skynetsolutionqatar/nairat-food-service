@@ -89,6 +89,43 @@ export const homePage = defineType({
       fieldset: 'hero',
       initialValue: 'تصفح قائمة منتجاتنا',
     }),
+    defineField({
+      name: 'heroVideoFile',
+      title: 'Hero Background Video File (MP4)',
+      description: 'Upload a background video file directly into Sanity (e.g. hero.mp4).',
+      type: 'file',
+      options: {
+        accept: 'video/*',
+      },
+      fieldset: 'hero',
+    }),
+    defineField({
+      name: 'heroVideoWebmFile',
+      title: 'Hero Background Video File (WebM Optional)',
+      description: 'Optional WebM version of the video for optimized browser delivery.',
+      type: 'file',
+      options: {
+        accept: 'video/*',
+      },
+      fieldset: 'hero',
+    }),
+    defineField({
+      name: 'heroVideoUrl',
+      title: 'Hero Video External / CDN URL',
+      description: 'Direct video URL (optional, used if provided instead of file upload). Defaults to /hero.mp4 if empty.',
+      type: 'url',
+      fieldset: 'hero',
+    }),
+    defineField({
+      name: 'heroPosterImage',
+      title: 'Hero Video Poster / Fallback Image',
+      description: 'Poster image displayed while video loads or if autoplay is restricted.',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fieldset: 'hero',
+    }),
 
     // --- 2. PARTNERS ---
     defineField({

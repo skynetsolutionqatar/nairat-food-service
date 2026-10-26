@@ -31,6 +31,10 @@ export function Hero({ content }: HeroProps = {}) {
     ? (content?.heroCtaPrimaryAr || dict.hero.ctaPrimary)
     : (content?.heroCtaPrimary || dict.hero.ctaPrimary);
 
+  const videoUrl = content?.heroVideoUrl || '/hero.mp4';
+  const videoWebmUrl = content?.heroVideoWebmUrl || '/hero.webm';
+  const posterUrl = content?.heroPosterUrl || '/hero-poster.webp';
+
   // Auto-recovery & resilient playback handling
   useEffect(() => {
     const video = videoRef.current;
@@ -91,7 +95,7 @@ export function Hero({ content }: HeroProps = {}) {
       video.removeEventListener('waiting', handleStall);
       video.removeEventListener('stalled', handleStall);
     };
-  }, []);
+  }, [videoUrl]);
 
   useGSAP(
     () => {
@@ -134,19 +138,20 @@ export function Hero({ content }: HeroProps = {}) {
     >
       {/* Background Video with preload="auto" and lightweight GPU rendering */}
       <video
+        key={videoUrl}
         ref={videoRef}
         autoPlay
         loop
         muted
         playsInline
         preload="metadata"
-        poster="/hero-poster.webp"
+        poster={posterUrl}
         disablePictureInPicture
         disableRemotePlayback
         className="absolute inset-0 w-full h-full object-cover pointer-events-none origin-center will-change-transform transform-gpu"
       >
-        <source src="/hero.mp4" type="video/mp4" />
-        <source src="/hero.webm" type="video/webm" />
+        {videoUrl && <source src={videoUrl} type={videoUrl.endsWith('.webm') ? 'video/webm' : 'video/mp4'} />}
+        {videoWebmUrl && videoWebmUrl !== videoUrl && <source src={videoWebmUrl} type="video/webm" />}
       </video>
 
       {/* Minimal subtle gradient overlay only at the bottom for crisp text readability */}

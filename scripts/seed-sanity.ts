@@ -105,6 +105,47 @@ async function uploadLocalImage(relativePath?: string): Promise<string | null> {
   }
 }
 
+async function uploadLocalFile(relativePath?: string, mimeType?: string): Promise<string | null> {
+  if (!relativePath || isDryRun || !token) return null;
+
+  const cleanPath = relativePath.startsWith('/') ? relativePath.slice(1) : relativePath;
+  const fullPath = path.resolve(process.cwd(), 'public', cleanPath);
+
+  if (!fs.existsSync(fullPath)) {
+    console.warn(`[Asset Warning] Local file not found: ${cleanPath}`);
+    return null;
+  }
+
+  if (uploadedAssetsCache.has(fullPath)) {
+    return uploadedAssetsCache.get(fullPath)!;
+  }
+
+  try {
+    const filename = path.basename(fullPath);
+    const contentType =
+      mimeType ||
+      (fullPath.endsWith('.webm')
+        ? 'video/webm'
+        : fullPath.endsWith('.mp4')
+        ? 'video/mp4'
+        : 'application/octet-stream');
+
+    process.stdout.write(`  ↗ Uploading file asset: ${filename}... `);
+    const fileStream = fs.createReadStream(fullPath);
+    const asset = await client.assets.upload('file', fileStream, {
+      filename,
+      contentType,
+    });
+
+    uploadedAssetsCache.set(fullPath, asset._id);
+    console.log(`done (${asset._id})`);
+    return asset._id;
+  } catch (err: any) {
+    console.log(`failed! (${err.message})`);
+    return null;
+  }
+}
+
 // 6 Commercial Services Data
 const servicesSeedData = [
   {
@@ -421,6 +462,10 @@ async function seed() {
 
   console.log('\n--- 6. Processing 6 Page Singletons ---');
   // 6.1 Home Page
+  const heroVideoAssetId = await uploadLocalFile('/hero.mp4');
+  const heroWebmAssetId = await uploadLocalFile('/hero.webm');
+  const heroPosterAssetId = await uploadLocalImage('/hero-poster.webp');
+
   operations.push({
     _id: 'homePage-singleton',
     _type: 'homePage',
@@ -434,6 +479,9 @@ async function seed() {
     heroCtaPrimaryAr: ar.hero.ctaPrimary,
     heroCtaSecondary: en.hero.ctaSecondary,
     heroCtaSecondaryAr: ar.hero.ctaSecondary,
+    ...(heroVideoAssetId ? { heroVideoFile: { _type: 'file', asset: { _type: 'reference', _ref: heroVideoAssetId } } } : {}),
+    ...(heroWebmAssetId ? { heroVideoWebmFile: { _type: 'file', asset: { _type: 'reference', _ref: heroWebmAssetId } } } : {}),
+    ...(heroPosterAssetId ? { heroPosterImage: { _type: 'image', asset: { _type: 'reference', _ref: heroPosterAssetId } } } : {}),
     partnersHeading: 'TRUSTED BY QATAR’S LEADING PARTNERS',
     partnersHeadingAr: 'شريك موثوق لكبرى المتاجر والشركات في قطر',
     whoWeAreEyebrow: 'WHO WE ARE',
