@@ -33,11 +33,11 @@ export function CompanyInfrastructure({ company, content }: CompanyInfrastructur
 
   const infraNarrative = isAr
     ? (content?.infraNarrativeAr ||
-        'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.')
+      'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.')
     : (content?.infraNarrative ||
-        "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.");
+      "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.");
 
-  const infraImageUrl = content?.infraImageUrl || '/whychooseus/chiller-warehouse.avif';
+  const infraImageUrl = content?.infraImageUrl || '/whychooseus/chiller-warehouse.jpg';
 
   const hubBadgeTitle = isAr
     ? (content?.infraHubBadgeTitleAr || 'مركز المنطقة الصناعية · الدوحة')

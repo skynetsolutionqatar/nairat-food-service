@@ -509,10 +509,10 @@ async function seed() {
   // 6.2 Company Page
   const teamAssetId = await uploadLocalImage('/team/team.jpg');
   const ceoAssetId = await uploadLocalImage('/team/ceo.jpg');
-  const warehouseAssetId = await uploadLocalImage('/whychooseus/warehouse.avif');
-  const chillerAssetId = await uploadLocalImage('/whychooseus/chiller-warehouse.avif');
-  const qualityAssetId = await uploadLocalImage('/whychooseus/temperature-controlled.avif');
-  const truckAssetId = await uploadLocalImage('/whychooseus/truck.avif');
+  const deliveringAssetId = await uploadLocalImage('/whychooseus/delivering.jpg');
+  const chillerAssetId = await uploadLocalImage('/whychooseus/chiller-warehouse.jpg');
+  const qualityAssetId = await uploadLocalImage('/whychooseus/temperature-controlled.jpg');
+  const truckAssetId = await uploadLocalImage('/whychooseus/truck.jpg');
 
   operations.push({
     _id: 'companyPage-singleton',
@@ -534,7 +534,7 @@ async function seed() {
     deliveringCommitmentTitleAr: 'التزامنا الأساسي',
     deliveringCommitmentBody: 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.',
     deliveringCommitmentBodyAr: 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.',
-    ...(warehouseAssetId ? { deliveringImage: { _type: 'image', asset: { _type: 'reference', _ref: warehouseAssetId } } } : {}),
+    ...(deliveringAssetId ? { deliveringImage: { _type: 'image', asset: { _type: 'reference', _ref: deliveringAssetId } } } : {}),
     deliveringBadgeEst: 'Est. 2020',
     deliveringBadgeEstAr: 'تأسست 2020',
     deliveringBadgeLocation: 'Street 37, Industrial Area',
@@ -559,8 +559,8 @@ async function seed() {
     ceoEyebrowAr: 'رسالة القيادة',
     ceoHeading: 'Committed to Freshness. Driven by Qatar’s Vision.',
     ceoHeadingAr: 'ملتزمون بالنضارة. مدفوعون برؤية قطر.',
-    ceoName: 'Nasser Al-Kuwari',
-    ceoNameAr: 'ناصر الكواري',
+    ceoName: 'Haidar Ali Ghulamhussain Haidari',
+    ceoNameAr: 'حيدر علي غلام حسين حيدري',
     ceoTitle: 'Chief Executive Officer, Nairat Food Services',
     ceoTitleAr: 'الرئيس التنفيذي، نيرات للخدمات الغذائية',
     ceoQuote: 'Our mission goes beyond delivering produce; it is about strengthening Qatar’s food ecosystem with uncompromising reliability and farm-fresh excellence.',
@@ -642,7 +642,7 @@ async function seed() {
 
   // 6.3 Quality Page
   const cargoShipAssetId = await uploadLocalImage('/quality/cargo-ship.jpg');
-  const qaTeamAssetId = await uploadLocalImage('/quality/qa-team-inspection.webp');
+  const qaTeamAssetId = await uploadLocalImage('/quality/qa-team-inspection.jpg');
 
   operations.push({
     _id: 'qualityPage-singleton',

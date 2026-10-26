@@ -24,22 +24,22 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
 
   const defaultParagraphs = isAr
     ? [
-        'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.',
-        'تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.',
-        'من المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.',
-      ]
+      'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.',
+      'تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.',
+      'من المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.',
+    ]
     : [
-        "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.",
-        'Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.',
-        'From farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.',
-      ];
+      "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.",
+      'Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.',
+      'From farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.',
+    ];
 
   const narrativeText = isAr ? content?.deliveringNarrativeAr : content?.deliveringNarrative;
   const paragraphs = narrativeText?.includes('\n')
     ? narrativeText.split(/\n\s*\n|\n/).filter(Boolean)
     : narrativeText
-    ? [narrativeText]
-    : defaultParagraphs;
+      ? [narrativeText]
+      : defaultParagraphs;
 
   const commitmentTitle = isAr
     ? (content?.deliveringCommitmentTitleAr || 'التزامنا الأساسي')
@@ -48,7 +48,7 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
     ? (content?.deliveringCommitmentBodyAr || 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.')
     : (content?.deliveringCommitmentBody || 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.');
 
-  const deliveringImageUrl = content?.deliveringImageUrl || '/whychooseus/warehouse.avif';
+  const deliveringImageUrl = content?.deliveringImageUrl || '/whychooseus/delivering.jpg';
   const badgeEst = isAr
     ? (content?.deliveringBadgeEstAr || 'تأسست 2020')
     : (content?.deliveringBadgeEst || 'Est. 2020');

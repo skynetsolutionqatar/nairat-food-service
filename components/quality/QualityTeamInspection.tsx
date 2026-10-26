@@ -76,7 +76,7 @@ export function QualityTeamInspection({ content }: QualityTeamInspectionProps = 
           <div className="team-anim-image lg:col-span-6 relative">
             <div className="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200/90 aspect-[4/3] sm:aspect-[16/11] lg:aspect-[4/3] bg-neutral-100 group">
               <Image
-                src={content?.inspectionImageUrl || '/quality/qa-team-inspection.webp'}
+                src={content?.inspectionImageUrl || '/quality/qa-team-inspection.jpg'}
                 alt={
                   isAr
                     ? 'فريق ضمان الجودة وسلامة الغذاء لشركة نيرات أثناء فحص المنتجات الطازجة'

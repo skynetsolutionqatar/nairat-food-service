@@ -293,14 +293,14 @@ export const companyPage = defineType({
       title: 'CEO Name (EN)',
       type: 'string',
       fieldset: 'ceo',
-      initialValue: 'Nasser Al-Kuwari',
+      initialValue: 'Haidar Ali Ghulamhussain Haidari',
     }),
     defineField({
       name: 'ceoNameAr',
       title: 'CEO Name (AR)',
       type: 'string',
       fieldset: 'ceo',
-      initialValue: 'ناصر الكواري',
+      initialValue: 'حيدر علي غلام حسين حيدري',
     }),
     defineField({
       name: 'ceoTitle',

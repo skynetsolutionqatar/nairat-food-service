@@ -29,22 +29,22 @@ export function CompanyQuality({ content }: CompanyQualityProps = {}) {
 
   const defaultParagraphs = isAr
     ? [
-        'في نيرات، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.',
-        'يتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
-      ]
+      'في نيرات، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.',
+      'يتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
+    ]
     : [
-        'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.',
-        'Our produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
-      ];
+      'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.',
+      'Our produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
+    ];
 
   const narrativeText = isAr ? content?.qualityNarrativeAr : content?.qualityNarrative;
   const paragraphs = narrativeText?.includes('\n')
     ? narrativeText.split(/\n\s*\n|\n/).filter(Boolean)
     : narrativeText
-    ? [narrativeText]
-    : defaultParagraphs;
+      ? [narrativeText]
+      : defaultParagraphs;
 
-  const imageUrl = content?.qualityImageUrl || '/whychooseus/temperature-controlled.avif';
+  const imageUrl = content?.qualityImageUrl || '/whychooseus/temperature-controlled.jpg';
 
   const badgeText = isAr
     ? (content?.qualityBadgeTextAr || 'معتمد بشهادة HACCP و ISO')

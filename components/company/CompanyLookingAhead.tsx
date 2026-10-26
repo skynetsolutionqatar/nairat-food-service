@@ -26,20 +26,20 @@ export function CompanyLookingAhead({ content }: CompanyLookingAheadProps = {}) 
 
   const defaultParagraphs = isAr
     ? [
-        'تواصل نيرات للأغذية تعزيز شبكة التوريد الخاصة بها، وقدراتها التشغيلية، وبنيتها التحتية لتلبية الاحتياجات المتطورة لقطاعي الأغذية والتجزئة في قطر.',
-        'يظل تركيزنا منصباً على بناء شراكات أقوى، وتوسيع نطاق الوصول إلى منتجات عالية الجودة، وتقديم إمداد موثوق من المنتجات الطازجة طوال العام.',
-      ]
+      'تواصل نيرات للأغذية تعزيز شبكة التوريد الخاصة بها، وقدراتها التشغيلية، وبنيتها التحتية لتلبية الاحتياجات المتطورة لقطاعي الأغذية والتجزئة في قطر.',
+      'يظل تركيزنا منصباً على بناء شراكات أقوى، وتوسيع نطاق الوصول إلى منتجات عالية الجودة، وتقديم إمداد موثوق من المنتجات الطازجة طوال العام.',
+    ]
     : [
-        "Nairat Food continues to strengthen its sourcing network, operational capabilities and infrastructure to meet the evolving needs of Qatar's food and retail sectors.",
-        'Our focus remains on building stronger partnerships, expanding access to quality produce and delivering a dependable fresh-produce supply throughout the year.',
-      ];
+      "Nairat Food continues to strengthen its sourcing network, operational capabilities and infrastructure to meet the evolving needs of Qatar's food and retail sectors.",
+      'Our focus remains on building stronger partnerships, expanding access to quality produce and delivering a dependable fresh-produce supply throughout the year.',
+    ];
 
   const narrativeText = isAr ? content?.lookingAheadNarrativeAr : content?.lookingAheadNarrative;
   const paragraphs = narrativeText?.includes('\n')
     ? narrativeText.split(/\n\s*\n|\n/).filter(Boolean)
     : narrativeText
-    ? [narrativeText]
-    : defaultParagraphs;
+      ? [narrativeText]
+      : defaultParagraphs;
 
   const ambitionLabel = isAr
     ? (content?.lookingAheadAmbitionLabelAr || 'طموحنا الاستراتيجي')
@@ -49,7 +49,7 @@ export function CompanyLookingAhead({ content }: CompanyLookingAheadProps = {}) 
     ? (content?.lookingAheadAmbitionQuoteAr || '«أن نصبح شريك المنتجات الطازجة الموثوق به للشركات والمستهلكين في جميع أنحاء قطر.»')
     : (content?.lookingAheadAmbitionQuote || '“To become the trusted fresh-produce partner for businesses and consumers across Qatar.”');
 
-  const imageUrl = content?.lookingAheadImageUrl || '/whychooseus/truck.avif';
+  const imageUrl = content?.lookingAheadImageUrl || '/whychooseus/truck.jpg';
 
   const badgeText = isAr
     ? (content?.lookingAheadBadgeTextAr || 'شبكة التوصيل المبرد')

@@ -21,13 +21,45 @@ export function CompanyCeoMessage({ content }: CompanyCeoMessageProps = {}) {
     ? (content?.ceoEyebrowAr || 'رسالة القيادة')
     : (content?.ceoEyebrow || 'LEADERSHIP MESSAGE');
 
-  const heading = isAr
-    ? (content?.ceoHeadingAr || 'ملتزمون بالنضارة. مدفوعون برؤية قطر.')
-    : (content?.ceoHeading || 'Committed to Freshness. Driven by Qatar’s Vision.');
+  const renderHeading = () => {
+    if (!isAr) {
+      const text = content?.ceoHeading || 'Committed to Freshness. Driven by Qatar’s Vision.';
+      if (text.includes('Driven by Qatar’s Vision.')) {
+        const parts = text.split('Driven by Qatar’s Vision.');
+        return (
+          <>
+            {parts[0]} <br className="hidden sm:inline" />
+            <span className="text-[#168849]">Driven by Qatar’s Vision.</span>
+            {parts[1]}
+          </>
+        );
+      }
+      return text;
+    } else {
+      const text = content?.ceoHeadingAr || 'ملتزمون بالنضارة. مدفوعون برؤية قطر.';
+      if (text.includes('مدفوعون برؤية قطر.')) {
+        const parts = text.split('مدفوعون برؤية قطر.');
+        return (
+          <>
+            {parts[0]} <br className="hidden sm:inline" />
+            <span className="text-[#168849]">مدفوعون برؤية قطر.</span>
+            {parts[1]}
+          </>
+        );
+      }
+      return text;
+    }
+  };
 
-  const ceoName = isAr
-    ? (content?.ceoNameAr || 'ناصر الكواري')
-    : (content?.ceoName || 'Nasser Al-Kuwari');
+  const rawCeoName = isAr
+    ? (content?.ceoNameAr || 'حيدر علي غلام حسين حيدري')
+    : (content?.ceoName || 'Haidar Ali Ghulamhussain Haidari');
+  const ceoName =
+    rawCeoName === 'Nasser Al-Kuwari'
+      ? 'Haidar Ali Ghulamhussain Haidari'
+      : rawCeoName === 'ناصر الكواري'
+      ? 'حيدر علي غلام حسين حيدري'
+      : rawCeoName;
 
   const ceoTitle = isAr
     ? (content?.ceoTitleAr || 'الرئيس التنفيذي، نيرات للخدمات الغذائية')
@@ -64,119 +96,111 @@ export function CompanyCeoMessage({ content }: CompanyCeoMessageProps = {}) {
     const section = sectionRef.current;
     if (!section) return;
 
-    const imageBox = section.querySelector('.ceo-image-card');
-    const contentItems = section.querySelectorAll('.ceo-content-item');
-    if (!imageBox || contentItems.length === 0) return;
+    const imageCard = section.querySelector('.ceo-image-card');
+    const textItems = section.querySelectorAll('.ceo-text-item');
+    if (!imageCard || textItems.length === 0) return;
 
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: 'top 85%',
+        start: 'top 88%',
         once: true,
       },
     });
 
     timeline
       .fromTo(
-        imageBox,
-        { opacity: 0, y: 30, scale: 0.98 },
-        { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: 'power3.out' }
+        imageCard,
+        { opacity: 0, scale: 0.98 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: 'power2.out' }
       )
       .fromTo(
-        contentItems,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out' },
+        textItems,
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.45, stagger: 0.06, ease: 'power3.out' },
         '-=0.3'
       );
-  }, []);
+  });
 
   return (
     <section
+      id="ceo-message"
       ref={sectionRef}
-      className="py-16 md:py-24 bg-[#F8FAF8] border-y border-emerald-900/5 relative overflow-hidden"
-      aria-label={isAr ? 'رسالة الرئيس التنفيذي' : 'CEO Message'}
+      className="scroll-mt-24 py-14 sm:py-16 lg:py-20 bg-white text-[#111814] border-t border-neutral-100"
     >
-      {/* Decorative background watermark */}
-      <div
-        className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-emerald-500/5 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-amber-500/5 blur-3xl pointer-events-none"
-        aria-hidden="true"
-      />
+      <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column: Visual Image Card (5 cols) */}
+          <div className="ceo-image-card lg:col-span-5 relative order-2 lg:order-1">
+            <div className="relative aspect-[3/4] sm:aspect-[4/5] lg:aspect-[3/4] w-full rounded-[20px] overflow-hidden shadow-2xs border border-neutral-200/90 bg-neutral-100 group">
+              <Image
+                src={imageUrl}
+                alt={ceoName}
+                fill
+                sizes="(max-width: 1024px) 100vw, 480px"
+                className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/15 to-transparent pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Column 1: CEO Portrait & Credentials */}
-          <div className="lg:col-span-5 flex flex-col items-center">
-            <div className="ceo-image-card relative w-full max-w-[380px] sm:max-w-[420px] rounded-2xl overflow-hidden shadow-xl bg-white border border-emerald-950/10 group">
-              <div className="relative aspect-[3/4] w-full">
-                <Image
-                  src={imageUrl}
-                  alt={ceoName}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 420px"
-                  className="object-cover object-top transition-transform duration-700 group-hover:scale-[1.02]"
-                  priority={false}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
-              </div>
-
-              {/* Bottom Badge inside portrait container */}
-              <div className="absolute bottom-0 inset-x-0 p-5 text-white bg-gradient-to-t from-[#063B27]/95 via-[#063B27]/80 to-transparent backdrop-blur-[2px]">
-                <h3 className="text-xl sm:text-2xl font-bold font-display tracking-tight text-white mb-0.5">
+              {/* Floating Name & Title Badge Matching Section Floating Cards */}
+              <div className="absolute bottom-4 inset-x-4 p-4 rounded-[16px] bg-white/95 backdrop-blur-md border border-neutral-200/80 shadow-md">
+                <h3 className="font-display font-semibold text-base sm:text-lg text-[#111814]">
                   {ceoName}
                 </h3>
-                <p className="text-sm font-medium text-emerald-200 tracking-wide">
+                <p className="font-sans text-xs sm:text-[13px] text-[#6B7280] leading-snug">
                   {ceoTitle}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Column 2: Editorial Message & Quote */}
-          <div className="lg:col-span-7 flex flex-col">
-            <div className="ceo-content-item mb-3">
-              <SectionEyebrow title={eyebrow} textColor="text-[#168849]" />
+          {/* Right Column: Narrative Copy + Quote Box (7 cols) */}
+          <div className="lg:col-span-7 space-y-6 order-1 lg:order-2">
+            <div className="ceo-text-item">
+              <SectionEyebrow title={eyebrow} />
             </div>
 
-            <h2 className="ceo-content-item text-3xl sm:text-4xl font-extrabold font-display text-[#111814] tracking-tight leading-[1.2] mb-6">
-              {heading}
+            <h2 className="ceo-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
+              {renderHeading()}
             </h2>
 
-            {/* Pull Quote Box */}
-            <div className="ceo-content-item relative bg-white p-6 sm:p-7 rounded-2xl border border-emerald-900/10 shadow-sm mb-6">
-              <Quote
-                className={`w-9 h-9 text-[#168849]/25 absolute top-5 ${
-                  isAr ? 'left-5' : 'right-5'
-                }`}
-                aria-hidden="true"
-              />
-              <p
-                className={`text-base sm:text-lg font-medium text-[#063B27] leading-relaxed relative z-10 ${
-                  isAr ? 'font-arabic' : 'italic'
-                }`}
-              >
-                &ldquo;{quote}&rdquo;
-              </p>
+            {/* Quote Box Matching Commitment Box Styling */}
+            <div className="ceo-text-item group p-5 sm:p-6 rounded-[19px] border border-neutral-200/90 flex items-start gap-4 sm:gap-5 shadow-2xs hover:border-neutral-300 transition-colors duration-300 bg-[#F8FAF8]">
+              <div className="shrink-0 w-11 h-11 rounded-full bg-white border border-neutral-200/80 flex items-center justify-center shadow-2xs">
+                <Quote
+                  className="w-5 h-5 text-[#88888A] group-hover:text-[#168849] transition-colors duration-300"
+                  aria-hidden="true"
+                />
+              </div>
+              <div className="space-y-1.5 flex-1 text-start">
+                <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] font-medium text-[#111814] leading-[1.6]">
+                  &ldquo;{quote}&rdquo;
+                </p>
+              </div>
             </div>
 
             {/* Narrative Paragraphs */}
-            <div className="ceo-content-item space-y-4 text-[#47554E] text-base leading-relaxed mb-6">
-              {paragraphs.map((p, index) => (
-                <p key={index}>{p}</p>
+            <div className="space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
+              {paragraphs.map((p, idx) => (
+                <p key={idx} className="ceo-text-item">
+                  {p}
+                </p>
               ))}
             </div>
 
-            {/* Sign-off badge */}
-            <div className="ceo-content-item flex items-center gap-4 pt-4 border-t border-emerald-950/10">
-              <div className="w-10 h-10 rounded-full bg-[#168849]/10 text-[#168849] flex items-center justify-center font-bold text-sm shrink-0">
-                NF
-              </div>
+            {/* Sign-off Signature Block */}
+            <div className="ceo-text-item pt-4 border-t border-neutral-200/80 flex items-center justify-between">
               <div>
-                <p className="text-sm font-bold text-[#111814]">{ceoName}</p>
-                <p className="text-xs text-[#72807A]">{ceoTitle}</p>
+                <p className="font-display font-semibold text-sm sm:text-base text-[#111814]">
+                  {ceoName}
+                </p>
+                <p className="font-sans text-xs text-[#6B7280]">
+                  {ceoTitle}
+                </p>
+              </div>
+              <div className="h-8 w-px bg-neutral-200" aria-hidden="true" />
+              <div className="font-display font-semibold text-xs tracking-wider text-[#168849] uppercase">
+                {isAr ? 'نيرات للخدمات الغذائية' : 'Nairat Food Services'}
               </div>
             </div>
           </div>
