@@ -18,14 +18,16 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
   const defaultNarrativeParagraphs = isAr
     ? [
         'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر.',
-        'من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية لتقديم منتجات طازجة ومتسقة لعملاء التجزئة والتجاريين على مدار العام.',
+        'من التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية لتقديم منتجات طازجة ومتسقة لعملاء التجزئة والجملة على مدار العام.',
       ]
     : [
         'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar.',
         'From global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
       ];
 
-  const narrativeText = isAr ? content?.visionMissionNarrativeAr : content?.visionMissionNarrative;
+  const narrativeText = isAr
+    ? content?.visionMissionNarrativeAr?.replace(/والتجاريين/g, 'والجملة')
+    : content?.visionMissionNarrative;
   const narrativeParagraphs = narrativeText?.includes('\n')
     ? narrativeText.split(/\n\s*\n|\n/).filter(Boolean)
     : narrativeText
