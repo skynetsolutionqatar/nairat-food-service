@@ -678,7 +678,7 @@ export const defaultHomePageContent: HomePageContent = {
   whoWeAreTitle: 'Fresh Produce. Strong Supply. Trusted Across Qatar.',
   whoWeAreTitleAr: 'منتجات طازجة. إمداد قوي. موثوق في جميع أنحاء قطر.',
   whoWeAreNarrative: 'Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.',
-  whoWeAreNarrativeAr: 'نيرات فود هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.',
+  whoWeAreNarrativeAr: 'نيرات الغذائية هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.',
   whoWeArePillar1Title: 'Global Sourcing',
   whoWeArePillar1TitleAr: 'التوريد العالمي',
   whoWeArePillar1Desc: 'Reliable sourcing from multiple growing regions across the world.',

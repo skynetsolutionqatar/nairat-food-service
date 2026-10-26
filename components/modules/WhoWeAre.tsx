@@ -71,7 +71,7 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
   };
 
   const narrative = isAr
-    ? (content?.whoWeAreNarrativeAr || 'نيرات فود هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.')
+    ? (content?.whoWeAreNarrativeAr?.replace(/نيرات فود/g, 'نيرات الغذائية') || 'نيرات الغذائية هي واحدة من الشركات الرائدة في توريد المنتجات الطازجة في قطر، حيث تستورد الفواكه والخضروات الطازجة المتميزة من مناطق زراعية موثوقة حول العالم وتوصلها إلى تجار التجزئة وتجار الجملة وشركات الخدمات الغذائية والمنازل في جميع أنحاء قطر.')
     : (content?.whoWeAreNarrative || 'Nairat Food is one of Qatar’s leading fresh-produce suppliers, sourcing premium fresh fruits and vegetables from trusted growing regions worldwide and delivering them to retailers, wholesalers, food-service businesses and homes across Qatar.');
 
   const stats: StatItem[] = [
