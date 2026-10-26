@@ -39,12 +39,8 @@ export function WhoWeAre({ content }: WhoWeAreProps = {}) {
   const isAr = locale === 'ar';
 
   const eyebrow = isAr
-    ? (content?.whoWeAreEyebrowAr && content.whoWeAreEyebrowAr !== 'عن نيرات للخدمات الغذائية'
-      ? content.whoWeAreEyebrowAr
-      : 'من نحن')
-    : (content?.whoWeAreEyebrow && content.whoWeAreEyebrow !== 'About Nairat Food Services'
-      ? content.whoWeAreEyebrow
-      : 'WHO WE ARE');
+    ? (content?.whoWeAreEyebrowAr || 'من نحن')
+    : (content?.whoWeAreEyebrow || 'WHO WE ARE');
 
   const renderHeadline = () => {
     if (!isAr) {
