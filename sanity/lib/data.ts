@@ -883,6 +883,20 @@ export interface CompanyPageContent {
   missionBody: string;
   missionBodyAr: string;
 
+  ceoEyebrow: string;
+  ceoEyebrowAr: string;
+  ceoHeading: string;
+  ceoHeadingAr: string;
+  ceoName: string;
+  ceoNameAr: string;
+  ceoTitle: string;
+  ceoTitleAr: string;
+  ceoQuote: string;
+  ceoQuoteAr: string;
+  ceoMessage: string;
+  ceoMessageAr: string;
+  ceoImageUrl?: string;
+
   infraTitle: string;
   infraTitleAr: string;
   infraNarrative: string;
@@ -983,6 +997,20 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   missionTitleAr: ar.company.missionTitle,
   missionBody: en.company.missionDesc,
   missionBodyAr: ar.company.missionDesc,
+
+  ceoEyebrow: 'LEADERSHIP MESSAGE',
+  ceoEyebrowAr: 'رسالة القيادة',
+  ceoHeading: 'Committed to Freshness. Driven by Qatar’s Vision.',
+  ceoHeadingAr: 'ملتزمون بالنضارة. مدفوعون برؤية قطر.',
+  ceoName: 'Nasser Al-Kuwari',
+  ceoNameAr: 'ناصر الكواري',
+  ceoTitle: 'Chief Executive Officer, Nairat Food Services',
+  ceoTitleAr: 'الرئيس التنفيذي، نيرات للخدمات الغذائية',
+  ceoQuote: 'Our mission goes beyond delivering produce; it is about strengthening Qatar’s food ecosystem with uncompromising reliability and farm-fresh excellence.',
+  ceoQuoteAr: 'رسالتنا تتجاوز مجرد توريد المنتجات، بل تتمحور حول تعزيز منظومة الأمن الغذائي في قطر بموثوقية لا تهاون فيها وتميز مستمد من أصالة المزارع.',
+  ceoMessage: 'Since our founding in 2020, Nairat Food Services has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.\n\nEvery day, our dedicated team works tirelessly to bridge international harvest fields directly to hypermarkets, restaurants, and homes across Qatar. We invest in people, advanced chilling logistics, and stringent food safety protocols to ensure our partners receive produce at peak freshness.\n\nAs Qatar continues to grow, we remain proud to play our role in supporting national food security and elevating the standard of fresh produce across the country.',
+  ceoMessageAr: 'منذ تأسيسنا في عام 2020، انطلقت نيرات للخدمات الغذائية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.\n\nيعمل فريقنا المتفاني يومياً لربط حقول الحصاد العالمية مباشرة بكبرى المتاجر، والمطاعم، والمنازل في جميع أنحاء قطر. نحن نستثمر باستمرار في كوادرنا، وتقنيات التبريد المتقدمة، وأعلى معايير سلامة الأغذية لضمان وصول المنتجات في أوج نضارتها.\n\nومع استمرار مسيرة النمو في دولة قطر، نفخر بالقيام بدورنا المحوري في دعم الأمن الغذائي الوطني والارتقاء بمعايير المنتجات الطازجة في كافة أنحاء البلاد.',
+  ceoImageUrl: '/team/ceo.jpg',
 
   infraTitle: 'Built Around Freshness: Infrastructure Designed for Scale',
   infraTitleAr: 'صُممت حول النضارة: بنية تحتية مصممة للنمو والتوسع',
@@ -1099,6 +1127,20 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           missionTitleAr: data.missionTitleAr || defaultCompanyPageContent.missionTitleAr,
           missionBody: data.missionBody || defaultCompanyPageContent.missionBody,
           missionBodyAr: data.missionBodyAr || defaultCompanyPageContent.missionBodyAr,
+
+          ceoEyebrow: data.ceoEyebrow || defaultCompanyPageContent.ceoEyebrow,
+          ceoEyebrowAr: data.ceoEyebrowAr || defaultCompanyPageContent.ceoEyebrowAr,
+          ceoHeading: data.ceoHeading || defaultCompanyPageContent.ceoHeading,
+          ceoHeadingAr: data.ceoHeadingAr || defaultCompanyPageContent.ceoHeadingAr,
+          ceoName: data.ceoName || defaultCompanyPageContent.ceoName,
+          ceoNameAr: data.ceoNameAr || defaultCompanyPageContent.ceoNameAr,
+          ceoTitle: data.ceoTitle || defaultCompanyPageContent.ceoTitle,
+          ceoTitleAr: data.ceoTitleAr || defaultCompanyPageContent.ceoTitleAr,
+          ceoQuote: data.ceoQuote || defaultCompanyPageContent.ceoQuote,
+          ceoQuoteAr: data.ceoQuoteAr || defaultCompanyPageContent.ceoQuoteAr,
+          ceoMessage: data.ceoMessage || defaultCompanyPageContent.ceoMessage,
+          ceoMessageAr: data.ceoMessageAr || defaultCompanyPageContent.ceoMessageAr,
+          ceoImageUrl: (data.ceoImage ? urlForImage(data.ceoImage) : null) || defaultCompanyPageContent.ceoImageUrl,
 
           infraTitle: data.infraTitle || defaultCompanyPageContent.infraTitle,
           infraTitleAr: data.infraTitleAr || defaultCompanyPageContent.infraTitleAr,

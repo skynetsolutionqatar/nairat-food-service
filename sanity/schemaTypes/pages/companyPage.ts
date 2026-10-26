@@ -8,11 +8,12 @@ export const companyPage = defineType({
     { name: 'banner', title: '1. Page Banner', options: { collapsible: true, collapsed: false } },
     { name: 'delivering', title: '2. Delivering Freshness Section', options: { collapsible: true, collapsed: true } },
     { name: 'visionMission', title: '3. Vision & Mission Section', options: { collapsible: true, collapsed: true } },
-    { name: 'infrastructure', title: '4. Infrastructure & Operational Scale Section', options: { collapsible: true, collapsed: true } },
-    { name: 'sourcing', title: '5. Strategic Global Sourcing Section', options: { collapsible: true, collapsed: true } },
-    { name: 'team', title: '6. Dedicated Team Section', options: { collapsible: true, collapsed: true } },
-    { name: 'quality', title: '7. Quality & Food Safety Section', options: { collapsible: true, collapsed: true } },
-    { name: 'lookingAhead', title: '8. Looking Ahead Section', options: { collapsible: true, collapsed: true } },
+    { name: 'ceo', title: '4. CEO Message Section', options: { collapsible: true, collapsed: true } },
+    { name: 'infrastructure', title: '5. Infrastructure & Operational Scale Section', options: { collapsible: true, collapsed: true } },
+    { name: 'sourcing', title: '6. Strategic Global Sourcing Section', options: { collapsible: true, collapsed: true } },
+    { name: 'team', title: '7. Dedicated Team Section', options: { collapsible: true, collapsed: true } },
+    { name: 'quality', title: '8. Quality & Food Safety Section', options: { collapsible: true, collapsed: true } },
+    { name: 'lookingAhead', title: '9. Looking Ahead Section', options: { collapsible: true, collapsed: true } },
   ],
   fields: [
     // ==========================================
@@ -257,7 +258,106 @@ export const companyPage = defineType({
     }),
 
     // ==========================================
-    // --- 4. INFRASTRUCTURE & OPERATIONAL SCALE ---
+    // --- 4. CEO MESSAGE ---
+    // ==========================================
+    defineField({
+      name: 'ceoEyebrow',
+      title: 'CEO Eyebrow (EN)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'LEADERSHIP MESSAGE',
+    }),
+    defineField({
+      name: 'ceoEyebrowAr',
+      title: 'CEO Eyebrow (AR)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'رسالة القيادة',
+    }),
+    defineField({
+      name: 'ceoHeading',
+      title: 'CEO Heading (EN)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'Committed to Freshness. Driven by Qatar’s Vision.',
+    }),
+    defineField({
+      name: 'ceoHeadingAr',
+      title: 'CEO Heading (AR)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'ملتزمون بالنضارة. مدفوعون برؤية قطر.',
+    }),
+    defineField({
+      name: 'ceoName',
+      title: 'CEO Name (EN)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'Nasser Al-Kuwari',
+    }),
+    defineField({
+      name: 'ceoNameAr',
+      title: 'CEO Name (AR)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'ناصر الكواري',
+    }),
+    defineField({
+      name: 'ceoTitle',
+      title: 'CEO Designation (EN)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'Chief Executive Officer, Nairat Food Services',
+    }),
+    defineField({
+      name: 'ceoTitleAr',
+      title: 'CEO Designation (AR)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'الرئيس التنفيذي، نيرات للخدمات الغذائية',
+    }),
+    defineField({
+      name: 'ceoQuote',
+      title: 'CEO Quote / Highlight (EN)',
+      type: 'text',
+      rows: 2,
+      fieldset: 'ceo',
+      initialValue: 'Our mission goes beyond delivering produce; it is about strengthening Qatar’s food ecosystem with uncompromising reliability and farm-fresh excellence.',
+    }),
+    defineField({
+      name: 'ceoQuoteAr',
+      title: 'CEO Quote / Highlight (AR)',
+      type: 'text',
+      rows: 2,
+      fieldset: 'ceo',
+      initialValue: 'رسالتنا تتجاوز مجرد توريد المنتجات، بل تتمحور حول تعزيز منظومة الأمن الغذائي في قطر بموثوقية لا تهاون فيها وتميز مستمد من أصالة المزارع.',
+    }),
+    defineField({
+      name: 'ceoMessage',
+      title: 'CEO Narrative / Message (EN)',
+      type: 'text',
+      rows: 4,
+      fieldset: 'ceo',
+      initialValue: 'Since our founding in 2020, Nairat Food Services has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.\n\nEvery day, our dedicated team works tirelessly to bridge international harvest fields directly to hypermarkets, restaurants, and homes across Qatar. We invest in people, advanced chilling logistics, and stringent food safety protocols to ensure our partners receive produce at peak freshness.\n\nAs Qatar continues to grow, we remain proud to play our role in supporting national food security and elevating the standard of fresh produce across the country.',
+    }),
+    defineField({
+      name: 'ceoMessageAr',
+      title: 'CEO Narrative / Message (AR)',
+      type: 'text',
+      rows: 4,
+      fieldset: 'ceo',
+      initialValue: 'منذ تأسيسنا في عام 2020، انطلقت نيرات للخدمات الغذائية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.\n\nيعمل فريقنا المتفاني يومياً لربط حقول الحصاد العالمية مباشرة بكبرى المتاجر، والمطاعم، والمنازل في جميع أنحاء قطر. نحن نستثمر باستمرار في كوادرنا، وتقنيات التبريد المتقدمة، وأعلى معايير سلامة الأغذية لضمان وصول المنتجات في أوج نضارتها.\n\nومع استمرار مسيرة النمو في دولة قطر، نفخر بالقيام بدورنا المحوري في دعم الأمن الغذائي الوطني والارتقاء بمعايير المنتجات الطازجة في كافة أنحاء البلاد.',
+    }),
+    defineField({
+      name: 'ceoImage',
+      title: 'CEO Portrait Image',
+      type: 'image',
+      fieldset: 'ceo',
+      options: { hotspot: true },
+    }),
+
+    // ==========================================
+    // --- 5. INFRASTRUCTURE & OPERATIONAL SCALE ---
     // ==========================================
     defineField({
       name: 'infraTitle',

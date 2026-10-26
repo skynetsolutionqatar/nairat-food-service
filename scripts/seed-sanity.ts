@@ -508,6 +508,7 @@ async function seed() {
 
   // 6.2 Company Page
   const teamAssetId = await uploadLocalImage('/team/team.jpg');
+  const ceoAssetId = await uploadLocalImage('/team/ceo.jpg');
   const warehouseAssetId = await uploadLocalImage('/whychooseus/warehouse.avif');
   const chillerAssetId = await uploadLocalImage('/whychooseus/chiller-warehouse.avif');
   const qualityAssetId = await uploadLocalImage('/whychooseus/temperature-controlled.avif');
@@ -553,7 +554,22 @@ async function seed() {
     missionBody: 'We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every aspect of our operations. We continuously invest in our people, processes and infrastructure to build long-term relationships.',
     missionBodyAr: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل جانب من جوانب عملياتنا. نحن نستثمر باستمرار في موظفينا، وعملياتنا، وبنيتنا التحتية لبناء علاقات طويلة الأمد.',
 
-    // 4. Infrastructure & Operational Scale
+    // 4. CEO Message
+    ceoEyebrow: 'LEADERSHIP MESSAGE',
+    ceoEyebrowAr: 'رسالة القيادة',
+    ceoHeading: 'Committed to Freshness. Driven by Qatar’s Vision.',
+    ceoHeadingAr: 'ملتزمون بالنضارة. مدفوعون برؤية قطر.',
+    ceoName: 'Nasser Al-Kuwari',
+    ceoNameAr: 'ناصر الكواري',
+    ceoTitle: 'Chief Executive Officer, Nairat Food Services',
+    ceoTitleAr: 'الرئيس التنفيذي، نيرات للخدمات الغذائية',
+    ceoQuote: 'Our mission goes beyond delivering produce; it is about strengthening Qatar’s food ecosystem with uncompromising reliability and farm-fresh excellence.',
+    ceoQuoteAr: 'رسالتنا تتجاوز مجرد توريد المنتجات، بل تتمحور حول تعزيز منظومة الأمن الغذائي في قطر بموثوقية لا تهاون فيها وتميز مستمد من أصالة المزارع.',
+    ceoMessage: 'Since our founding in 2020, Nairat Food Services has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.\n\nEvery day, our dedicated team works tirelessly to bridge international harvest fields directly to hypermarkets, restaurants, and homes across Qatar. We invest in people, advanced chilling logistics, and stringent food safety protocols to ensure our partners receive produce at peak freshness.\n\nAs Qatar continues to grow, we remain proud to play our role in supporting national food security and elevating the standard of fresh produce across the country.',
+    ceoMessageAr: 'منذ تأسيسنا في عام 2020، انطلقت نيرات للخدمات الغذائية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.\n\nيعمل فريقنا المتفاني يومياً لربط حقول الحصاد العالمية مباشرة بكبرى المتاجر، والمطاعم، والمنازل في جميع أنحاء قطر. نحن نستثمر باستمرار في كوادرنا، وتقنيات التبريد المتقدمة، وأعلى معايير سلامة الأغذية لضمان وصول المنتجات في أوج نضارتها.\n\nومع استمرار مسيرة النمو في دولة قطر، نفخر بالقيام بدورنا المحوري في دعم الأمن الغذائي الوطني والارتقاء بمعايير المنتجات الطازجة في كافة أنحاء البلاد.',
+    ...(ceoAssetId ? { ceoImage: { _type: 'image', asset: { _type: 'reference', _ref: ceoAssetId } } } : {}),
+
+    // 5. Infrastructure & Operational Scale
     infraTitle: 'Built Around Freshness: Infrastructure Designed for Scale',
     infraTitleAr: 'صُممت حول النضارة: بنية تحتية مصممة للنمو والتوسع',
     infraNarrative: "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.",

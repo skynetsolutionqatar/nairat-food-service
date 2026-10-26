@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { PageBanner } from '@/components/ui/PageBanner';
 import { CompanyDelivering } from '@/components/company/CompanyDelivering';
 import { CompanyVisionMission } from '@/components/company/CompanyVisionMission';
+import { CompanyCeoMessage } from '@/components/company/CompanyCeoMessage';
 import { CompanyInfrastructure } from '@/components/company/CompanyInfrastructure';
 import { CompanySourcing } from '@/components/company/CompanySourcing';
 import { CompanyTeam } from '@/components/company/CompanyTeam';
@@ -51,7 +52,10 @@ export default async function CompanyPage() {
       {/* 3. Our Journey: Vision & Mission (Narrative on Left, Yellow-Badged Cards on Right) */}
       <CompanyVisionMission content={companyContent} />
 
-      {/* 4. Infrastructure & Operational Scale (Full-Bleed Solid Green Section) */}
+      {/* 4. Leadership & CEO Message */}
+      <CompanyCeoMessage content={companyContent} />
+
+      {/* 5. Infrastructure & Operational Scale (Full-Bleed Solid Green Section) */}
       <CompanyInfrastructure company={company} content={companyContent} />
 
       {/* 5. Strategic Global Sourcing (Narrative on Left, Yellow-Badged Cards on Right) */}
