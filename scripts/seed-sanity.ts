@@ -463,7 +463,6 @@ async function seed() {
   console.log('\n--- 6. Processing 6 Page Singletons ---');
   // 6.1 Home Page
   const heroVideoAssetId = await uploadLocalFile('/hero.mp4');
-  const heroWebmAssetId = await uploadLocalFile('/hero.webm');
   const heroPosterAssetId = await uploadLocalImage('/hero-poster.webp');
 
   operations.push({
@@ -480,7 +479,6 @@ async function seed() {
     heroCtaSecondary: en.hero.ctaSecondary,
     heroCtaSecondaryAr: ar.hero.ctaSecondary,
     ...(heroVideoAssetId ? { heroVideoFile: { _type: 'file', asset: { _type: 'reference', _ref: heroVideoAssetId } } } : {}),
-    ...(heroWebmAssetId ? { heroVideoWebmFile: { _type: 'file', asset: { _type: 'reference', _ref: heroWebmAssetId } } } : {}),
     ...(heroPosterAssetId ? { heroPosterImage: { _type: 'image', asset: { _type: 'reference', _ref: heroPosterAssetId } } } : {}),
     partnersHeading: 'TRUSTED BY QATAR’S LEADING PARTNERS',
     partnersHeadingAr: 'شريك موثوق لكبرى المتاجر والشركات في قطر',

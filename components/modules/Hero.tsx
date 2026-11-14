@@ -32,7 +32,7 @@ export function Hero({ content }: HeroProps = {}) {
     : (content?.heroCtaPrimary || dict.hero.ctaPrimary);
 
   const videoUrl = content?.heroVideoUrl || '/hero.mp4';
-  const videoWebmUrl = content?.heroVideoWebmUrl || '/hero.webm';
+  const videoWebmUrl = content?.heroVideoWebmUrl;
   const posterUrl = content?.heroPosterUrl || '/hero-poster.webp';
 
   // Auto-recovery & resilient playback handling
