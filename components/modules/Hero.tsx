@@ -154,8 +154,8 @@ export function Hero({ content }: HeroProps = {}) {
         {videoWebmUrl && videoWebmUrl !== videoUrl && <source src={videoWebmUrl} type="video/webm" />}
       </video>
 
-      {/* Minimal subtle gradient overlay only at the bottom for crisp text readability */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent pointer-events-none" />
+      {/* Small bottom overlay so the headline and subheading stay readable */}
+      <div className="absolute inset-x-0 bottom-0 h-[55%] bg-linear-to-t from-black/75 via-black/40 to-transparent pointer-events-none" />
 
       {/* Main Content Container */}
       <div
@@ -173,7 +173,7 @@ export function Hero({ content }: HeroProps = {}) {
 
           {/* DIV 2: Subheading & CTA Button */}
           <div className="w-full lg:w-[38%] flex flex-col justify-end items-start gap-5 2xl:gap-6 text-start">
-            <p className="hero-sub-text font-sans text-xs sm:text-[13px] 2xl:text-[14px] text-gray-300 leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-start">
+            <p className="hero-sub-text font-sans text-sm text-white leading-relaxed max-w-[44ch] 2xl:max-w-[48ch] text-justify">
               {subtitle}
             </p>
 
