@@ -48,12 +48,12 @@ function StrengthCard({ strength, profile, content }: StrengthCardProps) {
     <FeatureCard className="strength-card-item items-center text-center">
       <Icon className="w-11 h-11 text-nairat-green" strokeWidth={1.6} aria-hidden="true" />
       <p className="font-sans font-bold text-[40px] leading-none tracking-[-0.02em] tabular-nums">
-        <CountUp value={strength.figure(profile)[locale]} />
+        <CountUp value={strength.figure(profile, content)[locale]} />
       </p>
       <h3 className="font-sans font-bold text-[17px] leading-[1.35]">
-        <MarkedText text={strength.title[locale]} phrase={strength.highlight[locale]} />
+        <MarkedText text={strength.title(content)[locale]} phrase={strength.highlight(content)[locale]} />
       </h3>
-      <p className="font-sans text-sm leading-[1.6] text-ink-muted">{strength.description(content)[locale]}</p>
+      <p className="font-sans text-sm leading-[1.6] text-ink-muted">{strength.description[locale]}</p>
     </FeatureCard>
   );
 }
@@ -64,6 +64,7 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
   const profile = company || defaultCompany;
   const text = copy[locale];
   const eyebrow = (locale === 'ar' ? content?.strengthsEyebrowAr : content?.strengthsEyebrow) || text.eyebrow;
+  const lead = (locale === 'ar' ? content?.strengthsLeadAr : content?.strengthsLead) || text.lead;
   const title = (locale === 'ar' ? content?.strengthsTitleAr : content?.strengthsTitle) || text.title;
 
   useSectionReveal(containerRef, ['.strength-header-item', '.strength-card-item']);
@@ -75,7 +76,7 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
           align="center"
           eyebrow={eyebrow}
           title={<MarkedText text={title} phrase={text.highlight} />}
-          lead={text.lead}
+          lead={lead}
           itemClassName="strength-header-item"
         />
 
@@ -87,7 +88,7 @@ export function Strengths({ company, content }: StrengthsProps = {}) {
 
         <div className="strength-card-item relative h-[260px] sm:h-[420px] rounded-panel overflow-hidden bg-leaf">
           <Image
-            src="/whychooseus/warehouse.jpg"
+            src={content?.strengthsImageUrl || '/whychooseus/warehouse.jpg'}
             alt={text.photoAlt}
             fill
             sizes="(max-width: 1248px) 100vw, 1200px"

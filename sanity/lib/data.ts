@@ -615,16 +615,33 @@ export interface HomePageContent {
   strengthsEyebrowAr: string;
   strengthsTitle: string;
   strengthsTitleAr: string;
-  strengthsOriginDesc: string;
-  strengthsOriginDescAr: string;
-  strengthsChillerDesc: string;
-  strengthsChillerDescAr: string;
-  strengthsWarehouseDesc: string;
-  strengthsWarehouseDescAr: string;
-  strengthsColdChainDesc: string;
-  strengthsColdChainDescAr: string;
-  strengthsFleetDesc: string;
-  strengthsFleetDescAr: string;
+  strengthsLead: string;
+  strengthsLeadAr: string;
+  strengthsChillerTitle: string;
+  strengthsChillerTitleAr: string;
+  strengthsWarehouseTitle: string;
+  strengthsWarehouseTitleAr: string;
+  strengthsFleetTitle: string;
+  strengthsFleetTitleAr: string;
+  strengthsOriginTitle: string;
+  strengthsOriginTitleAr: string;
+  strengthsChillerFigure?: string;
+  strengthsChillerFigureAr?: string;
+  strengthsChillerHighlight?: string;
+  strengthsChillerHighlightAr?: string;
+  strengthsWarehouseFigure?: string;
+  strengthsWarehouseFigureAr?: string;
+  strengthsWarehouseHighlight?: string;
+  strengthsWarehouseHighlightAr?: string;
+  strengthsFleetFigure?: string;
+  strengthsFleetFigureAr?: string;
+  strengthsFleetHighlight?: string;
+  strengthsFleetHighlightAr?: string;
+  strengthsOriginFigure?: string;
+  strengthsOriginFigureAr?: string;
+  strengthsOriginHighlight?: string;
+  strengthsOriginHighlightAr?: string;
+  strengthsImageUrl?: string;
   servicesEyebrow: string;
   servicesEyebrowAr: string;
   servicesTitle: string;
@@ -700,16 +717,17 @@ export const defaultHomePageContent: HomePageContent = {
   strengthsEyebrowAr: 'لماذا تختار نيرات',
   strengthsTitle: 'Built for Freshness. Ready to Deliver.',
   strengthsTitleAr: 'صُممت من أجل النضارة. جاهزون للتوصيل.',
-  strengthsOriginDesc: 'Direct partnerships with certified international growers.',
-  strengthsOriginDescAr: 'شراكات مباشرة مع مزارعين دوليين معتمدين.',
-  strengthsChillerDesc: 'Temperature zones configured for every variety.',
-  strengthsChillerDescAr: 'نطاقات حرارة مضبوطة لكل صنف.',
-  strengthsWarehouseDesc: 'Quality control from intake to dispatch.',
-  strengthsWarehouseDescAr: 'مراقبة الجودة من الاستلام حتى الإرسال.',
-  strengthsColdChainDesc: 'Rigorous FIFO rotation and continuous climate monitoring keeping fresh produce in optimal condition across all transit stages.',
-  strengthsColdChainDescAr: 'تدوير صارم بنظام ما يدخل أولاً يخرج أولاً (FIFO) ومراقبة مستمرة للمناخ للحفاظ على المنتجات الطازجة في حالة مثالية عبر جميع مراحل النقل.',
-  strengthsFleetDesc: 'A temperature-controlled fleet on precise schedules.',
-  strengthsFleetDescAr: 'أسطول مضبوط الحرارة وفق جداول دقيقة.',
+  strengthsLead: 'From global sourcing to last-mile delivery, our integrated supply chain is designed to protect quality and deliver fresh produce reliably across Qatar.',
+  strengthsLeadAr: 'من التوريد العالمي إلى التوصيل في المرحلة الأخيرة، صُممت سلسلة التوريد المتكاملة لدينا لحماية الجودة وتوصيل المنتجات الطازجة بموثوقية في جميع أنحاء قطر.',
+  strengthsChillerTitle: 'Dedicated Chiller Rooms',
+  strengthsChillerTitleAr: 'غرف تبريد مخصصة',
+  strengthsWarehouseTitle: 'Cold-Chain Warehouse',
+  strengthsWarehouseTitleAr: 'مستودع سلسلة التبريد',
+  strengthsFleetTitle: 'Refrigerated Vehicles',
+  strengthsFleetTitleAr: 'مركبات مبردة',
+  strengthsOriginTitle: 'Sourced at Origin',
+  strengthsOriginTitleAr: 'التوريد من المنشأ',
+  strengthsImageUrl: '/whychooseus/warehouse.jpg',
   servicesEyebrow: 'WHAT WE DO',
   servicesEyebrowAr: 'ما نقوم به',
   servicesTitle: 'Fresh Produce Supply at Every Scale.',
@@ -801,16 +819,33 @@ export async function getHomePageContent(): Promise<HomePageContent> {
           strengthsEyebrowAr: data.strengthsEyebrowAr || defaultHomePageContent.strengthsEyebrowAr,
           strengthsTitle: data.strengthsTitle || defaultHomePageContent.strengthsTitle,
           strengthsTitleAr: data.strengthsTitleAr || defaultHomePageContent.strengthsTitleAr,
-          strengthsOriginDesc: data.strengthsOriginDesc || defaultHomePageContent.strengthsOriginDesc,
-          strengthsOriginDescAr: data.strengthsOriginDescAr || defaultHomePageContent.strengthsOriginDescAr,
-          strengthsChillerDesc: data.strengthsChillerDesc || defaultHomePageContent.strengthsChillerDesc,
-          strengthsChillerDescAr: data.strengthsChillerDescAr || defaultHomePageContent.strengthsChillerDescAr,
-          strengthsWarehouseDesc: data.strengthsWarehouseDesc || defaultHomePageContent.strengthsWarehouseDesc,
-          strengthsWarehouseDescAr: data.strengthsWarehouseDescAr || defaultHomePageContent.strengthsWarehouseDescAr,
-          strengthsColdChainDesc: data.strengthsColdChainDesc || defaultHomePageContent.strengthsColdChainDesc,
-          strengthsColdChainDescAr: data.strengthsColdChainDescAr || defaultHomePageContent.strengthsColdChainDescAr,
-          strengthsFleetDesc: data.strengthsFleetDesc || defaultHomePageContent.strengthsFleetDesc,
-          strengthsFleetDescAr: data.strengthsFleetDescAr || defaultHomePageContent.strengthsFleetDescAr,
+          strengthsLead: data.strengthsLead || defaultHomePageContent.strengthsLead,
+          strengthsLeadAr: data.strengthsLeadAr || defaultHomePageContent.strengthsLeadAr,
+          strengthsChillerTitle: data.strengthsChillerTitle || defaultHomePageContent.strengthsChillerTitle,
+          strengthsChillerTitleAr: data.strengthsChillerTitleAr || defaultHomePageContent.strengthsChillerTitleAr,
+          strengthsWarehouseTitle: data.strengthsWarehouseTitle || defaultHomePageContent.strengthsWarehouseTitle,
+          strengthsWarehouseTitleAr: data.strengthsWarehouseTitleAr || defaultHomePageContent.strengthsWarehouseTitleAr,
+          strengthsFleetTitle: data.strengthsFleetTitle || defaultHomePageContent.strengthsFleetTitle,
+          strengthsFleetTitleAr: data.strengthsFleetTitleAr || defaultHomePageContent.strengthsFleetTitleAr,
+          strengthsOriginTitle: data.strengthsOriginTitle || defaultHomePageContent.strengthsOriginTitle,
+          strengthsOriginTitleAr: data.strengthsOriginTitleAr || defaultHomePageContent.strengthsOriginTitleAr,
+          strengthsChillerFigure: data.strengthsChillerFigure,
+          strengthsChillerFigureAr: data.strengthsChillerFigureAr,
+          strengthsChillerHighlight: data.strengthsChillerHighlight,
+          strengthsChillerHighlightAr: data.strengthsChillerHighlightAr,
+          strengthsWarehouseFigure: data.strengthsWarehouseFigure,
+          strengthsWarehouseFigureAr: data.strengthsWarehouseFigureAr,
+          strengthsWarehouseHighlight: data.strengthsWarehouseHighlight,
+          strengthsWarehouseHighlightAr: data.strengthsWarehouseHighlightAr,
+          strengthsFleetFigure: data.strengthsFleetFigure,
+          strengthsFleetFigureAr: data.strengthsFleetFigureAr,
+          strengthsFleetHighlight: data.strengthsFleetHighlight,
+          strengthsFleetHighlightAr: data.strengthsFleetHighlightAr,
+          strengthsOriginFigure: data.strengthsOriginFigure,
+          strengthsOriginFigureAr: data.strengthsOriginFigureAr,
+          strengthsOriginHighlight: data.strengthsOriginHighlight,
+          strengthsOriginHighlightAr: data.strengthsOriginHighlightAr,
+          strengthsImageUrl: data.strengthsImageUrl || defaultHomePageContent.strengthsImageUrl,
           servicesEyebrow: data.servicesEyebrow || defaultHomePageContent.servicesEyebrow,
           servicesEyebrowAr: data.servicesEyebrowAr || defaultHomePageContent.servicesEyebrowAr,
           servicesTitle: data.servicesTitle || defaultHomePageContent.servicesTitle,
