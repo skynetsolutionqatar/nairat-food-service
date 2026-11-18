@@ -1,5 +1,24 @@
 import type { NextConfig } from "next";
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
+// No nonces: they would force every page into dynamic rendering.
+// The Sanity Studio route is excluded; it needs many Sanity origins.
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ''}`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' blob: data: https://cdn.sanity.io",
+  "media-src 'self' https://cdn.sanity.io",
+  "font-src 'self'",
+  "frame-src https://www.google.com",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self'",
+  ...(isDevelopment ? [] : ['upgrade-insecure-requests']),
+].join('; ');
+
 const nextConfig: NextConfig = {
   compress: true,
   images: {
@@ -18,6 +37,10 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: '/((?!studio).*)',
+        headers: [{ key: 'Content-Security-Policy', value: contentSecurityPolicy }],
+      },
       {
         source: '/(.*)',
         headers: [
