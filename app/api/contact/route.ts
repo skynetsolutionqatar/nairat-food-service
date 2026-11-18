@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { RateLimiter, clientIpFromHeaders } from '@/lib/rate-limiter';
 
 function escapeHtml(text: string): string {
   const map: Record<string, string> = {
@@ -12,28 +13,13 @@ function escapeHtml(text: string): string {
   return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
-const rateLimitMap = new Map<string, { count: number; expiresAt: number }>();
-
-function checkRateLimit(ip: string, limit = 5, windowMs = 60_000): boolean {
-  const now = Date.now();
-  const record = rateLimitMap.get(ip);
-  if (!record || now > record.expiresAt) {
-    rateLimitMap.set(ip, { count: 1, expiresAt: now + windowMs });
-    return true;
-  }
-  if (record.count >= limit) {
-    return false;
-  }
-  record.count += 1;
-  return true;
-}
+const contactRateLimiter = new RateLimiter(5, 60_000, 10_000);
 
 export async function POST(req: Request) {
   try {
-    const forwarded = req.headers.get('x-forwarded-for');
-    const clientIp = forwarded ? forwarded.split(',')[0].trim() : (req.headers.get('x-real-ip') || 'unknown');
+    const clientIp = clientIpFromHeaders(req.headers);
 
-    if (!checkRateLimit(clientIp)) {
+    if (!contactRateLimiter.allow(clientIp)) {
       return NextResponse.json(
         { success: false, message: 'Too many requests. Please wait a moment before trying again.' },
         { status: 429 }
