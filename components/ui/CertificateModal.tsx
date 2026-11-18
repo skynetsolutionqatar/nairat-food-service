@@ -95,7 +95,7 @@ export function CertificateModal({
             fill
             className="object-contain p-2"
             sizes="(max-width: 768px) 95vw, 640px"
-            priority
+            loading="eager"
           />
         </div>
 

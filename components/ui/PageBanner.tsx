@@ -76,7 +76,7 @@ export function PageBanner({
             src={image}
             alt={title || ''}
             fill
-            priority
+            loading="eager"
             sizes="100vw"
             className="object-cover object-center pointer-events-none select-none"
           />

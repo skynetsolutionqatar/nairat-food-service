@@ -284,7 +284,7 @@ export function ServicesList({ services }: ServicesListProps = {}): React.ReactN
                   src={service.imageUrl}
                   alt={service.title}
                   fill
-                  priority={index === 0}
+                  loading={index === 0 ? 'eager' : 'lazy'}
                   className="object-cover object-center transition-transform duration-700 ease-out"
                   sizes="(max-width: 1024px) 100vw, 480px"
                 />
