@@ -6,5 +6,7 @@ export const { sanityFetch, SanityLive } = defineLive({
     apiVersion: '2026-02-01',
   }),
   serverToken: process.env.SANITY_API_READ_TOKEN,
-  browserToken: process.env.SANITY_API_READ_TOKEN,
+  // No browserToken: it is shipped to every visitor. If draft previews are
+  // needed outside Presentation Tool, use a separate minimum-permission token.
+  browserToken: false,
 });
