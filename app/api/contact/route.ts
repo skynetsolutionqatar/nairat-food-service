@@ -1,6 +1,17 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import { RateLimiter, clientIpFromHeaders } from '@/lib/rate-limiter';
+import { PayloadTooLargeError, readJsonBody } from '@/lib/read-json-body';
+
+const MAX_BODY_BYTES = 16 * 1024;
+
+interface ContactPayload {
+  name?: string;
+  email?: string;
+  phone?: string;
+  message?: string;
+  botcheck?: unknown;
+}
 
 function escapeHtml(text: string): string {
   const map: Record<string, string> = {
@@ -26,7 +37,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const body = await req.json();
+    const body = (await readJsonBody(req, MAX_BODY_BYTES)) as ContactPayload;
     const { name, email, phone, message, botcheck } = body;
 
     // 1. Honeypot Spam Protection: If hidden bot field is filled, silently discard
@@ -203,6 +214,12 @@ Sent from https://nairatfoodservices.com/contact
       { status: 200 }
     );
   } catch (error) {
+    if (error instanceof PayloadTooLargeError) {
+      return NextResponse.json(
+        { success: false, message: 'Your message is too large to send.' },
+        { status: 413 }
+      );
+    }
     console.error('❌ Failed to process contact enquiry:', error);
     return NextResponse.json(
       {
