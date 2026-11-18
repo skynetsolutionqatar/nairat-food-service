@@ -40,9 +40,7 @@ export async function POST(req: NextRequest) {
     } else {
       // Direct call (manual revalidation or developer test)
       const tokenHeader = req.headers.get('x-revalidate-secret');
-      const tokenQuery = req.nextUrl.searchParams.get('secret');
-      const authorized = timingSafeMatch(tokenHeader, secret) || timingSafeMatch(tokenQuery, secret);
-      if (!authorized) {
+      if (!timingSafeMatch(tokenHeader, secret)) {
         return new Response('Unauthorized', { status: 401 });
       }
       try {
