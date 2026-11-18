@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useSyncExternalStore } from 'react';
 import Image from 'next/image';
 import { MapPin, Mail, PhoneCall, CheckCircle2, AlertCircle } from 'lucide-react';
 import { CtaButton } from '@/components/ui/CtaButton';
@@ -13,6 +13,16 @@ import type { ContactPageContent } from '@/sanity/lib/data';
 interface ContactSectionProps {
   company?: CompanyProfile;
   content?: ContactPageContent;
+}
+
+const CAREERS_MESSAGE = 'I am interested in career opportunities at Nairat Food Services.';
+
+// The URL does not change while this page is open, so there is nothing to subscribe to.
+const subscribeToNothing = () => () => {};
+
+function readMessagePrefill(): string {
+  const subject = new URLSearchParams(window.location.search).get('subject');
+  return subject?.toLowerCase() === 'careers' ? CAREERS_MESSAGE : '';
 }
 
 export function ContactSection({ company, content }: ContactSectionProps = {}): React.ReactNode {
@@ -59,29 +69,19 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
     ? (content?.formSuccessMessageAr || 'شكراً لك! تم استلام استفسارك. سيتصل بك فريقنا قريباً.')
     : (content?.formSuccessMessage || 'Thank you! Your inquiry has been received. Our team will contact you promptly.');
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: '',
-  });
+  // message is null until the visitor edits it, so the URL prefill shows until then.
+  const [formData, setFormData] = useState<{
+    name: string;
+    email: string;
+    phone: string;
+    message: string | null;
+  }>({ name: '', email: '', phone: '', message: null });
+  const messagePrefill = useSyncExternalStore(subscribeToNothing, readMessagePrefill, () => '');
+  const message = formData.message ?? messagePrefill;
   const [honeypot, setHoneypot] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [feedbackMessage, setFeedbackMessage] = useState('');
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const subject = params.get('subject');
-      if (subject?.toLowerCase() === 'careers') {
-        setFormData((prev) => ({
-          ...prev,
-          message: prev.message || 'I am interested in career opportunities at Nairat Food Services.',
-        }));
-      }
-    }
-  }, []);
 
   useGSAP(
     () => {
@@ -120,7 +120,7 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email || !message) {
       setSubmitStatus('error');
       setFeedbackMessage(
         locale === 'ar' ? 'يرجى إكمال جميع الحقول المطلوبة.' : 'Please complete all required fields.'
@@ -140,7 +140,7 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
           name: formData.name,
           email: formData.email,
           phone: formData.phone ? `+974 ${formData.phone}` : '',
-          message: formData.message,
+          message,
           botcheck: honeypot,
         }),
       });
@@ -371,7 +371,7 @@ export function ContactSection({ company, content }: ContactSectionProps = {}): 
                     name="message"
                     rows={4}
                     required
-                    value={formData.message}
+                    value={message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder={locale === 'ar' ? 'أدخل رسالتك' : 'Enter Your Message'}
                     className="w-full px-4 py-3 rounded-xl bg-white text-[#111814] placeholder-neutral-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-[#F2BD1D] resize-none shadow-2xs"

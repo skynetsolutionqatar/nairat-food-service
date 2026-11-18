@@ -11,7 +11,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { createClient } from '@sanity/client';
+import { createClient, type IdentifiedSanityDocumentStub } from '@sanity/client';
 import { productCategoriesData } from '../data/products';
 import { partnerLogos } from '../data/partners';
 import { companyProfile } from '../lib/config/company';
@@ -100,10 +100,14 @@ async function uploadLocalImage(relativePath?: string): Promise<string | null> {
     uploadedAssetsCache.set(fullPath, asset._id);
     console.log(`done (${asset._id})`);
     return asset._id;
-  } catch (err: any) {
-    console.log(`failed! (${err.message})`);
+  } catch (err) {
+    console.log(`failed! (${errorMessage(err)})`);
     return null;
   }
+}
+
+function errorMessage(err: unknown): string {
+  return err instanceof Error ? err.message : String(err);
 }
 
 async function uploadLocalFile(relativePath?: string, mimeType?: string): Promise<string | null> {
@@ -141,8 +145,8 @@ async function uploadLocalFile(relativePath?: string, mimeType?: string): Promis
     uploadedAssetsCache.set(fullPath, asset._id);
     console.log(`done (${asset._id})`);
     return asset._id;
-  } catch (err: any) {
-    console.log(`failed! (${err.message})`);
+  } catch (err) {
+    console.log(`failed! (${errorMessage(err)})`);
     return null;
   }
 }
@@ -332,7 +336,7 @@ const certificatesSeedData = [
 ];
 
 async function seed() {
-  const operations: any[] = [];
+  const operations: IdentifiedSanityDocumentStub[] = [];
 
   console.log('\n--- 1. Processing Produce Lines (34 items) ---');
   let productOrder = 0;

@@ -1792,6 +1792,23 @@ export const defaultPartnersPageContent: PartnersPageContent = {
   globalCountries: defaultCountryPartners,
 };
 
+interface SanityRetailPartner {
+  _key?: string;
+  name: string;
+  nameAr?: string;
+  logo?: unknown;
+  category?: string;
+}
+
+interface SanitySourcingCountry {
+  _key?: string;
+  name: string;
+  nameAr?: string;
+  flag?: unknown;
+  crops?: string;
+  cropsAr?: string;
+}
+
 export async function getPartnersPageContent(): Promise<PartnersPageContent> {
   if (isSanityConfigured()) {
     try {
@@ -1817,7 +1834,7 @@ export async function getPartnersPageContent(): Promise<PartnersPageContent> {
           retailTitle: data.retailTitle || defaultPartnersPageContent.retailTitle,
           retailTitleAr: data.retailTitleAr || defaultPartnersPageContent.retailTitleAr,
           retailPartners: data.retailPartners && data.retailPartners.length > 0
-            ? data.retailPartners.map((item: any) => ({
+            ? data.retailPartners.map((item: SanityRetailPartner) => ({
                 _key: item._key,
                 id: item._key || item.name?.toLowerCase().replace(/\s+/g, '-'),
                 name: item.name,
@@ -1850,7 +1867,7 @@ export async function getPartnersPageContent(): Promise<PartnersPageContent> {
           globalSubtitle: data.globalSubtitle || defaultPartnersPageContent.globalSubtitle,
           globalSubtitleAr: data.globalSubtitleAr || defaultPartnersPageContent.globalSubtitleAr,
           globalCountries: data.globalCountries && data.globalCountries.length > 0
-            ? data.globalCountries.map((item: any) => ({
+            ? data.globalCountries.map((item: SanitySourcingCountry) => ({
                 _key: item._key,
                 name: item.name,
                 nameAr: item.nameAr || item.name,
@@ -2250,7 +2267,6 @@ export async function getProductsPageContent(): Promise<ProductsPageContent> {
         }
       );
       if (data) {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const rawCategories = Array.isArray(data.categorySections) ? data.categorySections : [];
         const categorySections: CategorySectionItem[] = rawCategories.map(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any

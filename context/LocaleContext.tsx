@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Locale, Dictionary } from '@/lib/i18n/types';
 import { getDictionary } from '@/lib/i18n/getDictionary';
@@ -27,24 +27,14 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname() || '/';
   const router = useRouter();
 
-  // Detect initial locale from URL pathname
-  const isArabicRoute = pathname.startsWith('/ar') || pathname === '/ar';
-  const initialLocale: Locale = isArabicRoute ? 'ar' : 'en';
+  // The locale is derived from the URL, so it is computed rather than stored.
+  const locale: Locale = pathname.startsWith('/ar') ? 'ar' : 'en';
 
-  const [locale, setLocaleState] = useState<Locale>(initialLocale);
-
-  // Synchronize document attributes whenever route changes
+  // Keep the <html> lang and dir attributes in sync with the route.
   useEffect(() => {
-    const isAr = pathname.startsWith('/ar') || pathname === '/ar';
-    const currentLocale: Locale = isAr ? 'ar' : 'en';
-
-    setLocaleState(currentLocale);
-
-    if (typeof document !== 'undefined') {
-      document.documentElement.lang = currentLocale;
-      document.documentElement.dir = isAr ? 'rtl' : 'ltr';
-    }
-  }, [pathname]);
+    document.documentElement.lang = locale;
+    document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
+  }, [locale]);
 
   const setLocale = (newLocale: Locale) => {
     if (newLocale === locale) return;
