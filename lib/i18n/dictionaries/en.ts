@@ -67,7 +67,7 @@ export const en: Dictionary = {
     infrastructureTitle: 'World-Class Cold-Chain Infrastructure',
     infrastructureDesc: 'Operating a 5,000 m² temperature-controlled facility in Street 37, Industrial Area, Doha, with 20 independent chiller rooms and computerized climate controls.',
     coldStorageCapacity: '5,000 m² Temperature-Controlled Facility',
-    fleetSize: '40 Refrigerated Vehicles in Own Fleet',
+    fleetSize: '40+ Refrigerated Vehicles in Own Fleet',
     dailyVolume: '~100 Tonnes Delivered Daily',
   },
   products: {

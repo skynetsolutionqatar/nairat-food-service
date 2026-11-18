@@ -441,14 +441,14 @@ export const homePage = defineType({
       title: 'Fleet Card Figure (EN)',
       type: 'string',
       fieldset: 'strengths',
-      initialValue: '40',
+      initialValue: '40+',
     }),
     defineField({
       name: 'strengthsFleetFigureAr',
       title: 'Fleet Card Figure (AR)',
       type: 'string',
       fieldset: 'strengths',
-      initialValue: '40',
+      initialValue: '40+',
     }),
     defineField({
       name: 'strengthsFleetHighlight',

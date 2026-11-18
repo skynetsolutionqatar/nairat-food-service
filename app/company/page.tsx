@@ -17,7 +17,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: 'Company — Nairat Food Services Qatar',
   description:
-    'Discover Nairat Food Services: Qatar’s leading fresh-produce partner since 2020. 5,000 m² cold-chain warehouse, 20 chiller rooms, 40 refrigerated vehicles, and ISO 22000 / HACCP certified food safety.',
+    'Discover Nairat Food Services: Qatar’s leading fresh-produce partner since 2020. 5,000 m² cold-chain warehouse, 20 chiller rooms, 40+ refrigerated vehicles, and ISO 22000 / HACCP certified food safety.',
   openGraph: {
     title: 'About Nairat Food Services — Fresh Produce Partner for Qatar',
     description:

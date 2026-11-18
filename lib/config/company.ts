@@ -48,7 +48,7 @@ export const companyProfile: CompanyProfile = {
   retailBranchesSupplied: '100+',
   warehouseArea: '5,000 m²',
   warehouseLocation: 'Street 37, Industrial Area, Doha, Qatar',
-  fleetVehiclesCount: '40',
+  fleetVehiclesCount: '40+',
   teamSize: '200+',
   originCountriesCore: '15+',
   originCountriesGlobal: '60',

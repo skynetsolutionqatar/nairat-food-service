@@ -267,5 +267,5 @@ export const coreSourcingSummary = {
   continentsCount: '6',
   retailBranchesSupplied: '100+',
   warehouseSqM: '5,000 m²',
-  fleetVehiclesCount: '40',
+  fleetVehiclesCount: '40+',
 };

@@ -59,7 +59,7 @@ export const strengthDefinitions: StrengthDefinition[] = [
     id: 'fleet',
     icon: Truck,
     figure: (profile, content) => {
-      const vehicles = profile.fleetVehiclesCount || '40';
+      const vehicles = profile.fleetVehiclesCount || '40+';
       return {
         en: content?.strengthsFleetFigure || vehicles,
         ar: content?.strengthsFleetFigureAr || vehicles,

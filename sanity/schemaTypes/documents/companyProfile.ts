@@ -58,7 +58,7 @@ export const companyProfile = defineType({
       name: 'fleetVehiclesCount',
       title: 'Fleet Vehicles (GPS Controlled)',
       type: 'string',
-      initialValue: '40',
+      initialValue: '40+',
     }),
     defineField({
       name: 'teamSize',

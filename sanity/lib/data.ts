@@ -2548,8 +2548,8 @@ export const defaultTermsPageContent: LegalPageContent = {
       _key: 'sec-3',
       title: '3. Orders, Scheduling & Deliveries',
       titleAr: '3. الطلبيات، والجدولة والتسليم',
-      body: 'Commercial orders are fulfilled in accordance with agreed delivery schedules. Nairat operates an active refrigerated fleet of 40 vehicles ensuring store-level delivery across Qatar hypermarkets, supermarkets, and foodservice operators. Force majeure circumstances affecting international shipping or border crossings will be communicated promptly.',
-      bodyAr: 'يتم تلبية الطلبيات التجارية وفقاً لجداول التسليم المتفق عليها. تشغل نيرات أسطولاً مبرداً نشطاً مكوناً من 40 مركبة مما يضمن التسليم على مستوى المتاجر عبر الهايبرماركت، والسوبرماركت، ومشغلي الخدمات الغذائية في قطر. سيتم إبلاغ الظروف القاهرة التي تؤثر على الشحن الدولي أو المعابر الحدودية على الفور.',
+      body: 'Commercial orders are fulfilled in accordance with agreed delivery schedules. Nairat operates an active refrigerated fleet of 40+ vehicles ensuring store-level delivery across Qatar hypermarkets, supermarkets, and foodservice operators. Force majeure circumstances affecting international shipping or border crossings will be communicated promptly.',
+      bodyAr: 'يتم تلبية الطلبيات التجارية وفقاً لجداول التسليم المتفق عليها. تشغل نيرات أسطولاً مبرداً نشطاً مكوناً من 40+ مركبة مما يضمن التسليم على مستوى المتاجر عبر الهايبرماركت، والسوبرماركت، ومشغلي الخدمات الغذائية في قطر. سيتم إبلاغ الظروف القاهرة التي تؤثر على الشحن الدولي أو المعابر الحدودية على الفور.',
     },
     {
       _key: 'sec-4',
