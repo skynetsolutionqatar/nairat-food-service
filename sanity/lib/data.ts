@@ -28,6 +28,7 @@ import {
 } from '@/data/products';
 import { PartnerItem, partnerLogos } from '@/data/partners';
 import { CompanyProfile, companyProfile } from '@/lib/config/company';
+import { DEFAULT_INFRA_METRICS, InfraMetric } from '@/lib/config/infrastructure';
 import { en } from '@/lib/i18n/dictionaries/en';
 import { ar } from '@/lib/i18n/dictionaries/ar';
 
@@ -257,6 +258,7 @@ export async function getCompanyProfile(): Promise<CompanyProfile> {
           name: data.name || companyProfile.name,
           legalName: data.legalName || companyProfile.legalName,
           productLinesCount: data.productLinesCount || companyProfile.productLinesCount,
+          originCountriesCore: data.originCountriesCore || companyProfile.originCountriesCore,
           dailyVolumeTonnes: data.dailyVolumeTonnes || companyProfile.dailyVolumeTonnes,
           retailBranchesSupplied: data.retailBranchesSupplied || companyProfile.retailBranchesSupplied,
           warehouseArea: data.warehouseArea || companyProfile.warehouseArea,
@@ -949,6 +951,7 @@ export interface CompanyPageContent {
   infraHubBadgeTitleAr: string;
   infraHubBadgeDesc: string;
   infraHubBadgeDescAr: string;
+  infraMetrics: InfraMetric[];
 
   sourcingEyebrow: string;
   sourcingEyebrowAr: string;
@@ -1064,6 +1067,7 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   infraHubBadgeTitleAr: 'مركز المنطقة الصناعية · الدوحة',
   infraHubBadgeDesc: 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.',
   infraHubBadgeDescAr: 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.',
+  infraMetrics: DEFAULT_INFRA_METRICS,
 
   sourcingEyebrow: 'Strategic Sourcing',
   sourcingEyebrowAr: 'التوريد الاستراتيجي',
@@ -1194,6 +1198,7 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           infraHubBadgeTitleAr: data.infraHubBadgeTitleAr || defaultCompanyPageContent.infraHubBadgeTitleAr,
           infraHubBadgeDesc: data.infraHubBadgeDesc || defaultCompanyPageContent.infraHubBadgeDesc,
           infraHubBadgeDescAr: data.infraHubBadgeDescAr || defaultCompanyPageContent.infraHubBadgeDescAr,
+          infraMetrics: data.infraMetrics?.length ? data.infraMetrics : defaultCompanyPageContent.infraMetrics,
 
           sourcingEyebrow: data.sourcingEyebrow || defaultCompanyPageContent.sourcingEyebrow,
           sourcingEyebrowAr: data.sourcingEyebrowAr || defaultCompanyPageContent.sourcingEyebrowAr,

@@ -1,4 +1,4 @@
-import { defineField, defineType } from 'sanity';
+import { defineArrayMember, defineField, defineType } from 'sanity';
 
 export const companyPage = defineType({
   name: 'companyPage',
@@ -423,6 +423,25 @@ export const companyPage = defineType({
       type: 'string',
       fieldset: 'infrastructure',
       initialValue: 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.',
+    }),
+    defineField({
+      name: 'infraMetrics',
+      title: 'Operational Scale Metrics',
+      type: 'array',
+      fieldset: 'infrastructure',
+      description: 'Stat cards beside the facility photo. Leave empty to show the default metrics.',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            defineField({ name: 'value', title: 'Value (EN)', type: 'string', validation: (rule) => rule.required() }),
+            defineField({ name: 'valueAr', title: 'Value (AR)', type: 'string' }),
+            defineField({ name: 'label', title: 'Label (EN)', type: 'string', validation: (rule) => rule.required() }),
+            defineField({ name: 'labelAr', title: 'Label (AR)', type: 'string' }),
+          ],
+          preview: { select: { title: 'value', subtitle: 'label' } },
+        }),
+      ],
     }),
 
     // ==========================================

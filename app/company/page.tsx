@@ -10,7 +10,7 @@ import { CompanyTeam } from '@/components/company/CompanyTeam';
 import { CompanyQuality } from '@/components/company/CompanyQuality';
 import { CompanyLookingAhead } from '@/components/company/CompanyLookingAhead';
 import { Cta } from '@/components/modules/Cta';
-import { getCompanyProfile, getCompanyPageContent } from '@/sanity/lib/data';
+import { getCompanyPageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
@@ -30,10 +30,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CompanyPage() {
-  const [company, companyContent] = await Promise.all([
-    getCompanyProfile(),
-    getCompanyPageContent(),
-  ]);
+  const companyContent = await getCompanyPageContent();
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -56,7 +53,7 @@ export default async function CompanyPage() {
       <CompanyCeoMessage content={companyContent} />
 
       {/* 5. Infrastructure & Operational Scale (Full-Bleed Solid Green Section) */}
-      <CompanyInfrastructure company={company} content={companyContent} />
+      <CompanyInfrastructure content={companyContent} />
 
       {/* 5. Strategic Global Sourcing (Narrative on Left, Yellow-Badged Cards on Right) */}
       <CompanySourcing content={companyContent} />

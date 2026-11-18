@@ -1,31 +1,22 @@
 'use client';
 
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import { gsap, useGSAP } from '@/lib/gsap';
 
 import { useLocale } from '@/context/LocaleContext';
-import { CompanyProfile, companyProfile as defaultCompany } from '@/lib/config/company';
+import { DEFAULT_INFRA_METRICS } from '@/lib/config/infrastructure';
 
 import type { CompanyPageContent } from '@/sanity/lib/data';
 
-interface ScaleItem {
-  value: string;
-  valueAr?: string;
-  label: string;
-  labelAr: string;
-}
-
 interface CompanyInfrastructureProps {
-  company?: CompanyProfile;
   content?: CompanyPageContent;
 }
 
-export function CompanyInfrastructure({ company, content }: CompanyInfrastructureProps = {}) {
+export function CompanyInfrastructure({ content }: CompanyInfrastructureProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
-  const profile = company || defaultCompany;
 
   const infraTitle = isAr
     ? (content?.infraTitleAr || 'صُممت حول النضارة: بنية تحتية مصممة للنمو والتوسع')
@@ -47,6 +38,8 @@ export function CompanyInfrastructure({ company, content }: CompanyInfrastructur
     ? (content?.infraHubBadgeDescAr || 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.')
     : (content?.infraHubBadgeDesc || 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.');
 
+  const metrics = content?.infraMetrics?.length ? content.infraMetrics : DEFAULT_INFRA_METRICS;
+
   const renderTitle = () => {
     if (infraTitle.includes(':')) {
       const [first, ...rest] = infraTitle.split(':');
@@ -59,51 +52,6 @@ export function CompanyInfrastructure({ company, content }: CompanyInfrastructur
     }
     return infraTitle;
   };
-
-  const scaleItems: ScaleItem[] = [
-    {
-      value: profile.productLinesCount || '1,200+',
-      label: 'active fresh produce lines',
-      labelAr: 'خطوط منتجات طازجة نشطة',
-    },
-    {
-      value: profile.originCountriesCore || '15+',
-      label: 'origin countries, plus Qatari farms',
-      labelAr: 'دولة منشأ، بالإضافة إلى المزارع القطرية',
-    },
-    {
-      value: profile.retailBranchesSupplied || '100+',
-      label: 'retail branches supplied',
-      labelAr: 'فرع تجزئة يتم توريده',
-    },
-    {
-      value: profile.dailyVolumeTonnes || '~100 t',
-      valueAr: profile.dailyVolumeTonnes ? profile.dailyVolumeTonnes.replace(/t\b/, 'طن') : '~100 طن',
-      label: 'of fresh produce delivered every day',
-      labelAr: 'من المنتجات الطازجة تُسلَّم يومياً',
-    },
-    {
-      value: profile.warehouseArea || '5,000 m²',
-      valueAr: profile.warehouseArea ? profile.warehouseArea.replace(/m²\b/, 'م²') : '5,000 م²',
-      label: 'new temperature-controlled warehouse',
-      labelAr: 'مستودع جديد يتم التحكم في درجة حرارته',
-    },
-    {
-      value: profile.fleetVehiclesCount || '40',
-      label: 'refrigerated delivery vehicles',
-      labelAr: 'مركبة توصيل مبردة',
-    },
-    {
-      value: profile.teamSize || '200+',
-      label: 'people across sourcing, quality, warehousing and delivery',
-      labelAr: 'شخص عبر التوريد والجودة والتخزين والتوصيل',
-    },
-    {
-      value: profile.certifications?.[0] || 'HACCP',
-      label: 'and ISO 22000:2018 certified food safety management',
-      labelAr: 'وإدارة سلامة الغذاء المعتمدة وفق معيار ISO 22000:2018',
-    },
-  ];
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -195,11 +143,11 @@ export function CompanyInfrastructure({ company, content }: CompanyInfrastructur
             </div>
           </div>
 
-          {/* Right: 8 Scale Items */}
+          {/* Right: Editable Scale Metrics */}
           <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
-            {scaleItems.map((item, idx) => {
-              const val = isAr && item.valueAr ? item.valueAr : item.value;
-              const label = isAr ? item.labelAr : item.label;
+            {metrics.map((metric, idx) => {
+              const val = isAr && metric.valueAr ? metric.valueAr : metric.value;
+              const label = isAr && metric.labelAr ? metric.labelAr : metric.label;
 
               return (
                 <div

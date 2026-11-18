@@ -299,6 +299,7 @@ export const COMPANY_PAGE_QUERY = defineQuery(`
     infraHubBadgeTitleAr,
     infraHubBadgeDesc,
     infraHubBadgeDescAr,
+    infraMetrics[]{ value, valueAr, label, labelAr },
     sourcingEyebrow,
     sourcingEyebrowAr,
     sourcingHeadline,

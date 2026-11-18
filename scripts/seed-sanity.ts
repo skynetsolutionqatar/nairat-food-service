@@ -15,6 +15,7 @@ import { createClient } from '@sanity/client';
 import { productCategoriesData } from '../data/products';
 import { partnerLogos } from '../data/partners';
 import { companyProfile } from '../lib/config/company';
+import { DEFAULT_INFRA_METRICS } from '../lib/config/infrastructure';
 import { en } from '../lib/i18n/dictionaries/en';
 import { ar } from '../lib/i18n/dictionaries/ar';
 
@@ -643,6 +644,7 @@ async function seed() {
     infraHubBadgeTitleAr: 'مركز المنطقة الصناعية · الدوحة',
     infraHubBadgeDesc: 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.',
     infraHubBadgeDescAr: 'بنية تحتية لسلسلة تبريد غير منقطعة تعمل على مدار الساعة طوال أيام الأسبوع في جميع أنحاء قطر.',
+    infraMetrics: DEFAULT_INFRA_METRICS.map((metric, index) => ({ _key: `infraMetric${index}`, ...metric })),
 
     // 5. Strategic Global Sourcing
     sourcingEyebrow: 'Strategic Sourcing',
