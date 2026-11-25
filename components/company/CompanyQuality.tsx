@@ -29,11 +29,11 @@ export function CompanyQuality({ content }: CompanyQualityProps = {}) {
 
   const defaultParagraphs = isAr
     ? [
-      'في نيرات، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.',
+      'في نيرات للأغذية، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.',
       'يتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
     ]
     : [
-      'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.',
+      'At Nairat Food, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.',
       'Our produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
     ];
 
@@ -90,7 +90,7 @@ export function CompanyQuality({ content }: CompanyQualityProps = {}) {
               <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-neutral-100 border border-neutral-200/80">
                 <Image
                   src={imageUrl}
-                  alt={isAr ? "فحص الجودة والتحكم بدرجات الحرارة لشركة نيرات" : "Nairat Food QA Laboratory Inspection & Temperature Control"}
+                  alt={isAr ? "فحص الجودة والتحكم بدرجات الحرارة لشركة نيرات للأغذية" : "Nairat Food QA Laboratory Inspection & Temperature Control"}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 450px"

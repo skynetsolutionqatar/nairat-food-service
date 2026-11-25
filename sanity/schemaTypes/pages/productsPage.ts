@@ -259,7 +259,7 @@ export const productsPage = defineType({
       rows: 3,
       fieldset: 'fruit',
       initialValue:
-        'From Mediterranean citrus and seasonal stone fruits to year-round tropical melons and table grapes, Nairat delivers fruit with consistent brix levels, calibrated sizing, and intact cold-chain assurance.',
+        'From Mediterranean citrus and seasonal stone fruits to year-round tropical melons and table grapes, Nairat Food delivers fruit with consistent brix levels, calibrated sizing, and intact cold-chain assurance.',
     }),
     defineField({
       name: 'fruitsDescriptionAr',
@@ -268,7 +268,7 @@ export const productsPage = defineType({
       rows: 3,
       fieldset: 'fruit',
       initialValue:
-        'من الحمضيات المتوسطية وفواكه النواة الحجرية الموسمية إلى البطيخ الاستوائي وعنب المائدة على مدار العام، تقدم نيرات فواكه بمستويات حلاوة متسقة وأحجام مدروسة مع ضمان سلامة سلسلة التبريد.',
+        'من الحمضيات المتوسطية وفواكه النواة الحجرية الموسمية إلى البطيخ الاستوائي وعنب المائدة على مدار العام، تقدم نيرات للأغذية فواكه بمستويات حلاوة متسقة وأحجام مدروسة مع ضمان سلامة سلسلة التبريد.',
     }),
 
     // --- 5. CATEGORY: LEAFY & HERBS ---

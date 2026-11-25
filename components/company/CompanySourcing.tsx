@@ -16,12 +16,12 @@ export function CompanySourcing({ content }: CompanySourcingProps = {}) {
 
   const defaultParagraphs = isAr
     ? [
-        'المنتجات الطازجة موسمية. وإمدادنا يحتاج إلى أن يكون موثوقاً. تعمل نيرات مباشرة مع المزارعين والموردين عبر مناطق الإنتاج الرئيسية حول العالم.',
+        'المنتجات الطازجة موسمية. وإمدادنا يحتاج إلى أن يكون موثوقاً. تعمل نيرات للأغذية مباشرة مع المزارعين والموردين عبر مناطق الإنتاج الرئيسية حول العالم.',
         'تمتد شبكة التوريد لدينا عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يسمح لنا بتخطيط الإمداد وفقاً للتوافر الموسمي والطلب في السوق.',
         'من خلال التوريد من مناطق متعددة في وقت واحد، نحافظ على اتساق أكبر في جودة المنتج وتنوعه وتوافره طوال العام بأكمله.',
       ]
     : [
-        'Fresh produce is seasonal. Our supply needs to be dependable. Nairat works directly with growers and suppliers across major producing regions around the world.',
+        'Fresh produce is seasonal. Our supply needs to be dependable. Nairat Food works directly with growers and suppliers across major producing regions around the world.',
         'Our sourcing network spans the Levant, Gulf, Africa, Asia and beyond, allowing us to plan supply according to seasonal availability and market demand.',
         'By sourcing from multiple regions simultaneously, we maintain greater consistency in product quality, variety, and availability throughout the entire year.',
       ];

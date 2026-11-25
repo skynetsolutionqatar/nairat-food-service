@@ -152,7 +152,7 @@ export const productCategoriesData: Record<string, ProductCategoryData> = {
     title: 'Fresh Fruits',
     subtitle: 'Sun-ripened orchard and citrus lines sourced directly from verified international growers.',
     description:
-      'From Mediterranean citrus and seasonal stone fruits to year-round tropical melons and table grapes, Nairat delivers fruit with consistent brix levels, calibrated sizing, and intact cold-chain assurance.',
+      'From Mediterranean citrus and seasonal stone fruits to year-round tropical melons and table grapes, Nairat Food delivers fruit with consistent brix levels, calibrated sizing, and intact cold-chain assurance.',
     products: [
       {
         id: 'watermelon',

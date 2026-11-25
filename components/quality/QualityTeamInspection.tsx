@@ -79,7 +79,7 @@ export function QualityTeamInspection({ content }: QualityTeamInspectionProps = 
                 src={content?.inspectionImageUrl || '/quality/qa-team-inspection.jpg'}
                 alt={
                   isAr
-                    ? 'فريق ضمان الجودة وسلامة الغذاء لشركة نيرات أثناء فحص المنتجات الطازجة'
+                    ? 'فريق ضمان الجودة وسلامة الغذاء لشركة نيرات للأغذية أثناء فحص المنتجات الطازجة'
                     : 'Nairat Food Quality Assurance and Food Safety Team Inspecting Fresh Produce'
                 }
                 fill

@@ -25,12 +25,12 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
   const defaultParagraphs = isAr
     ? [
       'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.',
-      'تأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.',
+      'تأسست نيرات للأغذية في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.',
       'من المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.',
     ]
     : [
       "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.",
-      'Established in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.',
+      'Established in 2020, Nairat Food has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.',
       'From farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.',
     ];
 
@@ -141,7 +141,7 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
             <div className="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200/80 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/4.5]">
               <Image
                 src={deliveringImageUrl}
-                alt={isAr ? "مرافق التوزيع وسلاسل التبريد لشركة نيرات بالدوحة" : "Nairat Food Cold-Chain Distribution Facility in Doha"}
+                alt={isAr ? "مرافق التوزيع وسلاسل التبريد لشركة نيرات للأغذية بالدوحة" : "Nairat Food Cold-Chain Distribution Facility in Doha"}
                 fill
                 loading="eager"
                 className="object-cover transition-transform duration-700 hover:scale-105"

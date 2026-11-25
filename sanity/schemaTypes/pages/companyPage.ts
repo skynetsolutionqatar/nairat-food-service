@@ -87,7 +87,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'delivering',
-      initialValue: "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.\n\nEstablished in 2020, Nairat has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.\n\nFrom farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.",
+      initialValue: "Nairat Food is one of Qatar's leading fresh-produce houses, specializing in the import, distribution and delivery of premium fruits and vegetables.\n\nEstablished in 2020, Nairat Food has grown rapidly by combining global sourcing, strong local market knowledge and dependable logistics. Today, we serve hypermarkets, supermarkets, wholesale buyers, food-service businesses and consumers across Qatar.\n\nFrom farms across the Levant, Gulf, Africa, Asia and beyond, our produce travels through an integrated supply chain designed to preserve freshness from source to customer.",
     }),
     defineField({
       name: 'deliveringNarrativeAr',
@@ -95,7 +95,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'delivering',
-      initialValue: 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.\n\nتأسست نيرات في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.\n\nمن المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.',
+      initialValue: 'تعد نيرات للأغذية إحدى الشركات الرائدة في مجال المنتجات الطازجة في قطر، وهي متخصصة في استيراد وتوزيع وتسليم الفواكه والخضروات الفاخرة.\n\nتأسست نيرات للأغذية في عام 2020، ونمت بسرعة من خلال الجمع بين التوريد العالمي، والمعرفة القوية بالسوق المحلي، والخدمات اللوجستية الموثوقة. اليوم، نحن نخدم الهايبرماركت، والسوبرماركت، ومشتري الجملة، وشركات الخدمات الغذائية، والمستهلكين في جميع أنحاء قطر.\n\nمن المزارع عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، تنتقل منتجاتنا عبر سلسلة توريد متكاملة مصممة للحفاظ على النضارة من المصدر إلى العميل.',
     }),
     defineField({
       name: 'deliveringCommitmentTitle',
@@ -307,14 +307,14 @@ export const companyPage = defineType({
       title: 'CEO Designation (EN)',
       type: 'string',
       fieldset: 'ceo',
-      initialValue: 'Chief Executive Officer, Nairat Food Services',
+      initialValue: 'Chief Executive Officer, Nairat Food',
     }),
     defineField({
       name: 'ceoTitleAr',
       title: 'CEO Designation (AR)',
       type: 'string',
       fieldset: 'ceo',
-      initialValue: 'الرئيس التنفيذي، نيرات للخدمات الغذائية',
+      initialValue: 'الرئيس التنفيذي، نيرات للأغذية',
     }),
     defineField({
       name: 'ceoQuote',
@@ -338,7 +338,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'ceo',
-      initialValue: 'Since our founding in 2020, Nairat Food Services has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.\n\nEvery day, our dedicated team works tirelessly to bridge international harvest fields directly to hypermarkets, restaurants, and homes across Qatar. We invest in people, advanced chilling logistics, and stringent food safety protocols to ensure our partners receive produce at peak freshness.\n\nAs Qatar continues to grow, we remain proud to play our role in supporting national food security and elevating the standard of fresh produce across the country.',
+      initialValue: 'Since our founding in 2020, Nairat Food has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.\n\nEvery day, our dedicated team works tirelessly to bridge international harvest fields directly to hypermarkets, restaurants, and homes across Qatar. We invest in people, advanced chilling logistics, and stringent food safety protocols to ensure our partners receive produce at peak freshness.\n\nAs Qatar continues to grow, we remain proud to play our role in supporting national food security and elevating the standard of fresh produce across the country.',
     }),
     defineField({
       name: 'ceoMessageAr',
@@ -346,7 +346,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'ceo',
-      initialValue: 'منذ تأسيسنا في عام 2020، انطلقت نيرات للخدمات الغذائية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.\n\nيعمل فريقنا المتفاني يومياً لربط حقول الحصاد العالمية مباشرة بكبرى المتاجر، والمطاعم، والمنازل في جميع أنحاء قطر. نحن نستثمر باستمرار في كوادرنا، وتقنيات التبريد المتقدمة، وأعلى معايير سلامة الأغذية لضمان وصول المنتجات في أوج نضارتها.\n\nومع استمرار مسيرة النمو في دولة قطر، نفخر بالقيام بدورنا المحوري في دعم الأمن الغذائي الوطني والارتقاء بمعايير المنتجات الطازجة في كافة أنحاء البلاد.',
+      initialValue: 'منذ تأسيسنا في عام 2020، انطلقت نيرات للأغذية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.\n\nيعمل فريقنا المتفاني يومياً لربط حقول الحصاد العالمية مباشرة بكبرى المتاجر، والمطاعم، والمنازل في جميع أنحاء قطر. نحن نستثمر باستمرار في كوادرنا، وتقنيات التبريد المتقدمة، وأعلى معايير سلامة الأغذية لضمان وصول المنتجات في أوج نضارتها.\n\nومع استمرار مسيرة النمو في دولة قطر، نفخر بالقيام بدورنا المحوري في دعم الأمن الغذائي الوطني والارتقاء بمعايير المنتجات الطازجة في كافة أنحاء البلاد.',
     }),
     defineField({
       name: 'ceoImage',
@@ -481,7 +481,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'sourcing',
-      initialValue: "Fresh produce is seasonal. Our supply needs to be dependable. Nairat works directly with growers and suppliers across major producing regions around the world.\n\nOur sourcing network spans the Levant, Gulf, Africa, Asia and beyond, allowing us to plan supply according to seasonal availability and market demand.\n\nBy sourcing from multiple regions simultaneously, we maintain greater consistency in product quality, variety, and availability throughout the entire year.",
+      initialValue: "Fresh produce is seasonal. Our supply needs to be dependable. Nairat Food works directly with growers and suppliers across major producing regions around the world.\n\nOur sourcing network spans the Levant, Gulf, Africa, Asia and beyond, allowing us to plan supply according to seasonal availability and market demand.\n\nBy sourcing from multiple regions simultaneously, we maintain greater consistency in product quality, variety, and availability throughout the entire year.",
     }),
     defineField({
       name: 'sourcingNarrativeAr',
@@ -489,7 +489,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'sourcing',
-      initialValue: 'المنتجات الطازجة موسمية. وإمدادنا يحتاج إلى أن يكون موثوقاً. تعمل نيرات مباشرة مع المزارعين والموردين عبر مناطق الإنتاج الرئيسية حول العالم.\n\nتمتد شبكة التوريد لدينا عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يسمح لنا بتخطيط الإمداد وفقاً للتوافر الموسمي والطلب في السوق.\n\nمن خلال التوريد من مناطق متعددة في وقت واحد، نحافظ على اتساق أكبر في جودة المنتج وتنوعه وتوافره طوال العام بأكمله.',
+      initialValue: 'المنتجات الطازجة موسمية. وإمدادنا يحتاج إلى أن يكون موثوقاً. تعمل نيرات للأغذية مباشرة مع المزارعين والموردين عبر مناطق الإنتاج الرئيسية حول العالم.\n\nتمتد شبكة التوريد لدينا عبر بلاد الشام، والخليج، وإفريقيا، وآسيا وما وراءها، مما يسمح لنا بتخطيط الإمداد وفقاً للتوافر الموسمي والطلب في السوق.\n\nمن خلال التوريد من مناطق متعددة في وقت واحد، نحافظ على اتساق أكبر في جودة المنتج وتنوعه وتوافره طوال العام بأكمله.',
     }),
     // Card 1
     defineField({
@@ -675,7 +675,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'quality',
-      initialValue: 'At Nairat, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.\n\nOur produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
+      initialValue: 'At Nairat Food, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.\n\nOur produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
     }),
     defineField({
       name: 'qualityNarrativeAr',
@@ -683,7 +683,7 @@ export const companyPage = defineType({
       type: 'text',
       rows: 4,
       fieldset: 'quality',
-      initialValue: 'في نيرات، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.\n\nيتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
+      initialValue: 'في نيرات للأغذية، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.\n\nيتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
     }),
     defineField({
       name: 'qualityImage',

@@ -62,8 +62,8 @@ export function CompanyCeoMessage({ content }: CompanyCeoMessageProps = {}) {
       : rawCeoName;
 
   const ceoTitle = isAr
-    ? (content?.ceoTitleAr || 'الرئيس التنفيذي، نيرات للخدمات الغذائية')
-    : (content?.ceoTitle || 'Chief Executive Officer, Nairat Food Services');
+    ? (content?.ceoTitleAr || 'الرئيس التنفيذي، نيرات للأغذية')
+    : (content?.ceoTitle || 'Chief Executive Officer, Nairat Food');
 
   const quote = isAr
     ? (content?.ceoQuoteAr ||
@@ -73,12 +73,12 @@ export function CompanyCeoMessage({ content }: CompanyCeoMessageProps = {}) {
 
   const defaultParagraphs = isAr
     ? [
-        'منذ تأسيسنا في عام 2020، انطلقت نيرات للخدمات الغذائية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.',
+        'منذ تأسيسنا في عام 2020، انطلقت نيرات للأغذية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.',
         'يعمل فريقنا المتفاني يومياً لربط حقول الحصاد العالمية مباشرة بكبرى المتاجر، والمطاعم، والمنازل في جميع أنحاء قطر. نحن نستثمر باستمرار في كوادرنا، وتقنيات التبريد المتقدمة، وأعلى معايير سلامة الأغذية لضمان وصول المنتجات في أوج نضارتها.',
         'ومع استمرار مسيرة النمو في دولة قطر، نفخر بالقيام بدورنا المحوري في دعم الأمن الغذائي الوطني والارتقاء بمعايير المنتجات الطازجة في كافة أنحاء البلاد.',
       ]
     : [
-        'Since our founding in 2020, Nairat Food Services has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.',
+        'Since our founding in 2020, Nairat Food has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.',
         'Every day, our dedicated team works tirelessly to bridge international harvest fields directly to hypermarkets, restaurants, and homes across Qatar. We invest in people, advanced chilling logistics, and stringent food safety protocols to ensure our partners receive produce at peak freshness.',
         'As Qatar continues to grow, we remain proud to play our role in supporting national food security and elevating the standard of fresh produce across the country.',
       ];
@@ -200,7 +200,7 @@ export function CompanyCeoMessage({ content }: CompanyCeoMessageProps = {}) {
               </div>
               <div className="h-8 w-px bg-neutral-200" aria-hidden="true" />
               <div className="font-display font-semibold text-xs tracking-wider text-[#168849] uppercase">
-                {isAr ? 'نيرات للخدمات الغذائية' : 'Nairat Food Services'}
+                {isAr ? 'نيرات للأغذية' : 'Nairat Food'}
               </div>
             </div>
           </div>
