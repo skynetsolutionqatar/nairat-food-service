@@ -99,26 +99,29 @@ export function QualityFoodSafety({ certs, content }: QualityFoodSafetyProps = {
       className="py-14 sm:py-18 lg:py-20 bg-[#F4F8F5] text-[#111814] border-y border-[#E3EBE5]/70"
     >
       <div className="max-w-[1140px] 2xl:max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-          {/* Left Column: Eyebrow, Heading, Narrative & CTA (5 cols) */}
-          <div className="safety-anim-left lg:col-span-5 space-y-5 text-start">
+        {/* Heading row: eyebrow + heading (start) | CTA (end) */}
+        <div className="safety-anim-left flex flex-wrap items-end justify-between gap-5 mb-8 lg:mb-10 text-start">
+          <div className="space-y-5 max-w-[640px]">
             <SectionEyebrow title={eyebrow} />
 
             <h2 className="font-display text-3xl sm:text-4xl lg:text-[38px] font-bold text-[#111814] leading-[1.15] tracking-tight">
               {headline}
             </h2>
+          </div>
 
+          <CtaButton
+            href={isAr ? '/ar/company#quality' : '/company#quality'}
+            text={ctaText}
+            variant="primary"
+          />
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Left Column: Narrative (5 cols) */}
+          <div className="safety-anim-left lg:col-span-5 text-start">
             <p className="font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6]">
               {narrative}
             </p>
-
-            <div className="pt-2">
-              <CtaButton
-                href={isAr ? '/ar/company#quality' : '/company#quality'}
-                text={ctaText}
-                variant="primary"
-              />
-            </div>
           </div>
 
           {/* Right Column: 2 Certificate Feature Cards (7.5 cols) */}
