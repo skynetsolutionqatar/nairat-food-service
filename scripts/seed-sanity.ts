@@ -160,7 +160,7 @@ const servicesSeedData = [
     tagline: 'Global Procurement & Import',
     taglineAr: 'المشتريات والاستيراد العالمي',
     description:
-      'Direct relationship with growers and exporters across Europe, the Middle East and Asia. More than 1,200 active lines, selected for quality, shelf life and value, and consolidated through our own import operation.',
+      'Direct relationships with growers and exporters across Europe, the Middle East and Asia. More than 1,200 active lines, selected for quality, shelf life and value, and consolidated through our own import operation.',
     descriptionAr:
       'علاقات مباشرة مع المزارعين والمصدرين عبر أوروبا والشرق الأوسط وآسيا. أكثر من 1,200 صنف نشط، مختارة للجودة وفترة الصلاحية والقيمة، ومجمعة عبر عمليات الاستيراد الخاصة بنا.',
     imageUrl: '/services/global-sourcing-import.webp',
