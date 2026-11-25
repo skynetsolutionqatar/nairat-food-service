@@ -353,3 +353,8 @@ Spec: [specs/home-cta-sanity.md](specs/home-cta-sanity.md)
 
 - [x] `homePage` fields `ctaBackgroundImage` and `ctaFlagsImage` added; unused `ctaHeadline` / `ctaDescription` (EN/AR) removed
 - [x] `Cta.tsx` uses the Sanity images with local fallback; seed script and live document updated; verified on `/` and `/ar`
+
+## Fix: Mouse-Wheel Scrolling in Sanity Studio
+
+- [x] Lenis smooth scrolling no longer starts on `/studio` (`lib/smoothScroll.ts`, unit tested); it was swallowing wheel events meant for Studio's scroll panes
+- [x] Verified with agent-browser (mouse pointer emulated): Lenis active on `/` and `/company`, inactive on `/studio`

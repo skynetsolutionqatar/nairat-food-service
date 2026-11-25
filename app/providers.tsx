@@ -8,6 +8,7 @@ import { gsap, ScrollTrigger } from '@/lib/gsap';
 import { usePathname } from 'next/navigation';
 
 import { LocaleProvider } from '@/context/LocaleContext';
+import { isNativeScrollRoute, shouldUseSmoothScroll } from '@/lib/smoothScroll';
 
 const LenisContext = createContext<Lenis | null>(null);
 
@@ -15,6 +16,8 @@ export const useLenis = () => useContext(LenisContext);
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [lenis, setLenis] = useState<Lenis | null>(null);
+  const pathname = usePathname();
+  const isNativeScroll = isNativeScrollRoute(pathname);
 
   useEffect(() => {
     // Check if user prefers reduced motion
@@ -24,15 +27,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
       return;
     }
 
-    // Gate Lenis smooth scrolling to devices with fine pointers (desktop mouse)
-    // On touch devices (phones/tablets), native 120Hz momentum scrolling is preserved
-    // and eliminates touch-scroll animation blocking with GSAP ScrollTrigger
-    const isPointerFine = window.matchMedia('(pointer: fine)').matches;
+    // Lenis runs for desktop mouse users on site pages only. Touch devices keep native
+    // momentum scrolling, and Sanity Studio keeps native wheel scrolling for its panes.
+    const useSmoothScroll = shouldUseSmoothScroll({
+      pathname: window.location.pathname,
+      pointerFine: window.matchMedia('(pointer: fine)').matches,
+    });
 
     let lenisInstance: Lenis | null = null;
     let tickerCb: ((time: number) => void) | null = null;
 
-    if (isPointerFine) {
+    if (useSmoothScroll) {
       lenisInstance = new Lenis({
         duration: 0.9,
         easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
@@ -88,7 +93,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       }
       setLenis(null);
     };
-  }, []);
+  }, [isNativeScroll]);
 
   // Auto-recover from production ChunkLoadError or stale deployment asset mismatches
   useEffect(() => {
@@ -121,8 +126,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       window.removeEventListener('unhandledrejection', handleChunkError);
     };
   }, []);
-
-  const pathname = usePathname();
 
   // Reset scroll to top and recalculate GSAP positions on route change
   useEffect(() => {
