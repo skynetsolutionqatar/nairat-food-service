@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ArrowUpRight, ArrowUpLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { useLocale } from '@/context/LocaleContext';
 import { cn } from '@/lib/utils';
 
@@ -57,45 +57,59 @@ export function CtaButton({
   const getBadgeStyles = () => {
     switch (variant) {
       case 'amber':
-        return 'bg-white text-[#111814] group-hover:scale-105';
+        return 'bg-white text-[#111814]';
       case 'light':
       case 'white':
-        return 'bg-[#168849] text-white group-hover:scale-105';
+        return 'bg-[#168849] text-white';
       case 'slate':
-        return 'bg-[#0A2618] text-white group-hover:scale-105';
+        return 'bg-[#0A2618] text-white';
       case 'forest':
-        return 'bg-white text-[#063B27] group-hover:scale-105';
+        return 'bg-white text-[#063B27]';
       case 'outline':
-        return 'bg-white text-[#111814] group-hover:scale-105';
+        return 'bg-white text-[#111814]';
       case 'primary':
       default:
-        return 'bg-white text-[#168849] group-hover:bg-[#168849] group-hover:text-white';
+        return 'bg-white text-[#168849]';
     }
   };
 
   const sharedClasses = cn(
-    'group inline-flex items-center gap-2.5 sm:gap-3 font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#168849] focus-visible:ring-offset-2 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:pointer-events-none',
-    showIcon ? 'ps-4 sm:ps-5 pe-1.5 sm:pe-2 py-1.5 sm:py-2' : 'px-5 sm:px-6 py-2 sm:py-2.5',
+    'group relative inline-flex items-center whitespace-nowrap font-sans text-xs sm:text-sm font-semibold tracking-[-0.01em] rounded-full transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#168849] focus-visible:ring-offset-2 active:scale-95 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed disabled:pointer-events-none',
+    showIcon
+      ? cn(
+          '[--badge:1.75rem] [--inset:0.375rem] [--pad:1rem] sm:[--badge:2rem] sm:[--inset:0.5rem] sm:[--pad:1.25rem]',
+          'min-h-[calc(var(--badge)_+_var(--inset)_*_2)] py-[var(--inset)] ps-[var(--pad)] pe-[calc(var(--badge)_+_var(--inset)_+_0.75rem)]',
+          'hover:ps-[calc(var(--badge)_+_var(--inset)_+_0.75rem)] hover:pe-[var(--pad)]',
+          'focus-visible:ps-[calc(var(--badge)_+_var(--inset)_+_0.75rem)] focus-visible:pe-[var(--pad)]'
+        )
+      : 'px-5 sm:px-6 py-2 sm:py-2.5',
     getStyles(),
     className
   );
+
+  const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
   const content = (
     <>
       <span className="transition-colors duration-300">{children || text}</span>
       {showIcon && (
-        <div
+        <span
+          aria-hidden="true"
           className={cn(
-            'w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 shadow-xs',
+            'absolute top-1/2 -translate-y-1/2 end-[var(--inset)] size-[var(--badge)] rounded-full flex items-center justify-center shadow-xs',
+            'transition-[inset-inline-end] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
+            'group-hover:end-[calc(100%_-_var(--badge)_-_var(--inset))] group-focus-visible:end-[calc(100%_-_var(--badge)_-_var(--inset))]',
             getBadgeStyles()
           )}
         >
-          {isRTL ? (
-            <ArrowUpLeft className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5] cta-arrow cta-arrow-rtl" />
-          ) : (
-            <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5] cta-arrow cta-arrow-ltr" />
-          )}
-        </div>
+          <ArrowIcon
+            className={cn(
+              'w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.5] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]',
+              'group-hover:rotate-0 group-focus-visible:rotate-0',
+              isRTL ? 'rotate-45' : '-rotate-45'
+            )}
+          />
+        </span>
       )}
     </>
   );
