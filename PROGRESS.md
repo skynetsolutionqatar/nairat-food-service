@@ -321,3 +321,11 @@ Spec: [specs/home-redesign-design-system.md](specs/home-redesign-design-system.m
   - [x] `/quality` `QualityFoodSafety.tsx`: cards show name, subtitle and description; thumbnail and "View Certificate" link removed
   - [x] Sanity `qualityCert`: removed the unused `image` field from the schema, query, types and seed; unset it on the two live documents
   - Earlier entries above that mention the modal describe the superseded implementation.
+
+## Floating WhatsApp Button
+
+Spec: [specs/whatsapp-floating-button.md](specs/whatsapp-floating-button.md)
+
+- [x] `lib/whatsapp.ts` link builder with unit tests
+- [x] `WhatsAppIcon` (official mark, inline SVG) and `WhatsAppButton`, mounted in the root layout
+- [x] Verified with agent-browser: shows on `/`, `/ar`, `/company`, `/contact` (inline-end corner, RTL-aware); hidden on `/studio`
