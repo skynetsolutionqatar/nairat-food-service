@@ -41,7 +41,7 @@ export const ar: Dictionary = {
     privacyPolicy: 'سياسة الخصوصية',
     termsOfService: 'شروط الخدمة',
     sitemap: 'خريطة الموقع',
-    goFreshForFuture: 'اختر الطازج للمستقبل',
+    goFreshForFuture: 'نقدّم لكم الطزاجة',
   },
   hero: {
     titleLine1: 'طازج من المصدر.',

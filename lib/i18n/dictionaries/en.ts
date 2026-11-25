@@ -41,7 +41,7 @@ export const en: Dictionary = {
     privacyPolicy: 'Privacy Policy',
     termsOfService: 'Terms of Service',
     sitemap: 'Sitemap',
-    goFreshForFuture: 'Go fresh for future',
+    goFreshForFuture: 'Delivering Freshness',
   },
   hero: {
     titleLine1: 'Fresh from the Source.',

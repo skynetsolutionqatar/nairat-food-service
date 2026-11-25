@@ -115,7 +115,7 @@ Hairline borders (`ring-line`) carry the cards; shadows are almost absent.
 +-------------------------------------------------------------------------------+
 | 9. CTA              Produce photo, headline, "Contact Us"                     |
 +-------------------------------------------------------------------------------+
-| 10. FOOTER          Logo, "Go fresh for future", links, legal                 |
+| 10. FOOTER          Logo, "Delivering Freshness", links, legal                 |
 +-------------------------------------------------------------------------------+
 ```
 
