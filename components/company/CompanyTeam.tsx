@@ -6,6 +6,7 @@ import { Users } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { useLocale } from '@/context/LocaleContext';
 import type { CompanyPageContent } from '@/sanity/lib/data';
+import { companyImageAlts } from '@/data/pageImageAlts';
 
 interface CompanyTeamProps {
   content?: CompanyPageContent;
@@ -91,7 +92,7 @@ export function CompanyTeam({ content }: CompanyTeamProps = {}) {
         <div className="team-image-container relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200/80 bg-white aspect-[16/10] sm:aspect-[16/8] lg:aspect-[21/9]">
           <Image
             src={imageUrl}
-            alt={isAr ? 'أعضاء فريق نيرات للخدمات الغذائية المتفانون' : 'Nairat Food Services Dedicated Team Members'}
+            alt={(content?.teamImageAlt ?? companyImageAlts.team)[locale]}
             fill
             className="object-cover object-center transition-transform duration-700 hover:scale-[1.02]"
             sizes="(max-width: 1280px) 100vw, 1240px"

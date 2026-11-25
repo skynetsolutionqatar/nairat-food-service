@@ -60,10 +60,6 @@ export interface Dictionary {
     badge: string;
     heroTitle: string;
     heroSubtitle: string;
-    missionTitle: string;
-    missionDesc: string;
-    visionTitle: string;
-    visionDesc: string;
     infrastructureTitle: string;
     infrastructureDesc: string;
     coldStorageCapacity: string;

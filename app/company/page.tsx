@@ -10,7 +10,7 @@ import { CompanyTeam } from '@/components/company/CompanyTeam';
 import { CompanyQuality } from '@/components/company/CompanyQuality';
 import { CompanyLookingAhead } from '@/components/company/CompanyLookingAhead';
 import { Cta } from '@/components/modules/Cta';
-import { getCompanyPageContent } from '@/sanity/lib/data';
+import { getCompanyPageContent, getHomePageContent } from '@/sanity/lib/data';
 
 export const revalidate = 60;
 
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 export default async function CompanyPage() {
-  const companyContent = await getCompanyPageContent();
+  const [companyContent, homeContent] = await Promise.all([getCompanyPageContent(), getHomePageContent()]);
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -68,7 +68,7 @@ export default async function CompanyPage() {
       <CompanyLookingAhead content={companyContent} />
 
       {/* 9. Final CTA (Home Page Parallax Banner & Drawer Form) */}
-      <Cta />
+      <Cta content={homeContent} />
     </div>
   );
 }

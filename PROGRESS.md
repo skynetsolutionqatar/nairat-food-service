@@ -358,3 +358,14 @@ Spec: [specs/home-cta-sanity.md](specs/home-cta-sanity.md)
 
 - [x] Lenis smooth scrolling no longer starts on `/studio` (`lib/smoothScroll.ts`, unit tested); it was swallowing wheel events meant for Studio's scroll panes
 - [x] Verified with agent-browser (mouse pointer emulated): Lenis active on `/` and `/company`, inactive on `/studio`
+
+## Company Page: Sanity Parity
+
+Spec: [specs/company-page-sanity-parity.md](specs/company-page-sanity-parity.md)
+
+- [x] Audit of every visible text node and image alt on `/company` and `/ar/company` against Sanity
+- [x] New `companyPage` fields: Vision/Mission card labels, CEO company label, certificate pills, EN/AR alt text on five photos; alt text on the home CTA images
+- [x] Headings always render the Sanity text (`HighlightedTitle`); dead CEO-name and Arabic-word workarounds removed
+- [x] Company pages pass home content to the bottom CTA
+- [x] Live Sanity documents and seed script updated; rendered output unchanged (verified)
+- [x] Removed the unused company banner subtitle (EN/AR): schema, query, data, seed and live document

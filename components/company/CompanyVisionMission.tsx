@@ -5,6 +5,7 @@ import { gsap, useGSAP } from '@/lib/gsap';
 
 import { useLocale } from '@/context/LocaleContext';
 import type { CompanyPageContent } from '@/sanity/lib/data';
+import { HighlightedTitle } from './HighlightedTitle';
 
 interface CompanyVisionMissionProps {
   content?: CompanyPageContent;
@@ -26,7 +27,7 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
       ];
 
   const narrativeText = isAr
-    ? content?.visionMissionNarrativeAr?.replace(/والتجاريين/g, 'والجملة')
+    ? content?.visionMissionNarrativeAr
     : content?.visionMissionNarrative;
   const narrativeParagraphs = narrativeText?.includes('\n')
     ? narrativeText.split(/\n\s*\n|\n/).filter(Boolean)
@@ -34,47 +35,12 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
     ? [narrativeText]
     : defaultNarrativeParagraphs;
 
-  const renderTitle = () => {
-    if (!isAr) {
-      const text = content?.visionMissionTitle;
-      if (text && text.includes('Growing a Fresher Future')) {
-        return (
-          <>
-            Our Journey: <br />
-            <span className="text-[#168849]">Growing a Fresher Future</span> <br />
-            for Qatar.
-          </>
-        );
-      }
-      if (text) return text;
-      return (
-        <>
-          Our Journey: <br />
-          <span className="text-[#168849]">Growing a Fresher Future</span> <br />
-          for Qatar.
-        </>
-      );
-    } else {
-      const text = content?.visionMissionTitleAr;
-      if (text && text.includes('تنمية مستقبل أكثر نضارة')) {
-        return (
-          <>
-            مسيرتنا: <br />
-            <span className="text-[#168849]">تنمية مستقبل أكثر نضارة</span> <br />
-            لقطر.
-          </>
-        );
-      }
-      if (text) return text;
-      return (
-        <>
-          مسيرتنا: <br />
-          <span className="text-[#168849]">تنمية مستقبل أكثر نضارة</span> <br />
-          لقطر.
-        </>
-      );
-    }
-  };
+  const title = isAr
+    ? (content?.visionMissionTitleAr || 'مسيرتنا: تنمية مستقبل أكثر نضارة لقطر.')
+    : (content?.visionMissionTitle || 'Our Journey: Growing a Fresher Future for Qatar.');
+  const titlePhrase = isAr ? 'تنمية مستقبل أكثر نضارة' : 'Growing a Fresher Future';
+  const visionBadge = isAr ? (content?.visionBadgeAr || 'رؤيتنا') : (content?.visionBadge || 'Our Vision');
+  const missionBadge = isAr ? (content?.missionBadgeAr || 'رسالتنا') : (content?.missionBadge || 'Our Mission');
 
   const visionTitle = isAr
     ? (content?.visionTitleAr || 'تنمية مستقبل أكثر نضارة لقطر.')
@@ -130,7 +96,7 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
           {/* Left Column: Heading & Narrative (6 cols) */}
           <div className="lg:col-span-6 space-y-5">
             <h2 className="vision-mission-text-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
-              {renderTitle()}
+              <HighlightedTitle text={title} phrase={titlePhrase} />
             </h2>
 
             <div className="vision-mission-text-item space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">
@@ -146,7 +112,7 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
             <div className="vision-mission-card p-6 sm:p-7 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80 shadow-2xs space-y-3">
               <div className="inline-block">
                 <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
-                  {isAr ? 'رؤيتنا' : 'Our Vision'}
+                  {visionBadge}
                 </span>
               </div>
               <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug text-start">
@@ -161,7 +127,7 @@ export function CompanyVisionMission({ content }: CompanyVisionMissionProps = {}
             <div className="vision-mission-card p-6 sm:p-7 rounded-2xl bg-[#F8FAF8] border border-neutral-200/80 shadow-2xs space-y-3">
               <div className="inline-block">
                 <span className="px-3 py-1 rounded-md bg-[#FDE047] text-[#111814] font-display text-xs font-bold uppercase tracking-wider">
-                  {isAr ? 'رسالتنا' : 'Our Mission'}
+                  {missionBadge}
                 </span>
               </div>
               <h3 className="font-display font-semibold text-lg sm:text-xl text-[#111814] leading-snug text-start">

@@ -29,6 +29,8 @@ import {
 import { PartnerItem, partnerLogos } from '@/data/partners';
 import { homeServiceCards, type HomeServiceCard } from '@/data/homeServiceCards';
 import { resolveHomeServiceCards } from '@/lib/homeServiceCards';
+import { resolveImageAlt, type LocalizedText } from '@/lib/imageAlt';
+import { companyCertificates, companyImageAlts, ctaImageAlts } from '@/data/pageImageAlts';
 import { homeQualityCertificates, homeQualitySteps, homeQualityText, type HomeQualityStep } from '@/data/homeQuality';
 import { resolveQualityCertificates, resolveQualitySteps } from '@/lib/homeQuality';
 import { CompanyProfile, companyProfile } from '@/lib/config/company';
@@ -679,6 +681,8 @@ export interface HomePageContent {
   ctaSubtext2Ar: string;
   ctaBackgroundImageUrl: string;
   ctaFlagsImageUrl: string;
+  ctaBackgroundImageAlt: LocalizedText;
+  ctaFlagsImageAlt: LocalizedText;
   ctaButtonText: string;
   ctaButtonTextAr: string;
 }
@@ -766,6 +770,8 @@ export const defaultHomePageContent: HomePageContent = {
   ctaSubtext2Ar: 'تُسلَّم عبر أرجاء قطر.',
   ctaBackgroundImageUrl: '/cta/ctaft-bac.webp',
   ctaFlagsImageUrl: '/cta/ctacontry.webp',
+  ctaBackgroundImageAlt: ctaImageAlts.background,
+  ctaFlagsImageAlt: ctaImageAlts.flags,
   ctaButtonText: 'Contact Us',
   ctaButtonTextAr: 'اتصل بنا',
 };
@@ -885,6 +891,8 @@ export async function getHomePageContent(): Promise<HomePageContent> {
           ctaSubtext2Ar: data.ctaSubtext2Ar || defaultHomePageContent.ctaSubtext2Ar,
           ctaBackgroundImageUrl: data.ctaBackgroundImageUrl || defaultHomePageContent.ctaBackgroundImageUrl,
           ctaFlagsImageUrl: data.ctaFlagsImageUrl || defaultHomePageContent.ctaFlagsImageUrl,
+          ctaBackgroundImageAlt: resolveImageAlt(data.ctaBackgroundImageAlt, defaultHomePageContent.ctaBackgroundImageAlt),
+          ctaFlagsImageAlt: resolveImageAlt(data.ctaFlagsImageAlt, defaultHomePageContent.ctaFlagsImageAlt),
           ctaButtonText: data.ctaButtonText || defaultHomePageContent.ctaButtonText,
           ctaButtonTextAr: data.ctaButtonTextAr || defaultHomePageContent.ctaButtonTextAr,
         };
@@ -899,8 +907,6 @@ export async function getHomePageContent(): Promise<HomePageContent> {
 export interface CompanyPageContent {
   bannerTitle: string;
   bannerTitleAr: string;
-  bannerSubtitle: string;
-  bannerSubtitleAr: string;
 
   deliveringEyebrow: string;
   deliveringEyebrowAr: string;
@@ -913,6 +919,7 @@ export interface CompanyPageContent {
   deliveringCommitmentBody: string;
   deliveringCommitmentBodyAr: string;
   deliveringImageUrl?: string;
+  deliveringImageAlt: LocalizedText;
   deliveringBadgeEst?: string;
   deliveringBadgeEstAr?: string;
   deliveringBadgeLocation?: string;
@@ -930,6 +937,10 @@ export interface CompanyPageContent {
   missionTitleAr: string;
   missionBody: string;
   missionBodyAr: string;
+  visionBadge: string;
+  visionBadgeAr: string;
+  missionBadge: string;
+  missionBadgeAr: string;
 
   ceoEyebrow: string;
   ceoEyebrowAr: string;
@@ -944,12 +955,15 @@ export interface CompanyPageContent {
   ceoMessage: string;
   ceoMessageAr: string;
   ceoImageUrl?: string;
+  ceoCompanyLabel: string;
+  ceoCompanyLabelAr: string;
 
   infraTitle: string;
   infraTitleAr: string;
   infraNarrative: string;
   infraNarrativeAr: string;
   infraImageUrl?: string;
+  infraImageAlt: LocalizedText;
   infraHubBadgeTitle: string;
   infraHubBadgeTitleAr: string;
   infraHubBadgeDesc: string;
@@ -982,6 +996,7 @@ export interface CompanyPageContent {
   teamNarrative: string;
   teamNarrativeAr: string;
   teamImageUrl?: string;
+  teamImageAlt: LocalizedText;
 
   qualityEyebrow: string;
   qualityEyebrowAr: string;
@@ -990,10 +1005,12 @@ export interface CompanyPageContent {
   qualityNarrative: string;
   qualityNarrativeAr: string;
   qualityImageUrl?: string;
+  qualityImageAlt: LocalizedText;
   qualityBadgeText: string;
   qualityBadgeTextAr: string;
   qualityBadgeSubtext: string;
   qualityBadgeSubtextAr: string;
+  qualityCertificates: { label: string; labelAr: string }[];
 
   lookingAheadEyebrow: string;
   lookingAheadEyebrowAr: string;
@@ -1006,6 +1023,7 @@ export interface CompanyPageContent {
   lookingAheadAmbitionQuote: string;
   lookingAheadAmbitionQuoteAr: string;
   lookingAheadImageUrl?: string;
+  lookingAheadImageAlt: LocalizedText;
   lookingAheadBadgeText: string;
   lookingAheadBadgeTextAr: string;
   lookingAheadBadgeSubtext: string;
@@ -1015,8 +1033,6 @@ export interface CompanyPageContent {
 export const defaultCompanyPageContent: CompanyPageContent = {
   bannerTitle: 'Company',
   bannerTitleAr: 'الشركة',
-  bannerSubtitle: 'Connecting global agricultural basins with Qatar’s food retail and hospitality sectors through state-of-the-art cold-chain logistics.',
-  bannerSubtitleAr: 'نربط أبرز المزارع العالمية بقطاعات التجزئة والضيافة في قطر من خلال بنية تحتية لوجستية متطورة لسلسلة التبريد.',
 
   deliveringEyebrow: 'Delivering Freshness',
   deliveringEyebrowAr: 'توصيل النضارة',
@@ -1029,6 +1045,7 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   deliveringCommitmentBody: 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.',
   deliveringCommitmentBodyAr: 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.',
   deliveringImageUrl: '/whychooseus/delivering.jpg',
+  deliveringImageAlt: companyImageAlts.delivering,
   deliveringBadgeEst: 'Est. 2020',
   deliveringBadgeEstAr: 'تأسست 2020',
   deliveringBadgeLocation: 'Street 37, Industrial Area',
@@ -1038,14 +1055,18 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   visionMissionTitleAr: 'مسيرتنا: تنمية مستقبل أكثر نضارة لقطر.',
   visionMissionNarrative: 'Since our establishment in 2020, Nairat Food has expanded its capabilities to meet the growing demand for fresh produce across Qatar.\n\nFrom global sourcing to dependable cold-chain distribution, we combine deep local market knowledge with international grower partnerships to deliver consistent, fresh produce to retail and commercial clients year-round.',
   visionMissionNarrativeAr: 'منذ تأسيسنا في عام 2020، وسّعت نيرات للأغذية قدراتها لتلبية الطلب المتزايد على المنتجات الطازجة في جميع أنحاء قطر.\n\nمن التوريد العالمي إلى التوزيع الموثوق عبر سلسلة التبريد، نجمع بين المعرفة العميقة بالسوق المحلي وشراكات المزارعين الدولية لتقديم منتجات طازجة ومتسقة لعملاء التجزئة والجملة على مدار العام.',
-  visionTitle: en.company.visionTitle,
-  visionTitleAr: ar.company.visionTitle,
-  visionBody: en.company.visionDesc,
-  visionBodyAr: ar.company.visionDesc,
-  missionTitle: en.company.missionTitle,
-  missionTitleAr: ar.company.missionTitle,
-  missionBody: en.company.missionDesc,
-  missionBodyAr: ar.company.missionDesc,
+  visionTitle: "Growing a fresher future for Qatar.",
+  visionTitleAr: "تنمية مستقبل أكثر نضارة لقطر.",
+  visionBody: "To be Qatar's premier provider of fresh fruits and vegetables, offering exceptional quality, dependable service and year-round availability while creating lasting value for our customers, suppliers and communities.",
+  visionBodyAr: "أن نكون المزود الرائد للفواكه والخضروات الطازجة في قطر، ونقدم جودة استثنائية، وخدمة موثوقة، وتوافراً على مدار العام مع خلق قيمة دائمة لعملائنا، وموردينا، ومجتمعاتنا.",
+  missionTitle: "Quality, Safety & Stakeholder Value",
+  missionTitleAr: "الجودة، والسلامة وقيمة أصحاب المصلحة",
+  missionBody: "We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every aspect of our operations. We continuously invest in our people, processes and infrastructure to build long-term relationships.",
+  missionBodyAr: "نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل جانب من جوانب عملياتنا. نحن نستثمر باستمرار في موظفينا، وعملياتنا، وبنيتنا التحتية لبناء علاقات طويلة الأمد.",
+  visionBadge: 'Our Vision',
+  visionBadgeAr: 'رؤيتنا',
+  missionBadge: 'Our Mission',
+  missionBadgeAr: 'رسالتنا',
 
   ceoEyebrow: 'LEADERSHIP MESSAGE',
   ceoEyebrowAr: 'رسالة القيادة',
@@ -1060,12 +1081,15 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   ceoMessage: 'Since our founding in 2020, Nairat Food has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.\n\nEvery day, our dedicated team works tirelessly to bridge international harvest fields directly to hypermarkets, restaurants, and homes across Qatar. We invest in people, advanced chilling logistics, and stringent food safety protocols to ensure our partners receive produce at peak freshness.\n\nAs Qatar continues to grow, we remain proud to play our role in supporting national food security and elevating the standard of fresh produce across the country.',
   ceoMessageAr: 'منذ تأسيسنا في عام 2020، انطلقت نيرات للأغذية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.\n\nيعمل فريقنا المتفاني يومياً لربط حقول الحصاد العالمية مباشرة بكبرى المتاجر، والمطاعم، والمنازل في جميع أنحاء قطر. نحن نستثمر باستمرار في كوادرنا، وتقنيات التبريد المتقدمة، وأعلى معايير سلامة الأغذية لضمان وصول المنتجات في أوج نضارتها.\n\nومع استمرار مسيرة النمو في دولة قطر، نفخر بالقيام بدورنا المحوري في دعم الأمن الغذائي الوطني والارتقاء بمعايير المنتجات الطازجة في كافة أنحاء البلاد.',
   ceoImageUrl: '/team/ceo.jpg',
+  ceoCompanyLabel: 'Nairat Food',
+  ceoCompanyLabelAr: 'نيرات للأغذية',
 
   infraTitle: 'Built Around Freshness: Infrastructure Designed for Scale',
   infraTitleAr: 'صُممت حول النضارة: بنية تحتية مصممة للنمو والتوسع',
   infraNarrative: "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.",
   infraNarrativeAr: 'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.',
   infraImageUrl: '/whychooseus/chiller-warehouse.jpg',
+  infraImageAlt: companyImageAlts.infra,
   infraHubBadgeTitle: 'Industrial Area Hub · Doha',
   infraHubBadgeTitleAr: 'مركز المنطقة الصناعية · الدوحة',
   infraHubBadgeDesc: 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.',
@@ -1098,6 +1122,7 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   teamNarrative: 'At Nairat Food, we understand the goals and aspirations of each team member, as well as the needs of our growing business. With 200+ employees, we are committed to helping our team reach their full potential. Our people are one of our most valuable assets, and we prioritize their well-being, development and a safe working environment to ensure the continued success of our company.',
   teamNarrativeAr: 'في نيرات للأغذية، نفهم أهداف وتطلعات كل عضو في الفريق، بالإضافة إلى احتياجات أعمالنا المتنامية. مع 200+ موظف، نحن ملتزمون بمساعدة فريقنا على الوصول إلى أقصى إمكاناتهم. إن موظفينا هم أحد أثمن أصولنا، ونحن نعطي الأولوية لرفاهيتهم وتطويرهم وبيئة عمل آمنة لضمان النجاح المستمر لشركتنا.',
   teamImageUrl: '/team/team.jpg',
+  teamImageAlt: companyImageAlts.team,
 
   qualityEyebrow: 'Quality & Food Safety',
   qualityEyebrowAr: 'الجودة وسلامة الغذاء',
@@ -1106,10 +1131,12 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   qualityNarrative: 'At Nairat Food, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.\n\nOur produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
   qualityNarrativeAr: 'في نيرات للأغذية، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.\n\nيتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
   qualityImageUrl: '/whychooseus/temperature-controlled.jpg',
+  qualityImageAlt: companyImageAlts.quality,
   qualityBadgeText: 'HACCP & ISO Certified',
   qualityBadgeTextAr: 'معتمد بشهادة HACCP و ISO',
   qualityBadgeSubtext: 'Qatar Verified',
   qualityBadgeSubtextAr: 'معتمد في قطر',
+  qualityCertificates: companyCertificates,
 
   lookingAheadEyebrow: 'Looking Ahead',
   lookingAheadEyebrowAr: 'التطلع إلى الأمام',
@@ -1122,6 +1149,7 @@ export const defaultCompanyPageContent: CompanyPageContent = {
   lookingAheadAmbitionQuote: '“To become the trusted fresh-produce partner for businesses and consumers across Qatar.”',
   lookingAheadAmbitionQuoteAr: '«أن نصبح شريك المنتجات الطازجة الموثوق به للشركات والمستهلكين في جميع أنحاء قطر.»',
   lookingAheadImageUrl: '/whychooseus/truck.jpg',
+  lookingAheadImageAlt: companyImageAlts.lookingAhead,
   lookingAheadBadgeText: 'Refrigerated Delivery Network',
   lookingAheadBadgeTextAr: 'شبكة التوصيل المبرد',
   lookingAheadBadgeSubtext: 'Active 24/7',
@@ -1146,8 +1174,6 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
         return {
           bannerTitle: data.bannerTitle || defaultCompanyPageContent.bannerTitle,
           bannerTitleAr: data.bannerTitleAr || defaultCompanyPageContent.bannerTitleAr,
-          bannerSubtitle: data.bannerSubtitle ?? defaultCompanyPageContent.bannerSubtitle,
-          bannerSubtitleAr: data.bannerSubtitleAr ?? defaultCompanyPageContent.bannerSubtitleAr,
 
           deliveringEyebrow: data.deliveringEyebrow || defaultCompanyPageContent.deliveringEyebrow,
           deliveringEyebrowAr: data.deliveringEyebrowAr || defaultCompanyPageContent.deliveringEyebrowAr,
@@ -1160,6 +1186,7 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           deliveringCommitmentBody: data.deliveringCommitmentBody || defaultCompanyPageContent.deliveringCommitmentBody,
           deliveringCommitmentBodyAr: data.deliveringCommitmentBodyAr || defaultCompanyPageContent.deliveringCommitmentBodyAr,
           deliveringImageUrl: (data.deliveringImage ? urlForImage(data.deliveringImage) : null) || defaultCompanyPageContent.deliveringImageUrl,
+          deliveringImageAlt: resolveImageAlt(data.deliveringImage, defaultCompanyPageContent.deliveringImageAlt),
           deliveringBadgeEst: data.deliveringBadgeEst || defaultCompanyPageContent.deliveringBadgeEst,
           deliveringBadgeEstAr: data.deliveringBadgeEstAr || defaultCompanyPageContent.deliveringBadgeEstAr,
           deliveringBadgeLocation: data.deliveringBadgeLocation || defaultCompanyPageContent.deliveringBadgeLocation,
@@ -1177,6 +1204,10 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           missionTitleAr: data.missionTitleAr || defaultCompanyPageContent.missionTitleAr,
           missionBody: data.missionBody || defaultCompanyPageContent.missionBody,
           missionBodyAr: data.missionBodyAr || defaultCompanyPageContent.missionBodyAr,
+          visionBadge: data.visionBadge || defaultCompanyPageContent.visionBadge,
+          visionBadgeAr: data.visionBadgeAr || defaultCompanyPageContent.visionBadgeAr,
+          missionBadge: data.missionBadge || defaultCompanyPageContent.missionBadge,
+          missionBadgeAr: data.missionBadgeAr || defaultCompanyPageContent.missionBadgeAr,
 
           ceoEyebrow: data.ceoEyebrow || defaultCompanyPageContent.ceoEyebrow,
           ceoEyebrowAr: data.ceoEyebrowAr || defaultCompanyPageContent.ceoEyebrowAr,
@@ -1191,12 +1222,15 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           ceoMessage: data.ceoMessage || defaultCompanyPageContent.ceoMessage,
           ceoMessageAr: data.ceoMessageAr || defaultCompanyPageContent.ceoMessageAr,
           ceoImageUrl: (data.ceoImage ? urlForImage(data.ceoImage) : null) || defaultCompanyPageContent.ceoImageUrl,
+          ceoCompanyLabel: data.ceoCompanyLabel || defaultCompanyPageContent.ceoCompanyLabel,
+          ceoCompanyLabelAr: data.ceoCompanyLabelAr || defaultCompanyPageContent.ceoCompanyLabelAr,
 
           infraTitle: data.infraTitle || defaultCompanyPageContent.infraTitle,
           infraTitleAr: data.infraTitleAr || defaultCompanyPageContent.infraTitleAr,
           infraNarrative: data.infraNarrative || defaultCompanyPageContent.infraNarrative,
           infraNarrativeAr: data.infraNarrativeAr || defaultCompanyPageContent.infraNarrativeAr,
           infraImageUrl: (data.infraImage ? urlForImage(data.infraImage) : null) || defaultCompanyPageContent.infraImageUrl,
+          infraImageAlt: resolveImageAlt(data.infraImage, defaultCompanyPageContent.infraImageAlt),
           infraHubBadgeTitle: data.infraHubBadgeTitle || defaultCompanyPageContent.infraHubBadgeTitle,
           infraHubBadgeTitleAr: data.infraHubBadgeTitleAr || defaultCompanyPageContent.infraHubBadgeTitleAr,
           infraHubBadgeDesc: data.infraHubBadgeDesc || defaultCompanyPageContent.infraHubBadgeDesc,
@@ -1229,6 +1263,7 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           teamNarrative: data.teamNarrative || defaultCompanyPageContent.teamNarrative,
           teamNarrativeAr: data.teamNarrativeAr || defaultCompanyPageContent.teamNarrativeAr,
           teamImageUrl: (data.teamImage ? urlForImage(data.teamImage) : null) || defaultCompanyPageContent.teamImageUrl,
+          teamImageAlt: resolveImageAlt(data.teamImage, defaultCompanyPageContent.teamImageAlt),
 
           qualityEyebrow: data.qualityEyebrow || defaultCompanyPageContent.qualityEyebrow,
           qualityEyebrowAr: data.qualityEyebrowAr || defaultCompanyPageContent.qualityEyebrowAr,
@@ -1241,6 +1276,8 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           qualityBadgeTextAr: data.qualityBadgeTextAr || defaultCompanyPageContent.qualityBadgeTextAr,
           qualityBadgeSubtext: data.qualityBadgeSubtext || defaultCompanyPageContent.qualityBadgeSubtext,
           qualityBadgeSubtextAr: data.qualityBadgeSubtextAr || defaultCompanyPageContent.qualityBadgeSubtextAr,
+          qualityCertificates: data.qualityCertificates?.filter((c: { label?: string }) => c?.label).length ? data.qualityCertificates : defaultCompanyPageContent.qualityCertificates,
+          qualityImageAlt: resolveImageAlt(data.qualityImage, defaultCompanyPageContent.qualityImageAlt),
 
           lookingAheadEyebrow: data.lookingAheadEyebrow || defaultCompanyPageContent.lookingAheadEyebrow,
           lookingAheadEyebrowAr: data.lookingAheadEyebrowAr || defaultCompanyPageContent.lookingAheadEyebrowAr,
@@ -1253,6 +1290,7 @@ export async function getCompanyPageContent(): Promise<CompanyPageContent> {
           lookingAheadAmbitionQuote: data.lookingAheadAmbitionQuote || defaultCompanyPageContent.lookingAheadAmbitionQuote,
           lookingAheadAmbitionQuoteAr: data.lookingAheadAmbitionQuoteAr || defaultCompanyPageContent.lookingAheadAmbitionQuoteAr,
           lookingAheadImageUrl: (data.lookingAheadImage ? urlForImage(data.lookingAheadImage) : null) || defaultCompanyPageContent.lookingAheadImageUrl,
+          lookingAheadImageAlt: resolveImageAlt(data.lookingAheadImage, defaultCompanyPageContent.lookingAheadImageAlt),
           lookingAheadBadgeText: data.lookingAheadBadgeText || defaultCompanyPageContent.lookingAheadBadgeText,
           lookingAheadBadgeTextAr: data.lookingAheadBadgeTextAr || defaultCompanyPageContent.lookingAheadBadgeTextAr,
           lookingAheadBadgeSubtext: data.lookingAheadBadgeSubtext || defaultCompanyPageContent.lookingAheadBadgeSubtext,

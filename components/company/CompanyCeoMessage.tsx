@@ -51,15 +51,9 @@ export function CompanyCeoMessage({ content }: CompanyCeoMessageProps = {}) {
     }
   };
 
-  const rawCeoName = isAr
+  const ceoName = isAr
     ? (content?.ceoNameAr || 'حيدر علي غلام حسين حيدري')
     : (content?.ceoName || 'Haidar Ali Ghulamhussain Haidari');
-  const ceoName =
-    rawCeoName === 'Nasser Al-Kuwari'
-      ? 'Haidar Ali Ghulamhussain Haidari'
-      : rawCeoName === 'ناصر الكواري'
-      ? 'حيدر علي غلام حسين حيدري'
-      : rawCeoName;
 
   const ceoTitle = isAr
     ? (content?.ceoTitleAr || 'الرئيس التنفيذي، نيرات للأغذية')
@@ -200,7 +194,7 @@ export function CompanyCeoMessage({ content }: CompanyCeoMessageProps = {}) {
               </div>
               <div className="h-8 w-px bg-neutral-200" aria-hidden="true" />
               <div className="font-display font-semibold text-xs tracking-wider text-[#168849] uppercase">
-                {isAr ? 'نيرات للأغذية' : 'Nairat Food'}
+                {isAr ? (content?.ceoCompanyLabelAr || 'نيرات للأغذية') : (content?.ceoCompanyLabel || 'Nairat Food')}
               </div>
             </div>
           </div>

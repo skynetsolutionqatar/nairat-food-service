@@ -7,6 +7,7 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 import type { CompanyPageContent } from '@/sanity/lib/data';
+import { companyCertificates, companyImageAlts } from '@/data/pageImageAlts';
 
 interface CompanyQualityProps {
   content?: CompanyPageContent;
@@ -52,6 +53,8 @@ export function CompanyQuality({ content }: CompanyQualityProps = {}) {
     ? (content?.qualityBadgeSubtextAr || 'معتمد في قطر')
     : (content?.qualityBadgeSubtext || 'Qatar Verified');
 
+  const certificates = content?.qualityCertificates ?? companyCertificates;
+
   useGSAP(() => {
     const section = sectionRef.current;
     if (!section) return;
@@ -88,7 +91,7 @@ export function CompanyQuality({ content }: CompanyQualityProps = {}) {
               <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-neutral-100 border border-neutral-200/80">
                 <Image
                   src={imageUrl}
-                  alt={isAr ? "فحص الجودة والتحكم بدرجات الحرارة لشركة نيرات للأغذية" : "Nairat Food QA Laboratory Inspection & Temperature Control"}
+                  alt={(content?.qualityImageAlt ?? companyImageAlts.quality)[locale]}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 450px"
@@ -121,15 +124,15 @@ export function CompanyQuality({ content }: CompanyQualityProps = {}) {
 
               {/* Certification Badges */}
               <div className="pt-2 flex flex-wrap gap-3 items-center">
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold">
-                  <Award className="w-3.5 h-3.5" />
-                  <span>{isAr ? 'معتمد بشهادة HACCP' : 'HACCP Certified'}</span>
-                </span>
-
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold">
-                  <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>{'ISO 22000:2018'}</span>
-                </span>
+                {certificates.map((certificate, index) => {
+                  const Icon = index === 0 ? Award : ShieldCheck;
+                  return (
+                    <span key={certificate.label} className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold">
+                      <Icon className="w-3.5 h-3.5" />
+                      <span>{isAr ? certificate.labelAr || certificate.label : certificate.label}</span>
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </div>

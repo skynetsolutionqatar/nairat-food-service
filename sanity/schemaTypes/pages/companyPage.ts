@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
+import { altTextFields } from '../altTextFields';
 
 export const companyPage = defineType({
   name: 'companyPage',
@@ -32,22 +33,6 @@ export const companyPage = defineType({
       type: 'string',
       fieldset: 'banner',
       initialValue: 'الشركة',
-    }),
-    defineField({
-      name: 'bannerSubtitle',
-      title: 'Banner Subtitle (EN)',
-      type: 'text',
-      rows: 2,
-      fieldset: 'banner',
-      initialValue: 'Connecting global agricultural basins with Qatar’s food retail and hospitality sectors through state-of-the-art cold-chain logistics.',
-    }),
-    defineField({
-      name: 'bannerSubtitleAr',
-      title: 'Banner Subtitle (AR)',
-      type: 'text',
-      rows: 2,
-      fieldset: 'banner',
-      initialValue: 'نربط أبرز المزارع العالمية بقطاعات التجزئة والضيافة في قطر من خلال بنية تحتية لوجستية متطورة لسلسلة التبريد.',
     }),
 
     // ==========================================
@@ -131,6 +116,7 @@ export const companyPage = defineType({
       name: 'deliveringImage',
       title: 'Warehouse & Facility Image',
       type: 'image',
+      fields: altTextFields,
       fieldset: 'delivering',
       options: { hotspot: true },
     }),
@@ -256,6 +242,34 @@ export const companyPage = defineType({
       fieldset: 'visionMission',
       initialValue: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل جانب من جوانب عملياتنا. نحن نستثمر باستمرار في موظفينا، وعملياتنا، وبنيتنا التحتية لبناء علاقات طويلة الأمد.',
     }),
+    defineField({
+      name: 'visionBadge',
+      title: 'Vision Card Label (EN)',
+      type: 'string',
+      fieldset: 'visionMission',
+      initialValue: 'Our Vision',
+    }),
+    defineField({
+      name: 'visionBadgeAr',
+      title: 'Vision Card Label (AR)',
+      type: 'string',
+      fieldset: 'visionMission',
+      initialValue: 'رؤيتنا',
+    }),
+    defineField({
+      name: 'missionBadge',
+      title: 'Mission Card Label (EN)',
+      type: 'string',
+      fieldset: 'visionMission',
+      initialValue: 'Our Mission',
+    }),
+    defineField({
+      name: 'missionBadgeAr',
+      title: 'Mission Card Label (AR)',
+      type: 'string',
+      fieldset: 'visionMission',
+      initialValue: 'رسالتنا',
+    }),
 
     // ==========================================
     // --- 4. CEO MESSAGE ---
@@ -355,6 +369,20 @@ export const companyPage = defineType({
       fieldset: 'ceo',
       options: { hotspot: true },
     }),
+    defineField({
+      name: 'ceoCompanyLabel',
+      title: 'CEO Card Company Label (EN)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'Nairat Food',
+    }),
+    defineField({
+      name: 'ceoCompanyLabelAr',
+      title: 'CEO Card Company Label (AR)',
+      type: 'string',
+      fieldset: 'ceo',
+      initialValue: 'نيرات للأغذية',
+    }),
 
     // ==========================================
     // --- 5. INFRASTRUCTURE & OPERATIONAL SCALE ---
@@ -393,6 +421,7 @@ export const companyPage = defineType({
       name: 'infraImage',
       title: 'Chiller Facility Photo',
       type: 'image',
+      fields: altTextFields,
       fieldset: 'infrastructure',
       options: { hotspot: true },
     }),
@@ -634,6 +663,7 @@ export const companyPage = defineType({
       title: 'Team Showcase Photo',
       description: 'Upload a team photo banner for the team section',
       type: 'image',
+      fields: altTextFields,
       fieldset: 'team',
       options: { hotspot: true },
     }),
@@ -689,6 +719,7 @@ export const companyPage = defineType({
       name: 'qualityImage',
       title: 'Quality Inspection Photo',
       type: 'image',
+      fields: altTextFields,
       fieldset: 'quality',
       options: { hotspot: true },
     }),
@@ -719,6 +750,23 @@ export const companyPage = defineType({
       type: 'string',
       fieldset: 'quality',
       initialValue: 'معتمد في قطر',
+    }),
+    defineField({
+      name: 'qualityCertificates',
+      title: 'Certificate Pills',
+      description: 'Shown under the narrative. The first uses an award icon, the rest a shield.',
+      type: 'array',
+      fieldset: 'quality',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'companyCertificate',
+          fields: [
+            { name: 'label', title: 'Label (EN)', type: 'string', validation: (rule) => rule.required() },
+            { name: 'labelAr', title: 'Label (AR)', type: 'string' },
+          ],
+        }),
+      ],
     }),
 
     // ==========================================
@@ -800,6 +848,7 @@ export const companyPage = defineType({
       name: 'lookingAheadImage',
       title: 'Looking Ahead Fleet Image',
       type: 'image',
+      fields: altTextFields,
       fieldset: 'lookingAhead',
       options: { hotspot: true },
     }),
@@ -835,12 +884,11 @@ export const companyPage = defineType({
   preview: {
     select: {
       title: 'bannerTitle',
-      subtitle: 'bannerSubtitle',
     },
-    prepare({ title, subtitle }) {
+    prepare({ title }) {
       return {
         title: title || 'Company Page',
-        subtitle: subtitle || 'Company page 8 section-by-section content',
+        subtitle: 'Company page section-by-section content',
       };
     },
   },

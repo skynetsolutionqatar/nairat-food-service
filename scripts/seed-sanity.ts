@@ -16,6 +16,8 @@ import { productCategoriesData } from '../data/products';
 import { partnerLogos } from '../data/partners';
 import { homeServiceCards } from '../data/homeServiceCards';
 import { homeQualitySanityFields } from '../data/homeQuality';
+import { companyCertificates, companyImageAlts, ctaImageAlts } from '../data/pageImageAlts';
+import { toSanityAlt } from '../lib/imageAlt';
 import { companyProfile } from '../lib/config/company';
 import { DEFAULT_INFRA_METRICS } from '../lib/config/infrastructure';
 import { en } from '../lib/i18n/dictionaries/en';
@@ -570,8 +572,8 @@ async function seed() {
     ctaSubtext1Ar: 'تم التوريد من جميع أنحاء العالم.',
     ctaSubtext2: 'Delivered Across Qatar.',
     ctaSubtext2Ar: 'تُسلَّم عبر أرجاء قطر.',
-    ...(ctaBackgroundAssetId ? { ctaBackgroundImage: { _type: 'image', asset: { _type: 'reference', _ref: ctaBackgroundAssetId } } } : {}),
-    ...(ctaFlagsAssetId ? { ctaFlagsImage: { _type: 'image', asset: { _type: 'reference', _ref: ctaFlagsAssetId } } } : {}),
+    ...(ctaBackgroundAssetId ? { ctaBackgroundImage: { _type: 'image', asset: { _type: 'reference', _ref: ctaBackgroundAssetId }, ...toSanityAlt(ctaImageAlts.background) } } : {}),
+    ...(ctaFlagsAssetId ? { ctaFlagsImage: { _type: 'image', asset: { _type: 'reference', _ref: ctaFlagsAssetId }, ...toSanityAlt(ctaImageAlts.flags) } } : {}),
     ctaButtonText: 'Contact Us',
     ctaButtonTextAr: 'اتصل بنا',
   });
@@ -590,8 +592,6 @@ async function seed() {
     // 1. Banner
     bannerTitle: 'Company',
     bannerTitleAr: 'الشركة',
-    bannerSubtitle: 'Connecting global agricultural basins with Qatar’s food retail and hospitality sectors through state-of-the-art cold-chain logistics.',
-    bannerSubtitleAr: 'نربط أبرز المزارع العالمية بقطاعات التجزئة والضيافة في قطر من خلال بنية تحتية لوجستية متطورة لسلسلة التبريد.',
 
     // 2. Delivering Freshness
     deliveringEyebrow: 'Delivering Freshness',
@@ -604,7 +604,7 @@ async function seed() {
     deliveringCommitmentTitleAr: 'التزامنا الأساسي',
     deliveringCommitmentBody: 'To deliver high-quality fresh produce safely, efficiently and consistently. Sourced with care. Handled with precision. Delivered with confidence.',
     deliveringCommitmentBodyAr: 'تقديم منتجات طازجة عالية الجودة بأمان، وكفاءة، وبشكل متسق. تم التوريد بعناية. تم التعامل بدقة. تم التسليم بكل ثقة.',
-    ...(deliveringAssetId ? { deliveringImage: { _type: 'image', asset: { _type: 'reference', _ref: deliveringAssetId } } } : {}),
+    ...(deliveringAssetId ? { deliveringImage: { _type: 'image', asset: { _type: 'reference', _ref: deliveringAssetId }, ...toSanityAlt(companyImageAlts.delivering) } } : {}),
     deliveringBadgeEst: 'Est. 2020',
     deliveringBadgeEstAr: 'تأسست 2020',
     deliveringBadgeLocation: 'Street 37, Industrial Area',
@@ -623,6 +623,10 @@ async function seed() {
     missionTitleAr: 'الجودة، والسلامة وقيمة أصحاب المصلحة',
     missionBody: 'We are committed to supplying high-quality and affordable fresh produce while maintaining a strong food-safety culture across every aspect of our operations. We continuously invest in our people, processes and infrastructure to build long-term relationships.',
     missionBodyAr: 'نحن ملتزمون بتوريد منتجات طازجة عالية الجودة وبأسعار معقولة مع الحفاظ على ثقافة قوية لسلامة الغذاء عبر كل جانب من جوانب عملياتنا. نحن نستثمر باستمرار في موظفينا، وعملياتنا، وبنيتنا التحتية لبناء علاقات طويلة الأمد.',
+    visionBadge: 'Our Vision',
+    visionBadgeAr: 'رؤيتنا',
+    missionBadge: 'Our Mission',
+    missionBadgeAr: 'رسالتنا',
 
     // 4. CEO Message
     ceoEyebrow: 'LEADERSHIP MESSAGE',
@@ -638,13 +642,15 @@ async function seed() {
     ceoMessage: 'Since our founding in 2020, Nairat Food has been driven by a relentless focus on food quality, modern cold-chain infrastructure, and trusted partnerships across the world.\n\nEvery day, our dedicated team works tirelessly to bridge international harvest fields directly to hypermarkets, restaurants, and homes across Qatar. We invest in people, advanced chilling logistics, and stringent food safety protocols to ensure our partners receive produce at peak freshness.\n\nAs Qatar continues to grow, we remain proud to play our role in supporting national food security and elevating the standard of fresh produce across the country.',
     ceoMessageAr: 'منذ تأسيسنا في عام 2020، انطلقت نيرات للأغذية بتركيز راسخ على جودة الغذاء، وتطوير بنية تحتية حديثة لسلسلة التبريد، وبناء شراكات وثيقة وموثوقة حول العالم.\n\nيعمل فريقنا المتفاني يومياً لربط حقول الحصاد العالمية مباشرة بكبرى المتاجر، والمطاعم، والمنازل في جميع أنحاء قطر. نحن نستثمر باستمرار في كوادرنا، وتقنيات التبريد المتقدمة، وأعلى معايير سلامة الأغذية لضمان وصول المنتجات في أوج نضارتها.\n\nومع استمرار مسيرة النمو في دولة قطر، نفخر بالقيام بدورنا المحوري في دعم الأمن الغذائي الوطني والارتقاء بمعايير المنتجات الطازجة في كافة أنحاء البلاد.',
     ...(ceoAssetId ? { ceoImage: { _type: 'image', asset: { _type: 'reference', _ref: ceoAssetId } } } : {}),
+    ceoCompanyLabel: 'Nairat Food',
+    ceoCompanyLabelAr: 'نيرات للأغذية',
 
     // 5. Infrastructure & Operational Scale
     infraTitle: 'Built Around Freshness: Infrastructure Designed for Scale',
     infraTitleAr: 'صُممت حول النضارة: بنية تحتية مصممة للنمو والتوسع',
     infraNarrative: "Our purpose-built cold-chain facility in Doha's Industrial Area forms the heart of our distribution operation. With dedicated chiller rooms, efficient loading infrastructure and refrigerated transportation, our facility is designed to move fresh produce quickly and safely from arrival to delivery.",
     infraNarrativeAr: 'تشكل منشأة سلسلة التبريد المصممة خصيصاً لدينا في المنطقة الصناعية بالدوحة قلب عمليات التوزيع لدينا. مع غرف التبريد المخصصة، وبنية تحتية فعالة للتحميل، والنقل المبرد، تم تصميم منشأتنا لنقل المنتجات الطازجة بسرعة وأمان من الوصول إلى التسليم.',
-    ...(chillerAssetId ? { infraImage: { _type: 'image', asset: { _type: 'reference', _ref: chillerAssetId } } } : {}),
+    ...(chillerAssetId ? { infraImage: { _type: 'image', asset: { _type: 'reference', _ref: chillerAssetId }, ...toSanityAlt(companyImageAlts.infra) } } : {}),
     infraHubBadgeTitle: 'Industrial Area Hub · Doha',
     infraHubBadgeTitleAr: 'مركز المنطقة الصناعية · الدوحة',
     infraHubBadgeDesc: 'Unbroken cold-chain infrastructure operating 24/7 across Qatar.',
@@ -678,7 +684,7 @@ async function seed() {
     teamHeadlineAr: 'الأشخاص الذين يقودون نمونا',
     teamNarrative: 'At Nairat Food, we understand the goals and aspirations of each team member, as well as the needs of our growing business. With 200+ employees, we are committed to helping our team reach their full potential. Our people are one of our most valuable assets, and we prioritize their well-being, development and a safe working environment to ensure the continued success of our company.',
     teamNarrativeAr: 'في نيرات للأغذية، نفهم أهداف وتطلعات كل عضو في الفريق، بالإضافة إلى احتياجات أعمالنا المتنامية. مع 200+ موظف، نحن ملتزمون بمساعدة فريقنا على الوصول إلى أقصى إمكاناتهم. إن موظفينا هم أحد أثمن أصولنا، ونحن نعطي الأولوية لرفاهيتهم وتطويرهم وبيئة عمل آمنة لضمان النجاح المستمر لشركتنا.',
-    ...(teamAssetId ? { teamImage: { _type: 'image', asset: { _type: 'reference', _ref: teamAssetId } } } : {}),
+    ...(teamAssetId ? { teamImage: { _type: 'image', asset: { _type: 'reference', _ref: teamAssetId }, ...toSanityAlt(companyImageAlts.team) } } : {}),
 
     // 7. Quality & Food Safety
     qualityEyebrow: 'Quality & Food Safety',
@@ -687,11 +693,12 @@ async function seed() {
     qualityTitleAr: 'جودة يمكنك الوثوق بها: بروتوكولات صارمة من المصدر إلى الوصول',
     qualityNarrative: 'At Nairat Food, food safety and quality are integrated into our daily operations. Incoming consignments are inspected and laboratory testing is carried out in line with Qatar food-safety requirements.\n\nOur produce is then handled through controlled cold-chain processes designed to maintain freshness and quality until delivery.',
     qualityNarrativeAr: 'في نيرات للأغذية، تم دمج سلامة الغذاء والجودة في عملياتنا اليومية. يتم فحص الشحنات الواردة وإجراء الاختبارات المخبرية بما يتماشى مع متطلبات سلامة الغذاء في قطر.\n\nيتم بعد ذلك التعامل مع منتجاتنا من خلال عمليات سلسلة التبريد الخاضعة للرقابة والمصممة للحفاظ على النضارة والجودة حتى التسليم.',
-    ...(qualityAssetId ? { qualityImage: { _type: 'image', asset: { _type: 'reference', _ref: qualityAssetId } } } : {}),
+    ...(qualityAssetId ? { qualityImage: { _type: 'image', asset: { _type: 'reference', _ref: qualityAssetId }, ...toSanityAlt(companyImageAlts.quality) } } : {}),
     qualityBadgeText: 'HACCP & ISO Certified',
     qualityBadgeTextAr: 'معتمد بشهادة HACCP و ISO',
     qualityBadgeSubtext: 'Qatar Verified',
     qualityBadgeSubtextAr: 'معتمد في قطر',
+    qualityCertificates: companyCertificates.map((certificate, index) => ({ _key: `certificate-${index + 1}`, _type: 'companyCertificate', ...certificate })),
 
     // 8. Looking Ahead
     lookingAheadEyebrow: 'Looking Ahead',
@@ -704,7 +711,7 @@ async function seed() {
     lookingAheadAmbitionLabelAr: 'طموحنا الاستراتيجي',
     lookingAheadAmbitionQuote: '“To become the trusted fresh-produce partner for businesses and consumers across Qatar.”',
     lookingAheadAmbitionQuoteAr: '«أن نصبح شريك المنتجات الطازجة الموثوق به للشركات والمستهلكين في جميع أنحاء قطر.»',
-    ...(truckAssetId ? { lookingAheadImage: { _type: 'image', asset: { _type: 'reference', _ref: truckAssetId } } } : {}),
+    ...(truckAssetId ? { lookingAheadImage: { _type: 'image', asset: { _type: 'reference', _ref: truckAssetId }, ...toSanityAlt(companyImageAlts.lookingAhead) } } : {}),
     lookingAheadBadgeText: 'Refrigerated Delivery Network',
     lookingAheadBadgeTextAr: 'شبكة التوصيل المبرد',
     lookingAheadBadgeSubtext: 'Active 24/7',

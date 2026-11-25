@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity';
+import { altTextFields } from '../altTextFields';
 
 export const homePage = defineType({
   name: 'homePage',
@@ -773,6 +774,7 @@ export const homePage = defineType({
       title: 'CTA Background Image',
       description: 'Full-width photo behind the CTA text.',
       type: 'image',
+      fields: altTextFields,
       options: { hotspot: true },
       fieldset: 'cta',
     }),
@@ -781,6 +783,7 @@ export const homePage = defineType({
       title: 'CTA Country Flags Image',
       description: 'Row of country flags shown beside the subtext.',
       type: 'image',
+      fields: altTextFields,
       fieldset: 'cta',
     }),
     defineField({

@@ -6,6 +6,7 @@ import { gsap, useGSAP } from '@/lib/gsap';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 import type { CompanyPageContent } from '@/sanity/lib/data';
+import { companyImageAlts } from '@/data/pageImageAlts';
 
 interface CompanyLookingAheadProps {
   content?: CompanyPageContent;
@@ -120,7 +121,7 @@ export function CompanyLookingAhead({ content }: CompanyLookingAheadProps = {}) 
               <div className="relative rounded-2xl overflow-hidden shadow-md aspect-[4/3] bg-neutral-100 border border-neutral-200/80">
                 <Image
                   src={imageUrl}
-                  alt={isAr ? 'أسطول نيرات للأغذية اللوجستي المبرد الحديث' : 'Nairat Food Modern Refrigerated Logistics Fleet'}
+                  alt={(content?.lookingAheadImageAlt ?? companyImageAlts.lookingAhead)[locale]}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 450px"

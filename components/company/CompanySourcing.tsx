@@ -4,6 +4,7 @@ import React, { useRef } from 'react';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { useLocale } from '@/context/LocaleContext';
 import type { CompanyPageContent } from '@/sanity/lib/data';
+import { HighlightedTitle } from './HighlightedTitle';
 
 interface CompanySourcingProps {
   content?: CompanyPageContent;
@@ -61,31 +62,7 @@ export function CompanySourcing({ content }: CompanySourcingProps = {}) {
     : (content?.sourcingCard2Desc ||
         'Our procurement teams inspect consignments at origin and maintain active quality verification at key entry points, including overland QA inspection at the Abu Samra land border, before cargo enters our temperature-controlled warehouse in Doha.');
 
-  const renderHeadline = () => {
-    if (!isAr) {
-      if (headline.includes('From Global Orchards')) {
-        return (
-          <>
-            Strategic Sourcing: <br />
-            <span className="text-[#168849]">From Global Orchards</span> <br />
-            to Qatar.
-          </>
-        );
-      }
-      return headline;
-    } else {
-      if (headline.includes('من البساتين العالمية')) {
-        return (
-          <>
-            التوريد الاستراتيجي: <br />
-            <span className="text-[#168849]">من البساتين العالمية</span> <br />
-            إلى قطر.
-          </>
-        );
-      }
-      return headline;
-    }
-  };
+  const headlinePhrase = isAr ? 'من البساتين العالمية' : 'From Global Orchards';
 
   useGSAP(() => {
     const section = sectionRef.current;
@@ -128,7 +105,7 @@ export function CompanySourcing({ content }: CompanySourcingProps = {}) {
           {/* Left Column: Title & Narrative (6 cols) */}
           <div className="lg:col-span-6 space-y-5">
             <h2 className="sourcing-header-item font-display type-h2 font-semibold text-[#111814] text-start leading-[1.12]">
-              {renderHeadline()}
+              <HighlightedTitle text={headline} phrase={headlinePhrase} />
             </h2>
 
             <div className="sourcing-header-item space-y-3.5 font-sans text-xs sm:text-[14px] 2xl:text-[15px] text-[#6B7280] leading-[1.6] text-start">

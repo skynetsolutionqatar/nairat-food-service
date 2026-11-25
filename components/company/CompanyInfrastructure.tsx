@@ -8,6 +8,7 @@ import { useLocale } from '@/context/LocaleContext';
 import { DEFAULT_INFRA_METRICS } from '@/lib/config/infrastructure';
 
 import type { CompanyPageContent } from '@/sanity/lib/data';
+import { companyImageAlts } from '@/data/pageImageAlts';
 
 interface CompanyInfrastructureProps {
   content?: CompanyPageContent;
@@ -125,7 +126,7 @@ export function CompanyInfrastructure({ content }: CompanyInfrastructureProps = 
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/20 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/5]">
               <Image
                 src={infraImageUrl}
-                alt={isAr ? "منشأة مستودع التخزين المبرد لشركة نيرات للأغذية" : "Nairat Food Cold Storage Chiller Warehouse Facility"}
+                alt={(content?.infraImageAlt ?? companyImageAlts.infra)[locale]}
                 fill
                 className="object-cover transition-transform duration-700 hover:scale-105"
                 sizes="(max-width: 1024px) 100vw, 500px"

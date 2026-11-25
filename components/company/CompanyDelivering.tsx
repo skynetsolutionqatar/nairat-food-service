@@ -8,6 +8,7 @@ import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 
 import { useLocale } from '@/context/LocaleContext';
 import type { CompanyPageContent } from '@/sanity/lib/data';
+import { companyImageAlts } from '@/data/pageImageAlts';
 
 interface CompanyDeliveringProps {
   content?: CompanyPageContent;
@@ -141,7 +142,7 @@ export function CompanyDelivering({ content }: CompanyDeliveringProps = {}) {
             <div className="relative rounded-3xl overflow-hidden shadow-xl border border-neutral-200/80 aspect-[4/3] sm:aspect-[4/4] lg:aspect-[4/4.5]">
               <Image
                 src={deliveringImageUrl}
-                alt={isAr ? "مرافق التوزيع وسلاسل التبريد لشركة نيرات للأغذية بالدوحة" : "Nairat Food Cold-Chain Distribution Facility in Doha"}
+                alt={(content?.deliveringImageAlt ?? companyImageAlts.delivering)[locale]}
                 fill
                 loading="eager"
                 className="object-cover transition-transform duration-700 hover:scale-105"

@@ -6,6 +6,7 @@ import { CtaButton } from '@/components/ui/CtaButton';
 import { gsap, useGSAP } from '@/lib/gsap';
 import { useLocale } from '@/context/LocaleContext';
 import type { HomePageContent } from '@/sanity/lib/data';
+import { ctaImageAlts } from '@/data/pageImageAlts';
 
 interface CtaProps {
   content?: HomePageContent;
@@ -69,7 +70,7 @@ export function Cta({ content }: CtaProps = {}) {
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <Image
           src={content?.ctaBackgroundImageUrl || '/cta/ctaft-bac.webp'}
-          alt="Fresh Fruits & Vegetables Background"
+          alt={(content?.ctaBackgroundImageAlt ?? ctaImageAlts.background)[locale]}
           fill
           className="object-cover object-center"
           sizes="100vw"
@@ -96,7 +97,7 @@ export function Cta({ content }: CtaProps = {}) {
             <div className="relative shrink-0">
               <Image
                 src={content?.ctaFlagsImageUrl || '/cta/ctacontry.webp'}
-                alt="Sourced Around the World country flags"
+                alt={(content?.ctaFlagsImageAlt ?? ctaImageAlts.flags)[locale]}
                 width={155}
                 height={44}
                 className="h-6 min-[380px]:h-7 sm:h-8 md:h-9 w-auto object-contain"
