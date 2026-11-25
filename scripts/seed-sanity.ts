@@ -920,18 +920,14 @@ async function seed() {
     _type: 'contactPage',
     bannerTitle: 'Contact Us',
     bannerTitleAr: 'اتصل بنا',
-    bannerSubtitle:
-      'Get in touch with our commercial produce procurement and cold-chain logistics team in Doha, Qatar.',
-    bannerSubtitleAr:
-      'تواصل مع فريق التوريد التجاري والخدمات اللوجستية لسلسلة التبريد في الدوحة، قطر.',
     inquiryEyebrow: 'CONTACT US',
     inquiryEyebrowAr: 'تواصل معنا',
     inquiryTitle: 'Get in Touch with Us',
     inquiryTitleAr: 'تواصل معنا',
     inquirySubtitle:
-      'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, our specialists are ready to assist.',
+      'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, Tell us what you need, our specialists are ready to assist.',
     inquirySubtitleAr:
-      'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، فإن خبراءنا على استعداد لمساعدتك.',
+      'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، أخبرنا بما تحتاجه، فخبراؤنا على استعداد لمساعدتك.',
     addressLabel: 'Address:',
     addressLabelAr: 'العنوان:',
     addressText: 'Industrial Area, Street 37, Doha, Qatar.',
@@ -979,8 +975,6 @@ async function seed() {
     facilityCardTitleAr: 'شركة نيرات للخدمات الغذائية',
     facilityCardAddress: 'Street 37, Industrial Area, Doha',
     facilityCardAddressAr: 'شارع 37، المنطقة الصناعية، الدوحة',
-    facilityOperatingHours: en.common.workingHoursVal,
-    facilityOperatingHoursAr: ar.common.workingHoursVal,
   });
 
   // 6.7 Products Page

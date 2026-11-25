@@ -25,24 +25,6 @@ export const contactPage = defineType({
       fieldset: 'banner',
       initialValue: 'اتصل بنا',
     }),
-    defineField({
-      name: 'bannerSubtitle',
-      title: 'Banner Subtitle (EN)',
-      type: 'text',
-      rows: 2,
-      fieldset: 'banner',
-      initialValue:
-        'Get in touch with our commercial produce procurement and cold-chain logistics team in Doha, Qatar.',
-    }),
-    defineField({
-      name: 'bannerSubtitleAr',
-      title: 'Banner Subtitle (AR)',
-      type: 'text',
-      rows: 2,
-      fieldset: 'banner',
-      initialValue:
-        'تواصل مع فريق التوريد التجاري والخدمات اللوجستية لسلسلة التبريد في الدوحة، قطر.',
-    }),
 
     // --- 2. INQUIRY SECTION ---
     defineField({
@@ -80,7 +62,7 @@ export const contactPage = defineType({
       rows: 2,
       fieldset: 'inquiry',
       initialValue:
-        'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, our specialists are ready to assist.',
+        'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, Tell us what you need, our specialists are ready to assist.',
     }),
     defineField({
       name: 'inquirySubtitleAr',
@@ -89,7 +71,7 @@ export const contactPage = defineType({
       rows: 2,
       fieldset: 'inquiry',
       initialValue:
-        'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، فإن خبراءنا على استعداد لمساعدتك.',
+        'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، أخبرنا بما تحتاجه، فخبراؤنا على استعداد لمساعدتك.',
     }),
 
     // Contact Card 1: Address & Registration
@@ -422,12 +404,11 @@ export const contactPage = defineType({
   preview: {
     select: {
       title: 'bannerTitle',
-      subtitle: 'bannerSubtitle',
     },
-    prepare({ title, subtitle }) {
+    prepare({ title }) {
       return {
         title: title || 'Contact Us Page',
-        subtitle: subtitle || 'Contact page section-by-section content',
+        subtitle: 'Contact page section-by-section content',
       };
     },
   },

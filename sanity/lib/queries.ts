@@ -484,8 +484,6 @@ export const CONTACT_PAGE_QUERY = defineQuery(`
     _id,
     bannerTitle,
     bannerTitleAr,
-    bannerSubtitle,
-    bannerSubtitleAr,
     inquiryEyebrow,
     inquiryEyebrowAr,
     inquiryTitle,

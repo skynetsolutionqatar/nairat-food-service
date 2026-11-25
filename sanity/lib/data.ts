@@ -1888,8 +1888,6 @@ export async function getPartnersPageContent(): Promise<PartnersPageContent> {
 export interface ContactPageContent {
   bannerTitle: string;
   bannerTitleAr: string;
-  bannerSubtitle: string;
-  bannerSubtitleAr: string;
   inquiryEyebrow: string;
   inquiryEyebrowAr: string;
   inquiryTitle: string;
@@ -1940,25 +1938,19 @@ export interface ContactPageContent {
   facilityCardTitleAr: string;
   facilityCardAddress: string;
   facilityCardAddressAr: string;
-  facilityOperatingHours?: string;
-  facilityOperatingHoursAr?: string;
 }
 
 export const defaultContactPageContent: ContactPageContent = {
   bannerTitle: en.contact.badge,
   bannerTitleAr: ar.contact.badge,
-  bannerSubtitle:
-    'Get in touch with our commercial produce procurement and cold-chain logistics team in Doha, Qatar.',
-  bannerSubtitleAr:
-    'تواصل مع فريق التوريد التجاري والخدمات اللوجستية لسلسلة التبريد في الدوحة، قطر.',
   inquiryEyebrow: en.contact.badge,
   inquiryEyebrowAr: ar.contact.badge,
   inquiryTitle: en.contact.heroTitle,
   inquiryTitleAr: ar.contact.heroTitle,
   inquirySubtitle:
-    'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, our specialists are ready to assist.',
+    'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, Tell us what you need, our specialists are ready to assist.',
   inquirySubtitleAr:
-    'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، فإن خبراءنا على استعداد لمساعدتك.',
+    'سواء كنت تستفسر عن عقود التوريد بالجملة، أو الشراكات المباشرة مع المزارع، أو التوزيع بسلسلة التبريد، أخبرنا بما تحتاجه، فخبراؤنا على استعداد لمساعدتك.',
   addressLabel: 'Address:',
   addressLabelAr: 'العنوان:',
   addressText: 'Industrial Area, Street 37, Doha, Qatar.',
@@ -2006,8 +1998,6 @@ export const defaultContactPageContent: ContactPageContent = {
   facilityCardTitleAr: 'شركة نيرات للخدمات الغذائية',
   facilityCardAddress: 'Street 37, Industrial Area, Doha',
   facilityCardAddressAr: 'شارع 37، المنطقة الصناعية، الدوحة',
-  facilityOperatingHours: en.common.workingHoursVal,
-  facilityOperatingHoursAr: ar.common.workingHoursVal,
 };
 
 export async function getContactPageContent(): Promise<ContactPageContent> {
@@ -2028,8 +2018,6 @@ export async function getContactPageContent(): Promise<ContactPageContent> {
         return {
           bannerTitle: data.bannerTitle || defaultContactPageContent.bannerTitle,
           bannerTitleAr: data.bannerTitleAr || defaultContactPageContent.bannerTitleAr,
-          bannerSubtitle: data.bannerSubtitle || defaultContactPageContent.bannerSubtitle,
-          bannerSubtitleAr: data.bannerSubtitleAr || defaultContactPageContent.bannerSubtitleAr,
           inquiryEyebrow: data.inquiryEyebrow || defaultContactPageContent.inquiryEyebrow,
           inquiryEyebrowAr: data.inquiryEyebrowAr || defaultContactPageContent.inquiryEyebrowAr,
           inquiryTitle: data.inquiryTitle || defaultContactPageContent.inquiryTitle,
@@ -2080,8 +2068,6 @@ export async function getContactPageContent(): Promise<ContactPageContent> {
           facilityCardTitleAr: data.facilityCardTitleAr || defaultContactPageContent.facilityCardTitleAr,
           facilityCardAddress: data.facilityCardAddress || defaultContactPageContent.facilityCardAddress,
           facilityCardAddressAr: data.facilityCardAddressAr || defaultContactPageContent.facilityCardAddressAr,
-          facilityOperatingHours: data.facilityOperatingHours || defaultContactPageContent.facilityOperatingHours,
-          facilityOperatingHoursAr: data.facilityOperatingHoursAr || defaultContactPageContent.facilityOperatingHoursAr,
         };
       }
     } catch {

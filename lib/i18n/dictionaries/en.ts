@@ -128,7 +128,7 @@ export const en: Dictionary = {
   contact: {
     badge: 'Get in Touch',
     heroTitle: 'Connect with Our Commercial Procurement Team',
-    heroSubtitle: 'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, our specialists are ready to assist.',
+    heroSubtitle: 'Whether inquiring about wholesale contracts, direct farm partnerships, or cold-chain distribution, Tell us what you need, our specialists are ready to assist.',
     form: {
       nameLabel: 'Full Name',
       namePlaceholder: 'e.g. Abdullah Al-Kuwari',
