@@ -533,34 +533,38 @@ export const homePage = defineType({
       initialValue: 'إمداد المنتجات الطازجة على كل المستويات.',
     }),
     defineField({
-      name: 'servicesNarrative',
-      title: 'Services Narrative (EN)',
-      type: 'text',
-      rows: 3,
-      fieldset: 'services',
-      initialValue: 'From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.',
-    }),
-    defineField({
-      name: 'servicesNarrativeAr',
-      title: 'Services Narrative (AR)',
-      type: 'text',
-      rows: 3,
-      fieldset: 'services',
-      initialValue: 'من التوريد والتوزيع إلى التجزئة، نربط المنتجات الطازجة المتميزة بالشركات والمستهلكين في جميع أنحاء قطر.',
-    }),
-    defineField({
       name: 'servicesCtaText',
       title: 'Services Button Text (EN)',
       type: 'string',
       fieldset: 'services',
-      initialValue: 'Learn More',
+      initialValue: 'All Services',
     }),
     defineField({
       name: 'servicesCtaTextAr',
       title: 'Services Button Text (AR)',
       type: 'string',
       fieldset: 'services',
-      initialValue: 'اعرف المزيد',
+      initialValue: 'جميع الخدمات',
+    }),
+    defineField({
+      name: 'servicesCards',
+      title: 'Services Cards',
+      type: 'array',
+      fieldset: 'services',
+      of: [
+        {
+          type: 'object',
+          name: 'homeServiceCard',
+          fields: [
+            { name: 'title', title: 'Title (EN)', type: 'string', validation: (rule) => rule.required() },
+            { name: 'titleAr', title: 'Title (AR)', type: 'string' },
+            { name: 'description', title: 'Description (EN)', type: 'text', rows: 2 },
+            { name: 'descriptionAr', title: 'Description (AR)', type: 'text', rows: 2 },
+            { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
+          ],
+          preview: { select: { title: 'title', media: 'image' } },
+        },
+      ],
     }),
 
     // --- 6. PRODUCTS ---

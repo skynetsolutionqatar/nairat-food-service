@@ -27,6 +27,15 @@ One slice through every layer:
 6. **Content** — seed script writes the cards; the live `homePage-singleton` is
    patched with the same cards and uploaded images (no other fields touched).
 
+## Section fields aligned with the site
+
+- **Narrative removed**: the section shows no narrative, so `servicesNarrative` /
+  `servicesNarrativeAr` were removed from the schema, query, types, seed and the
+  live document.
+- **Button text**: `servicesCtaText` / `servicesCtaTextAr` now hold "All Services" /
+  "جميع الخدمات" (taken from `dict.common.allServices`, previously "Learn More" in
+  Sanity), and the button reads them, falling back to the dictionary.
+
 ## Content (must match local exactly)
 
 | Title (EN) | Description (EN) | Image |
@@ -43,3 +52,10 @@ Arabic text is carried over unchanged from the current component.
 - `pnpm build` / type-check passes.
 - Sanity query returns three cards matching the table.
 - agent-browser: `/` and `/ar` show the three cards with Sanity CDN images.
+
+## Outcome
+
+- Live `homePage-singleton` patched: three `servicesCards` (images deduplicated to the
+  existing Sanity assets), narrative unset, CTA text set. No other fields changed.
+- Verified with agent-browser: `/` and `/ar` render three cards with `cdn.sanity.io`
+  images and the localized "All Services" button.

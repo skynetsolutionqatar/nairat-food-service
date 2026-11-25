@@ -27,6 +27,8 @@ import {
   productCategoriesData,
 } from '@/data/products';
 import { PartnerItem, partnerLogos } from '@/data/partners';
+import { homeServiceCards, type HomeServiceCard } from '@/data/homeServiceCards';
+import { resolveHomeServiceCards } from '@/lib/homeServiceCards';
 import { CompanyProfile, companyProfile } from '@/lib/config/company';
 import { DEFAULT_INFRA_METRICS, InfraMetric } from '@/lib/config/infrastructure';
 import { en } from '@/lib/i18n/dictionaries/en';
@@ -644,10 +646,9 @@ export interface HomePageContent {
   servicesEyebrowAr: string;
   servicesTitle: string;
   servicesTitleAr: string;
-  servicesNarrative: string;
-  servicesNarrativeAr: string;
   servicesCtaText: string;
   servicesCtaTextAr: string;
+  servicesCards: HomeServiceCard[];
   productsEyebrow: string;
   productsEyebrowAr: string;
   productsTitle: string;
@@ -730,10 +731,9 @@ export const defaultHomePageContent: HomePageContent = {
   servicesEyebrowAr: 'ما نقوم به',
   servicesTitle: 'Fresh Produce Supply at Every Scale.',
   servicesTitleAr: 'إمداد المنتجات الطازجة على كل المستويات.',
-  servicesNarrative: 'From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.',
-  servicesNarrativeAr: 'من التوريد والتوزيع إلى التجزئة، نربط المنتجات الطازجة المتميزة بالشركات والمستهلكين في جميع أنحاء قطر.',
-  servicesCtaText: 'Learn More',
-  servicesCtaTextAr: 'اعرف المزيد',
+  servicesCtaText: en.common.allServices,
+  servicesCtaTextAr: ar.common.allServices,
+  servicesCards: homeServiceCards,
   productsEyebrow: 'OUR PRODUCTS',
   productsEyebrowAr: 'منتجاتنا',
   productsTitle: 'Freshness, Sourced From Around the World.',
@@ -848,10 +848,9 @@ export async function getHomePageContent(): Promise<HomePageContent> {
           servicesEyebrowAr: data.servicesEyebrowAr || defaultHomePageContent.servicesEyebrowAr,
           servicesTitle: data.servicesTitle || defaultHomePageContent.servicesTitle,
           servicesTitleAr: data.servicesTitleAr || defaultHomePageContent.servicesTitleAr,
-          servicesNarrative: data.servicesNarrative || defaultHomePageContent.servicesNarrative,
-          servicesNarrativeAr: data.servicesNarrativeAr || defaultHomePageContent.servicesNarrativeAr,
           servicesCtaText: data.servicesCtaText || defaultHomePageContent.servicesCtaText,
           servicesCtaTextAr: data.servicesCtaTextAr || defaultHomePageContent.servicesCtaTextAr,
+          servicesCards: resolveHomeServiceCards(data.servicesCards),
           productsEyebrow: data.productsEyebrow || defaultHomePageContent.productsEyebrow,
           productsEyebrowAr: data.productsEyebrowAr || defaultHomePageContent.productsEyebrowAr,
           productsTitle: data.productsTitle || defaultHomePageContent.productsTitle,

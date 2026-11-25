@@ -329,3 +329,12 @@ Spec: [specs/whatsapp-floating-button.md](specs/whatsapp-floating-button.md)
 - [x] `lib/whatsapp.ts` link builder with unit tests
 - [x] `WhatsAppIcon` (official mark, inline SVG) and `WhatsAppButton`, mounted in the root layout
 - [x] Verified with agent-browser: shows on `/`, `/ar`, `/company`, `/contact` (inline-end corner, RTL-aware); hidden on `/studio`
+
+## Home "What We Do" Cards in Sanity
+
+Spec: [specs/home-services-cards-sanity.md](specs/home-services-cards-sanity.md)
+
+- [x] Cards moved to `data/homeServiceCards.ts`; `lib/homeServiceCards.ts` maps Sanity rows with local fallback (unit tested)
+- [x] `homePage.servicesCards` schema, query and data wiring; `Services.tsx` renders from Sanity
+- [x] Removed unused services narrative fields; CTA text in Sanity now "All Services" and is used by the button
+- [x] Live Sanity document patched; seed script updated; verified on `/` and `/ar` with agent-browser

@@ -14,6 +14,7 @@ import path from 'path';
 import { createClient, type IdentifiedSanityDocumentStub } from '@sanity/client';
 import { productCategoriesData } from '../data/products';
 import { partnerLogos } from '../data/partners';
+import { homeServiceCards } from '../data/homeServiceCards';
 import { companyProfile } from '../lib/config/company';
 import { DEFAULT_INFRA_METRICS } from '../lib/config/infrastructure';
 import { en } from '../lib/i18n/dictionaries/en';
@@ -461,6 +462,16 @@ async function seed() {
   const heroVideoAssetId = await uploadLocalFile('/hero.mp4');
   const heroPosterAssetId = await uploadLocalImage('/hero-poster.webp');
   const strengthsImageAssetId = await uploadLocalImage('/whychooseus/warehouse.jpg');
+  const servicesCards = [];
+  for (const { imageUrl, ...card } of homeServiceCards) {
+    const assetId = await uploadLocalImage(imageUrl);
+    servicesCards.push({
+      _key: path.basename(imageUrl, path.extname(imageUrl)),
+      _type: 'homeServiceCard',
+      ...card,
+      ...(assetId ? { image: { _type: 'image', asset: { _type: 'reference', _ref: assetId } } } : {}),
+    });
+  }
 
   operations.push({
     _id: 'homePage-singleton',
@@ -532,10 +543,9 @@ async function seed() {
     servicesEyebrowAr: 'ما نقوم به',
     servicesTitle: 'Fresh Produce Supply at Every Scale.',
     servicesTitleAr: 'إمداد المنتجات الطازجة على كل المستويات.',
-    servicesNarrative: 'From sourcing and distribution to retail, we connect premium fresh produce with businesses and consumers across Qatar.',
-    servicesNarrativeAr: 'من التوريد والتوزيع إلى التجزئة، نربط المنتجات الطازجة المتميزة بالشركات والمستهلكين في جميع أنحاء قطر.',
-    servicesCtaText: 'Learn More',
-    servicesCtaTextAr: 'اعرف المزيد',
+    servicesCtaText: en.common.allServices,
+    servicesCtaTextAr: ar.common.allServices,
+    servicesCards,
     productsEyebrow: 'OUR PRODUCTS',
     productsEyebrowAr: 'منتجاتنا',
     productsTitle: 'Freshness, Sourced From Around the World.',
