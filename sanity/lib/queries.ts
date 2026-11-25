@@ -236,10 +236,8 @@ export const HOME_PAGE_QUERY = defineQuery(`
     ctaSubtext1Ar,
     ctaSubtext2,
     ctaSubtext2Ar,
-    ctaHeadline,
-    ctaHeadlineAr,
-    ctaDescription,
-    ctaDescriptionAr,
+    "ctaBackgroundImageUrl": ctaBackgroundImage.asset->url,
+    "ctaFlagsImageUrl": ctaFlagsImage.asset->url,
     ctaButtonText,
     ctaButtonTextAr
   }

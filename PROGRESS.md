@@ -346,3 +346,10 @@ Spec: [specs/home-quality-sanity.md](specs/home-quality-sanity.md)
 - [x] Local content moved to `data/homeQuality.ts`; `lib/homeQuality.ts` maps Sanity rows with local fallback (unit tested)
 - [x] `homePage` fields: `qualitySteps`, `qualityCertificates`, `qualityCertifiedNote(Ar)`, `qualityCtaText(Ar)`; unused narrative removed
 - [x] `QualityTimeline.tsx` renders from Sanity; seed script and live document updated; verified on `/` and `/ar`
+
+## Home Bottom CTA Section in Sanity
+
+Spec: [specs/home-cta-sanity.md](specs/home-cta-sanity.md)
+
+- [x] `homePage` fields `ctaBackgroundImage` and `ctaFlagsImage` added; unused `ctaHeadline` / `ctaDescription` (EN/AR) removed
+- [x] `Cta.tsx` uses the Sanity images with local fallback; seed script and live document updated; verified on `/` and `/ar`

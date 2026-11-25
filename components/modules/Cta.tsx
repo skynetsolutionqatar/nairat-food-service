@@ -68,7 +68,7 @@ export function Cta({ content }: CtaProps = {}) {
       {/* Full-Bleed Background Image */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <Image
-          src="/cta/ctaft-bac.webp"
+          src={content?.ctaBackgroundImageUrl || '/cta/ctaft-bac.webp'}
           alt="Fresh Fruits & Vegetables Background"
           fill
           className="object-cover object-center"
@@ -95,7 +95,7 @@ export function Cta({ content }: CtaProps = {}) {
           <div className="cta-header-item flex items-center gap-2.5 sm:gap-3">
             <div className="relative shrink-0">
               <Image
-                src="/cta/ctacontry.webp"
+                src={content?.ctaFlagsImageUrl || '/cta/ctacontry.webp'}
                 alt="Sourced Around the World country flags"
                 width={155}
                 height={44}

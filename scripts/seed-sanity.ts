@@ -463,6 +463,8 @@ async function seed() {
   const heroVideoAssetId = await uploadLocalFile('/hero.mp4');
   const heroPosterAssetId = await uploadLocalImage('/hero-poster.webp');
   const strengthsImageAssetId = await uploadLocalImage('/whychooseus/warehouse.jpg');
+  const ctaBackgroundAssetId = await uploadLocalImage('/cta/ctaft-bac.webp');
+  const ctaFlagsAssetId = await uploadLocalImage('/cta/ctacontry.webp');
   const servicesCards = [];
   for (const { imageUrl, ...card } of homeServiceCards) {
     const assetId = await uploadLocalImage(imageUrl);
@@ -568,10 +570,8 @@ async function seed() {
     ctaSubtext1Ar: 'تم التوريد من جميع أنحاء العالم.',
     ctaSubtext2: 'Delivered Across Qatar.',
     ctaSubtext2Ar: 'تُسلَّم عبر أرجاء قطر.',
-    ctaHeadline: 'Ready to Partner With Qatar’s Fresh Produce Leader?',
-    ctaHeadlineAr: 'هل أنت مستعد للشراكة مع رائد الأغذية الطازجة في قطر؟',
-    ctaDescription: 'Contact our procurement specialists today to discuss wholesale contracts, direct farm imports, or scheduled cold-chain delivery.',
-    ctaDescriptionAr: 'تواصل مع خبراء التوريد لدينا اليوم لمناقشة عقود التوريد بالجملة أو الاستيراد المباشر أو التوصيل المجدول بسلسلة التبريد.',
+    ...(ctaBackgroundAssetId ? { ctaBackgroundImage: { _type: 'image', asset: { _type: 'reference', _ref: ctaBackgroundAssetId } } } : {}),
+    ...(ctaFlagsAssetId ? { ctaFlagsImage: { _type: 'image', asset: { _type: 'reference', _ref: ctaFlagsAssetId } } } : {}),
     ctaButtonText: 'Contact Us',
     ctaButtonTextAr: 'اتصل بنا',
   });

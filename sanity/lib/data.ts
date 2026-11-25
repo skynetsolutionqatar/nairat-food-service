@@ -677,10 +677,8 @@ export interface HomePageContent {
   ctaSubtext1Ar: string;
   ctaSubtext2: string;
   ctaSubtext2Ar: string;
-  ctaHeadline: string;
-  ctaHeadlineAr: string;
-  ctaDescription: string;
-  ctaDescriptionAr: string;
+  ctaBackgroundImageUrl: string;
+  ctaFlagsImageUrl: string;
   ctaButtonText: string;
   ctaButtonTextAr: string;
 }
@@ -766,10 +764,8 @@ export const defaultHomePageContent: HomePageContent = {
   ctaSubtext1Ar: 'تم التوريد من جميع أنحاء العالم.',
   ctaSubtext2: 'Delivered Across Qatar.',
   ctaSubtext2Ar: 'تُسلَّم عبر أرجاء قطر.',
-  ctaHeadline: 'Ready to Partner With Qatar’s Fresh Produce Leader?',
-  ctaHeadlineAr: 'هل أنت مستعد للشراكة مع رائد الأغذية الطازجة في قطر؟',
-  ctaDescription: 'Contact our procurement specialists today to discuss wholesale contracts, direct farm imports, or scheduled cold-chain delivery.',
-  ctaDescriptionAr: 'تواصل مع خبراء التوريد لدينا اليوم لمناقشة عقود التوريد بالجملة أو الاستيراد المباشر أو التوصيل المجدول بسلسلة التبريد.',
+  ctaBackgroundImageUrl: '/cta/ctaft-bac.webp',
+  ctaFlagsImageUrl: '/cta/ctacontry.webp',
   ctaButtonText: 'Contact Us',
   ctaButtonTextAr: 'اتصل بنا',
 };
@@ -887,10 +883,8 @@ export async function getHomePageContent(): Promise<HomePageContent> {
           ctaSubtext1Ar: data.ctaSubtext1Ar || defaultHomePageContent.ctaSubtext1Ar,
           ctaSubtext2: data.ctaSubtext2 || defaultHomePageContent.ctaSubtext2,
           ctaSubtext2Ar: data.ctaSubtext2Ar || defaultHomePageContent.ctaSubtext2Ar,
-          ctaHeadline: data.ctaHeadline || defaultHomePageContent.ctaHeadline,
-          ctaHeadlineAr: data.ctaHeadlineAr || defaultHomePageContent.ctaHeadlineAr,
-          ctaDescription: data.ctaDescription || defaultHomePageContent.ctaDescription,
-          ctaDescriptionAr: data.ctaDescriptionAr || defaultHomePageContent.ctaDescriptionAr,
+          ctaBackgroundImageUrl: data.ctaBackgroundImageUrl || defaultHomePageContent.ctaBackgroundImageUrl,
+          ctaFlagsImageUrl: data.ctaFlagsImageUrl || defaultHomePageContent.ctaFlagsImageUrl,
           ctaButtonText: data.ctaButtonText || defaultHomePageContent.ctaButtonText,
           ctaButtonTextAr: data.ctaButtonTextAr || defaultHomePageContent.ctaButtonTextAr,
         };

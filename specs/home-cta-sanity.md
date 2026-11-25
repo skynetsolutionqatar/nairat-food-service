@@ -39,3 +39,10 @@ Local content stays as the fallback.
 - `pnpm test` and type-check pass.
 - Sanity query returns both image URLs; headline/description fields are gone.
 - agent-browser: `/` and `/ar` render the same text with `cdn.sanity.io` images.
+
+## Outcome
+
+- Live `homePage-singleton` patched: both images uploaded and set; the four unused
+  headline/description fields unset. No other fields changed.
+- Verified with agent-browser: `/` and `/ar` show the same lines, subtexts and button,
+  with both images loading from `cdn.sanity.io`.
