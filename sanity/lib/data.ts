@@ -54,7 +54,6 @@ export interface CertData {
   subtitleAr?: string;
   description: string;
   descriptionAr?: string;
-  imageSrc: string;
   order: number;
 }
 
@@ -297,7 +296,6 @@ export async function getQualityCertificates(): Promise<CertData[]> {
       subtitleAr: 'شهادة الامتثال',
       description: 'Hazard Analysis and Critical Control Points, Codex Alimentarius.',
       descriptionAr: 'تحليل المخاطر ونقاط التحكم الحرجة، هيئة الدستور الغذائي (Codex Alimentarius).',
-      imageSrc: '/certificates/c1-1-1.png',
       order: 1,
     },
     {
@@ -308,7 +306,6 @@ export async function getQualityCertificates(): Promise<CertData[]> {
       subtitleAr: 'شهادة التسجيل والاعتماد',
       description: 'Food safety management system certified for end-to-end traceability and hygiene.',
       descriptionAr: 'نظام إدارة سلامة الغذاء العالمي المعتمد لضمان النظافة والتتبع الكامل.',
-      imageSrc: '/certificates/c2-2-1.png',
       order: 2,
     },
   ];
@@ -332,7 +329,6 @@ export async function getQualityCertificates(): Promise<CertData[]> {
           subtitleAr: doc.subtitleAr || '',
           description: doc.description || '',
           descriptionAr: doc.descriptionAr || '',
-          imageSrc: urlForImage(doc.image) || defaultCerts[index % 2].imageSrc,
           order: doc.order ?? index,
         }));
       }

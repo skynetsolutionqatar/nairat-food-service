@@ -107,7 +107,6 @@ export const QUALITY_CERTS_QUERY = defineQuery(`
     subtitleAr,
     description,
     descriptionAr,
-    image,
     order
   }
 `);

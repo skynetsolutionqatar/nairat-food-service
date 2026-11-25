@@ -151,7 +151,7 @@ Unchanged by the redesign. `components/layout/Navbar.tsx`, `components/modules/H
 ### 8. Certifications & Quality (`components/modules/QualityTimeline.tsx`)
 *   `surface-alt` band. Heading "Quality You Can **Trust.**", "Our Quality Process" primary button → `/quality`.
 *   Three white cards numbered 1–3 (a real sequence): Inspected at Origin → Tested on Arrival → Protected Through Cold Chain.
-*   One forest card with `HACCP` (lime) and `ISO 22000:2018` (white) pills. Each pill is a button that opens the certificate viewer (`components/ui/CertificateModal.tsx`).
+*   One forest card with `HACCP` (lime) and `ISO 22000:2018` (white) pills. Each pill is a plain label showing the certificate name; there is no preview or viewer.
 
 ---
 
@@ -179,7 +179,7 @@ The design system gives each inner page one accent for its hero and one detail; 
     *   Scroll triggers fire once at `top 80%` to avoid distracting re-animations.
     *   Standard entrance easing: `power3.out` with duration `0.65s` and stagger `0.08s`.
 3.  **Framer Motion**:
-    *   Utilized for UI state transitions: product details modal, certificate image zoom viewer, and the slide-over contact drawer.
+    *   Utilized for UI state transitions: product details modal and the slide-over contact drawer.
     *   Accessible backdrop dismissal and keyboard `Escape` key handling.
 4.  **Section reveal (`lib/useSectionReveal.ts`)**:
     *   The redesigned home sections share one hook: each selector group staggers in once at `top 88%`; skipped on phones and under reduced motion.

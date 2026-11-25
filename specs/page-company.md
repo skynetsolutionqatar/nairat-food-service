@@ -129,7 +129,7 @@
 - **Certified Badges & Standards:**
   - `HACCP`: Hazard Analysis and Critical Control Points
   - `ISO 22000:2018`: Food Safety Management System
-- **Interactive:** Certificate previews (`/certificates/c1-1-1.png` & `/certificates/c2-2-1.png`).
+- **Interactive:** None. Certificate previews were removed; badges show the certificate name only.
 
 ### 10. Looking Ahead
 - **Eyebrow:** `LOOKING AHEAD`

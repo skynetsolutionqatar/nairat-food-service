@@ -321,7 +321,6 @@ const certificatesSeedData = [
     subtitleAr: 'شهادة الامتثال',
     description: 'Hazard Analysis and Critical Control Points, Codex Alimentarius.',
     descriptionAr: 'تحليل المخاطر ونقاط التحكم الحرجة، هيئة الدستور الغذائي (Codex Alimentarius).',
-    imageUrl: '/certificates/c1-1-1.png',
   },
   {
     id: 'iso22000',
@@ -331,7 +330,6 @@ const certificatesSeedData = [
     subtitleAr: 'شهادة التسجيل والاعتماد',
     description: 'Food safety management system certified for end-to-end traceability and hygiene.',
     descriptionAr: 'نظام إدارة سلامة الغذاء العالمي المعتمد لضمان النظافة والتتبع الكامل.',
-    imageUrl: '/certificates/c2-2-1.png',
   },
 ];
 
@@ -421,7 +419,6 @@ async function seed() {
   console.log('\n--- 4. Processing Quality Certificates (2 items) ---');
   let certOrder = 0;
   for (const c of certificatesSeedData) {
-    const assetId = await uploadLocalImage(c.imageUrl);
     operations.push({
       _id: `qualityCert-${c.id}`,
       _type: 'qualityCert',
@@ -431,12 +428,6 @@ async function seed() {
       subtitleAr: c.subtitleAr,
       description: c.description,
       descriptionAr: c.descriptionAr,
-      image: assetId
-        ? {
-            _type: 'image',
-            asset: { _type: 'reference', _ref: assetId },
-          }
-        : undefined,
       order: certOrder++,
     });
   }

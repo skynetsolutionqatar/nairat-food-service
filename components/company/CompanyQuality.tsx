@@ -1,10 +1,9 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
-import { ShieldCheck, Award, ZoomIn, CheckCircle2 } from 'lucide-react';
+import { ShieldCheck, Award, CheckCircle2 } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
-import { CertificateModal, type CertificateModalData } from '@/components/ui/CertificateModal';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { useLocale } from '@/context/LocaleContext';
 import type { CompanyPageContent } from '@/sanity/lib/data';
@@ -15,7 +14,6 @@ interface CompanyQualityProps {
 
 export function CompanyQuality({ content }: CompanyQualityProps = {}) {
   const sectionRef = useRef<HTMLElement>(null);
-  const [activeCert, setActiveCert] = useState<CertificateModalData | null>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
 
@@ -123,49 +121,20 @@ export function CompanyQuality({ content }: CompanyQualityProps = {}) {
 
               {/* Certification Badges */}
               <div className="pt-2 flex flex-wrap gap-3 items-center">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setActiveCert({
-                      title: isAr ? 'معتمد بشهادة HACCP' : 'HACCP Certified',
-                      subtitle: isAr ? 'نظام إدارة سلامة الغذاء' : 'Food Safety Management System',
-                      imageSrc: '/certificates/c1-1-1.png',
-                    })
-                  }
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold hover:bg-[#168849] hover:text-white transition-all cursor-pointer"
-                >
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold">
                   <Award className="w-3.5 h-3.5" />
                   <span>{isAr ? 'معتمد بشهادة HACCP' : 'HACCP Certified'}</span>
-                  <ZoomIn className="w-3 h-3 opacity-70" />
-                </button>
+                </span>
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    setActiveCert({
-                      title: isAr ? 'ISO 22000:2018' : 'ISO 22000:2018',
-                      subtitle: isAr ? 'نظام إدارة سلامة الغذاء' : 'Food Safety Management System',
-                      imageSrc: '/certificates/c2-2-1.png',
-                    })
-                  }
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold hover:bg-[#168849] hover:text-white transition-all cursor-pointer"
-                >
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#168849]/10 border border-[#168849]/30 text-[#168849] text-xs font-semibold">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>{isAr ? 'ISO 22000:2018' : 'ISO 22000:2018'}</span>
-                  <ZoomIn className="w-3 h-3 opacity-70" />
-                </button>
+                  <span>{'ISO 22000:2018'}</span>
+                </span>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Modal Preview */}
-      <CertificateModal
-        isOpen={Boolean(activeCert)}
-        onClose={() => setActiveCert(null)}
-        certificate={activeCert}
-      />
     </section>
   );
 }

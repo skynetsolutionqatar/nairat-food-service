@@ -1,11 +1,7 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import React, { useRef } from 'react';
 import { gsap, useGSAP } from '@/lib/gsap';
-import { CertificateModal } from '@/components/ui/CertificateModal';
 import { SectionEyebrow } from '@/components/ui/SectionEyebrow';
 import { CtaButton } from '../ui/CtaButton';
 import { useLocale } from '@/context/LocaleContext';
@@ -16,7 +12,6 @@ interface CertCardItem {
   title: string;
   subtitle: string;
   description: string;
-  imageSrc: string;
 }
 
 interface QualityFoodSafetyProps {
@@ -28,7 +23,6 @@ export function QualityFoodSafety({ certs, content }: QualityFoodSafetyProps = {
   const sectionRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const isAr = locale === 'ar';
-  const [selectedCert, setSelectedCert] = useState<CertCardItem | null>(null);
 
   const eyebrow = isAr
     ? (content?.foodSafetyEyebrowAr || 'الجودة وسلامة الغذاء')
@@ -51,7 +45,6 @@ export function QualityFoodSafety({ certs, content }: QualityFoodSafetyProps = {
       description: isAr
         ? 'تحليل المخاطر ونقاط التحكم الحرجة، هيئة الدستور الغذائي (Codex Alimentarius).'
         : 'Hazard Analysis and Critical Control Points, Codex Alimentarius.',
-      imageSrc: '/certificates/c1-1-1.png',
     },
     {
       id: 'iso22000',
@@ -60,7 +53,6 @@ export function QualityFoodSafety({ certs, content }: QualityFoodSafetyProps = {
       description: isAr
         ? 'نظام إدارة سلامة الغذاء العالمي المعتمد لضمان النظافة والتتبع الكامل.'
         : 'Food safety management system certified for end-to-end traceability and hygiene.',
-      imageSrc: '/certificates/c2-2-1.png',
     },
   ];
 
@@ -70,7 +62,6 @@ export function QualityFoodSafety({ certs, content }: QualityFoodSafetyProps = {
         title: isAr && c.titleAr ? c.titleAr : c.title,
         subtitle: isAr && c.subtitleAr ? c.subtitleAr : c.subtitle,
         description: isAr && c.descriptionAr ? c.descriptionAr : c.description,
-        imageSrc: c.imageSrc,
       }))
     : defaultCertificates;
 
@@ -147,57 +138,15 @@ export function QualityFoodSafety({ certs, content }: QualityFoodSafetyProps = {
                     </span>
                   </div>
 
-                  {/* Body & Certificate Thumbnail */}
-                  <div className="grid grid-cols-12 gap-3 items-center pt-2">
-                    <div className="col-span-7 space-y-3">
-                      <p className="font-sans text-xs text-[#6B7280] leading-[1.5]">
-                        {cert.description}
-                      </p>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setSelectedCert(cert)}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#168849] hover:text-[#063B27] transition-colors cursor-pointer group"
-                        >
-                          <span>{isAr ? 'عرض الشهادة' : 'View Certificate'}</span>
-                          <span className="w-5 h-5 rounded-full border border-[#168849]/30 flex items-center justify-center text-[#168849] group-hover:bg-[#168849] group-hover:text-white transition-colors">
-                            <ArrowUpRight className="w-3 h-3 rtl:rotate-[-90deg]" />
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="col-span-5 flex justify-end">
-                      <button
-                        type="button"
-                        onClick={() => setSelectedCert(cert)}
-                        className="relative w-22 sm:w-24 aspect-[3/4] rounded-lg border border-neutral-200/90 overflow-hidden shadow-xs hover:shadow-md transition-shadow group/thumb cursor-pointer bg-neutral-50"
-                        title={isAr ? `عرض شهادة ${cert.title}` : `View ${cert.title} Certificate`}
-                      >
-                        <Image
-                          src={cert.imageSrc}
-                          alt={isAr ? `وثيقة شهادة ${cert.title} الرسمية` : `${cert.title} Official Certificate Document`}
-                          fill
-                          className="object-contain p-1 group-hover/thumb:scale-105 transition-transform duration-300"
-                          sizes="96px"
-                        />
-                        <div className="absolute inset-0 bg-[#168849]/0 group-hover/thumb:bg-[#168849]/10 transition-colors" />
-                      </button>
-                    </div>
-                  </div>
+                  <p className="font-sans text-xs text-[#6B7280] leading-[1.5] pt-2">
+                    {cert.description}
+                  </p>
                 </div>
               </div>
             ))}
           </div>
         </div>
       </div>
-
-      {/* Certificate Modal Viewer */}
-      <CertificateModal
-        isOpen={Boolean(selectedCert)}
-        onClose={() => setSelectedCert(null)}
-        certificate={selectedCert}
-      />
     </section>
   );
 }

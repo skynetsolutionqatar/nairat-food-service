@@ -308,7 +308,16 @@ Spec: [specs/home-redesign-design-system.md](specs/home-redesign-design-system.m
   - [x] `Services.tsx`: three photo cards and "All Services"
   - [x] `Products.tsx` + `CategoryRail.tsx`: two full-bleed category rails
   - [x] `SourcingMap.tsx`: country pills and flat world map (3D globe and `cobe` removed)
-  - [x] `QualityTimeline.tsx`: three step cards and a forest certificate card opening the certificate viewer
+  - [x] `QualityTimeline.tsx`: three step cards and a forest certificate card with plain certificate-name pills (preview removed)
 - [x] **Milestone 3: `design.md` rewrite, spec reconcile, e2e verification**
   - [x] `scripts/e2e-home.sh`: 26 checks across desktop, Arabic and mobile
 - [ ] **Not started: design system on the remaining home sections and inner pages** (out of scope; home page sections only were requested)
+
+## Certificate Preview Removal
+
+- [x] Removed the certificate preview modal (`CertificateModal.tsx` deleted); certificates now show only their names
+  - [x] Home `QualityTimeline.tsx`: HACCP and ISO 22000:2018 are plain pills
+  - [x] `/company` `CompanyQuality.tsx`: certification badges are plain labels
+  - [x] `/quality` `QualityFoodSafety.tsx`: cards show name, subtitle and description; thumbnail and "View Certificate" link removed
+  - [x] Sanity `qualityCert`: removed the unused `image` field from the schema, query, types and seed; unset it on the two live documents
+  - Earlier entries above that mention the modal describe the superseded implementation.

@@ -1,7 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
-import { CertificateModal, CertificateModalData } from '@/components/ui/CertificateModal';
+import React, { useRef } from 'react';
 import { CtaButton } from '@/components/ui/CtaButton';
 import { FeatureCard } from '@/components/ui/FeatureCard';
 import { MarkedText } from '@/components/ui/Highlight';
@@ -25,9 +24,6 @@ interface QualityStep {
 interface Certificate {
   id: string;
   label: string;
-  title: Localized;
-  subtitle: Localized;
-  imageSrc: string;
   pillStyle: string;
 }
 
@@ -62,29 +58,21 @@ const certificates: Certificate[] = [
   {
     id: 'haccp',
     label: 'HACCP',
-    title: { en: 'Food Safety Management', ar: 'إدارة سلامة الغذاء' },
-    subtitle: { en: 'Quality Compliance Certificate', ar: 'شهادة الامتثال للجودة' },
-    imageSrc: '/certificates/c1-1-1.png',
-    pillStyle: 'bg-lime text-ink hover:bg-white',
+    pillStyle: 'bg-lime text-ink',
   },
   {
     id: 'iso-22000',
     label: 'ISO 22000:2018',
-    title: { en: 'ISO Accreditation', ar: 'اعتماد الآيزو' },
-    subtitle: { en: 'Official Supply Chain Accreditation', ar: 'اعتماد رسمي لسلسلة التوريد' },
-    imageSrc: '/certificates/c2-2-1.png',
-    pillStyle: 'bg-white text-ink hover:bg-lime',
+    pillStyle: 'bg-white text-ink',
   },
 ];
 
 const copy = {
   en: {
     certified: 'Certified food safety management.',
-    viewCertificate: (label: string) => `View the ${label} certificate`,
   },
   ar: {
     certified: 'إدارة معتمدة لسلامة الغذاء.',
-    viewCertificate: (label: string) => `عرض شهادة ${label}`,
   },
 };
 
@@ -95,7 +83,6 @@ interface QualityTimelineProps {
 }
 
 export function QualityTimeline({ content }: QualityTimelineProps = {}) {
-  const [selected, setSelected] = useState<CertificateModalData | null>(null);
   const containerRef = useRef<HTMLElement>(null);
   const { locale, dict } = useLocale();
   const isAr = locale === 'ar';
@@ -107,13 +94,6 @@ export function QualityTimeline({ content }: QualityTimelineProps = {}) {
     (isAr ? content?.qualityTitleAr : content?.qualityTitle) || (isAr ? 'جودة يمكنك الوثوق بها.' : 'Quality You Can Trust.');
 
   useSectionReveal(containerRef, ['.quality-header-item', '.quality-card-item']);
-
-  const openCertificate = (certificate: Certificate) =>
-    setSelected({
-      title: certificate.title[locale],
-      subtitle: certificate.subtitle[locale],
-      imageSrc: certificate.imageSrc,
-    });
 
   return (
     <section id="quality" ref={containerRef} className="scroll-mt-24 sm:scroll-mt-28 section-pad bg-surface-alt">
@@ -136,25 +116,20 @@ export function QualityTimeline({ content }: QualityTimelineProps = {}) {
 
           <FeatureCard variant="dark" className="quality-card-item items-start justify-center">
             {certificates.map((certificate) => (
-              <button
+              <span
                 key={certificate.id}
-                type="button"
-                onClick={() => openCertificate(certificate)}
-                aria-label={text.viewCertificate(certificate.label)}
                 className={cn(
-                  'min-h-11 px-4 rounded-full font-sans font-bold text-[13px] leading-none cursor-pointer transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-lime focus-visible:ring-offset-2 focus-visible:ring-offset-forest',
+                  'inline-flex items-center min-h-11 px-4 rounded-full font-sans font-bold text-[13px] leading-none',
                   certificate.pillStyle
                 )}
               >
                 {certificate.label}
-              </button>
+              </span>
             ))}
             <p className="font-sans text-sm leading-[1.6] text-on-forest-muted text-start">{text.certified}</p>
           </FeatureCard>
         </div>
       </div>
-
-      <CertificateModal isOpen={Boolean(selected)} onClose={() => setSelected(null)} certificate={selected} />
     </section>
   );
 }

@@ -43,15 +43,6 @@ export const qualityCert = defineType({
       rows: 3,
     }),
     defineField({
-      name: 'image',
-      title: 'Certificate Document Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
       name: 'order',
       title: 'Display Order',
       type: 'number',
@@ -62,7 +53,6 @@ export const qualityCert = defineType({
     select: {
       title: 'title',
       subtitle: 'subtitle',
-      media: 'image',
     },
   },
   orderings: [
