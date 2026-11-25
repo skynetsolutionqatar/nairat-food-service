@@ -9,72 +9,9 @@ import { cn } from '@/lib/utils';
 import { useLocale } from '@/context/LocaleContext';
 import { useSectionReveal } from '@/lib/useSectionReveal';
 import type { HomePageContent } from '@/sanity/lib/data';
+import { homeQualityCertificates, homeQualitySteps, homeQualityText } from '@/data/homeQuality';
 
-interface Localized {
-  en: string;
-  ar: string;
-}
-
-interface QualityStep {
-  step: string;
-  title: Localized;
-  description: Localized;
-}
-
-interface Certificate {
-  id: string;
-  label: string;
-  pillStyle: string;
-}
-
-const qualitySteps: QualityStep[] = [
-  {
-    step: '1',
-    title: { en: 'Inspected at Origin', ar: 'تم الفحص في بلد المنشأ' },
-    description: {
-      en: 'Selected and inspected at source for the best quality.',
-      ar: 'تم الاختيار والفحص في المصدر لضمان أفضل جودة.',
-    },
-  },
-  {
-    step: '2',
-    title: { en: 'Tested on Arrival', ar: 'تم الاختبار عند الوصول' },
-    description: {
-      en: 'Laboratory testing in line with Qatar food-safety requirements.',
-      ar: 'اختبارات مخبرية تتماشى مع متطلبات سلامة الغذاء في قطر.',
-    },
-  },
-  {
-    step: '3',
-    title: { en: 'Protected Through Cold Chain', ar: 'محمية عبر سلسلة التبريد' },
-    description: {
-      en: 'Temperature-controlled storage and transport preserve freshness.',
-      ar: 'تخزين ونقل يتم التحكم في درجة حرارته للحفاظ على النضارة.',
-    },
-  },
-];
-
-const certificates: Certificate[] = [
-  {
-    id: 'haccp',
-    label: 'HACCP',
-    pillStyle: 'bg-lime text-ink',
-  },
-  {
-    id: 'iso-22000',
-    label: 'ISO 22000:2018',
-    pillStyle: 'bg-white text-ink',
-  },
-];
-
-const copy = {
-  en: {
-    certified: 'Certified food safety management.',
-  },
-  ar: {
-    certified: 'إدارة معتمدة لسلامة الغذاء.',
-  },
-};
+const pillStyles = ['bg-lime text-ink', 'bg-white text-ink'];
 
 const highlightPhrases = ['Trust.', 'الوثوق بها.'];
 
@@ -84,9 +21,12 @@ interface QualityTimelineProps {
 
 export function QualityTimeline({ content }: QualityTimelineProps = {}) {
   const containerRef = useRef<HTMLElement>(null);
-  const { locale, dict } = useLocale();
+  const { locale } = useLocale();
   const isAr = locale === 'ar';
-  const text = copy[locale];
+  const steps = content?.qualitySteps ?? homeQualitySteps;
+  const certificates = content?.qualityCertificates ?? homeQualityCertificates;
+  const note = (isAr ? content?.qualityCertifiedNoteAr : content?.qualityCertifiedNote) || (isAr ? homeQualityText.certifiedNoteAr : homeQualityText.certifiedNote);
+  const ctaText = (isAr ? content?.qualityCtaTextAr : content?.qualityCtaText) || (isAr ? homeQualityText.ctaTextAr : homeQualityText.ctaText);
 
   const eyebrow =
     (isAr ? content?.qualityEyebrowAr : content?.qualityEyebrow) || (isAr ? 'الشهادات والجودة' : 'CERTIFICATIONS & QUALITY');
@@ -101,32 +41,32 @@ export function QualityTimeline({ content }: QualityTimelineProps = {}) {
         <SectionHeading
           eyebrow={eyebrow}
           title={<MarkedText text={title} phrase={highlightPhrases} />}
-          action={<CtaButton href={isAr ? '/ar/quality' : '/quality'}>{dict.common.qualityProcess}</CtaButton>}
+          action={<CtaButton href={isAr ? '/ar/quality' : '/quality'}>{ctaText}</CtaButton>}
           itemClassName="quality-header-item"
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {qualitySteps.map((item) => (
-            <FeatureCard key={item.step} className="quality-card-item gap-2.5 text-start">
-              <span className="font-sans font-extrabold text-[40px] leading-none text-nairat-green-deep">{item.step}</span>
-              <h3 className="font-sans font-bold text-lg leading-[1.35]">{item.title[locale]}</h3>
-              <p className="font-sans text-sm leading-[1.6] text-ink-muted">{item.description[locale]}</p>
+          {steps.map((item, index) => (
+            <FeatureCard key={item.title} className="quality-card-item gap-2.5 text-start">
+              <span className="font-sans font-extrabold text-[40px] leading-none text-nairat-green-deep">{index + 1}</span>
+              <h3 className="font-sans font-bold text-lg leading-[1.35]">{isAr ? item.titleAr : item.title}</h3>
+              <p className="font-sans text-sm leading-[1.6] text-ink-muted">{isAr ? item.descriptionAr : item.description}</p>
             </FeatureCard>
           ))}
 
           <FeatureCard variant="dark" className="quality-card-item items-start justify-center">
-            {certificates.map((certificate) => (
+            {certificates.map((certificate, index) => (
               <span
-                key={certificate.id}
+                key={certificate}
                 className={cn(
                   'inline-flex items-center min-h-11 px-4 rounded-full font-sans font-bold text-[13px] leading-none',
-                  certificate.pillStyle
+                  pillStyles[index % pillStyles.length]
                 )}
               >
-                {certificate.label}
+                {certificate}
               </span>
             ))}
-            <p className="font-sans text-sm leading-[1.6] text-on-forest-muted text-start">{text.certified}</p>
+            <p className="font-sans text-sm leading-[1.6] text-on-forest-muted text-start">{note}</p>
           </FeatureCard>
         </div>
       </div>

@@ -15,6 +15,7 @@ import { createClient, type IdentifiedSanityDocumentStub } from '@sanity/client'
 import { productCategoriesData } from '../data/products';
 import { partnerLogos } from '../data/partners';
 import { homeServiceCards } from '../data/homeServiceCards';
+import { homeQualitySanityFields } from '../data/homeQuality';
 import { companyProfile } from '../lib/config/company';
 import { DEFAULT_INFRA_METRICS } from '../lib/config/infrastructure';
 import { en } from '../lib/i18n/dictionaries/en';
@@ -558,8 +559,7 @@ async function seed() {
     qualityEyebrowAr: 'الشهادات والجودة',
     qualityTitle: 'Quality You Can Trust.',
     qualityTitleAr: 'جودة يمكنك الوثوق بها.',
-    qualityNarrative: 'Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.',
-    qualityNarrativeAr: 'تم بناء الجودة وسلامة الغذاء في كل مرحلة من مراحل سلسلة التوريد لدينا – بدءاً من الفحص في بلد المنشأ إلى الاختبارات المخبرية عند الوصول والتسليم الذي يتم التحكم في درجة حرارته.',
+    ...homeQualitySanityFields(),
     ctaLine1: 'Fresh Fruits & Vegetables from',
     ctaLine1Ar: 'فواكه وخضروات طازجة من',
     ctaLine2: 'Around the World',

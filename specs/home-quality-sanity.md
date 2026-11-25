@@ -47,3 +47,12 @@ The `/quality` page's own fields (`qualityPage`) are out of scope.
 - `pnpm test` and type-check pass.
 - Sanity query returns the content above; narrative fields are gone.
 - agent-browser: `/` and `/ar` render the same text as before.
+
+## Outcome
+
+- `data/homeQuality.ts` also exports `homeQualitySanityFields()`, the Sanity-shaped
+  values shared by the seed script and the live patch.
+- Live `homePage-singleton` patched: three steps, two certificate labels, note and
+  button text set; `qualityNarrative` / `qualityNarrativeAr` unset. No other fields changed.
+- Verified with agent-browser: `/` and `/ar` show the same steps, pills (lime, white),
+  note and button text as before.

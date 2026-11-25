@@ -29,6 +29,8 @@ import {
 import { PartnerItem, partnerLogos } from '@/data/partners';
 import { homeServiceCards, type HomeServiceCard } from '@/data/homeServiceCards';
 import { resolveHomeServiceCards } from '@/lib/homeServiceCards';
+import { homeQualityCertificates, homeQualitySteps, homeQualityText, type HomeQualityStep } from '@/data/homeQuality';
+import { resolveQualityCertificates, resolveQualitySteps } from '@/lib/homeQuality';
 import { CompanyProfile, companyProfile } from '@/lib/config/company';
 import { DEFAULT_INFRA_METRICS, InfraMetric } from '@/lib/config/infrastructure';
 import { en } from '@/lib/i18n/dictionaries/en';
@@ -661,8 +663,12 @@ export interface HomePageContent {
   qualityEyebrowAr: string;
   qualityTitle: string;
   qualityTitleAr: string;
-  qualityNarrative: string;
-  qualityNarrativeAr: string;
+  qualitySteps: HomeQualityStep[];
+  qualityCertificates: string[];
+  qualityCertifiedNote: string;
+  qualityCertifiedNoteAr: string;
+  qualityCtaText: string;
+  qualityCtaTextAr: string;
   ctaLine1: string;
   ctaLine1Ar: string;
   ctaLine2: string;
@@ -746,8 +752,12 @@ export const defaultHomePageContent: HomePageContent = {
   qualityEyebrowAr: 'الشهادات والجودة',
   qualityTitle: 'Quality You Can Trust.',
   qualityTitleAr: 'جودة يمكنك الوثوق بها.',
-  qualityNarrative: 'Quality and food safety are built into every stage of our supply chain – from inspection at origin to laboratory testing on arrival and temperature-controlled delivery.',
-  qualityNarrativeAr: 'تم بناء الجودة وسلامة الغذاء في كل مرحلة من مراحل سلسلة التوريد لدينا – بدءاً من الفحص في بلد المنشأ إلى الاختبارات المخبرية عند الوصول والتسليم الذي يتم التحكم في درجة حرارته.',
+  qualitySteps: homeQualitySteps,
+  qualityCertificates: homeQualityCertificates,
+  qualityCertifiedNote: homeQualityText.certifiedNote,
+  qualityCertifiedNoteAr: homeQualityText.certifiedNoteAr,
+  qualityCtaText: homeQualityText.ctaText,
+  qualityCtaTextAr: homeQualityText.ctaTextAr,
   ctaLine1: 'Fresh Fruits & Vegetables from',
   ctaLine1Ar: 'فواكه وخضروات طازجة من',
   ctaLine2: 'Around the World',
@@ -863,8 +873,12 @@ export async function getHomePageContent(): Promise<HomePageContent> {
           qualityEyebrowAr: data.qualityEyebrowAr || defaultHomePageContent.qualityEyebrowAr,
           qualityTitle: data.qualityTitle || defaultHomePageContent.qualityTitle,
           qualityTitleAr: data.qualityTitleAr || defaultHomePageContent.qualityTitleAr,
-          qualityNarrative: data.qualityNarrative || defaultHomePageContent.qualityNarrative,
-          qualityNarrativeAr: data.qualityNarrativeAr || defaultHomePageContent.qualityNarrativeAr,
+          qualityCertifiedNote: data.qualityCertifiedNote || defaultHomePageContent.qualityCertifiedNote,
+          qualityCertifiedNoteAr: data.qualityCertifiedNoteAr || defaultHomePageContent.qualityCertifiedNoteAr,
+          qualityCtaText: data.qualityCtaText || defaultHomePageContent.qualityCtaText,
+          qualityCtaTextAr: data.qualityCtaTextAr || defaultHomePageContent.qualityCtaTextAr,
+          qualitySteps: resolveQualitySteps(data.qualitySteps),
+          qualityCertificates: resolveQualityCertificates(data.qualityCertificates),
           ctaLine1: data.ctaLine1 || defaultHomePageContent.ctaLine1,
           ctaLine1Ar: data.ctaLine1Ar || defaultHomePageContent.ctaLine1Ar,
           ctaLine2: data.ctaLine2 || defaultHomePageContent.ctaLine2,

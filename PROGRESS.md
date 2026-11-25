@@ -338,3 +338,11 @@ Spec: [specs/home-services-cards-sanity.md](specs/home-services-cards-sanity.md)
 - [x] `homePage.servicesCards` schema, query and data wiring; `Services.tsx` renders from Sanity
 - [x] Removed unused services narrative fields; CTA text in Sanity now "All Services" and is used by the button
 - [x] Live Sanity document patched; seed script updated; verified on `/` and `/ar` with agent-browser
+
+## Home "Certifications & Quality" Section in Sanity
+
+Spec: [specs/home-quality-sanity.md](specs/home-quality-sanity.md)
+
+- [x] Local content moved to `data/homeQuality.ts`; `lib/homeQuality.ts` maps Sanity rows with local fallback (unit tested)
+- [x] `homePage` fields: `qualitySteps`, `qualityCertificates`, `qualityCertifiedNote(Ar)`, `qualityCtaText(Ar)`; unused narrative removed
+- [x] `QualityTimeline.tsx` renders from Sanity; seed script and live document updated; verified on `/` and `/ar`
